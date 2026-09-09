@@ -2,24 +2,56 @@ import { CATEGORIES, REPORT_STATUSES, TEAMS } from '../types'
 import type { Filters, ReportMetrics, Team, TeamSummary, Ticket, ValidationSummary } from '../types'
 import { dateMatchesLocalKey, localDateKey } from './clock'
 
+// Deterministic duplicate resolution: when the export repeats a Ticket ID, keep
+// the row that carries the most recent lifecycle information (latest Resolved
+// Date, then latest Submit Date, then the later export row). BMC exports place
+// the freshest snapshot of a re-exported ticket later in the file, so this
+// prefers the ticket's latest known state instead of the arbitrary first row.
+const dedupeRank = (t: Ticket): [number, number, number] => [
+  t.closedDate?.getTime() ?? -1,
+  t.createdDate?.getTime() ?? -1,
+  t.sourceIndex,
+]
+
 export function uniqueForReporting(tickets: Ticket[]): Ticket[] {
-  const seen = new Set<string>()
-  return tickets.filter((ticket) => {
+  const chosen = new Map<string, Ticket>()
+  const order: string[] = []
+  for (const ticket of tickets) {
     const key = ticket.id || `__row_${ticket.sourceIndex}`
-    if (seen.has(key)) return false
-    seen.add(key)
-    return true
-  })
+    const existing = chosen.get(key)
+    if (!existing) {
+      chosen.set(key, ticket)
+      order.push(key)
+      continue
+    }
+    const a = dedupeRank(ticket)
+    const b = dedupeRank(existing)
+    if (a[0] > b[0] || (a[0] === b[0] && (a[1] > b[1] || (a[1] === b[1] && a[2] > b[2])))) {
+      chosen.set(key, ticket)
+    }
+  }
+  return order.map((key) => chosen.get(key)!)
 }
 
-export function filterTickets(tickets: Ticket[], filters: Filters): Ticket[] {
+export interface FilterOptions {
+  // Keep tickets resolved on the report date even when the optional Created
+  // from/to range would exclude them. "Closed = Resolved Date today" must not
+  // lose tickets merely because they were submitted before the range.
+  protectResolvedOnReportDate?: boolean
+}
+
+export function filterTickets(tickets: Ticket[], filters: Filters, options?: FilterOptions): Ticket[] {
   const start = filters.startDate ? new Date(`${filters.startDate}T00:00:00`) : null
   const end = filters.endDate ? new Date(`${filters.endDate}T23:59:59.999`) : null
   const query = filters.search.trim().toLowerCase()
+  const protect = Boolean(options?.protectResolvedOnReportDate && filters.reportDate)
 
   return tickets.filter((ticket) => {
-    if (start && (!ticket.createdDate || ticket.createdDate < start)) return false
-    if (end && (!ticket.createdDate || ticket.createdDate > end)) return false
+    const resolvedOnReportDate = protect && dateMatchesLocalKey(ticket.closedDate, filters.reportDate)
+    if (!resolvedOnReportDate) {
+      if (start && (!ticket.createdDate || ticket.createdDate < start)) return false
+      if (end && (!ticket.createdDate || ticket.createdDate > end)) return false
+    }
     if (filters.team !== 'All' && ticket.team !== filters.team) return false
     if (filters.status !== 'All' && ticket.reportStatus !== filters.status) return false
     if (filters.category !== 'All' && ticket.category !== filters.category) return false

@@ -127,6 +127,15 @@ export function parseFlexibleDate(value: unknown): Date | null {
   const text = String(value ?? '').trim()
   if (!text) return null
 
+  // Date-only values must resolve to LOCAL midnight. Passing "YYYY-MM-DD" to the
+  // Date constructor parses as UTC midnight, which lands on the previous calendar
+  // day for negative-offset browsers and 08:00 for Singapore.
+  const isoDay = text.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/)
+  if (isoDay) {
+    const parsed = new Date(Number(isoDay[1]), Number(isoDay[2]) - 1, Number(isoDay[3]))
+    return Number.isNaN(parsed.getTime()) ? null : parsed
+  }
+
   const slash = text.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})(?:\s+(.*))?$/)
   if (slash) {
     const a = Number(slash[1])
@@ -134,8 +143,11 @@ export function parseFlexibleDate(value: unknown): Date | null {
     const y = Number(slash[3])
     const month = a > 12 ? b : a
     const day = a > 12 ? a : b
-    const rest = slash[4] ? ` ${slash[4]}` : ''
-    const parsed = new Date(`${y}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}${rest}`)
+    if (!slash[4]) {
+      const parsed = new Date(y, month - 1, day)
+      if (!Number.isNaN(parsed.getTime())) return parsed
+    }
+    const parsed = new Date(`${y}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')} ${slash[4]}`)
     if (!Number.isNaN(parsed.getTime())) return parsed
   }
 

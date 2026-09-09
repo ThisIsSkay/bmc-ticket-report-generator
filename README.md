@@ -133,11 +133,15 @@ There is no application backend. SheetJS reads the workbook in the browser, and 
 Requirements: Node.js 20+.
 
 ```bash
-npm install
+npm ci
 npm test
 npm run build
 npm run dev
 ```
+
+`package-lock.json` is committed so that CI and local installs are reproducible; use `npm ci` rather than `npm install` unless you are intentionally changing dependencies.
+
+Note on SheetJS: the project pins `xlsx@0.18.5` from the npm registry (the newest version npm hosts). SheetJS publishes newer builds (0.20.x, with fixes for CVE-2023-30533 and CVE-2024-22363) only on `https://cdn.sheetjs.com`. If your network can reach that CDN you may prefer `npm install https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz` and regenerate the lock file. The app only parses workbooks the user chooses locally, so exposure is limited, but keep this in mind for updates.
 
 Open the Vite URL printed in the terminal.
 
@@ -165,7 +169,7 @@ A workflow is included at `.github/workflows/deploy.yml`.
 Manual build:
 
 ```bash
-npm install
+npm ci
 npm test
 npm run build:gh-pages
 ```

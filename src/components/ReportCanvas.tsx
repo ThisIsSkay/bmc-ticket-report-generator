@@ -15,6 +15,7 @@ function BarValueLabel(props: any) {
   const y = Number(props.y ?? 0)
   const width = Number(props.width ?? 0)
   const value = Number(props.value ?? 0)
+  if (!Number.isFinite(x) || !Number.isFinite(y)) return null
   const hasBar = value > 0
   return (
     <text
@@ -110,7 +111,8 @@ export function ReportCanvas({
                   <XAxis dataKey="team" tick={{ fontSize: 12, fill: '#555' }} axisLine={false} tickLine={false} />
                   <YAxis hide allowDecimals={false} />
                   <Tooltip cursor={{ fill: 'rgba(0,0,0,0.03)' }} />
-                  <Bar dataKey="value" maxBarSize={145} isAnimationActive={false}>
+                  {/* minPointSize keeps zero-value bars measurable so their “0” data label stays visible */}
+                  <Bar dataKey="value" maxBarSize={145} minPointSize={3} isAnimationActive={false}>
                     {newData.map((entry) => <Cell key={entry.team} fill={entry.color} />)}
                     <LabelList dataKey="value" content={<BarValueLabel />} />
                   </Bar>
@@ -127,7 +129,7 @@ export function ReportCanvas({
                   <XAxis dataKey="short" interval={0} tick={{ fontSize: 10.5, fill: '#555' }} angle={-43} textAnchor="end" height={82} axisLine={false} tickLine={false} />
                   <YAxis hide allowDecimals={false} />
                   <Tooltip cursor={{ fill: 'rgba(0,0,0,0.03)' }} />
-                  <Bar dataKey="value" maxBarSize={66} isAnimationActive={false}>
+                  <Bar dataKey="value" maxBarSize={66} minPointSize={3} isAnimationActive={false}>
                     {pendingData.map((entry, index) => <Cell key={`${entry.team}-${entry.metric}-${index}`} fill={entry.color} />)}
                     <LabelList dataKey="value" content={<BarValueLabel />} />
                   </Bar>

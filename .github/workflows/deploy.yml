@@ -23,7 +23,7 @@ jobs:
         with:
           node-version: 22
           cache: npm
-      - run: npm install
+      - run: npm ci
       - run: npm test
       - run: npm run build:gh-pages
       - uses: actions/upload-pages-artifact@v3
