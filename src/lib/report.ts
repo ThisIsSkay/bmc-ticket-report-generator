@@ -102,6 +102,17 @@ const isBacklogStatus = (ticket: Ticket): boolean =>
 const isPendingBucket = (ticket: Ticket): boolean =>
   ticket.reportStatus === 'Pending' || ticket.reportStatus === 'On Hold'
 
+// Closed on the daily report is a fixed BMC throughput rule, not a configurable
+// status-normalization rule: the source Status must literally be Closed or
+// Resolved and the Resolved Date must fall on the report date. This keeps daily
+// completion counts correct even if an older/local rules config omitted the
+// "resolved" alias. Cancelled/canceled tickets are deliberately excluded.
+const isClosedOnReportDate = (ticket: Ticket, reportDate: string): boolean => {
+  const sourceStatus = ticket.rawStatus.trim().toLowerCase()
+  const completed = sourceStatus === 'closed' || sourceStatus === 'resolved'
+  return completed && dateMatchesLocalKey(ticket.closedDate, reportDate)
+}
+
 export function aggregateTickets(input: Ticket[], reportDate = localDateKey()): ReportMetrics {
   const tickets = uniqueForReporting(input).filter((ticket) => TEAMS.includes(ticket.team as Team))
   const metrics: ReportMetrics = {
@@ -134,12 +145,9 @@ export function aggregateTickets(input: Ticket[], reportDate = localDateKey()): 
     // Offboarding has been separated into the first bucket.
     if (isPendingBucket(ticket) && !special) metrics.pendingClosed[team].pending += 1
 
-    // Closed is daily throughput: tickets resolved/closed on the report date.
-    // Cancelled tickets also carry a Resolved Date in BMC but are not
-    // successfully completed work, so they never count as Closed.
-    if (ticket.reportStatus === 'Closed' && dateMatchesLocalKey(ticket.closedDate, reportDate)) {
-      metrics.pendingClosed[team].closed += 1
-    }
+    // Closed is daily throughput and is intentionally independent from the
+    // outstanding Pending calculation and from editable status aliases.
+    if (isClosedOnReportDate(ticket, reportDate)) metrics.pendingClosed[team].closed += 1
 
     const summary = metrics.summaries[team]
     if (outstandingSpecial) {
