@@ -44,8 +44,8 @@ describe('date parsing', () => {
     expect(parseFlexibleDate('not a date')).toBeNull()
     expect(parseFlexibleDate('')).toBeNull()
     const tickets = normalizeRows([
-      { ID: '1', Engineer: 'Alex Example', Status: 'Pending', Type: 'Incident', Summary: 'Printer incident', Submit: 'garbage' },
-      { ID: '2', Engineer: 'Alex Example', Status: 'Pending', Type: 'Incident', Summary: 'Printer incident', Submit: '' },
+      { ID: 'INC000001', Engineer: 'Alex Example', Status: 'Pending', Type: 'Incident', Summary: 'Printer incident', Submit: 'garbage' },
+      { ID: 'INC000002', Engineer: 'Alex Example', Status: 'Pending', Type: 'Incident', Summary: 'Printer incident', Submit: '' },
     ], mapping, config)
     expect(tickets[0].dateInvalid).toBe(true)
     expect(tickets[1].dateInvalid).toBe(false)
@@ -73,41 +73,41 @@ describe('duplicate ticket resolution', () => {
 
   it('is deterministic on full-tie duplicates (later export row wins) and preserves order', () => {
     const tie: RawRow[] = [
-      { ID: 'A', Engineer: 'Alex Example', Status: 'Pending', Type: 'Incident', Summary: 'First snapshot', Submit: '2026-09-08' },
-      { ID: 'B', Engineer: 'Sam Example', Status: 'Pending', Type: 'Incident', Summary: 'Other ticket', Submit: '2026-09-08' },
-      { ID: 'A', Engineer: 'Alex Example', Status: 'Work in Progress', Type: 'Incident', Summary: 'Second snapshot', Submit: '2026-09-08' },
+      { ID: 'INC00000A', Engineer: 'Alex Example', Status: 'Pending', Type: 'Incident', Summary: 'First snapshot', Submit: '2026-09-08' },
+      { ID: 'INC00000B', Engineer: 'Sam Example', Status: 'Pending', Type: 'Incident', Summary: 'Other ticket', Submit: '2026-09-08' },
+      { ID: 'INC00000A', Engineer: 'Alex Example', Status: 'Work in Progress', Type: 'Incident', Summary: 'Second snapshot', Submit: '2026-09-08' },
     ]
     const unique = uniqueForReporting(normalizeRows(tie, mapping, config))
-    expect(unique.map((t) => t.id)).toEqual(['A', 'B'])
+    expect(unique.map((t) => t.id)).toEqual(['INC00000A', 'INC00000B'])
     expect(unique[0].reportStatus).toBe('Work in Progress')
   })
 })
 
 describe('created-range filter versus closed-today', () => {
   const rows: RawRow[] = [
-    { ID: 'OLD-1', Engineer: 'Alex Example', Status: 'Resolved', Type: 'Incident', Summary: 'Old incident resolved today', Submit: '2026-08-01', Resolved: '2026-09-09' },
-    { ID: 'NEW-1', Engineer: 'Alex Example', Status: 'Pending', Type: 'Incident', Summary: 'Fresh incident', Submit: '2026-09-09' },
+    { ID: 'INC000OLD', Engineer: 'Alex Example', Status: 'Resolved', Type: 'Incident', Summary: 'Old incident resolved today', Submit: '2026-08-01', Resolved: '2026-09-09' },
+    { ID: 'INC000NEW', Engineer: 'Alex Example', Status: 'Pending', Type: 'Incident', Summary: 'Fresh incident', Submit: '2026-09-09' },
   ]
   const tickets = normalizeRows(rows, mapping, config)
   const filters = { ...defaultFilters, reportDate: '2026-09-09', startDate: '2026-09-09', endDate: '2026-09-09' }
 
   it('keeps tickets resolved on the report date even when created before the range', () => {
     const filtered = filterTickets(tickets, filters, { protectResolvedOnReportDate: true })
-    expect(filtered.map((t) => t.id).sort()).toEqual(['NEW-1', 'OLD-1'])
+    expect(filtered.map((t) => t.id).sort()).toEqual(['INC000NEW', 'INC000OLD'])
     const metrics = aggregateTickets(filtered, '2026-09-09')
     expect(metrics.pendingClosed.EUC.closed).toBe(1)
   })
 
   it('applies the strict range when protection is not requested', () => {
-    expect(filterTickets(tickets, filters).map((t) => t.id)).toEqual(['NEW-1'])
+    expect(filterTickets(tickets, filters).map((t) => t.id)).toEqual(['INC000NEW'])
   })
 })
 
 describe('report date rollover and empty teams', () => {
   const rows: RawRow[] = [
-    { ID: '1', Engineer: 'Alex Example', Status: 'New', Type: 'Incident', Summary: 'Submitted on the 9th', Submit: '2026-09-09' },
-    { ID: '2', Engineer: 'Alex Example', Status: 'Resolved', Type: 'Incident', Summary: 'Resolved on the 9th', Submit: '2026-09-01', Resolved: '2026-09-09' },
-    { ID: '3', Engineer: 'Alex Example', Status: 'Pending', Type: 'Incident', Summary: 'Backlog incident', Submit: '2026-09-01' },
+    { ID: 'INC000001', Engineer: 'Alex Example', Status: 'New', Type: 'Incident', Summary: 'Submitted on the 9th', Submit: '2026-09-09' },
+    { ID: 'INC000002', Engineer: 'Alex Example', Status: 'Resolved', Type: 'Incident', Summary: 'Resolved on the 9th', Submit: '2026-09-01', Resolved: '2026-09-09' },
+    { ID: 'INC000003', Engineer: 'Alex Example', Status: 'Pending', Type: 'Incident', Summary: 'Backlog incident', Submit: '2026-09-01' },
   ]
   const tickets = normalizeRows(rows, mapping, config)
 

@@ -15,19 +15,27 @@ A local-only React/TypeScript web app for turning the daily AsiaPac/BMC Excel ex
 
 The engineer selection is remembered in browser local storage for the next day's export.
 
-## Engineer selection
+## Engineer selection defines report ownership
 
-The report uses **Assigned Engineer** as the final team-classification field.
+The BMC system is shared with teams this report does not cover (for example application or NOC teams). Ownership is decided by **your explicit engineer selection**, never by group names, and no team name is hard-coded anywhere in the source.
+
+**A ticket contributes to EUC/System/Network metrics only if its Assigned Engineer has been explicitly selected for one of those teams.**
 
 - An engineer can be selected for EUC, System, or Network.
 - Matching is case-insensitive and trims surrounding spaces.
 - One engineer/alias cannot belong to multiple teams.
 - The picker is populated from the names in the uploaded file.
-- **Use BMC suggestions** looks at the engineer's dominant EUC/System/Network **Assigned Group** during the latest 90 days present in the workbook.
-- Any engineer not selected remains **Review / Unassigned** and is excluded from the three team report totals.
+- **Use BMC suggestions** is an explicit, optional action: it proposes engineers based on their dominant EUC/System/Network **Assigned Group** during the latest 90 days present in the workbook. Nothing is selected automatically on import.
+- Every engineer you do not select stays **Review / Unassigned / out of scope** and is excluded from all three team totals. This is how other BMC teams are kept out of the report without naming them in code.
+- A blank Assigned Engineer is never auto-assigned from its Assigned Group; it stays out of scope.
 - Advanced aliases/spelling variations can still be edited and imported/exported as JSON or CSV.
 
-For the supplied raw workbook, the current recent-group suggestions resolve to the active names present in the file rather than hard-coded sample names.
+### Out-of-scope transparency
+
+Two diagnostics show exactly what the report excluded. Both live in the configuration UI only and never appear in the exported image:
+
+- **Engineer Selection screen** — each unselected engineer with their ticket count and the Assigned Groups they work in.
+- **Report Dashboard** — an *Out of Scope / Unassigned by Assigned Group* table (group name, ticket count).
 
 ## Internal daily clock
 
@@ -38,12 +46,22 @@ The daily calculations are intentionally different from a simple Created-Date fi
 - **New Tickets** = unique tickets whose **Submit Date** is the current report day, regardless of their current BMC status.
 - **Closed** = unique tickets whose **Resolved Date** is the current report day **and** whose status normalizes to Closed. Cancelled tickets also carry a Resolved Date in BMC, but cancellation is not completed work and never counts as Closed throughput.
 - **On/Off-Boarding, Schedule** = all outstanding (non-terminal) tickets categorized as Schedule, Onboarding, or Offboarding — including New/Assigned work not yet started. Closed and Cancelled are terminal.
-- **Pending** (chart) = the remaining Pending/On-Hold backlog of any category after Schedule/Onboarding/Offboarding tickets have been separated into the first bucket. This is intentionally a **different metric** from the Pending line inside the On-hold Incidents summary, which counts Incident-category tickets only — the reference dashboard shows the two disagreeing, and that is expected.
+- **Pending** (chart) = the remaining Pending/On-Hold backlog of any ticket type after Schedule/Onboarding/Offboarding tickets have been separated into the first bucket. See *Pending is still under validation* below.
+- **On/Off-Boarding, Schedule** and its breakdown come from outstanding **SRV** tickets only; the incident summary counts **INC** tickets only.
 - **Team summary — Total tickets** = current outstanding Schedule + Onboarding + Offboarding workload.
 - **Schedule request / Onboarding / Offboarding** = breakdown of that backlog.
-- **On-hold Incidents — Total** = current Incident backlog in Pending, On Hold, Work in Progress, or Waiting User Reply.
+- **On-hold Incidents — Total** = current INC backlog in Pending, On Hold, Work in Progress, or Waiting User Reply.
 - **Pending** inside the incident table includes source statuses normalized to Pending or On Hold.
 - **Work in Progress** and **Waiting User Reply** use their normalized report statuses.
+
+### Pending is still under validation
+
+The chart's **Pending** bar and the **Pending** line inside each team's On-hold Incidents box are deliberately **different metrics**, and the tool does not force them to agree:
+
+- chart Pending = every pending/on-hold ticket outside the On/Off-Boarding and Schedule bucket, of any ticket type;
+- incident-summary Pending = INC tickets in Pending or On Hold only.
+
+The reference Excel dashboard shows Network with a chart Pending of 18 while its incident Pending is 16, which is consistent with the two metrics measuring different populations. **This rule is not final.** To investigate it, the Report Dashboard shows a *Pending breakdown* diagnostic — per team: the chart total and its INC / SRV / other-prefix split, plus a per-Assigned-Group breakdown. Like the out-of-scope table, it appears in the UI only and never in the exported image.
 
 All dashboard blocks use the same normalized ticket records. Duplicate Ticket IDs are counted once in report metrics — deterministically keeping the row with the most recent lifecycle information (latest Resolved Date, then latest Submit Date, then the later export row) — while every raw row remains visible in the detail screen.
 
@@ -65,26 +83,29 @@ The column detector is tuned for the supplied AsiaPac raw export and recognizes 
 
 The mapping screen remains available in case BMC changes column names in a future export.
 
-## Category classification
+## Ticket type and category classification
 
-The structured BMC **Incident Type** field is reliable, so it takes priority over loose description keywords:
+The **Ticket ID prefix** is authoritative — it is the most reliable indicator BMC provides, and it beats any wording found in the description.
 
-| Incident Type | Category |
-| --- | --- |
-| `Incident` | **Incident** — even if the description mentions words like "onboarding" or "schedule" |
-| `Forward Schedule / Preventive Maintenance` | **Schedule** |
-| `Service Request` | Description keywords decide **Onboarding** → **Offboarding** → **Schedule**, otherwise **Other** |
-| `Event` | **Other** (monitoring noise, not reportable engineer workload) |
-| blank / unknown | Keyword fallback over type + description |
+| Ticket ID prefix | Ticket type | Category |
+| --- | --- | --- |
+| `INC…` | Incident | **Incident**, always |
+| `SRV…` | Service Request | **Onboarding** / **Offboarding** / **Schedule** from the structured type and description keywords, otherwise **Other** |
+| `EVT…` | Event | **Other** (monitoring noise, not reportable engineer workload) |
+| anything else | Unknown | **Other**, and the prefix is reported in validation rather than guessed at |
 
-Default description keyword rules (editable in the UI):
+Prefix matching is case-insensitive and ignores surrounding whitespace.
+
+An INC ticket stays an Incident even when its description contains words such as "onboarding", "offboarding" or "schedule". Only SRV tickets can become Onboarding, Offboarding or Schedule.
+
+Default description keyword rules for service requests (editable in the UI):
 
 - **Onboarding:** onboarding, onboard, new joiner, joiner
 - **Offboarding:** offboarding, terminate access, leaver, termination, resignation
 - **Schedule:** forward schedule, preventive maintenance, schedule, scheduling, planned work
-- **Incident:** incident, outage, unavailable, error, failure (used by the fallback only)
+- **Incident:** incident, outage, unavailable, error, failure (retained for configuration; the INC prefix decides incidents)
 
-Matching normalizes case and whitespace.
+An SRV ticket whose structured Incident Type is `Forward Schedule / Preventive Maintenance` is classified as Schedule regardless of its description.
 
 ## Status defaults
 
@@ -160,15 +181,14 @@ npm run dev
 
 The project uses **SheetJS 0.20.3**, vendored at `vendor/xlsx-0.20.3.tgz` and referenced from `package.json` as `"xlsx": "file:vendor/xlsx-0.20.3.tgz"`, so `npm ci` installs reproducibly without contacting `cdn.sheetjs.com` on every build.
 
-> ⚠️ Provenance: the currently committed tarball was obtained via the `@e965/xlsx` npm registry mirror because `cdn.sheetjs.com` was unreachable from the environment that vendored it. Its MD5 is `f485cee690a4c2f96d7c8fd7768e5fc2`, which does **not** match the official SheetJS `xlsx-0.20.3.tgz` checksum `aac39517149362ea8123d8a303486c3c`, so it must not be treated as the official tarball. To replace it with the official build, run on a machine with CDN access:
->
-> ```bash
-> curl -o vendor/xlsx-0.20.3.tgz https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz
-> md5sum vendor/xlsx-0.20.3.tgz   # expect aac39517149362ea8123d8a303486c3c
-> npm install                     # refreshes the lock-file hash
-> ```
+The committed tarball is the official SheetJS distribution. Its checksum matches the one published by SheetJS:
 
-Open the Vite URL printed in the terminal.
+```bash
+md5sum vendor/xlsx-0.20.3.tgz
+# aac39517149362ea8123d8a303486c3c
+```
+
+Re-verify that checksum after any future dependency update; the npm registry's `xlsx` package is outdated and is deliberately not used.
 
 ## Validation behavior
 
@@ -179,7 +199,8 @@ Open the Vite URL printed in the terminal.
 - Blank Assigned Engineer values remain unclassified.
 - Duplicate engineer aliases across teams block the report until resolved.
 - Unknown statuses become Other.
-- Unmatched categories become Other.
+- Service requests matching no category keyword become Other and are counted separately from Event/unknown tickets, which are Other by design.
+- Unrecognized Ticket ID prefixes are listed with their counts instead of being treated as INC or SRV.
 - Duplicate Ticket IDs remain visible but count once in report totals.
 - The detail table retains the original imported columns and rows.
 

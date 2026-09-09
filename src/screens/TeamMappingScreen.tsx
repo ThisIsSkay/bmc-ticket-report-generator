@@ -40,10 +40,31 @@ export function TeamMappingScreen({
     () => new Set(TEAMS.flatMap((team) => config.teams[team]).map(normalizeText)),
     [config.teams],
   )
-  const unclassified = useMemo(
-    () => [...new Set(tickets.filter((t) => t.team === 'Review / Unassigned').map((t) => t.assignedTo || '(blank)'))].sort(),
-    [tickets],
-  )
+  // Each unselected engineer with the Assigned Groups they actually work in,
+  // so the shared-BMC teams are recognizable before deciding who is in scope.
+  const unclassified = useMemo(() => {
+    const byEngineer = new Map<string, { name: string; total: number; groups: Map<string, number> }>()
+    for (const ticket of tickets) {
+      if (ticket.team !== 'Review / Unassigned') continue
+      const name = ticket.assignedTo || '(blank)'
+      const entry = byEngineer.get(name) ?? { name, total: 0, groups: new Map<string, number>() }
+      entry.total += 1
+      const group = ticket.supportGroup || '(blank)'
+      entry.groups.set(group, (entry.groups.get(group) ?? 0) + 1)
+      byEngineer.set(name, entry)
+    }
+    return [...byEngineer.values()]
+      .map((entry) => ({
+        name: entry.name,
+        total: entry.total,
+        groups: [...entry.groups.entries()]
+          .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+          .slice(0, 3)
+          .map(([group, count]) => `${group} (${count})`)
+          .join(', '),
+      }))
+      .sort((a, b) => b.total - a.total || a.name.localeCompare(b.name))
+  }, [tickets])
 
   const setTeam = (team: Team, aliases: string[]) => onConfig({ ...config, teams: { ...config.teams, [team]: aliases } })
 
@@ -171,11 +192,14 @@ export function TeamMappingScreen({
       {duplicates.length > 0 && <div className="rounded-md border border-red-300 bg-red-50 p-3 text-sm font-semibold text-red-800">Validation error: these engineer aliases appear in multiple team lists: {duplicates.join(', ')}</div>}
 
       <div className="panel overflow-hidden">
-        <div className="border-b bg-gray-50 px-4 py-3"><div className="font-bold">Review / Unassigned engineers</div><div className="text-xs text-gray-500">Any imported engineer not selected above remains outside EUC/System/Network report totals until assigned.</div></div>
+        <div className="border-b bg-gray-50 px-4 py-3"><div className="font-bold">Review / Unassigned engineers (out of report scope)</div><div className="text-xs text-gray-500">BMC is shared with teams this report does not cover. Any imported engineer not selected above stays out of every EUC/System/Network total. Blank engineer values are never auto-assigned from their Assigned Group.</div></div>
         {unclassified.length === 0 ? <div className="p-4 text-sm text-green-700">All non-blank imported engineers are assigned to a report team.</div> : (
           <div className="max-h-80 overflow-auto">
             <table className="w-full border-collapse text-sm"><tbody>
-              {unclassified.map((assignee) => <tr key={assignee} className="border-b last:border-0"><td className="px-4 py-3 font-semibold">{assignee}</td><td className="px-4 py-2 text-right">{TEAMS.map((team) => <button key={team} className="btn-secondary ml-2 py-1" disabled={assignee === '(blank)'} onClick={() => assign(assignee, team)}><UserPlus className="h-3.5 w-3.5" /> {team}</button>)}</td></tr>)}
+              {unclassified.map((entry) => <tr key={entry.name} className="border-b last:border-0">
+                <td className="px-4 py-3"><div className="font-semibold">{entry.name}</div><div className="text-xs text-gray-500">{entry.total.toLocaleString()} ticket(s) • {entry.groups}</div></td>
+                <td className="px-4 py-2 text-right">{TEAMS.map((team) => <button key={team} className="btn-secondary ml-2 py-1" disabled={entry.name === '(blank)'} onClick={() => assign(entry.name, team)}><UserPlus className="h-3.5 w-3.5" /> {team}</button>)}</td>
+              </tr>)}
             </tbody></table>
           </div>
         )}

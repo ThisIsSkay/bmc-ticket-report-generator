@@ -28,7 +28,8 @@ describe('team classification', () => {
   it('suggests engineers from their dominant recent BMC Assigned Group', () => {
     const base = {
       sourceIndex: 0, raw: {}, id: '', rawStatus: 'Pending', rawCategory: 'Service Request', summary: '', closedDate: null,
-      contract: '', team: 'Review / Unassigned' as const, category: 'Other' as const, reportStatus: 'Pending' as const, duplicateId: false, dateInvalid: false,
+      contract: '', team: 'Review / Unassigned' as const, kind: 'Service Request' as const, idPrefix: 'SRV',
+      category: 'Other' as const, reportStatus: 'Pending' as const, duplicateId: false, dateInvalid: false,
     }
     const tickets: Ticket[] = [
       { ...base, sourceIndex: 1, assignedTo: 'Alex Example', supportGroup: 'NCC_EUC', createdDate: new Date(2026, 9, 1) },
@@ -46,9 +47,9 @@ describe('team classification', () => {
 
 describe('category categorization', () => {
   it('recognizes BMC-style onboarding, schedule and incident values', () => {
-    expect(categorizeTicket('Service Request', 'Request: Onboarding - Onboard new joiner', defaultConfig.categories)).toBe('Onboarding')
-    expect(categorizeTicket('Forward Schedule / Preventive Maintenance', 'Cuppage maintenance', defaultConfig.categories)).toBe('Schedule')
-    expect(categorizeTicket('Incident', 'Printer issue', defaultConfig.categories)).toBe('Incident')
+    expect(categorizeTicket('Service Request', 'Service Request', 'Request: Onboarding - Onboard new joiner', defaultConfig.categories)).toBe('Onboarding')
+    expect(categorizeTicket('Service Request', 'Forward Schedule / Preventive Maintenance', 'Cuppage maintenance', defaultConfig.categories)).toBe('Schedule')
+    expect(categorizeTicket('Incident', 'Incident', 'Printer issue', defaultConfig.categories)).toBe('Incident')
   })
 })
 

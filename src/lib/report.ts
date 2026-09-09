@@ -1,5 +1,14 @@
 import { CATEGORIES, REPORT_STATUSES, TEAMS } from '../types'
-import type { Filters, ReportMetrics, Team, TeamSummary, Ticket, ValidationSummary } from '../types'
+import type {
+  CountByLabel,
+  Filters,
+  PendingDiagnosticRow,
+  ReportMetrics,
+  Team,
+  TeamSummary,
+  Ticket,
+  ValidationSummary,
+} from '../types'
 import { dateMatchesLocalKey, localDateKey } from './clock'
 
 // Deterministic duplicate resolution: when the export repeats a Ticket ID, keep
@@ -150,6 +159,17 @@ export function aggregateTickets(input: Ticket[], reportDate = localDateKey()): 
   return metrics
 }
 
+const countByLabel = (tickets: Ticket[], label: (ticket: Ticket) => string): CountByLabel[] => {
+  const counts = new Map<string, number>()
+  for (const ticket of tickets) {
+    const key = label(ticket)
+    counts.set(key, (counts.get(key) ?? 0) + 1)
+  }
+  return [...counts.entries()]
+    .map(([value, count]) => ({ label: value, count }))
+    .sort((a, b) => b.count - a.count || a.label.localeCompare(b.label))
+}
+
 export function buildValidation(tickets: Ticket[], missingRequiredColumns: string[] = []): ValidationSummary {
   const duplicateTicketIds = [...new Set(tickets.filter((t) => t.duplicateId).map((t) => t.id).filter(Boolean))]
   return {
@@ -158,9 +178,43 @@ export function buildValidation(tickets: Ticket[], missingRequiredColumns: strin
     blankAssigneeCount: tickets.filter((t) => !t.assignedTo).length,
     invalidDateCount: tickets.filter((t) => t.dateInvalid).length,
     unknownStatusCount: tickets.filter((t) => t.reportStatus === 'Other').length,
-    unknownCategoryCount: tickets.filter((t) => t.category === 'Other').length,
+    // Only service requests can be genuinely uncategorized: Event and unknown
+    // prefixes are Other by design and are reported separately.
+    unknownCategoryCount: tickets.filter((t) => t.kind === 'Service Request' && t.category === 'Other').length,
     unclassifiedAssignees: [...new Set(tickets.filter((t) => t.team === 'Review / Unassigned').map((t) => t.assignedTo || '(blank)'))].sort(),
+    unknownPrefixes: countByLabel(tickets.filter((t) => t.kind === 'Unknown'), (t) => t.idPrefix || '(blank)'),
   }
+}
+
+// Diagnostics only — these never appear in the exported report image.
+
+// Tickets whose Assigned Engineer is not mapped to a report team, grouped by
+// their BMC Assigned Group. BMC is shared with teams that AsiaPac does not
+// manage, and this shows exactly what the engineer selection excluded without
+// hard-coding any group name.
+export function outOfScopeByGroup(input: Ticket[]): { rows: CountByLabel[]; total: number } {
+  const outOfScope = uniqueForReporting(input).filter((ticket) => !TEAMS.includes(ticket.team as Team))
+  return { rows: countByLabel(outOfScope, (t) => t.supportGroup || '(blank)'), total: outOfScope.length }
+}
+
+// Splits exactly the population behind the chart's Pending bars by ticket kind,
+// so the chart Pending total can be reconciled against the Incident-only
+// Pending line in the team summary.
+export function pendingDiagnostics(input: Ticket[]): PendingDiagnosticRow[] {
+  const tickets = uniqueForReporting(input).filter(
+    (ticket) => TEAMS.includes(ticket.team as Team) && isPendingBucket(ticket) && !isSpecialBacklog(ticket),
+  )
+  return TEAMS.map((team) => {
+    const forTeam = tickets.filter((ticket) => ticket.team === team)
+    return {
+      team,
+      total: forTeam.length,
+      incident: forTeam.filter((t) => t.kind === 'Incident').length,
+      serviceRequest: forTeam.filter((t) => t.kind === 'Service Request').length,
+      other: forTeam.filter((t) => t.kind !== 'Incident' && t.kind !== 'Service Request').length,
+      byGroup: countByLabel(forTeam, (t) => t.supportGroup || '(blank)'),
+    }
+  })
 }
 
 export function availableAssignees(tickets: Ticket[]): string[] {

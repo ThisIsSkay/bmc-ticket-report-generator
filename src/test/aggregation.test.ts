@@ -15,11 +15,11 @@ const config: AppConfig = {
 }
 
 const rows: RawRow[] = [
-  { ID: '1', Engineer: 'Alex Example', Status: 'Pending', Type: 'Service Request', Summary: 'Request: Onboarding - new joiner', Submit: '2026-09-09', Group: 'NCC_EUC' },
-  { ID: '2', Engineer: 'Alex Example', Status: 'Pending', Type: 'Incident', Summary: 'Incident: laptop failure', Submit: '2026-09-08', Group: 'NCC_EUC' },
-  { ID: '3', Engineer: 'Sam Example', Status: 'Closed', Type: 'Service Request', Summary: 'Routine task', Submit: '2026-09-08', Resolved: '2026-09-09', Group: 'NCC_SYSTEM' },
-  { ID: '4', Engineer: 'Nina Example', Status: 'Waiting User Reply', Type: 'Incident', Summary: 'VPN incident', Submit: '2026-09-08', Group: 'NCC_NETWORK' },
-  { ID: '4', Engineer: 'Nina Example', Status: 'Waiting User Reply', Type: 'Incident', Summary: 'VPN incident duplicate export row', Submit: '2026-09-08', Group: 'NCC_NETWORK' },
+  { ID: 'SRV000001', Engineer: 'Alex Example', Status: 'Pending', Type: 'Service Request', Summary: 'Request: Onboarding - new joiner', Submit: '2026-09-09', Group: 'NCC_EUC' },
+  { ID: 'INC000002', Engineer: 'Alex Example', Status: 'Pending', Type: 'Incident', Summary: 'Incident: laptop failure', Submit: '2026-09-08', Group: 'NCC_EUC' },
+  { ID: 'SRV000003', Engineer: 'Sam Example', Status: 'Closed', Type: 'Service Request', Summary: 'Routine task', Submit: '2026-09-08', Resolved: '2026-09-09', Group: 'NCC_SYSTEM' },
+  { ID: 'INC000004', Engineer: 'Nina Example', Status: 'Waiting User Reply', Type: 'Incident', Summary: 'VPN incident', Submit: '2026-09-08', Group: 'NCC_NETWORK' },
+  { ID: 'INC000004', Engineer: 'Nina Example', Status: 'Waiting User Reply', Type: 'Incident', Summary: 'VPN incident duplicate export row', Submit: '2026-09-08', Group: 'NCC_NETWORK' },
 ]
 
 describe('daily report aggregation', () => {

@@ -9,7 +9,7 @@ import { DetailScreen } from './screens/DetailScreen'
 import { ConfigScreen } from './screens/ConfigScreen'
 import { autoDetectColumns, parseWorkbookFile, readWorksheet, recommendWorksheet } from './lib/import'
 import { buildValidation } from './lib/report'
-import { inferTeamMappingFromTickets, normalizeRows, validateTeamMapping } from './lib/normalize'
+import { normalizeRows, validateTeamMapping } from './lib/normalize'
 import { defaultColumnMapping, defaultFilters } from './config/defaults'
 import { loadColumnMapping, loadConfig, loadFeedback, saveColumnMapping, saveConfig, saveFeedback } from './lib/storage'
 import { formatLocalDate, formatLocalTime, localDateKey } from './lib/clock'
@@ -26,9 +26,6 @@ const nav: Array<{ id: Screen; label: string; icon: typeof FileUp; needsData?: b
   { id: 'details', label: 'Detailed Ticket Data', icon: Table2, needsData: true },
   { id: 'config', label: 'Config Export / Import', icon: FileSearch },
 ]
-
-const teamListsEmpty = (config: AppConfig) =>
-  config.teams.EUC.length === 0 && config.teams.System.length === 0 && config.teams.Network.length === 0
 
 export default function App() {
   const [screen, setScreen] = useState<Screen>('upload')
@@ -69,15 +66,6 @@ export default function App() {
     }
   }
 
-  const seedTeamSuggestionsIfNeeded = (importedRows: RawRow[], detected: ColumnMapping) => {
-    if (!teamListsEmpty(config)) return
-    const temporary = normalizeRows(importedRows, detected, { ...config, teams: { EUC: [], System: [], Network: [] } })
-    const suggested = inferTeamMappingFromTickets(temporary, 90)
-    if (suggested.EUC.length || suggested.System.length || suggested.Network.length) {
-      setConfig({ ...config, teams: suggested })
-    }
-  }
-
   const selectWorksheet = (sheet = selectedSheet, goToMapping = true) => {
     if (!parsed || !sheet) return
     try {
@@ -87,7 +75,6 @@ export default function App() {
       setRows(imported.rows)
       const detected = autoDetectColumns(imported.headers, loadColumnMapping())
       setColumnMapping(detected)
-      seedTeamSuggestionsIfNeeded(imported.rows, detected)
       setError('')
       if (goToMapping) setScreen('columns')
     } catch (err) {
@@ -108,7 +95,6 @@ export default function App() {
       const imported = readWorksheet(next, sheet)
       const detected = autoDetectColumns(imported.headers, defaultColumnMapping)
       setParsed(next); setSelectedSheet(sheet); setFileName(next.fileName); setHeaders(imported.headers); setRows(imported.rows); setColumnMapping(detected)
-      seedTeamSuggestionsIfNeeded(imported.rows, detected)
       if (directToDashboard) setScreen('dashboard')
       else setScreen('columns')
     } catch (err) {

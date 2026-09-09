@@ -19,6 +19,13 @@ export type ReportStatus = (typeof REPORT_STATUSES)[number]
 export const CATEGORIES = ['Onboarding', 'Offboarding', 'Schedule', 'Incident', 'Other'] as const
 export type TicketCategory = (typeof CATEGORIES)[number]
 
+// Derived from the Ticket ID prefix, which BMC assigns reliably: INC tickets
+// are incidents and SRV tickets are service requests, whatever the free-text
+// description says. EVT is monitoring noise. Any other prefix is Unknown and
+// is surfaced in validation rather than guessed at.
+export const TICKET_KINDS = ['Incident', 'Service Request', 'Event', 'Unknown'] as const
+export type TicketKind = (typeof TICKET_KINDS)[number]
+
 export type ColumnKey =
   | 'ticketId'
   | 'assignedTo'
@@ -67,6 +74,8 @@ export interface Ticket {
   supportGroup: string
   contract: string
   team: ClassifiedTeam
+  kind: TicketKind
+  idPrefix: string
   category: TicketCategory
   reportStatus: ReportStatus
   duplicateId: boolean
@@ -92,6 +101,21 @@ export interface ValidationSummary {
   unknownStatusCount: number
   unknownCategoryCount: number
   unclassifiedAssignees: string[]
+  unknownPrefixes: CountByLabel[]
+}
+
+export interface CountByLabel {
+  label: string
+  count: number
+}
+
+export interface PendingDiagnosticRow {
+  team: Team
+  total: number
+  incident: number
+  serviceRequest: number
+  other: number
+  byGroup: CountByLabel[]
 }
 
 export interface TeamSummary {

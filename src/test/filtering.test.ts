@@ -7,9 +7,9 @@ import type { AppConfig, ColumnMapping } from '../types'
 const mapping: ColumnMapping = { ...defaultColumnMapping, ticketId: 'ID', assignedTo: 'Engineer', status: 'Status', ticketType: 'Type', summary: 'Summary', createdDate: 'Created' }
 const config: AppConfig = { ...defaultConfig, teams: { EUC: ['Alex Example'], System: ['Sam Example'], Network: ['Nina Example'] } }
 const tickets = normalizeRows([
-  { ID: 'A', Engineer: 'Alex Example', Status: 'Pending', Type: 'Service Request', Summary: 'Onboarding Alice', Created: '2026-09-09' },
-  { ID: 'B', Engineer: 'Sam Example', Status: 'Pending', Type: 'Incident', Summary: 'Database outage', Created: '2026-09-08' },
-  { ID: 'C', Engineer: 'Nina Example', Status: 'Closed', Type: 'Service Request', Summary: 'Firewall planned work', Created: '2026-09-01' },
+  { ID: 'SRV00000A', Engineer: 'Alex Example', Status: 'Pending', Type: 'Service Request', Summary: 'Onboarding Alice', Created: '2026-09-09' },
+  { ID: 'INC00000B', Engineer: 'Sam Example', Status: 'Pending', Type: 'Incident', Summary: 'Database outage', Created: '2026-09-08' },
+  { ID: 'SRV00000C', Engineer: 'Nina Example', Status: 'Closed', Type: 'Service Request', Summary: 'Firewall planned work', Created: '2026-09-01' },
 ], mapping, config)
 
 describe('filtering', () => {
@@ -19,6 +19,6 @@ describe('filtering', () => {
     expect(filterTickets(tickets, { ...defaultFilters, reportDate: '2026-09-09', status: 'Closed' })).toHaveLength(1)
     expect(filterTickets(tickets, { ...defaultFilters, reportDate: '2026-09-09', category: 'Incident' })).toHaveLength(1)
     expect(filterTickets(tickets, { ...defaultFilters, reportDate: '2026-09-09', assignee: 'Alex Example' })).toHaveLength(1)
-    expect(filterTickets(tickets, { ...defaultFilters, reportDate: '2026-09-09', search: 'firewall' })[0].id).toBe('C')
+    expect(filterTickets(tickets, { ...defaultFilters, reportDate: '2026-09-09', search: 'firewall' })[0].id).toBe('SRV00000C')
   })
 })
