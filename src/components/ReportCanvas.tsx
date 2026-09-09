@@ -127,7 +127,7 @@ export function ReportCanvas({
             <h2>Pending &amp; Closed Tickets</h2>
             <div className="excel-chart-area pending-chart-area">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={pendingData} margin={{ top: 25, right: 24, left: 24, bottom: 70 }} barCategoryGap="18%">
+                <BarChart data={pendingData} margin={{ top: 25, right: 18, left: 50, bottom: 70 }} barCategoryGap="18%">
                   <XAxis dataKey="short" interval={0} tick={{ fontSize: 10.5, fill: '#555' }} angle={-43} textAnchor="end" height={82} axisLine={false} tickLine={false} />
                   <YAxis hide allowDecimals={false} />
                   <Tooltip cursor={{ fill: 'rgba(0,0,0,0.03)' }} />
