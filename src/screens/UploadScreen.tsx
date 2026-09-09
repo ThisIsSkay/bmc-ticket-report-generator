@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { FileSpreadsheet, LockKeyhole, Upload } from 'lucide-react'
 import type { ParsedWorkbook } from '../types'
 
@@ -18,6 +19,13 @@ export function UploadScreen({
   onContinue: () => void
   onSample: () => void
 }) {
+  const [dragActive, setDragActive] = useState(false)
+
+  const acceptDroppedFile = (file: File | undefined) => {
+    if (!file) return
+    onFile(file)
+  }
+
   return (
     <div className="mx-auto max-w-4xl space-y-5">
       <div>
@@ -26,9 +34,34 @@ export function UploadScreen({
       </div>
 
       <div className="panel p-6">
-        <label className="flex cursor-pointer flex-col items-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 px-6 py-12 text-center hover:border-gray-500">
-          <Upload className="mb-3 h-9 w-9 text-gray-500" />
-          <span className="text-base font-bold">Choose BMC export</span>
+        <label
+          className={`flex cursor-pointer flex-col items-center rounded-lg border-2 border-dashed px-6 py-12 text-center transition ${dragActive ? 'border-red-600 bg-red-50' : 'border-gray-300 bg-gray-50 hover:border-gray-500'}`}
+          onDragEnter={(event) => {
+            event.preventDefault()
+            event.stopPropagation()
+            setDragActive(true)
+          }}
+          onDragOver={(event) => {
+            event.preventDefault()
+            event.stopPropagation()
+            event.dataTransfer.dropEffect = 'copy'
+            setDragActive(true)
+          }}
+          onDragLeave={(event) => {
+            event.preventDefault()
+            event.stopPropagation()
+            if (event.currentTarget.contains(event.relatedTarget as Node | null)) return
+            setDragActive(false)
+          }}
+          onDrop={(event) => {
+            event.preventDefault()
+            event.stopPropagation()
+            setDragActive(false)
+            acceptDroppedFile(event.dataTransfer.files?.[0])
+          }}
+        >
+          <Upload className={`mb-3 h-9 w-9 ${dragActive ? 'text-red-600' : 'text-gray-500'}`} />
+          <span className="text-base font-bold">{dragActive ? 'Drop BMC export here' : 'Choose or drop BMC export'}</span>
           <span className="mt-1 text-sm text-gray-500">.xlsx, .xls, or .csv</span>
           <input
             type="file"
