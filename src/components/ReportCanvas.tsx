@@ -37,19 +37,19 @@ function TeamSummaryTable({ team, summary }: { team: Team; summary: TeamSummary 
   return (
     <section className="excel-summary-box">
       <div className="excel-summary-team">{team}</div>
-      <div className="excel-summary-headings"><div>On/Offboarding, Schedule</div><div>On-hold Incidents</div></div>
+      <div className="excel-summary-headings"><div>On/Offboarding, Schedule</div><div>On-Hold Incidents</div></div>
       <div className="excel-summary-body">
         <div>
-          <div>Total : {summary.totalTickets} tickets</div>
-          <div>{summary.scheduleRequests} - schedule request</div>
+          <div>Total: {summary.totalTickets} tickets</div>
+          <div>{summary.scheduleRequests} - Schedule Request</div>
           <div>{summary.onboarding} - Onboarding</div>
           <div>{summary.offboarding} - Offboarding</div>
         </div>
         <div>
-          <div>Total : {summary.incidentTotal} tickets</div>
+          <div>Total: {summary.incidentTotal} tickets</div>
           <div>{summary.pendingIncidents} - Pending</div>
-          <div>{summary.workInProgressIncidents} - work in progress</div>
-          <div>{summary.waitingUserReplyIncidents} - waiting user reply</div>
+          <div>{summary.workInProgressIncidents} - Work in Progress</div>
+          <div>{summary.waitingUserReplyIncidents} - Waiting User Reply</div>
         </div>
       </div>
     </section>
@@ -59,7 +59,7 @@ function TeamSummaryTable({ team, summary }: { team: Team; summary: TeamSummary 
 function EngineerLine({ teamMapping }: { teamMapping: TeamMapping }) {
   return (
     <div className="truncate text-[11px] text-gray-600">
-      {TEAMS.map((team) => `${team}: ${teamMapping[team].length ? teamMapping[team].join(', ') : 'none'}`).join('   •   ')}
+      {TEAMS.map((team) => `${team}: ${teamMapping[team].length ? teamMapping[team].join(', ') : 'None'}`).join('   •   ')}
     </div>
   )
 }
@@ -85,7 +85,7 @@ export function ReportCanvas({
 }) {
   const newData = TEAMS.map((team) => ({ team, value: metrics.newTickets[team], color: COLORS[team] }))
   const pendingData = TEAMS.flatMap((team) => [
-    { team, metric: 'On/Off-Boarding, Schedule', short: 'On/Off-Boarding...', value: metrics.pendingClosed[team].scheduledOnOffBoarding, color: COLORS[team] },
+    { team, metric: 'On/Offboarding, Schedule', short: 'On/Offboarding...', value: metrics.pendingClosed[team].scheduledOnOffBoarding, color: COLORS[team] },
     { team, metric: 'Pending', short: 'Pending', value: metrics.pendingClosed[team].pending, color: COLORS[team] },
     { team, metric: 'Closed', short: 'Closed', value: metrics.pendingClosed[team].closed, color: COLORS[team] },
   ])
@@ -94,7 +94,7 @@ export function ReportCanvas({
     <div ref={reportRef} id="report-canvas" className="report-canvas">
       <header className="report-image-header">
         <div className="min-w-0">
-          <div className="flex items-baseline gap-3"><h1>BMC Ticket Report</h1><span>Report date: {formatDateKey(reportDate)}</span></div>
+          <div className="flex items-baseline gap-3"><h1>BMC Ticket Report</h1><span>Report Date: {formatDateKey(reportDate)}</span></div>
           <EngineerLine teamMapping={teamMapping} />
         </div>
         <div className="shrink-0 text-right text-[11px] leading-4 text-gray-600">
@@ -148,7 +148,7 @@ export function ReportCanvas({
 
           <div className="report-input-zone">
             <div>
-              <div className="excel-input-title">New Tickets input</div>
+              <div className="excel-input-title">New Tickets Input</div>
               <table className="excel-input-table">
                 <thead><tr>{TEAMS.map((team) => <th key={team}>{team}</th>)}</tr></thead>
                 <tbody><tr>{TEAMS.map((team) => <td key={team}>{metrics.newTickets[team]}</td>)}</tr></tbody>
@@ -156,12 +156,10 @@ export function ReportCanvas({
             </div>
 
             <div>
-              <div className="excel-input-title">Pending and Closed tickets input</div>
+              <div className="excel-input-title">Pending and Closed Tickets Input</div>
               <table className="excel-pending-table">
                 <thead>
-                  <tr>{TEAMS.map((team) => <th key={team} colSpan={3}>{team}</th>)}</tr>
-                  <tr>{TEAMS.flatMap((team) => [<th key={`${team}-a`}>On/Off-Boarding...</th>, <th key={`${team}-p`}>Pending</th>, <th key={`${team}-c`}>Closed</th>])}</tr>
-                </thead>
+                  <tr>{TEAMS.map((team) => <th key={team} colSpan={3}>{team}</th>)}</tr></thead>
                 <tbody>
                   <tr>{TEAMS.flatMap((team) => [
                     <td key={`${team}-av`}>{metrics.pendingClosed[team].scheduledOnOffBoarding}</td>,
