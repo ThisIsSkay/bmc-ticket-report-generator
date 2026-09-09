@@ -36,16 +36,16 @@ The dashboard contains a live device clock. The clock automatically determines t
 The daily calculations are intentionally different from a simple Created-Date filter:
 
 - **New Tickets** = unique tickets whose **Submit Date** is the current report day, regardless of their current BMC status.
-- **Closed** = unique tickets whose **Resolved Date** is the current report day.
-- **On/Off-Boarding, Schedule** = current backlog tickets categorized as Schedule, Onboarding, or Offboarding.
-- **Pending** = current Pending/On-Hold backlog after Schedule/Onboarding/Offboarding tickets have been separated into the first bucket.
-- **Team summary — Total tickets** = current Schedule + Onboarding + Offboarding backlog.
+- **Closed** = unique tickets whose **Resolved Date** is the current report day **and** whose status normalizes to Closed. Cancelled tickets also carry a Resolved Date in BMC, but cancellation is not completed work and never counts as Closed throughput.
+- **On/Off-Boarding, Schedule** = all outstanding (non-terminal) tickets categorized as Schedule, Onboarding, or Offboarding — including New/Assigned work not yet started. Closed and Cancelled are terminal.
+- **Pending** (chart) = the remaining Pending/On-Hold backlog of any category after Schedule/Onboarding/Offboarding tickets have been separated into the first bucket. This is intentionally a **different metric** from the Pending line inside the On-hold Incidents summary, which counts Incident-category tickets only — the reference dashboard shows the two disagreeing, and that is expected.
+- **Team summary — Total tickets** = current outstanding Schedule + Onboarding + Offboarding workload.
 - **Schedule request / Onboarding / Offboarding** = breakdown of that backlog.
 - **On-hold Incidents — Total** = current Incident backlog in Pending, On Hold, Work in Progress, or Waiting User Reply.
 - **Pending** inside the incident table includes source statuses normalized to Pending or On Hold.
 - **Work in Progress** and **Waiting User Reply** use their normalized report statuses.
 
-All dashboard blocks use the same normalized ticket records, and duplicate Ticket IDs are counted once in report metrics while remaining visible in the detail screen.
+All dashboard blocks use the same normalized ticket records. Duplicate Ticket IDs are counted once in report metrics — deterministically keeping the row with the most recent lifecycle information (latest Resolved Date, then latest Submit Date, then the later export row) — while every raw row remains visible in the detail screen.
 
 ## BMC raw export compatibility
 
@@ -65,26 +65,39 @@ The column detector is tuned for the supplied AsiaPac raw export and recognizes 
 
 The mapping screen remains available in case BMC changes column names in a future export.
 
-## Category defaults
+## Category classification
 
-Default keyword rules are editable in the UI.
+The structured BMC **Incident Type** field is reliable, so it takes priority over loose description keywords:
+
+| Incident Type | Category |
+| --- | --- |
+| `Incident` | **Incident** — even if the description mentions words like "onboarding" or "schedule" |
+| `Forward Schedule / Preventive Maintenance` | **Schedule** |
+| `Service Request` | Description keywords decide **Onboarding** → **Offboarding** → **Schedule**, otherwise **Other** |
+| `Event` | **Other** (monitoring noise, not reportable engineer workload) |
+| blank / unknown | Keyword fallback over type + description |
+
+Default description keyword rules (editable in the UI):
 
 - **Onboarding:** onboarding, onboard, new joiner, joiner
 - **Offboarding:** offboarding, terminate access, leaver, termination, resignation
 - **Schedule:** forward schedule, preventive maintenance, schedule, scheduling, planned work
-- **Incident:** incident, outage, unavailable, error, failure
+- **Incident:** incident, outage, unavailable, error, failure (used by the fallback only)
 
-The category engine normalizes case and whitespace and searches both the mapped ticket-type field and description/summary.
+Matching normalizes case and whitespace.
 
 ## Status defaults
 
 - **New:** new, assigned, created
 - **Pending:** pending
-- **Closed:** closed, resolved, cancelled, canceled
+- **Closed:** closed, resolved
 - **Work in Progress:** work in progress, in progress, wip
 - **Waiting User Reply:** waiting user reply, awaiting user, pending user, waiting for user
 - **On Hold:** on hold, hold
+- **Cancelled:** cancelled, canceled — a separate status that never contributes to Closed throughput or outstanding backlog
 - Anything else becomes **Other** until mapped.
+
+Configurations saved by earlier versions that listed cancelled/canceled under Closed are migrated automatically on load.
 
 The supplied AsiaPac raw workbook currently contains BMC values such as Closed, Cancelled, Pending, and Resolved; the editable mapping remains in place for future exports that contain additional states.
 
@@ -143,7 +156,17 @@ npm run dev
 
 `package-lock.json` is committed so that CI and local installs are reproducible; use `npm ci` rather than `npm install` unless you are intentionally changing dependencies.
 
-Note on SheetJS: the project pins `xlsx@0.18.5` from the npm registry (the newest version npm hosts). SheetJS publishes newer builds (0.20.x, with fixes for CVE-2023-30533 and CVE-2024-22363) only on `https://cdn.sheetjs.com`. If your network can reach that CDN you may prefer `npm install https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz` and regenerate the lock file. The app only parses workbooks the user chooses locally, so exposure is limited, but keep this in mind for updates.
+### SheetJS
+
+The project uses **SheetJS 0.20.3**, vendored at `vendor/xlsx-0.20.3.tgz` and referenced from `package.json` as `"xlsx": "file:vendor/xlsx-0.20.3.tgz"`, so `npm ci` installs reproducibly without contacting `cdn.sheetjs.com` on every build.
+
+> ⚠️ Provenance: the currently committed tarball was obtained via the `@e965/xlsx` npm registry mirror because `cdn.sheetjs.com` was unreachable from the environment that vendored it. Its MD5 is `f485cee690a4c2f96d7c8fd7768e5fc2`, which does **not** match the official SheetJS `xlsx-0.20.3.tgz` checksum `aac39517149362ea8123d8a303486c3c`, so it must not be treated as the official tarball. To replace it with the official build, run on a machine with CDN access:
+>
+> ```bash
+> curl -o vendor/xlsx-0.20.3.tgz https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz
+> md5sum vendor/xlsx-0.20.3.tgz   # expect aac39517149362ea8123d8a303486c3c
+> npm install                     # refreshes the lock-file hash
+> ```
 
 Open the Vite URL printed in the terminal.
 
