@@ -78,6 +78,12 @@ const blankSummary = (): TeamSummary => ({
 const isSpecialBacklog = (ticket: Ticket): boolean =>
   ticket.category === 'Schedule' || ticket.category === 'Onboarding' || ticket.category === 'Offboarding'
 
+// Outstanding workload = anything not in a terminal state. New/Assigned
+// onboarding or schedule work is still outstanding even before an engineer
+// starts it; Closed and Cancelled are terminal.
+const isOutstanding = (ticket: Ticket): boolean =>
+  ticket.reportStatus !== 'Closed' && ticket.reportStatus !== 'Cancelled'
+
 const isBacklogStatus = (ticket: Ticket): boolean =>
   ticket.reportStatus === 'Pending' ||
   ticket.reportStatus === 'Work in Progress' ||
@@ -104,24 +110,30 @@ export function aggregateTickets(input: Ticket[], reportDate = localDateKey()): 
     const team = ticket.team as Team
     const backlog = isBacklogStatus(ticket)
     const special = isSpecialBacklog(ticket)
+    const outstandingSpecial = isOutstanding(ticket) && special
 
     // "New Tickets" in the daily Excel report means submitted on the report day,
     // regardless of the ticket's current BMC status.
     if (dateMatchesLocalKey(ticket.createdDate, reportDate)) metrics.newTickets[team] += 1
 
     // First backlog bucket mirrors the Excel block labelled On/Off-Boarding and
-    // includes Schedule requests as shown in the team summary table.
-    if (backlog && special) metrics.pendingClosed[team].scheduledOnOffBoarding += 1
+    // includes Schedule requests as shown in the team summary table. It counts
+    // every non-terminal status, including New/Assigned work not yet started.
+    if (outstandingSpecial) metrics.pendingClosed[team].scheduledOnOffBoarding += 1
 
     // Pending is the remaining pending/on-hold backlog after Schedule/Onboarding/
     // Offboarding has been separated into the first bucket.
     if (isPendingBucket(ticket) && !special) metrics.pendingClosed[team].pending += 1
 
     // Closed is daily throughput: tickets resolved/closed on the report date.
-    if (dateMatchesLocalKey(ticket.closedDate, reportDate)) metrics.pendingClosed[team].closed += 1
+    // Cancelled tickets also carry a Resolved Date in BMC but are not
+    // successfully completed work, so they never count as Closed.
+    if (ticket.reportStatus === 'Closed' && dateMatchesLocalKey(ticket.closedDate, reportDate)) {
+      metrics.pendingClosed[team].closed += 1
+    }
 
     const summary = metrics.summaries[team]
-    if (backlog && special) {
+    if (outstandingSpecial) {
       summary.totalTickets += 1
       if (ticket.category === 'Schedule') summary.scheduleRequests += 1
       if (ticket.category === 'Onboarding') summary.onboarding += 1

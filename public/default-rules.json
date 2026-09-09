@@ -2,10 +2,11 @@
   "statuses": {
     "New": ["new", "assigned", "created"],
     "Pending": ["pending"],
-    "Closed": ["closed", "resolved", "cancelled", "canceled"],
+    "Closed": ["closed", "resolved"],
     "Work in Progress": ["work in progress", "in progress", "wip"],
     "Waiting User Reply": ["waiting user reply", "awaiting user", "pending user", "waiting for user"],
     "On Hold": ["on hold", "hold"],
+    "Cancelled": ["cancelled", "canceled"],
     "Other": []
   },
   "categories": {

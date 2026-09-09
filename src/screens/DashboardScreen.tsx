@@ -94,7 +94,7 @@ export function DashboardScreen({
           </div>
           <div className="mt-3 flex items-center justify-between gap-4">
             <div className="text-xs leading-5 text-gray-500">
-              <strong>Daily logic:</strong> New = Submit Date today • Closed = Resolved Date today • On/Offboarding/Schedule and Pending = current backlog. Optional Created-from/to filters narrow the source population but never remove tickets resolved on the report date.
+              <strong>Daily logic:</strong> New = Submit Date today • Closed = Resolved Date today (Cancelled excluded) • On/Offboarding/Schedule = outstanding non-terminal work • Pending = remaining pending/on-hold backlog. Optional Created-from/to filters narrow the source population but never remove tickets resolved on the report date.
             </div>
             <div className="flex shrink-0 gap-2"><button className="btn-secondary py-1.5" onClick={resetFilters}><RotateCcw className="h-4 w-4" /> Reset filters</button><button className="btn-secondary py-1.5" onClick={() => { const next = new Date(); setNow(next); setGeneratedAt(next) }}><RefreshCw className="h-4 w-4" /> Recalculate</button></div>
           </div>

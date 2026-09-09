@@ -41,10 +41,14 @@ export function loadConfig(): AppConfig {
     statuses: {
       New: strings(raw.statuses?.New, defaultConfig.statuses.New),
       Pending: strings(raw.statuses?.Pending, defaultConfig.statuses.Pending),
-      Closed: strings(raw.statuses?.Closed, defaultConfig.statuses.Closed),
+      // Configs saved before Cancelled existed listed cancelled/canceled under
+      // Closed; strip them so cancellations stop counting as Closed throughput.
+      Closed: strings(raw.statuses?.Closed, defaultConfig.statuses.Closed)
+        .filter((alias) => !['cancelled', 'canceled'].includes(alias.trim().toLowerCase())),
       'Work in Progress': strings(raw.statuses?.['Work in Progress'], defaultConfig.statuses['Work in Progress']),
       'Waiting User Reply': strings(raw.statuses?.['Waiting User Reply'], defaultConfig.statuses['Waiting User Reply']),
       'On Hold': strings(raw.statuses?.['On Hold'], defaultConfig.statuses['On Hold']),
+      Cancelled: strings(raw.statuses?.Cancelled, defaultConfig.statuses.Cancelled),
       Other: strings(raw.statuses?.Other, []),
     },
     categories: {

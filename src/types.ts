@@ -11,6 +11,7 @@ export const REPORT_STATUSES = [
   'Work in Progress',
   'Waiting User Reply',
   'On Hold',
+  'Cancelled',
   'Other',
 ] as const
 export type ReportStatus = (typeof REPORT_STATUSES)[number]

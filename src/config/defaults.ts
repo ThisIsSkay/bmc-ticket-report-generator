@@ -21,10 +21,13 @@ export const defaultConfig: AppConfig = {
   statuses: {
     New: ['new', 'assigned', 'created'],
     Pending: ['pending'],
-    Closed: ['closed', 'resolved', 'cancelled', 'canceled'],
+    Closed: ['closed', 'resolved'],
     'Work in Progress': ['work in progress', 'in progress', 'wip'],
     'Waiting User Reply': ['waiting user reply', 'awaiting user', 'pending user', 'waiting for user'],
     'On Hold': ['on hold', 'hold'],
+    // Cancelled work is not successful Closed throughput: BMC stamps a
+    // Resolved Date on cancellations too, so it needs its own bucket.
+    Cancelled: ['cancelled', 'canceled'],
     Other: [],
   },
   categories: {

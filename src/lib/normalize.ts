@@ -91,6 +91,7 @@ export function normalizeStatus(status: unknown, mappings: AppConfig['statuses']
     'Work in Progress',
     'Waiting User Reply',
     'On Hold',
+    'Cancelled',
   ]
   for (const target of order) {
     if (mappings[target].some((source) => normalizeText(source) === needle)) return target
@@ -98,20 +99,44 @@ export function normalizeStatus(status: unknown, mappings: AppConfig['statuses']
   return 'Other'
 }
 
+const matchesAny = (haystack: string, keywords: string[]): boolean =>
+  keywords.some((keyword) => {
+    const normalizedKeyword = normalizeText(keyword)
+    return normalizedKeyword.length > 0 && haystack.includes(normalizedKeyword)
+  })
+
+// The BMC Incident Type field is structured and reliable, so it takes
+// precedence over free-text description keywords:
+//   Incident                                  -> Incident (a description that
+//     mentions "onboarding" or "schedule" does not change an incident)
+//   Forward Schedule / Preventive Maintenance -> Schedule
+//   Service Request                           -> classified by description
+//     keywords into Onboarding/Offboarding/Schedule, otherwise Other
+//   Event                                     -> Other (monitoring noise, not
+//     reportable engineer workload)
+// Unknown or blank types fall back to keyword matching over type+description.
 export function categorizeTicket(
   categoryValue: unknown,
   summaryValue: unknown,
   rules: AppConfig['categories'],
 ): TicketCategory {
+  const type = normalizeText(categoryValue)
+  const description = normalizeText(summaryValue)
+
+  if (type === 'incident') return 'Incident'
+  if (type.includes('forward schedule') || type.includes('preventive maintenance')) return 'Schedule'
+  if (type === 'service request') {
+    for (const category of ['Onboarding', 'Offboarding', 'Schedule'] as const) {
+      if (matchesAny(description, rules[category])) return category
+    }
+    return 'Other'
+  }
+  if (type === 'event') return 'Other'
+
   const haystack = normalizeText(`${String(categoryValue ?? '')} ${String(summaryValue ?? '')}`)
   const order: Exclude<TicketCategory, 'Other'>[] = ['Onboarding', 'Offboarding', 'Schedule', 'Incident']
   for (const category of order) {
-    if (rules[category].some((keyword) => {
-      const normalizedKeyword = normalizeText(keyword)
-      return normalizedKeyword.length > 0 && haystack.includes(normalizedKeyword)
-    })) {
-      return category
-    }
+    if (matchesAny(haystack, rules[category])) return category
   }
   return 'Other'
 }
