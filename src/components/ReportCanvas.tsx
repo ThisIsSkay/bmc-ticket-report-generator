@@ -159,7 +159,9 @@ export function ReportCanvas({
               <div className="excel-input-title">Pending and Closed Tickets Input</div>
               <table className="excel-pending-table">
                 <thead>
-                  <tr>{TEAMS.map((team) => <th key={team} colSpan={3}>{team}</th>)}</tr></thead>
+                  <tr>{TEAMS.map((team) => <th key={team} colSpan={3}>{team}</th>)}</tr>
+                  <tr>{TEAMS.flatMap((team) => [<th key={`${team}-a`}>On/Offboarding...</th>, <th key={`${team}-p`}>Pending</th>, <th key={`${team}-c`}>Closed</th>])}</tr>
+                </thead>
                 <tbody>
                   <tr>{TEAMS.flatMap((team) => [
                     <td key={`${team}-av`}>{metrics.pendingClosed[team].scheduledOnOffBoarding}</td>,
