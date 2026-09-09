@@ -120,31 +120,25 @@ export default function App() {
 
   return (
     <div className="min-h-screen">
-      <header className="brand-header">
-        <div className="mx-auto flex max-w-[1900px] items-center justify-between px-6 pb-4 pt-5">
-          <div className="flex items-center gap-4">
-            <span className="brand-slash" aria-hidden="true" />
-            <div>
-              <div className="text-xl font-bold tracking-tight text-gray-950">BMC Ticket Report Generator</div>
-              <div className="text-xs text-gray-500">Local browser processing • Daily engineer selection • Excel-style WhatsApp report export</div>
-            </div>
-          </div>
-          <div className="mr-12 flex items-center gap-8 text-right text-xs text-gray-500">
-            <div><div className="font-semibold text-gray-800">{formatLocalDate(now)} • {formatLocalTime(now)}</div><div>Device clock determines today's report date</div></div>
-            <div>{fileName ? <>Current source<br /><strong className="text-gray-800">{fileName}</strong></> : 'No BMC file loaded'}</div>
+      <header className="border-b border-gray-800 bg-gray-950 text-white">
+        <div className="mx-auto flex max-w-[1900px] items-center justify-between px-6 py-4">
+          <div><div className="text-xl font-bold">BMC Ticket Report Generator</div><div className="text-xs text-gray-400">Local browser processing • Daily engineer selection • Excel-style WhatsApp report export</div></div>
+          <div className="flex items-center gap-8 text-right text-xs text-gray-400">
+            <div><div className="font-semibold text-gray-200">{formatLocalDate(now)} • {formatLocalTime(now)}</div><div>Device clock determines today's report date</div></div>
+            <div>{fileName ? <>Current source<br /><strong className="text-gray-200">{fileName}</strong></> : 'No BMC file loaded'}</div>
           </div>
         </div>
       </header>
 
       <div className="mx-auto grid max-w-[1900px] grid-cols-[250px_minmax(0,1fr)] gap-0">
-        <aside className="brand-sidebar min-h-[calc(100vh-73px)] border-r border-gray-200 p-3">
+        <aside className="min-h-[calc(100vh-73px)] border-r border-gray-200 bg-white p-3">
           <nav className="space-y-1">
             {nav.map(({ id, label, icon: Icon, needsData }) => {
               const disabled = Boolean((needsData && !hasData) || ((id === 'dashboard' || id === 'details') && teamMappingErrors.length > 0))
-              return <button key={id} disabled={disabled} onClick={() => setScreen(id)} className={`flex w-full items-center gap-3 rounded-md px-3 py-2.5 text-left text-sm font-semibold transition ${screen === id ? 'brand-nav-active' : disabled ? 'text-gray-300' : 'text-gray-700 hover:bg-gray-100'}`}><Icon className="h-4 w-4" />{label}</button>
+              return <button key={id} disabled={disabled} onClick={() => setScreen(id)} className={`flex w-full items-center gap-3 rounded-md px-3 py-2.5 text-left text-sm font-semibold ${screen === id ? 'bg-gray-900 text-white' : disabled ? 'text-gray-300' : 'text-gray-700 hover:bg-gray-100'}`}><Icon className="h-4 w-4" />{label}</button>
             })}
           </nav>
-          {hasData && <div className="brand-import-status mt-6 rounded-md p-3 text-xs leading-5 text-gray-600"><strong className="text-gray-900">Import status</strong><br />{rows.length.toLocaleString()} raw rows<br />{tickets.length.toLocaleString()} processed rows<br />{config.teams.EUC.length + config.teams.System.length + config.teams.Network.length} selected engineer alias(es)<br />{validation.unclassifiedAssignees.length} engineer value(s) outside the three teams</div>}
+          {hasData && <div className="mt-6 rounded-md bg-gray-50 p-3 text-xs leading-5 text-gray-600"><strong className="text-gray-900">Import status</strong><br />{rows.length.toLocaleString()} raw rows<br />{tickets.length.toLocaleString()} processed rows<br />{config.teams.EUC.length + config.teams.System.length + config.teams.Network.length} selected engineer alias(es)<br />{validation.unclassifiedAssignees.length} engineer value(s) outside the three teams</div>}
         </aside>
 
         <main className="min-w-0 p-6">
