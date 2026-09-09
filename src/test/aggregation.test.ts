@@ -36,4 +36,23 @@ describe('daily report aggregation', () => {
     expect(metrics.summaries.EUC.pendingIncidents).toBe(1)
     expect(metrics.summaries.Network.waitingUserReplyIncidents).toBe(1)
   })
+
+  it('counts raw Resolved/Closed statuses resolved on the report day even if a local status alias is stale, but excludes Cancelled', () => {
+    const staleConfig: AppConfig = {
+      ...config,
+      statuses: {
+        ...config.statuses,
+        Closed: ['closed'],
+      },
+    }
+    const dailyRows: RawRow[] = [
+      { ID: 'SRV000010', Engineer: 'Alex Example', Status: 'Resolved', Type: 'Service Request', Summary: 'Completed request', Submit: '2026-09-08', Resolved: '2026-09-09', Group: 'NCC_EUC' },
+      { ID: 'INC000011', Engineer: 'Alex Example', Status: 'Closed', Type: 'Incident', Summary: 'Completed incident', Submit: '2026-09-08', Resolved: '2026-09-09', Group: 'NCC_EUC' },
+      { ID: 'SRV000012', Engineer: 'Alex Example', Status: 'Cancelled', Type: 'Service Request', Summary: 'Cancelled request', Submit: '2026-09-08', Resolved: '2026-09-09', Group: 'NCC_EUC' },
+      { ID: 'SRV000013', Engineer: 'Alex Example', Status: 'Resolved', Type: 'Service Request', Summary: 'Resolved yesterday', Submit: '2026-09-07', Resolved: '2026-09-08', Group: 'NCC_EUC' },
+    ]
+
+    const metrics = aggregateTickets(normalizeRows(dailyRows, mapping, staleConfig), '2026-09-09')
+    expect(metrics.pendingClosed.EUC.closed).toBe(2)
+  })
 })
