@@ -3,28 +3,89 @@
 @tailwind utilities;
 
 :root {
+  /* Keppel-inspired visual language for this independent internal project.
+     Red is used as an accent only; team colours remain dedicated to data. */
+  --brand-red: #c8102e;
+  --brand-red-dark: #a70d27;
+  --brand-red-soft: #fff1f3;
+  --brand-charcoal: #23272d;
+  --brand-slate: #62676e;
+  --brand-surface: #f4f5f6;
   font-family: Arial, Helvetica, sans-serif;
   color: #111827;
-  background: #f3f4f6;
+  background: var(--brand-surface);
   font-synthesis: none;
 }
 
 * { box-sizing: border-box; }
-body { margin: 0; min-width: 1180px; min-height: 100vh; background: #f3f4f6; }
+body { margin: 0; min-width: 1180px; min-height: 100vh; background: var(--brand-surface); }
 button, input, select, textarea { font: inherit; }
 button:disabled { cursor: not-allowed; opacity: 0.55; }
 
 @layer components {
   .panel { @apply rounded-lg border border-gray-200 bg-white shadow-sm; }
   .btn { @apply inline-flex items-center justify-center gap-2 rounded-md border px-3 py-2 text-sm font-semibold transition; }
-  .btn-primary { @apply btn border-gray-900 bg-gray-900 text-white hover:bg-black; }
-  .btn-secondary { @apply btn border-gray-300 bg-white text-gray-800 hover:bg-gray-50; }
+  .btn-primary { @apply btn text-white; background: var(--brand-red); border-color: var(--brand-red); }
+  .btn-primary:hover { background: var(--brand-red-dark); border-color: var(--brand-red-dark); }
+  .btn-secondary { @apply btn border-gray-300 bg-white text-gray-800; }
+  .btn-secondary:hover { border-color: #d8a0aa; background: #fff8f9; color: var(--brand-red-dark); }
   .btn-danger { @apply btn border-red-200 bg-red-50 text-red-700 hover:bg-red-100; }
-  .field { @apply w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500; }
+  .field { @apply w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm outline-none; }
+  .field:focus { border-color: var(--brand-red); box-shadow: 0 0 0 1px var(--brand-red); }
   .label { @apply mb-1 block text-xs font-bold uppercase tracking-wide text-gray-600; }
 }
 
+/* Independent project branding: no corporate logo, only a restrained visual
+   vocabulary inspired by Keppel's red, charcoal, white and diagonal accent. */
+.brand-header {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid #d7d9dc;
+  background: #fff;
+  color: #15171a;
+  box-shadow: 0 1px 4px rgba(17, 24, 39, 0.06);
+}
+.brand-header::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 4px;
+  background: var(--brand-red);
+}
+.brand-header::after {
+  content: '';
+  position: absolute;
+  top: -9px;
+  right: 42px;
+  width: 14px;
+  height: 68px;
+  background: var(--brand-red);
+  transform: skew(-20deg);
+  pointer-events: none;
+}
+.brand-slash {
+  display: inline-block;
+  width: 7px;
+  height: 31px;
+  flex: 0 0 auto;
+  background: var(--brand-red);
+  transform: skew(-20deg);
+}
+.brand-sidebar {
+  background: #fff;
+}
+.brand-nav-active {
+  background: var(--brand-charcoal);
+  color: #fff;
+  box-shadow: inset 4px 0 0 var(--brand-red);
+}
+.brand-import-status {
+  border-left: 3px solid var(--brand-red);
+  background: #f7f7f8;
+}
+
 .report-canvas {
+  position: relative;
   width: 1800px;
   height: 950px;
   padding: 22px 48px 26px;
@@ -32,6 +93,7 @@ button:disabled { cursor: not-allowed; opacity: 0.55; }
   color: #111;
   font-family: Arial, Helvetica, sans-serif;
   overflow: hidden;
+  box-shadow: inset 0 5px 0 var(--brand-red);
 }
 
 .report-image-header {
@@ -40,10 +102,26 @@ button:disabled { cursor: not-allowed; opacity: 0.55; }
   align-items: flex-start;
   justify-content: space-between;
   gap: 28px;
-  border-bottom: 1px solid #d1d5db;
+  border-bottom: 2px solid var(--brand-red);
   padding-bottom: 6px;
 }
-.report-image-header h1 { margin: 0; font-size: 21px; line-height: 1; font-weight: 700; }
+.report-image-header h1 {
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 21px;
+  line-height: 1;
+  font-weight: 700;
+}
+.report-image-header h1::before {
+  content: '';
+  display: inline-block;
+  width: 5px;
+  height: 24px;
+  background: var(--brand-red);
+  transform: skew(-20deg);
+}
 .report-image-header h1 + span { font-size: 13px; font-weight: 700; color: #4b5563; }
 
 .report-image-grid {
