@@ -24,8 +24,14 @@ describe('ticket kind from the Ticket ID prefix', () => {
     expect(ticketKindFromId(' SRV000000400001 ')).toBe('Service Request')
   })
 
+  it('recognizes the forward schedule prefix, including lowercase and padded values', () => {
+    expect(ticketIdPrefix('  fsc000000400010 ')).toBe('FSC')
+    expect(ticketKindFromId('FSC000000400010')).toBe('Forward Schedule')
+    expect(ticketKindFromId('  fsc000000400010 ')).toBe('Forward Schedule')
+    expect(ticketKindFromId('Fsc000000400010')).toBe('Forward Schedule')
+  })
+
   it('treats unrecognized and blank prefixes as Unknown rather than guessing', () => {
-    expect(ticketKindFromId('FSC000000400010')).toBe('Unknown')
     expect(ticketKindFromId('TASK-42')).toBe('Unknown')
     expect(ticketKindFromId('12345')).toBe('Unknown')
     expect(ticketKindFromId('')).toBe('Unknown')
@@ -78,27 +84,69 @@ describe('SRV tickets are classified from structured type and description', () =
   })
 })
 
+describe('FSC tickets are always Schedule', () => {
+  it('maps the forward schedule prefix to Schedule', () => {
+    expect(categorizeTicket('Forward Schedule', 'Forward Schedule / Preventive Maintenance', 'Quarterly switch firmware', rules)).toBe('Schedule')
+  })
+
+  it('never falls back to Other, whatever the type and description say', () => {
+    expect(categorizeTicket('Forward Schedule', '', '', rules)).toBe('Schedule')
+    expect(categorizeTicket('Forward Schedule', 'Event', 'Install an additional monitor', rules)).toBe('Schedule')
+    expect(categorizeTicket('Forward Schedule', 'Incident', 'Disk failure error', rules)).toBe('Schedule')
+  })
+
+  it('classifies FSC rows end to end, including lowercase and padded ticket IDs', () => {
+    const tickets = normalizeRows([
+      { ID: 'FSC000000400010', Engineer: 'Alex Example', Status: 'Pending', Type: 'Forward Schedule / Preventive Maintenance', Summary: 'Planned maintenance', Submit: '2026-09-08' },
+      { ID: '  fsc000000400011 ', Engineer: 'Alex Example', Status: 'Pending', Type: 'Forward Schedule / Preventive Maintenance', Summary: 'Planned maintenance', Submit: '2026-09-08' },
+    ], mapping, config)
+    expect(tickets.map((ticket) => ticket.kind)).toEqual(['Forward Schedule', 'Forward Schedule'])
+    expect(tickets.map((ticket) => ticket.category)).toEqual(['Schedule', 'Schedule'])
+    expect(tickets.some((ticket) => ticket.category === 'Other')).toBe(false)
+  })
+
+  it('counts outstanding FSC work in the Schedule bucket and its summary line', () => {
+    const rows: RawRow[] = [
+      { ID: 'FSC000000400010', Engineer: 'Alex Example', Status: 'Pending', Type: 'Forward Schedule / Preventive Maintenance', Summary: 'Planned maintenance', Submit: '2026-09-08' },
+      { ID: 'FSC000000400011', Engineer: 'Alex Example', Status: 'Closed', Type: 'Forward Schedule / Preventive Maintenance', Summary: 'Completed maintenance', Submit: '2026-09-01', Resolved: '2026-09-05' },
+    ]
+    const metrics = aggregateTickets(normalizeRows(rows, mapping, config), '2026-09-09')
+    expect(metrics.pendingClosed.EUC.scheduledOnOffBoarding).toBe(1)
+    expect(metrics.summaries.EUC.scheduleRequests).toBe(1)
+    expect(metrics.summaries.EUC.totalTickets).toBe(1)
+  })
+
+  it('does not report FSC as an unrecognized prefix', () => {
+    const tickets = normalizeRows([
+      { ID: 'FSC000000400010', Engineer: 'Alex Example', Status: 'Pending', Type: 'Forward Schedule / Preventive Maintenance', Summary: 'Planned maintenance', Submit: '2026-09-08' },
+    ], mapping, config)
+    expect(buildValidation(tickets).unknownPrefixes).toEqual([])
+  })
+})
+
 describe('Event and unknown prefixes', () => {
   it('keeps Event tickets as Other', () => {
     expect(categorizeTicket('Event', 'Event', 'CPU utilization threshold reached', rules)).toBe('Other')
   })
 
-  it('keeps unknown-prefix tickets as Other instead of guessing INC or SRV', () => {
+  it('keeps unknown-prefix tickets as Other instead of guessing a known kind', () => {
     expect(categorizeTicket('Unknown', 'Forward Schedule / Preventive Maintenance', 'Preventive maintenance', rules)).toBe('Other')
     expect(categorizeTicket('Unknown', 'Incident', 'Network outage', rules)).toBe('Other')
   })
 
   it('surfaces unrecognized prefixes in validation with their counts', () => {
     const tickets = normalizeRows([
-      { ID: 'FSC000000400010', Engineer: 'Alex Example', Status: 'Closed', Type: 'Forward Schedule / Preventive Maintenance', Summary: 'Quarterly maintenance', Submit: '2026-09-01', Resolved: '2026-09-02' },
-      { ID: 'FSC000000400011', Engineer: 'Alex Example', Status: 'Closed', Type: 'Forward Schedule / Preventive Maintenance', Summary: 'Quarterly maintenance', Submit: '2026-09-01', Resolved: '2026-09-02' },
-      { ID: 'TASK-1', Engineer: 'Alex Example', Status: 'Pending', Type: '', Summary: 'Unclassified work', Submit: '2026-09-01' },
+      { ID: 'TASK000000400010', Engineer: 'Alex Example', Status: 'Pending', Type: '', Summary: 'Unclassified work', Submit: '2026-09-01' },
+      { ID: 'TASK000000400011', Engineer: 'Alex Example', Status: 'Pending', Type: '', Summary: 'Unclassified work', Submit: '2026-09-01' },
+      { ID: 'WO000000400012', Engineer: 'Alex Example', Status: 'Pending', Type: '', Summary: 'Work order', Submit: '2026-09-01' },
       { ID: 'INC000000400003', Engineer: 'Alex Example', Status: 'Pending', Type: 'Incident', Summary: 'Laptop failure', Submit: '2026-09-01' },
+      { ID: 'FSC000000400013', Engineer: 'Alex Example', Status: 'Pending', Type: 'Forward Schedule / Preventive Maintenance', Summary: 'Planned maintenance', Submit: '2026-09-01' },
     ], mapping, config)
     const validation = buildValidation(tickets)
+    // INC and FSC are recognized kinds and must not appear here.
     expect(validation.unknownPrefixes).toEqual([
-      { label: 'FSC', count: 2 },
-      { label: 'TASK', count: 1 },
+      { label: 'TASK', count: 2 },
+      { label: 'WO', count: 1 },
     ])
   })
 })
@@ -148,21 +196,30 @@ describe('pending diagnostic splits the chart population by ticket kind', () => 
     { ID: 'INC000000400002', Engineer: 'Nina Example', Status: 'On Hold', Type: 'Incident', Summary: 'Network incident two', Submit: '2026-09-08', Group: 'NCC_NETWORK' },
     { ID: 'SRV000000400003', Engineer: 'Nina Example', Status: 'Pending', Type: 'Service Request', Summary: 'Install a switch port', Submit: '2026-09-08', Group: 'NCC_NETWORK' },
     { ID: 'SRV000000400004', Engineer: 'Nina Example', Status: 'Pending', Type: 'Service Request', Summary: 'Request: Onboarding - new joiner', Submit: '2026-09-08', Group: 'NCC_NETWORK' },
-    { ID: 'FSC000000400005', Engineer: 'Nina Example', Status: 'Pending', Type: 'Forward Schedule / Preventive Maintenance', Summary: 'Maintenance window', Submit: '2026-09-08', Group: 'NCC_NETWORK' },
+    { ID: 'TASK000000400005', Engineer: 'Nina Example', Status: 'Pending', Type: '', Summary: 'Unrecognized prefix work', Submit: '2026-09-08', Group: 'NCC_NETWORK' },
+    { ID: 'FSC000000400006', Engineer: 'Nina Example', Status: 'Pending', Type: 'Forward Schedule / Preventive Maintenance', Summary: 'Maintenance window', Submit: '2026-09-08', Group: 'NCC_NETWORK' },
   ]
   const tickets = normalizeRows(rows, mapping, config)
 
   it('reconciles the chart Pending total with its INC/SRV/other split', () => {
     const network = pendingDiagnostics(tickets).find((row) => row.team === 'Network')!
     const metrics = aggregateTickets(tickets, '2026-09-09')
-    // The onboarding service request sits in the On/Off-Boarding bucket, so it
-    // is not part of the chart's Pending bar.
+    // The onboarding service request and the FSC maintenance ticket sit in the
+    // On/Off-Boarding and Schedule bucket, so neither is part of the chart's
+    // Pending bar.
     expect(network.total).toBe(metrics.pendingClosed.Network.pending)
     expect(network.total).toBe(4)
     expect(network.incident).toBe(2)
     expect(network.serviceRequest).toBe(1)
     expect(network.other).toBe(1)
     expect(network.incident).toBe(metrics.summaries.Network.pendingIncidents)
+  })
+
+  it('moves outstanding FSC work into the Schedule bucket rather than the Pending bar', () => {
+    const metrics = aggregateTickets(tickets, '2026-09-09')
+    expect(metrics.pendingClosed.Network.scheduledOnOffBoarding).toBe(2)
+    expect(metrics.summaries.Network.scheduleRequests).toBe(1)
+    expect(metrics.summaries.Network.onboarding).toBe(1)
   })
 
   it('breaks the pending population down by Assigned Group', () => {

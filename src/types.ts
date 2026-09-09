@@ -20,10 +20,11 @@ export const CATEGORIES = ['Onboarding', 'Offboarding', 'Schedule', 'Incident', 
 export type TicketCategory = (typeof CATEGORIES)[number]
 
 // Derived from the Ticket ID prefix, which BMC assigns reliably: INC tickets
-// are incidents and SRV tickets are service requests, whatever the free-text
-// description says. EVT is monitoring noise. Any other prefix is Unknown and
-// is surfaced in validation rather than guessed at.
-export const TICKET_KINDS = ['Incident', 'Service Request', 'Event', 'Unknown'] as const
+// are incidents, SRV tickets are service requests and FSC tickets are forward
+// schedule / preventive maintenance work, whatever the free-text description
+// says. EVT is monitoring noise. Any other prefix is Unknown and is surfaced in
+// validation rather than guessed at.
+export const TICKET_KINDS = ['Incident', 'Service Request', 'Forward Schedule', 'Event', 'Unknown'] as const
 export type TicketKind = (typeof TICKET_KINDS)[number]
 
 export type ColumnKey =

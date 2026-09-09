@@ -47,7 +47,7 @@ The daily calculations are intentionally different from a simple Created-Date fi
 - **Closed** = unique tickets whose **Resolved Date** is the current report day **and** whose status normalizes to Closed. Cancelled tickets also carry a Resolved Date in BMC, but cancellation is not completed work and never counts as Closed throughput.
 - **On/Off-Boarding, Schedule** = all outstanding (non-terminal) tickets categorized as Schedule, Onboarding, or Offboarding — including New/Assigned work not yet started. Closed and Cancelled are terminal.
 - **Pending** (chart) = the remaining Pending/On-Hold backlog of any ticket type after Schedule/Onboarding/Offboarding tickets have been separated into the first bucket. See *Pending is still under validation* below.
-- **On/Off-Boarding, Schedule** and its breakdown come from outstanding **SRV** tickets only; the incident summary counts **INC** tickets only.
+- **On/Off-Boarding, Schedule** and its breakdown come from outstanding **SRV** and **FSC** tickets; the incident summary counts **INC** tickets only.
 - **Team summary — Total tickets** = current outstanding Schedule + Onboarding + Offboarding workload.
 - **Schedule request / Onboarding / Offboarding** = breakdown of that backlog.
 - **On-hold Incidents — Total** = current INC backlog in Pending, On Hold, Work in Progress, or Waiting User Reply.
@@ -61,7 +61,7 @@ The chart's **Pending** bar and the **Pending** line inside each team's On-hold 
 - chart Pending = every pending/on-hold ticket outside the On/Off-Boarding and Schedule bucket, of any ticket type;
 - incident-summary Pending = INC tickets in Pending or On Hold only.
 
-The reference Excel dashboard shows Network with a chart Pending of 18 while its incident Pending is 16, which is consistent with the two metrics measuring different populations. **This rule is not final.** To investigate it, the Report Dashboard shows a *Pending breakdown* diagnostic — per team: the chart total and its INC / SRV / other-prefix split, plus a per-Assigned-Group breakdown. Like the out-of-scope table, it appears in the UI only and never in the exported image.
+The reference Excel dashboard shows Network with a chart Pending of 18 while its incident Pending is 16, which is consistent with the two metrics measuring different populations. **This rule is not final** and is being observed across several real reporting days before it is confirmed; the current behavior is unchanged in the meantime. To observe it, the Report Dashboard shows a *Pending breakdown* diagnostic — per team: the chart total and its INC / SRV / other-prefix split, plus a per-Assigned-Group breakdown. Like the out-of-scope table, it appears in the UI only and never in the exported image.
 
 All dashboard blocks use the same normalized ticket records. Duplicate Ticket IDs are counted once in report metrics — deterministically keeping the row with the most recent lifecycle information (latest Resolved Date, then latest Submit Date, then the later export row) — while every raw row remains visible in the detail screen.
 
@@ -91,12 +91,13 @@ The **Ticket ID prefix** is authoritative — it is the most reliable indicator 
 | --- | --- | --- |
 | `INC…` | Incident | **Incident**, always |
 | `SRV…` | Service Request | **Onboarding** / **Offboarding** / **Schedule** from the structured type and description keywords, otherwise **Other** |
+| `FSC…` | Forward Schedule | **Schedule**, always |
 | `EVT…` | Event | **Other** (monitoring noise, not reportable engineer workload) |
 | anything else | Unknown | **Other**, and the prefix is reported in validation rather than guessed at |
 
 Prefix matching is case-insensitive and ignores surrounding whitespace.
 
-An INC ticket stays an Incident even when its description contains words such as "onboarding", "offboarding" or "schedule". Only SRV tickets can become Onboarding, Offboarding or Schedule.
+An INC ticket stays an Incident even when its description contains words such as "onboarding", "offboarding" or "schedule". Schedule work comes from either an `FSC` ticket or an SRV ticket that matches the schedule rules; only SRV tickets can become Onboarding or Offboarding.
 
 Default description keyword rules for service requests (editable in the UI):
 
@@ -105,7 +106,7 @@ Default description keyword rules for service requests (editable in the UI):
 - **Schedule:** forward schedule, preventive maintenance, schedule, scheduling, planned work
 - **Incident:** incident, outage, unavailable, error, failure (retained for configuration; the INC prefix decides incidents)
 
-An SRV ticket whose structured Incident Type is `Forward Schedule / Preventive Maintenance` is classified as Schedule regardless of its description.
+An SRV ticket whose structured Incident Type is `Forward Schedule / Preventive Maintenance` is also classified as Schedule regardless of its description.
 
 ## Status defaults
 

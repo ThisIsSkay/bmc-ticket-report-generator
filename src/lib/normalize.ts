@@ -109,6 +109,7 @@ const matchesAny = (haystack: string, keywords: string[]): boolean =>
 const KIND_BY_PREFIX: Record<string, TicketKind> = {
   INC: 'Incident',
   SRV: 'Service Request',
+  FSC: 'Forward Schedule',
   EVT: 'Event',
 }
 
@@ -119,20 +120,21 @@ export function ticketIdPrefix(id: unknown): string {
 }
 
 // BMC assigns the Ticket ID prefix reliably, so it — not the free-text
-// description — decides whether a ticket is an incident or a service request.
-// Unrecognized prefixes stay Unknown so validation can surface them instead of
-// guessing INC or SRV.
+// description — decides what kind of work a ticket represents. Unrecognized
+// prefixes stay Unknown so validation can surface them instead of being guessed
+// into one of the known kinds.
 export function ticketKindFromId(id: unknown): TicketKind {
   return KIND_BY_PREFIX[ticketIdPrefix(id)] ?? 'Unknown'
 }
 
 // Category follows the ticket kind:
-//   Incident (INC)        -> Incident, always. "onboarding"/"schedule" wording
-//                            inside an incident description never overrides it.
-//   Service Request (SRV) -> Onboarding / Offboarding / Schedule from the
-//                            structured type and description keywords, else Other.
-//   Event (EVT), Unknown  -> Other. Events are monitoring noise and unknown
-//                            prefixes are reported rather than guessed.
+//   Incident (INC)         -> Incident, always. "onboarding"/"schedule" wording
+//                             inside an incident description never overrides it.
+//   Service Request (SRV)  -> Onboarding / Offboarding / Schedule from the
+//                             structured type and description keywords, else Other.
+//   Forward Schedule (FSC) -> Schedule, always.
+//   Event (EVT), Unknown   -> Other. Events are monitoring noise and unknown
+//                             prefixes are reported rather than guessed.
 export function categorizeTicket(
   kind: TicketKind,
   categoryValue: unknown,
@@ -140,6 +142,7 @@ export function categorizeTicket(
   rules: AppConfig['categories'],
 ): TicketCategory {
   if (kind === 'Incident') return 'Incident'
+  if (kind === 'Forward Schedule') return 'Schedule'
   if (kind !== 'Service Request') return 'Other'
 
   const type = normalizeText(categoryValue)
