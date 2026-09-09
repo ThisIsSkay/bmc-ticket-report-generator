@@ -1,5 +1,7 @@
 # BMC Ticket Report Generator
 
+🌐 **[Open the BMC Ticket Report Generator](https://thisisskay.github.io/bmc-ticket-report-generator/)**
+
 A local-only React/TypeScript web app for turning the daily AsiaPac/BMC Excel export into the Excel-style landscape report shown in the supplied reference screenshot, with one-click WhatsApp-friendly JPEG export.
 
 ## Daily workflow
