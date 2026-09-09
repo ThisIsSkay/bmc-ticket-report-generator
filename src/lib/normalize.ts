@@ -152,6 +152,17 @@ export function categorizeTicket(
   return 'Other'
 }
 
+// Builds a local-midnight date, rejecting out-of-range components. The
+// multi-argument Date constructor silently rolls them over — month 13 becomes
+// January of the next year and 31 February becomes 3 March — which would let a
+// malformed source date pass validation and land on the wrong report day.
+function buildLocalDate(year: number, month: number, day: number): Date | null {
+  const date = new Date(year, month - 1, day)
+  if (Number.isNaN(date.getTime())) return null
+  const roundTrips = date.getFullYear() === year && date.getMonth() === month - 1 && date.getDate() === day
+  return roundTrips ? date : null
+}
+
 export function parseFlexibleDate(value: unknown): Date | null {
   if (value instanceof Date && !Number.isNaN(value.getTime())) return value
   if (typeof value === 'number' && Number.isFinite(value)) {
@@ -168,8 +179,7 @@ export function parseFlexibleDate(value: unknown): Date | null {
   // day for negative-offset browsers and 08:00 for Singapore.
   const isoDay = text.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/)
   if (isoDay) {
-    const parsed = new Date(Number(isoDay[1]), Number(isoDay[2]) - 1, Number(isoDay[3]))
-    return Number.isNaN(parsed.getTime()) ? null : parsed
+    return buildLocalDate(Number(isoDay[1]), Number(isoDay[2]), Number(isoDay[3]))
   }
 
   const slash = text.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})(?:\s+(.*))?$/)
@@ -179,12 +189,14 @@ export function parseFlexibleDate(value: unknown): Date | null {
     const y = Number(slash[3])
     const month = a > 12 ? b : a
     const day = a > 12 ? a : b
-    if (!slash[4]) {
-      const parsed = new Date(y, month - 1, day)
-      if (!Number.isNaN(parsed.getTime())) return parsed
-    }
+    // Out-of-range components are rejected outright rather than falling through
+    // to Date's lenient string parser, which would silently roll "2/30/2026"
+    // over to 2 March.
+    if (!buildLocalDate(y, month, day)) return null
+    if (!slash[4]) return buildLocalDate(y, month, day)
     const parsed = new Date(`${y}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')} ${slash[4]}`)
     if (!Number.isNaN(parsed.getTime())) return parsed
+    return null
   }
 
   const parsed = new Date(text)

@@ -40,6 +40,27 @@ describe('date parsing', () => {
     expect(localDateKey(date!)).toBe('2023-03-15')
   })
 
+  it('rejects out-of-range components instead of rolling them over', () => {
+    // The multi-argument Date constructor would turn these into 1 Jan 2027,
+    // 1 Feb 2026 and 2 Mar 2026 respectively.
+    expect(parseFlexibleDate('2026-13-01')).toBeNull()
+    expect(parseFlexibleDate('2026-01-32')).toBeNull()
+    expect(parseFlexibleDate('2026-02-30')).toBeNull()
+    expect(parseFlexibleDate('30/02/2026')).toBeNull()
+    expect(parseFlexibleDate('2/30/2026')).toBeNull()
+    expect(parseFlexibleDate('2026-02-29')).toBeNull()
+    // A real leap day still parses.
+    expect(localDateKey(parseFlexibleDate('2024-02-29')!)).toBe('2024-02-29')
+  })
+
+  it('flags a rolled-over source date as invalid rather than counting it on the wrong day', () => {
+    const tickets = normalizeRows([
+      { ID: 'INC000009', Engineer: 'Alex Example', Status: 'Pending', Type: 'Incident', Summary: 'Bad submit date', Submit: '2026-02-30' },
+    ], mapping, config)
+    expect(tickets[0].createdDate).toBeNull()
+    expect(tickets[0].dateInvalid).toBe(true)
+  })
+
   it('flags unparseable non-blank dates and keeps blanks as null', () => {
     expect(parseFlexibleDate('not a date')).toBeNull()
     expect(parseFlexibleDate('')).toBeNull()
