@@ -1,0 +1,18 @@
+node_modules/
+dist/
+.vite/
+coverage/
+*.log
+.DS_Store
+Thumbs.db
+*.tsbuildinfo
+
+.env
+.env.*
+*.local
+
+# Never commit real BMC exports. Only the explicitly whitelisted fictional sample is allowed.
+*.xlsx
+*.xls
+*.csv
+!public/sample-bmc-export.xlsx

@@ -1,0 +1,17 @@
+{
+  "statuses": {
+    "New": ["new", "assigned", "created"],
+    "Pending": ["pending"],
+    "Closed": ["closed", "resolved", "cancelled", "canceled"],
+    "Work in Progress": ["work in progress", "in progress", "wip"],
+    "Waiting User Reply": ["waiting user reply", "awaiting user", "pending user", "waiting for user"],
+    "On Hold": ["on hold", "hold"],
+    "Other": []
+  },
+  "categories": {
+    "Onboarding": ["onboarding", "onboard ", "new joiner", "joiner"],
+    "Offboarding": ["offboarding", "terminate access", "leaver", "termination", "resignation"],
+    "Schedule": ["forward schedule", "preventive maintenance", "schedule", "scheduling", "planned work"],
+    "Incident": ["incident", "outage", "unavailable", "error", "failure"]
+  }
+}

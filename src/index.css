@@ -1,0 +1,173 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #111827;
+  background: #f3f4f6;
+  font-synthesis: none;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 1180px; min-height: 100vh; background: #f3f4f6; }
+button, input, select, textarea { font: inherit; }
+button:disabled { cursor: not-allowed; opacity: 0.55; }
+
+@layer components {
+  .panel { @apply rounded-lg border border-gray-200 bg-white shadow-sm; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-md border px-3 py-2 text-sm font-semibold transition; }
+  .btn-primary { @apply btn border-gray-900 bg-gray-900 text-white hover:bg-black; }
+  .btn-secondary { @apply btn border-gray-300 bg-white text-gray-800 hover:bg-gray-50; }
+  .btn-danger { @apply btn border-red-200 bg-red-50 text-red-700 hover:bg-red-100; }
+  .field { @apply w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500; }
+  .label { @apply mb-1 block text-xs font-bold uppercase tracking-wide text-gray-600; }
+}
+
+.report-canvas {
+  width: 1800px;
+  height: 950px;
+  padding: 22px 48px 26px;
+  background: #fff;
+  color: #111;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
+}
+
+.report-image-header {
+  height: 46px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 28px;
+  border-bottom: 1px solid #d1d5db;
+  padding-bottom: 6px;
+}
+.report-image-header h1 { margin: 0; font-size: 21px; line-height: 1; font-weight: 700; }
+.report-image-header h1 + span { font-size: 13px; font-weight: 700; color: #4b5563; }
+
+.report-image-grid {
+  height: 846px;
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 690px 1fr;
+  gap: 72px;
+}
+
+.report-left-column {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 38px;
+  padding: 20px 0 0 0;
+}
+
+.excel-chart-panel {
+  height: 384px;
+  border: 1px solid #cfcfcf;
+  background: linear-gradient(to bottom, #ffffff 0%, #fbfbfb 38%, #e8e8e8 70%, #f6f6f6 100%);
+  overflow: hidden;
+}
+.excel-chart-panel h2 {
+  margin: 18px 0 0;
+  text-align: center;
+  color: #555;
+  font-size: 23px;
+  line-height: 1;
+  font-weight: 400;
+}
+.excel-chart-area { height: 330px; }
+.pending-chart-area { height: 332px; }
+
+.report-right-column {
+  display: grid;
+  grid-template-rows: 610px 222px;
+  gap: 14px;
+}
+.report-summary-stack {
+  padding-top: 0;
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 780px;
+}
+
+.excel-summary-box {
+  border: 1px solid #111;
+  background: #ededed;
+  font-size: 13px;
+  line-height: 1.35;
+  overflow: hidden;
+}
+.excel-summary-team {
+  height: 23px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #111;
+  background: #f2f2f2;
+  font-size: 13px;
+  font-weight: 500;
+}
+.excel-summary-headings {
+  height: 23px;
+  display: grid;
+  grid-template-columns: 1fr 1.55fr;
+  border-bottom: 1px solid #111;
+  background: #efefef;
+}
+.excel-summary-headings > div { padding: 2px 5px; }
+.excel-summary-headings > div + div { border-left: 1px solid #111; }
+.excel-summary-body {
+  height: calc(100% - 46px);
+  display: grid;
+  grid-template-columns: 1fr 1.55fr;
+}
+.excel-summary-body > div { padding: 6px 6px 4px; }
+.excel-summary-body > div + div { border-left: 1px solid #111; }
+.excel-summary-body > div > div { margin-bottom: 4px; white-space: nowrap; }
+
+.report-input-zone {
+  display: grid;
+  grid-template-columns: 285px minmax(0, 1fr);
+  gap: 0;
+  align-items: start;
+}
+.input-left-stack { display: grid; gap: 12px; align-content: start; }
+.input-wide-block { padding-top: 64px; margin-left: 0; }
+.excel-input-title { margin: 0 0 2px 2px; font-size: 12px; line-height: 1; font-weight: 700; }
+
+.excel-input-table,
+.excel-feedback-table,
+.excel-pending-table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  background: #fff;
+  font-size: 12px;
+}
+.excel-input-table { width: 285px; }
+.excel-feedback-table { width: 94px; }
+.excel-pending-table { width: 100%; }
+.excel-input-table th,
+.excel-input-table td,
+.excel-feedback-table td,
+.excel-pending-table th,
+.excel-pending-table td {
+  height: 24px;
+  border: 1px solid #111;
+  padding: 2px 5px;
+  color: #111;
+  font-weight: 400;
+  background: #fff;
+}
+.excel-input-table th,
+.excel-pending-table th { text-align: center; background: #f7f7f7; }
+.excel-input-table td,
+.excel-pending-table td { text-align: right; }
+.excel-feedback-table td:first-child { width: 62px; }
+.excel-feedback-table td:last-child { width: 32px; text-align: right; }
+.excel-pending-table th { white-space: nowrap; overflow: hidden; text-overflow: clip; font-size: 11px; }
+.excel-pending-table td { font-size: 12px; }
+
+@media print {
+  body { background: #fff; }
+}
