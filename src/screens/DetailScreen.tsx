@@ -5,7 +5,7 @@ import { filterTickets } from '../lib/report'
 const PAGE_SIZE = 50
 
 export function DetailScreen({ tickets, filters, rawHeaders }: { tickets: Ticket[]; filters: Filters; rawHeaders: string[] }) {
-  const filtered = useMemo(() => filterTickets(tickets, filters), [tickets, filters])
+  const filtered = useMemo(() => filterTickets(tickets, filters, { protectResolvedOnReportDate: true }), [tickets, filters])
   const [page, setPage] = useState(0)
   const pages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE))
   const safePage = Math.min(page, pages - 1)

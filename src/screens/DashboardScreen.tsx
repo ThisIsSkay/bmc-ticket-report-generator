@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { Clipboard, Download, FileImage, Printer, RefreshCw, RotateCcw } from 'lucide-react'
 import type { FeedbackValues, Filters, TeamMapping, Ticket, ValidationSummary } from '../types'
 import { CATEGORIES, REPORT_STATUSES, TEAMS } from '../types'
-import { aggregateTickets, availableAssignees, filterTickets } from '../lib/report'
+import { aggregateTickets, availableAssignees, filterTickets, outOfScopeByGroup, pendingDiagnostics } from '../lib/report'
 import { copyReportToClipboard, printReport, saveReportAsJpeg, saveReportAsPng } from '../lib/export'
 import { ReportCanvas } from '../components/ReportCanvas'
 import { defaultFilters } from '../config/defaults'
@@ -43,9 +43,11 @@ export function DashboardScreen({
     if (filters.reportDate !== reportDate) onFilters({ ...filters, reportDate })
   }, [filters, onFilters, reportDate])
 
-  const filtered = useMemo(() => filterTickets(tickets, filters), [tickets, filters])
+  const filtered = useMemo(() => filterTickets(tickets, filters, { protectResolvedOnReportDate: true }), [tickets, filters])
   const metrics = useMemo(() => aggregateTickets(filtered, reportDate), [filtered, reportDate])
   const assignees = useMemo(() => availableAssignees(tickets), [tickets])
+  const outOfScope = useMemo(() => outOfScopeByGroup(filtered), [filtered])
+  const pendingSplit = useMemo(() => pendingDiagnostics(filtered), [filtered])
 
   const run = async (name: string, fn: (node: HTMLElement) => Promise<void>) => {
     if (!reportRef.current) return
@@ -55,7 +57,7 @@ export function DashboardScreen({
     finally { setBusy('') }
   }
 
-  const warningCount = validation.duplicateTicketIds.length + validation.blankAssigneeCount + validation.invalidDateCount + validation.unknownStatusCount + validation.unknownCategoryCount + validation.unclassifiedAssignees.length
+  const warningCount = validation.duplicateTicketIds.length + validation.blankAssigneeCount + validation.invalidDateCount + validation.unknownStatusCount + validation.unknownCategoryCount + validation.unclassifiedAssignees.length + validation.unknownPrefixes.length
 
   const resetFilters = () => onFilters({ ...defaultFilters, reportDate })
 
@@ -94,7 +96,7 @@ export function DashboardScreen({
           </div>
           <div className="mt-3 flex items-center justify-between gap-4">
             <div className="text-xs leading-5 text-gray-500">
-              <strong>Daily logic:</strong> New = Submit Date today • Closed = Resolved Date today • On/Offboarding/Schedule and Pending = current backlog. Optional Created-from/to filters narrow the source population.
+              <strong>Daily logic:</strong> New = Submit Date today • Closed = Resolved Date today (Cancelled excluded) • On/Offboarding/Schedule = outstanding non-terminal work • Pending = remaining pending/on-hold backlog. Optional Created-from/to filters narrow the source population but never remove tickets resolved on the report date.
             </div>
             <div className="flex shrink-0 gap-2"><button className="btn-secondary py-1.5" onClick={resetFilters}><RotateCcw className="h-4 w-4" /> Reset filters</button><button className="btn-secondary py-1.5" onClick={() => { const next = new Date(); setNow(next); setGeneratedAt(next) }}><RefreshCw className="h-4 w-4" /> Recalculate</button></div>
           </div>
@@ -103,7 +105,16 @@ export function DashboardScreen({
 
       <div className="grid grid-cols-[1fr_auto] gap-4">
         <div className={`rounded-md border p-3 text-sm ${warningCount ? 'border-amber-300 bg-amber-50 text-amber-900' : 'border-green-200 bg-green-50 text-green-800'}`}>
-          {warningCount ? `Validation: ${validation.duplicateTicketIds.length} duplicate ID(s), ${validation.blankAssigneeCount} blank engineer row(s), ${validation.invalidDateCount} invalid-date row(s), ${validation.unknownStatusCount} unknown status row(s), ${validation.unknownCategoryCount} uncategorized row(s), ${validation.unclassifiedAssignees.length} engineer value(s) outside the three selected teams.` : 'Validation checks passed for the current import.'}
+          {warningCount ? (
+            <>
+              {`Validation: ${validation.duplicateTicketIds.length} duplicate ID(s), ${validation.blankAssigneeCount} blank engineer row(s), ${validation.invalidDateCount} invalid-date row(s), ${validation.unknownStatusCount} unknown status row(s), ${validation.unknownCategoryCount} uncategorized service request(s), ${validation.unclassifiedAssignees.length} engineer value(s) outside the three selected teams.`}
+              {validation.unknownPrefixes.length > 0 && (
+                <div className="mt-1 font-semibold">
+                  Unrecognized Ticket ID prefix(es), counted as Other rather than guessed: {validation.unknownPrefixes.map((p) => `${p.label} (${p.count.toLocaleString()})`).join(', ')}.
+                </div>
+              )}
+            </>
+          ) : 'Validation checks passed for the current import.'}
         </div>
         <div className="panel flex items-center gap-2 px-3 py-2 text-sm">
           <span className="font-bold">Feedback:</span>{TEAMS.map((team) => <label className="flex items-center gap-1" key={team}>{team}<input className="w-16 rounded border px-2 py-1" type="number" value={feedback[team]} onChange={(e) => onFeedback({ ...feedback, [team]: Number(e.target.value) || 0 })} /></label>)}
@@ -111,6 +122,53 @@ export function DashboardScreen({
       </div>
 
       {(busy || message) && <div className="rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-semibold">{busy ? `${busy}…` : message}</div>}
+
+      <div className="grid grid-cols-2 gap-4">
+        <details className="panel p-4" open>
+          <summary className="cursor-pointer font-bold">Pending breakdown (diagnostic — not exported)</summary>
+          <p className="mt-1 text-xs text-gray-500">
+            Splits exactly the tickets behind the chart's Pending bars. The chart counts every pending/on-hold ticket outside the On/Off-Boarding and Schedule bucket, while each team summary's Pending line counts incidents only — so INC here should reconcile with the summary.
+          </p>
+          <table className="mt-3 w-full border-collapse text-sm">
+            <thead><tr className="bg-gray-100 text-left">{['Team', 'Total Pending', 'INC', 'SRV', 'Other'].map((h) => <th key={h} className="border px-3 py-1.5">{h}</th>)}</tr></thead>
+            <tbody>
+              {pendingSplit.map((row) => (
+                <tr key={row.team}>
+                  <td className="border px-3 py-1.5 font-semibold">{row.team}</td>
+                  <td className="border px-3 py-1.5 tabular-nums">{row.total}</td>
+                  <td className="border px-3 py-1.5 tabular-nums">{row.incident}</td>
+                  <td className="border px-3 py-1.5 tabular-nums">{row.serviceRequest}</td>
+                  <td className="border px-3 py-1.5 tabular-nums">{row.other}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          {pendingSplit.some((row) => row.byGroup.length > 0) && (
+            <div className="mt-3 space-y-1 text-xs text-gray-600">
+              {pendingSplit.filter((row) => row.byGroup.length > 0).map((row) => (
+                <div key={row.team}><strong>{row.team}</strong> by Assigned Group: {row.byGroup.map((g) => `${g.label} (${g.count})`).join(', ')}</div>
+              ))}
+            </div>
+          )}
+        </details>
+
+        <details className="panel p-4" open>
+          <summary className="cursor-pointer font-bold">Out of Scope / Unassigned by Assigned Group (diagnostic — not exported)</summary>
+          <p className="mt-1 text-xs text-gray-500">
+            BMC is shared with teams outside this report. These {outOfScope.total.toLocaleString()} ticket(s) are excluded from all EUC/System/Network metrics because their Assigned Engineer is not selected on the Engineer Selection screen. No group name is hard-coded — select an engineer to bring their tickets into scope.
+          </p>
+          {outOfScope.rows.length === 0 ? (
+            <div className="mt-3 text-sm text-green-700">Every imported ticket belongs to a selected engineer.</div>
+          ) : (
+            <div className="mt-3 max-h-56 overflow-auto">
+              <table className="w-full border-collapse text-sm">
+                <thead className="sticky top-0 bg-gray-100"><tr className="text-left"><th className="border px-3 py-1.5">Assigned Group</th><th className="border px-3 py-1.5">Ticket count</th></tr></thead>
+                <tbody>{outOfScope.rows.map((row) => <tr key={row.label}><td className="border px-3 py-1.5">{row.label}</td><td className="border px-3 py-1.5 tabular-nums">{row.count.toLocaleString()}</td></tr>)}</tbody>
+              </table>
+            </div>
+          )}
+        </details>
+      </div>
 
       <div className="overflow-auto rounded-lg border border-gray-300 bg-gray-200 p-4 shadow-inner">
         <ReportCanvas reportRef={reportRef} metrics={metrics} filters={{ ...filters, reportDate }} feedback={feedback} generatedAt={generatedAt} fileName={fileName} reportDate={reportDate} teamMapping={teamMapping} />

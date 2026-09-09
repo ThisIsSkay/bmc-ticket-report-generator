@@ -15,13 +15,16 @@ function BarValueLabel(props: any) {
   const y = Number(props.y ?? 0)
   const width = Number(props.width ?? 0)
   const value = Number(props.value ?? 0)
-  const hasBar = value > 0
+  if (!Number.isFinite(x) || !Number.isFinite(y)) return null
+  // White in-bar labels are only readable when the bar is tall enough;
+  // short bars and zeros get a grey label just above the bar instead.
+  const insideBar = value > 0 && Number(props.height ?? 0) >= 26
   return (
     <text
       x={x + width / 2}
-      y={hasBar ? y + 18 : y - 6}
+      y={insideBar ? y + 18 : y - 6}
       textAnchor="middle"
-      fill={hasBar ? '#ffffff' : '#666666'}
+      fill={insideBar ? '#ffffff' : '#666666'}
       fontSize={13}
       fontWeight={700}
     >
@@ -110,7 +113,8 @@ export function ReportCanvas({
                   <XAxis dataKey="team" tick={{ fontSize: 12, fill: '#555' }} axisLine={false} tickLine={false} />
                   <YAxis hide allowDecimals={false} />
                   <Tooltip cursor={{ fill: 'rgba(0,0,0,0.03)' }} />
-                  <Bar dataKey="value" maxBarSize={145} isAnimationActive={false}>
+                  {/* minPointSize keeps zero-value bars measurable so their “0” data label stays visible */}
+                  <Bar dataKey="value" maxBarSize={145} minPointSize={3} isAnimationActive={false}>
                     {newData.map((entry) => <Cell key={entry.team} fill={entry.color} />)}
                     <LabelList dataKey="value" content={<BarValueLabel />} />
                   </Bar>
@@ -127,7 +131,7 @@ export function ReportCanvas({
                   <XAxis dataKey="short" interval={0} tick={{ fontSize: 10.5, fill: '#555' }} angle={-43} textAnchor="end" height={82} axisLine={false} tickLine={false} />
                   <YAxis hide allowDecimals={false} />
                   <Tooltip cursor={{ fill: 'rgba(0,0,0,0.03)' }} />
-                  <Bar dataKey="value" maxBarSize={66} isAnimationActive={false}>
+                  <Bar dataKey="value" maxBarSize={66} minPointSize={3} isAnimationActive={false}>
                     {pendingData.map((entry, index) => <Cell key={`${entry.team}-${entry.metric}-${index}`} fill={entry.color} />)}
                     <LabelList dataKey="value" content={<BarValueLabel />} />
                   </Bar>
@@ -143,22 +147,15 @@ export function ReportCanvas({
           </div>
 
           <div className="report-input-zone">
-            <div className="input-left-stack">
-              <div>
-                <div className="excel-input-title">New Tickets input</div>
-                <table className="excel-input-table">
-                  <thead><tr>{TEAMS.map((team) => <th key={team}>{team}</th>)}</tr></thead>
-                  <tbody><tr>{TEAMS.map((team) => <td key={team}>{metrics.newTickets[team]}</td>)}</tr></tbody>
-                </table>
-              </div>
-
-              <div>
-                <div className="excel-input-title">Feedback Form</div>
-                <table className="excel-feedback-table"><tbody>{TEAMS.map((team) => <tr key={team}><td>{team}</td><td>{feedback[team]}</td></tr>)}</tbody></table>
-              </div>
+            <div>
+              <div className="excel-input-title">New Tickets input</div>
+              <table className="excel-input-table">
+                <thead><tr>{TEAMS.map((team) => <th key={team}>{team}</th>)}</tr></thead>
+                <tbody><tr>{TEAMS.map((team) => <td key={team}>{metrics.newTickets[team]}</td>)}</tr></tbody>
+              </table>
             </div>
 
-            <div className="input-wide-block">
+            <div>
               <div className="excel-input-title">Pending and Closed tickets input</div>
               <table className="excel-pending-table">
                 <thead>
@@ -172,6 +169,14 @@ export function ReportCanvas({
                     <td key={`${team}-cv`}>{metrics.pendingClosed[team].closed}</td>,
                   ])}</tr>
                 </tbody>
+              </table>
+            </div>
+
+            <div>
+              <div className="excel-input-title">Feedback Form</div>
+              <table className="excel-input-table">
+                <thead><tr>{TEAMS.map((team) => <th key={team}>{team}</th>)}</tr></thead>
+                <tbody><tr>{TEAMS.map((team) => <td key={team}>{feedback[team]}</td>)}</tr></tbody>
               </table>
             </div>
           </div>

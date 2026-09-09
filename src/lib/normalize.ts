@@ -8,6 +8,7 @@ import type {
   TeamMapping,
   Ticket,
   TicketCategory,
+  TicketKind,
 } from '../types'
 
 export const normalizeText = (value: unknown): string =>
@@ -91,6 +92,7 @@ export function normalizeStatus(status: unknown, mappings: AppConfig['statuses']
     'Work in Progress',
     'Waiting User Reply',
     'On Hold',
+    'Cancelled',
   ]
   for (const target of order) {
     if (mappings[target].some((source) => normalizeText(source) === needle)) return target
@@ -98,22 +100,70 @@ export function normalizeStatus(status: unknown, mappings: AppConfig['statuses']
   return 'Other'
 }
 
+const matchesAny = (haystack: string, keywords: string[]): boolean =>
+  keywords.some((keyword) => {
+    const normalizedKeyword = normalizeText(keyword)
+    return normalizedKeyword.length > 0 && haystack.includes(normalizedKeyword)
+  })
+
+const KIND_BY_PREFIX: Record<string, TicketKind> = {
+  INC: 'Incident',
+  SRV: 'Service Request',
+  FSC: 'Forward Schedule',
+  EVT: 'Event',
+}
+
+// The leading letters of the Ticket ID, e.g. "INC000000400003" -> "INC".
+export function ticketIdPrefix(id: unknown): string {
+  const match = /^[A-Za-z]+/.exec(String(id ?? '').trim())
+  return match ? match[0].toUpperCase() : ''
+}
+
+// BMC assigns the Ticket ID prefix reliably, so it — not the free-text
+// description — decides what kind of work a ticket represents. Unrecognized
+// prefixes stay Unknown so validation can surface them instead of being guessed
+// into one of the known kinds.
+export function ticketKindFromId(id: unknown): TicketKind {
+  return KIND_BY_PREFIX[ticketIdPrefix(id)] ?? 'Unknown'
+}
+
+// Category follows the ticket kind:
+//   Incident (INC)         -> Incident, always. "onboarding"/"schedule" wording
+//                             inside an incident description never overrides it.
+//   Service Request (SRV)  -> Onboarding / Offboarding / Schedule from the
+//                             structured type and description keywords, else Other.
+//   Forward Schedule (FSC) -> Schedule, always.
+//   Event (EVT), Unknown   -> Other. Events are monitoring noise and unknown
+//                             prefixes are reported rather than guessed.
 export function categorizeTicket(
+  kind: TicketKind,
   categoryValue: unknown,
   summaryValue: unknown,
   rules: AppConfig['categories'],
 ): TicketCategory {
-  const haystack = normalizeText(`${String(categoryValue ?? '')} ${String(summaryValue ?? '')}`)
-  const order: Exclude<TicketCategory, 'Other'>[] = ['Onboarding', 'Offboarding', 'Schedule', 'Incident']
-  for (const category of order) {
-    if (rules[category].some((keyword) => {
-      const normalizedKeyword = normalizeText(keyword)
-      return normalizedKeyword.length > 0 && haystack.includes(normalizedKeyword)
-    })) {
-      return category
-    }
+  if (kind === 'Incident') return 'Incident'
+  if (kind === 'Forward Schedule') return 'Schedule'
+  if (kind !== 'Service Request') return 'Other'
+
+  const type = normalizeText(categoryValue)
+  if (type.includes('forward schedule') || type.includes('preventive maintenance')) return 'Schedule'
+
+  const description = normalizeText(summaryValue)
+  for (const category of ['Onboarding', 'Offboarding', 'Schedule'] as const) {
+    if (matchesAny(description, rules[category])) return category
   }
   return 'Other'
+}
+
+// Builds a local-midnight date, rejecting out-of-range components. The
+// multi-argument Date constructor silently rolls them over — month 13 becomes
+// January of the next year and 31 February becomes 3 March — which would let a
+// malformed source date pass validation and land on the wrong report day.
+function buildLocalDate(year: number, month: number, day: number): Date | null {
+  const date = new Date(year, month - 1, day)
+  if (Number.isNaN(date.getTime())) return null
+  const roundTrips = date.getFullYear() === year && date.getMonth() === month - 1 && date.getDate() === day
+  return roundTrips ? date : null
 }
 
 export function parseFlexibleDate(value: unknown): Date | null {
@@ -127,6 +177,14 @@ export function parseFlexibleDate(value: unknown): Date | null {
   const text = String(value ?? '').trim()
   if (!text) return null
 
+  // Date-only values must resolve to LOCAL midnight. Passing "YYYY-MM-DD" to the
+  // Date constructor parses as UTC midnight, which lands on the previous calendar
+  // day for negative-offset browsers and 08:00 for Singapore.
+  const isoDay = text.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/)
+  if (isoDay) {
+    return buildLocalDate(Number(isoDay[1]), Number(isoDay[2]), Number(isoDay[3]))
+  }
+
   const slash = text.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})(?:\s+(.*))?$/)
   if (slash) {
     const a = Number(slash[1])
@@ -134,9 +192,14 @@ export function parseFlexibleDate(value: unknown): Date | null {
     const y = Number(slash[3])
     const month = a > 12 ? b : a
     const day = a > 12 ? a : b
-    const rest = slash[4] ? ` ${slash[4]}` : ''
-    const parsed = new Date(`${y}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}${rest}`)
+    // Out-of-range components are rejected outright rather than falling through
+    // to Date's lenient string parser, which would silently roll "2/30/2026"
+    // over to 2 March.
+    if (!buildLocalDate(y, month, day)) return null
+    if (!slash[4]) return buildLocalDate(y, month, day)
+    const parsed = new Date(`${y}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')} ${slash[4]}`)
     if (!Number.isNaN(parsed.getTime())) return parsed
+    return null
   }
 
   const parsed = new Date(text)
@@ -162,6 +225,7 @@ export function normalizeRows(
     const rawStatus = String(value(row, mapping.status) ?? '').trim()
     const rawCategory = String(value(row, mapping.ticketType) ?? '').trim()
     const summary = String(value(row, mapping.summary) ?? '').trim()
+    const kind = ticketKindFromId(id)
     const createdRaw = value(row, mapping.createdDate)
     const closedRaw = value(row, mapping.closedDate)
     const createdDate = parseFlexibleDate(createdRaw)
@@ -182,7 +246,9 @@ export function normalizeRows(
       supportGroup: String(value(row, mapping.supportGroup) ?? '').trim(),
       contract: String(value(row, mapping.contract) ?? '').trim(),
       team: classifyTeam(assignedTo, config.teams),
-      category: categorizeTicket(rawCategory, summary, config.categories),
+      kind,
+      idPrefix: ticketIdPrefix(id),
+      category: categorizeTicket(kind, rawCategory, summary, config.categories),
       reportStatus: normalizeStatus(rawStatus, config.statuses),
       duplicateId: Boolean(id && (counts.get(id) ?? 0) > 1),
       dateInvalid: hasInvalidCreated || hasInvalidClosed,
