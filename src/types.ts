@@ -133,6 +133,10 @@ export interface TeamSummary {
 export interface ReportMetrics {
   newTickets: Record<Team, number>
   pendingClosed: Record<Team, { scheduledOnOffBoarding: number; pending: number; closed: number }>
+  // User-facing report buckets. On/Offboarding contains only those two request
+  // categories. Pending absorbs every other active/non-terminal ticket,
+  // including Schedule, In Progress, Waiting User Reply and On Hold.
+  summaryBuckets: Record<Team, { onOffBoarding: number; pending: number }>
   summaries: Record<Team, TeamSummary>
   totalUniqueTickets: number
 }
