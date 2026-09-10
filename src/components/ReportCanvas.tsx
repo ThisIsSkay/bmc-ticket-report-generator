@@ -1,6 +1,6 @@
 import { Bar, BarChart, Cell, LabelList, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import type { RefObject } from 'react'
-import type { FeedbackValues, Filters, ReportMetrics, Team, TeamMapping, TeamSummary } from '../types'
+import type { FeedbackValues, Filters, PendingStatusBreakdown, ReportMetrics, Team, TeamMapping, TeamSummary } from '../types'
 import { filterDescription, TEAMS } from '../lib/report'
 import { formatDateKey, formatLocalTime } from '../lib/clock'
 
@@ -33,12 +33,22 @@ function BarValueLabel(props: any) {
   )
 }
 
-function TeamSummaryTable({ team, summary }: { team: Team; summary: TeamSummary }) {
+function TeamSummaryTable({
+  team,
+  summary,
+  pendingTotal,
+  pendingBreakdown,
+}: {
+  team: Team
+  summary: TeamSummary
+  pendingTotal: number
+  pendingBreakdown: PendingStatusBreakdown
+}) {
   const onOffTotal = summary.onboarding + summary.offboarding
   return (
     <section className="excel-summary-box">
       <div className="excel-summary-team">{team}</div>
-      <div className="excel-summary-headings"><div>On/Offboarding</div><div>On-Hold Incidents</div></div>
+      <div className="excel-summary-headings"><div>On/Offboarding</div><div>Pending Breakdown</div></div>
       <div className="excel-summary-body">
         <div>
           <div>Total: {onOffTotal} tickets</div>
@@ -46,10 +56,11 @@ function TeamSummaryTable({ team, summary }: { team: Team; summary: TeamSummary 
           <div>{summary.offboarding} - Offboarding</div>
         </div>
         <div>
-          <div>Total: {summary.incidentTotal} tickets</div>
-          <div>{summary.pendingIncidents} - Pending</div>
-          <div>{summary.workInProgressIncidents} - Work in Progress</div>
-          <div>{summary.waitingUserReplyIncidents} - Waiting User Reply</div>
+          <div>Total: {pendingTotal} tickets</div>
+          <div>{pendingBreakdown.pending} - Pending</div>
+          <div>{pendingBreakdown.workInProgress} - Work in Progress</div>
+          <div>{pendingBreakdown.waitingUserReply} - Waiting User Reply</div>
+          <div>{pendingBreakdown.onHold} - On Hold</div>
         </div>
       </div>
     </section>
@@ -143,7 +154,15 @@ export function ReportCanvas({
 
         <div className="report-right-column">
           <div className="report-summary-stack">
-            {TEAMS.map((team) => <TeamSummaryTable key={team} team={team} summary={metrics.summaries[team]} />)}
+            {TEAMS.map((team) => (
+              <TeamSummaryTable
+                key={team}
+                team={team}
+                summary={metrics.summaries[team]}
+                pendingTotal={metrics.summaryBuckets[team].pending}
+                pendingBreakdown={metrics.pendingBreakdown[team]}
+              />
+            ))}
           </div>
 
           <div className="report-input-zone">
