@@ -130,6 +130,13 @@ export interface TeamSummary {
   waitingUserReplyIncidents: number
 }
 
+export interface PendingStatusBreakdown {
+  pending: number
+  workInProgress: number
+  waitingUserReply: number
+  onHold: number
+}
+
 export interface ReportMetrics {
   newTickets: Record<Team, number>
   pendingClosed: Record<Team, { scheduledOnOffBoarding: number; pending: number; closed: number }>
@@ -137,6 +144,10 @@ export interface ReportMetrics {
   // categories. Pending absorbs every other active/non-terminal ticket,
   // including Schedule, In Progress, Waiting User Reply and On Hold.
   summaryBuckets: Record<Team, { onOffBoarding: number; pending: number }>
+  // Status breakdown of the same user-facing Pending bucket. Any active status
+  // that does not have its own exported line is folded into "pending" so these
+  // four values always reconcile exactly to summaryBuckets[team].pending.
+  pendingBreakdown: Record<Team, PendingStatusBreakdown>
   summaries: Record<Team, TeamSummary>
   totalUniqueTickets: number
 }
