@@ -33,6 +33,8 @@ describe('daily report aggregation', () => {
     expect(metrics.summaryBuckets.EUC.onOffBoarding).toBe(1)
     expect(metrics.summaryBuckets.EUC.pending).toBe(1)
     expect(metrics.summaryBuckets.Network.pending).toBe(1)
+    expect(metrics.pendingBreakdown.EUC.pending).toBe(1)
+    expect(metrics.pendingBreakdown.Network.waitingUserReply).toBe(1)
     expect(metrics.summaries.EUC.totalTickets).toBe(1)
     expect(metrics.summaries.EUC.onboarding).toBe(1)
     expect(metrics.summaries.EUC.incidentTotal).toBe(1)
@@ -71,5 +73,30 @@ describe('daily report aggregation', () => {
     const metrics = aggregateTickets(normalizeRows(dailyRows, mapping, config), '2026-09-09')
     expect(metrics.summaryBuckets.EUC.onOffBoarding).toBe(1)
     expect(metrics.summaryBuckets.EUC.pending).toBe(3)
+  })
+
+  it('makes Pending Breakdown use the exact exported Pending population and always reconcile to its total', () => {
+    const dailyRows: RawRow[] = [
+      { ID: 'SRV000030', Engineer: 'Alex Example', Status: 'Pending', Type: 'Service Request', Summary: 'Request: Onboarding - new joiner', Submit: '2026-09-08', Group: 'NCC_EUC' },
+      { ID: 'SRV000031', Engineer: 'Alex Example', Status: 'Work in Progress', Type: 'Service Request', Summary: 'Routine software setup', Submit: '2026-09-08', Group: 'NCC_EUC' },
+      { ID: 'FSC000032', Engineer: 'Alex Example', Status: 'Pending', Type: 'Forward Schedule / Preventive Maintenance', Summary: 'Maintenance window', Submit: '2026-09-08', Group: 'NCC_EUC' },
+      { ID: 'INC000033', Engineer: 'Alex Example', Status: 'Waiting User Reply', Type: 'Incident', Summary: 'Waiting for user', Submit: '2026-09-08', Group: 'NCC_EUC' },
+      { ID: 'INC000034', Engineer: 'Alex Example', Status: 'On Hold', Type: 'Incident', Summary: 'Vendor follow-up', Submit: '2026-09-08', Group: 'NCC_EUC' },
+      { ID: 'SRV000035', Engineer: 'Alex Example', Status: 'New', Type: 'Service Request', Summary: 'Routine request awaiting triage', Submit: '2026-09-08', Group: 'NCC_EUC' },
+      { ID: 'SRV000036', Engineer: 'Alex Example', Status: 'Cancelled', Type: 'Service Request', Summary: 'Cancelled task', Submit: '2026-09-08', Group: 'NCC_EUC' },
+    ]
+
+    const metrics = aggregateTickets(normalizeRows(dailyRows, mapping, config), '2026-09-09')
+    const breakdown = metrics.pendingBreakdown.EUC
+    expect(metrics.summaryBuckets.EUC.onOffBoarding).toBe(1)
+    expect(metrics.summaryBuckets.EUC.pending).toBe(5)
+    expect(breakdown).toEqual({
+      pending: 2,
+      workInProgress: 1,
+      waitingUserReply: 1,
+      onHold: 1,
+    })
+    expect(breakdown.pending + breakdown.workInProgress + breakdown.waitingUserReply + breakdown.onHold)
+      .toBe(metrics.summaryBuckets.EUC.pending)
   })
 })
