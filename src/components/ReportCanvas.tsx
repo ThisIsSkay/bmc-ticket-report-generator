@@ -34,14 +34,14 @@ function BarValueLabel(props: any) {
 }
 
 function TeamSummaryTable({ team, summary }: { team: Team; summary: TeamSummary }) {
+  const onOffTotal = summary.onboarding + summary.offboarding
   return (
     <section className="excel-summary-box">
       <div className="excel-summary-team">{team}</div>
-      <div className="excel-summary-headings"><div>On/Offboarding, Schedule</div><div>On-Hold Incidents</div></div>
+      <div className="excel-summary-headings"><div>On/Offboarding</div><div>On-Hold Incidents</div></div>
       <div className="excel-summary-body">
         <div>
-          <div>Total: {summary.totalTickets} tickets</div>
-          <div>{summary.scheduleRequests} - Schedule Request</div>
+          <div>Total: {onOffTotal} tickets</div>
           <div>{summary.onboarding} - Onboarding</div>
           <div>{summary.offboarding} - Offboarding</div>
         </div>
@@ -85,8 +85,8 @@ export function ReportCanvas({
 }) {
   const newData = TEAMS.map((team) => ({ team, value: metrics.newTickets[team], color: COLORS[team] }))
   const pendingData = TEAMS.flatMap((team) => [
-    { team, metric: 'On/Offboarding, Schedule', short: 'On/Offboarding...', value: metrics.pendingClosed[team].scheduledOnOffBoarding, color: COLORS[team] },
-    { team, metric: 'Pending', short: 'Pending', value: metrics.pendingClosed[team].pending, color: COLORS[team] },
+    { team, metric: 'On/Offboarding', short: 'On/Offboarding...', value: metrics.summaryBuckets[team].onOffBoarding, color: COLORS[team] },
+    { team, metric: 'Pending', short: 'Pending', value: metrics.summaryBuckets[team].pending, color: COLORS[team] },
     { team, metric: 'Closed', short: 'Closed', value: metrics.pendingClosed[team].closed, color: COLORS[team] },
   ])
 
@@ -164,8 +164,8 @@ export function ReportCanvas({
                 </thead>
                 <tbody>
                   <tr>{TEAMS.flatMap((team) => [
-                    <td key={`${team}-av`}>{metrics.pendingClosed[team].scheduledOnOffBoarding}</td>,
-                    <td key={`${team}-pv`}>{metrics.pendingClosed[team].pending}</td>,
+                    <td key={`${team}-av`}>{metrics.summaryBuckets[team].onOffBoarding}</td>,
+                    <td key={`${team}-pv`}>{metrics.summaryBuckets[team].pending}</td>,
                     <td key={`${team}-cv`}>{metrics.pendingClosed[team].closed}</td>,
                   ])}</tr>
                 </tbody>
