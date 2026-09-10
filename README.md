@@ -41,27 +41,27 @@ Two diagnostics show exactly what the report excluded. Both live in the configur
 
 The dashboard contains a live device clock. The clock automatically determines the report day and rolls over when the local date changes.
 
-The daily calculations are intentionally different from a simple Created-Date filter:
+The exported report uses these daily rules:
 
-- **New Tickets** = unique tickets whose **Submit Date** is the current report day, regardless of their current BMC status.
-- **Closed** = unique tickets whose **Resolved Date** is the current report day **and** whose status normalizes to Closed. Cancelled tickets also carry a Resolved Date in BMC, but cancellation is not completed work and never counts as Closed throughput.
-- **On/Off-Boarding, Schedule** = all outstanding (non-terminal) tickets categorized as Schedule, Onboarding, or Offboarding — including New/Assigned work not yet started. Closed and Cancelled are terminal.
-- **Pending** (chart) = the remaining Pending/On-Hold backlog of any ticket type after Schedule/Onboarding/Offboarding tickets have been separated into the first bucket. See *Pending is still under validation* below.
-- **On/Off-Boarding, Schedule** and its breakdown come from outstanding **SRV** and **FSC** tickets; the incident summary counts **INC** tickets only.
-- **Team summary — Total tickets** = current outstanding Schedule + Onboarding + Offboarding workload.
-- **Schedule request / Onboarding / Offboarding** = breakdown of that backlog.
-- **On-hold Incidents — Total** = current INC backlog in Pending, On Hold, Work in Progress, or Waiting User Reply.
-- **Pending** inside the incident table includes source statuses normalized to Pending or On Hold.
-- **Work in Progress** and **Waiting User Reply** use their normalized report statuses.
+- **New Tickets** = unique tickets whose **Submit Date** is the report day, regardless of current BMC status. A ticket may therefore count as both New and Closed if it is raised and resolved on the same day.
+- **Closed** = unique tickets whose raw BMC status is **Closed** or **Resolved** and whose **Resolved Date** is the report day. Cancelled/Canceled tickets are never Closed throughput.
+- **On/Offboarding** = all active/non-terminal tickets categorized as **Onboarding** or **Offboarding** only.
+- **Pending** = every other active/non-terminal ticket after Onboarding and Offboarding are separated. This includes Schedule/FSC work, Pending, Work in Progress/In Progress, Waiting User Reply, On Hold, and other active tickets.
+- **Closed** and **Cancelled** are terminal and never contribute to the current Pending bucket.
 
-### Pending is still under validation
+### Exported Pending Breakdown
 
-The chart's **Pending** bar and the **Pending** line inside each team's On-hold Incidents box are deliberately **different metrics**, and the tool does not force them to agree:
+The upper-right summary box for each team is intentionally tied to the same Pending number shown in the Pending & Closed chart/table.
 
-- chart Pending = every pending/on-hold ticket outside the On/Off-Boarding and Schedule bucket, of any ticket type;
-- incident-summary Pending = INC tickets in Pending or On Hold only.
+For each team:
 
-The reference Excel dashboard shows Network with a chart Pending of 18 while its incident Pending is 16, which is consistent with the two metrics measuring different populations. **This rule is not final** and is being observed across several real reporting days before it is confirmed; the current behavior is unchanged in the meantime. To observe it, the Report Dashboard shows a *Pending breakdown* diagnostic — per team: the chart total and its INC / SRV / other-prefix split, plus a per-Assigned-Group breakdown. Like the out-of-scope table, it appears in the UI only and never in the exported image.
+- **Pending Breakdown — Total** = the report's Pending total.
+- **Work in Progress** = tickets normalized to Work in Progress.
+- **Waiting User Reply** = tickets normalized to Waiting User Reply.
+- **On Hold** = tickets normalized to On Hold.
+- **Pending** = all remaining tickets in the report Pending population. This normally represents BMC Pending tickets, but also acts as the summary catch-all for any active status that does not have its own exported line, so the four breakdown lines always add back exactly to the Pending total.
+
+The separate Report Dashboard diagnostic can still split the same Pending population by ticket kind (INC / SRV / other) and Assigned Group. That diagnostic is UI-only and is never included in the exported image.
 
 All dashboard blocks use the same normalized ticket records. Duplicate Ticket IDs are counted once in report metrics — deterministically keeping the row with the most recent lifecycle information (latest Resolved Date, then latest Submit Date, then the later export row) — while every raw row remains visible in the detail screen.
 
