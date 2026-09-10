@@ -129,6 +129,11 @@ export function aggregateTickets(input: Ticket[], reportDate = localDateKey()): 
       System: { onOffBoarding: 0, pending: 0 },
       Network: { onOffBoarding: 0, pending: 0 },
     },
+    pendingBreakdown: {
+      EUC: { pending: 0, workInProgress: 0, waitingUserReply: 0, onHold: 0 },
+      System: { pending: 0, workInProgress: 0, waitingUserReply: 0, onHold: 0 },
+      Network: { pending: 0, workInProgress: 0, waitingUserReply: 0, onHold: 0 },
+    },
     summaries: { EUC: blankSummary(), System: blankSummary(), Network: blankSummary() },
     totalUniqueTickets: tickets.length,
   }
@@ -139,25 +144,30 @@ export function aggregateTickets(input: Ticket[], reportDate = localDateKey()): 
     const special = isSpecialBacklog(ticket)
     const outstandingSpecial = isOutstanding(ticket) && special
     const outstandingOnOff = isOutstanding(ticket) && isOnOffBoarding(ticket)
+    const reportPending = isOutstanding(ticket) && !isOnOffBoarding(ticket)
 
     // "New Tickets" means submitted on the report day, regardless of current
     // status. A ticket raised today still counts as New even if it is resolved later today.
     if (dateMatchesLocalKey(ticket.createdDate, reportDate)) metrics.newTickets[team] += 1
 
-    // Legacy detailed counter retained for compatibility with existing tests and
-    // diagnostics. The exported report uses summaryBuckets below.
+    // Legacy detailed counters retained for compatibility with diagnostics/tests.
     if (outstandingSpecial) metrics.pendingClosed[team].scheduledOnOffBoarding += 1
-
     if (isPendingBucket(ticket) && !special) metrics.pendingClosed[team].pending += 1
 
     // User-facing summary: On/Offboarding is strictly those two categories.
     if (outstandingOnOff) metrics.summaryBuckets[team].onOffBoarding += 1
 
     // The report has no separate WIP/Schedule/Waiting columns, so every other
-    // active/non-terminal ticket is summarized under Pending. This includes
-    // Schedule, Pending, In Progress, Waiting User Reply, On Hold and New/Assigned.
-    if (isOutstanding(ticket) && !isOnOffBoarding(ticket)) {
+    // active/non-terminal ticket is summarized under Pending. The top-right
+    // Pending Breakdown is built from this exact same population so it always
+    // reconciles with the chart/table Pending total.
+    if (reportPending) {
       metrics.summaryBuckets[team].pending += 1
+      const breakdown = metrics.pendingBreakdown[team]
+      if (ticket.reportStatus === 'Work in Progress') breakdown.workInProgress += 1
+      else if (ticket.reportStatus === 'Waiting User Reply') breakdown.waitingUserReply += 1
+      else if (ticket.reportStatus === 'On Hold') breakdown.onHold += 1
+      else breakdown.pending += 1
     }
 
     // Closed is daily throughput and is intentionally independent from the
@@ -172,6 +182,8 @@ export function aggregateTickets(input: Ticket[], reportDate = localDateKey()): 
       if (ticket.category === 'Offboarding') summary.offboarding += 1
     }
 
+    // Legacy incident-only counters remain available for diagnostics, but the
+    // exported top-right box now uses pendingBreakdown instead.
     if (backlog && ticket.category === 'Incident') {
       summary.incidentTotal += 1
       if (ticket.reportStatus === 'Pending' || ticket.reportStatus === 'On Hold') summary.pendingIncidents += 1
