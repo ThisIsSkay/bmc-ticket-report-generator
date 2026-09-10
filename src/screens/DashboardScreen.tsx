@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { Clipboard, Download, FileImage, Printer, RefreshCw, RotateCcw } from 'lucide-react'
 import type { FeedbackValues, Filters, TeamMapping, Ticket, ValidationSummary } from '../types'
 import { CATEGORIES, REPORT_STATUSES, TEAMS } from '../types'
-import { aggregateTickets, availableAssignees, filterTickets, outOfScopeByGroup, pendingDiagnostics } from '../lib/report'
+import { aggregateTickets, availableAssignees, filterTickets, outOfScopeByGroup, reportPendingDiagnostics } from '../lib/report'
 import { copyReportToClipboard, printReport, saveReportAsJpeg, saveReportAsPng } from '../lib/export'
 import { ReportCanvas } from '../components/ReportCanvas'
 import { defaultFilters } from '../config/defaults'
@@ -47,7 +47,7 @@ export function DashboardScreen({
   const metrics = useMemo(() => aggregateTickets(filtered, reportDate), [filtered, reportDate])
   const assignees = useMemo(() => availableAssignees(tickets), [tickets])
   const outOfScope = useMemo(() => outOfScopeByGroup(filtered), [filtered])
-  const pendingSplit = useMemo(() => pendingDiagnostics(filtered), [filtered])
+  const pendingSplit = useMemo(() => reportPendingDiagnostics(filtered), [filtered])
 
   const run = async (name: string, fn: (node: HTMLElement) => Promise<void>) => {
     if (!reportRef.current) return
@@ -96,7 +96,7 @@ export function DashboardScreen({
           </div>
           <div className="mt-3 flex items-center justify-between gap-4">
             <div className="text-xs leading-5 text-gray-500">
-              <strong>Daily logic:</strong> New = Submit Date today • Closed = Resolved Date today (Cancelled excluded) • On/Offboarding/Schedule = outstanding non-terminal work • Pending = remaining pending/on-hold backlog. Optional Created-from/to filters narrow the source population but never remove tickets resolved on the report date.
+              <strong>Daily logic:</strong> New = Submit Date today • Closed = Resolved Date today (Cancelled excluded) • On/Offboarding = active onboarding/offboarding only • Pending = every other active/non-terminal ticket, including Schedule, In Progress, Waiting User Reply and On Hold. Optional Created-from/to filters narrow the source population but never remove tickets resolved on the report date.
             </div>
             <div className="flex shrink-0 gap-2"><button className="btn-secondary py-1.5" onClick={resetFilters}><RotateCcw className="h-4 w-4" /> Reset filters</button><button className="btn-secondary py-1.5" onClick={() => { const next = new Date(); setNow(next); setGeneratedAt(next) }}><RefreshCw className="h-4 w-4" /> Recalculate</button></div>
           </div>
@@ -127,7 +127,7 @@ export function DashboardScreen({
         <details className="panel p-4" open>
           <summary className="cursor-pointer font-bold">Pending breakdown (diagnostic — not exported)</summary>
           <p className="mt-1 text-xs text-gray-500">
-            Splits exactly the tickets behind the chart's Pending bars. The chart counts every pending/on-hold ticket outside the On/Off-Boarding and Schedule bucket, while each team summary's Pending line counts incidents only — so INC here should reconcile with the summary.
+            Splits exactly the tickets behind the report's Pending bars. Pending is the summary bucket for every active/non-terminal ticket that is not Onboarding or Offboarding, so Schedule, In Progress, Waiting User Reply and On Hold are included here.
           </p>
           <table className="mt-3 w-full border-collapse text-sm">
             <thead><tr className="bg-gray-100 text-left">{['Team', 'Total Pending', 'INC', 'SRV', 'Other'].map((h) => <th key={h} className="border px-3 py-1.5">{h}</th>)}</tr></thead>
