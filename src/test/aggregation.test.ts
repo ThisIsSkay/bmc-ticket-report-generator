@@ -30,6 +30,9 @@ describe('daily report aggregation', () => {
     expect(metrics.pendingClosed.EUC.scheduledOnOffBoarding).toBe(1)
     expect(metrics.pendingClosed.EUC.pending).toBe(1)
     expect(metrics.pendingClosed.System.closed).toBe(1)
+    expect(metrics.summaryBuckets.EUC.onOffBoarding).toBe(1)
+    expect(metrics.summaryBuckets.EUC.pending).toBe(1)
+    expect(metrics.summaryBuckets.Network.pending).toBe(1)
     expect(metrics.summaries.EUC.totalTickets).toBe(1)
     expect(metrics.summaries.EUC.onboarding).toBe(1)
     expect(metrics.summaries.EUC.incidentTotal).toBe(1)
@@ -54,5 +57,19 @@ describe('daily report aggregation', () => {
 
     const metrics = aggregateTickets(normalizeRows(dailyRows, mapping, staleConfig), '2026-09-09')
     expect(metrics.pendingClosed.EUC.closed).toBe(2)
+  })
+
+  it('summarizes Schedule and active statuses such as In Progress under report Pending, while On/Offboarding stays separate', () => {
+    const dailyRows: RawRow[] = [
+      { ID: 'SRV000020', Engineer: 'Alex Example', Status: 'Pending', Type: 'Service Request', Summary: 'Request: Onboarding - new joiner', Submit: '2026-09-08', Group: 'NCC_EUC' },
+      { ID: 'SRV000021', Engineer: 'Alex Example', Status: 'Work in Progress', Type: 'Service Request', Summary: 'Routine software setup', Submit: '2026-09-08', Group: 'NCC_EUC' },
+      { ID: 'FSC000022', Engineer: 'Alex Example', Status: 'Pending', Type: 'Forward Schedule / Preventive Maintenance', Summary: 'Maintenance window', Submit: '2026-09-08', Group: 'NCC_EUC' },
+      { ID: 'INC000023', Engineer: 'Alex Example', Status: 'Waiting User Reply', Type: 'Incident', Summary: 'Waiting for user', Submit: '2026-09-08', Group: 'NCC_EUC' },
+      { ID: 'SRV000024', Engineer: 'Alex Example', Status: 'Cancelled', Type: 'Service Request', Summary: 'Cancelled task', Submit: '2026-09-08', Group: 'NCC_EUC' },
+    ]
+
+    const metrics = aggregateTickets(normalizeRows(dailyRows, mapping, config), '2026-09-09')
+    expect(metrics.summaryBuckets.EUC.onOffBoarding).toBe(1)
+    expect(metrics.summaryBuckets.EUC.pending).toBe(3)
   })
 })
