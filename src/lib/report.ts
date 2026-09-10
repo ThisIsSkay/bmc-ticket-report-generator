@@ -87,9 +87,11 @@ const blankSummary = (): TeamSummary => ({
 const isSpecialBacklog = (ticket: Ticket): boolean =>
   ticket.category === 'Schedule' || ticket.category === 'Onboarding' || ticket.category === 'Offboarding'
 
-// Outstanding workload = anything not in a terminal state. New/Assigned
-// onboarding or schedule work is still outstanding even before an engineer
-// starts it; Closed and Cancelled are terminal.
+const isOnOffBoarding = (ticket: Ticket): boolean =>
+  ticket.category === 'Onboarding' || ticket.category === 'Offboarding'
+
+// Outstanding workload = anything not in a terminal state. New/Assigned work is
+// still active even before an engineer starts it; Closed and Cancelled are terminal.
 const isOutstanding = (ticket: Ticket): boolean =>
   ticket.reportStatus !== 'Closed' && ticket.reportStatus !== 'Cancelled'
 
@@ -122,6 +124,11 @@ export function aggregateTickets(input: Ticket[], reportDate = localDateKey()): 
       System: { scheduledOnOffBoarding: 0, pending: 0, closed: 0 },
       Network: { scheduledOnOffBoarding: 0, pending: 0, closed: 0 },
     },
+    summaryBuckets: {
+      EUC: { onOffBoarding: 0, pending: 0 },
+      System: { onOffBoarding: 0, pending: 0 },
+      Network: { onOffBoarding: 0, pending: 0 },
+    },
     summaries: { EUC: blankSummary(), System: blankSummary(), Network: blankSummary() },
     totalUniqueTickets: tickets.length,
   }
@@ -131,19 +138,27 @@ export function aggregateTickets(input: Ticket[], reportDate = localDateKey()): 
     const backlog = isBacklogStatus(ticket)
     const special = isSpecialBacklog(ticket)
     const outstandingSpecial = isOutstanding(ticket) && special
+    const outstandingOnOff = isOutstanding(ticket) && isOnOffBoarding(ticket)
 
-    // "New Tickets" in the daily Excel report means submitted on the report day,
-    // regardless of the ticket's current BMC status.
+    // "New Tickets" means submitted on the report day, regardless of current
+    // status. A ticket raised today still counts as New even if it is resolved later today.
     if (dateMatchesLocalKey(ticket.createdDate, reportDate)) metrics.newTickets[team] += 1
 
-    // First backlog bucket mirrors the Excel block labelled On/Off-Boarding and
-    // includes Schedule requests as shown in the team summary table. It counts
-    // every non-terminal status, including New/Assigned work not yet started.
+    // Legacy detailed counter retained for compatibility with existing tests and
+    // diagnostics. The exported report uses summaryBuckets below.
     if (outstandingSpecial) metrics.pendingClosed[team].scheduledOnOffBoarding += 1
 
-    // Pending is the remaining pending/on-hold backlog after Schedule/Onboarding/
-    // Offboarding has been separated into the first bucket.
     if (isPendingBucket(ticket) && !special) metrics.pendingClosed[team].pending += 1
+
+    // User-facing summary: On/Offboarding is strictly those two categories.
+    if (outstandingOnOff) metrics.summaryBuckets[team].onOffBoarding += 1
+
+    // The report has no separate WIP/Schedule/Waiting columns, so every other
+    // active/non-terminal ticket is summarized under Pending. This includes
+    // Schedule, Pending, In Progress, Waiting User Reply, On Hold and New/Assigned.
+    if (isOutstanding(ticket) && !isOnOffBoarding(ticket)) {
+      metrics.summaryBuckets[team].pending += 1
+    }
 
     // Closed is daily throughput and is intentionally independent from the
     // outstanding Pending calculation and from editable status aliases.
@@ -205,12 +220,29 @@ export function outOfScopeByGroup(input: Ticket[]): { rows: CountByLabel[]; tota
   return { rows: countByLabel(outOfScope, (t) => t.supportGroup || '(blank)'), total: outOfScope.length }
 }
 
-// Splits exactly the population behind the chart's Pending bars by ticket kind,
-// so the chart Pending total can be reconciled against the Incident-only
-// Pending line in the team summary.
+// Legacy diagnostic for the original narrow pending/on-hold metric.
 export function pendingDiagnostics(input: Ticket[]): PendingDiagnosticRow[] {
   const tickets = uniqueForReporting(input).filter(
     (ticket) => TEAMS.includes(ticket.team as Team) && isPendingBucket(ticket) && !isSpecialBacklog(ticket),
+  )
+  return TEAMS.map((team) => {
+    const forTeam = tickets.filter((ticket) => ticket.team === team)
+    return {
+      team,
+      total: forTeam.length,
+      incident: forTeam.filter((t) => t.kind === 'Incident').length,
+      serviceRequest: forTeam.filter((t) => t.kind === 'Service Request').length,
+      other: forTeam.filter((t) => t.kind !== 'Incident' && t.kind !== 'Service Request').length,
+      byGroup: countByLabel(forTeam, (t) => t.supportGroup || '(blank)'),
+    }
+  })
+}
+
+// Diagnostic for the actual user-facing Pending bar: every active ticket that
+// is not an Onboarding or Offboarding request. This mirrors summaryBuckets.
+export function reportPendingDiagnostics(input: Ticket[]): PendingDiagnosticRow[] {
+  const tickets = uniqueForReporting(input).filter(
+    (ticket) => TEAMS.includes(ticket.team as Team) && isOutstanding(ticket) && !isOnOffBoarding(ticket),
   )
   return TEAMS.map((team) => {
     const forTeam = tickets.filter((ticket) => ticket.team === team)
