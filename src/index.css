@@ -90,7 +90,7 @@ button:disabled { cursor: not-allowed; opacity: 0.55; }
   }
   .nav-item-active:hover { background: var(--nav-active-bg); color: var(--nav-active-fg); }
   .nav-item-disabled { color: #d1d5db; }
-  .nav-item-disabled:hover { background: transparent; }
+  .nav-item-disabled:not(.nav-item-active):hover { background: transparent; }
   .nav-group-label {
     @apply px-2 pb-1 pt-4 text-[10px] font-bold uppercase tracking-[.12em];
     color: #9ca3af;
