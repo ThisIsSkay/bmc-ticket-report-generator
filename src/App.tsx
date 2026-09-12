@@ -17,14 +17,31 @@ import type { AppConfig, ColumnMapping, FeedbackValues, Filters, ParsedWorkbook,
 
 type Screen = 'upload' | 'columns' | 'teams' | 'rules' | 'dashboard' | 'details' | 'config'
 
-const nav: Array<{ id: Screen; label: string; icon: typeof FileUp; needsData?: boolean }> = [
-  { id: 'upload', label: 'Upload Data', icon: FileUp },
-  { id: 'columns', label: 'Column Mapping', icon: SlidersHorizontal, needsData: true },
-  { id: 'teams', label: 'Engineer Selection', icon: Users, needsData: true },
-  { id: 'rules', label: 'Status & Category Rules', icon: Settings2 },
-  { id: 'dashboard', label: 'Report Dashboard', icon: BarChart3, needsData: true },
-  { id: 'details', label: 'Detailed Ticket Data', icon: Table2, needsData: true },
-  { id: 'config', label: 'Config Export / Import', icon: FileSearch },
+type NavItem = { id: Screen; label: string; icon: typeof FileUp; needsData?: boolean }
+
+const navGroups: Array<{ label: string; items: NavItem[] }> = [
+  {
+    label: 'Import',
+    items: [
+      { id: 'upload', label: 'Upload Data', icon: FileUp },
+      { id: 'columns', label: 'Column Mapping', icon: SlidersHorizontal, needsData: true },
+      { id: 'teams', label: 'Engineer Selection', icon: Users, needsData: true },
+      { id: 'rules', label: 'Status & Category Rules', icon: Settings2 },
+    ],
+  },
+  {
+    label: 'Report',
+    items: [
+      { id: 'dashboard', label: 'Report Dashboard', icon: BarChart3, needsData: true },
+      { id: 'details', label: 'Detailed Ticket Data', icon: Table2, needsData: true },
+    ],
+  },
+  {
+    label: 'Settings',
+    items: [
+      { id: 'config', label: 'Config Export / Import', icon: FileSearch },
+    ],
+  },
 ]
 
 export default function App() {
@@ -117,28 +134,73 @@ export default function App() {
   }
 
   const hasData = rows.length > 0
+  const allColumnsMapped = hasData && Object.values(columnMapping).every((value) => Boolean(value))
+  const teamNeedsAttention = hasData && (teamMappingErrors.length > 0 || validation.unclassifiedAssignees.length > 0)
+  const rulesNeedAttention = hasData && (validation.unknownStatusCount > 0 || validation.unknownCategoryCount > 0)
+
+  const importDotClass = (id: Screen) => {
+    if (id === 'upload') return hasData ? 'nav-dot-done' : 'nav-dot-attn'
+    if (id === 'columns') return allColumnsMapped ? 'nav-dot-done' : hasData ? 'nav-dot-attn' : ''
+    if (id === 'teams') return teamNeedsAttention ? 'nav-dot-attn' : hasData ? 'nav-dot-done' : ''
+    if (id === 'rules') return rulesNeedAttention ? 'nav-dot-attn' : hasData ? 'nav-dot-done' : ''
+    return ''
+  }
 
   return (
     <div className="min-h-screen">
-      <header className="border-b border-gray-800 bg-gray-950 text-white">
-        <div className="mx-auto flex max-w-[1900px] items-center justify-between px-6 py-4">
-          <div><div className="text-xl font-bold">BMC Ticket Report Generator</div><div className="text-xs text-gray-400">Local browser processing • Daily engineer selection • Excel-style WhatsApp report export</div></div>
-          <div className="flex items-center gap-8 text-right text-xs text-gray-400">
-            <div><div className="font-semibold text-gray-200">{formatLocalDate(now)} • {formatLocalTime(now)}</div><div>Device clock determines today's report date</div></div>
-            <div>{fileName ? <>Current source<br /><strong className="text-gray-200">{fileName}</strong></> : 'No BMC file loaded'}</div>
-          </div>
+      <header className="border-b" style={{ background: 'var(--app-surface)', borderColor: 'var(--app-line)', color: 'var(--app-ink)' }}>
+        <div className="mx-auto max-w-[1900px] px-6 py-4">
+          <div className="text-xl font-bold">BMC Ticket Report Generator</div>
+          <div className="text-xs" style={{ color: 'var(--app-ink-soft)' }}>Local browser processing • Daily engineer selection • Excel-style WhatsApp report export</div>
         </div>
       </header>
 
+      <div className="status-strip">
+        <div>
+          <div className="status-label">Report date</div>
+          <div className="status-value">{formatLocalDate(now)} • {formatLocalTime(now)}</div>
+        </div>
+        <div className="min-w-0 max-w-[620px]">
+          <div className="status-label">Source</div>
+          <div className="status-value truncate" title={fileName || 'No BMC file loaded'}>{fileName || 'No BMC file loaded'}</div>
+        </div>
+        <div>
+          <div className="status-label">Rows</div>
+          <div className="status-value">{hasData ? rows.length.toLocaleString() : '—'}</div>
+        </div>
+      </div>
+
       <div className="mx-auto grid max-w-[1900px] grid-cols-[250px_minmax(0,1fr)] gap-0">
-        <aside className="min-h-[calc(100vh-73px)] border-r border-gray-200 bg-white p-3">
-          <nav className="space-y-1">
-            {nav.map(({ id, label, icon: Icon, needsData }) => {
-              const disabled = Boolean((needsData && !hasData) || ((id === 'dashboard' || id === 'details') && teamMappingErrors.length > 0))
-              return <button key={id} disabled={disabled} onClick={() => setScreen(id)} className={`flex w-full items-center gap-3 rounded-md px-3 py-2.5 text-left text-sm font-semibold ${screen === id ? 'bg-gray-900 text-white' : disabled ? 'text-gray-300' : 'text-gray-700 hover:bg-gray-100'}`}><Icon className="h-4 w-4" />{label}</button>
-            })}
+        <aside className="min-h-[calc(100vh-121px)] border-r p-3" style={{ background: 'var(--app-surface)', borderColor: 'var(--app-line)' }}>
+          <nav>
+            {navGroups.map((group) => (
+              <div key={group.label}>
+                <div className="nav-group-label">{group.label}</div>
+                <div className="space-y-1">
+                  {group.items.map(({ id, label, icon: Icon, needsData }) => {
+                    const disabled = Boolean((needsData && !hasData) || ((id === 'dashboard' || id === 'details') && teamMappingErrors.length > 0))
+                    const itemClass = ['nav-item', screen === id ? 'nav-item-active' : '', disabled ? 'nav-item-disabled' : ''].filter(Boolean).join(' ')
+                    return (
+                      <button key={id} disabled={disabled} onClick={() => setScreen(id)} className={itemClass}>
+                        <Icon className="h-4 w-4 shrink-0" />
+                        <span className="min-w-0 flex-1 truncate">{label}</span>
+                        {group.label === 'Import' && <span className={`nav-dot ${importDotClass(id)}`} aria-hidden="true" />}
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
+            ))}
           </nav>
-          {hasData && <div className="mt-6 rounded-md bg-gray-50 p-3 text-xs leading-5 text-gray-600"><strong className="text-gray-900">Import status</strong><br />{rows.length.toLocaleString()} raw rows<br />{tickets.length.toLocaleString()} processed rows<br />{config.teams.EUC.length + config.teams.System.length + config.teams.Network.length} selected engineer alias(es)<br />{validation.unclassifiedAssignees.length} engineer value(s) outside the three teams</div>}
+          {hasData && (
+            <div className="panel mt-6 p-3 text-xs leading-5" style={{ color: 'var(--app-ink-soft)' }}>
+              <strong style={{ color: 'var(--app-ink)' }}>Import status</strong><br />
+              {rows.length.toLocaleString()} raw rows<br />
+              {tickets.length.toLocaleString()} processed rows<br />
+              {config.teams.EUC.length + config.teams.System.length + config.teams.Network.length} selected engineer alias(es)<br />
+              {validation.unclassifiedAssignees.length} engineer value(s) outside the three teams
+            </div>
+          )}
         </aside>
 
         <main className="min-w-0 p-6">
