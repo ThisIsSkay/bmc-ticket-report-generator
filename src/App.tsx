@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { BarChart3, FileSearch, FileUp, Settings2, SlidersHorizontal, Table2, Users } from 'lucide-react'
+import { BarChart3, ChevronDown, FileSearch, FileUp, Settings2, SlidersHorizontal, Table2, Users } from 'lucide-react'
 import { UploadScreen } from './screens/UploadScreen'
 import { ColumnMappingScreen } from './screens/ColumnMappingScreen'
 import { TeamMappingScreen } from './screens/TeamMappingScreen'
@@ -26,20 +26,20 @@ const navGroups: Array<{ label: string; items: NavItem[] }> = [
       { id: 'upload', label: 'Upload Data', icon: FileUp },
       { id: 'columns', label: 'Column Mapping', icon: SlidersHorizontal, needsData: true },
       { id: 'teams', label: 'Engineer Selection', icon: Users, needsData: true },
-      { id: 'rules', label: 'Status & Category Rules', icon: Settings2 },
+      { id: 'rules', label: 'Rules', icon: Settings2 },
     ],
   },
   {
     label: 'Report',
     items: [
-      { id: 'dashboard', label: 'Report Dashboard', icon: BarChart3, needsData: true },
-      { id: 'details', label: 'Detailed Ticket Data', icon: Table2, needsData: true },
+      { id: 'dashboard', label: 'Dashboard', icon: BarChart3, needsData: true },
+      { id: 'details', label: 'Ticket Data', icon: Table2, needsData: true },
     ],
   },
   {
     label: 'Settings',
     items: [
-      { id: 'config', label: 'Config Export / Import', icon: FileSearch },
+      { id: 'config', label: 'Configuration', icon: FileSearch },
     ],
   },
 ]
@@ -58,6 +58,7 @@ export default function App() {
   const [filters, setFilters] = useState<Filters>(() => ({ ...defaultFilters, reportDate: localDateKey() }))
   const [demoLoaded, setDemoLoaded] = useState(false)
   const [now, setNow] = useState(new Date())
+  const [validationOpen, setValidationOpen] = useState(false)
 
   const tickets = useMemo(() => normalizeRows(rows, columnMapping, config), [rows, columnMapping, config])
   const validation = useMemo(() => buildValidation(tickets), [tickets])
@@ -137,6 +138,9 @@ export default function App() {
   const allColumnsMapped = hasData && Object.values(columnMapping).every((value) => Boolean(value))
   const teamNeedsAttention = hasData && (teamMappingErrors.length > 0 || validation.unclassifiedAssignees.length > 0)
   const rulesNeedAttention = hasData && (validation.unknownStatusCount > 0 || validation.unknownCategoryCount > 0)
+  const warningCount = validation.duplicateTicketIds.length + validation.blankAssigneeCount + validation.invalidDateCount + validation.unknownStatusCount + validation.unknownCategoryCount + validation.unclassifiedAssignees.length + validation.unknownPrefixes.length
+  const engineersInScope = config.teams.EUC.length + config.teams.System.length + config.teams.Network.length
+  const outOfScopeTickets = tickets.filter((ticket) => ticket.team === 'Review / Unassigned').length
 
   const importDotClass = (id: Screen) => {
     if (id === 'upload') return hasData ? 'nav-dot-done' : 'nav-dot-attn'
@@ -147,63 +151,82 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen">
-      <header className="border-b" style={{ background: 'var(--app-surface)', borderColor: 'var(--app-line)', color: 'var(--app-ink)' }}>
-        <div className="mx-auto max-w-[1900px] px-6 py-4">
-          <div className="text-xl font-bold">BMC Ticket Report Generator</div>
-          <div className="text-xs" style={{ color: 'var(--app-ink-soft)' }}>Local browser processing • Daily engineer selection • Excel-style WhatsApp report export</div>
+    <div className="app-shell">
+      <aside className="app-sidebar">
+        <div className="brand-row">
+          <div className="brand-mark" aria-hidden="true">B</div>
+          <div className="min-w-0">
+            <div className="brand-title">Ticket Report</div>
+            <div className="brand-subtitle">BMC Daily Generator</div>
+          </div>
         </div>
-      </header>
 
-      <div className="status-strip">
-        <div>
-          <div className="status-label">Report date</div>
-          <div className="status-value">{formatLocalDate(now)} • {formatLocalTime(now)}</div>
-        </div>
-        <div className="min-w-0 max-w-[620px]">
-          <div className="status-label">Source</div>
-          <div className="status-value truncate" title={fileName || 'No BMC file loaded'}>{fileName || 'No BMC file loaded'}</div>
-        </div>
-        <div>
-          <div className="status-label">Rows</div>
-          <div className="status-value">{hasData ? rows.length.toLocaleString() : '—'}</div>
-        </div>
-      </div>
-
-      <div className="mx-auto grid max-w-[1900px] grid-cols-[250px_minmax(0,1fr)] gap-0">
-        <aside className="min-h-[calc(100vh-121px)] border-r p-3" style={{ background: 'var(--app-surface)', borderColor: 'var(--app-line)' }}>
-          <nav>
-            {navGroups.map((group) => (
-              <div key={group.label}>
-                <div className="nav-group-label">{group.label}</div>
-                <div className="space-y-1">
-                  {group.items.map(({ id, label, icon: Icon, needsData }) => {
-                    const disabled = Boolean((needsData && !hasData) || ((id === 'dashboard' || id === 'details') && teamMappingErrors.length > 0))
-                    const itemClass = ['nav-item', screen === id ? 'nav-item-active' : '', disabled ? 'nav-item-disabled' : ''].filter(Boolean).join(' ')
-                    return (
-                      <button key={id} disabled={disabled} onClick={() => setScreen(id)} className={itemClass}>
-                        <Icon className="h-4 w-4 shrink-0" />
-                        <span className="min-w-0 flex-1 truncate">{label}</span>
-                        {group.label === 'Import' && <span className={`nav-dot ${importDotClass(id)}`} aria-hidden="true" />}
-                      </button>
-                    )
-                  })}
-                </div>
+        <nav className="sidebar-nav">
+          {navGroups.map((group) => (
+            <div className="nav-group" key={group.label}>
+              <div className="nav-group-label">{group.label}</div>
+              <div className="nav-list">
+                {group.items.map(({ id, label, icon: Icon, needsData }) => {
+                  const disabled = Boolean((needsData && !hasData) || ((id === 'dashboard' || id === 'details') && teamMappingErrors.length > 0))
+                  const itemClass = ['nav-item', screen === id ? 'nav-item-active' : '', disabled ? 'nav-item-disabled' : ''].filter(Boolean).join(' ')
+                  return (
+                    <button key={id} disabled={disabled} onClick={() => setScreen(id)} className={itemClass}>
+                      <Icon size={17} strokeWidth={2.75} className="shrink-0" />
+                      <span className="min-w-0 flex-1 truncate">{label}</span>
+                      {group.label === 'Import' && <span className={`nav-dot ${importDotClass(id)}`} aria-hidden="true" />}
+                    </button>
+                  )
+                })}
               </div>
-            ))}
-          </nav>
-          {hasData && (
-            <div className="panel mt-6 p-3 text-xs leading-5" style={{ color: 'var(--app-ink-soft)' }}>
-              <strong style={{ color: 'var(--app-ink)' }}>Import status</strong><br />
-              {rows.length.toLocaleString()} raw rows<br />
-              {tickets.length.toLocaleString()} processed rows<br />
-              {config.teams.EUC.length + config.teams.System.length + config.teams.Network.length} selected engineer alias(es)<br />
-              {validation.unclassifiedAssignees.length} engineer value(s) outside the three teams
+            </div>
+          ))}
+        </nav>
+
+        <div className="sidebar-status-card">
+          <div className="sidebar-status-title">Import status</div>
+          <div className="sidebar-status-row"><span>Rows processed</span><strong>{tickets.length.toLocaleString()}</strong></div>
+          <div className="sidebar-status-row"><span>Engineers in scope</span><strong>{engineersInScope.toLocaleString()}</strong></div>
+          <div className="sidebar-status-row"><span>Out of scope</span><strong>{outOfScopeTickets.toLocaleString()}</strong></div>
+          <div className="sidebar-status-note">Ticket data is processed locally in your browser.</div>
+        </div>
+      </aside>
+
+      <div className="app-main-column">
+        <div className="status-strip">
+          <div className="status-group status-group-primary">
+            <div className="status-label">Report date</div>
+            <div className="status-value">{formatLocalDate(now)} • {formatLocalTime(now)}</div>
+          </div>
+          <div className="status-group status-source">
+            <div className="status-label">Source</div>
+            <div className="status-value truncate" title={fileName || 'No BMC file loaded'}>{fileName || 'No BMC file loaded'}</div>
+          </div>
+          <div className="status-group">
+            <div className="status-label">Rows</div>
+            <div className="status-value">{hasData ? rows.length.toLocaleString() : '—'}</div>
+          </div>
+          <div className="status-actions">
+            <button className={warningCount ? 'review-pill' : 'review-pill review-pill-ok'} type="button" onClick={() => setValidationOpen((open) => !open)} aria-expanded={validationOpen}>
+              <span className="review-pill-dot" aria-hidden="true" />
+              {warningCount ? `${warningCount} items to review` : 'Validation clear'}
+              <ChevronDown size={15} strokeWidth={2.4} className={validationOpen ? 'rotate-180 transition-transform' : 'transition-transform'} />
+            </button>
+            <button className="btn-secondary" disabled={!hasData || teamMappingErrors.length > 0} onClick={() => setScreen('dashboard')}>Dashboard</button>
+          </div>
+          {validationOpen && (
+            <div className="validation-panel">
+              <div><span>Duplicate IDs</span><strong>{validation.duplicateTicketIds.length}</strong></div>
+              <div><span>Blank engineer rows</span><strong>{validation.blankAssigneeCount}</strong></div>
+              <div><span>Invalid dates</span><strong>{validation.invalidDateCount}</strong></div>
+              <div><span>Unknown statuses</span><strong>{validation.unknownStatusCount}</strong></div>
+              <div><span>Uncategorized service requests</span><strong>{validation.unknownCategoryCount}</strong></div>
+              <div><span>Engineer values outside teams</span><strong>{validation.unclassifiedAssignees.length}</strong></div>
+              <div><span>Unknown ID prefixes</span><strong>{validation.unknownPrefixes.length}</strong></div>
             </div>
           )}
-        </aside>
+        </div>
 
-        <main className="min-w-0 p-6">
+        <main className="app-content">
           {screen === 'upload' && <UploadScreen parsed={parsed} selectedSheet={selectedSheet} error={error} onFile={(file) => void openFile(file)} onSheet={setSelectedSheet} onContinue={() => selectWorksheet()} onSample={() => void loadSample(false)} />}
           {screen === 'columns' && <ColumnMappingScreen headers={headers} rows={rows} mapping={columnMapping} onChange={setColumnMapping} onContinue={saveMappingAndContinue} />}
           {screen === 'teams' && <TeamMappingScreen config={config} tickets={tickets} onConfig={setConfig} onContinue={() => setScreen('rules')} />}
