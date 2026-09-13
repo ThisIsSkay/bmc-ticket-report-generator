@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { BarChart3, ChevronDown, FileSearch, FileUp, Settings2, SlidersHorizontal, Table2, Users } from 'lucide-react'
+import { BarChart3, ChevronDown, FileSearch, FileUp, Moon, Settings2, SlidersHorizontal, Sun, Table2, Users } from 'lucide-react'
 import { UploadScreen } from './screens/UploadScreen'
 import { ColumnMappingScreen } from './screens/ColumnMappingScreen'
 import { TeamMappingScreen } from './screens/TeamMappingScreen'
@@ -10,10 +10,11 @@ import { ConfigScreen } from './screens/ConfigScreen'
 import { autoDetectColumns, parseWorkbookFile, readWorksheet, recommendWorksheet } from './lib/import'
 import { buildValidation } from './lib/report'
 import { normalizeRows, validateTeamMapping } from './lib/normalize'
-import { defaultColumnMapping, defaultFilters } from './config/defaults'
-import { loadColumnMapping, loadConfig, loadFeedback, saveColumnMapping, saveConfig, saveFeedback } from './lib/storage'
+import { defaultColumnMapping, defaultFilters, requiredColumnKeys } from './config/defaults'
+import { hasSavedWorkflowSetup, loadColumnMapping, loadConfig, loadFeedback, loadTheme, saveColumnMapping, saveConfig, saveFeedback, saveTheme } from './lib/storage'
 import { formatLocalDate, formatLocalTime, localDateKey } from './lib/clock'
 import type { AppConfig, ColumnMapping, FeedbackValues, Filters, ParsedWorkbook, RawRow } from './types'
+import type { AppTheme } from './lib/storage'
 
 type Screen = 'upload' | 'columns' | 'teams' | 'rules' | 'dashboard' | 'details' | 'config'
 
@@ -59,42 +60,61 @@ export default function App() {
   const [demoLoaded, setDemoLoaded] = useState(false)
   const [now, setNow] = useState(new Date())
   const [validationOpen, setValidationOpen] = useState(false)
+  const [theme, setTheme] = useState<AppTheme>(() => loadTheme())
 
   const tickets = useMemo(() => normalizeRows(rows, columnMapping, config), [rows, columnMapping, config])
   const validation = useMemo(() => buildValidation(tickets), [tickets])
   const teamMappingErrors = useMemo(() => validateTeamMapping(config.teams), [config.teams])
 
   useEffect(() => { saveConfig(config) }, [config])
+  useEffect(() => { saveColumnMapping(columnMapping) }, [columnMapping])
   useEffect(() => { saveFeedback(feedback) }, [feedback])
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme
+    document.documentElement.style.colorScheme = theme
+    saveTheme(theme)
+  }, [theme])
   useEffect(() => {
     const timer = window.setInterval(() => setNow(new Date()), 1000)
     return () => window.clearInterval(timer)
   }, [])
 
+  const savedSetupWorksFor = (mapping: ColumnMapping) =>
+    hasSavedWorkflowSetup()
+    && requiredColumnKeys.every((key) => Boolean(mapping[key]))
+    && validateTeamMapping(config.teams).length === 0
+
+  const importWorksheet = (next: ParsedWorkbook, sheet: string, preferSavedSetup: boolean) => {
+    const imported = readWorksheet(next, sheet)
+    if (imported.rows.length === 0) throw new Error('The selected worksheet contains no data rows.')
+    const detected = autoDetectColumns(imported.headers, loadColumnMapping())
+    setParsed(next)
+    setSelectedSheet(sheet)
+    setFileName(next.fileName)
+    setHeaders(imported.headers)
+    setRows(imported.rows)
+    setColumnMapping(detected)
+    setError('')
+    setScreen(preferSavedSetup && savedSetupWorksFor(detected) ? 'dashboard' : 'columns')
+  }
+
   const openFile = async (file: File) => {
     setError('')
     try {
       const next = await parseWorkbookFile(file)
-      setParsed(next)
-      setFileName(next.fileName)
-      setSelectedSheet(recommendWorksheet(next))
+      const sheet = recommendWorksheet(next)
+      importWorksheet(next, sheet, true)
     } catch (err) {
       setParsed(null)
       setError(err instanceof Error ? err.message : 'The file could not be imported.')
+      setScreen('upload')
     }
   }
 
-  const selectWorksheet = (sheet = selectedSheet, goToMapping = true) => {
+  const selectWorksheet = (sheet = selectedSheet) => {
     if (!parsed || !sheet) return
     try {
-      const imported = readWorksheet(parsed, sheet)
-      if (imported.rows.length === 0) throw new Error('The selected worksheet contains no data rows.')
-      setHeaders(imported.headers)
-      setRows(imported.rows)
-      const detected = autoDetectColumns(imported.headers, loadColumnMapping())
-      setColumnMapping(detected)
-      setError('')
-      if (goToMapping) setScreen('columns')
+      importWorksheet(parsed, sheet, true)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'The worksheet could not be read.')
       setScreen('upload')
@@ -206,6 +226,10 @@ export default function App() {
             <div className="status-value">{hasData ? rows.length.toLocaleString() : '—'}</div>
           </div>
           <div className="status-actions">
+            <button className="theme-toggle" type="button" onClick={() => setTheme((value) => value === 'dark' ? 'light' : 'dark')} aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}>
+              {theme === 'dark' ? <Sun size={16} strokeWidth={2.3} /> : <Moon size={16} strokeWidth={2.3} />}
+              {theme === 'dark' ? 'Light' : 'Dark'}
+            </button>
             <button className={warningCount ? 'review-pill' : 'review-pill review-pill-ok'} type="button" onClick={() => setValidationOpen((open) => !open)} aria-expanded={validationOpen}>
               <span className="review-pill-dot" aria-hidden="true" />
               {warningCount ? `${warningCount} items to review` : 'Validation clear'}
