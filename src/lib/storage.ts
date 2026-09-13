@@ -1,5 +1,7 @@
-import { defaultColumnMapping, defaultConfig, defaultFeedback } from '../config/defaults'
+import { defaultColumnMapping, defaultConfig, defaultFeedback, requiredColumnKeys } from '../config/defaults'
 import type { AppConfig, ColumnMapping, FeedbackValues } from '../types'
+
+export type AppTheme = 'light' | 'dark'
 
 const KEYS = {
   config: 'bmc-report:config:v2',
@@ -7,6 +9,7 @@ const KEYS = {
   columns: 'bmc-report:column-mapping:v2',
   legacyColumns: 'bmc-report:column-mapping:v1',
   feedback: 'bmc-report:feedback:v1',
+  theme: 'bmc-report:theme:v1',
 }
 
 function readUnknown(key: string): unknown {
@@ -80,4 +83,31 @@ export function loadFeedback(): FeedbackValues {
 
 export function saveFeedback(feedback: FeedbackValues): void {
   localStorage.setItem(KEYS.feedback, JSON.stringify(feedback))
+}
+
+export function loadTheme(): AppTheme {
+  try {
+    return localStorage.getItem(KEYS.theme) === 'dark' ? 'dark' : 'light'
+  } catch {
+    return 'light'
+  }
+}
+
+export function saveTheme(theme: AppTheme): void {
+  localStorage.setItem(KEYS.theme, theme)
+}
+
+export function hasSavedWorkflowSetup(): boolean {
+  try {
+    const hasSavedColumns = Boolean(localStorage.getItem(KEYS.columns) || localStorage.getItem(KEYS.legacyColumns))
+    const hasSavedConfig = Boolean(localStorage.getItem(KEYS.config) || localStorage.getItem(KEYS.legacyConfig))
+    if (!hasSavedColumns || !hasSavedConfig) return false
+
+    const mapping = loadColumnMapping()
+    const config = loadConfig()
+    const engineerCount = config.teams.EUC.length + config.teams.System.length + config.teams.Network.length
+    return requiredColumnKeys.every((key) => Boolean(mapping[key])) && engineerCount > 0
+  } catch {
+    return false
+  }
 }
