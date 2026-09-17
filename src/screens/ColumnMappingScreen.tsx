@@ -18,6 +18,13 @@ export function ColumnMappingScreen({
   const missing = requiredColumnKeys.filter((key) => !mapping[key])
   const preview = rows.slice(0, 5)
   const keys = Object.keys(mapping) as ColumnKey[]
+  const mappedBySource = new Map<string, ColumnKey[]>()
+  for (const key of keys) {
+    const source = mapping[key]
+    if (!source) continue
+    mappedBySource.set(source, [...(mappedBySource.get(source) ?? []), key])
+  }
+  const duplicateMappings = [...mappedBySource.entries()].filter(([, mappedKeys]) => mappedKeys.length > 1)
 
   return (
     <div className="space-y-5">
@@ -49,6 +56,18 @@ export function ColumnMappingScreen({
         <div className="flex items-center gap-2 rounded-md border border-green-200 bg-green-50 p-3 text-sm font-semibold text-green-800"><CheckCircle2 className="h-4 w-4" /> Required columns are mapped.</div>
       )}
 
+      {duplicateMappings.length > 0 && (
+        <div className="flex items-start gap-2 rounded-md border border-red-300 bg-red-50 p-3 text-sm font-semibold text-red-800">
+          <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0" />
+          <div>
+            <div>One source column is mapped to multiple report fields. Fix this before continuing.</div>
+            <div className="mt-1 font-normal">
+              {duplicateMappings.map(([source, mappedKeys]) => `“${source}” → ${mappedKeys.map((key) => columnLabels[key]).join(' + ')}`).join('; ')}
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="panel overflow-hidden">
         <div className="border-b bg-gray-50 px-4 py-3 font-bold">Imported row preview <span className="text-sm font-normal text-gray-500">({rows.length.toLocaleString()} rows total)</span></div>
         <div className="max-h-80 overflow-auto">
@@ -59,7 +78,7 @@ export function ColumnMappingScreen({
         </div>
       </div>
 
-      <button className="btn-primary" disabled={missing.length > 0 || rows.length === 0} onClick={onContinue}>Save Mapping &amp; Continue</button>
+      <button className="btn-primary" disabled={missing.length > 0 || duplicateMappings.length > 0 || rows.length === 0} onClick={onContinue}>Save Mapping &amp; Continue</button>
     </div>
   )
 }
