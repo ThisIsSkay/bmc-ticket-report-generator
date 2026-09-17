@@ -11,15 +11,17 @@ import type {
 } from '../types'
 import { dateMatchesLocalKey, localDateKey } from './clock'
 
-// Deterministic duplicate resolution: when the export repeats a Ticket ID, keep
-// the row that carries the most recent lifecycle information (latest Resolved
-// Date, then latest Submit Date, then the later export row). BMC exports place
-// the freshest snapshot of a re-exported ticket later in the file, so this
-// prefers the ticket's latest known state instead of the arbitrary first row.
+// Deterministic duplicate resolution: BMC exports place the freshest snapshot
+// of a repeated Ticket ID later in the file, so source row order must be the
+// primary lifecycle signal. This is important for reopened tickets: a newer
+// active snapshot can legitimately have no Resolved Date and must replace an
+// older Resolved/Closed snapshot instead of being discarded as "less complete".
+// Date fields remain deterministic tie-breakers for callers that provide equal
+// source indexes.
 const dedupeRank = (t: Ticket): [number, number, number] => [
+  t.sourceIndex,
   t.closedDate?.getTime() ?? -1,
   t.createdDate?.getTime() ?? -1,
-  t.sourceIndex,
 ]
 
 export function uniqueForReporting(tickets: Ticket[]): Ticket[] {
