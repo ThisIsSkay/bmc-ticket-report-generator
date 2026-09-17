@@ -100,6 +100,7 @@ export interface ValidationSummary {
   blankAssigneeCount: number
   invalidDateCount: number
   unknownStatusCount: number
+  unknownStatusValues: CountByLabel[]
   unknownCategoryCount: number
   unclassifiedAssignees: string[]
   unknownPrefixes: CountByLabel[]
