@@ -10,16 +10,27 @@ import type {
   ValidationSummary,
 } from '../types'
 import { dateMatchesLocalKey, localDateKey } from './clock'
+import { parseFlexibleDate } from './normalize'
 
-// Deterministic duplicate resolution: when the export repeats a Ticket ID, keep
-// the row that carries the most recent lifecycle information (latest Resolved
-// Date, then latest Submit Date, then the later export row). BMC exports place
-// the freshest snapshot of a re-exported ticket later in the file, so this
-// prefers the ticket's latest known state instead of the arbitrary first row.
-const dedupeRank = (t: Ticket): [number, number, number] => [
-  t.closedDate?.getTime() ?? -1,
-  t.createdDate?.getTime() ?? -1,
-  t.sourceIndex,
+// BMC's standard export contains a Last Modified Date column. When duplicate
+// snapshots of the same Ticket ID appear, that is the best available lifecycle
+// signal: a reopened active snapshot must be allowed to outrank an older row
+// that still carries a Resolved Date. If an export does not contain a usable
+// modified timestamp, fall back to the later source row. This preserves the
+// deterministic "freshest row later in the export" behavior without treating
+// the mere presence of a Resolved Date as proof that the snapshot is newer.
+const lastModifiedTime = (ticket: Ticket): number => {
+  for (const [header, rawValue] of Object.entries(ticket.raw)) {
+    const normalizedHeader = header.trim().toLowerCase().replace(/\s+/g, ' ')
+    if (!['last modified date', 'last modified', 'modified date'].includes(normalizedHeader)) continue
+    return parseFlexibleDate(rawValue)?.getTime() ?? -1
+  }
+  return -1
+}
+
+const dedupeRank = (ticket: Ticket): [number, number] => [
+  lastModifiedTime(ticket),
+  ticket.sourceIndex,
 ]
 
 export function uniqueForReporting(tickets: Ticket[]): Ticket[] {
@@ -33,9 +44,12 @@ export function uniqueForReporting(tickets: Ticket[]): Ticket[] {
       order.push(key)
       continue
     }
-    const a = dedupeRank(ticket)
-    const b = dedupeRank(existing)
-    if (a[0] > b[0] || (a[0] === b[0] && (a[1] > b[1] || (a[1] === b[1] && a[2] > b[2])))) {
+    const candidateRank = dedupeRank(ticket)
+    const existingRank = dedupeRank(existing)
+    if (
+      candidateRank[0] > existingRank[0]
+      || (candidateRank[0] === existingRank[0] && candidateRank[1] > existingRank[1])
+    ) {
       chosen.set(key, ticket)
     }
   }
@@ -207,12 +221,14 @@ const countByLabel = (tickets: Ticket[], label: (ticket: Ticket) => string): Cou
 
 export function buildValidation(tickets: Ticket[], missingRequiredColumns: string[] = []): ValidationSummary {
   const duplicateTicketIds = [...new Set(tickets.filter((t) => t.duplicateId).map((t) => t.id).filter(Boolean))]
+  const unknownStatusTickets = tickets.filter((t) => t.reportStatus === 'Other')
   return {
     missingRequiredColumns,
     duplicateTicketIds,
     blankAssigneeCount: tickets.filter((t) => !t.assignedTo).length,
     invalidDateCount: tickets.filter((t) => t.dateInvalid).length,
-    unknownStatusCount: tickets.filter((t) => t.reportStatus === 'Other').length,
+    unknownStatusCount: unknownStatusTickets.length,
+    unknownStatusValues: countByLabel(unknownStatusTickets, (t) => t.rawStatus || '(blank)'),
     // Only service requests can be genuinely uncategorized: Event and unknown
     // prefixes are Other by design and are reported separately.
     unknownCategoryCount: tickets.filter((t) => t.kind === 'Service Request' && t.category === 'Other').length,
