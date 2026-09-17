@@ -155,7 +155,7 @@ export default function App() {
   }
 
   const hasData = rows.length > 0
-  const allColumnsMapped = hasData && Object.values(columnMapping).every((value) => Boolean(value))
+  const allColumnsMapped = hasData && requiredColumnKeys.every((key) => Boolean(columnMapping[key]))
   const teamNeedsAttention = hasData && (teamMappingErrors.length > 0 || validation.unclassifiedAssignees.length > 0)
   const rulesNeedAttention = hasData && (validation.unknownStatusCount > 0 || validation.unknownCategoryCount > 0)
   const warningCount = validation.duplicateTicketIds.length + validation.blankAssigneeCount + validation.invalidDateCount + validation.unknownStatusCount + validation.unknownCategoryCount + validation.unclassifiedAssignees.length + validation.unknownPrefixes.length
@@ -246,6 +246,12 @@ export default function App() {
               <div><span>Uncategorized service requests</span><strong>{validation.unknownCategoryCount}</strong></div>
               <div><span>Engineer values outside teams</span><strong>{validation.unclassifiedAssignees.length}</strong></div>
               <div><span>Unknown ID prefixes</span><strong>{validation.unknownPrefixes.length}</strong></div>
+              {validation.unknownStatusValues.length > 0 && (
+                <div className="col-span-full">
+                  <span>Unknown status values</span>
+                  <strong>{validation.unknownStatusValues.map(({ label, count }) => `${label} (${count})`).join(', ')}</strong>
+                </div>
+              )}
             </div>
           )}
         </div>
