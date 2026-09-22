@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { ChevronDown, Clipboard, Download, FileImage, Printer, RefreshCw, RotateCcw } from 'lucide-react'
 import type { FeedbackValues, Filters, TeamMapping, Ticket, ValidationSummary } from '../types'
 import { CATEGORIES, REPORT_STATUSES, TEAMS } from '../types'
-import { aggregateTickets, filterTickets, outOfScopeByGroup, reportPendingDiagnostics } from '../lib/report'
+import { aggregateTickets, closedOnReportDateTickets, filterTickets, outOfScopeByGroup, reportPendingDiagnostics, reportPendingTickets } from '../lib/report'
 import { copyReportToClipboard, printReport, saveReportAsJpeg, saveReportAsPng } from '../lib/export'
 import { ReportCanvas } from '../components/ReportCanvas'
 import { defaultFilters } from '../config/defaults'
@@ -47,6 +47,8 @@ export function DashboardScreen({
   const outOfScope = useMemo(() => outOfScopeByGroup(filtered), [filtered])
   const pendingSplit = useMemo(() => reportPendingDiagnostics(filtered), [filtered])
   const pendingDiagnosticTotal = useMemo(() => pendingSplit.reduce((sum, row) => sum + row.total, 0), [pendingSplit])
+  const pendingTickets = useMemo(() => reportPendingTickets(filtered), [filtered])
+  const closedTodayTickets = useMemo(() => closedOnReportDateTickets(filtered, reportDate), [filtered, reportDate])
 
   const run = async (name: string, fn: (node: HTMLElement) => Promise<void>) => {
     if (!reportRef.current) return
@@ -121,6 +123,60 @@ export function DashboardScreen({
             {pendingSplit.some((row) => row.byGroup.length > 0) && (
               <div className="mt-3 space-y-1 text-xs text-gray-600">
                 {pendingSplit.filter((row) => row.byGroup.length > 0).map((row) => <div key={row.team}><strong>{row.team}</strong> by Assigned Group: {row.byGroup.map((g) => `${g.label} (${g.count})`).join(', ')}</div>)}
+              </div>
+            )}
+          </div>
+        </details>
+
+        <details className="diagnostic-card">
+          <summary className="diagnostic-summary"><ChevronDown className="diagnostic-chevron" size={16} strokeWidth={2.5} /><span>Closed on report date</span><span className="tag tag-neutral">{closedTodayTickets.length.toLocaleString()} tickets</span></summary>
+          <div className="diagnostic-body">
+            <p className="diagnostic-copy">Lists exactly the tickets counted as Closed in the report: raw BMC Status is Closed/Resolved and Resolved Date matches the report date.</p>
+            {closedTodayTickets.length === 0 ? (
+              <div className="text-sm text-gray-600">No tickets were closed on the report date.</div>
+            ) : (
+              <div className="max-h-72 overflow-auto">
+                <table className="diagnostic-table">
+                  <thead><tr>{['Ticket ID', 'Team', 'Engineer', 'Category', 'Status', 'Resolved Date', 'Summary'].map((h) => <th key={h}>{h}</th>)}</tr></thead>
+                  <tbody>{closedTodayTickets.map((ticket) => (
+                    <tr key={`${ticket.id}-${ticket.sourceIndex}`}>
+                      <td className="font-semibold">{ticket.id || '(blank)'}</td>
+                      <td>{ticket.team}</td>
+                      <td>{ticket.assignedTo || '(blank)'}</td>
+                      <td>{ticket.category}</td>
+                      <td>{ticket.rawStatus || '(blank)'}</td>
+                      <td className="whitespace-nowrap">{ticket.closedDate ? ticket.closedDate.toLocaleString() : '—'}</td>
+                      <td>{ticket.summary || '—'}</td>
+                    </tr>
+                  ))}</tbody>
+                </table>
+              </div>
+            )}
+          </div>
+        </details>
+
+        <details className="diagnostic-card">
+          <summary className="diagnostic-summary"><ChevronDown className="diagnostic-chevron" size={16} strokeWidth={2.5} /><span>Pending tickets</span><span className="tag tag-neutral">{pendingTickets.length.toLocaleString()} tickets</span></summary>
+          <div className="diagnostic-body">
+            <p className="diagnostic-copy">Lists exactly the active/non-terminal tickets behind the report's Pending total, excluding Onboarding and Offboarding.</p>
+            {pendingTickets.length === 0 ? (
+              <div className="text-sm text-gray-600">No tickets are currently in the report Pending bucket.</div>
+            ) : (
+              <div className="max-h-72 overflow-auto">
+                <table className="diagnostic-table">
+                  <thead><tr>{['Ticket ID', 'Team', 'Engineer', 'Category', 'Status', 'Assigned Group', 'Summary'].map((h) => <th key={h}>{h}</th>)}</tr></thead>
+                  <tbody>{pendingTickets.map((ticket) => (
+                    <tr key={`${ticket.id}-${ticket.sourceIndex}`}>
+                      <td className="font-semibold">{ticket.id || '(blank)'}</td>
+                      <td>{ticket.team}</td>
+                      <td>{ticket.assignedTo || '(blank)'}</td>
+                      <td>{ticket.category}</td>
+                      <td>{ticket.rawStatus || ticket.reportStatus}</td>
+                      <td>{ticket.supportGroup || '(blank)'}</td>
+                      <td>{ticket.summary || '—'}</td>
+                    </tr>
+                  ))}</tbody>
+                </table>
               </div>
             )}
           </div>
