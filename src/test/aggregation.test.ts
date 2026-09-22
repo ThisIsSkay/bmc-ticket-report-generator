@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { defaultColumnMapping, defaultConfig } from '../config/defaults'
 import { normalizeRows } from '../lib/normalize'
-import { aggregateTickets } from '../lib/report'
+import { aggregateTickets, closedOnReportDateTickets, reportPendingTickets } from '../lib/report'
 import type { AppConfig, ColumnMapping, RawRow } from '../types'
 
 const mapping: ColumnMapping = {
@@ -99,4 +99,26 @@ describe('daily report aggregation', () => {
     expect(breakdown.pending + breakdown.workInProgress + breakdown.waitingUserReply + breakdown.onHold)
       .toBe(metrics.summaryBuckets.EUC.pending)
   })
+
+  it('returns ticket lists that exactly reconcile with Pending and Closed report totals', () => {
+    const dailyRows: RawRow[] = [
+      { ID: 'INC000040', Engineer: 'Alex Example', Status: 'Pending', Type: 'Incident', Summary: 'Pending incident', Submit: '2026-09-08', Group: 'NCC_EUC' },
+      { ID: 'SRV000041', Engineer: 'Alex Example', Status: 'Work in Progress', Type: 'Service Request', Summary: 'Active request', Submit: '2026-09-08', Group: 'NCC_EUC' },
+      { ID: 'SRV000042', Engineer: 'Alex Example', Status: 'Pending', Type: 'Service Request', Summary: 'Request: Onboarding - new joiner', Submit: '2026-09-08', Group: 'NCC_EUC' },
+      { ID: 'INC000043', Engineer: 'Alex Example', Status: 'Resolved', Type: 'Incident', Summary: 'Closed today', Submit: '2026-09-07', Resolved: '2026-09-09', Group: 'NCC_EUC' },
+      { ID: 'INC000044', Engineer: 'Alex Example', Status: 'Resolved', Type: 'Incident', Summary: 'Closed yesterday', Submit: '2026-09-07', Resolved: '2026-09-08', Group: 'NCC_EUC' },
+      { ID: 'INC000045', Engineer: 'Alex Example', Status: 'Cancelled', Type: 'Incident', Summary: 'Cancelled', Submit: '2026-09-08', Resolved: '2026-09-09', Group: 'NCC_EUC' },
+    ]
+
+    const tickets = normalizeRows(dailyRows, mapping, config)
+    const metrics = aggregateTickets(tickets, '2026-09-09')
+    const pending = reportPendingTickets(tickets)
+    const closed = closedOnReportDateTickets(tickets, '2026-09-09')
+
+    expect(pending.map((ticket) => ticket.id).sort()).toEqual(['INC000040', 'SRV000041'])
+    expect(closed.map((ticket) => ticket.id)).toEqual(['INC000043'])
+    expect(pending.length).toBe(metrics.summaryBuckets.EUC.pending)
+    expect(closed.length).toBe(metrics.pendingClosed.EUC.closed)
+  })
+
 })
