@@ -45,9 +45,6 @@ export function uniqueForReporting(tickets: Ticket[]): Ticket[] {
 }
 
 export interface FilterOptions {
-  // Keep tickets resolved on the report date even when the optional Created
-  // from/to range would exclude them. "Closed = Resolved Date today" must not
-  // lose tickets merely because they were submitted before the range.
   protectResolvedOnReportDate?: boolean
 }
 
@@ -92,8 +89,6 @@ const isSpecialBacklog = (ticket: Ticket): boolean =>
 const isOnOffBoarding = (ticket: Ticket): boolean =>
   ticket.category === 'Onboarding' || ticket.category === 'Offboarding'
 
-// Outstanding workload = anything not in a terminal state. New/Assigned work is
-// still active even before an engineer starts it; Closed and Cancelled are terminal.
 const isOutstanding = (ticket: Ticket): boolean =>
   ticket.reportStatus !== 'Closed' && ticket.reportStatus !== 'Cancelled'
 
@@ -106,11 +101,6 @@ const isBacklogStatus = (ticket: Ticket): boolean =>
 const isPendingBucket = (ticket: Ticket): boolean =>
   ticket.reportStatus === 'Pending' || ticket.reportStatus === 'On Hold'
 
-// Closed on the daily report is a fixed BMC throughput rule, not a configurable
-// status-normalization rule: the source Status must literally be Closed or
-// Resolved and the Resolved Date must fall on the report date. This keeps daily
-// completion counts correct even if an older/local rules config omitted the
-// "resolved" alias. Cancelled/canceled tickets are deliberately excluded.
 const isClosedOnReportDate = (ticket: Ticket, reportDate: string): boolean => {
   const sourceStatus = ticket.rawStatus.trim().toLowerCase()
   const completed = sourceStatus === 'closed' || sourceStatus === 'resolved'
@@ -148,21 +138,13 @@ export function aggregateTickets(input: Ticket[], reportDate = localDateKey()): 
     const outstandingOnOff = isOutstanding(ticket) && isOnOffBoarding(ticket)
     const reportPending = isOutstanding(ticket) && !isOnOffBoarding(ticket)
 
-    // "New Tickets" means submitted on the report day, regardless of current
-    // status. A ticket raised today still counts as New even if it is resolved later today.
     if (dateMatchesLocalKey(ticket.createdDate, reportDate)) metrics.newTickets[team] += 1
 
-    // Legacy detailed counters retained for compatibility with diagnostics/tests.
     if (outstandingSpecial) metrics.pendingClosed[team].scheduledOnOffBoarding += 1
     if (isPendingBucket(ticket) && !special) metrics.pendingClosed[team].pending += 1
 
-    // User-facing summary: On/Offboarding is strictly those two categories.
     if (outstandingOnOff) metrics.summaryBuckets[team].onOffBoarding += 1
 
-    // The report has no separate WIP/Schedule/Waiting columns, so every other
-    // active/non-terminal ticket is summarized under Pending. The top-right
-    // Pending Breakdown is built from this exact same population so it always
-    // reconciles with the chart/table Pending total.
     if (reportPending) {
       metrics.summaryBuckets[team].pending += 1
       const breakdown = metrics.pendingBreakdown[team]
@@ -172,8 +154,6 @@ export function aggregateTickets(input: Ticket[], reportDate = localDateKey()): 
       else breakdown.pending += 1
     }
 
-    // Closed is daily throughput and is intentionally independent from the
-    // outstanding Pending calculation and from editable status aliases.
     if (isClosedOnReportDate(ticket, reportDate)) metrics.pendingClosed[team].closed += 1
 
     const summary = metrics.summaries[team]
@@ -184,8 +164,6 @@ export function aggregateTickets(input: Ticket[], reportDate = localDateKey()): 
       if (ticket.category === 'Offboarding') summary.offboarding += 1
     }
 
-    // Legacy incident-only counters remain available for diagnostics, but the
-    // exported top-right box now uses pendingBreakdown instead.
     if (backlog && ticket.category === 'Incident') {
       summary.incidentTotal += 1
       if (ticket.reportStatus === 'Pending' || ticket.reportStatus === 'On Hold') summary.pendingIncidents += 1
@@ -215,26 +193,17 @@ export function buildValidation(tickets: Ticket[], missingRequiredColumns: strin
     blankAssigneeCount: tickets.filter((t) => !t.assignedTo).length,
     invalidDateCount: tickets.filter((t) => t.dateInvalid).length,
     unknownStatusCount: tickets.filter((t) => t.reportStatus === 'Other').length,
-    // Only service requests can be genuinely uncategorized: Event and unknown
-    // prefixes are Other by design and are reported separately.
     unknownCategoryCount: tickets.filter((t) => t.kind === 'Service Request' && t.category === 'Other').length,
     unclassifiedAssignees: [...new Set(tickets.filter((t) => t.team === 'Review / Unassigned').map((t) => t.assignedTo || '(blank)'))].sort(),
     unknownPrefixes: countByLabel(tickets.filter((t) => t.kind === 'Unknown'), (t) => t.idPrefix || '(blank)'),
   }
 }
 
-// Diagnostics only — these never appear in the exported report image.
-
-// Tickets whose Assigned Engineer is not mapped to a report team, grouped by
-// their BMC Assigned Group. BMC is shared with teams that AsiaPac does not
-// manage, and this shows exactly what the engineer selection excluded without
-// hard-coding any group name.
 export function outOfScopeByGroup(input: Ticket[]): { rows: CountByLabel[]; total: number } {
   const outOfScope = uniqueForReporting(input).filter((ticket) => !TEAMS.includes(ticket.team as Team))
   return { rows: countByLabel(outOfScope, (t) => t.supportGroup || '(blank)'), total: outOfScope.length }
 }
 
-// Legacy diagnostic for the original narrow pending/on-hold metric.
 export function pendingDiagnostics(input: Ticket[]): PendingDiagnosticRow[] {
   const tickets = uniqueForReporting(input).filter(
     (ticket) => TEAMS.includes(ticket.team as Team) && isPendingBucket(ticket) && !isSpecialBacklog(ticket),
@@ -252,8 +221,6 @@ export function pendingDiagnostics(input: Ticket[]): PendingDiagnosticRow[] {
   })
 }
 
-// Diagnostic for the actual user-facing Pending bar: every active ticket that
-// is not an Onboarding or Offboarding request. This mirrors summaryBuckets.
 export function reportPendingDiagnostics(input: Ticket[]): PendingDiagnosticRow[] {
   const tickets = uniqueForReporting(input).filter(
     (ticket) => TEAMS.includes(ticket.team as Team) && isOutstanding(ticket) && !isOnOffBoarding(ticket),
@@ -269,6 +236,18 @@ export function reportPendingDiagnostics(input: Ticket[]): PendingDiagnosticRow[
       byGroup: countByLabel(forTeam, (t) => t.supportGroup || '(blank)'),
     }
   })
+}
+
+export function reportPendingTickets(input: Ticket[]): Ticket[] {
+  return uniqueForReporting(input).filter(
+    (ticket) => TEAMS.includes(ticket.team as Team) && isOutstanding(ticket) && !isOnOffBoarding(ticket),
+  )
+}
+
+export function closedOnReportDateTickets(input: Ticket[], reportDate: string): Ticket[] {
+  return uniqueForReporting(input).filter(
+    (ticket) => TEAMS.includes(ticket.team as Team) && isClosedOnReportDate(ticket, reportDate),
+  )
 }
 
 export function availableAssignees(tickets: Ticket[]): string[] {
