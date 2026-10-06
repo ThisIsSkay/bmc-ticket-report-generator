@@ -340,6 +340,47 @@ button:disabled { cursor: not-allowed; opacity: 0.55; }
 .diagnostic-table { width: 100%; border-collapse: collapse; background: var(--app-table-bg); color: var(--app-ink); font-size: 12px; }
 .diagnostic-table th, .diagnostic-table td { border: 1px solid var(--app-line); padding: 6px 8px; text-align: left; }
 .diagnostic-table th { background: var(--app-table-head); color: var(--app-secondary-text); font-weight: 700; }
+.pending-team-accordion { display: grid; gap: 8px; }
+.pending-team-section {
+  overflow: hidden;
+  border: 1px solid var(--app-line);
+  border-radius: var(--radius-control);
+  background: var(--app-table-bg);
+}
+.pending-team-toggle {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 9px;
+  border: 0;
+  padding: 11px 12px;
+  background: var(--app-table-head);
+  color: var(--app-ink);
+  text-align: left;
+  font-size: 13px;
+  font-weight: 700;
+}
+.pending-team-toggle:hover:not(:disabled) { background: var(--app-nav-hover); }
+.pending-team-toggle:disabled { cursor: default; opacity: .72; }
+.pending-team-toggle .tag { margin-left: auto; }
+.pending-team-chevron { transform: rotate(-90deg); transition: transform .15s ease; }
+.pending-team-chevron-open { transform: rotate(0deg); }
+.pending-team-section-open .pending-team-toggle { border-bottom: 1px solid var(--app-line); }
+.diagnostic-ticket-scroll { max-height: 360px; overflow: auto; }
+.diagnostic-ticket-table { min-width: 1000px; table-layout: fixed; }
+.diagnostic-ticket-table th { position: sticky; top: 0; z-index: 1; }
+.diagnostic-ticket-table th:nth-child(1),
+.diagnostic-ticket-table td:nth-child(1) { width: 170px; white-space: nowrap; }
+.diagnostic-ticket-table th:nth-child(2),
+.diagnostic-ticket-table td:nth-child(2) { width: 160px; }
+.diagnostic-ticket-table th:nth-child(3),
+.diagnostic-ticket-table td:nth-child(3) { width: 120px; }
+.diagnostic-ticket-table th:nth-child(4),
+.diagnostic-ticket-table td:nth-child(4) { width: 140px; }
+.diagnostic-ticket-table th:nth-child(5),
+.diagnostic-ticket-table td:nth-child(5) { width: 170px; }
+.diagnostic-ticket-table th:nth-child(6),
+.diagnostic-ticket-table td:nth-child(6) { width: auto; }
 
 /* Dark-mode compatibility for the existing setup screens. These overrides are
    explicitly excluded from the exported report canvas so the WhatsApp image
