@@ -48,7 +48,19 @@ export function DashboardScreen({
   const pendingSplit = useMemo(() => reportPendingDiagnostics(filtered), [filtered])
   const pendingDiagnosticTotal = useMemo(() => pendingSplit.reduce((sum, row) => sum + row.total, 0), [pendingSplit])
   const pendingTickets = useMemo(() => reportPendingTickets(filtered), [filtered])
+  const pendingByTeam = useMemo(() => ({
+    EUC: pendingTickets.filter((ticket) => ticket.team === 'EUC'),
+    System: pendingTickets.filter((ticket) => ticket.team === 'System'),
+    Network: pendingTickets.filter((ticket) => ticket.team === 'Network'),
+  }), [pendingTickets])
+  const [openPendingTeam, setOpenPendingTeam] = useState<(typeof TEAMS)[number] | null>(null)
   const closedTodayTickets = useMemo(() => closedOnReportDateTickets(filtered, reportDate), [filtered, reportDate])
+
+  useEffect(() => {
+    if (openPendingTeam && pendingByTeam[openPendingTeam].length > 0) return
+    const firstTeamWithTickets = TEAMS.find((team) => pendingByTeam[team].length > 0) ?? null
+    if (firstTeamWithTickets !== openPendingTeam) setOpenPendingTeam(firstTeamWithTickets)
+  }, [openPendingTeam, pendingByTeam])
 
   const run = async (name: string, fn: (node: HTMLElement) => Promise<void>) => {
     if (!reportRef.current) return
@@ -158,25 +170,47 @@ export function DashboardScreen({
         <details className="diagnostic-card">
           <summary className="diagnostic-summary"><ChevronDown className="diagnostic-chevron" size={16} strokeWidth={2.5} /><span>Pending tickets</span><span className="tag tag-neutral">{pendingTickets.length.toLocaleString()} tickets</span></summary>
           <div className="diagnostic-body">
-            <p className="diagnostic-copy">Lists exactly the active/non-terminal tickets behind the report's Pending total, excluding Onboarding and Offboarding.</p>
+            <p className="diagnostic-copy">Lists exactly the active/non-terminal tickets behind the report's Pending total, excluding Onboarding and Offboarding. Open one team at a time to review its tickets.</p>
             {pendingTickets.length === 0 ? (
               <div className="text-sm text-gray-600">No tickets are currently in the report Pending bucket.</div>
             ) : (
-              <div className="max-h-72 overflow-auto">
-                <table className="diagnostic-table">
-                  <thead><tr>{['Ticket ID', 'Team', 'Engineer', 'Category', 'Status', 'Assigned Group', 'Summary'].map((h) => <th key={h}>{h}</th>)}</tr></thead>
-                  <tbody>{pendingTickets.map((ticket) => (
-                    <tr key={`${ticket.id}-${ticket.sourceIndex}`}>
-                      <td className="font-semibold">{ticket.id || '(blank)'}</td>
-                      <td>{ticket.team}</td>
-                      <td>{ticket.assignedTo || '(blank)'}</td>
-                      <td>{ticket.category}</td>
-                      <td>{ticket.rawStatus || ticket.reportStatus}</td>
-                      <td>{ticket.supportGroup || '(blank)'}</td>
-                      <td>{ticket.summary || '—'}</td>
-                    </tr>
-                  ))}</tbody>
-                </table>
+              <div className="pending-team-accordion">
+                {TEAMS.map((team) => {
+                  const teamTickets = pendingByTeam[team]
+                  const isOpen = openPendingTeam === team
+                  return (
+                    <div className={`pending-team-section${isOpen ? ' pending-team-section-open' : ''}`} key={team}>
+                      <button
+                        type="button"
+                        className="pending-team-toggle"
+                        aria-expanded={isOpen}
+                        disabled={teamTickets.length === 0}
+                        onClick={() => setOpenPendingTeam(team)}
+                      >
+                        <ChevronDown className={`pending-team-chevron${isOpen ? ' pending-team-chevron-open' : ''}`} size={15} strokeWidth={2.5} />
+                        <span>{team}</span>
+                        <span className="tag tag-neutral">{teamTickets.length.toLocaleString()} tickets</span>
+                      </button>
+                      {isOpen && teamTickets.length > 0 && (
+                        <div className="diagnostic-ticket-scroll">
+                          <table className="diagnostic-table diagnostic-ticket-table">
+                            <thead><tr>{['Ticket ID', 'Engineer', 'Category', 'Status', 'Assigned Group', 'Summary'].map((h) => <th key={h}>{h}</th>)}</tr></thead>
+                            <tbody>{teamTickets.map((ticket) => (
+                              <tr key={`${ticket.id}-${ticket.sourceIndex}`}>
+                                <td className="font-semibold">{ticket.id || '(blank)'}</td>
+                                <td>{ticket.assignedTo || '(blank)'}</td>
+                                <td>{ticket.category}</td>
+                                <td>{ticket.rawStatus || ticket.reportStatus}</td>
+                                <td>{ticket.supportGroup || '(blank)'}</td>
+                                <td>{ticket.summary || '—'}</td>
+                              </tr>
+                            ))}</tbody>
+                          </table>
+                        </div>
+                      )}
+                    </div>
+                  )
+                })}
               </div>
             )}
           </div>
