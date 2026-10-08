@@ -138,7 +138,12 @@ export function aggregateTickets(input: Ticket[], reportDate = localDateKey()): 
     const outstandingOnOff = isOutstanding(ticket) && isOnOffBoarding(ticket)
     const reportPending = isOutstanding(ticket) && !isOnOffBoarding(ticket)
 
-    if (dateMatchesLocalKey(ticket.createdDate, reportDate)) metrics.newTickets[team] += 1
+    // New tickets are submissions on the report date, except tickets whose
+    // current lifecycle state is Cancelled. Cancelled work should not appear in
+    // the daily New count even when it was submitted today.
+    if (ticket.reportStatus !== 'Cancelled' && dateMatchesLocalKey(ticket.createdDate, reportDate)) {
+      metrics.newTickets[team] += 1
+    }
 
     if (outstandingSpecial) metrics.pendingClosed[team].scheduledOnOffBoarding += 1
     if (isPendingBucket(ticket) && !special) metrics.pendingClosed[team].pending += 1
