@@ -42,6 +42,20 @@ describe('daily report aggregation', () => {
     expect(metrics.summaries.Network.waitingUserReplyIncidents).toBe(1)
   })
 
+  it('excludes Cancelled/Canceled tickets from New even when submitted on the report date', () => {
+    const dailyRows: RawRow[] = [
+      { ID: 'INC000005', Engineer: 'Alex Example', Status: 'Pending', Type: 'Incident', Summary: 'Active new ticket', Submit: '2026-09-09', Group: 'NCC_EUC' },
+      { ID: 'INC000006', Engineer: 'Alex Example', Status: 'Resolved', Type: 'Incident', Summary: 'Resolved same day', Submit: '2026-09-09', Resolved: '2026-09-09', Group: 'NCC_EUC' },
+      { ID: 'INC000007', Engineer: 'Alex Example', Status: 'Cancelled', Type: 'Incident', Summary: 'Cancelled same day', Submit: '2026-09-09', Resolved: '2026-09-09', Group: 'NCC_EUC' },
+      { ID: 'INC000008', Engineer: 'Alex Example', Status: 'Canceled', Type: 'Incident', Summary: 'US spelling cancelled same day', Submit: '2026-09-09', Resolved: '2026-09-09', Group: 'NCC_EUC' },
+    ]
+
+    const metrics = aggregateTickets(normalizeRows(dailyRows, mapping, config), '2026-09-09')
+    expect(metrics.newTickets.EUC).toBe(2)
+    expect(metrics.pendingClosed.EUC.closed).toBe(1)
+    expect(metrics.summaryBuckets.EUC.pending).toBe(1)
+  })
+
   it('counts raw Resolved/Closed statuses resolved on the report day even if a local status alias is stale, but excludes Cancelled', () => {
     const staleConfig: AppConfig = {
       ...config,
