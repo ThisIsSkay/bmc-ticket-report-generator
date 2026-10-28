@@ -1,5 +1,5 @@
-import { defaultColumnMapping, defaultConfig, defaultFeedback, requiredColumnKeys } from '../config/defaults'
-import type { AppConfig, ColumnMapping, FeedbackValues } from '../types'
+import { defaultColumnMapping, defaultConfig, defaultFeedback, defaultSurveyEmailTemplate, requiredColumnKeys } from '../config/defaults'
+import type { AppConfig, ColumnMapping, FeedbackValues, SurveyEmailTemplate } from '../types'
 
 export type AppTheme = 'light' | 'dark'
 
@@ -10,6 +10,7 @@ const KEYS = {
   legacyColumns: 'bmc-report:column-mapping:v1',
   feedback: 'bmc-report:feedback:v1',
   theme: 'bmc-report:theme:v1',
+  surveyTemplate: 'bmc-report:survey-template:v1',
 }
 
 function readUnknown(key: string): unknown {
@@ -83,6 +84,16 @@ export function loadFeedback(): FeedbackValues {
 
 export function saveFeedback(feedback: FeedbackValues): void {
   localStorage.setItem(KEYS.feedback, JSON.stringify(feedback))
+}
+
+
+export function loadSurveyEmailTemplate(): SurveyEmailTemplate {
+  const raw = readUnknown(KEYS.surveyTemplate) as Partial<SurveyEmailTemplate> | null
+  return { ...defaultSurveyEmailTemplate, ...(raw ?? {}) }
+}
+
+export function saveSurveyEmailTemplate(template: SurveyEmailTemplate): void {
+  localStorage.setItem(KEYS.surveyTemplate, JSON.stringify(template))
 }
 
 export function loadTheme(): AppTheme {
