@@ -100,7 +100,8 @@ export function SurveyEmailScreen({
   const invalidEditedRows = recipientRows.filter((row) => row.email.trim() && !isValidSurveyEmail(row.email)).length
   const duplicateEditedRows = Math.max(0, recipientRows.filter((row) => isValidSurveyEmail(row.email)).length - validRecipients.length)
   const resolvedBody = resolveSurveyBody(template.body, template.surveyLink)
-  const ready = bcc.length > 0 && Boolean(template.subject.trim()) && Boolean(template.body.trim())
+  const surveyLinkRequired = template.body.includes('{{SURVEY_LINK}}')
+  const ready = bcc.length > 0 && Boolean(template.subject.trim()) && Boolean(template.body.trim()) && (!surveyLinkRequired || Boolean(template.surveyLink.trim()))
 
   const updateTemplate = (patch: Partial<SurveyEmailTemplate>) => {
     setTemplate((current) => ({ ...current, ...patch }))
@@ -111,6 +112,7 @@ export function SurveyEmailScreen({
     if (!bcc.length) window.alert('There are no valid BCC recipients.')
     else if (!template.subject.trim()) window.alert('Please enter an email subject.')
     else if (!template.body.trim()) window.alert('Please enter an email message.')
+    else if (surveyLinkRequired && !template.surveyLink.trim()) window.alert('Please enter the survey link used by the email template.')
     else return true
     return false
   }
