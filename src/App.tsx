@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { BarChart3, ChevronDown, FileSearch, FileUp, Moon, Settings2, SlidersHorizontal, Sun, Table2, Users } from 'lucide-react'
+import { BarChart3, ChevronDown, FileSearch, FileUp, Mail, Moon, Settings2, SlidersHorizontal, Sun, Table2, Users } from 'lucide-react'
 import { UploadScreen } from './screens/UploadScreen'
 import { ColumnMappingScreen } from './screens/ColumnMappingScreen'
 import { TeamMappingScreen } from './screens/TeamMappingScreen'
@@ -7,6 +7,7 @@ import { RulesScreen } from './screens/RulesScreen'
 import { DashboardScreen } from './screens/DashboardScreen'
 import { DetailScreen } from './screens/DetailScreen'
 import { ConfigScreen } from './screens/ConfigScreen'
+import { SurveyEmailScreen } from './screens/SurveyEmailScreen'
 import { autoDetectColumns, parseWorkbookFile, readWorksheet, recommendWorksheet } from './lib/import'
 import { buildValidation } from './lib/report'
 import { normalizeRows, validateTeamMapping } from './lib/normalize'
@@ -16,7 +17,7 @@ import { formatLocalDate, formatLocalTime, localDateKey } from './lib/clock'
 import type { AppConfig, ColumnMapping, FeedbackValues, Filters, ParsedWorkbook, RawRow } from './types'
 import type { AppTheme } from './lib/storage'
 
-type Screen = 'upload' | 'columns' | 'teams' | 'rules' | 'dashboard' | 'details' | 'config'
+type Screen = 'upload' | 'columns' | 'teams' | 'rules' | 'dashboard' | 'details' | 'survey' | 'config'
 
 type NavItem = { id: Screen; label: string; icon: typeof FileUp; needsData?: boolean }
 
@@ -35,6 +36,7 @@ const navGroups: Array<{ label: string; items: NavItem[] }> = [
     items: [
       { id: 'dashboard', label: 'Dashboard', icon: BarChart3, needsData: true },
       { id: 'details', label: 'Ticket Data', icon: Table2, needsData: true },
+      { id: 'survey', label: 'Survey Email', icon: Mail, needsData: true },
     ],
   },
   {
@@ -155,7 +157,7 @@ export default function App() {
   }
 
   const hasData = rows.length > 0
-  const allColumnsMapped = hasData && Object.values(columnMapping).every((value) => Boolean(value))
+  const allColumnsMapped = hasData && requiredColumnKeys.every((key) => Boolean(columnMapping[key]))
   const teamNeedsAttention = hasData && (teamMappingErrors.length > 0 || validation.unclassifiedAssignees.length > 0)
   const rulesNeedAttention = hasData && (validation.unknownStatusCount > 0 || validation.unknownCategoryCount > 0)
   const warningCount = validation.duplicateTicketIds.length + validation.blankAssigneeCount + validation.invalidDateCount + validation.unknownStatusCount + validation.unknownCategoryCount + validation.unclassifiedAssignees.length + validation.unknownPrefixes.length
@@ -187,7 +189,7 @@ export default function App() {
               <div className="nav-group-label">{group.label}</div>
               <div className="nav-list">
                 {group.items.map(({ id, label, icon: Icon, needsData }) => {
-                  const disabled = Boolean((needsData && !hasData) || ((id === 'dashboard' || id === 'details') && teamMappingErrors.length > 0))
+                  const disabled = Boolean((needsData && !hasData) || ((id === 'dashboard' || id === 'details' || id === 'survey') && teamMappingErrors.length > 0))
                   const itemClass = ['nav-item', screen === id ? 'nav-item-active' : '', disabled ? 'nav-item-disabled' : ''].filter(Boolean).join(' ')
                   return (
                     <button key={id} disabled={disabled} onClick={() => setScreen(id)} className={itemClass}>
@@ -257,6 +259,7 @@ export default function App() {
           {screen === 'rules' && <RulesScreen config={config} onConfig={setConfig} onContinue={() => setScreen(hasData ? 'dashboard' : 'upload')} />}
           {screen === 'dashboard' && <DashboardScreen tickets={tickets} filters={filters} onFilters={setFilters} feedback={feedback} onFeedback={setFeedback} validation={validation} fileName={fileName} teamMapping={config.teams} />}
           {screen === 'details' && <DetailScreen tickets={tickets} filters={filters} rawHeaders={headers} />}
+          {screen === 'survey' && <SurveyEmailScreen tickets={tickets} reportDate={localDateKey(now)} requesterEmailMapped={Boolean(columnMapping.requesterEmail)} onOpenColumnMapping={() => setScreen('columns')} />}
           {screen === 'config' && <ConfigScreen config={config} columnMapping={columnMapping} feedback={feedback} onImport={(payload) => { if (payload.config) setConfig(payload.config); if (payload.columnMapping) { setColumnMapping(payload.columnMapping); saveColumnMapping(payload.columnMapping) } if (payload.feedback) setFeedback(payload.feedback) }} />}
         </main>
       </div>
