@@ -260,7 +260,7 @@ export default function App() {
           {screen === 'dashboard' && <DashboardScreen tickets={tickets} filters={filters} onFilters={setFilters} feedback={feedback} onFeedback={setFeedback} validation={validation} fileName={fileName} teamMapping={config.teams} />}
           {screen === 'details' && <DetailScreen tickets={tickets} filters={filters} rawHeaders={headers} />}
           {screen === 'survey' && <SurveyEmailScreen tickets={tickets} reportDate={localDateKey(now)} requesterEmailMapped={Boolean(columnMapping.requesterEmail)} onOpenColumnMapping={() => setScreen('columns')} />}
-          {screen === 'config' && <ConfigScreen config={config} columnMapping={columnMapping} feedback={feedback} onImport={(payload) => { if (payload.config) setConfig(payload.config); if (payload.columnMapping) { setColumnMapping(payload.columnMapping); saveColumnMapping(payload.columnMapping) } if (payload.feedback) setFeedback(payload.feedback) }} />}
+          {screen === 'config' && <ConfigScreen config={config} columnMapping={columnMapping} feedback={feedback} onImport={(payload) => { if (payload.config) setConfig(payload.config); if (payload.columnMapping) { const mergedMapping = { ...defaultColumnMapping, ...payload.columnMapping }; setColumnMapping(mergedMapping); saveColumnMapping(mergedMapping) } if (payload.feedback) setFeedback(payload.feedback) }} />}
         </main>
       </div>
     </div>
