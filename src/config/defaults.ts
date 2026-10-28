@@ -10,6 +10,7 @@ export const defaultColumnMapping: ColumnMapping = {
   closedDate: '',
   supportGroup: '',
   contract: '',
+  requesterEmail: '',
 }
 
 export const defaultConfig: AppConfig = {
@@ -51,6 +52,26 @@ export const defaultFilters: Filters = {
 
 export const defaultFeedback: FeedbackValues = { EUC: 0, System: 0, Network: 0 }
 
+export const defaultSurveyEmailTemplate = {
+  to: '',
+  subject: 'IT Service Satisfaction Survey',
+  surveyLink: '',
+  body: `Hi,
+
+Thank you for engaging our IT support team.
+
+We would appreciate it if you could take a moment to complete our satisfaction survey:
+
+{{SURVEY_LINK}}
+
+Your feedback helps us improve our service.
+
+Thank you.
+
+Regards,
+IT Support Team`,
+}
+
 export const requiredColumnKeys = ['ticketId', 'assignedTo', 'status', 'summary', 'createdDate'] as const
 
 export const columnLabels: Record<keyof ColumnMapping, string> = {
@@ -63,6 +84,7 @@ export const columnLabels: Record<keyof ColumnMapping, string> = {
   closedDate: 'Closed / Resolved date',
   supportGroup: 'Support / Assigned group',
   contract: 'Contract',
+  requesterEmail: 'User / Requester Email',
 }
 
 export const columnSynonyms: Record<keyof ColumnMapping, string[]> = {
@@ -75,4 +97,5 @@ export const columnSynonyms: Record<keyof ColumnMapping, string[]> = {
   closedDate: ['resolved date', 'closed date', 'close date', 'closure date'],
   supportGroup: ['assigned group', 'support group', 'assignment group'],
   contract: ['contract number', 'contract id+', 'contract id', 'contract', 'contract description', 'contract name'],
+  requesterEmail: ['requester email', 'requestor email', 'customer email', 'user email', 'requested for email', 'submitter email', 'requester email address', 'customer email address'],
 }
