@@ -245,6 +245,7 @@ export function normalizeRows(
       closedDate,
       supportGroup: String(value(row, mapping.supportGroup) ?? '').trim(),
       contract: String(value(row, mapping.contract) ?? '').trim(),
+      requesterEmail: String(value(row, mapping.requesterEmail) ?? '').trim(),
       team: classifyTeam(assignedTo, config.teams),
       kind,
       idPrefix: ticketIdPrefix(id),
