@@ -37,6 +37,7 @@ export type ColumnKey =
   | 'closedDate'
   | 'supportGroup'
   | 'contract'
+  | 'requesterEmail'
 
 export type ColumnMapping = Record<ColumnKey, string>
 export type RawRow = Record<string, unknown>
@@ -74,6 +75,7 @@ export interface Ticket {
   closedDate: Date | null
   supportGroup: string
   contract: string
+  requesterEmail?: string
   team: ClassifiedTeam
   kind: TicketKind
   idPrefix: string
@@ -156,4 +158,11 @@ export interface FeedbackValues {
   EUC: number
   System: number
   Network: number
+}
+
+export interface SurveyEmailTemplate {
+  to: string
+  subject: string
+  surveyLink: string
+  body: string
 }
