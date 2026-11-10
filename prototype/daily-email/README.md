@@ -8,7 +8,7 @@ A local-only starter project for the **Daily Pivot & Email Report** navigation i
 - Pivot-style summaries by assigned group and ticket type; lists of tickets **created** and **closed/resolved** on the report date, plus current outstanding tickets.
 - Avoid double-counting duplicate Ticket IDs. A ticket created and closed on the same date appears in both activity lists.
 - First-run email settings: To, Cc, Bcc, subject template, greeting and introduction. Multiple editable rich-text signature presets with clipboard PNG/JPEG paste, logo uploads and formatted Outlook signatures; selectable per export. Stored locally in the browser; export/import as JSON.
-- Select Classic Outlook, New Outlook or Gmail; download `.eml`, download `.html`, or copy rich HTML. No credential capture and **no sending**.
+- Select Classic Outlook, New Outlook or Gmail. **Classic Outlook** can download a local `.ps1` helper that creates an unsent editable draft and saves a Unicode `.msg`; **New Outlook/Gmail** retain `.eml`, `.html`, or rich clipboard export. No credential capture and **no automatic sending**.
 - Includes fictional CSV sample data. The provided real Excel workbook is intentionally **not packaged**.
 
 ## Run
@@ -46,7 +46,11 @@ Both screens should share the normalized import data and configuration. The curr
 
 ## Email client limitations
 
-`.eml` is portable but not guaranteed to open as a ready-to-edit draft in all clients. Gmail typically needs the copied formatted HTML placed in a compose window. Reliable native Outlook draft creation would require a desktop helper for Classic Outlook or authorized Microsoft Graph integration for New Outlook. Client login credentials are neither requested nor stored.
+`.eml` is portable but not guaranteed to open as a ready-to-edit draft in all clients. In particular, **Classic Outlook can display the raw MIME headers/Base64 as a plain-text message rather than import an editable email**. Do not use `.eml` as the Classic Outlook primary flow.
+
+**Classic Outlook on Windows:** choose Classic Outlook and click **Download Classic Outlook draft (.ps1)**. In the Downloads folder right-click the script and choose **Run with PowerShell** (or use Windows PowerShell 5.1 to run that local file if permitted). It uses `Outlook.Application` COM automation with the existing configured Outlook profile to create an **unsent editable draft**, saves a Unicode `.msg` next to the `.ps1`, and opens the draft for review. If the report includes signature logos, the helper attaches them with Content-ID references. No additional email login is needed; it never calls `Send`. The script contains the report data and is intended for a trusted workstation. **If your organisation blocks PowerShell or Outlook automation, do not bypass that policy; use Copy formatted email into a new Outlook compose window instead.** Native Classic Outlook COM does not run in New Outlook or Gmail.
+
+**New Outlook:** `.eml` may open but draft editability varies; use Copy formatted email when necessary. **Gmail:** use Copy formatted email into the signed-in compose window. Neither client receives automatic sign-in or sends from this static browser app. Client login credentials are neither requested nor stored.
 
 ## Privacy
 
