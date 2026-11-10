@@ -51,7 +51,17 @@
    <div class="divider"></div>
    <div class="section-header"><div><h3>Signature profiles</h3><p>Choose a saved signature in the preview. The same profiles work for all three email clients.</p></div><button id="addSignature" class="btn small">+ New signature</button></div>
    <div class="grid-two"><label>Profile<select id="profileList"></select></label><label>Profile name<input id="profileName" placeholder="e.g. Support Team"></label></div>
-   <label>Signature text<textarea id="profileContent" rows="5" placeholder="Best regards,&#10;Your Name&#10;Team"></textarea></label>
+   <div class="signature-field"><div class="signature-label">Signature editor <small>Paste formatted text, PNG/JPEG, or an Outlook signature. You can also insert a logo.</small></div>
+    <div class="signature-tools" role="toolbar" aria-label="Signature formatting">
+      <button id="sigBold" class="btn small" type="button" title="Bold"><b>B</b></button>
+      <button id="sigItalic" class="btn small" type="button" title="Italic"><i>I</i></button>
+      <button id="sigUnderline" class="btn small" type="button" title="Underline"><u>U</u></button>
+      <button id="sigLink" class="btn small" type="button" title="Insert hyperlink">Link</button>
+      <label for="signatureImage" class="btn small sig-image-btn">+ Insert PNG/JPEG<input id="signatureImage" type="file" accept="image/png,image/jpeg" multiple hidden></label>
+    </div>
+    <div id="profileEditor" class="signature-editor" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Signature content"></div>
+    <p class="signature-hint">Images stay in your browser settings and are embedded in downloaded .eml emails. Verify the result in your email client.</p>
+   </div>
    <button id="removeSignature" class="btn small danger">Delete selected profile</button>
    <div class="divider"></div>
    <div class="section-header"><div><h3>Settings backup</h3><p>Use a JSON file to move your recipient and signature presets to another PC.</p></div><div class="inline-actions"><button id="exportSettings" class="btn small">Export settings</button><label for="importSettings" class="btn small">Import settings<input id="importSettings" type="file" accept=".json" hidden></label></div></div>
