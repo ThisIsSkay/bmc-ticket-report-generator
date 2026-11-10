@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches: [main, feature/daily-pivot-email-report]
   pull_request:
     branches: [main]
   workflow_dispatch:
@@ -32,14 +32,19 @@ jobs:
       - run: npm test
       - run: npm run typecheck
       - run: npm run build:gh-pages
+      - name: Include standalone email prototype for branch preview
+        if: github.ref == 'refs/heads/feature/daily-pivot-email-report'
+        run: |
+          mkdir -p dist/daily-email
+          cp prototype/daily-email/index.html prototype/daily-email/app.mjs prototype/daily-email/style.css dist/daily-email/
+          cp -R prototype/daily-email/lib prototype/daily-email/samples dist/daily-email/
       - uses: actions/upload-pages-artifact@v3
         if: github.event_name != 'pull_request'
         with:
           path: dist
   deploy:
-    # Pull requests only validate; Pages deploys exclusively from a push to
-    # main (or a manual dispatch run on main).
-    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main'
+    # Pull requests validate only. Feature branch deploys the same NCC app plus the standalone preview.
+    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/feature/daily-pivot-email-report')
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
