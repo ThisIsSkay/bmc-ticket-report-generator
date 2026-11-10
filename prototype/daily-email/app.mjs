@@ -1,6 +1,7 @@
 import {detectColumns, mandatoryColumns, normalizeTickets, generateReport, availableFilterValues, lastActivityDate, parseCsv} from './lib/report-core.mjs';
 import {parseXlsx} from './lib/xlsx-lite.mjs';
 import {renderEmail, renderEml, buildSubject} from './lib/mail.mjs';
+import {renderClassicOutlookScript} from './lib/classic-outlook.mjs';
 import {sanitizeSignatureHtml, plainToSignatureHtml, imageFileToDataUrl} from './lib/signature-html.mjs';
 
 const $=id=>document.getElementById(id);
@@ -115,7 +116,7 @@ async function importFile(file){try{if(!file) return; const name=file.name;let b
  importRows(book.headers,book.rows,name,`${book.rows.length.toLocaleString()} rows · worksheet: ${book.name}`);
  }catch(error){$('fileWarning').hidden=false;$('fileWarning').textContent=error?.message||'Could not read the selected file';$('result').hidden=true;toast('Import failed.');}}
 function filters(){return {reportDate:$('dateInput').value,groupFilter:$('groupFilter').value,contractFilter:$('contractFilter').value,excludeEvents:$('eventFilter').value==='exclude'};}
-function updateClientNotes(){const c=$('clientChoice').value;const messages={classic:'Classic Outlook: downloadable .eml has an unsent header; for guaranteed editable native .msg/.oft files a separate Windows helper is required. Verify before sending.',new:'New Outlook: .eml can be opened, but editable draft behaviour may vary. Use Copy formatted email if composing a fresh message.',gmail:'Gmail: use Copy formatted email to paste into a signed-in compose window. .eml is an archive-compatible output, not a Gmail draft.'};text('clientNote',messages[c]||'');}
+function updateClientNotes(){const c=$('clientChoice').value;const messages={classic:'Classic Outlook: download the local PowerShell helper (.ps1), then right-click it and choose Run with PowerShell. It opens an unsent editable draft in your existing Outlook profile AND saves a native .msg file beside the helper. This avoids the broken .eml import path. Scripts may be blocked by your organisation\'s security policy; Copy formatted email is the fallback.',new:'New Outlook: .eml can be opened, but editable draft behaviour may vary. Use Copy formatted email if composing a fresh message.',gmail:'Gmail: use Copy formatted email to paste into a signed-in compose window. .eml is an archive-compatible output, not a Gmail draft.'};$('downloadClassic').hidden=c!=='classic';$('downloadEml').hidden=c==='classic';text('clientNote',messages[c]||'');}
 function makeEmail(){return renderEmail(state.report,{...state.settings,signatureId:$('signatureChoice').value,signatures:state.settings.signatures.map(p=>({...p,html:sanitizeSignatureHtml(p.html??plainToSignatureHtml(p.content))}))},filters());}
 function refreshReport(){if(!state.tickets.length||!$('dateInput').value){$('result').hidden=true;return;}
  if(!state.mapping.resolved){$('result').hidden=true;$('fileWarning').hidden=false;$('fileWarning').textContent='Resolved Date column is required for reliable closed-on-date reporting. Select a complete BMC export.';return;}
@@ -168,7 +169,8 @@ function init(){$('dateInput').value=dateDefault();$('clientChoice').value=state
  $('detailsToggle').addEventListener('click',()=>{const was=$('ticketLists').hidden;$('ticketLists').hidden=!was;$('detailsToggle').textContent=was?'Hide ticket lists':'Show ticket lists';});
  $('clientChoice').addEventListener('change',e=>{state.settings.client=e.target.value;storeSettings();updateClientNotes()});
  $('signatureChoice').addEventListener('change',e=>{state.settings.signatureId=e.target.value;storeSettings();refreshReport()});
- $('downloadEml').addEventListener('click',()=>{if(!state.report)return;const html=makeEmail(), eml=renderEml(html,state.settings,state.report.reportDate);fileDownload(eml,`BMC_Daily_Report_${safeFilename(state.report.reportDate)}.eml`,'message/rfc822');toast('Email file downloaded; review before sending.')});
+ $('downloadClassic').addEventListener('click',()=>{if(!state.report)return;const script=renderClassicOutlookScript(makeEmail(),state.settings,state.report.reportDate);fileDownload(script,`BMC_Daily_Report_${safeFilename(state.report.reportDate)}_Outlook.ps1`,'text/plain;charset=utf-8');toast('Classic Outlook draft helper downloaded. Right-click and Run with PowerShell; no email is sent automatically.');});
+ $('downloadEml').addEventListener('click',()=>{if(!state.report)return;const html=makeEmail(), eml=renderEml(html,state.settings,state.report.reportDate);fileDownload(eml,`BMC_Daily_Report_${safeFilename(state.report.reportDate)}.eml`,'message/rfc822');toast('EML downloaded; review before sending. For Classic Outlook use the dedicated draft helper instead.')});
  $('downloadHtml').addEventListener('click',()=>{if(!state.report)return;fileDownload(makeEmail(),`BMC_Daily_Report_${safeFilename(state.report.reportDate)}.html`,'text/html;charset=utf-8')});
  $('copyHtml').addEventListener('click',copyEmail);
  if(!localStorage.getItem(CONFIG_KEY))setTimeout(showModal,250);
