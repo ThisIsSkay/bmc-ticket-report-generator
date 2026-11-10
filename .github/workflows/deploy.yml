@@ -32,6 +32,21 @@ jobs:
       - run: npm test
       - run: npm run typecheck
       - run: npm run build:gh-pages
+      # Keep the NCC screenshot dashboard on main while publishing a separate
+      # testable email prototype from its feature branch at /daily-email/.
+      - name: Checkout Daily Pivot & Email Report working branch
+        uses: actions/checkout@v5
+        with:
+          ref: feature/daily-pivot-email-report
+          path: .email-preview-source
+          persist-credentials: false
+      - name: Test and stage Daily Pivot & Email Report preview
+        run: |
+          node --test .email-preview-source/prototype/daily-email/test/report.test.mjs
+          mkdir -p dist/daily-email
+          cp -R .email-preview-source/prototype/daily-email/. dist/daily-email/
+          rm -f dist/daily-email/.gitignore dist/daily-email/README.md dist/daily-email/server.mjs dist/daily-email/package.json
+          rm -rf dist/daily-email/test
       - uses: actions/upload-pages-artifact@v3
         if: github.event_name != 'pull_request'
         with:
