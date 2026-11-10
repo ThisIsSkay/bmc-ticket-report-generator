@@ -1,6 +1,21 @@
 # BMC Ticket Report Generator
 
-🌐 **[Open the BMC Ticket Report Generator](https://thisisskay.github.io/bmc-ticket-report-generator/)**
+🌐 **[Open the BMC Ticket Report Generator](https://thisisskay.github.io/bmc-ticket-report-generator/)** — existing NCC screenshot/JPEG dashboard.
+
+✉️ **[Open Daily Pivot & Email Report (Prototype)](https://thisisskay.github.io/bmc-ticket-report-generator/daily-email/)** — separate browser-based test version for Valerie to review.
+
+### Daily Pivot & Email Report — preview for Valerie
+
+This is an **early prototype**, not yet merged into the main NCC screenshot tool. It uses a separate [working branch](https://github.com/ThisIsSkay/bmc-ticket-report-generator/tree/feature/daily-pivot-email-report/prototype/daily-email) and is published alongside the original dashboard for testing.
+
+1. Open **Daily Pivot & Email Report (Prototype)** above and select **Load fictional sample** or upload a BMC Excel/CSV file.
+2. Choose the report date and filters. Check the **created today**, **closed/resolved today**, and pivot-style ticket summaries.
+3. Select **Email settings** to configure saved To/Cc, subject, signature, and email client.
+4. Review the generated email and test **Download .eml**, **Copy formatted email**, or **Download .html**.
+
+**Awaiting Valerie's sample customer email format:** the layout and pivot summary are provisional and will be adjusted once the desired email example is available. No emails are sent automatically. The prototype processes ticket uploads locally in the browser; only fictional sample data is committed. The preview is hosted on public GitHub Pages, so check your organization's rules before testing with actual customer information.
+
+The [existing NCC dashboard](https://thisisskay.github.io/bmc-ticket-report-generator/) and its screenshot export remain unchanged.
 
 A local-only React/TypeScript web app for turning the daily AsiaPac/BMC Excel export into the Excel-style landscape report shown in the supplied reference screenshot, with one-click WhatsApp-friendly JPEG export.
 
