@@ -30,11 +30,11 @@
       </div>
       <div class="panel email-panel">
         <div class="section-header"><div><h2>04 / Email preview & export</h2><p>Customer-facing layout is provisional until Valerie supplies the reference email.</p></div></div>
-        <div class="email-toolbar"><label>Email client<select id="clientChoice"><option value="classic">Classic Outlook</option><option value="new">New Outlook</option><option value="gmail">Gmail</option></select></label><label>Signature<select id="signatureChoice"></select></label><span class="spacer"></span><button id="downloadEml" class="btn primary">Download .eml</button><button id="copyHtml" class="btn">Copy formatted email</button><button id="downloadHtml" class="btn">Download .html</button></div>
+        <div class="email-toolbar"><label>Email client<select id="clientChoice"><option value="classic">Classic Outlook</option><option value="new">New Outlook</option><option value="gmail">Gmail</option></select></label><label>Signature<select id="signatureChoice"></select></label><span class="spacer"></span><button id="downloadClassic" class="btn primary" hidden>Download Classic Outlook draft (.ps1)</button><button id="downloadEml" class="btn primary">Download .eml</button><button id="copyHtml" class="btn">Copy formatted email</button><button id="downloadHtml" class="btn">Download .html</button></div>
         <div id="clientNote" class="help"></div>
         <div class="email-header"><div><span>To</span><span id="previewTo">—</span></div><div><span>Cc</span><span id="previewCc">—</span></div><div><span>Subject</span><strong id="previewSubject">—</strong></div></div>
         <iframe id="emailFrame" title="Generated HTML email preview" sandbox="" referrerpolicy="no-referrer"></iframe>
-        <div class="help">Export creates an email file; it never sends messages. Editable draft behaviour varies by email client. Always verify the report and recipients.</div>
+        <div class="help">Export never sends messages. Classic Outlook uses a local helper to create an editable .msg using the signed-in Outlook profile. Review the report and recipients before sending.</div>
       </div>
     </section>
   </main>
