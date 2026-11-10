@@ -29,7 +29,10 @@ jobs:
         if: github.event_name != 'pull_request'
         uses: actions/configure-pages@v5
       - run: npm ci
-      - run: npm test
+      - run: npx vitest run src/test
+      - name: Test standalone email prototype
+        if: github.ref == 'refs/heads/feature/daily-pivot-email-report'
+        run: npm --prefix prototype/daily-email test
       - run: npm run typecheck
       - run: npm run build:gh-pages
       - name: Include standalone email prototype for branch preview
