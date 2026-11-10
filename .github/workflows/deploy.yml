@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main, feature/daily-pivot-email-report]
+    branches: [main]
   pull_request:
     branches: [main]
   workflow_dispatch:
@@ -29,27 +29,34 @@ jobs:
         if: github.event_name != 'pull_request'
         uses: actions/configure-pages@v5
       - run: npm ci
-      - run: npx vitest run src/test
-      - name: Test standalone email prototype
-        if: github.ref == 'refs/heads/feature/daily-pivot-email-report'
-        run: npm --prefix prototype/daily-email test
+      - run: npm test
       - run: npm run typecheck
       - run: npm run build:gh-pages
-      - name: Include standalone email prototype for branch preview
-        if: github.ref == 'refs/heads/feature/daily-pivot-email-report'
+      # Keep the NCC screenshot dashboard on main while publishing a separate
+      # testable email prototype from its feature branch at /daily-email/.
+      - name: Checkout Daily Pivot & Email Report working branch
+        uses: actions/checkout@v5
+        with:
+          ref: feature/daily-pivot-email-report
+          path: .email-preview-source
+          persist-credentials: false
+      - name: Test and stage Daily Pivot & Email Report preview
         run: |
+          node --test .email-preview-source/prototype/daily-email/test/report.test.mjs
           mkdir -p dist/daily-email
-          cp prototype/daily-email/index.html prototype/daily-email/app.mjs prototype/daily-email/style.css dist/daily-email/
-          cp -R prototype/daily-email/lib prototype/daily-email/samples dist/daily-email/
+          cp -R .email-preview-source/prototype/daily-email/. dist/daily-email/
+          rm -f dist/daily-email/.gitignore dist/daily-email/README.md dist/daily-email/server.mjs dist/daily-email/package.json
+          rm -rf dist/daily-email/test
       - uses: actions/upload-pages-artifact@v3
         if: github.event_name != 'pull_request'
         with:
           path: dist
   deploy:
-    # Pull requests validate only. Feature branch deploys the same NCC app plus the standalone preview.
-    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/feature/daily-pivot-email-report')
+    # Pull requests only validate; Pages deploys exclusively from a push to
+    # main (or a manual dispatch run on main).
+    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main'
     environment:
-      name: preview-pages
+      name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build
