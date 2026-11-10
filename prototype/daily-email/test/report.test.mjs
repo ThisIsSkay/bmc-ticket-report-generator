@@ -8,3 +8,18 @@ test('new/closed include both lifecycle events and skip monitoring',()=>{assert.
 test('group pivot reconciles with created/closed/pending',()=>{assert.deepEqual(report.pivot.reduce((acc,r)=>acc.map((x,i)=>x+[r.created,r.closed,r.pending][i]),[0,0,0]),[3,2,1])});
 test('email HTML escapes user-controlled descriptions',()=>{const t={...report,created:report.created.map(v=>({...v,description:'<script>alert("x")</script>'}))};const html=renderEmail(t,{greeting:'Hi',signatures:[],signatureId:''},{excludeEvents:true});assert.match(html,/&lt;script&gt;/);assert.doesNotMatch(html,/<script>/)});
 test('eml includes unsent marker, recipients, and encoded HTML',()=>{const html=renderEmail(report,{greeting:'Hello',signatures:[]},{excludeEvents:true});const eml=renderEml(html,{to:'team@example.com',cc:'manager@example.com',subject:'BMC {date}'},'2026-11-10');assert.match(eml,/X-Unsent: 1/);assert.match(eml,/To: team@example.com/);assert.match(eml,/Subject: BMC 2026-11-10/);assert.match(eml,/Content-Transfer-Encoding: base64/);});
+
+test('rich signature PNG is attached inline with a CID reference in the EML',()=>{
+ const png='iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+/Ol0AAAAASUVORK5CYII=';
+ const profile={id:'logo',name:'Company',html:'<div><b>Regards,</b><br>Example Team<br><img src="data:image/png;base64,'+png+'" alt="Logo"></div>'};
+ const settings={to:'team@example.com',subject:'BMC {date}',signatureId:'logo',signatures:[profile]};
+ const html=renderEmail(report,settings,{excludeEvents:true});
+ assert.match(html,/<b>Regards,<\/b>/);
+ assert.match(html,/data:image\/png;base64/);
+ const eml=renderEml(html,settings,'2026-11-10');
+ assert.match(eml,/multipart\/related/);
+ assert.match(eml,/Content-ID: <bmc-signature-1@local.invalid>/);
+ assert.match(eml,/Content-Type: image\/png/);
+ const imagePart=eml.split('Content-Disposition: inline\r\n\r\n')[1].split('\r\n--')[0].replace(/\s+/g,'');
+ assert.equal(imagePart,png);
+});
