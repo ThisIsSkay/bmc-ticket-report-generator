@@ -11,8 +11,9 @@ This is an **early prototype**, not yet merged into the main NCC screenshot tool
 1. Open **Daily Pivot & Email Report (Prototype)** above and select **Load fictional sample** or upload a BMC Excel/CSV file.
 2. Choose the report date and filters. Check the **created today**, **closed/resolved today**, and pivot-style ticket summaries.
 3. Select **Email settings** to configure saved To/Cc, subject, signature, and email client.
-4. Review the generated email and test **Download .eml**, **Copy formatted email**, or **Download .html**.
-5. To include a company logo, open **Email settings → Signature profiles**, paste a PNG/JPEG into the rich editor or choose **Insert PNG/JPEG**, then save. If copying a signature from Outlook omits the logo, insert the image file separately. The downloaded `.eml` embeds the logo as an inline image.
+4. For **Classic Outlook on Windows**, choose **Download Classic Outlook draft (.ps1)**. Right-click the downloaded helper and select **Run with PowerShell**. It uses the user's configured Outlook profile to open an **unsent editable draft** and saves a Unicode `.msg` beside the helper; no email login or automatic sending. If Windows policy blocks the helper, use **Copy formatted email** into a new Outlook message instead.
+5. For **New Outlook / Gmail**, use **Download .eml**, **Copy formatted email**, or **Download .html** as applicable. `.eml` is not the preferred Classic Outlook route because it may open as raw MIME/Base64 plain text.
+6. To include a company logo, open **Email settings → Signature profiles**, paste a PNG/JPEG into the rich editor or choose **Insert PNG/JPEG**, then save. If copying a signature from Outlook omits the logo, insert the image file separately. The Classic Outlook draft helper creates CID image attachments; `.eml` exports also embed the logo inline.
 
 **Awaiting Valerie's sample customer email format:** the layout and pivot summary are provisional and will be adjusted once the desired email example is available. No emails are sent automatically. The prototype processes ticket uploads locally in the browser; only fictional sample data is committed. The preview is hosted on public GitHub Pages, so check your organization's rules before testing with actual customer information.
 
