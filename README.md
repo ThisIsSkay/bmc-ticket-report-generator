@@ -12,6 +12,7 @@ This is an **early prototype**, not yet merged into the main NCC screenshot tool
 2. Choose the report date and filters. Check the **created today**, **closed/resolved today**, and pivot-style ticket summaries.
 3. Select **Email settings** to configure saved To/Cc, subject, signature, and email client.
 4. Review the generated email and test **Download .eml**, **Copy formatted email**, or **Download .html**.
+5. To include a company logo, open **Email settings → Signature profiles**, paste a PNG/JPEG into the rich editor or choose **Insert PNG/JPEG**, then save. If copying a signature from Outlook omits the logo, insert the image file separately. The downloaded `.eml` embeds the logo as an inline image.
 
 **Awaiting Valerie's sample customer email format:** the layout and pivot summary are provisional and will be adjusted once the desired email example is available. No emails are sent automatically. The prototype processes ticket uploads locally in the browser; only fictional sample data is committed. The preview is hosted on public GitHub Pages, so check your organization's rules before testing with actual customer information.
 
