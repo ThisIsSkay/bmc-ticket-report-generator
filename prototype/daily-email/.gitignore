@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.DS_Store
+*.log
+*.eml
+*.xlsx
+*.xls
+!samples/fictional-tickets.csv
+# Never commit actual BMC ticket exports, users or customer data.

@@ -1,0 +1,10 @@
+Submit Date,Resolved Date,Last Modified Date,Ticket ID,Description,Status,Incident Type,Assigned Engineer,Assigned Group,Contract Number,Priority
+2026-11-10 08:45,2026-11-10 10:10,2026-11-10 10:11,INC000000001,"Printer not responding in Room A",Resolved,Incident,Alex Sample,NCC_EUC,SAMPLE-CONTRACT,Medium
+2026-11-10 09:15,,2026-11-10 09:20,SRV000000002,"Request to set up account for new starter",Pending,Service Request,Jamie Example,NCC_EUC,SAMPLE-CONTRACT,Low
+2026-11-10 10:30,2026-11-10 11:55,2026-11-10 11:55,SRV000000003,"Software installation completed",Closed,Service Request,Alex Sample,NCC_EUC,SAMPLE-CONTRACT,Low
+2026-11-10 11:00,,2026-11-10 11:01,INC000000004,"Conference room display flickering",Work in Progress,Incident,Taylor Example,NCC_EUC,SAMPLE-CONTRACT,Medium
+2026-11-09 14:05,2026-11-10 09:50,2026-11-10 09:51,INC000000005,"Network access restored",Closed,Incident,Morgan Example,NCC_NETWORK,SAMPLE-CONTRACT,High
+2026-11-07 15:15,,2026-11-10 08:55,FSC000000006,"Scheduled firmware update",Pending,Forward Schedule,Jordan Example,NCC_SYSTEM,SAMPLE-CONTRACT,Low
+2026-11-10 12:00,,2026-11-10 12:00,INC000000007,"Unable to connect to VPN",Assigned,Incident,Morgan Example,NCC_NETWORK,SAMPLE-CONTRACT,High
+2026-11-10 13:00,2026-11-10 13:40,2026-11-10 13:40,EVT000000008,"Automated monitoring notice",Closed,Event,Alert Bot,MONITORING,SAMPLE-CONTRACT,Low
+2026-11-08 16:00,,2026-11-10 07:30,SRV000000009,"Pending mailbox migration",Waiting User Reply,Service Request,Jordan Example,NCC_SYSTEM,SAMPLE-CONTRACT,Low
