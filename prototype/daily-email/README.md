@@ -7,7 +7,7 @@ A local-only starter project for the **Daily Pivot & Email Report** navigation i
 - Apply report date, assigned-group and contract filters; exclude EVT monitoring by default.
 - Pivot-style summaries by assigned group and ticket type; lists of tickets **created** and **closed/resolved** on the report date, plus current outstanding tickets.
 - Avoid double-counting duplicate Ticket IDs. A ticket created and closed on the same date appears in both activity lists.
-- First-run email settings: To, Cc, Bcc, subject template, greeting and introduction. Multiple editable plain-text signature presets; selectable per export. Stored locally in the browser; export/import as JSON.
+- First-run email settings: To, Cc, Bcc, subject template, greeting and introduction. Multiple editable rich-text signature presets with clipboard PNG/JPEG paste, logo uploads and formatted Outlook signatures; selectable per export. Stored locally in the browser; export/import as JSON.
 - Select Classic Outlook, New Outlook or Gmail; download `.eml`, download `.html`, or copy rich HTML. No credential capture and **no sending**.
 - Includes fictional CSV sample data. The provided real Excel workbook is intentionally **not packaged**.
 
@@ -57,8 +57,14 @@ Both screens should share the normalized import data and configuration. The curr
 
 ## Handoff for Claude
 
-Read `README.md`, `lib/report-core.mjs`, `lib/mail.mjs`, `lib/xlsx-lite.mjs` and tests first. Keep existing screenshot export unchanged. Once Valerie provides her desired customer email sample, adjust `renderEmail` to match it. Priorities: integrate as **Daily Pivot & Email Report** beneath **Report Dashboard**; preserve signed-in Outlook workflow without credentials; align team and contract rules with the parent app; extend signature profiles to optional rich HTML/branding; test the same-day created+closed case, reopened tickets, time zones, duplicates and blank assignees. Do not include genuine BMC data in Git.
+Read `README.md`, `lib/report-core.mjs`, `lib/mail.mjs`, `lib/xlsx-lite.mjs` and tests first. Keep existing screenshot export unchanged. Once Valerie provides her desired customer email sample, adjust `renderEmail` to match it. Priorities: integrate as **Daily Pivot & Email Report** beneath **Report Dashboard**; preserve signed-in Outlook workflow without credentials; align team and contract rules with the parent app; test rich signature branding across email clients; test the same-day created+closed case, reopened tickets, time zones, duplicates and blank assignees. Do not include genuine BMC data in Git.
 
 ## Working branch and preview
 
 This prototype is developed on `feature/daily-pivot-email-report` inside the existing repository, stored under `prototype/daily-email/`. The main NCC screenshot report remains unchanged. GitHub Pages copies the prototype into `/daily-email/` for stakeholder testing; its saved settings live separately in browser storage.
+
+### Rich signature images
+
+The signature editor accepts formatted text and pasted PNG/JPEG images. It also provides **Insert PNG/JPEG** for logos whose binary data is not included when copying an Outlook signature. Supported images are resized for safe local storage. HTML emails preserve rich formatting, and downloaded .eml files embed image bytes as inline Content-ID (CID) MIME attachments to avoid broken logo links.
+
+Settings (including images) are stored in browser localStorage and can be backed up as JSON. Test in the intended email client before sending: EML draft editability and HTML clipboard image rendering vary by email client.
