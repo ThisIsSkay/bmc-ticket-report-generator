@@ -34,12 +34,18 @@ export function renderEml(html,settings,reportDate){
  const subject=rfcHeader(buildSubject(settings.subject,reportDate));
  // Use CID-referenced multipart images instead of fragile data: URLs in .eml.
  const images=[];
- const htmlWithCids=html.replace(/src=(['"])(data:image\/(png|jpeg);base64,([A-Za-z0-9+/=]+))\1/gi,(_all,_quote,_uri,type,data)=>{
-   if(data.length>1800000)return 'src=""';
+ const htmlWithCids=html.replace(/<img\b[^>]*>/gi,tag=>{
+   const match=/src=(['"])data:image\/(png|jpeg);base64,([A-Za-z0-9+/=]+)\1/i.exec(tag);
+   if(!match)return tag;
+   const [, ,type,data]=match;
+   if(data.length>1800000)return '<span>[Signature image omitted: exceeds export size limit]</span>';
    const prior=images.find(image=>image.data===data&&image.type===type.toLowerCase());
-   if(prior)return 'src="cid:'+prior.cid+'"';
-   const cid='bmc-signature-'+(images.length+1)+'@local.invalid';
-   images.push({cid,type:type.toLowerCase(),data});return 'src="cid:'+cid+'"';
+   let cid=prior?.cid;
+   if(!cid){
+     cid='bmc-signature-'+(images.length+1)+'@local.invalid';
+     images.push({cid,type:type.toLowerCase(),data});
+   }
+   return tag.replace(match[0],'src="cid:'+cid+'"');
  });
  const body=foldBase64(utf8Base64(htmlWithCids));
  const base=['X-Unsent: 1','MIME-Version: 1.0','Date: '+new Date().toUTCString(),'To: '+to,cc&&'Cc: '+cc,bcc&&'Bcc: '+bcc,'Subject: '+subject].filter(Boolean);
@@ -52,4 +58,4 @@ export function renderEml(html,settings,reportDate){
     'Content-Transfer-Encoding: base64','Content-ID: <'+image.cid+'>','Content-Disposition: inline','',foldBase64(image.data));
  return [...parts,'--'+boundary+'--',''].join('\r\n');
 }
-export const plainTextOfHtml=html=>html.replace(/<br\s*\/?\s*>/gi,'\n').replace(/<\/t[dh]>/gi,'\t').replace(/<\/tr>/gi,'\n').replace(/<\/p>|<\/h\d>/gi,'\n').replace(/<[^>]+>/g,'').replace(/&nbsp;/g,' ').replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>');
+
