@@ -30,7 +30,7 @@ function cellsFromXML(xml,strings){
   const rows=[];const rowMatches=[...xml.matchAll(/<row\b([^>]*)>([\s\S]*?)<\/row>/g)];
   for(const rm of rowMatches){const rowAttrs=attrs(rm[1]);const rowIndex=(parseInt(rowAttrs.r||'',10)||rows.length+1)-1;const values=[];
     for(const match of rm[2].matchAll(/<c\b([^>]*?)(?:\/>|>([\s\S]*?)<\/c>)/g)){
-      const a=attrs(match[1]);let x=match[2]||'';const v=/<v>([\s\S]*?)<\/v>/.exec(x)?.[1];const raw=a.t==='inlineStr'?[...x.matchAll(/<t(?:\s[^>]*)?>([\s\S]*?)<\/t>/g)].map(y=>xmlText(y[1])).join(''):v==null?'':xmlText(v);
+      const a=attrs(match[1]);let x=match[2]||'';const v=/<v(?:\s[^>]*)?>([\s\S]*?)<\/v>/.exec(x)?.[1];const raw=a.t==='inlineStr'?[...x.matchAll(/<t(?:\s[^>]*)?>([\s\S]*?)<\/t>/g)].map(y=>xmlText(y[1])).join(''):v==null?'':xmlText(v);
       const value=a.t==='s'?strings[+raw]??'':a.t==='inlineStr'||a.t==='str'||a.t==='e'?raw:a.t==='b'?raw==='1':raw===''?'':Number.isNaN(Number(raw))?raw:Number(raw);
       const ci=cellIndex(a.r||'');if(ci>=0&&ci<300)values[ci]=value;
     }
@@ -49,7 +49,7 @@ export async function parseXlsx(buffer){
   for(const sheet of sheets){const xml=await getXML(zip,sheet.path);if(!xml)continue;const matrix=cellsFromXML(xml,strings);
     const top=matrix.findIndex(row=>row&&row.some(v=>String(v??'').trim()));if(top<0){parsed.push({name:sheet.name,headers:[],rows:[]});continue;}
     const headers=(matrix[top]||[]).map(x=>String(x??'').trim());const data=matrix.slice(top+1).filter(r=>r&&r.some(v=>String(v??'').trim()));
-    parsed.push({name:sheet.name,headers,rows:data.map(r=>Object.fromEntries(headers.filter(Boolean).map((h,i)=>[h,r[i]??''])))});
+    parsed.push({name:sheet.name,headers,rows:data.map(r=>Object.fromEntries(headers.map((h,i)=>[h,r[i]??'']).filter(([h])=>h)))});
   }
   if(!parsed.length)throw new Error('No readable worksheet');
   const valid=(s)=>s.headers.filter(h=>['ticket id','submit date','status','assigned engineer'].includes(String(h).trim().toLowerCase())).length;
