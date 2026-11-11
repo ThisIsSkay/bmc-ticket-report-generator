@@ -21,7 +21,7 @@ export function detectColumns(headers) {
     return [key, exact == null ? '' : headers[exact]];
   }));
 }
-export const mandatoryColumns = ['id','created','status'];
+export const mandatoryColumns = ['id','created','status','resolved'];
 export function serialDate(ser) {
   if (typeof ser !== 'number' || !Number.isFinite(ser)) return null;
   const millis = Date.UTC(1899,11,30) + ser*86400000;
@@ -36,8 +36,8 @@ export function dateOnly(value) {
   const dmy=/^(\d{1,2})[\/-](\d{1,2})[\/-](\d{4})/.exec(s);
   let y,mo,d;
   if (iso) { y=+iso[1];mo=+iso[2];d=+iso[3]; }
-  else if (dmy) {d=+dmy[1];mo=+dmy[2];y=+dmy[3];}
-  else {const parsed = new Date(s);return Number.isNaN(+parsed)?null:parsed.toISOString().slice(0,10)}
+  else if (dmy) {const first=+dmy[1],second=+dmy[2];y=+dmy[3];mo=first>12?second:first;d=first>12?first:second;}
+  else {const parsed = new Date(s);return Number.isNaN(+parsed)?null:`${parsed.getFullYear()}-${String(parsed.getMonth()+1).padStart(2,'0')}-${String(parsed.getDate()).padStart(2,'0')}`;}
   const dt = new Date(Date.UTC(y,mo-1,d));
   if(dt.getUTCFullYear()!==y || dt.getUTCMonth()!==mo-1 || dt.getUTCDate()!==d)return null;
   return dt.toISOString().slice(0,10);
@@ -70,15 +70,29 @@ export function dedupeTickets(tickets) {
 }
 const completed = new Set(['closed','resolved']);
 const terminal=new Set(['closed','resolved','cancelled','canceled']);
+const knownStatuses=new Set([...terminal,'new','assigned','created','pending','work in progress','in progress','wip','waiting user reply','awaiting user','pending user','waiting for user','on hold','hold']);
 export function generateReport(allTickets,options) {
   const {reportDate, groupFilter='All',contractFilter='All',excludeEvents=true} = options;
-  let unique=dedupeTickets(allTickets);
+  const deduped=dedupeTickets(allTickets);
+  let unique=deduped;
   if(groupFilter!=='All') unique=unique.filter(t=>t.group===groupFilter);
   if(contractFilter!=='All') unique=unique.filter(t=>t.contract===contractFilter);
   if(excludeEvents) unique=unique.filter(t=>t.kind!=='Event');
   const created=unique.filter(t=>t.created===reportDate);
   const closed=unique.filter(t=>completed.has(t.status.toLowerCase()) && t.resolved===reportDate);
   const pending=unique.filter(t=>!terminal.has(t.status.toLowerCase()));
+  // Unknown statuses retain the existing pending-count behaviour but are now visible.
+  const unknownByName=new Map();
+  for(const ticket of unique){
+    const name=String(ticket.status||'').trim();
+    const key=name.toLowerCase();
+    if(!knownStatuses.has(key)){
+      const current=unknownByName.get(key)||{status:name||'(blank)',count:0};
+      current.count++;
+      unknownByName.set(key,current);
+    }
+  }
+  const unknownStatuses=[...unknownByName.values()].sort((a,b)=>b.count-a.count||a.status.localeCompare(b.status));
   const groupMap=new Map();
   const getGroup=(g)=>{if(!groupMap.has(g))groupMap.set(g,{group:g,created:0,closed:0,pending:0});return groupMap.get(g)};
   for(const t of created)getGroup(t.group).created++;
@@ -93,7 +107,7 @@ export function generateReport(allTickets,options) {
   const byType=[...typeMap.values()].sort((a,b)=>a.group.localeCompare(b.group));
   created.sort((a,b)=>a.group.localeCompare(b.group)||a.id.localeCompare(b.id));
   closed.sort((a,b)=>a.group.localeCompare(b.group)||a.id.localeCompare(b.id));
-  return {reportDate,created,closed,pending,pivot,byType,totalUnique:unique.length,counts:{created:created.length,closed:closed.length,pending:pending.length},rawCount:allTickets.length,duplicateCount:allTickets.length-dedupeTickets(allTickets).length};
+  return {reportDate,created,closed,pending,pivot,byType,totalUnique:unique.length,counts:{created:created.length,closed:closed.length,pending:pending.length},rawCount:allTickets.length,duplicateCount:allTickets.length-deduped.length,unknownStatuses};
 }
 export function availableFilterValues(tickets,kind) {
   return [...new Set(tickets.map(t=>t[kind]).filter(Boolean))].sort((a,b)=>a.localeCompare(b));
