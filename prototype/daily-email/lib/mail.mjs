@@ -25,7 +25,7 @@ export function renderEmail(report,settings,filters={}) {
 }
 const utf8Base64=text=>{const bytes=new TextEncoder().encode(text);let data='';for(let i=0;i<bytes.length;i+=8192){data+=String.fromCharCode(...bytes.subarray(i,i+8192))}return btoa(data)};
 const foldBase64=s=>s.match(/.{1,76}/g)?.join('\r\n')||'';
-function recipients(text){return String(text||'').split(/[;,\n]+/).map(x=>x.trim()).filter(Boolean).filter(x=>/^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/.test(x));}
+export function recipients(text){return String(text||'').split(/[;,\n]+/).map(x=>x.trim()).filter(Boolean).filter(x=>/^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/.test(x));}
 const stripNewlines=v=>String(v??'').replace(/[\r\n]+/g,' ').trim();
 const rfcHeader = v => /^[\x20-\x7e]*$/.test(stripNewlines(v))?stripNewlines(v):`=?UTF-8?B?${utf8Base64(stripNewlines(v))}?=`;
 export function buildSubject(template,date){return String(template||'Daily BMC Ticket Report - {date}').replaceAll('{date}',date)};
