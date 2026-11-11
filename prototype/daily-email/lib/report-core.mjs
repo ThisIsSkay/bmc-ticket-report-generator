@@ -109,6 +109,17 @@ export function generateReport(allTickets,options) {
   closed.sort((a,b)=>a.group.localeCompare(b.group)||a.id.localeCompare(b.id));
   return {reportDate,created,closed,pending,pivot,byType,totalUnique:unique.length,counts:{created:created.length,closed:closed.length,pending:pending.length},rawCount:allTickets.length,duplicateCount:allTickets.length-deduped.length,unknownStatuses};
 }
+/** Show out-of-scope/unknown status diagnostics without changing the report totals. */
+export function updateReportWarnings(banner, baseWarnings = [], unknownStatuses = []) {
+  const notices = [...baseWarnings];
+  if(unknownStatuses.length) {
+    const labels = unknownStatuses.map(({status,count}) => status + ' (' + count + ')');
+    notices.push('Unrecognized BMC status values (currently counted as Outstanding): ' + labels.join(', '));
+  }
+  banner.hidden = notices.length === 0;
+  banner.textContent = notices.join(' · ');
+  return notices;
+}
 export function availableFilterValues(tickets,kind) {
   return [...new Set(tickets.map(t=>t[kind]).filter(Boolean))].sort((a,b)=>a.localeCompare(b));
 }
