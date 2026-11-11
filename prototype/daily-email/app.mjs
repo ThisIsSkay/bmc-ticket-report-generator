@@ -1,15 +1,17 @@
-import {detectColumns, mandatoryColumns, normalizeTickets, generateReport, availableFilterValues, lastActivityDate, parseCsv} from './lib/report-core.mjs';
+import {detectColumns, mandatoryColumns, normalizeTickets, generateReport, availableFilterValues, lastActivityDate, parseCsv, updateReportWarnings} from './lib/report-core.mjs';
 import {parseXlsx} from './lib/xlsx-lite.mjs';
 import {renderEmail, renderEml, buildSubject} from './lib/mail.mjs';
 import {renderClassicOutlookScript} from './lib/classic-outlook.mjs';
 import {sanitizeSignatureHtml, plainToSignatureHtml, imageFileToDataUrl} from './lib/signature-html.mjs';
+import {createDebouncedSaver} from './lib/settings-persistence.mjs';
 
 const $=id=>document.getElementById(id);
 const CONFIG_KEY='bmc-daily-email-report:settings:v1';
 const DEFAULTS={to:'',cc:'',bcc:'',subject:'Daily BMC Ticket Report – {date}',greeting:'Hi Team,',intro:'Please find below the daily BMC ticket activity report.',client:'classic',signatureId:'',signatures:[{id:'support',name:'IT Support Team',content:'Best regards,\nIT Support Team'}]};
-const state={file:null,rows:[],tickets:[],mapping:{},date:'',report:null,settings:loadSettings(),sourceInfo:'',dataErrors:[],includeLists:true};
+const state={file:null,rows:[],tickets:[],mapping:{},date:'',report:null,settings:loadSettings(),sourceInfo:'',dataErrors:[],dataWarnings:[]};
 function loadSettings(){try{const v=JSON.parse(localStorage.getItem(CONFIG_KEY));if(!v||typeof v!=='object')return structuredClone(DEFAULTS);return {...structuredClone(DEFAULTS),...v,signatures:Array.isArray(v.signatures)?v.signatures:structuredClone(DEFAULTS.signatures)};}catch{return structuredClone(DEFAULTS)}}
 function storeSettings(){try{localStorage.setItem(CONFIG_KEY,JSON.stringify(state.settings));return true;}catch{toast('Cannot save settings: reduce logo size or back up other profiles.');return false;}}
+const signaturePersistence=createDebouncedSaver(storeSettings,400);
 function text(id,value){$(id).textContent=String(value??'');}
 function h(value){return String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 function toast(msg){const box=$('toast');box.textContent=msg;box.classList.add('show');setTimeout(()=>box.classList.remove('show'),4000);}
@@ -23,8 +25,8 @@ function makeTable(headers,rows,opts={}){
  if(!rows.length)return '<div class="empty">No matching tickets.</div>';
  return `<table class="report-table"><thead><tr>${names}</tr></thead><tbody>${rows.map(row=>`<tr>${row.map((val,i)=>`<td class="${opts.textCols?.includes(i)?'text wrap':''}">${h(val===undefined||val===null||val===''?'—':val)}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
 }
-function pivotRows(rows,columns){return rows.map(r=>[r.group,r.created,r.closed,r.pending]);}
-function saveLocalSettings(){state.settings={...state.settings,to:$('toInput').value,cc:$('ccInput').value,bcc:$('bccInput').value,subject:$('subjectInput').value,greeting:$('greetingInput').value,intro:$('introInput').value,client:$('clientChoice').value};if(!storeSettings())return;updateSignatureSelector();refreshReport();$('modal').hidden=true;toast('Settings saved to this browser.');}
+function pivotRows(rows){return rows.map(r=>[r.group,r.created,r.closed,r.pending]);}
+function saveLocalSettings(){state.settings={...state.settings,to:$('toInput').value,cc:$('ccInput').value,bcc:$('bccInput').value,subject:$('subjectInput').value,greeting:$('greetingInput').value,intro:$('introInput').value,client:$('clientChoice').value};signaturePersistence.cancel();if(!storeSettings())return;updateSignatureSelector();refreshReport();$('modal').hidden=true;toast('Settings saved to this browser.');}
 let editingProfileId='';
 function profileOptions(){
  const list=$('profileList');
@@ -44,7 +46,7 @@ function syncProfile(){
    profile.name=$('profileName').value.trim()||'Unnamed signature';
    profile.html=sanitizeSignatureHtml($('profileEditor').innerHTML);
    profile.content=$('profileEditor').innerText||'';
-   storeSettings();updateSignatureSelector();refreshReport();
+   signaturePersistence.queue();updateSignatureSelector();refreshReport();
  }
 }
 function editorSelection(){
@@ -96,11 +98,12 @@ function updateSignatureSelector(){const choice=$('signatureChoice');const previ
 function showModal(){const s=state.settings;$('toInput').value=s.to||'';$('ccInput').value=s.cc||'';$('bccInput').value=s.bcc||'';$('subjectInput').value=s.subject||'';$('greetingInput').value=s.greeting||'';$('introInput').value=s.intro||'';profileOptions();$('modal').hidden=false;}
 function fillSelect(id,options,label){const sel=$(id),was=sel.value;sel.innerHTML=`<option value="All">${label}</option>`+options.map(v=>`<option value="${h(v)}">${h(v)}</option>`).join('');sel.disabled=options.length===0;sel.value=options.includes(was)?was:'All';}
 function importRows(headers,rows,filename,meta){state.file=filename;state.rows=rows;state.mapping=detectColumns(headers);state.dataErrors=mandatoryColumns.filter(k=>!state.mapping[k]);
- const missingOptional=['resolved','assigned','group','description','kind','contract'].filter(k=>!state.mapping[k]);
+ const missingOptional=['assigned','group','description','kind','contract'].filter(k=>!state.mapping[k]);
  const warnings=[];if(state.dataErrors.length)warnings.push('Required columns not detected: '+state.dataErrors.join(', '));
- if(!state.mapping.resolved)warnings.push('Resolved Date is missing. Closed-on-date counts cannot be computed accurately.');
+ if(!state.mapping.resolved)warnings.push('Resolved Date is required for closed-on-date counts. Select a complete BMC export.');
  if(missingOptional.length)warnings.push('Optional column(s) not found: '+missingOptional.join(', '));
- $('fileWarning').hidden=warnings.length===0;$('fileWarning').textContent=warnings.join(' · ');
+ state.dataWarnings=warnings;
+ updateReportWarnings($('fileWarning'),state.dataWarnings);
  state.tickets=state.dataErrors.length?[]:normalizeTickets(rows,state.mapping);
  fillSelect('groupFilter',availableFilterValues(state.tickets,'group'),'All groups');
  fillSelect('contractFilter',availableFilterValues(state.tickets,'contract'),'All contracts');
@@ -119,8 +122,9 @@ function filters(){return {reportDate:$('dateInput').value,groupFilter:$('groupF
 function updateClientNotes(){const c=$('clientChoice').value;const messages={classic:'Classic Outlook: download the local PowerShell helper (.ps1), then right-click it and choose Run with PowerShell. It opens an unsent editable draft in your existing Outlook profile AND saves a native .msg file beside the helper. This avoids the broken .eml import path. Scripts may be blocked by your organisation\'s security policy; Copy formatted email is the fallback.',new:'New Outlook: .eml can be opened, but editable draft behaviour may vary. Use Copy formatted email if composing a fresh message.',gmail:'Gmail: use Copy formatted email to paste into a signed-in compose window. .eml is an archive-compatible output, not a Gmail draft.'};$('downloadClassic').hidden=c!=='classic';$('downloadEml').hidden=c==='classic';text('clientNote',messages[c]||'');}
 function makeEmail(){return renderEmail(state.report,{...state.settings,signatureId:$('signatureChoice').value,signatures:state.settings.signatures.map(p=>({...p,html:sanitizeSignatureHtml(p.html??plainToSignatureHtml(p.content))}))},filters());}
 function refreshReport(){if(!state.tickets.length||!$('dateInput').value){$('result').hidden=true;return;}
- if(!state.mapping.resolved){$('result').hidden=true;$('fileWarning').hidden=false;$('fileWarning').textContent='Resolved Date column is required for reliable closed-on-date reporting. Select a complete BMC export.';return;}
+ if(state.dataErrors.length){$('result').hidden=true;updateReportWarnings($('fileWarning'),state.dataWarnings);return;}
  const options=filters();state.date=options.reportDate;state.report=generateReport(state.tickets,options);const r=state.report;
+ updateReportWarnings($('fileWarning'),state.dataWarnings,r.unknownStatuses);
  $('result').hidden=false;text('reportCaption',`Report date ${r.reportDate} · Created and resolved activity from one exported snapshot`);
  text('createdCount',r.counts.created.toLocaleString());text('closedCount',r.counts.closed.toLocaleString());text('pendingCount',r.counts.pending.toLocaleString());text('uniqueCount',r.totalUnique.toLocaleString());
  $('pivotTable').innerHTML=makeTable(['Assigned group','Created','Closed','Outstanding'],[...pivotRows(r.pivot),['TOTAL',r.counts.created,r.counts.closed,r.counts.pending]],{textCols:[0]});
