@@ -3,7 +3,7 @@
  * It creates a native unsent Outlook draft and saves a Unicode .msg beside this script.
  * Only user-triggered download; no network access, no credentials, no Send method.
  */
-import { buildSubject } from './mail.mjs';
+import { buildSubject, recipients } from './mail.mjs';
 
 function psQuote(value) {
   return "'" + String(value ?? '').replaceAll("'", "''") + "'";
@@ -57,9 +57,9 @@ export function renderClassicOutlookScript(html, settings, reportDate) {
     '    $outlook = New-Object -ComObject Outlook.Application',
     '    $mail = $outlook.CreateItem(0) # 0 = olMailItem',
     '    $mail.BodyFormat = 2 # 2 = olFormatHTML',
-    '    $mail.To = ' + psQuote(settings.to),
-    '    $mail.CC = ' + psQuote(settings.cc),
-    '    $mail.BCC = ' + psQuote(settings.bcc),
+    '    $mail.To = ' + psQuote(recipients(settings.to).join('; ')),
+    '    $mail.CC = ' + psQuote(recipients(settings.cc).join('; ')),
+    '    $mail.BCC = ' + psQuote(recipients(settings.bcc).join('; ')),
     '    $mail.Subject = ' + psQuote(buildSubject(settings.subject, reportDate)),
     '    $mail.HTMLBody = $html',
     '    foreach ($image in $images) {',
