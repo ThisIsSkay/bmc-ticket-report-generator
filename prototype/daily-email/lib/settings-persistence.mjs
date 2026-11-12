@@ -1,5 +1,5 @@
 /** Debounce expensive settings serialization while permitting an explicit save/flush. */
-export function createDebouncedSaver(persist, delay = 400, clock = { schedule: setTimeout, cancel: clearTimeout }) {
+export function createDebouncedSaver(persist, delay = 400, clock = { schedule: (fn, ms) => setTimeout(fn, ms), cancel: (id) => clearTimeout(id) }) {
   let pending = null;
   function queue() {
     if (pending !== null) clock.cancel(pending);
