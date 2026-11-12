@@ -204,3 +204,49 @@ test('LOW: duplicate count reflects deduplicated source, including filter exclus
  assert.equal(r.duplicateCount,1);
  assert.equal(r.rawCount,tickets.length+1);
 });
+
+
+test('REGRESSION: default debounce timer does not invoke unbound window timers',()=>{
+ const realSchedule=globalThis.setTimeout, realCancel=globalThis.clearTimeout;
+ let writes=0;
+ try {
+   // Simulate a browser timer that rejects calls with clock-object receivers.
+   globalThis.setTimeout=function(fn, delay){
+     if(this!==undefined && this!==globalThis)throw new TypeError('Illegal invocation');
+     return realSchedule(fn,delay);
+   };
+   globalThis.clearTimeout=function(timer){
+     if(this!==undefined && this!==globalThis)throw new TypeError('Illegal invocation');
+     return realCancel(timer);
+   };
+   const saver=createDebouncedSaver(()=>{writes++},400);
+   assert.doesNotThrow(()=>saver.queue());
+   assert.doesNotThrow(()=>saver.queue());
+   saver.flush();
+   assert.equal(writes,1);
+   saver.flush();
+   assert.equal(writes,1);
+ } finally {
+   globalThis.setTimeout=realSchedule;
+   globalThis.clearTimeout=realCancel;
+ }
+});
+
+test('REGRESSION: default debounce persists after delay without a custom clock',async()=>{
+ let writes=0;
+ const saver=createDebouncedSaver(()=>{writes++},20);
+ saver.queue();
+ assert.equal(writes,0);
+ await new Promise(resolve=>setTimeout(resolve,65));
+ assert.equal(writes,1);
+ saver.flush();
+ assert.equal(writes,1);
+});
+
+test('REGRESSION: closing settings, backdrop, and pagehide flush pending signatures',()=>{
+ const app=readFileSync(new URL('../app.mjs',import.meta.url),'utf8');
+ assert.match(app,/modalClose'.*?signaturePersistence\.flush\(\)/s);
+ assert.match(app,/if\(e\.target===\$\('modal'\)\)\{signaturePersistence\.flush\(\)/s);
+ assert.match(app,/addEventListener\('pagehide',\(\)=>signaturePersistence\.flush\(\)\)/);
+ assert.match(app,/visibilitychange'.*?signaturePersistence\.flush\(\)/s);
+});
