@@ -141,8 +141,10 @@ async function copyEmail(){try{const html=makeEmail();const plain=html.replace(/
 async function loadDemo(){const res=await fetch('./samples/fictional-tickets.csv');if(!res.ok)throw Error('Demo file unavailable');const csv=parseCsv(await res.text());importRows(csv.headers,csv.rows,'fictional-tickets.csv','Fictional sample only · contains no customer data');}
 function validateAddresses(value){const parts=String(value||'').split(/[;,\n]+/).map(v=>v.trim()).filter(Boolean);return parts.every(v=>/^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/.test(v));}
 function init(){$('dateInput').value=dateDefault();$('clientChoice').value=state.settings.client||'classic';updateSignatureSelector();updateClientNotes();
- $('settingsBtn').addEventListener('click',showModal);$('modalClose').addEventListener('click',()=>{$('modal').hidden=true});
- $('modal').addEventListener('click',e=>{if(e.target===$('modal'))$('modal').hidden=true});
+ $('settingsBtn').addEventListener('click',showModal);$('modalClose').addEventListener('click',()=>{signaturePersistence.flush();$('modal').hidden=true});
+ $('modal').addEventListener('click',e=>{if(e.target===$('modal')){signaturePersistence.flush();$('modal').hidden=true;}});
+ window.addEventListener('pagehide',()=>signaturePersistence.flush());
+ document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')signaturePersistence.flush();});
  $('saveSettings').addEventListener('click',()=>{if(!['toInput','ccInput','bccInput'].every(k=>validateAddresses($(k).value))){text('settingsStatus','Check email address format, then save.');return;}syncProfile();saveLocalSettings();});
  $('profileList').addEventListener('change',e=>{editingProfileId=e.target.value;populateEditingProfile();});
  $('profileName').addEventListener('change',syncProfile);
