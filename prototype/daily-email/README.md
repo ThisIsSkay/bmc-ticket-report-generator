@@ -1,6 +1,6 @@
 # BMC Daily Pivot & Email Report (prototype)
 
-A local-only starter project for the **Daily Pivot & Email Report** navigation item that will sit beneath the existing NCC **Report Dashboard** in [bmc-ticket-report-generator](https://github.com/ThisIsSkay/bmc-ticket-report-generator). This prototype is a standalone proof of concept; it does **not** change the existing report generator. Customer email design is **provisional** until Valerie supplies a reference.
+A local-only starter project for the **Daily Pivot & Email Report** navigation item that will sit beneath the existing NCC **Report Dashboard** in [bmc-ticket-report-generator](https://github.com/ThisIsSkay/bmc-ticket-report-generator). This prototype is a standalone proof of concept; it does **not** change the existing report generator. Customer email design is **provisional** until the reference design is approved.
 
 ## Current functions
 - Import a BMC `.xlsx`/`.csv` export with automatic worksheet and column identification.
@@ -31,7 +31,7 @@ In `src/App.tsx` of the original BMC generator, under **Report**, display:
 2. **Daily Pivot & Email Report** — the new feature here.
 3. **Ticket Data** — existing detail view, unchanged.
 
-Both screens should share the normalized import data and configuration. The current standalone prototype uses **Assigned Group/Contract** scope, whereas the original NCC screenshot report defines team scope through selected engineers. Before integrating, make the scope selectable and ensure the email summary totals use the same filters as its detail tables. Do not merge into the original dashboard until Valerie has approved the customer email format and reporting rules.
+Both screens should share the normalized import data and configuration. The current standalone prototype uses **Assigned Group/Contract** scope, whereas the original NCC screenshot report defines team scope through selected engineers. Before integrating, make the scope selectable and ensure the email summary totals use the same filters as its detail tables. Do not merge into the original dashboard until the customer email format and reporting rules are approved.
 
 ## Reporting rules
 
@@ -61,7 +61,7 @@ Both screens should share the normalized import data and configuration. The curr
 
 ## Handoff for Claude
 
-Read `README.md`, `lib/report-core.mjs`, `lib/mail.mjs`, `lib/xlsx-lite.mjs` and tests first. Keep existing screenshot export unchanged. Once Valerie provides her desired customer email sample, adjust `renderEmail` to match it. Priorities: integrate as **Daily Pivot & Email Report** beneath **Report Dashboard**; preserve signed-in Outlook workflow without credentials; align team and contract rules with the parent app; test rich signature branding across email clients; test the same-day created+closed case, reopened tickets, time zones, duplicates and blank assignees. Do not include genuine BMC data in Git.
+Read `README.md`, `lib/report-core.mjs`, `lib/mail.mjs`, `lib/xlsx-lite.mjs` and tests first. Keep existing screenshot export unchanged. Once the desired customer email sample is approved, adjust `renderEmail` to match it. Priorities: integrate as **Daily Pivot & Email Report** beneath **Report Dashboard**; preserve signed-in Outlook workflow without credentials; align team and contract rules with the parent app; test rich signature branding across email clients; test the same-day created+closed case, reopened tickets, time zones, duplicates and blank assignees. Do not include genuine BMC data in Git.
 
 ## Working branch and preview
 
