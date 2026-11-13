@@ -1,0 +1,33 @@
+{
+  "_note": "Fictional sample data matching the reference designs. The reference HTML shows only the first 3 created tickets for brevity; the real email must list every created ticket.",
+  "reportDate": "2026-11-10",
+  "reportDateLong": "10 November 2026",
+  "kpis": {
+    "createdOnDate": 5,
+    "closedResolved": 3,
+    "outstanding": 5
+  },
+  "byGroup": [
+    { "name": "NCC_EUC", "created": 4, "closed": 2, "outstanding": 2 },
+    { "name": "NCC_NETWORK", "created": 1, "closed": 1, "outstanding": 1 },
+    { "name": "NCC_SYSTEM", "created": 0, "closed": 0, "outstanding": 2 }
+  ],
+  "byType": [
+    { "name": "Incident", "created": 3, "closed": 2, "outstanding": 3 },
+    { "name": "Service Request", "created": 2, "closed": 1, "outstanding": 1 },
+    { "name": "Forward Schedule", "created": 0, "closed": 0, "outstanding": 1 }
+  ],
+  "createdTickets": [
+    { "id": "INC000000412871", "type": "Incident", "summary": "Laptop unable to connect to office Wi-Fi", "assignee": "Daniel Lim", "group": "NCC_EUC", "status": "In Progress" },
+    { "id": "INC000000412886", "type": "Incident", "summary": "Switch port flapping at Level 2 network rack", "assignee": "Priya Nair", "group": "NCC_NETWORK", "status": "Resolved" },
+    { "id": "INC000000412902", "type": "Service Request", "summary": "New joiner laptop and M365 account setup", "assignee": "Marcus Tan", "group": "NCC_EUC", "status": "Assigned" },
+    { "id": "INC000000412915", "type": "Incident", "summary": "Outlook profile fails to load after Windows update", "assignee": "Daniel Lim", "group": "NCC_EUC", "status": "Pending" },
+    { "id": "INC000000412927", "type": "Service Request", "summary": "Install monitor privacy screen at hot desk", "assignee": "Marcus Tan", "group": "NCC_EUC", "status": "Resolved" }
+  ],
+  "sender": {
+    "name": "Siao Kang",
+    "title": "IT Executive, End-User Computing",
+    "company": "[Company name]",
+    "phone": "[Office phone]"
+  }
+}

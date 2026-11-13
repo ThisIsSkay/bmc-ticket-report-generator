@@ -7,7 +7,7 @@ import {createDebouncedSaver} from './lib/settings-persistence.mjs';
 
 const $=id=>document.getElementById(id);
 const CONFIG_KEY='bmc-daily-email-report:settings:v1';
-const DEFAULTS={to:'',cc:'',bcc:'',subject:'Daily BMC Ticket Report – {date}',greeting:'Hi Team,',intro:'Please find below the daily BMC ticket activity report.',client:'classic',signatureId:'',signatures:[{id:'support',name:'IT Support Team',content:'Best regards,\nIT Support Team'}]};
+const DEFAULTS={to:'',cc:'',bcc:'',subject:'Daily BMC Ticket Report – {date}',greeting:'Hi Team,',intro:'Please find below the daily BMC ticket activity report.',client:'classic',emailVariant:'A',signatureId:'',signatures:[{id:'support',name:'IT Support Team',content:'Best regards,\nIT Support Team'}]};
 const state={file:null,rows:[],tickets:[],mapping:{},date:'',report:null,settings:loadSettings(),sourceInfo:'',dataErrors:[],dataWarnings:[]};
 function loadSettings(){try{const v=JSON.parse(localStorage.getItem(CONFIG_KEY));if(!v||typeof v!=='object')return structuredClone(DEFAULTS);return {...structuredClone(DEFAULTS),...v,signatures:Array.isArray(v.signatures)?v.signatures:structuredClone(DEFAULTS.signatures)};}catch{return structuredClone(DEFAULTS)}}
 function storeSettings(){try{localStorage.setItem(CONFIG_KEY,JSON.stringify(state.settings));return true;}catch{toast('Cannot save settings: reduce logo size or back up other profiles.');return false;}}
@@ -26,7 +26,7 @@ function makeTable(headers,rows,opts={}){
  return `<table class="report-table"><thead><tr>${names}</tr></thead><tbody>${rows.map(row=>`<tr>${row.map((val,i)=>`<td class="${opts.textCols?.includes(i)?'text wrap':''}">${h(val===undefined||val===null||val===''?'—':val)}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
 }
 function pivotRows(rows){return rows.map(r=>[r.group,r.created,r.closed,r.pending]);}
-function saveLocalSettings(){state.settings={...state.settings,to:$('toInput').value,cc:$('ccInput').value,bcc:$('bccInput').value,subject:$('subjectInput').value,greeting:$('greetingInput').value,intro:$('introInput').value,client:$('clientChoice').value};signaturePersistence.cancel();if(!storeSettings())return;updateSignatureSelector();refreshReport();$('modal').hidden=true;toast('Settings saved to this browser.');}
+function saveLocalSettings(){state.settings={...state.settings,to:$('toInput').value,cc:$('ccInput').value,bcc:$('bccInput').value,subject:$('subjectInput').value,greeting:$('greetingInput').value,intro:$('introInput').value,client:$('clientChoice').value,emailVariant:$('emailVariant').value};signaturePersistence.cancel();if(!storeSettings())return;updateSignatureSelector();refreshReport();$('modal').hidden=true;toast('Settings saved to this browser.');}
 let editingProfileId='';
 function profileOptions(){
  const list=$('profileList');
@@ -120,7 +120,7 @@ async function importFile(file){try{if(!file) return; const name=file.name;let b
  }catch(error){$('fileWarning').hidden=false;$('fileWarning').textContent=error?.message||'Could not read the selected file';$('result').hidden=true;toast('Import failed.');}}
 function filters(){return {reportDate:$('dateInput').value,groupFilter:$('groupFilter').value,contractFilter:$('contractFilter').value,excludeEvents:$('eventFilter').value==='exclude'};}
 function updateClientNotes(){const c=$('clientChoice').value;const messages={classic:'Classic Outlook: download the local PowerShell helper (.ps1), then right-click it and choose Run with PowerShell. It opens an unsent editable draft in your existing Outlook profile AND saves a native .msg file beside the helper. This avoids the broken .eml import path. Scripts may be blocked by your organisation\'s security policy; Copy formatted email is the fallback.',new:'New Outlook: .eml can be opened, but editable draft behaviour may vary. Use Copy formatted email if composing a fresh message.',gmail:'Gmail: use Copy formatted email to paste into a signed-in compose window. .eml is an archive-compatible output, not a Gmail draft.'};$('downloadClassic').hidden=c!=='classic';$('downloadEml').hidden=c==='classic';text('clientNote',messages[c]||'');}
-function makeEmail(){return renderEmail(state.report,{...state.settings,signatureId:$('signatureChoice').value,signatures:state.settings.signatures.map(p=>({...p,html:sanitizeSignatureHtml(p.html??plainToSignatureHtml(p.content))}))},filters());}
+function makeEmail(){const variant=$('emailVariant')?.value||state.settings.emailVariant||'A';return renderEmail(state.report,{...state.settings,signatureId:$('signatureChoice').value,signatures:state.settings.signatures.map(p=>({...p,html:sanitizeSignatureHtml(p.html??plainToSignatureHtml(p.content))}))},filters(),variant);}
 function refreshReport(){if(!state.tickets.length||!$('dateInput').value){$('result').hidden=true;return;}
  if(state.dataErrors.length){$('result').hidden=true;updateReportWarnings($('fileWarning'),state.dataWarnings);return;}
  const options=filters();state.date=options.reportDate;state.report=generateReport(state.tickets,options);const r=state.report;
@@ -140,7 +140,7 @@ async function copyEmail(){try{const html=makeEmail();const plain=html.replace(/
  toast('Formatted email copied.');}catch(err){toast(err.message||'Copy failed. Use Download HTML.');}}
 async function loadDemo(){const res=await fetch('./samples/fictional-tickets.csv');if(!res.ok)throw Error('Demo file unavailable');const csv=parseCsv(await res.text());importRows(csv.headers,csv.rows,'fictional-tickets.csv','Fictional sample only · contains no customer data');}
 function validateAddresses(value){const parts=String(value||'').split(/[;,\n]+/).map(v=>v.trim()).filter(Boolean);return parts.every(v=>/^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/.test(v));}
-function init(){$('dateInput').value=dateDefault();$('clientChoice').value=state.settings.client||'classic';updateSignatureSelector();updateClientNotes();
+function init(){$('dateInput').value=dateDefault();$('clientChoice').value=state.settings.client||'classic';$('emailVariant').value=state.settings.emailVariant||'A';updateSignatureSelector();updateClientNotes();
  $('settingsBtn').addEventListener('click',showModal);$('modalClose').addEventListener('click',()=>{signaturePersistence.flush();$('modal').hidden=true});
  $('modal').addEventListener('click',e=>{if(e.target===$('modal')){signaturePersistence.flush();$('modal').hidden=true;}});
  window.addEventListener('pagehide',()=>signaturePersistence.flush());
@@ -174,6 +174,7 @@ function init(){$('dateInput').value=dateDefault();$('clientChoice').value=state
  $('latestBtn').addEventListener('click',()=>{const val=lastActivityDate(state.tickets);if(val){$('dateInput').value=val;refreshReport()}});
  $('detailsToggle').addEventListener('click',()=>{const was=$('ticketLists').hidden;$('ticketLists').hidden=!was;$('detailsToggle').textContent=was?'Hide ticket lists':'Show ticket lists';});
  $('clientChoice').addEventListener('change',e=>{state.settings.client=e.target.value;storeSettings();updateClientNotes()});
+ $('emailVariant').addEventListener('change',e=>{state.settings.emailVariant=e.target.value;storeSettings();refreshReport()});
  $('signatureChoice').addEventListener('change',e=>{state.settings.signatureId=e.target.value;storeSettings();refreshReport()});
  $('downloadClassic').addEventListener('click',()=>{if(!state.report)return;const script=renderClassicOutlookScript(makeEmail(),state.settings,state.report.reportDate);fileDownload(script,`BMC_Daily_Report_${safeFilename(state.report.reportDate)}_Outlook.ps1`,'text/plain;charset=utf-8');toast('Classic Outlook draft helper downloaded. Right-click and Run with PowerShell; no email is sent automatically.');});
  $('downloadEml').addEventListener('click',()=>{if(!state.report)return;const html=makeEmail(), eml=renderEml(html,state.settings,state.report.reportDate);fileDownload(eml,`BMC_Daily_Report_${safeFilename(state.report.reportDate)}.eml`,'message/rfc822');toast('EML downloaded; review before sending. For Classic Outlook use the dedicated draft helper instead.')});
