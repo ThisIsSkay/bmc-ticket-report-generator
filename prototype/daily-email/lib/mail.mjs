@@ -1,4 +1,5 @@
 /** Client-neutral HTML email and RFC 5322 .eml generation. Never sends anything. */
+import {renderThemedEmail} from './email-themes.mjs';
 const escapeHtml = v => String(v ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const tableCell='border:1px solid #d8dfe7;padding:7px 9px;font-size:12px;vertical-align:top;line-height:1.45';
 const thCell=`${tableCell};background:#f1f4f8;color:#223248;text-align:left;font-weight:600`;
@@ -10,7 +11,7 @@ function table(headers,rows,blankLabel){
 }
 const title=t=>`<h2 style="font:600 14px/1.4 Arial,sans-serif;color:#142c45;margin:22px 0 7px">${escapeHtml(t)}</h2>`;
 const safeText=v=>escapeHtml(v).replace(/\r?\n/g,'<br>');
-export function renderEmail(report,settings,filters={}) {
+function renderLegacyEmail(report,settings,filters={}) {
   const date=report.reportDate;
   const caption=['Daily ticket activity', filters.groupFilter!=='All'&&filters.groupFilter?`Group: ${filters.groupFilter}`:null,filters.contractFilter!=='All'&&filters.contractFilter?`Contract: ${filters.contractFilter}`:null,filters.excludeEvents?'Monitoring events excluded':null].filter(Boolean).join(' · ');
   const pivotRows=report.pivot.map(row=>[row.group,row.created,row.closed,row.pending]);
@@ -22,6 +23,9 @@ export function renderEmail(report,settings,filters={}) {
   const intro=settings.intro||'Please find below the daily BMC ticket activity report.';
   const html=`<!doctype html><html><head><meta charset="UTF-8"><title>Daily BMC report ${escapeHtml(date)}</title></head><body style="margin:0;background:#ffffff;color:#273648;font:12px/1.55 Arial,Helvetica,sans-serif"><div style="max-width:1050px;margin:0 auto;padding:22px 16px 36px"><p style="font-size:12px;margin:0 0 16px">${safeText(settings.greeting||'Hi Team,')}</p><p style="font-size:12px;margin:0 0 17px">${safeText(intro)}</p><h1 style="font:600 19px/1.3 Arial,sans-serif;color:#142c45;margin:0 0 4px">BMC Daily Ticket Report — ${escapeHtml(date)}</h1><p style="font-size:11px;color:#718096;margin:0 0 13px">${escapeHtml(caption)}</p><table role="presentation" cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:100%;margin:0 0 20px"><tbody><tr>${kpi('Created on date',report.counts.created)}${kpi('Closed / resolved on date',report.counts.closed)}${kpi('Current outstanding',report.counts.pending)}</tr></tbody></table>${title('Summary by assigned group')}${table(['Assigned group','Created','Closed','Outstanding'],[...pivotRows,totals],'No tickets matched the selected scope.')}${title('Summary by ticket type')}${table(['Ticket type','Created','Closed','Outstanding'],[...typeRows,totals],'No tickets matched the selected scope.')}${title(`Tickets created on ${date} (${report.counts.created})`)}${table(['Ticket ID','Type','Summary','Assignee','Assigned group','Current status'],report.created.map(t=>[t.id,t.kind,t.description,t.assigned,t.group,t.status]),'No tickets were created on the selected date.')}${title(`Tickets closed / resolved on ${date} (${report.counts.closed})`)}${table(['Ticket ID','Type','Summary','Assignee','Assigned group','Current status'],report.closed.map(t=>[t.id,t.kind,t.description,t.assigned,t.group,t.status]),'No tickets were closed on the selected date.')}${signature?`<div style="font-size:12px;color:#273648;margin-top:22px">${signature}</div>`:''}<p style="color:#7c8793;font-size:10px;border-top:1px solid #e6eaef;padding-top:10px;margin-top:24px">Draft report generated from a locally uploaded BMC export. Please verify the figures before sending.</p></div></body></html>`;
   return html;
+}
+export function renderEmail(report,settings,filters={},variant='legacy') {
+  return ['A','B','C','D'].includes(variant)?renderThemedEmail(report,settings,variant):renderLegacyEmail(report,settings,filters);
 }
 const utf8Base64=text=>{const bytes=new TextEncoder().encode(text);let data='';for(let i=0;i<bytes.length;i+=8192){data+=String.fromCharCode(...bytes.subarray(i,i+8192))}return btoa(data)};
 const foldBase64=s=>s.match(/.{1,76}/g)?.join('\r\n')||'';
