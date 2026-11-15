@@ -104,6 +104,27 @@ selected profile (with logo) and never `[Company name]`; and a 260-character
 unbroken summary keeps the email 800px wide. Then wait for CI on the branch
 and record the result below.
 
+## Verification results (2026-11-15, local, at commit `4f03161` + docs)
+
+- `npm ci` — exit 0.
+- `npm test` — 6 files, 61 tests passed (main app, untouched).
+- `npm run typecheck` — exit 0.
+- `npm run build:gh-pages` — built, exit 0.
+- `node --test prototype/daily-email/test/report.test.mjs` — 79 passed, 0
+  failed (was 28 at `0d2e2ba`).
+- `node --check` on every `.mjs` under `prototype/daily-email/` — all pass.
+- M7 grep — prints nothing.
+- Playwright/Chromium against `server.mjs`, fictional sample plus a fictional
+  stress CSV, sender-block mode and signature-profile mode, variants A–D:
+  124/124 checks passed. Zero console errors; preview, `.html`, `.eml` and
+  `.ps1` all show the selected variant; sign-off shows the configured sender
+  or the profile with logo (`.eml` multipart/related with Content-ID, `.ps1`
+  attaches by cid) and never a bracket placeholder; a 260-character unbroken
+  summary (plus overlong ID, type, assignee, group, URL and CJK values) keeps
+  the email exactly 800px wide; clipboard plain text is clean; L1/L2/M2
+  behaviours confirmed in the UI.
+- CI on the branch: see the last Log entry.
+
 ## Notes for next agent
 
 - Work order: H1+H2, M1+M2, M3, M4, M5, M6+M7, L1–L4, test hardening,
@@ -142,3 +163,4 @@ and record the result below.
 - 2026-11-15 — `ab13c38` Fix M6: keep pull-request CI from cancelling Pages deploys (44 prototype tests pass).
 - 2026-11-15 — `fec2665` Fix L1-L4: theme sync on import, variant fallback, docs, fixtures (48 prototype tests pass).
 - 2026-11-15 — `ce162d6` Harden theme tests: eight checks per variant on a hostile fixture (79 prototype tests pass).
+- 2026-11-15 — `4f03161` M3 follow-up: width-aware break opportunities per column (79 prototype tests pass).

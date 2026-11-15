@@ -11,6 +11,9 @@ A local-only starter project for the **Daily Pivot & Email Report** navigation i
 - Select Classic Outlook, New Outlook or Gmail. **Classic Outlook** can download a local `.ps1` helper that creates an unsent editable draft and saves a Unicode `.msg`; **New Outlook/Gmail** retain `.eml`, `.html`, or rich clipboard export. No credential capture and **no automatic sending**.
 - Includes fictional CSV sample data. The provided real Excel workbook is intentionally **not packaged**.
 
+- Email themes A–D (`lib/email-themes.mjs`) follow `docs/email-design/reference/variant-{A,B,C,D}.html`. The sign-off is either the selected signature profile (rich HTML and logo) or, when none is selected, the **Sender details** (name, job title, company, office phone) from Email settings; blank lines are left out and the email panel warns while they are incomplete. The introduction may use `{date}`; otherwise " for <report date>." is appended. **Copy formatted email** also puts a plain-text version of the report on the clipboard.
+- In-progress fix list and status: `HANDOFF.md` in this folder.
+
 ## Run
 
 Requires Node.js 20+; no npm installation or external dependencies.
