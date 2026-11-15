@@ -128,3 +128,4 @@ and record the result below.
 - 2026-11-15 — `f2cc741` Fix M5: build clipboard plain text from the report data (43 prototype tests pass).
 - 2026-11-15 — `ab13c38` Fix M6: keep pull-request CI from cancelling Pages deploys (44 prototype tests pass).
 - 2026-11-15 — `fec2665` Fix L1-L4: theme sync on import, variant fallback, docs, fixtures (48 prototype tests pass).
+- 2026-11-15 — `ce162d6` Harden theme tests: eight checks per variant on a hostile fixture (79 prototype tests pass).
