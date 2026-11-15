@@ -32,6 +32,7 @@
         <div class="section-header"><div><h2>04 / Email preview & export</h2><p>Choose an Outlook-safe email theme, preview it, then copy or download the generated HTML.</p></div></div>
         <div class="email-toolbar"><label>Email theme<select id="emailVariant"><option value="A">A · Navy band</option><option value="B">B · Ruled minimal</option><option value="C">C · Boxed grid</option><option value="D">D · Tinted panels</option></select></label><label>Email client<select id="clientChoice"><option value="classic">Classic Outlook</option><option value="new">New Outlook</option><option value="gmail">Gmail</option></select></label><label>Signature<select id="signatureChoice"></select></label><span class="spacer"></span><button id="downloadClassic" class="btn primary" hidden>Download Classic Outlook draft (.ps1)</button><button id="downloadEml" class="btn primary">Download .eml</button><button id="copyHtml" class="btn">Copy formatted email</button><button id="downloadHtml" class="btn">Download .html</button></div>
         <div id="clientNote" class="help"></div>
+        <div id="senderWarning" class="notice" role="status" hidden></div>
         <div class="email-header"><div><span>To</span><span id="previewTo">—</span></div><div><span>Cc</span><span id="previewCc">—</span></div><div><span>Subject</span><strong id="previewSubject">—</strong></div></div>
         <iframe id="emailFrame" title="Generated HTML email preview" sandbox="" referrerpolicy="no-referrer"></iframe>
         <div class="help">Export never sends messages. Classic Outlook uses a local helper to create an editable .msg using the signed-in Outlook profile. Review the report and recipients before sending.</div>
@@ -48,6 +49,10 @@
    <label>BCC addresses <small>(optional)</small><input id="bccInput" placeholder="bcc@example.com"></label>
    <label>Subject template <small>(use {date})</small><input id="subjectInput" value="Daily BMC Ticket Report – {date}"></label>
    <div class="grid-two"><label>Greeting<textarea id="greetingInput" rows="2"></textarea></label><label>Introductory message<textarea id="introInput" rows="2"></textarea></label></div>
+   <div class="divider"></div>
+   <div class="section-header"><div><h3>Sender details</h3><p>Shown under "Best regards," when no signature profile is selected. Blank lines are left out of the email.</p></div></div>
+   <div class="grid-two"><label>Sender name<input id="senderName" placeholder="e.g. Alex Example" autocomplete="off"></label><label>Job title<input id="senderTitle" placeholder="e.g. IT Executive" autocomplete="off"></label></div>
+   <div class="grid-two"><label>Company<input id="senderCompany" placeholder="e.g. Example Pte Ltd" autocomplete="off"></label><label>Office phone<input id="senderPhone" placeholder="Office phone number" autocomplete="off"></label></div>
    <div class="divider"></div>
    <div class="section-header"><div><h3>Signature profiles</h3><p>Choose a saved signature in the preview. The same profiles work for all three email clients.</p></div><button id="addSignature" class="btn small">+ New signature</button></div>
    <div class="grid-two"><label>Profile<select id="profileList"></select></label><label>Profile name<input id="profileName" placeholder="e.g. Support Team"></label></div>

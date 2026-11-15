@@ -44,8 +44,8 @@ in scope.
 
 ## Status checklist
 
-- [ ] H1 — placeholder sender text (sender fields in settings, no bracket fallback, warning)
-- [ ] H2 — rich signature / logo dropped in themed variants
+- [x] H1 — placeholder sender text (sender fields in settings, no bracket fallback, warning)
+- [x] H2 — rich signature / logo dropped in themed variants
 - [ ] M1 — broken intro sentence (". for …")
 - [ ] M2 — email misstates its scope (filters, caption, disclaimer)
 - [ ] M3 — long values widen the email past 800px
@@ -96,9 +96,11 @@ and record the result below.
 
 ## Notes for next agent
 
-- Nothing started yet. Work order: H1+H2, M1+M2, M3, M4, M5, M6+M7, L1–L4,
-  test hardening, verification.
+- Work order: H1+H2, M1+M2, M3, M4, M5, M6+M7, L1–L4, test hardening,
+  verification. Each fix commit is followed by a small `HANDOFF: record …`
+  commit that adds its hash to the Log.
+- H1/H2: when a signature profile with content is selected it replaces the whole sign-off (no automatic "Best regards,"); an empty profile falls back to the sender block. Pasted signature images are not resized in the email HTML (Word ignores max-width), so a pasted logo wider than 736px could still widen the email; images added via Insert PNG/JPEG are already capped at 820x320 on import. Not in the review list; left as is.
 
 ## Log
 
-- 2026-11-15 — (this commit) Add HANDOFF.md and AGENTS.md pointer.
+- 2026-11-15 — `7577e9b` Add HANDOFF.md and AGENTS.md pointer.
