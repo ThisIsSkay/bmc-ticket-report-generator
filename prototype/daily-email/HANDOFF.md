@@ -117,6 +117,19 @@ and record the result below.
 - M6: the fix lives in this branch's deploy.yml. PR runs use the PR merge commit's workflow so they are covered now; `main`'s own copy only changes when PR #11 merges.
 - L1: the import handler also syncs the Email client dropdown (same desync bug, one extra assignment).
 - Tests: the hardening block uses a small tag walker (`parseElements`) in the test file; no new dependencies.
+- M3 follow-up (found by the browser pass): breaking only runs longer than 24
+  characters was not enough. Several medium-length unbroken values in one row
+  (or wide glyphs such as W, M, @, CJK) still stretched variants A, B and D
+  to 803-810px. `softBreak(escaped,maxPx,fontPx)` is now width-aware: it uses
+  Arial advance widths and each column's content width, and adds a zero-width
+  space wherever a run would not fit its cell (as well as at least every 20
+  characters in runs over 24). Values that fit, such as 15-character ticket
+  IDs, get no hidden characters. `table-layout:fixed` was tried and rejected:
+  browsers add cell padding to the `width` attributes and the table grew to
+  922px.
+- Not verifiable here: rendering in real Classic Outlook (Word engine). All
+  width and layout checks were done in Chromium. Someone with Outlook should
+  open one generated draft per variant before the PR leaves draft.
 
 ## Log
 

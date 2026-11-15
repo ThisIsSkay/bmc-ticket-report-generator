@@ -19,22 +19,50 @@ export const normalizeVariant=value=>EMAIL_VARIANTS.includes(value)?value:'A';
 const text=v=>{if(typeof v==='number'&&!Number.isFinite(v))return '—';const s=String(v??'').trim();return s||'—';};
 const esc=v=>text(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const multiline=v=>esc(v).replace(/\r?\n/g,'<br />');
-/**
- * Break opportunity for long unbroken values. Classic Outlook (Word) ignores
- * word-break, so a zero-width space is inserted every 20 characters inside any
- * non-whitespace run longer than 24. Works on already-escaped text and never
- * splits an entity such as &amp;.
+/*
+ * Arial advance widths (1/1000 em) for U+0020..U+007E, used only to decide
+ * where a long unbroken value needs a break opportunity. Other characters are
+ * over-estimated, which is harmless: an unused zero-width space is invisible.
  */
-export function softBreak(escaped){
+const ARIAL_WIDTHS=[278,278,355,556,556,889,667,191,333,333,389,584,278,333,278,278,556,556,556,556,556,556,556,556,556,556,278,278,584,584,584,556,1015,
+ 667,667,722,722,667,611,778,722,278,500,667,556,833,722,778,667,778,722,667,611,722,667,944,667,667,611,278,278,278,469,556,333,
+ 556,556,500,556,556,278,556,556,222,222,500,222,833,556,556,556,556,333,500,278,556,500,722,500,500,500,334,260,334,584];
+function charEm(ch){
+ const code=ch.codePointAt(0);
+ if(code>=0x20&&code<=0x7E)return ARIAL_WIDTHS[code-0x20]/1000;
+ return code>0xFFFF?1.4:code>=0x2E80?1.1:0.95;
+}
+const ENTITY_CHAR={'&amp;':'&','&lt;':'<','&gt;':'>','&quot;':'"','&#39;':"'"};
+/**
+ * Break opportunities for long unbroken values. Classic Outlook (Word)
+ * ignores word-break, so zero-width spaces are inserted instead:
+ *  - any non-whitespace run longer than 24 characters gets one at least every
+ *    20 characters;
+ *  - when the cell's content width is known (maxPx at fontPx), also wherever
+ *    the run would otherwise be wider than the cell, so the columns can always
+ *    shrink to their designed widths and the email stays 800px wide.
+ * Values that already fit (ticket IDs, ordinary words) are left untouched.
+ * Works on already-escaped text and never splits an entity such as &amp;.
+ */
+export function softBreak(escaped,maxPx=Infinity,fontPx=12){
  return String(escaped).split(/(\s+)/).map(run=>{
-  const units=run.match(/&(?:#\d+|#x[\da-f]+|[a-z][a-z\d]*);|[\s\S]/giu)||[];
-  if(/^\s*$/.test(run)||units.length<=24)return run;
-  const parts=[];for(let i=0;i<units.length;i+=20)parts.push(units.slice(i,i+20).join(''));
-  return parts.join('&#8203;');
+  if(/^\s*$/.test(run))return run;
+  const units=run.match(/&(?:#\d+|#x[\da-f]+|[a-z][a-z\d]*);|[\s\S]/giu)||[],maxChars=units.length>24?20:Infinity;
+  let out='',chars=0,width=0;
+  for(const unit of units){
+   const w=charEm(unit.length>1&&unit[0]==='&'?ENTITY_CHAR[unit]||'W':unit)*fontPx;
+   if(chars&&(chars>=maxChars||width+w>maxPx)){out+='&#8203;';chars=0;width=0;}
+   out+=unit;chars++;width+=w;
+  }
+  return out;
  }).join('');
 }
-const cellText=v=>softBreak(esc(v));
 const WRAP='word-wrap:break-word;';
+/** Left + right padding of a CSS padding shorthand, in px. */
+const sidePadding=pad=>{const v=pad.split(/\s+/).map(parseFloat);return v.length===1?2*v[0]:v.length<4?2*v[1]:v[1]+v[3];};
+const fontPx=style=>parseFloat(/font-size:(\d+)px/.exec(style)?.[1]||'12');
+/** Escaped cell text that can always wrap inside a column of the given width (1px spare for a cell border). */
+const cellText=(v,width,pad,style)=>softBreak(esc(v),width-sidePadding(pad)-1,fontPx(style));
 const longDate=date=>{const m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(date);if(!m)return date;return new Intl.DateTimeFormat('en-SG',{day:'numeric',month:'long',year:'numeric'}).format(new Date(+m[1],+m[2]-1,+m[3]));};
 
 const senderKeys=['name','title','company','phone'];
@@ -153,7 +181,7 @@ const SUMMARY_WIDTHS=[376,120,120,120];
 function summaryTable(t,rows,label){
  const head=[label,'Created','Closed','Outstanding'].map((name,c)=>{const align=c?t.numAlign:'left';return cell('th',{align,width:SUMMARY_WIDTHS[c],bg:t.head.bg,border:t.head.border,pad:padFor(t.head.sumPad,c,4),text:t.head.sum,textAlign:align},name);}).join('');
  const stripe=i=>i%2?t.row.stripe:'';
- const body=rows.map((r,i)=>`<tr>${[r.name,r.created,r.closed,r.outstanding].map((value,c)=>cell('td',{align:c?t.numAlign:'',bg:stripe(i),border:t.row.border(i,i===rows.length-1),pad:padFor(t.row.sumPad,c,4),text:t.row.sum,wrap:!c,textAlign:c?t.numAlign:''},c?esc(value):cellText(value))).join('')}</tr>`);
+ const body=rows.map((r,i)=>`<tr>${[r.name,r.created,r.closed,r.outstanding].map((value,c)=>cell('td',{align:c?t.numAlign:'',bg:stripe(i),border:t.row.border(i,i===rows.length-1),pad:padFor(t.row.sumPad,c,4),text:t.row.sum,wrap:!c,textAlign:c?t.numAlign:''},c?esc(value):cellText(value,SUMMARY_WIDTHS[0],padFor(t.row.sumPad,0,4),t.row.sum))).join('')}</tr>`);
  if(!rows.length)body.push(`<tr>${cell('td',{colspan:4,border:t.row.border(0,true),pad:padFor(t.row.sumPad,0,4,true),text:t.row.sum},'No tickets matched the selected scope.')}</tr>`);
  const totals=rows.reduce((sum,r)=>[sum[0]+count(r.created),sum[1]+count(r.closed),sum[2]+count(r.outstanding)],[0,0,0]);
  body.push(`<tr>${['TOTAL',...totals].map((value,c)=>cell('td',{align:c?t.numAlign:'',bg:t.total.bg,border:t.total.border,pad:padFor(t.total.pad,c,4),text:t.total.text,textAlign:c?t.numAlign:''},value)).join('')}</tr>`);
@@ -162,7 +190,7 @@ function summaryTable(t,rows,label){
 const TICKET_HEADS=['Ticket ID','Type','Summary','Assignee','Assigned group','Current status'],TICKET_WIDTHS=[132,108,198,96,116,86];
 function ticketTable(t,tickets){
  const head=TICKET_HEADS.map((name,c)=>cell('th',{align:'left',width:TICKET_WIDTHS[c],bg:t.head.bg,border:t.head.border,pad:padFor(t.head.tixPad,c,6),text:t.head.tix,textAlign:'left'},name)).join('');
- const body=tickets.map((values,i)=>`<tr>${values.map((value,c)=>cell('td',{valign:'top',bg:i%2?t.row.stripe:'',border:t.row.border(i,false),pad:padFor(t.row.tixPad,c,6),text:t.row.tix,wrap:true},cellText(value))).join('')}</tr>`);
+ const body=tickets.map((values,i)=>`<tr>${values.map((value,c)=>cell('td',{valign:'top',bg:i%2?t.row.stripe:'',border:t.row.border(i,false),pad:padFor(t.row.tixPad,c,6),text:t.row.tix,wrap:true},cellText(value,TICKET_WIDTHS[c],padFor(t.row.tixPad,c,6),t.row.tix))).join('')}</tr>`);
  // Empty state: one full-width row styled as a normal data row.
  if(!tickets.length)body.push(`<tr>${cell('td',{colspan:6,valign:'top',border:t.row.border(0,false),pad:padFor(t.row.tixPad,0,6,true),text:t.row.tix},'No tickets were created on this date.')}</tr>`);
  return dataTable(t,head,body);
@@ -206,7 +234,7 @@ export function renderThemedEmail(report,settings={},filters={},variant='A'){
  const body=[
   v==='C'?topBar(date):'',
   `<tr><td style="${t.greeting.td}"><p style="margin:0 0 ${t.greeting.gap} 0;${F}${t.greeting.p}">${multiline(d.greeting)}</p><p style="margin:0;${F}${t.greeting.p}">${multiline(d.introLine)}</p></td></tr>`,
-  HEADERS[v](title,softBreak(esc(d.caption))),
+  HEADERS[v](title,softBreak(esc(d.caption),640,13)),
   KPIS[v](d.kpis),
   section(t,'Summary by assigned group'),summaryTable(t,d.byGroup,'Assigned group'),
   section(t,'Summary by ticket type'),summaryTable(t,d.byType,'Ticket type'),

@@ -352,6 +352,14 @@ test('M3: long unbroken values always get a break opportunity and never split an
  assert.equal(softBreak('x'.repeat(24)),'x'.repeat(24));
  assert.equal(softBreak('x'.repeat(25)),'x'.repeat(20)+'&#8203;'+'x'.repeat(5));
  assert.equal(softBreak('a'.repeat(19)+'&amp;'+'b'.repeat(10)),'a'.repeat(19)+'&amp;&#8203;'+'b'.repeat(10));
+ // Width-aware: a run that is too wide for its cell is broken even when it is short...
+ assert.equal(softBreak('W'.repeat(12),76,12),'WWWWWW&#8203;WWWWWW');
+ assert.equal(softBreak('NCC_INFRASTRUCTURE_OPS',96,12).replace(/&#8203;/g,''),'NCC_INFRASTRUCTURE_OPS');
+ assert.ok(softBreak('NCC_INFRASTRUCTURE_OPS',96,12).split('&#8203;').length>=2);
+ // ...while a 15-character ticket ID in the 132px ID column, or ordinary words, are untouched.
+ assert.equal(softBreak('INC000000412871',110,12),'INC000000412871');
+ assert.equal(softBreak('Laptop unable to connect to office Wi-Fi',176,12),'Laptop unable to connect to office Wi-Fi');
+ assert.equal(softBreak('&amp;'.repeat(30),40,12).split('&#8203;').every(chunk=>/^(&amp;)+$/.test(chunk)),true);
  const long={summary:'S'.repeat(260),url:'https://intranet.example.com/'+'path/'.repeat(30)+'?a=1&b=<2>',group:'NCC_'+'VERYLONGGROUPNAME_'.repeat(8)};
  const t={...report,
   created:report.created.map((v,i)=>i?v:{...v,id:'INC'+'9'.repeat(40),description:long.summary,assigned:long.url,group:long.group,status:'Pending&'.repeat(10)}),
@@ -362,7 +370,13 @@ test('M3: long unbroken values always get a break opportunity and never split an
   assert.ok(worst.length<=24,variant+': unbroken run of '+worst.length+' chars: '+worst);
   assert.doesNotMatch(html,/&[a-z#\d]*&#8203;[a-z#\d]*;/i,variant);
   assert.match(html,/word-wrap:break-word;/,variant);
-  assert.ok(html.includes(softBreak('S'.repeat(260))),variant);
+  assert.doesNotMatch(html,/table-layout/,variant);
+  // Every chunk of the 260-character summary fits the 198px Summary column.
+  const summaryCell=/>(S[S&#8203;]+)<\/td>/.exec(html)[1],chunks=summaryCell.split('&#8203;');
+  assert.equal(chunks.join(''),'S'.repeat(260),variant);
+  assert.ok(chunks.every(chunk=>chunk.length<=20),variant);
+  // Values that already fit keep no hidden characters (ticket IDs must stay searchable).
+  assert.match(html,/>SRV003<\/td>/,variant);
  }
 });
 test('M5: clipboard plain text is built from the report, unescaped, with KPIs, totals and tickets',()=>{
