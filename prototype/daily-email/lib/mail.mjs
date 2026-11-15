@@ -25,7 +25,7 @@ function renderLegacyEmail(report,settings,filters={}) {
   return html;
 }
 export function renderEmail(report,settings,filters={},variant='legacy') {
-  return ['A','B','C','D'].includes(variant)?renderThemedEmail(report,settings,variant):renderLegacyEmail(report,settings,filters);
+  return ['A','B','C','D'].includes(variant)?renderThemedEmail(report,settings,filters,variant):renderLegacyEmail(report,settings,filters);
 }
 const utf8Base64=text=>{const bytes=new TextEncoder().encode(text);let data='';for(let i=0;i<bytes.length;i+=8192){data+=String.fromCharCode(...bytes.subarray(i,i+8192))}return btoa(data)};
 const foldBase64=s=>s.match(/.{1,76}/g)?.join('\r\n')||'';

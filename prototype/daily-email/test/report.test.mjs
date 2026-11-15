@@ -1,7 +1,7 @@
 import {test} from 'node:test';import assert from 'node:assert/strict';
 import {parseCsv,detectColumns,normalizeTickets,generateReport,dateOnly,mandatoryColumns,updateReportWarnings} from '../lib/report-core.mjs';
 import {renderEmail,renderEml} from '../lib/mail.mjs';
-import {normalizeSender,senderWarning} from '../lib/email-themes.mjs';
+import {normalizeSender,senderWarning,introSentence,scopeCaption} from '../lib/email-themes.mjs';
 import {sanitizeSignatureHtml,signatureEmailHtml} from '../lib/signature-html.mjs';
 import {renderClassicOutlookScript} from '../lib/classic-outlook.mjs';
 import {parseXlsx} from '../lib/xlsx-lite.mjs';
@@ -110,6 +110,36 @@ test('H2: signature markup is allowlist-sanitized without a DOM and cannot break
  assert.equal(signatureEmailHtml('<img src="data:image/png;base64,'+PNG+'">'),'<img src="data:image/png;base64,'+PNG+'" alt="Signature image" style="max-width:100%;height:auto">');
 });
 
+test('M1: default and custom intros never produce a broken ". for" sentence',()=>{
+ const app=readFileSync(new URL('../app.mjs',import.meta.url),'utf8');
+ const appDefault=/intro:'([^']+)'/.exec(app)[1];
+ assert.match(appDefault,/\.$/);
+ const intros=[undefined,'',appDefault,'Daily update.','Daily update...  ','Here is the report!','Summary:','No punctuation','Report for {date} follows.','...'];
+ for(const variant of VARIANTS)for(const intro of intros){
+  const html=renderEmail(report,{intro,signatures:[],signatureId:''},{excludeEvents:true},variant);
+  assert.doesNotMatch(html,/[.!?:;,] for /,variant+' '+intro);
+  assert.doesNotMatch(html,/\{date\}/);
+  assert.equal((html.match(/10 November 2026/g)||[]).length,1,variant+' '+intro);
+ }
+ assert.equal(introSentence(appDefault,'10 November 2026'),'Please find below the daily BMC ticket activity report for 10 November 2026.');
+ assert.equal(introSentence('Report for {date} follows.','10 November 2026'),'Report for 10 November 2026 follows.');
+ assert.equal(introSentence('...','10 November 2026'),'Please find below the daily ticket activity summary for 10 November 2026.');
+});
+test('M2: caption and disclaimer state the scope that was actually applied',()=>{
+ const withEvents=generateReport(tickets,{reportDate:'2026-11-10',excludeEvents:false,groupFilter:'NOC'});
+ for(const variant of VARIANTS){
+  const html=renderEmail(withEvents,{signatures:[],signatureId:''},{excludeEvents:false,groupFilter:'NOC',contractFilter:'All'},variant);
+  assert.match(html,/EVT005/,variant);
+  assert.doesNotMatch(html,/excluded|exclude monitoring/i,variant);
+  assert.match(html,/>Daily ticket activity · Group: NOC<\/p>/,variant);
+  assert.match(html,/\(SGT\) and include monitoring events\./,variant);
+  const scoped=renderEmail(report,{signatures:[],signatureId:''},{excludeEvents:true,groupFilter:'A&B <x>',contractFilter:'AAA'},variant);
+  assert.match(scoped,/>Daily ticket activity · Group: A&amp;B &lt;x&gt; · Contract: AAA · Monitoring events excluded<\/p>/,variant);
+  assert.match(scoped,/\(SGT\) and exclude monitoring events\./,variant);
+ }
+ assert.equal(scopeCaption({groupFilter:'All',contractFilter:'All',excludeEvents:true}),'Daily ticket activity · Monitoring events excluded');
+ assert.equal(scopeCaption(),'Daily ticket activity');
+});
 test('Classic Outlook helper produces an unsent editable draft and Unicode MSG',()=>{
  const settings={to:"team@example.com",cc:"manager@example.com",bcc:"",subject:"Today's BMC – {date}"};
  const script=renderClassicOutlookScript('<html><body><b>Daily report</b></body></html>',settings,'2026-11-10');

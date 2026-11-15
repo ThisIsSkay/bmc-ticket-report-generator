@@ -46,8 +46,8 @@ in scope.
 
 - [x] H1 — placeholder sender text (sender fields in settings, no bracket fallback, warning)
 - [x] H2 — rich signature / logo dropped in themed variants
-- [ ] M1 — broken intro sentence (". for …")
-- [ ] M2 — email misstates its scope (filters, caption, disclaimer)
+- [x] M1 — broken intro sentence (". for …")
+- [x] M2 — email misstates its scope (filters, caption, disclaimer)
 - [ ] M3 — long values widen the email past 800px
 - [ ] M4 — variants B, C, D do not match their reference designs
 - [ ] M5 — plain-text clipboard output unusable
@@ -100,6 +100,7 @@ and record the result below.
   verification. Each fix commit is followed by a small `HANDOFF: record …`
   commit that adds its hash to the Log.
 - H1/H2: when a signature profile with content is selected it replaces the whole sign-off (no automatic "Best regards,"); an empty profile falls back to the sender block. Pasted signature images are not resized in the email HTML (Word ignores max-width), so a pasted logo wider than 736px could still widen the email; images added via Insert PNG/JPEG are already capped at 820x320 on import. Not in the review list; left as is.
+- M2: when EVT monitoring is included the disclaimer reads "… (SGT) and include monitoring events." (wording chosen by the agent; the reference only covers the excluded case).
 
 ## Log
 
