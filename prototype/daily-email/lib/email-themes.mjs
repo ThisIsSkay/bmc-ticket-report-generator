@@ -217,3 +217,36 @@ export function renderThemedEmail(report,settings={},filters={},variant='A'){
  ].join('');
  return `${DOCTYPE}<html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>${title}</title></head><body style="margin:0;padding:0;background-color:#FFFFFF;"><table role="presentation" width="800" cellpadding="0" cellspacing="0" border="0" style="width:800px;background-color:#FFFFFF;border-collapse:collapse;"><tbody>${body}</tbody></table></body></html>`;
 }
+
+const decodeEntities=v=>v.replace(/&nbsp;/g,' ').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&amp;/g,'&');
+function plainSignature(settings,sender){
+ const profile=settings.signatures?.find(s=>s.id&&s.id===settings.signatureId);
+ const fromHtml=html=>decodeEntities(String(html||'').replace(/<br\b[^>]*>|<\/(?:p|div|tr|li)>/gi,'\n').replace(/<[^>]*>/g,''));
+ const lines=(profile?String(profile.content||'').trim()||fromHtml(profile.html):'').split(/\r?\n/).map(line=>line.trim()).filter(Boolean);
+ if(lines.length)return lines;
+ return ['Best regards,',sender.name,sender.title,[sender.company,sender.phone].filter(Boolean).join(' · ')].filter(Boolean);
+}
+/**
+ * Plain-text version of the same email for the clipboard's text/plain part.
+ * Built from the report data (never by stripping the HTML), so values are
+ * unescaped and no markup, entities or layout placeholders leak in.
+ */
+export function renderPlainText(report,settings={},filters={}){
+ const d=dataFor(report,settings,filters);
+ const summary=(title,rows)=>{
+  const totals=rows.reduce((sum,r)=>[sum[0]+count(r.created),sum[1]+count(r.closed),sum[2]+count(r.outstanding)],[0,0,0]);
+  const line=(name,created,closed,outstanding)=>`- ${text(name)}: Created ${text(created)} | Closed ${text(closed)} | Outstanding ${text(outstanding)}`;
+  return [title,...(rows.length?rows.map(r=>line(r.name,r.created,r.closed,r.outstanding)):['No tickets matched the selected scope.']),line('TOTAL',...totals)];
+ };
+ return [
+  d.greeting,d.introLine,'',
+  `BMC Daily Ticket Report — ${d.reportDate}`,d.caption,'',
+  ...d.kpis.map(([label,n])=>`${label}: ${text(n)}`),'',
+  ...summary('Summary by assigned group',d.byGroup),'',
+  ...summary('Summary by ticket type',d.byType),'',
+  `Tickets created on ${d.reportDate} (${d.createdTickets.length})`,
+  ...(d.createdTickets.length?d.createdTickets.map((values,i)=>`${i+1}. ${values.map(text).join(' | ')}`):['No tickets were created on this date.']),'',
+  ...plainSignature(settings,d.sender),'',
+  d.disclaimer,
+ ].join('\n');
+}

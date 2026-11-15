@@ -1,6 +1,6 @@
 import {test} from 'node:test';import assert from 'node:assert/strict';
 import {parseCsv,detectColumns,normalizeTickets,generateReport,dateOnly,mandatoryColumns,updateReportWarnings} from '../lib/report-core.mjs';
-import {renderEmail,renderEml} from '../lib/mail.mjs';
+import {renderEmail,renderEml,renderPlainText} from '../lib/mail.mjs';
 import {normalizeSender,senderWarning,introSentence,scopeCaption,softBreak} from '../lib/email-themes.mjs';
 import {sanitizeSignatureHtml,signatureEmailHtml} from '../lib/signature-html.mjs';
 import {renderClassicOutlookScript} from '../lib/classic-outlook.mjs';
@@ -213,6 +213,30 @@ test('M3: long unbroken values always get a break opportunity and never split an
   assert.match(html,/word-wrap:break-word;/,variant);
   assert.ok(html.includes(softBreak('S'.repeat(260))),variant);
  }
+});
+test('M5: clipboard plain text is built from the report, unescaped, with KPIs, totals and tickets',()=>{
+ const {report:sampleReport,settings}=sampleFixture();
+ sampleReport.created[0].description='Printer <HP> & "scanner"';
+ const plain=renderPlainText(sampleReport,{...settings,emailSender:{name:'Alex Example',title:'IT Executive',company:'Example Pte Ltd',phone:''}},{excludeEvents:true,groupFilter:'All'});
+ assert.doesNotMatch(plain,/&nbsp;|&lt;|&gt;|&amp;|&quot;|&#|LOGO|<\/?(?:table|tr|td|th|p|h1|h2|br|html|title)\b/i);
+ assert.equal(plain.split('BMC Daily Ticket Report').length-1,1);
+ assert.ok(plain.startsWith('Hi Team,\nPlease find below the daily ticket activity summary for 10 November 2026.\n\nBMC Daily Ticket Report — 2026-11-10\nDaily ticket activity · Monitoring events excluded\n'));
+ assert.match(plain,/^Created on date: 5\nClosed\/resolved: 3\nOutstanding: 5$/m);
+ assert.match(plain,/^Summary by assigned group\n- NCC_EUC: Created 4 \| Closed 2 \| Outstanding 2\n- NCC_NETWORK: .*\n- NCC_SYSTEM: .*\n- TOTAL: Created 5 \| Closed 3 \| Outstanding 5$/m);
+ assert.match(plain,/^Summary by ticket type\n- Incident: Created 3 \| Closed 2 \| Outstanding 3\n(?:.*\n){2}- TOTAL: Created 5 \| Closed 3 \| Outstanding 5$/m);
+ assert.match(plain,/^Tickets created on 2026-11-10 \(5\)\n1\. INC000000412871 \| Incident \| Printer <HP> & "scanner" \| Daniel Lim \| NCC_EUC \| In Progress$/m);
+ assert.match(plain,/^5\. INC000000412927 \| /m);
+ assert.match(plain,/\nBest regards,\nAlex Example\nIT Executive\nExample Pte Ltd\n\nThis is an automated report/);
+ // Selected signature profile is used as text; empty report states are spelled out.
+ const empty=generateReport(tickets,{reportDate:'2031-01-01',groupFilter:'Nobody'});
+ const emptyPlain=renderPlainText(empty,{signatureId:'logo',signatures:[logoProfile]},{excludeEvents:false,groupFilter:'Nobody'});
+ assert.match(emptyPlain,/Daily ticket activity · Group: Nobody\n/);
+ assert.match(emptyPlain,/No tickets matched the selected scope\.\n- TOTAL: Created 0 \| Closed 0 \| Outstanding 0/);
+ assert.match(emptyPlain,/No tickets were created on this date\.\n\nRegards,\nExample Team\n\nThis is/);
+ assert.doesNotMatch(emptyPlain,/undefined|null|NaN|data:image|Best regards/);
+ const app=readFileSync(new URL('../app.mjs',import.meta.url),'utf8');
+ assert.match(app,/const plain=renderPlainText\(state\.report,emailSettings\(\),filters\(\)\)/);
+ assert.doesNotMatch(app,/html\.replace\(\/<\[\^>\]\*>\/g/);
 });
 test('Classic Outlook helper produces an unsent editable draft and Unicode MSG',()=>{
  const settings={to:"team@example.com",cc:"manager@example.com",bcc:"",subject:"Today's BMC – {date}"};

@@ -1,6 +1,6 @@
 import {detectColumns, mandatoryColumns, normalizeTickets, generateReport, availableFilterValues, lastActivityDate, parseCsv, updateReportWarnings} from './lib/report-core.mjs';
 import {parseXlsx} from './lib/xlsx-lite.mjs';
-import {renderEmail, renderEml, buildSubject} from './lib/mail.mjs';
+import {renderEmail, renderEml, renderPlainText, buildSubject} from './lib/mail.mjs';
 import {normalizeSender, senderWarning} from './lib/email-themes.mjs';
 import {renderClassicOutlookScript} from './lib/classic-outlook.mjs';
 import {sanitizeSignatureHtml, plainToSignatureHtml, imageFileToDataUrl} from './lib/signature-html.mjs';
@@ -137,7 +137,7 @@ function refreshReport(){if(!state.tickets.length||!$('dateInput').value){$('res
  const html=makeEmail();$('emailFrame').srcdoc=html;updateSenderWarning();
  text('previewTo',state.settings.to||'(not configured)');text('previewCc',state.settings.cc||'—');text('previewSubject',buildSubject(state.settings.subject,r.reportDate));updateClientNotes();
 }
-async function copyEmail(){try{const html=makeEmail();const plain=html.replace(/<[^>]*>/g,' ').replace(/\s+/g,' ').trim();
+async function copyEmail(){try{if(!state.report)throw Error('Load a report first.');const html=makeEmail();const plain=renderPlainText(state.report,emailSettings(),filters());
  if(navigator.clipboard?.write&&typeof ClipboardItem!=='undefined')await navigator.clipboard.write([new ClipboardItem({'text/html':new Blob([html],{type:'text/html'}),'text/plain':new Blob([plain],{type:'text/plain'})})]);
  else if(navigator.clipboard?.writeText){await navigator.clipboard.writeText(plain);toast('Formatted clipboard unsupported: copied plain text.');return;}else throw Error('Clipboard unavailable. Download HTML instead.');
  toast('Formatted email copied.');}catch(err){toast(err.message||'Copy failed. Use Download HTML.');}}

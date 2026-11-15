@@ -1,5 +1,6 @@
 /** Client-neutral HTML email and RFC 5322 .eml generation. Never sends anything. */
 import {renderThemedEmail} from './email-themes.mjs';
+export {renderPlainText} from './email-themes.mjs';
 const escapeHtml = v => String(v ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const tableCell='border:1px solid #d8dfe7;padding:7px 9px;font-size:12px;vertical-align:top;line-height:1.45';
 const thCell=`${tableCell};background:#f1f4f8;color:#223248;text-align:left;font-weight:600`;

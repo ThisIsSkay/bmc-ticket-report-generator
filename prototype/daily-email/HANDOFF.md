@@ -50,7 +50,7 @@ in scope.
 - [x] M2 — email misstates its scope (filters, caption, disclaimer)
 - [x] M3 — long values widen the email past 800px
 - [x] M4 — variants B, C, D do not match their reference designs
-- [ ] M5 — plain-text clipboard output unusable
+- [x] M5 — plain-text clipboard output unusable
 - [ ] M6 — pull-request CI can cancel production Pages deploys
 - [x] M7 — personal data in `docs/email-design/` sender blocks
 - [ ] L1 — settings import desyncs the selected theme
