@@ -14,12 +14,6 @@ test('date parsing rejects impossible dates and handles Excel serials',()=>{asse
 test('new/closed include both lifecycle events and skip monitoring',()=>{assert.equal(report.counts.created,3);assert.equal(report.counts.closed,2);assert.equal(report.counts.pending,1);assert.equal(report.created.filter(t=>t.id==='SRV003').length,1);assert.equal(report.closed.filter(t=>t.id==='SRV003').length,1)});
 test('group pivot reconciles with created/closed/pending',()=>{assert.deepEqual(report.pivot.reduce((acc,r)=>acc.map((x,i)=>x+[r.created,r.closed,r.pending][i]),[0,0,0]),[3,2,1])});
 test('email HTML escapes user-controlled descriptions',()=>{const t={...report,created:report.created.map(v=>({...v,description:'<script>alert("x")</script>'}))};const html=renderEmail(t,{greeting:'Hi',signatures:[],signatureId:''},{excludeEvents:true});assert.match(html,/&lt;script&gt;/);assert.doesNotMatch(html,/<script>/)});
-test('email themes render all four Outlook-safe variants',()=>{
- for(const variant of ['A','B','C','D']){
-   const html=renderEmail(report,{signatures:[],signatureId:''},{excludeEvents:true},variant);
-   assert.match(html,/width="800"/);assert.match(html,/width="736"/);assert.doesNotMatch(html,/class\s*=/i);assert.doesNotMatch(html,/<style\b/i);assert.match(html,/font-family:Arial/);
- }
-});
 test('email themes escape ticket fields',()=>{const t={...report,created:report.created.map(v=>({...v,description:'Printer <HP> & "scanner"'}))};const html=renderEmail(t,{signatures:[],signatureId:''},{excludeEvents:true},'D');assert.match(html,/Printer &lt;HP&gt; &amp; &quot;scanner&quot;/);assert.doesNotMatch(html,/Printer <HP>/)});
 test('eml includes unsent marker, recipients, and encoded HTML',()=>{const html=renderEmail(report,{greeting:'Hello',signatures:[]},{excludeEvents:true});const eml=renderEml(html,{to:'team@example.com',cc:'manager@example.com',subject:'BMC {date}'},'2026-11-10');assert.match(eml,/X-Unsent: 1/);assert.match(eml,/To: team@example.com/);assert.match(eml,/Subject: BMC 2026-11-10/);assert.match(eml,/Content-Transfer-Encoding: base64/);});
 
@@ -112,6 +106,160 @@ test('H2: signature markup is allowlist-sanitized without a DOM and cannot break
  assert.equal(signatureEmailHtml('<td colspan="2" rowspan="99">x'),'<td colspan="2" style="font-family:Arial,Helvetica,sans-serif">x</td>');
  assert.equal(signatureEmailHtml('<img src="data:image/png;base64,'+PNG+'">'),'<img src="data:image/png;base64,'+PNG+'" alt="Signature image" style="max-width:100%;height:auto">');
 });
+
+
+/* ---------- Theme hardening: every check runs for all four variants ---------- */
+/** Tiny tag walker for the generated email: elements with attributes, parent links and direct (own) text. */
+function parseElements(html){
+ const elements=[],stack=[],re=/<!--[\s\S]*?-->|<(\/?)([a-zA-Z][a-zA-Z0-9]*)((?:[^>"']|"[^"]*"|'[^']*')*)>/g,VOID=new Set(['br','img','meta']);
+ let pos=0,m;
+ const addText=chunk=>{if(stack.length)stack[stack.length-1].ownText+=chunk;};
+ while((m=re.exec(html))){
+  addText(html.slice(pos,m.index));pos=re.lastIndex;
+  if(!m[2])continue;
+  const tag=m[2].toLowerCase();
+  if(m[1]){while(stack.length&&stack.pop().tag!==tag);continue;}
+  const attrs={};for(const a of m[3].matchAll(/([a-zA-Z-]+)\s*=\s*"([^"]*)"/g))attrs[a[1].toLowerCase()]=a[2];
+  const element={tag,attrs,ownText:'',parent:stack[stack.length-1]||null,children:[]};
+  if(element.parent)element.parent.children.push(element);
+  elements.push(element);
+  if(!VOID.has(tag)&&!/\/\s*$/.test(m[3]))stack.push(element);
+ }
+ return elements;
+}
+const declarations=style=>String(style||'').split(';').map(part=>part.trim()).filter(Boolean).map(part=>{const at=part.indexOf(':');return [part.slice(0,at).trim().toLowerCase(),part.slice(at+1).trim()];});
+const meaningful=textNode=>textNode.replace(/&nbsp;|&#8203;|\s/g,'');
+const textTokens=html=>html.slice(html.indexOf('<body')).replace(/&#8203;/g,'').split(/<[^>]*>/).map(t=>t.trim()).filter(t=>t&&t!=='&nbsp;');
+const NUMBER_BEFORE_LABEL={A:true,B:false,C:false,D:true};
+/** KPI values, both TOTAL rows and created-ticket row count, read back out of the rendered HTML. */
+function figures(html,variant){
+ const tokens=textTokens(html);
+ const kpis=['Created on date','Closed/resolved','Outstanding'].map(label=>{const at=tokens.indexOf(label);assert.ok(at>0,label);return tokens[at+(NUMBER_BEFORE_LABEL[variant]?-1:1)];});
+ const totals=tokens.map((t,i)=>t==='TOTAL'?tokens.slice(i+1,i+4):null).filter(Boolean);
+ const tables=parseElements(html).filter(e=>e.tag==='table'&&!e.attrs.role);
+ const rowsOf=table=>table.children.find(c=>c.tag==='tbody').children;
+ return {kpis,totals,tables,rowsOf,ticketRows:rowsOf(tables[2]).filter(row=>!row.children[0].attrs.colspan),heading:/Tickets created on [\d-]+ \((\d+)\)/.exec(html)[1]};
+}
+const HOSTILE={summary:'<script>alert("x")</script>',mixed:'Printer <HP> & "scanner"',group:'R&D <Ops> "A" \'B\'',type:'<b>Bold</b> & Type',id:'INC\'1"<x>'};
+function hostileReport(){
+ const created=[
+  {id:HOSTILE.id,kind:HOSTILE.type,description:HOSTILE.summary,assigned:'<img src=x onerror=alert(1)>',group:HOSTILE.group,status:'Pending & <waiting>'},
+  {id:'INC002',kind:'Incident',description:HOSTILE.mixed,assigned:'Alex Example',group:'EUC',status:'Assigned'},
+  {id:'INC003',kind:null,description:undefined,assigned:'',group:'   ',status:null},
+  {id:undefined,kind:'',description:'',assigned:undefined,group:null,status:''},
+ ];
+ return {reportDate:'2026-11-10',counts:{created:4,closed:3,pending:6},
+  pivot:[{group:HOSTILE.group,created:1,closed:1,pending:2},{group:'EUC',created:1,closed:2,pending:3},{group:'',created:2,closed:0,pending:1}],
+  byType:[{group:HOSTILE.type,created:1,closed:0,pending:1},{group:'Incident',created:1,closed:3,pending:4},{group:null,created:2,closed:0,pending:1}],
+  created,closed:[]};
+}
+const hostileSender={emailSender:{name:'Alex <Example>',title:'IT & "Ops"',company:'Example <Pte> Ltd',phone:'6000 0000'},signatures:[],signatureId:''};
+const hostileProfile={signatureId:'rich',signatures:[{id:'rich',name:'x',html:'<p>Kind regards,</p><table><tr><td>Example Desk<br><b>Level 1</b></td><th>Ext 100</th></tr></table><div>Example Pte Ltd <img src="data:image/png;base64,'+PNG+'" alt="Logo"></div>'}]};
+const emptyCreated={...hostileReport(),counts:{created:0,closed:3,pending:6},created:[],pivot:hostileReport().pivot.map(r=>({...r,created:0})),byType:hostileReport().byType.map(r=>({...r,created:0}))};
+const emptyScope=generateReport(tickets,{reportDate:'2031-01-01',groupFilter:'Nobody'});
+const hardeningCases=[
+ ['hostile data + sender block',hostileReport(),{greeting:'Hi <Team> & all,\nsecond line',intro:'Daily <b>update</b> & more.',...hostileSender},{excludeEvents:false,groupFilter:'R&D <Ops>',contractFilter:'C<1>'}],
+ ['hostile data + signature profile',hostileReport(),hostileProfile,{excludeEvents:true}],
+ ['no created tickets',emptyCreated,hostileSender,{excludeEvents:true}],
+ ['no tickets in scope',emptyScope,{signatures:[],signatureId:''},{excludeEvents:true,groupFilter:'Nobody'}],
+];
+const FORBIDDEN=[/class\s*=/i,/<style/i,/display\s*:\s*flex/i,/display\s*:\s*grid/i,/float\s*:/i,/position\s*:/i,/border-radius/i,/gradient/i,/box-shadow/i,/<svg/i,/url\(/i];
+for(const variant of VARIANTS){
+ const rendered=hardeningCases.map(([name,r,settings,filters])=>[name,r,renderEmail(r,settings,filters,variant)]);
+ test('HARDENING '+variant+' 1: no forbidden Outlook-unsafe tokens',()=>{
+  for(const [name,,html] of rendered)for(const token of FORBIDDEN)assert.doesNotMatch(html,token,name);
+ });
+ test('HARDENING '+variant+' 2: every text-bearing p/h1/h2/td/th sets Arial in its own style',()=>{
+  for(const [name,,html] of rendered){
+   const textual=parseElements(html).filter(e=>['p','h1','h2','td','th'].includes(e.tag)&&meaningful(e.ownText));
+   assert.ok(textual.length>=30,name+': only '+textual.length+' text elements found');
+   for(const e of textual)assert.match(e.attrs.style||'',/font-family:Arial/,name+': <'+e.tag+'> "'+e.ownText.trim().slice(0,40)+'"');
+  }
+ });
+ test('HARDENING '+variant+' 3: borders are 1px solid hex and bgcolor matches background-color',()=>{
+  for(const [name,,html] of rendered){
+   let borders=0,fills=0;
+   for(const e of parseElements(html)){
+    const style=declarations(e.attrs.style);
+    for(const [property,value] of style)if(/^border(-(top|right|bottom|left))?$/.test(property)){borders++;assert.match(value,/^1px solid #[0-9A-Fa-f]{6}$/,name+': '+property+':'+value);}
+    if('bgcolor' in e.attrs){fills++;assert.match(e.attrs.bgcolor,/^#[0-9A-F]{6}$/,name);assert.equal(Object.fromEntries(style)['background-color'],e.attrs.bgcolor,name+': <'+e.tag+'> bgcolor');}
+    if(['td','th'].includes(e.tag)&&Object.fromEntries(style)['background-color'])assert.equal(e.attrs.bgcolor,Object.fromEntries(style)['background-color'],name+': filled cell without bgcolor');
+   }
+   assert.ok(borders>0&&fills>0,name);
+  }
+ });
+ test('HARDENING '+variant+' 4: outer table is 800px and nothing else is wider than 736px',()=>{
+  for(const [name,,html] of rendered){
+   const all=parseElements(html),tables=all.filter(e=>e.tag==='table');
+   assert.equal(tables[0].attrs.width,'800',name);
+   assert.match(tables[0].attrs.style,/width:800px;/,name);
+   assert.equal(tables[0].parent.tag,'body',name);
+   assert.ok(tables.slice(1).some(t=>t.attrs.width==='736'),name);
+   for(const e of all.filter(e=>e!==tables[0])){
+    if(e.attrs.width!==undefined&&e.tag!=='img')assert.ok(Number(e.attrs.width)<=736,name+': <'+e.tag+' width='+e.attrs.width+'>');
+    const width=Object.fromEntries(declarations(e.attrs.style)).width;
+    if(width&&/px$/.test(width))assert.ok(parseFloat(width)<=736,name+': style width '+width);
+   }
+   for(const table of tables)for(const row of table.children.flatMap(section=>section.children))
+    if(table.attrs.width==='736'&&row.children.every(c=>c.attrs.width))assert.equal(row.children.reduce((sum,c)=>sum+Number(c.attrs.width),0),736,name+': column widths');
+  }
+ });
+ test('HARDENING '+variant+' 5: KPIs reconcile with both TOTAL rows and the created-ticket rows',()=>{
+  for(const [name,r,html] of rendered){
+   const f=figures(html,variant),expected=[r.counts.created,r.counts.closed,r.counts.pending].map(String);
+   assert.deepEqual(f.kpis,expected,name);
+   assert.deepEqual(f.totals,[expected,expected],name);
+   assert.equal(f.ticketRows.length,r.counts.created,name);
+   assert.equal(f.heading,String(r.counts.created),name);
+   // Exactly three report data tables; a pasted signature may add its own table after them.
+   assert.equal(f.tables.filter(t=>t.attrs.width==='736').length,3,name);
+  }
+ });
+ test('HARDENING '+variant+' 6: ticket fields and group/type names are HTML-escaped',()=>{
+  const html=rendered[0][2].replace(/&#8203;/g,'');
+  for(const raw of [...Object.values(HOSTILE),'<img src=x','Pending & <waiting>','Hi <Team>','<b>update</b>','Alex <Example>','IT & "Ops"','R&D <Ops>','C<1>'])assert.ok(!html.includes(raw),'raw value leaked: '+raw);
+  assert.doesNotMatch(html,/<script|<img|<b>|onerror=alert\(1\)>/i);
+  const escapeHtml=v=>v.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  for(const [raw,times] of [[HOSTILE.summary,1],[HOSTILE.mixed,1],[HOSTILE.id,1],[HOSTILE.group,2],[HOSTILE.type,2]])
+   assert.equal(html.split('>'+escapeHtml(raw)+'</td>').length-1,times,'escaped cell for '+raw);
+  assert.match(html,/Hi &lt;Team&gt; &amp; all,<br \/>second line<\/p>/);
+  assert.match(html,/Group: R&amp;D &lt;Ops&gt; · Contract: C&lt;1&gt;<\/p>/);
+  assert.match(html,/>Alex &lt;Example&gt;<\/p>/);
+  // The signature-profile case keeps its own (sanitized) markup and logo.
+  assert.match(rendered[1][2],/<b>Level 1<\/b>/);assert.match(rendered[1][2],/<img src="data:image\/png;base64,/);
+ });
+ test('HARDENING '+variant+' 7: missing values render as an em dash, never undefined/null/NaN/[object',()=>{
+  for(const [name,,html] of rendered)assert.doesNotMatch(html.replace(/data:image\/[a-z]+;base64,[A-Za-z0-9+/=]+/g,''),/undefined|null|NaN|\[object/,name);
+  const f=figures(rendered[0][2],variant),cellsOf=row=>row.children.map(c=>c.ownText);
+  assert.deepEqual(cellsOf(f.ticketRows[2]),['INC003','—','—','—','—','—']);
+  assert.deepEqual(cellsOf(f.ticketRows[3]),['—','—','—','—','—','—']);
+  assert.equal(f.rowsOf(f.tables[0])[2].children[0].ownText,'—');
+  assert.equal(f.rowsOf(f.tables[1])[2].children[0].ownText,'—');
+  const gaps=renderEmail({reportDate:'2026-11-10',counts:{},pivot:[{group:'EUC',created:undefined,closed:null,pending:NaN}],byType:[],created:[]},{signatures:[]},{},variant);
+  assert.doesNotMatch(gaps,/undefined|null|NaN|\[object/);
+  assert.deepEqual(figures(gaps,variant).kpis,['—','—','—']);
+  assert.deepEqual(figures(gaps,variant).totals[0],['0','0','0']);
+ });
+ test('HARDENING '+variant+' 8: empty states for no created tickets and no tickets in scope',()=>{
+  for(const [name,,html] of rendered.slice(2)){
+   const f=figures(html,variant),rows=f.rowsOf(f.tables[2]);
+   assert.equal(rows.length,1,name);assert.equal(rows[0].children.length,1,name);
+   assert.equal(rows[0].children[0].attrs.colspan,'6',name);
+   assert.equal(rows[0].children[0].ownText,'No tickets were created on this date.',name);
+   assert.match(html,/Tickets created on [\d-]+ \(0\)<\/h2>/,name);
+  }
+  const f=figures(rendered[3][2],variant);
+  assert.deepEqual(f.kpis,['0','0','0']);
+  assert.deepEqual(f.totals,[['0','0','0'],['0','0','0']]);
+  for(const table of f.tables.slice(0,2)){
+   const rows=f.rowsOf(table);
+   assert.equal(rows.length,2);
+   assert.equal(rows[0].children[0].attrs.colspan,'4');
+   assert.equal(rows[0].children[0].ownText,'No tickets matched the selected scope.');
+   assert.equal(rows[1].children[0].ownText,'TOTAL');
+  }
+ });
+}
 
 test('M1: default and custom intros never produce a broken ". for" sentence',()=>{
  const app=readFileSync(new URL('../app.mjs',import.meta.url),'utf8');

@@ -57,7 +57,7 @@ in scope.
 - [x] L2 — invalid stored variant renders the legacy layout
 - [x] L3 — docs reference a missing `previews/` folder
 - [x] L4 — test fixtures use real domains
-- [ ] Test hardening — all-variant theme tests with hostile / blank fixture
+- [x] Test hardening — all-variant theme tests with hostile / blank fixture
 - [ ] Verification — full command list + Playwright pass + CI result recorded
 
 ## Open decisions for the owner (agents: do NOT decide these)
@@ -116,6 +116,7 @@ and record the result below.
 - M4: all four golden tests pass with zero differing lines. Email-themes.mjs is now readable multi-line code: per-variant values live in `THEMES`, `HEADERS` and `KPIS`.
 - M6: the fix lives in this branch's deploy.yml. PR runs use the PR merge commit's workflow so they are covered now; `main`'s own copy only changes when PR #11 merges.
 - L1: the import handler also syncs the Email client dropdown (same desync bug, one extra assignment).
+- Tests: the hardening block uses a small tag walker (`parseElements`) in the test file; no new dependencies.
 
 ## Log
 
