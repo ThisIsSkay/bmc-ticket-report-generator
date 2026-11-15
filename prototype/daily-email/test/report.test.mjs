@@ -1,11 +1,11 @@
 import {test} from 'node:test';import assert from 'node:assert/strict';
 import {parseCsv,detectColumns,normalizeTickets,generateReport,dateOnly,mandatoryColumns,updateReportWarnings} from '../lib/report-core.mjs';
 import {renderEmail,renderEml,renderPlainText} from '../lib/mail.mjs';
-import {normalizeSender,senderWarning,introSentence,scopeCaption,softBreak} from '../lib/email-themes.mjs';
+import {normalizeSender,normalizeVariant,senderWarning,introSentence,scopeCaption,softBreak} from '../lib/email-themes.mjs';
 import {sanitizeSignatureHtml,signatureEmailHtml} from '../lib/signature-html.mjs';
 import {renderClassicOutlookScript} from '../lib/classic-outlook.mjs';
 import {parseXlsx} from '../lib/xlsx-lite.mjs';
-import {createDebouncedSaver} from '../lib/settings-persistence.mjs';
+import {createDebouncedSaver,normalizeSettings} from '../lib/settings-persistence.mjs';
 import {spawnSync} from 'node:child_process';
 import {readFileSync} from 'node:fs';
 const data=`Ticket ID,Submit Date,Resolved Date,Last Modified Date,Status,Assigned Engineer,Assigned Group,Description,Incident Type,Contract Number\nINC001,2026-11-10,,,Pending,Alex,EUC,Problem,Incident,AAA\nINC002,2026-11-09,2026-11-10,,Resolved,Alex,EUC,Resolved matter,Incident,AAA\nSRV003,2026-11-10,2026-11-10,,Closed,Sam,System,New and closed,Service Request,AAA\nINC004,2026-11-10,,,Cancelled,Alex,EUC,Cancelled today,Incident,AAA\nEVT005,2026-11-10,,,Pending,Bot,NOC,noise,Event,AAA`;
@@ -79,7 +79,10 @@ test('H1: sender warning shows while details are incomplete and no signature pro
  const app=readFileSync(new URL('../app.mjs',import.meta.url),'utf8'),page=readFileSync(new URL('../index.html',import.meta.url),'utf8');
  for(const id of ['senderName','senderTitle','senderCompany','senderPhone','senderWarning'])assert.match(page,new RegExp('id="'+id+'"'));
  assert.match(app,/emailSender:normalizeSender\(\{name:\$\('senderName'\)\.value/);
- assert.match(app,/emailSender:normalizeSender\(settings\.emailSender\)/);
+ // Load and import both go through normalizeSettings(), which keeps emailSender.
+ assert.match(app,/state\.settings=normalizeSettings\(\{\.\.\.settings,/);
+ assert.deepEqual(normalizeSettings({emailSender:{name:' Alex Example ',phone:null}},{emailSender:{},signatures:[]}).emailSender,{name:'Alex Example',title:'',company:'',phone:''});
+ assert.match(app,/exportSettings'.*JSON\.stringify\(\{version:1,settings:state\.settings\}/);
  assert.doesNotMatch(readFileSync(new URL('../lib/email-themes.mjs',import.meta.url),'utf8'),/\[Company name\]|\[Office phone\]/);
 });
 test('H2: a selected signature profile replaces the sender block, with Arial on p/div/td/th',()=>{
@@ -245,6 +248,44 @@ test('M6: pull-request CI runs cannot cancel a production Pages deploy',()=>{
  assert.equal(group,"pages-${{ github.event_name == 'pull_request' && github.ref || 'deploy' }}");
  assert.match(workflow,/\n  pull_request:\n/);
 });
+const APP_DEFAULTS={emailVariant:'A',client:'classic',emailSender:{name:'',title:'',company:'',phone:''},signatures:[{id:'support',name:'IT Support Team',content:'x'}]};
+test('L1: importing settings updates the theme dropdown before the preview refreshes',()=>{
+ const app=readFileSync(new URL('../app.mjs',import.meta.url),'utf8');
+ const handler=app.slice(app.indexOf("$('importSettings').addEventListener"),app.indexOf("$('demoBtn')"));
+ assert.match(handler,/state\.settings=normalizeSettings\(/);
+ const sync=handler.indexOf("$('emailVariant').value=state.settings.emailVariant"),refresh=handler.indexOf('refreshReport()');
+ assert.ok(sync>0&&refresh>sync,'dropdown must be synced before refreshReport()');
+ const imported=normalizeSettings({emailVariant:'D',client:'gmail',signatures:[],emailSender:{name:' Alex Example '}},APP_DEFAULTS);
+ assert.equal(imported.emailVariant,'D');
+ assert.equal(imported.emailSender.name,'Alex Example');
+ assert.deepEqual(imported.signatures,[]);
+});
+test('L2: an unknown stored or imported variant yields Variant A, never the legacy layout',()=>{
+ for(const bad of ['Z','',null,undefined,'a','legacy',5,{}])assert.equal(normalizeVariant(bad),'A');
+ for(const good of VARIANTS)assert.equal(normalizeVariant(good),good);
+ assert.equal(normalizeSettings({emailVariant:'Z'},APP_DEFAULTS).emailVariant,'A');
+ assert.equal(normalizeSettings(null,APP_DEFAULTS).emailVariant,'A');
+ assert.equal(normalizeSettings('corrupt',APP_DEFAULTS).emailVariant,'A');
+ assert.notEqual(normalizeSettings(null,APP_DEFAULTS).signatures,APP_DEFAULTS.signatures);
+ const settings={signatures:[],signatureId:''},variantA=renderEmail(report,settings,{excludeEvents:true},'A');
+ for(const bad of ['Z','',null,'d'])assert.equal(renderEmail(report,settings,{excludeEvents:true},bad),variantA);
+ assert.match(variantA,/width="800"/);
+ // The legacy layout is only reachable by omitting the variant.
+ assert.doesNotMatch(renderEmail(report,settings,{excludeEvents:true}),/width="800"/);
+ const app=readFileSync(new URL('../app.mjs',import.meta.url),'utf8');
+ assert.match(app,/function loadSettings\(\)\{try\{return normalizeSettings\(/);
+ assert.match(app,/function makeEmail\(\)\{const variant=normalizeVariant\(/);
+ assert.match(app,/\$\('emailVariant'\)\.value=normalizeVariant\(state\.settings\.emailVariant\)/);
+});
+test('L3: design docs do not reference the missing previews folder',()=>{
+ for(const name of ['README.md','CODEX_PROMPT.md'])assert.doesNotMatch(designDoc(name),/previews|\.png/i,name);
+});
+test('L4: test fixtures only use reserved example domains',()=>{
+ const source=readFileSync(new URL(import.meta.url),'utf8');
+ const domains=[...source.matchAll(/@([a-z0-9-]+(?:\\?\.[a-z0-9-]+)+)/gi)].map(m=>m[1].replace(/\\/g,'').toLowerCase());
+ assert.ok(domains.length>5);
+ for(const domain of domains)assert.match(domain,/^(example\.(com|net|org)|local\.invalid)$/,domain);
+});
 test('Classic Outlook helper produces an unsent editable draft and Unicode MSG',()=>{
  const settings={to:"team@example.com",cc:"manager@example.com",bcc:"",subject:"Today's BMC – {date}"};
  const script=renderClassicOutlookScript('<html><body><b>Daily report</b></body></html>',settings,'2026-11-10');
@@ -352,14 +393,14 @@ test('BUG 5: ambiguous slash dates align with main-app month-first heuristic',()
 
 test('BUG 6: Classic Outlook addresses normalize commas and newlines into semicolons',()=>{
  const script=renderClassicOutlookScript('<div>Hello</div>',{
-   to:'alice@x.com, bob@y.com\ncarol@z.com',
-   cc:'manager@x.com, lead@y.com',
-   bcc:'archive@x.com\nquality@y.com',
+   to:'alice@example.com, bob@example.net\ncarol@example.org',
+   cc:'manager@example.com, lead@example.net',
+   bcc:'archive@example.com\nquality@example.net',
    subject:'Daily {date}',
  },'2026-11-10');
- assert.match(script,/\$mail\.To = 'alice@x\.com; bob@y\.com; carol@z\.com'/);
- assert.match(script,/\$mail\.CC = 'manager@x\.com; lead@y\.com'/);
- assert.match(script,/\$mail\.BCC = 'archive@x\.com; quality@y\.com'/);
+ assert.match(script,/\$mail\.To = 'alice@example\.com; bob@example\.net; carol@example\.org'/);
+ assert.match(script,/\$mail\.CC = 'manager@example\.com; lead@example\.net'/);
+ assert.match(script,/\$mail\.BCC = 'archive@example\.com; quality@example\.net'/);
  assert.doesNotMatch(script,/\$mail\.To = '[^\r\n]*, bob/);
 });
 

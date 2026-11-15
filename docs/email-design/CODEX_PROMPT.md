@@ -1,6 +1,6 @@
 Implement variant [A/B/C/D] of the daily ticket report email in this tool.
 
-Read docs/email-design/README.md first. It is the spec. docs/email-design/reference/variant-[A/B/C/D].html is the exact target markup: copy its structure and inline styles verbatim. The PNGs in docs/email-design/previews/ show how it should look.
+Read docs/email-design/README.md first. It is the spec. docs/email-design/reference/variant-[A/B/C/D].html is the exact target markup: copy its structure and inline styles verbatim.
 
 Tasks:
 1. Find where the tool computes the daily report (the same data behind the dashboard and WhatsApp report). Reuse that data; do not write new counting logic.

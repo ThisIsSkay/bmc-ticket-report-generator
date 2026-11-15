@@ -1,5 +1,5 @@
 /** Client-neutral HTML email and RFC 5322 .eml generation. Never sends anything. */
-import {renderThemedEmail} from './email-themes.mjs';
+import {renderThemedEmail,normalizeVariant} from './email-themes.mjs';
 export {renderPlainText} from './email-themes.mjs';
 const escapeHtml = v => String(v ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const tableCell='border:1px solid #d8dfe7;padding:7px 9px;font-size:12px;vertical-align:top;line-height:1.45';
@@ -26,7 +26,8 @@ function renderLegacyEmail(report,settings,filters={}) {
   return html;
 }
 export function renderEmail(report,settings,filters={},variant='legacy') {
-  return ['A','B','C','D'].includes(variant)?renderThemedEmail(report,settings,filters,variant):renderLegacyEmail(report,settings,filters);
+  // Only an omitted variant (or the explicit 'legacy') gets the legacy layout; any other value, valid or not, is a themed variant and unknown ones fall back to A.
+  return variant===undefined||variant==='legacy'?renderLegacyEmail(report,settings,filters):renderThemedEmail(report,settings,filters,normalizeVariant(variant));
 }
 const utf8Base64=text=>{const bytes=new TextEncoder().encode(text);let data='';for(let i=0;i<bytes.length;i+=8192){data+=String.fromCharCode(...bytes.subarray(i,i+8192))}return btoa(data)};
 const foldBase64=s=>s.match(/.{1,76}/g)?.join('\r\n')||'';

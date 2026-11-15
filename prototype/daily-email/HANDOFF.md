@@ -53,10 +53,10 @@ in scope.
 - [x] M5 — plain-text clipboard output unusable
 - [x] M6 — pull-request CI can cancel production Pages deploys
 - [x] M7 — personal data in `docs/email-design/` sender blocks
-- [ ] L1 — settings import desyncs the selected theme
-- [ ] L2 — invalid stored variant renders the legacy layout
-- [ ] L3 — docs reference a missing `previews/` folder
-- [ ] L4 — test fixtures use real domains
+- [x] L1 — settings import desyncs the selected theme
+- [x] L2 — invalid stored variant renders the legacy layout
+- [x] L3 — docs reference a missing `previews/` folder
+- [x] L4 — test fixtures use real domains
 - [ ] Test hardening — all-variant theme tests with hostile / blank fixture
 - [ ] Verification — full command list + Playwright pass + CI result recorded
 
@@ -115,6 +115,7 @@ and record the result below.
 - M3: zero-width spaces are inserted into any unbroken value longer than 24 characters, so a long URL copied out of the email carries invisible break characters. That is the trade-off the review asked for (Word ignores word-break). `word-wrap:break-word;` is the only style not in the references; the golden test strips it before comparing.
 - M4: all four golden tests pass with zero differing lines. Email-themes.mjs is now readable multi-line code: per-variant values live in `THEMES`, `HEADERS` and `KPIS`.
 - M6: the fix lives in this branch's deploy.yml. PR runs use the PR merge commit's workflow so they are covered now; `main`'s own copy only changes when PR #11 merges.
+- L1: the import handler also syncs the Email client dropdown (same desync bug, one extra assignment).
 
 ## Log
 

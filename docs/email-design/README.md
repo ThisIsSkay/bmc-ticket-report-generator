@@ -8,12 +8,11 @@ email-design/
 ├── README.md            ← this spec
 ├── CODEX_PROMPT.md      ← prompt to paste into Codex
 ├── sample-data.json     ← fictional data the references were built from
-├── reference/variant-{A,B,C,D}.html   ← exact target markup (source of truth)
-└── previews/variant-{A,B,C,D}.png     ← screenshots of the references
+└── reference/variant-{A,B,C,D}.html   ← exact target markup (source of truth)
 ```
 
 The **reference HTML is the source of truth** for every colour, size and padding. Copy its inline
-styles verbatim; do not re-derive them from the PNGs.
+styles verbatim; do not re-derive them from screenshots.
 
 ---
 
