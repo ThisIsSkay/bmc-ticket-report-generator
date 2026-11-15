@@ -52,7 +52,7 @@ in scope.
 - [ ] M4 — variants B, C, D do not match their reference designs
 - [ ] M5 — plain-text clipboard output unusable
 - [ ] M6 — pull-request CI can cancel production Pages deploys
-- [ ] M7 — personal data in `docs/email-design/` sender blocks
+- [x] M7 — personal data in `docs/email-design/` sender blocks
 - [ ] L1 — settings import desyncs the selected theme
 - [ ] L2 — invalid stored variant renders the legacy layout
 - [ ] L3 — docs reference a missing `previews/` folder
@@ -82,7 +82,7 @@ npm run typecheck
 npm run build:gh-pages
 node --test prototype/daily-email/test/report.test.mjs
 for f in $(find prototype/daily-email -name '*.mjs'); do node --check "$f" || echo "FAIL $f"; done
-git grep -n -i "End-User Comput[i]ng" -- docs/ prototype/   # must print nothing
+git grep -n -i "End-User Comput[i]ng" -- docs/ prototype/   # M7 check: must print nothing ([i] stops this line matching itself)
 ```
 
 Browser pass (Playwright/Chromium against
@@ -101,6 +101,7 @@ and record the result below.
   commit that adds its hash to the Log.
 - H1/H2: when a signature profile with content is selected it replaces the whole sign-off (no automatic "Best regards,"); an empty profile falls back to the sender block. Pasted signature images are not resized in the email HTML (Word ignores max-width), so a pasted logo wider than 736px could still widen the email; images added via Insert PNG/JPEG are already capped at 820x320 on import. Not in the review list; left as is.
 - M2: when EVT monitoring is included the disclaimer reads "… (SGT) and include monitoring events." (wording chosen by the agent; the reference only covers the excluded case).
+- M7: the working tree is clean, but the previous sender values remain in Git history (commits before this one that touch docs/email-design/). Removing them needs a history rewrite, which this effort is not allowed to do — owner decision, see Open decisions (e). The verify command uses `Comput[i]ng` so this file does not match its own check.
 
 ## Log
 

@@ -140,6 +140,16 @@ test('M2: caption and disclaimer state the scope that was actually applied',()=>
  assert.equal(scopeCaption({groupFilter:'All',contractFilter:'All',excludeEvents:true}),'Daily ticket activity · Monitoring events excluded');
  assert.equal(scopeCaption(),'Daily ticket activity');
 });
+const designDoc=name=>readFileSync(new URL('../../../docs/email-design/'+name,import.meta.url),'utf8');
+test('M7: design fixtures carry only the fictional sender',()=>{
+ const sample=JSON.parse(designDoc('sample-data.json'));
+ assert.equal(sample.sender.name,'Alex Example');
+ assert.equal(sample.sender.title,'IT Executive');
+ for(const variant of VARIANTS){
+  const block=designDoc('reference/variant-'+variant+'.html').split('>Best regards,</p>')[1].split('</td>')[0];
+  assert.deepEqual([...block.matchAll(/<p style="[^"]*">([^<]*)<\/p>/g)].map(m=>m[1]).slice(0,2),['Alex Example','IT Executive'],variant);
+ }
+});
 test('Classic Outlook helper produces an unsent editable draft and Unicode MSG',()=>{
  const settings={to:"team@example.com",cc:"manager@example.com",bcc:"",subject:"Today's BMC – {date}"};
  const script=renderClassicOutlookScript('<html><body><b>Daily report</b></body></html>',settings,'2026-11-10');
