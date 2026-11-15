@@ -124,3 +124,4 @@ and record the result below.
 - 2026-11-15 — `6978289` Fix M7: fictional sender in the email design fixtures (36 prototype tests pass).
 - 2026-11-15 — `631a1d5` Fix M3/M4: rebuild themed renderer from the reference designs (42 prototype tests pass).
 - 2026-11-15 — `f2cc741` Fix M5: build clipboard plain text from the report data (43 prototype tests pass).
+- 2026-11-15 — `ab13c38` Fix M6: keep pull-request CI from cancelling Pages deploys (44 prototype tests pass).
