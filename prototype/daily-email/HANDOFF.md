@@ -104,3 +104,4 @@ and record the result below.
 ## Log
 
 - 2026-11-15 — `7577e9b` Add HANDOFF.md and AGENTS.md pointer.
+- 2026-11-15 — `c7030df` Fix H1/H2: real sender details and rich signatures in themed emails (33 prototype tests pass).
