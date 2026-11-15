@@ -1,7 +1,7 @@
 import {test} from 'node:test';import assert from 'node:assert/strict';
 import {parseCsv,detectColumns,normalizeTickets,generateReport,dateOnly,mandatoryColumns,updateReportWarnings} from '../lib/report-core.mjs';
 import {renderEmail,renderEml} from '../lib/mail.mjs';
-import {normalizeSender,senderWarning,introSentence,scopeCaption} from '../lib/email-themes.mjs';
+import {normalizeSender,senderWarning,introSentence,scopeCaption,softBreak} from '../lib/email-themes.mjs';
 import {sanitizeSignatureHtml,signatureEmailHtml} from '../lib/signature-html.mjs';
 import {renderClassicOutlookScript} from '../lib/classic-outlook.mjs';
 import {parseXlsx} from '../lib/xlsx-lite.mjs';
@@ -148,6 +148,70 @@ test('M7: design fixtures carry only the fictional sender',()=>{
  for(const variant of VARIANTS){
   const block=designDoc('reference/variant-'+variant+'.html').split('>Best regards,</p>')[1].split('</td>')[0];
   assert.deepEqual([...block.matchAll(/<p style="[^"]*">([^<]*)<\/p>/g)].map(m=>m[1]).slice(0,2),['Alex Example','IT Executive'],variant);
+ }
+});
+/** Report + settings built from the fictional design fixture (docs/email-design/sample-data.json). */
+function sampleFixture(){
+ const sample=JSON.parse(designDoc('sample-data.json')),rows=list=>list.map(r=>({group:r.name,created:r.created,closed:r.closed,pending:r.outstanding}));
+ return {
+  report:{reportDate:sample.reportDate,counts:{created:sample.kpis.createdOnDate,closed:sample.kpis.closedResolved,pending:sample.kpis.outstanding},pivot:rows(sample.byGroup),byType:rows(sample.byType),
+   created:sample.createdTickets.map(t=>({id:t.id,kind:t.type,description:t.summary,assigned:t.assignee,group:t.group,status:t.status}))},
+  settings:{greeting:'Hi Team,',intro:'Please find below the daily ticket activity summary.',emailSender:sample.sender,signatures:[],signatureId:''},
+ };
+}
+// Comments dropped, whitespace between tags collapsed. word-wrap is the one deliberate addition to the reference styles (M3).
+const normalizeMarkup=html=>html.replace(/<!--[\s\S]*?-->/g,'').replace(/>\s+</g,'><').replace(/word-wrap:break-word;/g,'').trim();
+for(const variant of VARIANTS){
+ test('M4: variant '+variant+' matches reference/variant-'+variant+'.html for sample-data.json',()=>{
+  const {report:sampleReport,settings}=sampleFixture();
+  const actual=normalizeMarkup(renderEmail(sampleReport,settings,{excludeEvents:true},variant));
+  const expected=normalizeMarkup(designDoc('reference/variant-'+variant+'.html'));
+  // The reference shows the first 3 created tickets; the real email lists all 5. Only those extra rows may differ.
+  const bodyStart=actual.indexOf('<tbody>',actual.indexOf('>Ticket ID</th>'))+'<tbody>'.length,bodyEnd=actual.indexOf('</tbody>',bodyStart);
+  const ticketRows=actual.slice(bodyStart,bodyEnd).split('</tr>').filter(Boolean).map(row=>row+'</tr>');
+  assert.equal(ticketRows.length,5);
+  const firstThree=actual.slice(0,bodyStart)+ticketRows.slice(0,3).join('')+actual.slice(bodyEnd);
+  assert.deepEqual(firstThree.split('><'),expected.split('><'));
+ });
+}
+test('M4: review findings a-e are pinned per variant',()=>{
+ const {report:sampleReport,settings}=sampleFixture(),html=Object.fromEntries(VARIANTS.map(v=>[v,renderEmail(sampleReport,settings,{excludeEvents:true},v)]));
+ // a) B tickets table: uppercase grey header with dark rule, light row rules, flush first/last columns.
+ assert.match(html.B,/<th align="left" width="132" style="width:132px;border-bottom:1px solid #1F2328;padding:0 10px 8px 0;[^"]*text-transform:uppercase;color:#57606A;text-align:left;">Ticket ID<\/th>/);
+ assert.match(html.B,/<td valign="top" style="border-bottom:1px solid #E1E5E9;padding:10px 10px 10px 0;[^"]*">INC000000412927<\/td>/);
+ assert.match(html.B,/<td valign="top" style="border-bottom:1px solid #E1E5E9;padding:10px 0 10px 10px;[^"]*">Resolved<\/td><\/tr><\/tbody>/);
+ assert.doesNotMatch(html.B,/#DCE9E5|#1F5F55/);
+ // b) C KPI row: 236px boxed cards with a #2E3D4F label bar and 14px spacers.
+ assert.equal((html.C.match(/<table role="presentation" width="236"[^>]*border:1px solid #2E3D4F;">/g)||[]).length,3);
+ assert.match(html.C,/text-transform:uppercase;color:#FFFFFF;">Created on date<\/td><\/tr><tr><td style="padding:10px;[^"]*font-size:28px;line-height:32px;[^"]*">5<\/td>/);
+ assert.equal((html.C.match(/<td width="14" style="width:14px;font-size:0;line-height:0;">&nbsp;<\/td>/g)||[]).length,2);
+ // c) D KPI row: 236px tinted panels, vertically centred.
+ assert.equal((html.D.match(/<td width="236" valign="middle" bgcolor="#EEF4F2" style="width:236px;background-color:#EEF4F2;padding:14px 16px;">/g)||[]).length,3);
+ for(const v of ['C','D'])assert.doesNotMatch(html[v],/#1B3A5C|#F4F6F9/,v);
+ // d) C section headings are spaced uppercase.
+ assert.equal((html.C.match(/<h2 style="[^"]*letter-spacing:0\.6px;text-transform:uppercase;color:#2E3D4F;">/g)||[]).length,3);
+ // e) A heading size, KPI valign, per-variant greeting colour.
+ assert.match(html.A,/<h2 style="[^"]*font-size:16px;line-height:22px;/);
+ assert.equal((html.A.match(/<td width="230" align="center" valign="top"/g)||[]).length,3);
+ for(const [v,colour] of [['A','#222222'],['B','#1F2328'],['C','#1E1E1E'],['D','#1E2A28']])assert.match(html[v],new RegExp('color:'+colour+';">Hi Team,</p>'),v);
+});
+const visibleRuns=html=>html.replace(/<[^>]*>/g,' ').split(/\s+|&#8203;/).map(run=>run.replace(/&(?:#\d+|#x[\da-f]+|[a-z][a-z\d]*);/gi,'x'));
+test('M3: long unbroken values always get a break opportunity and never split an entity',()=>{
+ assert.equal(softBreak('short value stays'),'short value stays');
+ assert.equal(softBreak('x'.repeat(24)),'x'.repeat(24));
+ assert.equal(softBreak('x'.repeat(25)),'x'.repeat(20)+'&#8203;'+'x'.repeat(5));
+ assert.equal(softBreak('a'.repeat(19)+'&amp;'+'b'.repeat(10)),'a'.repeat(19)+'&amp;&#8203;'+'b'.repeat(10));
+ const long={summary:'S'.repeat(260),url:'https://intranet.example.com/'+'path/'.repeat(30)+'?a=1&b=<2>',group:'NCC_'+'VERYLONGGROUPNAME_'.repeat(8)};
+ const t={...report,
+  created:report.created.map((v,i)=>i?v:{...v,id:'INC'+'9'.repeat(40),description:long.summary,assigned:long.url,group:long.group,status:'Pending&'.repeat(10)}),
+  pivot:[{...report.pivot[0],group:long.group},...report.pivot.slice(1)],byType:[{...report.byType[0],group:'&'.repeat(60)},...report.byType.slice(1)]};
+ for(const variant of VARIANTS){
+  const html=renderEmail(t,{signatures:[],signatureId:''},{excludeEvents:true,groupFilter:long.group},variant);
+  const worst=visibleRuns(html.slice(html.indexOf('<body'))).reduce((a,b)=>a.length>=b.length?a:b,'');
+  assert.ok(worst.length<=24,variant+': unbroken run of '+worst.length+' chars: '+worst);
+  assert.doesNotMatch(html,/&[a-z#\d]*&#8203;[a-z#\d]*;/i,variant);
+  assert.match(html,/word-wrap:break-word;/,variant);
+  assert.ok(html.includes(softBreak('S'.repeat(260))),variant);
  }
 });
 test('Classic Outlook helper produces an unsent editable draft and Unicode MSG',()=>{

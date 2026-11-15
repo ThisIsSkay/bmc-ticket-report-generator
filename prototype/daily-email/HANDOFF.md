@@ -48,8 +48,8 @@ in scope.
 - [x] H2 — rich signature / logo dropped in themed variants
 - [x] M1 — broken intro sentence (". for …")
 - [x] M2 — email misstates its scope (filters, caption, disclaimer)
-- [ ] M3 — long values widen the email past 800px
-- [ ] M4 — variants B, C, D do not match their reference designs
+- [x] M3 — long values widen the email past 800px
+- [x] M4 — variants B, C, D do not match their reference designs
 - [ ] M5 — plain-text clipboard output unusable
 - [ ] M6 — pull-request CI can cancel production Pages deploys
 - [x] M7 — personal data in `docs/email-design/` sender blocks
@@ -70,6 +70,16 @@ b) `main`'s `deploy.yml` checks out `feature/daily-pivot-email-report` at
 c) GitHub Pages must be enabled (Settings > Pages > Source = GitHub Actions).
 d) Themed emails omit the closed-ticket list, per the design spec. Confirm
    this is intended.
+e) Git history before the M7 fix still contains the previous (personal)
+   sender name and job title in `docs/email-design/sample-data.json` and
+   `reference/variant-{A,B,C,D}.html`. The working tree is clean; removing
+   them from history needs a rewrite + force-push, which agents may not do.
+   Decide whether to clean history (and when, relative to merging PR #11).
+f) Variant C renders a boxed `LOGO` placeholder cell in the top bar, exactly
+   as in `reference/variant-C.html`. A real recipient would see the word
+   "LOGO". Decide: supply a real logo image, drop the cell, or keep it. The
+   golden test pins the current markup to the reference, so changing this
+   means changing the reference too.
 
 ## How to verify
 
@@ -102,6 +112,8 @@ and record the result below.
 - H1/H2: when a signature profile with content is selected it replaces the whole sign-off (no automatic "Best regards,"); an empty profile falls back to the sender block. Pasted signature images are not resized in the email HTML (Word ignores max-width), so a pasted logo wider than 736px could still widen the email; images added via Insert PNG/JPEG are already capped at 820x320 on import. Not in the review list; left as is.
 - M2: when EVT monitoring is included the disclaimer reads "… (SGT) and include monitoring events." (wording chosen by the agent; the reference only covers the excluded case).
 - M7: the working tree is clean, but the previous sender values remain in Git history (commits before this one that touch docs/email-design/). Removing them needs a history rewrite, which this effort is not allowed to do — owner decision, see Open decisions (e). The verify command uses `Comput[i]ng` so this file does not match its own check.
+- M3: zero-width spaces are inserted into any unbroken value longer than 24 characters, so a long URL copied out of the email carries invisible break characters. That is the trade-off the review asked for (Word ignores word-break). `word-wrap:break-word;` is the only style not in the references; the golden test strips it before comparing.
+- M4: all four golden tests pass with zero differing lines. Email-themes.mjs is now readable multi-line code: per-variant values live in `THEMES`, `HEADERS` and `KPIS`.
 
 ## Log
 
