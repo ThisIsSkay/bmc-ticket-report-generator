@@ -1,5 +1,7 @@
 # Project guidance
 
+In-progress work: read prototype/daily-email/HANDOFF.md first.
+
 ## Email HTML rules
 
 Generated daily report emails must remain safe for the Classic Outlook Word
