@@ -238,6 +238,13 @@ test('M5: clipboard plain text is built from the report, unescaped, with KPIs, t
  assert.match(app,/const plain=renderPlainText\(state\.report,emailSettings\(\),filters\(\)\)/);
  assert.doesNotMatch(app,/html\.replace\(\/<\[\^>\]\*>\/g/);
 });
+test('M6: pull-request CI runs cannot cancel a production Pages deploy',()=>{
+ const workflow=readFileSync(new URL('../../../.github/workflows/deploy.yml',import.meta.url),'utf8');
+ const concurrency=/\nconcurrency:\n((?:[ \t]+.*\n)+)/.exec(workflow)[1];
+ const group=/^\s+group:\s*(.+)$/m.exec(concurrency)[1].trim();
+ assert.equal(group,"pages-${{ github.event_name == 'pull_request' && github.ref || 'deploy' }}");
+ assert.match(workflow,/\n  pull_request:\n/);
+});
 test('Classic Outlook helper produces an unsent editable draft and Unicode MSG',()=>{
  const settings={to:"team@example.com",cc:"manager@example.com",bcc:"",subject:"Today's BMC – {date}"};
  const script=renderClassicOutlookScript('<html><body><b>Daily report</b></body></html>',settings,'2026-11-10');

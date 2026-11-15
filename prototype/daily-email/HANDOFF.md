@@ -51,7 +51,7 @@ in scope.
 - [x] M3 — long values widen the email past 800px
 - [x] M4 — variants B, C, D do not match their reference designs
 - [x] M5 — plain-text clipboard output unusable
-- [ ] M6 — pull-request CI can cancel production Pages deploys
+- [x] M6 — pull-request CI can cancel production Pages deploys
 - [x] M7 — personal data in `docs/email-design/` sender blocks
 - [ ] L1 — settings import desyncs the selected theme
 - [ ] L2 — invalid stored variant renders the legacy layout
@@ -114,6 +114,7 @@ and record the result below.
 - M7: the working tree is clean, but the previous sender values remain in Git history (commits before this one that touch docs/email-design/). Removing them needs a history rewrite, which this effort is not allowed to do — owner decision, see Open decisions (e). The verify command uses `Comput[i]ng` so this file does not match its own check.
 - M3: zero-width spaces are inserted into any unbroken value longer than 24 characters, so a long URL copied out of the email carries invisible break characters. That is the trade-off the review asked for (Word ignores word-break). `word-wrap:break-word;` is the only style not in the references; the golden test strips it before comparing.
 - M4: all four golden tests pass with zero differing lines. Email-themes.mjs is now readable multi-line code: per-variant values live in `THEMES`, `HEADERS` and `KPIS`.
+- M6: the fix lives in this branch's deploy.yml. PR runs use the PR merge commit's workflow so they are covered now; `main`'s own copy only changes when PR #11 merges.
 
 ## Log
 
