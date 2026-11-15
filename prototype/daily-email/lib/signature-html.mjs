@@ -4,6 +4,39 @@ const DROP=new Set(['SCRIPT','STYLE','META','LINK','IFRAME','OBJECT','SVG','FORM
 const STYLES=new Set(['font-family','font-size','font-weight','font-style','text-decoration','color','background-color','text-align','line-height','vertical-align','width','height','max-width','border-collapse','border','padding','margin']);
 export const plainToSignatureHtml=text=>String(text||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])).replace(/\r?\n/g,'<br>');
 export function allowedSignatureImage(src){return /^data:image\/(?:png|jpeg);base64,[a-zA-Z0-9+/=]+$/i.test(String(src||''))&&src.length<=1800000;}
+/** Widest image the 736px email content column can hold; Classic Outlook ignores max-width, so size is set explicitly. */
+export const MAX_SIGNATURE_IMAGE_WIDTH=736;
+/** Pixel size of a PNG/JPEG data URL read from its header, or null. Needs no DOM. */
+export function signatureImageSize(src){
+ const m=/^data:image\/(png|jpeg);base64,([a-zA-Z0-9+/=]+)$/i.exec(String(src||''));
+ if(!m)return null;
+ try{
+  if(m[1].toLowerCase()==='png'){
+   const b=atob(m[2].slice(0,32)),n=i=>((b.charCodeAt(i)<<24)|(b.charCodeAt(i+1)<<16)|(b.charCodeAt(i+2)<<8)|b.charCodeAt(i+3))>>>0;
+   return b.length>=24&&b.slice(12,16)==='IHDR'&&n(16)&&n(20)?{width:n(16),height:n(20)}:null;
+  }
+  const b=atob(m[2]);let i=2;
+  while(i+9<b.length){
+   if(b.charCodeAt(i)!==0xFF)return null;
+   const marker=b.charCodeAt(i+1),length=(b.charCodeAt(i+2)<<8)|b.charCodeAt(i+3);
+   if(marker>=0xC0&&marker<=0xCF&&marker!==0xC4&&marker!==0xC8&&marker!==0xCC){
+    const height=(b.charCodeAt(i+5)<<8)|b.charCodeAt(i+6),width=(b.charCodeAt(i+7)<<8)|b.charCodeAt(i+8);
+    return width&&height?{width,height}:null;
+   }
+   if(length<2)return null;
+   i+=2+length;
+  }
+ }catch{}
+ return null;
+}
+/** width/height attributes for a signature image: explicit values if valid, else read from the image, scaled down to the email's content width. */
+function imageDimensions(attrs){
+ const given={width:Number(attrs.width),height:Number(attrs.height)},valid=Number.isInteger(given.width)&&Number.isInteger(given.height)&&given.width>0&&given.height>0&&given.width<=10000&&given.height<=10000;
+ const size=valid?given:signatureImageSize(attrs.src);
+ if(!size)return [];
+ const factor=Math.min(1,MAX_SIGNATURE_IMAGE_WIDTH/size.width);
+ return ['width="'+Math.max(1,Math.round(size.width*factor))+'"','height="'+Math.max(1,Math.round(size.height*factor))+'"'];
+}
 function safeStyle(s){return String(s||'').split(';').map(part=>{const i=part.indexOf(':');if(i<0)return '';const k=part.slice(0,i).trim().toLowerCase(),v=part.slice(i+1).trim();return STYLES.has(k)&&v.length<150&&/^[#\w\s.,()%"'\-]+$/.test(v)&&!/url\s*\(|expression|behavior|import/i.test(v)?k+':'+v:'';}).filter(Boolean).join(';');}
 const VOID=new Set(['BR','IMG']),VOID_DROP=new Set(['META','LINK','INPUT']),FONT_TAGS=new Set(['P','DIV','TD','TH']);
 const EMAIL_FONT='font-family:Arial,Helvetica,sans-serif';
@@ -44,7 +77,7 @@ function sanitizeSignatureString(html,{emailFont=false}={}){
   let style=safeStyle(attrs.style);
   if(tag==='IMG'){
    if(!allowedSignatureImage(attrs.src))continue;
-   emit.push('src="'+attrs.src+'"','alt="'+escapeAttr((attrs.alt||'Signature image').slice(0,120))+'"');
+   emit.push('src="'+attrs.src+'"','alt="'+escapeAttr((attrs.alt||'Signature image').slice(0,120))+'"',...imageDimensions(attrs));
    style=[style,/(^|;)max-width:/.test(style)?'':'max-width:100%',/(^|;)height:/.test(style)?'':'height:auto'].filter(Boolean).join(';');
   }
   if(emailFont&&FONT_TAGS.has(tag))style=[...style.split(';').filter(part=>part&&!/^font-family:/.test(part)),EMAIL_FONT].join(';');
@@ -70,7 +103,7 @@ export function sanitizeSignatureHtml(html){
   if(source.tagName==='IMG'&&!allowedSignatureImage(source.getAttribute('src')))return;
   const el=document.createElement(source.tagName.toLowerCase()),style=safeStyle(source.getAttribute('style'));
   if(style)el.setAttribute('style',style);
-  if(source.tagName==='IMG'){el.setAttribute('src',source.getAttribute('src'));el.setAttribute('alt',(source.getAttribute('alt')||'Signature image').slice(0,120));el.setAttribute('style',[style,'max-width:100%','height:auto'].filter(Boolean).join(';'));}
+  if(source.tagName==='IMG'){el.setAttribute('src',source.getAttribute('src'));el.setAttribute('alt',(source.getAttribute('alt')||'Signature image').slice(0,120));el.setAttribute('style',[style,/(^|;)max-width:/.test(style)?'':'max-width:100%',/(^|;)height:/.test(style)?'':'height:auto'].filter(Boolean).join(';'));for(const attr of ['width','height']){const n=Number(source.getAttribute(attr));if(Number.isInteger(n)&&n>0&&n<=10000)el.setAttribute(attr,String(n));}}
   if(source.tagName==='A'){const href=source.getAttribute('href')||'';if(/^(https?:\/\/|mailto:)/i.test(href)){el.setAttribute('href',href);el.setAttribute('target','_blank');el.setAttribute('rel','noopener noreferrer');}}
   if(['TD','TH'].includes(source.tagName)){for(const attr of ['colspan','rowspan']){const n=Number(source.getAttribute(attr));if(Number.isInteger(n)&&n>=1&&n<=10)el.setAttribute(attr,String(n));}}
   for(const c of source.childNodes)clean(c,el);dest.appendChild(el);
@@ -84,7 +117,7 @@ export async function imageFileToDataUrl(file){
  const url=URL.createObjectURL(file);
  try{
   const img=new Image();await new Promise((resolve,reject)=>{img.onload=resolve;img.onerror=()=>reject(Error('Could not read image.'));img.src=url;});
-  const factor=Math.min(1,820/img.naturalWidth,320/img.naturalHeight),canvas=document.createElement('canvas');
+  const factor=Math.min(1,MAX_SIGNATURE_IMAGE_WIDTH/img.naturalWidth,320/img.naturalHeight),canvas=document.createElement('canvas');
   canvas.width=Math.max(1,Math.round(img.naturalWidth*factor));canvas.height=Math.max(1,Math.round(img.naturalHeight*factor));
   canvas.getContext('2d').drawImage(img,0,0,canvas.width,canvas.height);
   const data=canvas.toDataURL(file.type,file.type==='image/jpeg'?.84:undefined);

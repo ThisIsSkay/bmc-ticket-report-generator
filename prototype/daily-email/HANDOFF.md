@@ -60,6 +60,24 @@ in scope.
 - [x] Test hardening — all-variant theme tests with hostile / blank fixture
 - [x] Verification — full command list + Playwright pass + CI result recorded
 
+## Owner decisions received 2026-11-15
+
+- The prototype **stays on this branch**; it is not to be merged into `main`.
+  `main` only links to it from its README and stages it on GitHub Pages at
+  `/daily-email/`. So decision (b) below is settled: `main`'s `deploy.yml`
+  checking out this branch is the intended design, not a pre-merge blocker.
+  The live preview only refreshes when `main` is deployed (a push to `main`
+  or a manual run of the workflow on `main`).
+- There is **no stakeholder review**. The tool is a skeleton for automation
+  with a human check before sending. PR #11 stays an open draft as the home
+  of the prototype.
+- Real Classic Outlook testing will happen later (not scheduled).
+- Personal data is to be cleared or replaced with dummy names. Done for the
+  working tree of this branch. Still pending the owner's go-ahead because
+  they need a push to `main` or a force-push: `main`'s README names a real
+  person in three places, and older commits on both branches still contain
+  real names (see (e)).
+
 ## Open decisions for the owner (agents: do NOT decide these)
 
 a) Ambiguous slash dates are read month-first unless the first number is >12.
@@ -153,6 +171,18 @@ and record the result below.
 - Not verifiable here: rendering in real Classic Outlook (Word engine). All
   width and layout checks were done in Chromium. Someone with Outlook should
   open one generated draft per variant before the PR leaves draft.
+- Signature logo test (owner request, 2026-11-15): inserting via **Insert
+  PNG/JPEG** and pasting (Ctrl+V) were tested in Chromium with a small PNG,
+  a 1600x500 PNG and a 2400x400 JPEG, across A-D: 71/71 checks pass (image
+  lands in the editor, survives save + reload, shows in the preview, goes
+  inline by Content-ID into `.eml` and `.ps1`). Bug found and fixed: large
+  images were stored 820px wide with no explicit size, and Classic Outlook
+  ignores `max-width`, so they would have widened the email. Images are now
+  capped at 736px on import, and every signature `<img>` gets `width` and
+  `height` attributes (read from the PNG/JPEG header when missing, scaled
+  down to 736px).
+- The `LOGO` box in Variant C's top bar is a separate header placeholder
+  from the reference design. It is not connected to the signature logo.
 
 ## Log
 

@@ -2,7 +2,7 @@ import {test} from 'node:test';import assert from 'node:assert/strict';
 import {parseCsv,detectColumns,normalizeTickets,generateReport,dateOnly,mandatoryColumns,updateReportWarnings} from '../lib/report-core.mjs';
 import {renderEmail,renderEml,renderPlainText} from '../lib/mail.mjs';
 import {normalizeSender,normalizeVariant,senderWarning,introSentence,scopeCaption,softBreak} from '../lib/email-themes.mjs';
-import {sanitizeSignatureHtml,signatureEmailHtml} from '../lib/signature-html.mjs';
+import {sanitizeSignatureHtml,signatureEmailHtml,signatureImageSize,MAX_SIGNATURE_IMAGE_WIDTH} from '../lib/signature-html.mjs';
 import {renderClassicOutlookScript} from '../lib/classic-outlook.mjs';
 import {parseXlsx} from '../lib/xlsx-lite.mjs';
 import {createDebouncedSaver,normalizeSettings} from '../lib/settings-persistence.mjs';
@@ -104,7 +104,40 @@ test('H2: signature markup is allowlist-sanitized without a DOM and cannot break
  assert.equal(clean,'<div style="color:#111111">Hi<a>bad</a><a href="https://example.com/?a=1&amp;b=2" target="_blank" rel="noopener noreferrer">ok</a><span>a &lt; b</span></div><p>tail</p>');
  assert.equal(sanitizeSignatureHtml(clean),clean);
  assert.equal(signatureEmailHtml('<td colspan="2" rowspan="99">x'),'<td colspan="2" style="font-family:Arial,Helvetica,sans-serif">x</td>');
- assert.equal(signatureEmailHtml('<img src="data:image/png;base64,'+PNG+'">'),'<img src="data:image/png;base64,'+PNG+'" alt="Signature image" style="max-width:100%;height:auto">');
+ assert.equal(signatureEmailHtml('<img src="data:image/png;base64,'+PNG+'">'),'<img src="data:image/png;base64,'+PNG+'" alt="Signature image" width="1" height="1" style="max-width:100%;height:auto">');
+});
+/** Header-only fictional images: enough bytes for the size to be read, no real picture data. */
+const fakePng=(w,h)=>{const b=Buffer.alloc(33);Buffer.from([0x89,0x50,0x4E,0x47,0x0D,0x0A,0x1A,0x0A]).copy(b);b.writeUInt32BE(13,8);b.write('IHDR',12,'latin1');b.writeUInt32BE(w,16);b.writeUInt32BE(h,20);return 'data:image/png;base64,'+b.toString('base64');};
+const fakeJpeg=(w,h)=>'data:image/jpeg;base64,'+Buffer.from([0xFF,0xD8,0xFF,0xE0,0x00,0x04,0x00,0x00,0xFF,0xDB,0x00,0x03,0x00,0xFF,0xC0,0x00,0x11,0x08,h>>8,h&255,w>>8,w&255,0x03,0,0,0,0,0,0,0,0,0]).toString('base64');
+test('SIGNATURE IMAGE: pasted/inserted PNG and JPEG logos get explicit sizes and never exceed 736px',()=>{
+ assert.equal(MAX_SIGNATURE_IMAGE_WIDTH,736);
+ assert.deepEqual(signatureImageSize('data:image/png;base64,'+PNG),{width:1,height:1});
+ assert.deepEqual(signatureImageSize(fakePng(1600,500)),{width:1600,height:500});
+ assert.deepEqual(signatureImageSize(fakeJpeg(2400,400)),{width:2400,height:400});
+ assert.equal(signatureImageSize('data:image/png;base64,AAAA'),null);
+ assert.equal(signatureImageSize('data:image/jpeg;base64,AAAA'),null);
+ assert.equal(signatureImageSize('https://example.com/logo.png'),null);
+ // No size given: read from the image and scaled to the content width (Classic Outlook ignores max-width).
+ assert.match(signatureEmailHtml('<img src="'+fakePng(1600,500)+'">'),/ width="736" height="230" style="max-width:100%;height:auto">$/);
+ assert.match(signatureEmailHtml('<img src="'+fakeJpeg(2400,400)+'" alt="Banner">'),/ alt="Banner" width="736" height="123" /);
+ assert.match(signatureEmailHtml('<img src="'+fakePng(240,72)+'">'),/ width="240" height="72" /);
+ // Explicit sizes are kept (a deliberately small logo), oversized or junk ones are corrected.
+ assert.match(signatureEmailHtml('<img src="'+fakePng(480,144)+'" width="120" height="36">'),/ width="120" height="36" /);
+ assert.match(signatureEmailHtml('<img src="'+fakePng(240,72)+'" width="1472" height="100">'),/ width="736" height="50" /);
+ assert.match(signatureEmailHtml('<img src="'+fakePng(240,72)+'" width="100%" height="x" onload="x()">'),/^<img src="[^"]+" alt="Signature image" width="240" height="72" style="max-width:100%;height:auto">$/);
+ for(const variant of VARIANTS)for(const src of [fakePng(1600,500),fakeJpeg(2400,400)]){
+  const settings={signatureId:'wide',signatures:[{id:'wide',name:'x',html:'<div>Example Service Desk<br><img src="'+src+'"></div>'}]};
+  const html=renderEmail(report,settings,{excludeEvents:true},variant),img=parseElements(html).find(e=>e.tag==='img');
+  assert.equal(img.attrs.width,'736',variant);
+  assert.ok(Number(img.attrs.height)>0,variant);
+  const eml=renderEml(html,settings,'2026-11-10'),body=Buffer.from(eml.split('\r\n\r\n')[2].split('\r\n--')[0].replace(/\s+/g,''),'base64').toString('utf8');
+  assert.match(body,/<img src="cid:bmc-signature-1@local\.invalid" alt="Signature image" width="736" height="\d+"/,variant);
+  assert.match(renderClassicOutlookScript(html,settings,'2026-11-10'),/<img src="cid:bmc-signature-1@local\.invalid" alt="Signature image" width="736"/,variant);
+ }
+ const lib=readFileSync(new URL('../lib/signature-html.mjs',import.meta.url),'utf8'),app=readFileSync(new URL('../app.mjs',import.meta.url),'utf8');
+ assert.match(lib,/Math\.min\(1,MAX_SIGNATURE_IMAGE_WIDTH\/img\.naturalWidth,320\/img\.naturalHeight\)/);
+ assert.doesNotMatch(lib,/820/);
+ assert.match(app,/signatureImageSize\(src\)/);
 });
 
 

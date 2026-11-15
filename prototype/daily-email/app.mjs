@@ -3,7 +3,7 @@ import {parseXlsx} from './lib/xlsx-lite.mjs';
 import {renderEmail, renderEml, renderPlainText, buildSubject} from './lib/mail.mjs';
 import {normalizeSender, normalizeVariant, senderWarning} from './lib/email-themes.mjs';
 import {renderClassicOutlookScript} from './lib/classic-outlook.mjs';
-import {sanitizeSignatureHtml, plainToSignatureHtml, imageFileToDataUrl} from './lib/signature-html.mjs';
+import {sanitizeSignatureHtml, plainToSignatureHtml, imageFileToDataUrl, signatureImageSize} from './lib/signature-html.mjs';
 import {createDebouncedSaver, normalizeSettings} from './lib/settings-persistence.mjs';
 
 const $=id=>document.getElementById(id);
@@ -74,7 +74,7 @@ async function addSignatureImages(files,markup='',selectionRange){
    for(const img of doc.querySelectorAll('img')){if(replaced>=images.length)break;img.setAttribute('src',images[replaced++]);}
    output=doc.body.innerHTML;
  }
- output+=images.slice(replaced).map(src=>'<div><img src="'+src+'" alt="Signature logo" style="max-width:100%;height:auto"></div>').join('');
+ output+=images.slice(replaced).map(src=>{const size=signatureImageSize(src);return '<div><img src="'+src+'" alt="Signature logo"'+(size?' width="'+size.width+'" height="'+size.height+'"':'')+' style="max-width:100%;height:auto"></div>';}).join('');
  insertSignatureHtml(output,selectionRange);
  toast('Signature image inserted. Save settings to keep it.');
 }
