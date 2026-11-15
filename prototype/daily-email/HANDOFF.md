@@ -121,3 +121,4 @@ and record the result below.
 - 2026-11-15 — `c7030df` Fix H1/H2: real sender details and rich signatures in themed emails (33 prototype tests pass).
 - 2026-11-15 — `66de713` Fix M1/M2: intro sentence and truthful scope caption/disclaimer (35 prototype tests pass).
 - 2026-11-15 — `6978289` Fix M7: fictional sender in the email design fixtures (36 prototype tests pass).
+- 2026-11-15 — `631a1d5` Fix M3/M4: rebuild themed renderer from the reference designs (42 prototype tests pass).
