@@ -198,3 +198,4 @@ and record the result below.
 - 2026-11-15 — `4f03161` M3 follow-up: width-aware break opportunities per column (79 prototype tests pass).
 - 2026-11-15 — `2fcbd92` Record local verification results; README notes for sender details. CI on this commit: build success, deploy skipped.
 - 2026-11-15 — (latest commit) Tick Verification and record the CI result. All checklist items done; only the owner decisions above remain open.
+- 2026-11-15 — `f5444aa` Signature logos: cap at 736px and set explicit width/height; owner decisions recorded (80 prototype tests pass).
