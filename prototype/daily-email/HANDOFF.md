@@ -58,7 +58,7 @@ in scope.
 - [x] L3 — docs reference a missing `previews/` folder
 - [x] L4 — test fixtures use real domains
 - [x] Test hardening — all-variant theme tests with hostile / blank fixture
-- [ ] Verification — full command list + Playwright pass + CI result recorded
+- [x] Verification — full command list + Playwright pass + CI result recorded
 
 ## Open decisions for the owner (agents: do NOT decide these)
 
@@ -123,7 +123,9 @@ and record the result below.
   summary (plus overlong ID, type, assignee, group, URL and CJK values) keeps
   the email exactly 800px wide; clipboard plain text is clean; L1/L2/M2
   behaviours confirmed in the UI.
-- CI on the branch: see the last Log entry.
+- CI on the branch (PR #11, workflow "Deploy to GitHub Pages", run 43712468391
+  on `2fcbd92`): `build` success, `deploy` skipped (pull requests only
+  validate). The only commit after that changes this file alone.
 
 ## Notes for next agent
 
@@ -164,3 +166,5 @@ and record the result below.
 - 2026-11-15 — `fec2665` Fix L1-L4: theme sync on import, variant fallback, docs, fixtures (48 prototype tests pass).
 - 2026-11-15 — `ce162d6` Harden theme tests: eight checks per variant on a hostile fixture (79 prototype tests pass).
 - 2026-11-15 — `4f03161` M3 follow-up: width-aware break opportunities per column (79 prototype tests pass).
+- 2026-11-15 — `2fcbd92` Record local verification results; README notes for sender details. CI on this commit: build success, deploy skipped.
+- 2026-11-15 — (latest commit) Tick Verification and record the CI result. All checklist items done; only the owner decisions above remain open.
