@@ -8,7 +8,7 @@ branch must never be left in a state this file does not describe.
 `prototype/daily-email/` is a standalone, zero-dependency browser tool that
 turns the daily BMC ticket export into a pivot-style HTML email for recipients
 on Classic Outlook (Word rendering engine). An independent review of the
-selectable email-theme implementation (commit `dbacae1`) confirmed a list of
+selectable email-theme implementation (commit `e6f9cfa`) confirmed a list of
 bugs (H1, H2, M1–M7, L1–L4) plus weak tests. This effort fixes those bugs,
 adds a regression test for each, and hardens the theme tests. Nothing else is
 in scope.
@@ -24,7 +24,9 @@ in scope.
   push nothing further.
 - Do not change calculations or business rules in `lib/report-core.mjs`.
 - Do not touch `src/` (the approved main app).
-- No merge, no deploy, no force-push, no history rewrite. PR #11 stays a draft.
+- No merge, no deploy, no force-push, no history rewrite without the owner's
+  explicit go-ahead. PR #11 stays a draft. (One owner-approved rewrite of this
+  branch was done on 2026-11-16; see Notes.)
 - Email HTML stays Outlook-safe (see `AGENTS.md` and
   `docs/email-design/README.md` section 1): tables only, inline styles only,
   Arial on every text-bearing `p`/`h1`/`h2`/`td`/`th`, 1px solid borders,
@@ -40,7 +42,7 @@ in scope.
 
 - Branch: `feature/daily-pivot-email-report` (push here only).
 - PR: draft PR #11 into `main`.
-- Starting tip for this effort: `0d2e2ba`.
+- Starting tip for this effort: `4a49874`.
 
 ## Status checklist
 
@@ -88,11 +90,12 @@ b) `main`'s `deploy.yml` checks out `feature/daily-pivot-email-report` at
 c) GitHub Pages must be enabled (Settings > Pages > Source = GitHub Actions).
 d) Themed emails omit the closed-ticket list, per the design spec. Confirm
    this is intended.
-e) Git history before the M7 fix still contains the previous (personal)
-   sender name and job title in `docs/email-design/sample-data.json` and
-   `reference/variant-{A,B,C,D}.html`. The working tree is clean; removing
-   them from history needs a rewrite + force-push, which agents may not do.
-   Decide whether to clean history (and when, relative to merging PR #11).
+e) Partly done. This branch's history was rewritten on 2026-11-16 so that no
+   commit on it contains the earlier real names. Still open: `main` has three
+   older commits and one commit message that name a real person. Cleaning
+   those means rewriting and force-pushing `main`, which the owner has not
+   asked for. Old commit IDs may also stay reachable on GitHub until GitHub
+   Support purges them.
 f) Variant C renders a boxed `LOGO` placeholder cell in the top bar, exactly
    as in `reference/variant-C.html`. A real recipient would see the word
    "LOGO". Decide: supply a real logo image, drop the cell, or keep it. The
@@ -122,14 +125,14 @@ selected profile (with logo) and never `[Company name]`; and a 260-character
 unbroken summary keeps the email 800px wide. Then wait for CI on the branch
 and record the result below.
 
-## Verification results (2026-11-15, local, at commit `4f03161` + docs)
+## Verification results (2026-11-15, local, at commit `6dde39c` + docs)
 
 - `npm ci` — exit 0.
 - `npm test` — 6 files, 61 tests passed (main app, untouched).
 - `npm run typecheck` — exit 0.
 - `npm run build:gh-pages` — built, exit 0.
 - `node --test prototype/daily-email/test/report.test.mjs` — 79 passed, 0
-  failed (was 28 at `0d2e2ba`).
+  failed (was 28 at `4a49874`).
 - `node --check` on every `.mjs` under `prototype/daily-email/` — all pass.
 - M7 grep — prints nothing.
 - Playwright/Chromium against `server.mjs`, fictional sample plus a fictional
@@ -142,7 +145,7 @@ and record the result below.
   the email exactly 800px wide; clipboard plain text is clean; L1/L2/M2
   behaviours confirmed in the UI.
 - CI on the branch (PR #11, workflow "Deploy to GitHub Pages", run 43712468391
-  on `2fcbd92`): `build` success, `deploy` skipped (pull requests only
+  on `fe3a63a`): `build` success, `deploy` skipped (pull requests only
   validate). The only commit after that changes this file alone.
 
 ## Notes for next agent
@@ -183,19 +186,29 @@ and record the result below.
   down to 736px).
 - The `LOGO` box in Variant C's top bar is a separate header placeholder
   from the reference design. It is not connected to the signature logo.
+- History rewrite (owner-approved, 2026-11-16): the 55 commits on this branch
+  that are not on `main` were rewritten with dummy names (sender block in the
+  design fixtures, a reviewer's name in the prototype README and page) and
+  force-pushed. File contents at the tip are byte-identical to before. Every
+  commit ID on this branch changed: the hashes in this file were updated to
+  the new IDs, but the hashes inside older `HANDOFF: record ...` commit
+  subjects are pre-rewrite IDs and no longer resolve. Any other clone of this
+  branch must be re-cloned or hard-reset to `origin`; do not push an old copy.
+- `main`'s README was reworded on 2026-11-16 (owner-approved push to `main`)
+  to drop a real name and the "awaiting review" wording.
 
 ## Log
 
-- 2026-11-15 — `7577e9b` Add HANDOFF.md and AGENTS.md pointer.
-- 2026-11-15 — `c7030df` Fix H1/H2: real sender details and rich signatures in themed emails (33 prototype tests pass).
-- 2026-11-15 — `66de713` Fix M1/M2: intro sentence and truthful scope caption/disclaimer (35 prototype tests pass).
-- 2026-11-15 — `6978289` Fix M7: fictional sender in the email design fixtures (36 prototype tests pass).
-- 2026-11-15 — `631a1d5` Fix M3/M4: rebuild themed renderer from the reference designs (42 prototype tests pass).
-- 2026-11-15 — `f2cc741` Fix M5: build clipboard plain text from the report data (43 prototype tests pass).
-- 2026-11-15 — `ab13c38` Fix M6: keep pull-request CI from cancelling Pages deploys (44 prototype tests pass).
-- 2026-11-15 — `fec2665` Fix L1-L4: theme sync on import, variant fallback, docs, fixtures (48 prototype tests pass).
-- 2026-11-15 — `ce162d6` Harden theme tests: eight checks per variant on a hostile fixture (79 prototype tests pass).
-- 2026-11-15 — `4f03161` M3 follow-up: width-aware break opportunities per column (79 prototype tests pass).
-- 2026-11-15 — `2fcbd92` Record local verification results; README notes for sender details. CI on this commit: build success, deploy skipped.
+- 2026-11-15 — `af22ca7` Add HANDOFF.md and AGENTS.md pointer.
+- 2026-11-15 — `aba2b64` Fix H1/H2: real sender details and rich signatures in themed emails (33 prototype tests pass).
+- 2026-11-15 — `edda2ca` Fix M1/M2: intro sentence and truthful scope caption/disclaimer (35 prototype tests pass).
+- 2026-11-15 — `393ce4d` Fix M7: fictional sender in the email design fixtures (36 prototype tests pass).
+- 2026-11-15 — `8f4de5f` Fix M3/M4: rebuild themed renderer from the reference designs (42 prototype tests pass).
+- 2026-11-15 — `62a4f53` Fix M5: build clipboard plain text from the report data (43 prototype tests pass).
+- 2026-11-15 — `eb9ee0a` Fix M6: keep pull-request CI from cancelling Pages deploys (44 prototype tests pass).
+- 2026-11-15 — `ca3f774` Fix L1-L4: theme sync on import, variant fallback, docs, fixtures (48 prototype tests pass).
+- 2026-11-15 — `9973ff8` Harden theme tests: eight checks per variant on a hostile fixture (79 prototype tests pass).
+- 2026-11-15 — `6dde39c` M3 follow-up: width-aware break opportunities per column (79 prototype tests pass).
+- 2026-11-15 — `fe3a63a` Record local verification results; README notes for sender details. CI on this commit: build success, deploy skipped.
 - 2026-11-15 — (latest commit) Tick Verification and record the CI result. All checklist items done; only the owner decisions above remain open.
-- 2026-11-15 — `f5444aa` Signature logos: cap at 736px and set explicit width/height; owner decisions recorded (80 prototype tests pass).
+- 2026-11-15 — `1cf7e78` Signature logos: cap at 736px and set explicit width/height; owner decisions recorded (80 prototype tests pass).
