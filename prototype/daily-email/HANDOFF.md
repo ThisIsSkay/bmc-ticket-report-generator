@@ -75,10 +75,7 @@ in scope.
   of the prototype.
 - Real Classic Outlook testing will happen later (not scheduled).
 - Personal data is to be cleared or replaced with dummy names. Done for the
-  working tree of this branch. Still pending the owner's go-ahead because
-  they need a push to `main` or a force-push: `main`'s README names a real
-  person in three places, and older commits on both branches still contain
-  real names (see (e)).
+  files and the history of both this branch and `main` (see (e) and Notes).
 
 ## Open decisions for the owner (agents: do NOT decide these)
 
@@ -90,12 +87,12 @@ b) `main`'s `deploy.yml` checks out `feature/daily-pivot-email-report` at
 c) GitHub Pages must be enabled (Settings > Pages > Source = GitHub Actions).
 d) Themed emails omit the closed-ticket list, per the design spec. Confirm
    this is intended.
-e) Partly done. This branch's history was rewritten on 2026-11-16 so that no
-   commit on it contains the earlier real names. Still open: `main` has three
-   older commits and one commit message that name a real person. Cleaning
-   those means rewriting and force-pushing `main`, which the owner has not
-   asked for. Old commit IDs may also stay reachable on GitHub until GitHub
-   Support purges them.
+e) Done for file contents and commit messages. This branch and the last four
+   commits of `main` were rewritten on 2026-11-16; no commit reachable from
+   any branch now contains the earlier real names. Remaining, owner's call:
+   (1) old commit IDs can stay reachable on GitHub by direct URL until GitHub
+   Support purges them; (2) commit author metadata still carries the owner's
+   own Git name and email.
 f) Variant C renders a boxed `LOGO` placeholder cell in the top bar, exactly
    as in `reference/variant-C.html`. A real recipient would see the word
    "LOGO". Decide: supply a real logo image, drop the cell, or keep it. The
@@ -196,6 +193,19 @@ and record the result below.
   branch must be re-cloned or hard-reset to `origin`; do not push an old copy.
 - `main`'s README was reworded on 2026-11-16 (owner-approved push to `main`)
   to drop a real name and the "awaiting review" wording.
+- `main` history rewrite (owner-approved, 2026-11-16): only the last four
+  commits of `main` were affected (README wording and one commit message).
+  They were rewritten and force-pushed; file contents are byte-identical and
+  the first 50 commits of `main` keep their IDs. This branch forks from an
+  earlier `main` commit, so it did not need rewriting again. `main`'s tip is
+  now `0cd198b`. No other remote branch contained the affected commits. Any
+  clone of `main` must be hard-reset to `origin/main`.
+- Sample/test data check (2026-11-16): `public/sample-bmc-export.xlsx`
+  (role names such as "EUC Analyst", first names Alice/Bob/Carol),
+  `src/test/*`, `public/default-*.json`, the prototype CSV sample and
+  `docs/email-design/sample-data.json` contain fictional values only.
+  Nothing needed changing. Organisation terms (BMC, NCC, AsiaPac) remain;
+  they are not personal data and the main app depends on them.
 
 ## Log
 
@@ -212,3 +222,4 @@ and record the result below.
 - 2026-11-15 — `fe3a63a` Record local verification results; README notes for sender details. CI on this commit: build success, deploy skipped.
 - 2026-11-15 — (latest commit) Tick Verification and record the CI result. All checklist items done; only the owner decisions above remain open.
 - 2026-11-15 — `1cf7e78` Signature logos: cap at 736px and set explicit width/height; owner decisions recorded (80 prototype tests pass).
+- 2026-11-16 — This branch's history rewritten with dummy names (force-push); `main` README reworded, then the last four `main` commits rewritten (force-push, new tip `0cd198b`). Sample/test data confirmed fictional.
