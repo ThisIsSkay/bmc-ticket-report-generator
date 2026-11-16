@@ -6,16 +6,16 @@
 
 ### Daily Pivot & Email Report — prototype preview
 
-This is an **early prototype**, not yet merged into the main NCC screenshot tool. It uses a separate [working branch](https://github.com/ThisIsSkay/bmc-ticket-report-generator/tree/feature/daily-pivot-email-report/prototype/daily-email) and is published alongside the original dashboard for testing.
+This is an **early prototype** that is kept apart from the main NCC screenshot tool: a skeleton for automating the daily email, with a human check before anything is sent. It lives on a separate [working branch](https://github.com/ThisIsSkay/bmc-ticket-report-generator/tree/feature/daily-pivot-email-report/prototype/daily-email) and is published alongside the original dashboard for testing.
 
 1. Open **Daily Pivot & Email Report (Prototype)** above and select **Load fictional sample** or upload a BMC Excel/CSV file.
 2. Choose the report date and filters. Check the **created today**, **closed/resolved today**, and pivot-style ticket summaries.
-3. Select **Email settings** to configure saved To/Cc, subject, signature, and email client.
+3. Select **Email settings** to configure saved To/Cc, subject, sender details or signature, and email client. Pick one of the four email themes (A–D) above the preview.
 4. For **Classic Outlook on Windows**, choose **Download Classic Outlook draft (.ps1)**. Right-click the downloaded helper and select **Run with PowerShell**. It uses the user's configured Outlook profile to open an **unsent editable draft** and saves a Unicode `.msg` beside the helper; no email login or automatic sending. If Windows policy blocks the helper, use **Copy formatted email** into a new Outlook message instead.
 5. For **New Outlook / Gmail**, use **Download .eml**, **Copy formatted email**, or **Download .html** as applicable. `.eml` is not the preferred Classic Outlook route because it may open as raw MIME/Base64 plain text.
 6. To include a company logo, open **Email settings → Signature profiles**, paste a PNG/JPEG into the rich editor or choose **Insert PNG/JPEG**, then save. If copying a signature from Outlook omits the logo, insert the image file separately. The Classic Outlook draft helper creates CID image attachments; `.eml` exports also embed the logo inline.
 
-**Awaiting the sample customer email format:** the layout and pivot summary are provisional and will be adjusted once the desired email example is available. No emails are sent automatically. The prototype processes ticket uploads locally in the browser; only fictional sample data is committed. The preview is hosted on public GitHub Pages, so check your organization's rules before testing with actual customer information.
+**Prototype status:** the layout and pivot summary may still change, and the result has not yet been checked in Classic Outlook itself. No emails are sent automatically. The prototype processes ticket uploads locally in the browser; only fictional sample data is committed. The preview is hosted on public GitHub Pages, so check your organization's rules before testing with actual customer information.
 
 The [existing NCC dashboard](https://thisisskay.github.io/bmc-ticket-report-generator/) and its screenshot export remain unchanged.
 
