@@ -13,6 +13,85 @@ bugs (H1, H2, M1–M7, L1–L4) plus weak tests. This effort fixes those bugs,
 adds a regression test for each, and hardens the theme tests. The subsequent
 owner-authorized outstanding-report work is described below.
 
+## Review of `1f503e1` (weekly ageing release 1) — 2026-11-18
+
+Reviewer: Claude. Scope: `git diff b03fa1d..1f503e1`, fictional data only. No
+code changed in this review. Verdict: **good release, one blocking bug (W1)**
+before it is used week to week.
+
+### Verified (reproduced here)
+
+- `report-core.mjs` and `src/` unchanged. **Daily output byte-identical to
+  `b03fa1d`** across 42 combinations (themes, legacy, plain text, filters,
+  sender/signature, hostile and long values).
+- 107/107 prototype tests, 61/61 main-app tests, typecheck and
+  `build:gh-pages` pass; `node --check` passes.
+- `vendor/xlsx.mini.min.js` is byte-identical to `dist/xlsx.mini.min.js` in
+  the repo's existing `vendor/xlsx-0.20.3.tgz`; Apache-2.0 licence included.
+- `scripts/verify-weekly.mjs` passed 3/3. `scripts/verify-outstanding.mjs`
+  passed about half the time: it still misses the `.eml` download at the same
+  step (variant B, check 47) although the app runs it (toast shown). Harness
+  flake, not an app bug (R7 only partly fixed).
+- Filters run after dedupe; type × group, type × priority and age bands
+  reconcile with the ticket total, including `(blank)` priority. Age bands
+  match the owner's definition (day 7 → 0–7, day 8 → 8–14, …; missing date →
+  Age unknown; date after the reference → Future-dated).
+- Excel: Summary/Tickets/Scope sheets; Submitted is a real date cell, age is a
+  number, text starting with `=` stays text, engineer column absent when
+  hidden, only in-scope tickets included.
+- Classic Outlook `.ps1`: the embedded workbook decodes to the same rows as the
+  downloaded `.xlsx`, is attached as `BMC_Outstanding_Tickets.xlsx` to an
+  unsent draft, and there is no Send call. Theme C header logo gets explicit
+  dimensions and becomes a CID image.
+- R3, R4, R5, R6 and R8 from the previous review are fixed. R1 now confirms on
+  each export when the contract is All or missing; R2 now uses a manually
+  entered age reference date.
+
+### Findings
+
+**W1 — High. Saved weekly setup can silently narrow later weeks.** "Use
+weekly ageing setup" selects only the type/status values present in the
+current file, and that selection is saved. Repro with fictional exports:
+week 2 has no Pending tickets and no Service Requests → export is blocked
+(good) → "Clear saved scope" → "Use weekly ageing setup" again saves
+types=[Incident], statuses=[Assigned], contract=All → week 3 contains two
+Pending Service Requests, and both are excluded with no warning other than
+"Excluded by type: 2" in the caption. The customer email under-reports.
+Fix: store the intended weekly values as constants (Incident, Service
+Request; Assigned, Pending) regardless of whether they appear in this file;
+for types/statuses, treat a saved value that is absent this week as a zero
+count with a notice, not a scope error; keep the hard block for missing
+contract or groups. Weekly setup should not save contract "All" over a
+previously saved contract.
+
+**W2 — Medium. Manual filter changes are not saved and get reverted.** The
+setup is captured only when "Use weekly ageing setup" or "Export settings" is
+clicked. Changing statuses by hand and uploading the next file restores the
+older saved setup. "Clear saved scope" resets groups and contract but leaves
+the type/status lists as they were (observed: Assigned + Resolved selected).
+Decide whether the setup is "last used" (save on every change) or "explicitly
+saved" (show a Save setup button and an "unsaved changes" marker).
+
+**W3 — Medium-low. Excel cannot filter by priority.** The Tickets sheet has a
+combined "Status / Priority" cell containing a line break ("Pending" /
+"Priority: Low"). Split into separate Status and Priority columns in the
+workbook (the email layout can stay combined).
+
+**W4 — Low. Customer caption lists terminal statuses.** With the default
+(all statuses selected) the caption in the email reads "Statuses: Assigned,
+Closed, Pending, Work in Progress", because the status list is built from all
+rows. Build the type/status option lists from `report.pending`, or show "All
+outstanding" when everything is selected.
+
+**W5 — To test manually.** Copy formatted email now shows a confirm dialog
+before writing to the clipboard. Browsers can refuse the clipboard write if
+the click is no longer recent after the dialog. The browser suite mocks the
+clipboard, so check in real Chrome/Edge with the contract set to All.
+
+Still open: R7 harness flake; real Classic Outlook rendering, attachment and
+logo scaling (100/125/150%); A/B/D header logo designs; multi-preset
+management.
+
 ## Weekly ageing release 1 — 2026-11-18
 
 Owner approved implementation and confirmed the weekly setup: Incident + Service
@@ -421,3 +500,4 @@ and record the result below.
 - 2026-11-15 — `1cf7e78` Signature logos: cap at 736px and set explicit width/height; owner decisions recorded (80 prototype tests pass).
 - 2026-11-16 — This branch's history rewritten with dummy names (force-push); `main` README reworded, then the last four `main` commits rewritten (force-push, new tip `0cd198b`). Sample/test data confirmed fictional.
 - 2026-11-18 — `7a2dae9` Outstanding report (Codex). Reviewed: daily output byte-identical, 98/61 tests pass; findings R1–R8 recorded above.
+- 2026-11-18 — `1f503e1` Weekly ageing release 1 (Codex). Reviewed: daily output byte-identical, 107/61 tests pass; findings W1–W5 recorded above.
