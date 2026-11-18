@@ -3,7 +3,8 @@ const TAGS=new Set(['DIV','P','BR','SPAN','B','STRONG','I','EM','U','S','SMALL',
 const DROP=new Set(['SCRIPT','STYLE','META','LINK','IFRAME','OBJECT','SVG','FORM','INPUT','VIDEO','AUDIO']);
 const STYLES=new Set(['font-family','font-size','font-weight','font-style','text-decoration','color','background-color','text-align','line-height','vertical-align','width','height','max-width','border-collapse','border','padding','margin']);
 export const plainToSignatureHtml=text=>String(text||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])).replace(/\r?\n/g,'<br>');
-export function allowedSignatureImage(src){return /^data:image\/(?:png|jpeg);base64,[a-zA-Z0-9+/=]+$/i.test(String(src||''))&&src.length<=1800000;}
+export const MAX_IMAGE_DATA_LENGTH=1800000;
+export function allowedSignatureImage(src){return /^data:image\/(?:png|jpeg);base64,[a-zA-Z0-9+/=]+$/i.test(String(src||''))&&src.length<=MAX_IMAGE_DATA_LENGTH;}
 /** Widest image the 736px email content column can hold; Classic Outlook ignores max-width, so size is set explicitly. */
 export const MAX_SIGNATURE_IMAGE_WIDTH=736;
 /** Pixel size of a PNG/JPEG data URL read from its header, or null. Needs no DOM. */
@@ -111,13 +112,13 @@ export function sanitizeSignatureHtml(html){
  for(const c of parsed.body.childNodes)clean(c,target);
  return target.innerHTML;
 }
-export async function imageFileToDataUrl(file){
+export async function imageFileToDataUrl(file,{maxWidth=MAX_SIGNATURE_IMAGE_WIDTH,maxHeight=320}={}){
  if(!['image/png','image/jpeg'].includes(file.type))throw Error('Choose a PNG or JPEG image.');
  if(file.size>8*1024*1024)throw Error('Image exceeds 8 MB. Resize it first.');
  const url=URL.createObjectURL(file);
  try{
   const img=new Image();await new Promise((resolve,reject)=>{img.onload=resolve;img.onerror=()=>reject(Error('Could not read image.'));img.src=url;});
-  const factor=Math.min(1,MAX_SIGNATURE_IMAGE_WIDTH/img.naturalWidth,320/img.naturalHeight),canvas=document.createElement('canvas');
+  const factor=Math.min(1,maxWidth/img.naturalWidth,maxHeight/img.naturalHeight),canvas=document.createElement('canvas');
   canvas.width=Math.max(1,Math.round(img.naturalWidth*factor));canvas.height=Math.max(1,Math.round(img.naturalHeight*factor));
   canvas.getContext('2d').drawImage(img,0,0,canvas.width,canvas.height);
   const data=canvas.toDataURL(file.type,file.type==='image/jpeg'?.84:undefined);

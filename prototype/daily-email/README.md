@@ -56,6 +56,9 @@ it manually. A reference date is required for workbook and pending Outlook-helpe
 exports. Workbooks over 5 MB require a narrower scope.
 
 Use Email settings to upload a PNG/JPEG header logo for outstanding theme C.
+The saved thumbnail and status remain visible after the filename clears. Files
+must be at most 8 MiB and are resized to fit 360×120; a roughly 3:1 image works
+best in the 120×40 header slot. Failed saves retain your previous logo.
 Other themes keep their approved header designs. Save settings, then **Export
 settings** to save one report setup including current filters and recipients.
 Import restores it; missing saved scope values block export until you explicitly

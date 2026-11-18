@@ -92,6 +92,34 @@ Still open: R7 harness flake; real Classic Outlook rendering, attachment and
 logo scaling (100/125/150%); A/B/D header logo designs; multi-preset
 management.
 
+## Header logo reliability fix — 2026-11-18
+
+Owner authorized the logo fixes first; daily theme C remains unchanged, with
+header branding still limited to Outstanding theme C. No deployment requested.
+
+- Logo upload and removal now persist a candidate before replacing active
+  settings/preview. Failed storage writes preserve the old logo. Settings
+  import follows the same rule and rejects invalid/oversized header images.
+- Modal panel displays the saved thumbnail, filename, stored dimensions and
+  encoded size, a persistent result/error, small-image warning, and approximate
+  saved settings size (not a promise about the browser's quota).
+- Header uploads fit 360×120; rendering remains proportional within 120×40.
+  Signature image defaults remain 736×320. One shared inclusive 1,800,000
+  character limit is used by validation and header rendering.
+- File selection still clears for re-upload, but a Saved/error panel replaces
+  that ambiguous feedback. Upload/removal/import controls serialize image work.
+- Scope setup bugs W1–W4 remain outside this focused fix.
+
+Validation: 110 prototype tests passed. Added browser checks for portrait and
+landscape resizing, tiny-result warnings, failed replacement/removal/import
+with simulated quota exhaustion, successful later recipient save, reload,
+invalid and over-8-MiB uploads, and successful removal. Daily golden and
+signature regressions pass. No real customer images or data used.
+
+Claude: review candidate persistence and imported-logo validation, repeat
+`scripts/verify-header-logo.mjs` with Playwright and the prototype server.
+Keep daily output and signature profiles unchanged; do not deploy or merge.
+
 ## Weekly ageing release 1 — 2026-11-18
 
 Owner approved implementation and confirmed the weekly setup: Incident + Service

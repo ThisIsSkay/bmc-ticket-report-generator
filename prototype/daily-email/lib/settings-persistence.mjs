@@ -1,3 +1,4 @@
+import {validHeaderLogo} from './header-logo.mjs';
 /** Debounce expensive settings serialization while permitting an explicit save/flush. */
 import {normalizeVariant,normalizeSender} from './email-themes.mjs';
 import {normalizeReportContent,PENDING_SUBJECT,PENDING_INTRO} from './pending-report.mjs';
@@ -9,7 +10,7 @@ import {normalizeReportContent,PENDING_SUBJECT,PENDING_INTRO} from './pending-re
 export function normalizeSettings(raw,defaults){
  const base=structuredClone(defaults);
  const source=raw&&typeof raw==='object'?raw:base;
- const pending={reportContent:normalizeReportContent(source.reportContent),showEngineer:source.showEngineer===true,pendingSubject:typeof source.pendingSubject==='string'&&source.pendingSubject.trim()?source.pendingSubject:PENDING_SUBJECT,pendingIntro:typeof source.pendingIntro==='string'&&source.pendingIntro.trim()?source.pendingIntro:PENDING_INTRO};
+ const pending={headerLogo:validHeaderLogo(source.headerLogo)?source.headerLogo:'',headerLogoName:typeof source.headerLogoName==='string'?source.headerLogoName:'',reportContent:normalizeReportContent(source.reportContent),showEngineer:source.showEngineer===true,pendingSubject:typeof source.pendingSubject==='string'&&source.pendingSubject.trim()?source.pendingSubject:PENDING_SUBJECT,pendingIntro:typeof source.pendingIntro==='string'&&source.pendingIntro.trim()?source.pendingIntro:PENDING_INTRO};
  if(!raw||typeof raw!=='object')return {...base,...pending,emailVariant:normalizeVariant(base.emailVariant),emailSender:normalizeSender(base.emailSender)};
  return {...base,...raw,...pending,emailVariant:normalizeVariant(raw.emailVariant),emailSender:normalizeSender(raw.emailSender),signatures:Array.isArray(raw.signatures)?raw.signatures:base.signatures};
 }

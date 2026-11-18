@@ -75,7 +75,7 @@ test('H1: sender warning shows while details are incomplete and no signature pro
  for(const id of ['senderName','senderTitle','senderCompany','senderPhone','senderWarning'])assert.match(page,new RegExp('id="'+id+'"'));
  assert.match(app,/emailSender:normalizeSender\(\{name:\$\('senderName'\)\.value/);
  // Load and import both go through normalizeSettings(), which keeps emailSender.
- assert.match(app,/state\.settings=normalizeSettings\(\{\.\.\.settings,/);
+ assert.match(app,/const candidate=normalizeSettings\(\{\.\.\.settings,/);
  assert.deepEqual(normalizeSettings({emailSender:{name:' Alex Example ',phone:null}},{emailSender:{},signatures:[]}).emailSender,{name:'Alex Example',title:'',company:'',phone:''});
  assert.match(app,/exportSettings'.*JSON\.stringify\(\{version:1,settings:state\.settings\}/);
  assert.doesNotMatch(readFileSync(new URL('../lib/email-themes.mjs',import.meta.url),'utf8'),/\[Company name\]|\[Office phone\]/);
@@ -136,7 +136,7 @@ test('SIGNATURE IMAGE: pasted/inserted PNG and JPEG logos get explicit sizes and
   assert.match(renderClassicOutlookScript(html,settings,'2026-11-10'),/<img src="cid:bmc-signature-1@local\.invalid" alt="Signature image" width="736"/,variant);
  }
  const lib=readFileSync(new URL('../lib/signature-html.mjs',import.meta.url),'utf8'),app=readFileSync(new URL('../app.mjs',import.meta.url),'utf8');
- assert.match(lib,/Math\.min\(1,MAX_SIGNATURE_IMAGE_WIDTH\/img\.naturalWidth,320\/img\.naturalHeight\)/);
+ assert.match(lib,/Math\.min\(1,maxWidth\/img\.naturalWidth,maxHeight\/img\.naturalHeight\)/);
  assert.doesNotMatch(lib,/820/);
  assert.match(app,/signatureImageSize\(src\)/);
 });
@@ -448,7 +448,7 @@ const APP_DEFAULTS={emailVariant:'A',client:'classic',emailSender:{name:'',title
 test('L1: importing settings updates the theme dropdown before the preview refreshes',()=>{
  const app=readFileSync(new URL('../app.mjs',import.meta.url),'utf8');
  const handler=app.slice(app.indexOf("$('importSettings').addEventListener"),app.indexOf("$('demoBtn')"));
- assert.match(handler,/state\.settings=normalizeSettings\(/);
+ assert.match(handler,/const candidate=normalizeSettings\(/);
  const sync=handler.indexOf("$('emailVariant').value=state.settings.emailVariant"),refresh=handler.indexOf('refreshReport()');
  assert.ok(sync>0&&refresh>sync,'dropdown must be synced before refreshReport()');
  const imported=normalizeSettings({emailVariant:'D',client:'gmail',signatures:[],emailSender:{name:' Alex Example '}},APP_DEFAULTS);

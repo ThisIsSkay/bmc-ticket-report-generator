@@ -1,3 +1,4 @@
+import {validHeaderLogo} from './header-logo.mjs';
 /**
  * Outlook-safe themed daily report email (variants A-D).
  *
@@ -299,7 +300,7 @@ export function renderPendingEmail(view,settings={},variant='A'){
  const logoWidth=logoSize?Math.max(1,Math.round(logoSize.width*logoScale)):120,logoHeight=logoSize?Math.max(1,Math.round(logoSize.height*logoScale)):40;
  const d={sender:normalizeSender(settings.emailSender),signatureHtml:selectedSignatureHtml(settings)};
  const body=[
-  v==='C'?topBar(view.asAt?'Age reference: '+esc(view.asAt):'Current outstanding tickets','Outstanding Tickets','').replace('>LOGO</td>',/^data:image\/(png|jpeg);base64,[A-Za-z0-9+/=]+$/.test(settings.headerLogo||'')&&settings.headerLogo.length<1800000?`><img src="${settings.headerLogo}" width="${logoWidth}" height="${logoHeight}" alt="Report logo" style="width:${logoWidth}px;height:${logoHeight}px;" /></td>`:'>LOGO</td>'):'',
+  v==='C'?topBar(view.asAt?'Age reference: '+esc(view.asAt):'Current outstanding tickets','Outstanding Tickets','').replace('>LOGO</td>',validHeaderLogo(settings.headerLogo)?`><img src="${settings.headerLogo}" width="${logoWidth}" height="${logoHeight}" alt="Report logo" style="width:${logoWidth}px;height:${logoHeight}px;" /></td>`:'>LOGO</td>'):'',
   `<tr><td style="${t.greeting.td}"><p style="margin:0 0 ${t.greeting.gap} 0;${F}${t.greeting.p}">${multiline(String(settings.greeting||'').trim()||'Hi Team,')}</p><p style="margin:0;${F}${t.greeting.p}">${String(settings.pendingIntro||PENDING_INTRO).split(/\r?\n/).map(line=>softBreak(esc(line),640,14)).join('<br />')}</p></td></tr>`,
   HEADERS[v](title,softBreak(esc(pendingCaption(view)),640,13)),
   KPIS[v]([['Outstanding',view.total],['Incidents',view.incidents],['Service requests &amp; other',view.other]]),
