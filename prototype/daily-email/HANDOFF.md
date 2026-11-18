@@ -13,6 +13,49 @@ bugs (H1, H2, M1–M7, L1–L4) plus weak tests. This effort fixes those bugs,
 adds a regression test for each, and hardens the theme tests. The subsequent
 owner-authorized outstanding-report work is described below.
 
+## Weekly ageing release 1 — 2026-11-18
+
+Owner approved implementation and confirmed the weekly setup: Incident + Service
+Request; raw Assigned + Pending; age bands 0–7, 8–14, 15–30, 31–60, over 60;
+manually entered reference date. This is calendar age since submission, not time
+in status or historical backlog. Existing outstanding defaults remain broad.
+
+Implemented on top of review commit `b03fa1d`:
+- Explicit type/status selection after dedupe, exclusion counts, group × type,
+  type × raw priority and ageing breakdowns. Blank/unknown priorities retained;
+  missing submission dates are Age unknown and future dates are flagged.
+- Weekly setup button selects the approved filters and concise email mode.
+  Full details remain in dashboard and Excel, with engineer visibility shared.
+- Real XLSX Summary/Tickets/Scope workbook, dates, autofilter, column widths and
+  text-only user fields; 5 MB output limit. SheetJS mini 0.20.3 and its licence
+  are copied from the existing repository vendor package (no CDN dependency).
+- Classic Outlook helper attaches the same workbook to an unsent draft. EML
+  and clipboard use manual workbook attachment; there is no automatic sending.
+- Theme C outstanding header logo upload, proportional explicit dimensions,
+  existing CID conversion. A/B/D header logo designs and multi-preset management
+  remain deferred. One report setup uses existing settings export/import.
+- Saved setup records exact groups, contract, types/statuses and event selection;
+  missing saved values block export until Clear saved scope is used. No inferred
+  customer mappings. All/missing contract requires confirmation on each export.
+- Scope/recipients shown beside exports. Age reference date is explicit, never
+  inferred from file metadata. {date} works in outstanding subject/introduction.
+- R3/R4/R5/R6/R8 corrected (line breaks, plain text, group width, dashboard
+  alignment, blank greeting). Browser contexts accept downloads and support
+  Playwright's installed browser or CHROMIUM_PATH. Separate weekly browser test.
+
+Validation: 107 prototype tests, 61 main tests, typecheck and Pages build pass;
+127 outstanding browser checks and the weekly browser flow pass. Compared daily
+A–D HTML, daily plain text and attachment-free Outlook helper with `b03fa1d`:
+byte-identical for the fictional fixture. src/ and report-core.mjs unchanged.
+Native Outlook execution/rendering, clipboard image handling and display scaling
+still require manual testing. No merge or deployment performed.
+
+Claude: review this release against `b03fa1d`. Focus on filter reconciliation,
+setup import/missing-value checks, Excel row/column privacy, scope confirmation,
+age boundary semantics, CID header logo and workbook attachment handling. Run
+`npm --prefix prototype/daily-email test` and both `scripts/verify-*.mjs` using
+Playwright and a running prototype server. Do not merge or deploy.
+
 ## Outstanding report implementation — 2026-11-18
 
 Implemented on `feature/daily-pivot-email-report`, based on `d72e0f3`, in a

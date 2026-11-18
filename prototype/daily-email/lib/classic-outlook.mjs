@@ -29,7 +29,7 @@ function embedSignatureImages(html) {
   return { html: converted, images };
 }
 
-export function renderClassicOutlookScript(html, settings, reportDate) {
+export function renderClassicOutlookScript(html, settings, reportDate, attachments=[]) {
   const { html: emailHtml, images } = embedSignatureImages(html);
   // The report remains human-readable inside a PowerShell single-quoted here-string.
   // Avoid a user-controlled line closing the here-string.
@@ -71,6 +71,11 @@ export function renderClassicOutlookScript(html, settings, reportDate) {
     '        $attachment.PropertyAccessor.SetProperty("http://schemas.microsoft.com/mapi/proptag/0x3712001F", [string] $image.ContentId)',
     '        try { $attachment.PropertyAccessor.SetProperty("http://schemas.microsoft.com/mapi/proptag/0x7FFE000B", $true) } catch {}',
     '    }',
+    ...attachments.flatMap(item=>{if(!/^[A-Za-z0-9+/=]+$/.test(item.base64)||item.base64.length>7000000)throw Error('Invalid or oversized attachment');return [
+      '    $tempFile = Join-Path ([IO.Path]::GetTempPath()) ([Guid]::NewGuid().ToString("N") + ".xlsx")',
+      '    [void] $temporaryFiles.Add($tempFile)',
+      '    [IO.File]::WriteAllBytes($tempFile, [Convert]::FromBase64String('+psQuote(item.base64)+'))',
+      '    [void] $mail.Attachments.Add($tempFile, 1, 1, '+psQuote(String(item.filename).replace(/[^a-zA-Z0-9._-]/g,'_'))+')'];}),
     '    $mail.Save() # Saves to the active Outlook profile Drafts folder',
     '    $target = [IO.Path]::ChangeExtension($PSCommandPath, ".msg")',
     '    $stem = [IO.Path]::Combine([IO.Path]::GetDirectoryName($target), [IO.Path]::GetFileNameWithoutExtension($target))',

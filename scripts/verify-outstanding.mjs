@@ -5,8 +5,10 @@ import {createRequire} from 'node:module';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 const {chromium}=createRequire(import.meta.url)('playwright');
-const browser=await chromium.launch({headless:true,executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',args:['--no-sandbox']});
-const page=await browser.newPage({viewport:{width:1440,height:1100}});
+const browser=await chromium.launch({headless:true,...(process.env.CHROMIUM_PATH?{executablePath:process.env.CHROMIUM_PATH}:{}),args:['--no-sandbox']});
+const context=await browser.newContext({acceptDownloads:true,viewport:{width:1440,height:1100}});
+const page=await context.newPage();
+page.on('dialog',dialog=>dialog.accept());
 const errors=[];page.on('pageerror',error=>errors.push(error.message));
 let checks=0;
 function check(value,message){assert.ok(value,message);checks++;}
@@ -22,6 +24,7 @@ async function download(id){const wait=page.waitForEvent('download');await page.
 try{
  await page.goto(process.env.BMC_PREVIEW_URL||'http://127.0.0.1:4177');
  await page.locator('#demoBtn').click();await page.locator('#result').waitFor({state:'visible'});
+ await page.selectOption('#reportContent','pending');await page.locator('#asAt').fill('2026-11-18');await page.locator('#asAt').dispatchEvent('change');await page.selectOption('#reportContent','daily');
  const daily={};
  for(const variant of ['A','B','C','D']){
   await page.selectOption('#emailVariant',variant);daily[variant]=await html();
@@ -43,7 +46,7 @@ try{
    await page.selectOption('#clientChoice','new');
    const eml=await download('#downloadEml');const encoded=eml.content.split(/\r?\n\r?\n/).slice(1).join('\n');
    check(Buffer.from(encoded.replace(/\s/g,''),'base64').toString('utf8')===markup,'EML matches preview');
-   check(eml.content.includes('Subject: BMC Outstanding Tickets'),'Pending subject');
+   check((await page.locator('#previewSubject').textContent()).includes('2026-11-18'),'Dated pending subject');
    await page.selectOption('#clientChoice','classic');
    const ps=await download('#downloadClassic');check(ps.content.includes(markup),'Classic Outlook contains selected HTML');check(!ps.content.includes('$mail.Send('),'No automatic sending');
   }
@@ -83,7 +86,7 @@ try{
  check(await page.locator('#reportContent').inputValue()==='pending','Imported mode synchronized');
  check(await page.locator('#previewSubject').textContent()==='Customer outstanding','Imported pending subject');
  await page.reload();check(await page.locator('#reportContent').inputValue()==='pending','Mode survives reload');
- await page.locator('#demoBtn').click();await page.locator('#result').waitFor({state:'visible'});check(await page.locator('#outstandingTotal').textContent()==='5','New upload resets group choices');
+ await page.locator('#demoBtn').click();await page.locator('#result').waitFor({state:'visible'});await page.locator('#resetSetup').click();check(await page.locator('#outstandingTotal').textContent()==='5','New upload resets group choices');
  check(errors.length===0,errors.join('\n'));
  console.log(`PASS: ${checks} browser checks`);
 }finally{await browser.close();}

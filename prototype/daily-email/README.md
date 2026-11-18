@@ -40,6 +40,28 @@ Group selections reset to All when a new file is loaded. The scope notice is a
 reminder to check the intended customer; a contract is not assumed to identify a
 customer automatically. Drafts remain unsent until reviewed and sent in your client.
 
+## Weekly ageing setup and Excel delivery
+
+In Outstanding tickets, click **Use weekly ageing setup**, then enter the
+**Age reference date**. The setup selects Incident and Service Request with raw
+Assigned and Pending statuses. Change the multi-select lists to narrow or expand
+that scope. The ageing bands are 0–7, 8–14, 15–30, 31–60 and over 60 calendar days
+since submission, with separate unknown/future categories. This does not show
+historical backlog or time spent in a status.
+
+Weekly setup enables **Email summaries only**; full details are in **Download
+Excel details**. The Classic Outlook helper attaches that workbook automatically
+when creating the unsent draft. For EML or clipboard, download Excel and attach
+it manually. A reference date is required for workbook and pending Outlook-helper
+exports. Workbooks over 5 MB require a narrower scope.
+
+Use Email settings to upload a PNG/JPEG header logo for outstanding theme C.
+Other themes keep their approved header designs. Save settings, then **Export
+settings** to save one report setup including current filters and recipients.
+Import restores it; missing saved scope values block export until you explicitly
+**Clear saved scope** and review the new selection. Multiple named report presets
+are deferred. Imported tickets are never stored in the settings file.
+
 ## Run
 
 Requires Node.js 20+; no npm installation or external dependencies.

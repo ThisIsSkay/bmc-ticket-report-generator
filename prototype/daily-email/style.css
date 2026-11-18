@@ -11,3 +11,6 @@
 #pendingGroups{display:flex;flex-wrap:wrap;gap:4px 18px}
 .pending-kpis{grid-template-columns:repeat(3,1fr)}
 .pending-detail-title{margin-top:20px}
+
+#pendingTicketTable th{text-align:left}
+#pendingTicketTable td{white-space:pre-line}

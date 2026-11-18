@@ -7,7 +7,7 @@
  * Rules (AGENTS.md): tables only, inline styles only, Arial on every
  * text-bearing p/h1/h2/td/th, 1px solid borders, bgcolor + background-color.
  */
-import {signatureEmailHtml,plainToSignatureHtml} from './signature-html.mjs';
+import {signatureEmailHtml,plainToSignatureHtml,signatureImageSize} from './signature-html.mjs';
 import {pendingCaption,pendingDisclaimer,pendingColumns,pendingTicketValues,PENDING_INTRO} from './pending-report.mjs';
 
 const F='font-family:Arial,Helvetica,sans-serif;';
@@ -191,7 +191,7 @@ function summaryTable(t,rows,label){
 const TICKET_HEADS=['Ticket ID','Type','Summary','Assignee','Assigned group','Current status'],TICKET_WIDTHS=[132,108,198,96,116,86];
 function ticketTable(t,tickets,heads=TICKET_HEADS,widths=TICKET_WIDTHS,empty='No tickets were created on this date.',lineBreaks=false){
  const cols=heads.length;
- const head=heads.map((name,c)=>cell('th',{align:'left',width:widths[c],bg:t.head.bg,border:t.head.border,pad:padFor(t.head.tixPad,c,cols),text:t.head.tix,textAlign:'left'},name)).join('');
+ const head=heads.map((name,c)=>cell('th',{align:'left',width:widths[c],bg:t.head.bg,border:t.head.border,pad:padFor(t.head.tixPad,c,cols),text:t.head.tix,textAlign:'left'},esc(name))).join('');
  const body=tickets.map((values,i)=>`<tr>${values.map((value,c)=>cell('td',{valign:'top',bg:i%2?t.row.stripe:'',border:t.row.border(i,false),pad:padFor(t.row.tixPad,c,cols),text:t.row.tix,wrap:true},(lineBreaks?String(value).split('\n').map(line=>cellText(line,widths[c],padFor(t.row.tixPad,c,cols),t.row.tix)).join('<br />'):cellText(value,widths[c],padFor(t.row.tixPad,c,cols),t.row.tix)))).join('')}</tr>`);
  // Empty state: one full-width row styled as a normal data row.
  if(!tickets.length)body.push(`<tr>${cell('td',{colspan:cols,valign:'top',border:t.row.border(0,false),pad:padFor(t.row.tixPad,0,cols,true),text:t.row.tix},empty)}</tr>`);
@@ -284,7 +284,7 @@ export function renderPlainText(report,settings={},filters={}){
 /** Two-column summaries for the outstanding view, styled with the same themes. */
 function pendingSummaryTable(t,rows,label){
  const widths=[616,120];
- const head=[label,'Outstanding'].map((name,c)=>cell('th',{align:c?t.numAlign:'left',width:widths[c],bg:t.head.bg,border:t.head.border,pad:padFor(t.head.sumPad,c,2),text:t.head.sum,textAlign:c?t.numAlign:'left'},name)).join('');
+ const head=[label,'Outstanding'].map((name,c)=>cell('th',{align:c?t.numAlign:'left',width:widths[c],bg:t.head.bg,border:t.head.border,pad:padFor(t.head.sumPad,c,2),text:t.head.sum,textAlign:c?t.numAlign:'left'},esc(name))).join('');
  const body=rows.map((r,i)=>`<tr>${[r.name,r.count].map((value,c)=>cell('td',{align:c?t.numAlign:'',bg:i%2?t.row.stripe:'',border:t.row.border(i,i===rows.length-1),pad:padFor(t.row.sumPad,c,2),text:t.row.sum,wrap:!c,textAlign:c?t.numAlign:''},cellText(value,widths[c],padFor(t.row.sumPad,c,2),t.row.sum))).join('')}</tr>`);
  if(!rows.length)body.push(`<tr>${cell('td',{colspan:2,border:t.row.border(0,true),pad:padFor(t.row.sumPad,0,2,true),text:t.row.sum},'No outstanding tickets in this selection.')}</tr>`);
  body.push(`<tr>${['TOTAL',rows.reduce((sum,r)=>sum+r.count,0)].map((value,c)=>cell('td',{align:c?t.numAlign:'',bg:t.total.bg,border:t.total.border,pad:padFor(t.total.pad,c,2),text:t.total.text,textAlign:c?t.numAlign:''},esc(value))).join('')}</tr>`);
@@ -292,31 +292,39 @@ function pendingSummaryTable(t,rows,label){
 }
 
 export function renderPendingEmail(view,settings={},variant='A'){
- const v=normalizeVariant(variant),t=THEMES[v],title='BMC Outstanding Tickets';
+ const v=normalizeVariant(variant),t=THEMES[v],title='BMC Outstanding Tickets'+(view.asAt?' — age as at '+view.asAt:'');
+ settings={...settings,pendingIntro:String(settings.pendingIntro||PENDING_INTRO).replaceAll('{date}',view.asAt||'current snapshot')};
  const columns=pendingColumns(settings.showEngineer===true);
+ const logoSize=signatureImageSize(settings.headerLogo),logoScale=logoSize?Math.min(120/logoSize.width,40/logoSize.height):1;
+ const logoWidth=logoSize?Math.max(1,Math.round(logoSize.width*logoScale)):120,logoHeight=logoSize?Math.max(1,Math.round(logoSize.height*logoScale)):40;
  const d={sender:normalizeSender(settings.emailSender),signatureHtml:selectedSignatureHtml(settings)};
  const body=[
-  v==='C'?topBar('Uploaded export snapshot','Outstanding Tickets',''):'',
-  `<tr><td style="${t.greeting.td}"><p style="margin:0 0 ${t.greeting.gap} 0;${F}${t.greeting.p}">${multiline(settings.greeting||'Hi Team,')}</p><p style="margin:0;${F}${t.greeting.p}">${softBreak(multiline(settings.pendingIntro||PENDING_INTRO),640,14)}</p></td></tr>`,
+  v==='C'?topBar(view.asAt?'Age reference: '+esc(view.asAt):'Current outstanding tickets','Outstanding Tickets','').replace('>LOGO</td>',/^data:image\/(png|jpeg);base64,[A-Za-z0-9+/=]+$/.test(settings.headerLogo||'')&&settings.headerLogo.length<1800000?`><img src="${settings.headerLogo}" width="${logoWidth}" height="${logoHeight}" alt="Report logo" style="width:${logoWidth}px;height:${logoHeight}px;" /></td>`:'>LOGO</td>'):'',
+  `<tr><td style="${t.greeting.td}"><p style="margin:0 0 ${t.greeting.gap} 0;${F}${t.greeting.p}">${multiline(String(settings.greeting||'').trim()||'Hi Team,')}</p><p style="margin:0;${F}${t.greeting.p}">${String(settings.pendingIntro||PENDING_INTRO).split(/\r?\n/).map(line=>softBreak(esc(line),640,14)).join('<br />')}</p></td></tr>`,
   HEADERS[v](title,softBreak(esc(pendingCaption(view)),640,13)),
   KPIS[v]([['Outstanding',view.total],['Incidents',view.incidents],['Service requests &amp; other',view.other]]),
   section(t,'Outstanding by assigned group'),pendingSummaryTable(t,view.byGroup,'Assigned group'),
   section(t,'Outstanding by status'),pendingSummaryTable(t,view.byStatus,'Status'),
-  section(t,`Outstanding tickets (${view.total})`),ticketTable(t,view.tickets.map(ticket=>pendingTicketValues(ticket,settings.showEngineer===true)),columns.map(c=>c.label),columns.map(c=>c.width),'There are no outstanding tickets for this selection.',true),
+  ...[ ['Assigned group by ticket type',view.groupType],['Ticket type by priority',view.typePriority] ].filter(([,m])=>m).flatMap(([label,m])=>[section(t,label),ticketTable(t,[...m.rows.map(r=>[r.name,...r.counts,r.counts.reduce((a,b)=>a+b,0)]),['TOTAL',...m.columns.map((_,i)=>m.rows.reduce((n,r)=>n+r.counts[i],0)),view.total]],[label,...m.columns,'Total'],[...Array(m.columns.length+1).fill(Math.floor(736/(m.columns.length+2))),736-Math.floor(736/(m.columns.length+2))*(m.columns.length+1)])]),
+  ...(view.asAt?[section(t,'Age since submitted (days), as at '+esc(view.asAt)),pendingSummaryTable(t,view.byAge,'Age band')]:[]),
+  ...(settings.summaryOnly===true?[]:[section(t,`Outstanding tickets (${view.total})`),ticketTable(t,view.tickets.map(ticket=>pendingTicketValues(ticket,settings.showEngineer===true)),columns.map(c=>c.label),columns.map(c=>c.width),'There are no outstanding tickets for this selection.',true)]),
   signatureRow(t,d),disclaimerRow(t,esc(pendingDisclaimer(view))),v==='C'?bar(4):'',
  ].join('');
  return `${DOCTYPE}<html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>${title}</title></head><body style="margin:0;padding:0;background-color:#FFFFFF;"><table role="presentation" width="800" cellpadding="0" cellspacing="0" border="0" style="width:800px;background-color:#FFFFFF;border-collapse:collapse;"><tbody>${body}</tbody></table></body></html>`;
 }
 
 export function renderPendingPlainText(view,settings={}){
+ settings={...settings,pendingIntro:String(settings.pendingIntro||PENDING_INTRO).replaceAll('{date}',view.asAt||'current snapshot')};
  const summary=(title,rows)=>[title,...rows.map(row=>`- ${row.name}: ${row.count}`),`TOTAL: ${view.total}`];
  const columns=pendingColumns(settings.showEngineer===true);
- return [settings.greeting||'Hi Team,',settings.pendingIntro||PENDING_INTRO,'',
-  'BMC Outstanding Tickets',pendingCaption(view),'',
+ return [String(settings.greeting||'').trim()||'Hi Team,',settings.pendingIntro||PENDING_INTRO,'',
+  'BMC Outstanding Tickets',view.asAt?'Age since submitted (days), as at '+view.asAt:'Current snapshot',pendingCaption(view),'',
+ ...(view.byAge||[]).map(r=>`${r.name}: ${r.count}`),
+ ...[['Group by type',view.groupType],['Type by priority',view.typePriority]].filter(([,m])=>m).flatMap(([title,m])=>[title,['',...m.columns,'Total'].join(' | '),...m.rows.map(r=>[r.name,...r.counts,r.counts.reduce((a,b)=>a+b,0)].join(' | '))]),
   `Outstanding: ${view.total}`,`Incidents: ${view.incidents}`,`Service requests & other: ${view.other}`,'',
   ...summary('Outstanding by assigned group',view.byGroup),'',...summary('Outstanding by status',view.byStatus),'',
-  `Outstanding tickets (${view.total})`,columns.map(c=>c.label).join(' | '),
-  ...(view.total?view.tickets.map((ticket,i)=>`${i+1}. ${pendingTicketValues(ticket,settings.showEngineer===true).join(' | ')}`):['There are no outstanding tickets for this selection.']),'',
+  ...(settings.summaryOnly===true?['Full ticket details are in the Excel workbook.']:[`Outstanding tickets (${view.total})`,columns.map(c=>c.label).join(' | '),
+  ...(view.total?view.tickets.map((ticket,i)=>`${i+1}. ${pendingTicketValues(ticket,settings.showEngineer===true).map(value=>value.replace(/\r?\n/g,' · ')).join(' | ')}`):['There are no outstanding tickets for this selection.'])]),'',
   ...plainSignature(settings,normalizeSender(settings.emailSender)),'',pendingDisclaimer(view),
  ].join('\n');
 }

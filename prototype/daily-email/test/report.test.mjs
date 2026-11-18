@@ -771,11 +771,11 @@ for(const variant of VARIANTS)for(const showEngineer of [false,true]){
   assert.match(clean,/not a historical backlog/);
   assert.match(clean,/Contract: EXAMPLE-A/);
   const elements=parseElements(html),tables=elements.filter(e=>e.tag==='table'&&!e.attrs.role);
-  assert.equal(tables.length,3);
+  assert.equal(tables.length,5);
   const body=table=>table.children.find(e=>e.tag==='tbody').children;
   for(const table of tables.slice(0,2))assert.equal(body(table).at(-1).children[1].ownText,'2');
-  assert.equal(body(tables[2]).length,2);
-  const columns=tables[2].children.find(e=>e.tag==='thead').children[0].children;
+  assert.equal(body(tables.at(-1)).length,2);
+  const columns=tables.at(-1).children.find(e=>e.tag==='thead').children[0].children;
   assert.equal(columns.length,showEngineer?7:6);
   assert.equal(columns.reduce((sum,c)=>sum+Number(c.attrs.width),0),736);
   assert.equal(pendingColumns(showEngineer).reduce((sum,c)=>sum+c.width,0),736);
