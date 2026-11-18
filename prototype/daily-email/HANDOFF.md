@@ -79,6 +79,94 @@ output remains unchanged. Use fictional data only; keep this PR a draft and
 do not merge or deploy. Confirm actual Application group names and the
 customer/contract mapping before introducing any mappings or restrictions.
 
+## Review of `7a2dae9` (outstanding report) — 2026-11-18
+
+Reviewer: Claude. Scope: `git diff d72e0f3..7a2dae9`, fictional data only.
+No code was changed in this review; the items below are for the next
+implementer. Verdict: **sound foundation, not ready for customer use** until
+R1–R3 are fixed or explicitly accepted by the owner.
+
+### Verified (reproduced here)
+
+- `lib/report-core.mjs` and `src/` are unchanged.
+- **Daily output is byte-identical to `d72e0f3`:** 42 combinations (legacy
+  layout, A–D, unknown variant, plain text; three filter sets; sender block
+  and signature profile with logo; hostile and long values) all match.
+- 98/98 prototype tests, 61/61 main-app tests, typecheck and
+  `build:gh-pages` pass; `node --check` passes on every `.mjs`.
+- Group selection runs after dedupe: a ticket reassigned from an
+  Application group to another group is not counted under the old group.
+  Contract and EVT filters still run in the core.
+- Engineer names are hidden by default and the setting applies to the
+  dashboard, HTML, plain text and every export. Escaping, reconciliation
+  (KPIs = both TOTAL rows = detail rows) and empty states are correct. Column
+  widths sum to 736 with and without the engineer column.
+- `scripts/verify-outstanding.mjs`: passed 127/127 in one of four runs here;
+  see R7 for the other three.
+
+### Findings
+
+**R1 — Medium. Customer-scope check is advisory and easy to miss.** With
+"All contracts" selected, or no Contract column, every export still proceeds.
+The only warning sits in Report options, about 900px above the export
+buttons. A customer email can therefore include other customers' tickets.
+Recommended: repeat the warning beside the export buttons in outstanding
+mode and require a confirmation click when the contract is All or missing.
+Whether to block outright is owner decision (h).
+
+**R2 — Medium. Internal caveats and missing date in customer-facing text.**
+- The disclaimer tells the customer "Export snapshot time was not provided."
+- Variant C's top bar shows "Uploaded export snapshot".
+- The subject is the same every day ("BMC Outstanding Tickets"); `{date}` in
+  the outstanding subject becomes "uploaded snapshot", and `{date}` in the
+  outstanding introduction is left as literal text.
+Recommended: an editable "Data as at" date/time in outstanding mode
+(defaulting to the uploaded file's `File.lastModified`), used in the title,
+subject `{date}`, intro `{date}`, Variant C top bar and disclaimer. Which
+source to use is owner decision (i).
+
+**R3 — Bug. Outstanding introduction can lose its line break.**
+`renderPendingEmail` runs `softBreak` over `multiline(...)` output, so a
+zero-width space can be inserted inside `<br />`. Repro: introduction =
+39 × "x", newline, "Thanks" → output contains `<&#8203;br />`; the recipient
+sees literal "<br />" text and no line break. Fix: escape and `softBreak` each
+line, then join with `<br />`. Add a regression test with 19, 39 and 59
+character lines.
+
+**R4 — Low. Plain text splits ticket rows.** The Status/Priority value contains
+a newline, so each ticket with a priority spans two lines
+("1. … | Pending" / "Priority: High | 2026-11-10"). Use " · " in plain text.
+
+**R5 — Low. Group codes break mid-word in the email.** The 96px Assigned
+group column forces `softBreak` inside ordinary codes ("NCC_NETW" / "ORK").
+The daily table uses 116px; take 20px from Summary.
+
+**R6 — Low. Dashboard table alignment.** In the outstanding ticket-details
+table the headers from column 2 onward are right-aligned (CSS default for
+`th`) while the cells are left-aligned, and the Status/Priority newline
+collapses to "Pending Priority: Low". Dashboard only; the email is fine.
+
+**R7 — Low. Browser script is environment-specific and flaky.** It defaults to
+`/usr/bin/chromium` (absent here; needed `CHROMIUM_PATH`). In three of four
+runs it timed out waiting for the `.eml` download although the app ran the
+download (its toast appeared), so this is the harness, not the app. Suggest
+`browser.newContext({acceptDownloads:true})`, Playwright's default browser
+when `CHROMIUM_PATH` is unset, and one retry per download.
+
+**R8 — Trivial.** A whitespace-only greeting is not trimmed in outstanding
+mode (daily trims it to the "Hi Team," default).
+
+### Owner decisions added by this review
+
+- (h) Block, confirm, or only warn when exporting an outstanding report with
+  all contracts or no Contract column?
+- (i) "Data as at" source: file timestamp, latest Last Modified Date in the
+  export, or typed by the user?
+- Still open from the planning handoff: the definition of "pending"
+  (implemented as all non-terminal statuses, which differs from the approved
+  dashboard's "Pending" bucket), the real Application group value(s), whether
+  details should include more than the summary, and real Outlook testing.
+
 ## Rules (non-negotiable)
 
 - Never commit real BMC exports or real ticket data (code, tests, `public/`).
@@ -289,3 +377,4 @@ and record the result below.
 - 2026-11-15 — (latest commit) Tick Verification and record the CI result. All checklist items done; only the owner decisions above remain open.
 - 2026-11-15 — `1cf7e78` Signature logos: cap at 736px and set explicit width/height; owner decisions recorded (80 prototype tests pass).
 - 2026-11-16 — This branch's history rewritten with dummy names (force-push); `main` README reworded, then the last four `main` commits rewritten (force-push, new tip `0cd198b`). Sample/test data confirmed fictional.
+- 2026-11-18 — `7a2dae9` Outstanding report (Codex). Reviewed: daily output byte-identical, 98/61 tests pass; findings R1–R8 recorded above.
