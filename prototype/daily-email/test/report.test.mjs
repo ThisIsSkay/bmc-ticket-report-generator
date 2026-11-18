@@ -1,6 +1,7 @@
+import {buildPendingView,pendingColumns,pendingCaption,normalizeReportContent} from '../lib/pending-report.mjs';
 import {test} from 'node:test';import assert from 'node:assert/strict';
 import {parseCsv,detectColumns,normalizeTickets,generateReport,dateOnly,mandatoryColumns,updateReportWarnings} from '../lib/report-core.mjs';
-import {renderEmail,renderEml,renderPlainText} from '../lib/mail.mjs';
+import {renderEmail,renderEml,renderPlainText,renderPendingEmail,renderPendingPlainText} from '../lib/mail.mjs';
 import {normalizeSender,normalizeVariant,senderWarning,introSentence,scopeCaption,softBreak} from '../lib/email-themes.mjs';
 import {sanitizeSignatureHtml,signatureEmailHtml,signatureImageSize,MAX_SIGNATURE_IMAGE_WIDTH} from '../lib/signature-html.mjs';
 import {renderClassicOutlookScript} from '../lib/classic-outlook.mjs';
@@ -433,7 +434,7 @@ test('M5: clipboard plain text is built from the report, unescaped, with KPIs, t
  assert.match(emptyPlain,/No tickets were created on this date\.\n\nRegards,\nExample Team\n\nThis is/);
  assert.doesNotMatch(emptyPlain,/undefined|null|NaN|data:image|Best regards/);
  const app=readFileSync(new URL('../app.mjs',import.meta.url),'utf8');
- assert.match(app,/const plain=renderPlainText\(state\.report,emailSettings\(\),filters\(\)\)/);
+ assert.match(app,/const plain=isPending\(\)\?renderPendingPlainText\(state\.pendingView,emailSettings\(\)\):renderPlainText\(state\.report,emailSettings\(\),filters\(\)\)/);
  assert.doesNotMatch(app,/html\.replace\(\/<\[\^>\]\*>\/g/);
 });
 test('M6: pull-request CI runs cannot cancel a production Pages deploy',()=>{
@@ -702,3 +703,109 @@ test('REGRESSION: closing settings, backdrop, and pagehide flush pending signatu
  assert.match(app,/addEventListener\('pagehide',\(\)=>signaturePersistence\.flush\(\)\)/);
  assert.match(app,/visibilitychange'.*?signaturePersistence\.flush\(\)/s);
 });
+
+/* Outstanding-mode regressions. Group names below are fictional test values. */
+function outstandingFixture(){
+ const row=(id,group,status,created,contract='EXAMPLE-A',modified='2026-11-10')=>({
+  'Ticket ID':id,'Submit Date':created,'Resolved Date':status==='Resolved'?'2026-11-11':'',
+  'Last Modified Date':modified,'Status':status,'Assigned Group':group,'Assigned Engineer':'Alex Example',
+  Description:'Printer <HP> & "scanner"','Contract Number':contract,Priority:'High',
+ });
+ const rows=[
+  row('INC-MOVED','NCC_Application','Pending','2026-11-01'),
+  row('INC-MOVED','NCC_EUC','In Progress','2026-11-01','EXAMPLE-A','2026-11-12'),
+  row('INC-APP','NCC_Application','On Hold','2026-11-09'),
+  row('SRV-APP','NCC_Application','Assigned','2026-11-08'),
+  row('INC-RESOLVED','NCC_Application','Resolved','2026-11-01'),
+  row('INC-CANCEL','NCC_Application','Canceled','2026-11-01'),
+  row('INC-OTHER','NCC_Application','Pending','2026-11-01','EXAMPLE-B'),
+  row('EVT-APP','NCC_Application','Pending','2026-11-01'),
+  row('INC-CASE','NCC_APPLICATION','Escalated','2026-11-09'),
+ ];
+ return normalizeTickets(rows,detectColumns(Object.keys(rows[0])));
+}
+const outstandingSource=outstandingFixture();
+const outstandingOptions={reportDate:'2026-11-01',contractFilter:'EXAMPLE-A',excludeEvents:true,groupFilter:'All'};
+const outstandingReport=generateReport(outstandingSource,outstandingOptions);
+
+test('OUTSTANDING: group selection follows dedupe; contract/EVT/terminal rules are reused',()=>{
+ const v=buildPendingView(outstandingReport,{...outstandingOptions,groups:['NCC_Application']});
+ assert.deepEqual(v.tickets.map(t=>t.id),['SRV-APP','INC-APP']);
+ assert.equal(v.total,2);assert.equal(v.incidents,1);assert.equal(v.other,1);
+ assert.deepEqual(v.byStatus,[{name:'Assigned',count:1},{name:'On Hold',count:1}]);
+ assert.equal(v.byGroup.reduce((n,r)=>n+r.count,0),v.total);
+ assert.equal(v.byStatus.reduce((n,r)=>n+r.count,0),v.total);
+ assert.equal(outstandingReport.pending.length,4); // No mutation of the source report.
+ const all=buildPendingView(outstandingReport,outstandingOptions);
+ assert.equal(all.total,4);assert.ok(all.byStatus.some(r=>r.name==='Escalated'));
+ assert.equal(buildPendingView(outstandingReport,{groups:[]}).total,0);
+ assert.equal(buildPendingView(outstandingReport,{groups:['NCC_APPLICATION']}).total,1);
+ const multiple=buildPendingView(outstandingReport,{groups:['NCC_Application','NCC_EUC','NCC_Application']});
+ assert.equal(multiple.total,3);assert.equal(multiple.groups.length,2);
+ const futureReport=generateReport(outstandingSource,{...outstandingOptions,reportDate:'2035-01-01'});
+ assert.deepEqual(buildPendingView(futureReport,outstandingOptions),all); // Snapshot, not as-of date.
+ const includingEvents=buildPendingView(generateReport(outstandingSource,{...outstandingOptions,excludeEvents:false}),{...outstandingOptions,excludeEvents:false});
+ assert.equal(includingEvents.total,5);assert.match(pendingCaption(includingEvents),/Monitoring events included/);
+});
+
+test('OUTSTANDING: settings normalize safely and survive a JSON round trip',()=>{
+ const settings=normalizeSettings({reportContent:'pending',showEngineer:true,pendingSubject:'Customer outstanding',pendingIntro:'Please review.',emailVariant:'D'},APP_DEFAULTS);
+ const imported=normalizeSettings(JSON.parse(JSON.stringify(settings)),APP_DEFAULTS);
+ assert.deepEqual(imported,settings);
+ assert.equal(imported.reportContent,'pending');assert.equal(imported.showEngineer,true);
+ for(const raw of [null,{}, {reportContent:'unexpected',showEngineer:'false',pendingSubject:42,pendingIntro:[]}]){
+  const v=normalizeSettings(raw,APP_DEFAULTS);assert.equal(v.reportContent,'daily');assert.equal(v.showEngineer,false);assert.equal(typeof v.pendingIntro,'string');
+ }
+ assert.equal(normalizeReportContent('legacy'),'daily');
+});
+
+for(const variant of VARIANTS)for(const showEngineer of [false,true]){
+ test(`OUTSTANDING ${variant} engineer=${showEngineer}: reconciles, escapes and preserves safe email layout`,()=>{
+  const v=buildPendingView(outstandingReport,{...outstandingOptions,groups:['NCC_Application']});
+  const settings={...hostileSender,showEngineer};
+  const html=renderPendingEmail(v,settings,variant),clean=html.replace(/&#8203;/g,'');
+  for(const forbidden of FORBIDDEN)assert.doesNotMatch(html,forbidden);
+  assert.doesNotMatch(html,/Daily Ticket|Created on date|Tickets created on|Report date:/);
+  assert.match(clean,/Printer &lt;HP&gt; &amp; &quot;scanner&quot;/);
+  assert.match(clean,/Outstanding tickets \(2\)/);
+  assert.match(clean,/not a historical backlog/);
+  assert.match(clean,/Contract: EXAMPLE-A/);
+  const elements=parseElements(html),tables=elements.filter(e=>e.tag==='table'&&!e.attrs.role);
+  assert.equal(tables.length,3);
+  const body=table=>table.children.find(e=>e.tag==='tbody').children;
+  for(const table of tables.slice(0,2))assert.equal(body(table).at(-1).children[1].ownText,'2');
+  assert.equal(body(tables[2]).length,2);
+  const columns=tables[2].children.find(e=>e.tag==='thead').children[0].children;
+  assert.equal(columns.length,showEngineer?7:6);
+  assert.equal(columns.reduce((sum,c)=>sum+Number(c.attrs.width),0),736);
+  assert.equal(pendingColumns(showEngineer).reduce((sum,c)=>sum+c.width,0),736);
+  assert.equal(clean.includes('>Engineer</th>'),showEngineer);
+  assert.equal(clean.includes('>Alex Example</td>'),showEngineer);
+  for(const e of elements){
+   if(['td','th','p','h1','h2'].includes(e.tag)&&meaningful(e.ownText))assert.match(e.attrs.style,/font-family:Arial/);
+   const styles=Object.fromEntries(declarations(e.attrs.style));
+   for(const [prop,value] of Object.entries(styles))if(/^border(-(top|right|bottom|left))?$/.test(prop))assert.match(value,/^1px solid #[0-9a-f]{6}$/i);
+   if(e.attrs.bgcolor)assert.equal(e.attrs.bgcolor,styles['background-color']);
+  }
+  assert.equal(elements.find(e=>e.tag==='table').attrs.width,'800');
+  const tokens=textTokens(html),at=tokens.indexOf('Outstanding');
+  assert.equal(tokens[at+(NUMBER_BEFORE_LABEL[variant]?-1:1)],'2');
+  const plain=renderPendingPlainText(v,settings);
+  assert.match(plain,/Printer <HP> & "scanner"/);assert.doesNotMatch(plain,/&lt;|&#8203;/);
+  assert.equal(plain.includes('Alex Example'),showEngineer);
+  assert.match(plain,/Priority: High/);assert.match(plain,/Submitted/);
+  const emptyHtml=renderPendingEmail(buildPendingView(outstandingReport,{groups:[]}),settings,variant);
+  assert.match(emptyHtml,new RegExp(`colspan="${showEngineer?7:6}"`));
+  assert.match(emptyHtml,/There are no outstanding tickets for this selection\./);
+  assert.match(emptyHtml,/Assigned groups: None selected/);
+ });
+ test(`OUTSTANDING ${variant} engineer=${showEngineer}: signatures and delivery payloads`,()=>{
+  const settings={...hostileProfile,showEngineer,subject:'Customer outstanding'};
+  const html=renderPendingEmail(buildPendingView(outstandingReport,outstandingOptions),settings,variant);
+  assert.match(html,/data:image\/png;base64/);
+  const eml=renderEml(html,settings,'uploaded snapshot');
+  assert.match(eml,/Subject: Customer outstanding/);assert.match(eml,/Content-ID:/);
+  const script=renderClassicOutlookScript(html,settings,'uploaded snapshot');
+  assert.match(script,/BMC Outstanding Tickets/);assert.match(script,/src="cid:/);assert.doesNotMatch(script,/\.Send\(/);
+ });
+}

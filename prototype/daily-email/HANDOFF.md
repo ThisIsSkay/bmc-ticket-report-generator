@@ -10,8 +10,74 @@ turns the daily BMC ticket export into a pivot-style HTML email for recipients
 on Classic Outlook (Word rendering engine). An independent review of the
 selectable email-theme implementation (commit `e6f9cfa`) confirmed a list of
 bugs (H1, H2, M1–M7, L1–L4) plus weak tests. This effort fixes those bugs,
-adds a regression test for each, and hardens the theme tests. Nothing else is
-in scope.
+adds a regression test for each, and hardens the theme tests. The subsequent
+owner-authorized outstanding-report work is described below.
+
+## Outstanding report implementation — 2026-11-18
+
+Implemented on `feature/daily-pivot-email-report`, based on `d72e0f3`, in a
+fresh checkout after the history rewrite. The owner authorized committing and
+pushing this implementation for review directly in the shared repository.
+No merge or deployment is authorized as part of this change.
+
+For the review, fetch the current branch and inspect `git diff d72e0f3..HEAD`.
+Check for existing local work before updating a checkout. Both reviewers and
+developers should fetch before starting work and check the remote tip before
+pushing, preserving each other's changes without force-pushes. Keep review
+findings and implementation status in this file so no downloaded patch or
+manual file transfer is needed.
+
+- **Report options → Report content → Outstanding tickets** selects the new
+  mode. Daily activity remains the default for existing settings.
+- `lib/pending-report.mjs` builds one presentation view from the existing
+  `generateReport().pending`. Contract and monitoring filters still run in
+  the core; multiple group selections run AFTER deduplication, with the core
+  group filter set to All. No lifecycle rules or `src/` code changed.
+- Outstanding retains the existing non-terminal definition, including unknown
+  statuses with a visible warning. It describes the uploaded export snapshot,
+  never a historical backlog. The daily date controls are hidden in this mode.
+- Group choices come directly from the export. Application is available when
+  represented by an actual assigned group; no guessed aliases or engineer
+  mapping are introduced. `NCC_Application` in tests is fictional, not a
+  confirmed production group name. All groups are selected on every import;
+  unchecking All permits multiple selection, and selecting none means zero.
+- Dashboard, themes A–D, plain text, rich clipboard, HTML, EML and Classic
+  Outlook helper all use the same pending view. Details include ID, type,
+  summary, group, status/priority and submitted date. Engineer names default
+  to hidden, with an explicit opt-in shared across those outputs.
+- Mode, engineer visibility and separate pending subject/introduction persist
+  with settings and JSON backups. Ticket rows and selected group names are
+  not persisted. Existing signature handling is reused.
+- A scope note requests customer-scope checking, including when Contract is
+  missing. No mandatory contract guard or contract-to-customer rule was added.
+- Existing required input columns, date parser, and unknown-status behavior
+  remain unchanged. There is no direct email sending or invented progress text.
+
+### Verification and review focus
+
+- Prototype: `npm --prefix prototype/daily-email test` — 98 tests passed,
+  including existing daily theme golden checks and new outstanding tests.
+- Main app: `npm test` — 61 passed; `npm run typecheck` and
+  `npm run build:gh-pages` passed (existing large-chunk warning remains).
+- Optional browser suite: start the prototype on port 4177, then run
+  `NODE_PATH=/path/to/playwright/node_modules node scripts/verify-outstanding.mjs`.
+  Use `BMC_PREVIEW_URL` or `CHROMIUM_PATH` to override the defaults. Playwright
+  is a separate test dependency, not a runtime/package-lock change.
+- Chromium browser suite — 127 checks passed.
+- The browser suite covers all themes and engineer settings, download content,
+  clipboard payloads, group/contract filtering after reassignment, empty scope,
+  long text width, settings import/reload, and switching back to identical
+  daily HTML. Clipboard is mocked; this does not prove OS clipboard or actual
+  Outlook rendering. Native Outlook and a representative sanitized export
+  still need manual review.
+
+Claude review: inspect the branch diff against `d72e0f3`, particularly
+dedupe-before-group-selection, scope consistency, unknown-status warnings,
+engineer visibility across exports, escaping, empty states and mode/settings
+transitions. Confirm every summary reconciles with detail rows and daily
+output remains unchanged. Use fictional data only; keep this PR a draft and
+do not merge or deploy. Confirm actual Application group names and the
+customer/contract mapping before introducing any mappings or restrictions.
 
 ## Rules (non-negotiable)
 

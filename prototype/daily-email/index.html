@@ -13,20 +13,37 @@
     <section class="panel control-panel">
       <div class="section-header"><div><h2>02 / Report options</h2><p>Adjust the date and scope before generating the email.</p></div><button id="latestBtn" class="btn small" disabled>Use latest activity date</button></div>
       <div class="filter-row">
-        <label>Report date<input type="date" id="dateInput"></label>
-        <label>Assigned group<select id="groupFilter" disabled><option value="All">All groups</option></select></label>
+        <label>Report content<select id="reportContent"><option value="daily">Daily activity</option><option value="pending">Outstanding tickets</option></select></label>
+        <label id="dailyDateControl">Report date<input type="date" id="dateInput"></label>
+        <label id="dailyGroupControl">Assigned group<select id="groupFilter" disabled><option value="All">All groups</option></select></label>
         <label>Contract<select id="contractFilter" disabled><option value="All">All contracts</option></select></label>
         <label>Ticket scope<select id="eventFilter"><option value="exclude">Exclude EVT monitoring</option><option value="include">Include EVT monitoring</option></select></label>
+      </div>
+      <div id="pendingOptions" hidden>
+        <fieldset class="pending-groups"><legend>Assigned groups / teams</legend>
+          <label><input type="checkbox" id="allPendingGroups" checked> All assigned groups</label>
+          <div id="pendingGroups"></div>
+        </fieldset>
+        <p class="help">Select one or more groups from your export, including NCC Application when present. Group names are matched exactly; Application membership is not inferred.</p>
+        <label class="pending-check"><input type="checkbox" id="showEngineer"> Include engineer names in the customer report</label>
+        <p class="help">Outstanding means every ticket except Closed, Resolved, Cancelled or Canceled. Figures reflect the uploaded export's current snapshot, not a historical backlog for the daily report date.</p>
+        <div id="customerScopeNote" class="notice" role="status"></div>
       </div>
       <div class="info-row" id="importInfo">Upload an export or load the fictional sample to begin.</div>
     </section>
 
     <section class="result" id="result" hidden>
-      <div class="panel">
+      <div class="panel" id="dailySummary">
         <div class="section-header"><div><h2>03 / Daily report</h2><p id="reportCaption">Pivot-style summary and ticket lists</p></div><div class="inline-actions"><button id="detailsToggle" class="btn small">Show ticket lists</button></div></div>
         <div class="kpis"><div><span>Created on date</span><strong id="createdCount">0</strong></div><div><span>Closed / resolved on date</span><strong id="closedCount">0</strong></div><div><span>Current outstanding</span><strong id="pendingCount">0</strong></div><div><span>In report scope</span><strong id="uniqueCount">0</strong></div></div>
         <div class="two-cols"><div><h3>Summary by assigned group</h3><div class="table-scroll" id="pivotTable"></div></div><div><h3>Summary by ticket type</h3><div class="table-scroll" id="typeTable"></div></div></div>
         <div id="ticketLists" hidden><div class="divider"></div><h3>Tickets created on report date</h3><div class="table-scroll" id="createdTable"></div><h3>Tickets closed / resolved on report date</h3><div class="table-scroll" id="closedTable"></div></div>
+      </div>
+      <div class="panel" id="pendingSummary" hidden>
+        <div class="section-header"><div><h2>03 / Outstanding tickets</h2><p id="pendingCaption"></p></div></div>
+        <div class="kpis pending-kpis"><div><span>Outstanding</span><strong id="outstandingTotal">0</strong></div><div><span>Incidents</span><strong id="outstandingIncidents">0</strong></div><div><span>Service requests &amp; other</span><strong id="outstandingOther">0</strong></div></div>
+        <div class="two-cols"><div><h3>Outstanding by assigned group</h3><div class="table-scroll" id="pendingGroupTable"></div></div><div><h3>Outstanding by status</h3><div class="table-scroll" id="pendingStatusTable"></div></div></div>
+        <h3 class="pending-detail-title">Outstanding ticket details</h3><div class="table-scroll" id="pendingTicketTable"></div>
       </div>
       <div class="panel email-panel">
         <div class="section-header"><div><h2>04 / Email preview & export</h2><p>Choose an Outlook-safe email theme, preview it, then copy or download the generated HTML.</p></div></div>
@@ -49,6 +66,9 @@
    <label>BCC addresses <small>(optional)</small><input id="bccInput" placeholder="bcc@example.com"></label>
    <label>Subject template <small>(use {date})</small><input id="subjectInput" value="Daily BMC Ticket Report – {date}"></label>
    <div class="grid-two"><label>Greeting<textarea id="greetingInput" rows="2"></textarea></label><label>Introductory message<textarea id="introInput" rows="2"></textarea></label></div>
+   <label>Outstanding report subject<input id="pendingSubjectInput"></label>
+   <label>Outstanding report introduction<textarea id="pendingIntroInput" rows="2"></textarea></label>
+   <p class="help">The outstanding subject and introduction are separate from the daily report. No historical date is inferred from the uploaded file.</p>
    <div class="divider"></div>
    <div class="section-header"><div><h3>Sender details</h3><p>Shown under "Best regards," when no signature profile is selected. Blank lines are left out of the email.</p></div></div>
    <div class="grid-two"><label>Sender name<input id="senderName" placeholder="e.g. Alex Example" autocomplete="off"></label><label>Job title<input id="senderTitle" placeholder="e.g. IT Executive" autocomplete="off"></label></div>

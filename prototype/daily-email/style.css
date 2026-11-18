@@ -2,3 +2,12 @@
 
 /* Rich signature editor: compact, no third-party editor or network access. */
 .signature-label{color:#425167;font-size:11.5px;font-weight:600;margin-bottom:5px}.signature-label small{color:#8291a3;font-weight:400;font-size:10px}.signature-tools{display:flex;align-items:center;gap:5px;background:#f8fafc;padding:7px;border:1px solid #d0d9e4;border-radius:6px 6px 0 0;flex-wrap:wrap}.signature-tools .btn{padding:4px 10px;min-height:26px}.sig-image-btn{display:inline-flex;align-items:center;cursor:pointer;margin:0}.signature-editor{min-height:150px;max-height:300px;overflow-y:auto;border:1px solid #d0d9e4;border-top:0;border-radius:0 0 6px 6px;background:#fff;padding:11px 12px;font:12px/1.5 Arial,sans-serif;color:#1e2c3f;outline:none;overflow-wrap:anywhere}.signature-editor:focus{border-color:#5b94bc;box-shadow:0 0 0 2px #dbeaf4}.signature-editor img{max-width:100%;height:auto}.signature-editor table{border-collapse:collapse}.signature-hint{font-size:10px;color:#657487;margin:5px 0 0}
+
+/* Outstanding-mode controls; these styles do not enter exported email HTML. */
+.pending-groups{margin:14px 0 0;padding:10px 12px;border:1px solid var(--border);border-radius:6px}
+.pending-groups legend{font-weight:600;font-size:12px}
+.pending-groups label,.pending-check{display:flex;align-items:center;gap:8px;margin:6px 0}
+.pending-groups label input[type=checkbox],.pending-check input[type=checkbox]{width:auto;min-height:0;margin:0}
+#pendingGroups{display:flex;flex-wrap:wrap;gap:4px 18px}
+.pending-kpis{grid-template-columns:repeat(3,1fr)}
+.pending-detail-title{margin-top:20px}

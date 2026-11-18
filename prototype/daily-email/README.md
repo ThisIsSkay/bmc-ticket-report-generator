@@ -14,6 +14,32 @@ A local-only starter project for the **Daily Pivot & Email Report** navigation i
 - Email themes A–D (`lib/email-themes.mjs`) follow `docs/email-design/reference/variant-{A,B,C,D}.html`. The sign-off is either the selected signature profile (rich HTML and logo) or, when none is selected, the **Sender details** (name, job title, company, office phone) from Email settings; blank lines are left out and the email panel warns while they are incomplete. The introduction may use `{date}`; otherwise " for <report date>." is appended. **Copy formatted email** also puts a plain-text version of the report on the clipboard.
 - In-progress fix list and status: `HANDOFF.md` in this folder.
 
+## Outstanding customer reports
+
+1. Upload an export or load the fictional sample.
+2. Under **02 / Report options**, set **Report content** to **Outstanding tickets**.
+3. Select the intended contract. To choose specific teams, uncheck **All assigned
+   groups**, then select the groups you need. Application groups appear using
+   their exact names in the uploaded export; the built-in daily sample does not
+   contain an Application group.
+4. Engineer names are hidden by default. Enable **Include engineer names** only
+   when wanted in the report.
+5. Review totals and ticket details. Under **04 / Email preview & export**, choose
+   theme A–D and use the existing copy, HTML, EML or Classic Outlook draft options.
+
+Outstanding includes all current non-terminal statuses in the uploaded snapshot,
+not just the literal Pending status. Closed, Resolved, Cancelled and Canceled
+are excluded by the existing reporting rules. The selected daily date does not
+limit outstanding tickets. No export timestamp or historical backlog is inferred.
+Group selection applies after duplicate resolution, so reassigned tickets cannot
+reappear under an older group. Selecting no groups produces an empty report.
+
+The outstanding subject and introduction have separate fields in **Email settings**.
+Mode, engineer visibility and these fields are saved locally and in settings backups.
+Group selections reset to All when a new file is loaded. The scope notice is a
+reminder to check the intended customer; a contract is not assumed to identify a
+customer automatically. Drafts remain unsent until reviewed and sent in your client.
+
 ## Run
 
 Requires Node.js 20+; no npm installation or external dependencies.

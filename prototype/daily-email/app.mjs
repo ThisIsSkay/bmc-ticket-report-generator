@@ -1,15 +1,17 @@
 import {detectColumns, mandatoryColumns, normalizeTickets, generateReport, availableFilterValues, lastActivityDate, parseCsv, updateReportWarnings} from './lib/report-core.mjs';
 import {parseXlsx} from './lib/xlsx-lite.mjs';
-import {renderEmail, renderEml, renderPlainText, buildSubject} from './lib/mail.mjs';
+import {renderEmail, renderEml, renderPlainText, renderPendingEmail, renderPendingPlainText, buildSubject} from './lib/mail.mjs';
 import {normalizeSender, normalizeVariant, senderWarning} from './lib/email-themes.mjs';
 import {renderClassicOutlookScript} from './lib/classic-outlook.mjs';
 import {sanitizeSignatureHtml, plainToSignatureHtml, imageFileToDataUrl, signatureImageSize} from './lib/signature-html.mjs';
 import {createDebouncedSaver, normalizeSettings} from './lib/settings-persistence.mjs';
 
+import {buildPendingView,pendingCaption,pendingColumns,pendingTicketValues,normalizeReportContent,PENDING_SUBJECT,PENDING_INTRO} from './lib/pending-report.mjs';
+
 const $=id=>document.getElementById(id);
 const CONFIG_KEY='bmc-daily-email-report:settings:v1';
-const DEFAULTS={to:'',cc:'',bcc:'',subject:'Daily BMC Ticket Report – {date}',greeting:'Hi Team,',intro:'Please find below the daily BMC ticket activity report.',client:'classic',emailVariant:'A',emailSender:{name:'',title:'',company:'',phone:''},signatureId:'',signatures:[{id:'support',name:'IT Support Team',content:'Best regards,\nIT Support Team'}]};
-const state={file:null,rows:[],tickets:[],mapping:{},date:'',report:null,settings:loadSettings(),sourceInfo:'',dataErrors:[],dataWarnings:[]};
+const DEFAULTS={to:'',cc:'',bcc:'',subject:'Daily BMC Ticket Report – {date}',greeting:'Hi Team,',intro:'Please find below the daily BMC ticket activity report.',client:'classic',reportContent:'daily',showEngineer:false,pendingSubject:PENDING_SUBJECT,pendingIntro:PENDING_INTRO,emailVariant:'A',emailSender:{name:'',title:'',company:'',phone:''},signatureId:'',signatures:[{id:'support',name:'IT Support Team',content:'Best regards,\nIT Support Team'}]};
+const state={file:null,rows:[],tickets:[],mapping:{},date:'',report:null,pendingView:null,settings:loadSettings(),sourceInfo:'',dataErrors:[],dataWarnings:[]};
 function loadSettings(){try{return normalizeSettings(JSON.parse(localStorage.getItem(CONFIG_KEY)),DEFAULTS);}catch{return normalizeSettings(null,DEFAULTS)}}
 function storeSettings(){try{localStorage.setItem(CONFIG_KEY,JSON.stringify(state.settings));return true;}catch{toast('Cannot save settings: reduce logo size or back up other profiles.');return false;}}
 const signaturePersistence=createDebouncedSaver(storeSettings,400);
@@ -27,7 +29,7 @@ function makeTable(headers,rows,opts={}){
  return `<table class="report-table"><thead><tr>${names}</tr></thead><tbody>${rows.map(row=>`<tr>${row.map((val,i)=>`<td class="${opts.textCols?.includes(i)?'text wrap':''}">${h(val===undefined||val===null||val===''?'—':val)}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
 }
 function pivotRows(rows){return rows.map(r=>[r.group,r.created,r.closed,r.pending]);}
-function saveLocalSettings(){state.settings={...state.settings,to:$('toInput').value,cc:$('ccInput').value,bcc:$('bccInput').value,subject:$('subjectInput').value,greeting:$('greetingInput').value,intro:$('introInput').value,client:$('clientChoice').value,emailVariant:normalizeVariant($('emailVariant').value),emailSender:normalizeSender({name:$('senderName').value,title:$('senderTitle').value,company:$('senderCompany').value,phone:$('senderPhone').value})};signaturePersistence.cancel();if(!storeSettings())return;updateSignatureSelector();refreshReport();$('modal').hidden=true;toast('Settings saved to this browser.');}
+function saveLocalSettings(){state.settings={...state.settings,to:$('toInput').value,cc:$('ccInput').value,bcc:$('bccInput').value,subject:$('subjectInput').value,pendingSubject:$('pendingSubjectInput').value.trim()||PENDING_SUBJECT,pendingIntro:$('pendingIntroInput').value.trim()||PENDING_INTRO,greeting:$('greetingInput').value,intro:$('introInput').value,client:$('clientChoice').value,emailVariant:normalizeVariant($('emailVariant').value),emailSender:normalizeSender({name:$('senderName').value,title:$('senderTitle').value,company:$('senderCompany').value,phone:$('senderPhone').value})};signaturePersistence.cancel();if(!storeSettings())return;updateSignatureSelector();refreshReport();$('modal').hidden=true;toast('Settings saved to this browser.');}
 let editingProfileId='';
 function profileOptions(){
  const list=$('profileList');
@@ -96,7 +98,7 @@ async function handleSignaturePaste(event){
 }
 function updateSignatureSelector(){const choice=$('signatureChoice');const previous=state.settings.signatureId;
  choice.innerHTML='<option value="">No signature / use email client signature</option>'+state.settings.signatures.map(p=>`<option value="${h(p.id)}">${h(p.name)}</option>`).join('');choice.value=state.settings.signatures.some(p=>p.id===previous)?previous:'';state.settings.signatureId=choice.value;}
-function showModal(){const s=state.settings;$('toInput').value=s.to||'';$('ccInput').value=s.cc||'';$('bccInput').value=s.bcc||'';$('subjectInput').value=s.subject||'';$('greetingInput').value=s.greeting||'';$('introInput').value=s.intro||'';const sender=normalizeSender(s.emailSender);$('senderName').value=sender.name;$('senderTitle').value=sender.title;$('senderCompany').value=sender.company;$('senderPhone').value=sender.phone;profileOptions();$('modal').hidden=false;}
+function showModal(){const s=state.settings;$('toInput').value=s.to||'';$('ccInput').value=s.cc||'';$('bccInput').value=s.bcc||'';$('subjectInput').value=s.subject||'';$('pendingSubjectInput').value=s.pendingSubject;$('pendingIntroInput').value=s.pendingIntro;$('greetingInput').value=s.greeting||'';$('introInput').value=s.intro||'';const sender=normalizeSender(s.emailSender);$('senderName').value=sender.name;$('senderTitle').value=sender.title;$('senderCompany').value=sender.company;$('senderPhone').value=sender.phone;profileOptions();$('modal').hidden=false;}
 function fillSelect(id,options,label){const sel=$(id),was=sel.value;sel.innerHTML=`<option value="All">${label}</option>`+options.map(v=>`<option value="${h(v)}">${h(v)}</option>`).join('');sel.disabled=options.length===0;sel.value=options.includes(was)?was:'All';}
 function importRows(headers,rows,filename,meta){state.file=filename;state.rows=rows;state.mapping=detectColumns(headers);state.dataErrors=mandatoryColumns.filter(k=>!state.mapping[k]);
  const missingOptional=['assigned','group','description','kind','contract'].filter(k=>!state.mapping[k]);
@@ -108,6 +110,7 @@ function importRows(headers,rows,filename,meta){state.file=filename;state.rows=r
  state.tickets=state.dataErrors.length?[]:normalizeTickets(rows,state.mapping);
  fillSelect('groupFilter',availableFilterValues(state.tickets,'group'),'All groups');
  fillSelect('contractFilter',availableFilterValues(state.tickets,'contract'),'All contracts');
+ fillPendingGroups();
  $('latestBtn').disabled=!state.tickets.length;
  state.date=lastActivityDate(state.tickets)||dateDefault();$('dateInput').value=state.date;
  text('fileLabel',filename);text('sourceMeta',meta||`${rows.length.toLocaleString()} rows loaded`);text('importInfo',`Source: ${filename} · ${rows.length.toLocaleString()} rows · ${headers.length} columns · ${state.tickets.length.toLocaleString()} records normalized`);
@@ -123,11 +126,41 @@ function filters(){return {reportDate:$('dateInput').value,groupFilter:$('groupF
 function updateClientNotes(){const c=$('clientChoice').value;const messages={classic:'Classic Outlook: download the local PowerShell helper (.ps1), then right-click it and choose Run with PowerShell. It opens an unsent editable draft in your existing Outlook profile AND saves a native .msg file beside the helper. This avoids the broken .eml import path. Scripts may be blocked by your organisation\'s security policy; Copy formatted email is the fallback.',new:'New Outlook: .eml can be opened, but editable draft behaviour may vary. Use Copy formatted email if composing a fresh message.',gmail:'Gmail: use Copy formatted email to paste into a signed-in compose window. .eml is an archive-compatible output, not a Gmail draft.'};$('downloadClassic').hidden=c!=='classic';$('downloadEml').hidden=c==='classic';text('clientNote',messages[c]||'');}
 function emailSettings(){return {...state.settings,signatureId:$('signatureChoice').value,signatures:state.settings.signatures.map(p=>({...p,html:sanitizeSignatureHtml(p.html??plainToSignatureHtml(p.content))}))};}
 function updateSenderWarning(){const message=senderWarning({...state.settings,signatureId:$('signatureChoice').value});$('senderWarning').hidden=!message;text('senderWarning',message);}
-function makeEmail(){const variant=normalizeVariant($('emailVariant')?.value||state.settings.emailVariant);return renderEmail(state.report,emailSettings(),filters(),variant);}
-function refreshReport(){if(!state.tickets.length||!$('dateInput').value){$('result').hidden=true;return;}
+const isPending=()=>state.settings.reportContent==='pending';
+function fillPendingGroups(){
+ const groups=availableFilterValues(state.tickets,'group');
+ $('allPendingGroups').checked=true;
+ $('pendingGroups').innerHTML=groups.map(group=>`<label><input type="checkbox" value="${h(group)}" checked disabled> ${h(group)}</label>`).join('');
+}
+function selectedPendingGroups(){return $('allPendingGroups').checked?null:[...$('pendingGroups').querySelectorAll('input:checked')].map(input=>input.value);}
+function syncReportControls(){
+ $('reportContent').value=state.settings.reportContent;
+ $('showEngineer').checked=state.settings.showEngineer;
+ for(const id of ['dailyDateControl','dailyGroupControl','latestBtn'])$(id).hidden=isPending();
+ $('pendingOptions').hidden=!isPending();
+ $('dailySummary').hidden=isPending();$('pendingSummary').hidden=!isPending();
+}
+function updatePendingDashboard(){
+ const v=state.pendingView,columns=pendingColumns(state.settings.showEngineer);
+ text('pendingCaption',pendingCaption(v));text('outstandingTotal',v.total);text('outstandingIncidents',v.incidents);text('outstandingOther',v.other);
+ const summary=(rows,label)=>makeTable([label,'Outstanding'],[...rows.map(row=>[row.name,row.count]),['TOTAL',v.total]],{textCols:[0]});
+ $('pendingGroupTable').innerHTML=summary(v.byGroup,'Assigned group');
+ $('pendingStatusTable').innerHTML=summary(v.byStatus,'Status');
+ $('pendingTicketTable').innerHTML=v.total?makeTable(columns.map(c=>c.label),v.tickets.map(ticket=>pendingTicketValues(ticket,state.settings.showEngineer)),{textCols:columns.map((_,i)=>i)}):'<div class="empty">There are no outstanding tickets for this selection.</div>';
+ const contract=filters().contractFilter;
+ text('customerScopeNote',!state.mapping.contract?'No Contract column was detected. Check that this export contains only the intended customer’s tickets.':contract==='All'?'All contracts are selected. Check the customer scope before copying or downloading.':`Contract: ${contract}. Check that this selection matches the intended customer.`);
+}
+function deliverySettings(){return isPending()?{...state.settings,subject:state.settings.pendingSubject}:state.settings;}
+function deliveryDate(){return isPending()?'uploaded snapshot':state.report.reportDate;}
+function exportBase(){return isPending()?'BMC_Outstanding_Tickets':`BMC_Daily_Report_${safeFilename(state.report.reportDate)}`;}
+function makeEmail(){const variant=normalizeVariant($('emailVariant')?.value||state.settings.emailVariant);return isPending()?renderPendingEmail(state.pendingView,emailSettings(),variant):renderEmail(state.report,emailSettings(),filters(),variant);}
+function refreshReport(){syncReportControls();if(!state.tickets.length||(!isPending()&&!$('dateInput').value)){$('result').hidden=true;return;}
  if(state.dataErrors.length){$('result').hidden=true;updateReportWarnings($('fileWarning'),state.dataWarnings);return;}
- const options=filters();state.date=options.reportDate;state.report=generateReport(state.tickets,options);const r=state.report;
- updateReportWarnings($('fileWarning'),state.dataWarnings,r.unknownStatuses);
+ const options=filters();state.date=options.reportDate;state.report=generateReport(state.tickets,isPending()?{...options,groupFilter:'All'}:options);const r=state.report;
+ state.pendingView=isPending()?buildPendingView(r,{...options,groups:selectedPendingGroups()}):null;
+ if(isPending())updatePendingDashboard();
+ const unknown=isPending()?r.unknownStatuses.map(row=>({...row,count:state.pendingView.tickets.filter(ticket=>(ticket.status.trim()||'(blank)').toLowerCase()===row.status.toLowerCase()).length})).filter(row=>row.count):r.unknownStatuses;
+ updateReportWarnings($('fileWarning'),state.dataWarnings,unknown);
  $('result').hidden=false;text('reportCaption',`Report date ${r.reportDate} · Created and resolved activity from one exported snapshot`);
  text('createdCount',r.counts.created.toLocaleString());text('closedCount',r.counts.closed.toLocaleString());text('pendingCount',r.counts.pending.toLocaleString());text('uniqueCount',r.totalUnique.toLocaleString());
  $('pivotTable').innerHTML=makeTable(['Assigned group','Created','Closed','Outstanding'],[...pivotRows(r.pivot),['TOTAL',r.counts.created,r.counts.closed,r.counts.pending]],{textCols:[0]});
@@ -135,15 +168,15 @@ function refreshReport(){if(!state.tickets.length||!$('dateInput').value){$('res
  $('createdTable').innerHTML=makeTable(['Ticket ID','Type','Summary','Engineer','Group','Status'],r.created.map(t=>[t.id,t.kind,t.description,t.assigned,t.group,t.status]),{textCols:[2]});
  $('closedTable').innerHTML=makeTable(['Ticket ID','Type','Summary','Engineer','Group','Status'],r.closed.map(t=>[t.id,t.kind,t.description,t.assigned,t.group,t.status]),{textCols:[2]});
  const html=makeEmail();$('emailFrame').srcdoc=html;updateSenderWarning();
- text('previewTo',state.settings.to||'(not configured)');text('previewCc',state.settings.cc||'—');text('previewSubject',buildSubject(state.settings.subject,r.reportDate));updateClientNotes();
+ text('previewTo',state.settings.to||'(not configured)');text('previewCc',state.settings.cc||'—');text('previewSubject',buildSubject(deliverySettings().subject,deliveryDate()));updateClientNotes();
 }
-async function copyEmail(){try{if(!state.report)throw Error('Load a report first.');const html=makeEmail();const plain=renderPlainText(state.report,emailSettings(),filters());
+async function copyEmail(){try{if(!state.report)throw Error('Load a report first.');const html=makeEmail();const plain=isPending()?renderPendingPlainText(state.pendingView,emailSettings()):renderPlainText(state.report,emailSettings(),filters());
  if(navigator.clipboard?.write&&typeof ClipboardItem!=='undefined')await navigator.clipboard.write([new ClipboardItem({'text/html':new Blob([html],{type:'text/html'}),'text/plain':new Blob([plain],{type:'text/plain'})})]);
  else if(navigator.clipboard?.writeText){await navigator.clipboard.writeText(plain);toast('Formatted clipboard unsupported: copied plain text.');return;}else throw Error('Clipboard unavailable. Download HTML instead.');
  toast('Formatted email copied.');}catch(err){toast(err.message||'Copy failed. Use Download HTML.');}}
 async function loadDemo(){const res=await fetch('./samples/fictional-tickets.csv');if(!res.ok)throw Error('Demo file unavailable');const csv=parseCsv(await res.text());importRows(csv.headers,csv.rows,'fictional-tickets.csv','Fictional sample only · contains no customer data');}
 function validateAddresses(value){const parts=String(value||'').split(/[;,\n]+/).map(v=>v.trim()).filter(Boolean);return parts.every(v=>/^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/.test(v));}
-function init(){$('dateInput').value=dateDefault();$('clientChoice').value=state.settings.client||'classic';$('emailVariant').value=normalizeVariant(state.settings.emailVariant);updateSignatureSelector();updateClientNotes();
+function init(){$('dateInput').value=dateDefault();$('clientChoice').value=state.settings.client||'classic';$('emailVariant').value=normalizeVariant(state.settings.emailVariant);syncReportControls();updateSignatureSelector();updateClientNotes();
  $('settingsBtn').addEventListener('click',showModal);$('modalClose').addEventListener('click',()=>{signaturePersistence.flush();$('modal').hidden=true});
  $('modal').addEventListener('click',e=>{if(e.target===$('modal')){signaturePersistence.flush();$('modal').hidden=true;}});
  window.addEventListener('pagehide',()=>signaturePersistence.flush());
@@ -170,18 +203,22 @@ function init(){$('dateInput').value=dateDefault();$('clientChoice').value=state
  $('addSignature').addEventListener('click',()=>{const id='sig-'+Math.random().toString(36).slice(2,10);state.settings.signatures.push({id,name:'New signature',content:''});editingProfileId=id;profileOptions();$('profileName').focus();});
  $('removeSignature').addEventListener('click',()=>{state.settings.signatures=state.settings.signatures.filter(s=>s.id!==editingProfileId);if(state.settings.signatureId===editingProfileId)state.settings.signatureId='';profileOptions();updateSignatureSelector();});
  $('exportSettings').addEventListener('click',()=>fileDownload(JSON.stringify({version:1,settings:state.settings},null,2),'bmc-daily-email-settings.json','application/json'));
- $('importSettings').addEventListener('change',async e=>{const f=e.target.files?.[0];if(!f)return;try{const data=JSON.parse(await f.text());const settings=data.settings;if(!settings||typeof settings!=='object'||!Array.isArray(settings.signatures))throw Error('Invalid settings file');state.settings=normalizeSettings({...settings,signatures:settings.signatures.map(p=>({...p,html:sanitizeSignatureHtml(p.html??plainToSignatureHtml(p.content))}))},DEFAULTS);storeSettings();$('emailVariant').value=state.settings.emailVariant;$('clientChoice').value=state.settings.client||'classic';showModal();updateSignatureSelector();refreshReport();toast('Settings imported.');}catch(ex){toast(ex.message)}e.target.value='';});
+ $('importSettings').addEventListener('change',async e=>{const f=e.target.files?.[0];if(!f)return;try{const data=JSON.parse(await f.text());const settings=data.settings;if(!settings||typeof settings!=='object'||!Array.isArray(settings.signatures))throw Error('Invalid settings file');state.settings=normalizeSettings({...settings,signatures:settings.signatures.map(p=>({...p,html:sanitizeSignatureHtml(p.html??plainToSignatureHtml(p.content))}))},DEFAULTS);storeSettings();$('emailVariant').value=state.settings.emailVariant;$('clientChoice').value=state.settings.client||'classic';syncReportControls();showModal();updateSignatureSelector();refreshReport();toast('Settings imported.');}catch(ex){toast(ex.message)}e.target.value='';});
  $('demoBtn').addEventListener('click',()=>loadDemo().catch(e=>toast(e.message)));
  $('fileInput').addEventListener('change',async e=>{const f=e.target.files?.[0];if(f)await importFile(f);e.target.value='';});
  ['dateInput','groupFilter','contractFilter','eventFilter'].forEach(k=>$(k).addEventListener('change',refreshReport));
  $('latestBtn').addEventListener('click',()=>{const val=lastActivityDate(state.tickets);if(val){$('dateInput').value=val;refreshReport()}});
+ $('reportContent').addEventListener('change',event=>{state.settings.reportContent=normalizeReportContent(event.target.value);storeSettings();refreshReport()});
+ $('showEngineer').addEventListener('change',event=>{state.settings.showEngineer=event.target.checked;storeSettings();refreshReport()});
+ $('allPendingGroups').addEventListener('change',event=>{for(const input of $('pendingGroups').querySelectorAll('input')){input.disabled=event.target.checked;if(event.target.checked)input.checked=true;}refreshReport()});
+ $('pendingGroups').addEventListener('change',refreshReport);
  $('detailsToggle').addEventListener('click',()=>{const was=$('ticketLists').hidden;$('ticketLists').hidden=!was;$('detailsToggle').textContent=was?'Hide ticket lists':'Show ticket lists';});
  $('clientChoice').addEventListener('change',e=>{state.settings.client=e.target.value;storeSettings();updateClientNotes()});
  $('emailVariant').addEventListener('change',e=>{state.settings.emailVariant=normalizeVariant(e.target.value);storeSettings();refreshReport()});
  $('signatureChoice').addEventListener('change',e=>{state.settings.signatureId=e.target.value;storeSettings();refreshReport()});
- $('downloadClassic').addEventListener('click',()=>{if(!state.report)return;const script=renderClassicOutlookScript(makeEmail(),state.settings,state.report.reportDate);fileDownload(script,`BMC_Daily_Report_${safeFilename(state.report.reportDate)}_Outlook.ps1`,'text/plain;charset=utf-8');toast('Classic Outlook draft helper downloaded. Right-click and Run with PowerShell; no email is sent automatically.');});
- $('downloadEml').addEventListener('click',()=>{if(!state.report)return;const html=makeEmail(), eml=renderEml(html,state.settings,state.report.reportDate);fileDownload(eml,`BMC_Daily_Report_${safeFilename(state.report.reportDate)}.eml`,'message/rfc822');toast('EML downloaded; review before sending. For Classic Outlook use the dedicated draft helper instead.')});
- $('downloadHtml').addEventListener('click',()=>{if(!state.report)return;fileDownload(makeEmail(),`BMC_Daily_Report_${safeFilename(state.report.reportDate)}.html`,'text/html;charset=utf-8')});
+ $('downloadClassic').addEventListener('click',()=>{if(!state.report)return;const script=renderClassicOutlookScript(makeEmail(),deliverySettings(),deliveryDate());fileDownload(script,`${exportBase()}_Outlook.ps1`,'text/plain;charset=utf-8');toast('Classic Outlook draft helper downloaded. Right-click and Run with PowerShell; no email is sent automatically.');});
+ $('downloadEml').addEventListener('click',()=>{if(!state.report)return;const html=makeEmail(), eml=renderEml(html,deliverySettings(),deliveryDate());fileDownload(eml,`${exportBase()}.eml`,'message/rfc822');toast('EML downloaded; review before sending. For Classic Outlook use the dedicated draft helper instead.')});
+ $('downloadHtml').addEventListener('click',()=>{if(!state.report)return;fileDownload(makeEmail(),`${exportBase()}.html`,'text/html;charset=utf-8')});
  $('copyHtml').addEventListener('click',copyEmail);
  if(!localStorage.getItem(CONFIG_KEY))setTimeout(showModal,250);
 }
