@@ -20,8 +20,8 @@
         <label>Ticket scope<select id="eventFilter"><option value="exclude">Exclude EVT monitoring</option><option value="include">Include EVT monitoring</option></select></label>
       </div>
       <div id="pendingOptions" hidden>
-        <button id="weeklySetup" class="btn" type="button">Use weekly ageing setup</button><button id="saveReportSetup" class="btn" type="button">Save report setup</button><span id="setupStatus" role="status"></span><button id="resetSetup" class="btn" type="button">Clear saved scope</button>
-        <div class="grid-two"><label>Age reference date (calendar days since submission)<input id="asAt" type="date"></label><label>Ticket types (select multiple)<select id="pendingTypes" multiple></select></label><label>Raw statuses (select multiple)<select id="pendingStatuses" multiple></select></label></div>
+        <button id="weeklySetup" class="btn" type="button">Use weekly ageing setup</button><button id="saveReportSetup" class="btn" type="button">Save report setup</button><span id="setupStatus" role="status"></span><p id="newScopeValues" role="status" class="help"></p><button id="resetSetup" class="btn" type="button">Clear saved scope</button>
+        <div class="grid-two"><label>Age reference date (calendar days since submission)<input id="asAt" type="date"></label><label>Ticket types (select multiple)<input id="allPendingTypes" type="checkbox" checked> All ticket types <select id="pendingTypes" multiple></select></label><label>Raw statuses (select multiple)<input id="allPendingStatuses" type="checkbox" checked> All outstanding statuses <select id="pendingStatuses" multiple></select></label></div>
         <p class="help">Weekly setup selects Incident + Service Request and Assigned + Pending. Clear all selections for an empty report. The reference date does not reconstruct historical status.</p>
         <fieldset class="pending-groups"><legend>Assigned groups / teams</legend>
           <label><input type="checkbox" id="allPendingGroups" checked> All assigned groups</label>

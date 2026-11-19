@@ -18,3 +18,5 @@
 #headerLogoPanel{padding:12px;border:1px solid #d0d9e4;background:#f6f7f9;margin:8px 0}
 #headerLogoThumbnail{object-fit:contain}
 #headerLogoWarning{color:#854d0e}
+
+#allPendingTypes,#allPendingStatuses{width:auto;min-height:0;margin-right:6px}

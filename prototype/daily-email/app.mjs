@@ -113,7 +113,7 @@ function updateLogoPanel(message='',error=false){
 function commitSettings(candidate){try{state.settings=persistCandidate(localStorage,CONFIG_KEY,candidate);return true;}catch{updateLogoPanel('Not saved: browser storage is full or unavailable. Previous logo and saved settings were kept.',true);return false;}}
 function showModal(){updateLogoPanel();const s=state.settings;$('monthlySubjectInput').value=s.monthlySubject||'Monthly pending tickets — {date}';$('monthlyIntroInput').value=s.monthlyIntro||'Please find below the monthly pending ticket report as at {date}.';$('toInput').value=s.to||'';$('ccInput').value=s.cc||'';$('bccInput').value=s.bcc||'';$('subjectInput').value=s.subject||'';$('pendingSubjectInput').value=s.pendingSubject;$('pendingIntroInput').value=s.pendingIntro;$('greetingInput').value=s.greeting||'';$('introInput').value=s.intro||'';const sender=normalizeSender(s.emailSender);$('senderName').value=sender.name;$('senderTitle').value=sender.title;$('senderCompany').value=sender.company;$('senderPhone').value=sender.phone;profileOptions();$('modal').hidden=false;}
 function fillSelect(id,options,label){const sel=$(id),was=sel.value;sel.innerHTML=`<option value="All">${label}</option>`+options.map(v=>`<option value="${h(v)}">${h(v)}</option>`).join('');sel.disabled=options.length===0;sel.value=options.includes(was)?was:'All';}
-function importRows(headers,rows,filename,meta){if(state.tickets.length)captureActiveSetup();state.file=filename;state.rows=rows;state.mapping=detectColumns(headers);state.dataErrors=mandatoryColumns.filter(k=>!state.mapping[k]);
+function importRows(headers,rows,filename,meta){state.file=filename;state.rows=rows;state.mapping=detectColumns(headers);state.dataErrors=mandatoryColumns.filter(k=>!state.mapping[k]);
  const missingOptional=['assigned','group','description','kind','contract'].filter(k=>!state.mapping[k]);
  const warnings=[];if(state.dataErrors.length)warnings.push('Required columns not detected: '+state.dataErrors.join(', '));
  if(!state.mapping.resolved)warnings.push('Resolved Date is required for closed-on-date counts. Select a complete BMC export.');
@@ -123,7 +123,7 @@ function importRows(headers,rows,filename,meta){if(state.tickets.length)captureA
  state.tickets=state.dataErrors.length?[]:normalizeTickets(rows,state.mapping);
  fillSelect('groupFilter',availableFilterValues(state.tickets,'group'),'All groups');
  fillSelect('contractFilter',availableFilterValues(state.tickets,'contract'),'All contracts');
- fillPendingGroups();applySetup();if(isMonthly()){$('asAt').value=dateDefault();state.settings.asAt=$('asAt').value;}
+ fillPendingGroups();applySetup();if(isMonthly()&&!$('asAt').value){$('asAt').value=dateDefault();state.settings.monthlyAsAt=$('asAt').value;}
  $('latestBtn').disabled=!state.tickets.length;
  state.date=lastActivityDate(state.tickets)||dateDefault();$('dateInput').value=state.date;
  text('fileLabel',filename);text('sourceMeta',meta||`${rows.length.toLocaleString()} rows loaded`);text('importInfo',`Source: ${filename} · ${rows.length.toLocaleString()} rows · ${headers.length} columns · ${state.tickets.length.toLocaleString()} records normalized`);
@@ -141,14 +141,14 @@ function emailSettings(){return {...state.settings,...(isMonthly()?{pendingIntro
 function updateSenderWarning(){const message=senderWarning({...state.settings,signatureId:$('signatureChoice').value});$('senderWarning').hidden=!message;text('senderWarning',message);}
 const isPending=()=>['pending','monthly'].includes(state.settings.reportContent);
 const isMonthly=()=>state.settings.reportContent==='monthly';
-function fillPendingGroups(){
+function fillPendingGroups(){$('allPendingTypes').checked=true;$('allPendingStatuses').checked=true;
  for(const [id,key] of [['pendingTypes','kind'],['pendingStatuses','status']])$(id).innerHTML=[...new Set([...generateReport(state.tickets,{...filters(),groupFilter:'All',contractFilter:'All',excludeEvents:false}).pending.map(ticket=>ticket[key]),...(state.activeSetup?.[key==='kind'?'types':'statuses']||state.settings.reportSetup?.[key==='kind'?'types':'statuses']||[])])].map(value=>`<option selected value="${h(value)}">${h(value||'(blank)')}</option>`).join('');
  const groups=availableFilterValues(state.tickets,'group');
  $('allPendingGroups').checked=true;
  $('pendingGroups').innerHTML=groups.map(group=>`<label><input type="checkbox" value="${h(group)}" checked disabled> ${h(group)}</label>`).join('');
 }
 function selectedPendingGroups(){return $('allPendingGroups').checked?null:[...$('pendingGroups').querySelectorAll('input:checked')].map(input=>input.value);}
-function syncReportControls(){
+function syncReportControls(){scopeStatus();
  $('reportContent').value=state.settings.reportContent;$('asAt').parentElement.firstChild.textContent=isMonthly()?'Reporting / export date':'Age reference date (calendar days since submission)';
  $('showEngineer').checked=state.settings.showEngineer;$('summaryOnly').checked=state.settings.summaryOnly===true;
  for(const id of ['dailyDateControl','dailyGroupControl','latestBtn'])$(id).hidden=isPending();
@@ -172,11 +172,11 @@ function deliverySettings(){if(isMonthly())return {...state.settings,subject:sta
 function deliveryDate(){return isPending()?state.pendingView.asAt||'current snapshot':state.report.reportDate;}
 function exportBase(){if(isMonthly())return 'BMC_Monthly_Pending_'+safeFilename(deliveryDate());return isPending()?'BMC_Outstanding_Tickets':`BMC_Daily_Report_${safeFilename(state.report.reportDate)}`;}
 function makeEmail(){const variant=normalizeVariant($('emailVariant')?.value||state.settings.emailVariant);return isPending()?renderPendingEmail(state.pendingView,emailSettings(),variant):renderEmail(state.report,emailSettings(),filters(),variant);}
-function refreshReport(){syncReportControls();if(!state.tickets.length||(!isPending()&&!$('dateInput').value)){$('result').hidden=true;return;}
+function refreshReport(){syncReportControls();scopeStatus();if(!state.tickets.length||(!isPending()&&!$('dateInput').value)){$('result').hidden=true;return;}
  if(state.dataErrors.length){$('result').hidden=true;updateReportWarnings($('fileWarning'),state.dataWarnings);return;}
  const options=filters();state.date=options.reportDate;state.report=generateReport(state.tickets,isPending()?{...options,groupFilter:'All'}:options);const r=state.report;
- state.pendingView=isPending()?buildPendingView(r,{...options,groups:selectedPendingGroups(),types:[...$('pendingTypes').selectedOptions].map(o=>o.value),statuses:[...$('pendingStatuses').selectedOptions].map(o=>o.value),asAt:$('asAt').value}):null;
- if(isPending()){state.pendingView.monthly=isMonthly();updatePendingDashboard();}
+ state.pendingView=isPending()?buildPendingView(r,{...options,groups:selectedPendingGroups(),types:typeSelection(),statuses:statusSelection(),asAt:$('asAt').value}):null;
+ if(isPending()){const scoped=buildPendingView(r,{...options,groups:selectedPendingGroups()});const notices=[];for(const [key,selected] of [['kind',typeSelection()],['status',statusSelection()]])if(selected!==null){const counts=new Map();for(const ticket of scoped.tickets)if(!selected.includes(ticket[key]))counts.set(ticket[key],(counts.get(ticket[key])||0)+1);for(const [value,count] of counts)notices.push(`${value||'(blank)'} (${count})`);}text('newScopeValues',notices.length?'Values outside your selected setup: '+notices.join(', '):'');state.pendingView.monthly=isMonthly();updatePendingDashboard();}
  const unknown=isPending()?r.unknownStatuses.map(row=>({...row,count:state.pendingView.tickets.filter(ticket=>(ticket.status.trim()||'(blank)').toLowerCase()===row.status.toLowerCase()).length})).filter(row=>row.count):r.unknownStatuses;
  updateReportWarnings($('fileWarning'),state.dataWarnings,unknown);
  $('result').hidden=false;text('reportCaption',`Report date ${r.reportDate} · Created and resolved activity from one exported snapshot`);
@@ -194,12 +194,16 @@ async function copyEmail(){try{if(!confirmScope())return;if(!state.report)throw 
  toast('Formatted email copied.');}catch(err){toast(err.message||'Copy failed. Use Download HTML.');}}
 async function loadDemo(){const res=await fetch('./samples/fictional-tickets.csv');if(!res.ok)throw Error('Demo file unavailable');const csv=parseCsv(await res.text());importRows(csv.headers,csv.rows,'fictional-tickets.csv','Fictional sample only · contains no customer data');}
 function validateAddresses(value){const parts=String(value||'').split(/[;,\n]+/).map(v=>v.trim()).filter(Boolean);return parts.every(v=>/^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/.test(v));}
-function readScope(){return {groups:selectedPendingGroups(),types:[...$('pendingTypes').selectedOptions].map(o=>o.value),statuses:[...$('pendingStatuses').selectedOptions].map(o=>o.value),contract:$('contractFilter').value,events:$('eventFilter').value};}
+function typeSelection(){return $('allPendingTypes').checked?null:[...$('pendingTypes').selectedOptions].map(o=>o.value);}
+function statusSelection(){return $('allPendingStatuses').checked?null:[...$('pendingStatuses').selectedOptions].map(o=>o.value);}
+function scopeStatus(){text('setupStatus',state.activeSetup&&JSON.stringify(state.activeSetup)!==JSON.stringify(state.settings.reportSetup)?'Unsaved scope changes':state.settings.reportSetup?'Saved setup':'All types/statuses (default scope)');}
+function restoreReferenceDate(){const value=isMonthly()?state.settings.monthlyAsAt:state.settings.asAt;$('asAt').value=dayNumber(value)!==null?value:isMonthly()?dateDefault():'';}
+function readScope(){return {groups:selectedPendingGroups(),types:typeSelection(),statuses:statusSelection(),contract:$('contractFilter').value,events:$('eventFilter').value};}
 function captureSetup(){state.settings.reportSetup=readScope();state.activeSetup=readScope();text('setupStatus','Setup saved');}
-function captureActiveSetup(){state.activeSetup=readScope();text('setupStatus','Unsaved scope changes');}
+function captureActiveSetup(){state.activeSetup=readScope();scopeStatus();}
 function applySetup(){
- const setup=state.activeSetup||state.settings.reportSetup;state.scopeError='';if(!setup||!state.tickets.length)return;
- for(const [id,key] of [['pendingTypes','types'],['pendingStatuses','statuses']])if(Array.isArray(setup[key])){for(const value of setup[key])if(![...$(id).options].some(o=>o.value===value))$(id).add(new Option(value,value));for(const option of $(id).options)option.selected=setup[key].includes(option.value);}
+ const setup=state.activeSetup||state.settings.reportSetup;state.scopeError='';scopeStatus();if(!setup||!state.tickets.length)return;
+ for(const [id,key] of [['pendingTypes','types'],['pendingStatuses','statuses']]){$(id==='pendingTypes'?'allPendingTypes':'allPendingStatuses').checked=!Array.isArray(setup[key]);if(Array.isArray(setup[key])){for(const value of setup[key])if(![...$(id).options].some(o=>o.value===value))$(id).add(new Option(value,value));for(const option of $(id).options)option.selected=setup[key].includes(option.value);}}
  if(Array.isArray(setup.groups)){$('allPendingGroups').checked=false;for(const input of $('pendingGroups').querySelectorAll('input')){input.disabled=false;input.checked=setup.groups.includes(input.value);}if(setup.groups.some(g=>![...$('pendingGroups').querySelectorAll('input')].some(i=>i.value===g)))state.scopeError='Saved groups are missing from this export. Review the groups before exporting.';}
  if(typeof setup.contract==='string'&&[...$('contractFilter').options].some(o=>o.value===setup.contract))$('contractFilter').value=setup.contract;else state.scopeError='Saved contract is missing from this export. Select the intended contract before exporting.';
  $('eventFilter').value=setup.events==='include'?'include':'exclude';
@@ -208,13 +212,18 @@ function confirmScope(){if(isMonthly()&&dayNumber($('asAt').value)===null){toast
 function workbookBytes(){if(dayNumber($('asAt').value)===null)throw Error('Choose an age reference date before exporting Excel.');return buildWorkbook(state.pendingView,state.settings.showEngineer,globalThis.XLSX);}
 function workbookAttachment(){const bytes=new Uint8Array(workbookBytes());let binary='';for(const byte of bytes)binary+=String.fromCharCode(byte);return {filename:exportBase()+'.xlsx',base64:btoa(binary)};}
 function init(){
+ if(state.settings.monthlyAsAt===undefined&&isMonthly())state.settings.monthlyAsAt=state.settings.asAt||'';
+ for(const [id,all] of [['pendingTypes','allPendingTypes'],['pendingStatuses','allPendingStatuses']]){
+ $(id).addEventListener('change',()=>{$(all).checked=false;});
+ $(all).addEventListener('change',()=>{if($(all).checked)for(const option of $(id).options)option.selected=true;captureActiveSetup();refreshReport();});}
+
  for(const id of ['pendingTypes','pendingStatuses','pendingGroups','allPendingGroups','contractFilter','eventFilter'])$(id).addEventListener('change',captureActiveSetup);
- $('asAt').value=dayNumber(state.settings.asAt)!==null?state.settings.asAt:'';
- for(const id of ['pendingTypes','pendingStatuses','asAt'])$(id).addEventListener('change',()=>{state.settings.asAt=$('asAt').value;storeSettings();refreshReport()});
+ restoreReferenceDate();
+ for(const id of ['pendingTypes','pendingStatuses','asAt'])$(id).addEventListener('change',()=>{state.settings[isMonthly()?'monthlyAsAt':'asAt']=$('asAt').value;storeSettings();refreshReport()});
  $('saveReportSetup').addEventListener('click',()=>{const candidate={...state.settings,reportSetup:readScope()};if(commitSettings(candidate)){state.activeSetup=readScope();text('setupStatus','Setup saved');}});
  $('resetSetup').addEventListener('click',()=>{delete state.settings.reportSetup;delete state.activeSetup;state.scopeError='';storeSettings();fillPendingGroups();$('contractFilter').value='All';refreshReport()});
  $('summaryOnly').addEventListener('change',()=>{state.settings.summaryOnly=$('summaryOnly').checked;storeSettings();refreshReport()});
- $('weeklySetup').addEventListener('click',()=>{state.settings.summaryOnly=true;for(const [id,values] of [['pendingTypes',['Incident','Service Request']],['pendingStatuses',['Assigned','Pending']]]){for(const value of values)if(![...$(id).options].some(o=>o.value===value))$(id).add(new Option(value,value));for(const o of $(id).options)o.selected=values.includes(o.value);}captureActiveSetup();refreshReport();if(!$('asAt').value)toast('Choose an age reference date before exporting the weekly report.');});
+ $('weeklySetup').addEventListener('click',()=>{state.settings.summaryOnly=true;$('allPendingTypes').checked=false;$('allPendingStatuses').checked=false;for(const [id,values] of [['pendingTypes',['Incident','Service Request']],['pendingStatuses',['Assigned','Pending']]]){for(const value of values)if(![...$(id).options].some(o=>o.value===value))$(id).add(new Option(value,value));for(const o of $(id).options)o.selected=values.includes(o.value);}captureActiveSetup();refreshReport();if(!$('asAt').value)toast('Choose an age reference date before exporting the weekly report.');});
  $('downloadWorkbook').addEventListener('click',()=>{try{if(!confirmScope())return;fileDownload(workbookBytes(),exportBase()+'.xlsx','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');}catch(e){toast(e.message)}});
  $('headerLogo').addEventListener('change',async event=>{const input=event.target,file=input.files[0];if(!file)return;input.disabled=true;$('clearHeaderLogo').disabled=true;$('importSettings').disabled=true;updateLogoPanel('Processing image…');try{const logo=await readHeaderLogo(file);if(commitSettings({...state.settings,headerLogo:logo,headerLogoName:file.name})){updateLogoPanel('Logo saved. It appears in Outstanding or Monthly pending tickets, theme C.');refreshReport();}}catch(e){updateLogoPanel(e.message,true);}finally{input.value='';input.disabled=false;$('clearHeaderLogo').disabled=false;$('importSettings').disabled=false;}});
  $('clearHeaderLogo').addEventListener('click',()=>{if(commitSettings({...state.settings,headerLogo:'',headerLogoName:''})){updateLogoPanel('Header logo removed.');refreshReport();}});$('dateInput').value=dateDefault();$('clientChoice').value=state.settings.client||'classic';$('emailVariant').value=normalizeVariant(state.settings.emailVariant);syncReportControls();updateSignatureSelector();updateClientNotes();
@@ -244,12 +253,12 @@ function init(){
  $('addSignature').addEventListener('click',()=>{const id='sig-'+Math.random().toString(36).slice(2,10);state.settings.signatures.push({id,name:'New signature',content:''});editingProfileId=id;profileOptions();$('profileName').focus();});
  $('removeSignature').addEventListener('click',()=>{state.settings.signatures=state.settings.signatures.filter(s=>s.id!==editingProfileId);if(state.settings.signatureId===editingProfileId)state.settings.signatureId='';profileOptions();updateSignatureSelector();});
  $('exportSettings').addEventListener('click',()=>{captureSetup();storeSettings();fileDownload(JSON.stringify({version:1,settings:state.settings},null,2),'bmc-daily-email-settings.json','application/json');});
- $('importSettings').addEventListener('change',async e=>{const f=e.target.files?.[0];if(!f)return;try{const data=JSON.parse(await f.text());const settings=data.settings;if(!settings||typeof settings!=='object'||!Array.isArray(settings.signatures))throw Error('Invalid settings file');if(settings.headerLogo&&!validHeaderLogo(settings.headerLogo))throw Error('Invalid or oversized header logo in settings file. Previous settings kept.');const candidate=normalizeSettings({...settings,signatures:settings.signatures.map(p=>({...p,html:sanitizeSignatureHtml(p.html??plainToSignatureHtml(p.content))}))},DEFAULTS);if(!commitSettings(candidate)){e.target.value='';return;}signaturePersistence.cancel();$('emailVariant').value=state.settings.emailVariant;$('clientChoice').value=state.settings.client||'classic';delete state.activeSetup;syncReportControls();$('asAt').value=dayNumber(state.settings.asAt)!==null?state.settings.asAt:'';applySetup();showModal();updateSignatureSelector();refreshReport();updateLogoPanel('Settings and header logo saved.');toast('Settings imported.');}catch(ex){updateLogoPanel(ex.message,true);toast(ex.message)}e.target.value='';});
+ $('importSettings').addEventListener('change',async e=>{const f=e.target.files?.[0];if(!f)return;try{const data=JSON.parse(await f.text());const settings=data.settings;if(!settings||typeof settings!=='object'||!Array.isArray(settings.signatures))throw Error('Invalid settings file');if(settings.headerLogo&&!validHeaderLogo(settings.headerLogo))throw Error('Invalid or oversized header logo in settings file. Previous settings kept.');const candidate=normalizeSettings({...settings,signatures:settings.signatures.map(p=>({...p,html:sanitizeSignatureHtml(p.html??plainToSignatureHtml(p.content))}))},DEFAULTS);if(candidate.reportContent==='monthly'&&candidate.monthlyAsAt===undefined)candidate.monthlyAsAt=candidate.asAt||'';if(!commitSettings(candidate)){e.target.value='';return;}signaturePersistence.cancel();$('emailVariant').value=state.settings.emailVariant;$('clientChoice').value=state.settings.client||'classic';delete state.activeSetup;syncReportControls();restoreReferenceDate();applySetup();showModal();updateSignatureSelector();refreshReport();updateLogoPanel('Settings and header logo saved.');toast('Settings imported.');}catch(ex){updateLogoPanel(ex.message,true);toast(ex.message)}e.target.value='';});
  $('demoBtn').addEventListener('click',()=>loadDemo().catch(e=>toast(e.message)));
  $('fileInput').addEventListener('change',async e=>{const f=e.target.files?.[0];if(f)await importFile(f);e.target.value='';});
  ['dateInput','groupFilter','contractFilter','eventFilter'].forEach(k=>$(k).addEventListener('change',refreshReport));
  $('latestBtn').addEventListener('click',()=>{const val=lastActivityDate(state.tickets);if(val){$('dateInput').value=val;refreshReport()}});
- $('reportContent').addEventListener('change',event=>{state.settings.reportContent=normalizeReportContent(event.target.value);if(isMonthly()&&!$('asAt').value)$('asAt').value=dateDefault();storeSettings();refreshReport()});
+ $('reportContent').addEventListener('change',event=>{state.settings.reportContent=normalizeReportContent(event.target.value);restoreReferenceDate();storeSettings();refreshReport()});
  $('showEngineer').addEventListener('change',event=>{state.settings.showEngineer=event.target.checked;storeSettings();refreshReport()});
  $('allPendingGroups').addEventListener('change',event=>{for(const input of $('pendingGroups').querySelectorAll('input')){input.disabled=event.target.checked;if(event.target.checked)input.checked=true;}refreshReport()});
  $('pendingGroups').addEventListener('change',refreshReport);

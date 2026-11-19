@@ -10,7 +10,7 @@ Choose **Monthly pending tickets** under Report content, upload that day's raw
 export and confirm **Reporting / export date**. This includes older outstanding
 tickets, subject to your selected scope; it does not filter to tickets created
 that month. Monthly subject and introduction are separate fields in Email settings.
-Use **Save report setup** to persist scope. Manual scope edits remain active across
+Use **All ticket types** / **All outstanding statuses** to include new values on later uploads. Selecting a list narrows scope; excluded values are shown with counts. Use **Save report setup** to persist scope. The monthly reporting date is preserved across uploads and is separate from the weekly age reference date. Manual scope edits remain active across
 uploads. The header logo panel supports square PNGs as well as wide logos and is
 visible in monthly/outstanding theme C. Daily header branding is unchanged.
 

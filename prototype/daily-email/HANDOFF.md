@@ -164,6 +164,26 @@ branch when `main` deploys. Native clipboard after the contract confirmation
 (W5) remains a manual check; my probes used a specific contract, so no
 confirmation dialog appeared.
 
+## Cross-upload scope/date corrections — 2026-11-19
+
+N1–N4 corrected after review `218f597`. Types and statuses now each have an
+explicit All checkbox represented as null; choosing a list is deliberate and
+empty means none. Uploading does not capture a fixed list or mark scope dirty.
+Old saved lists remain explicit lists (we cannot infer whether they meant All);
+values outside those selections are displayed with counts. Groups and contract
+checks remain unchanged. Saved/default/unsaved indicators initialize on reload.
+
+Monthly reporting date defaults only when empty, is stored separately as
+monthlyAsAt, and survives subsequent uploads and weekly-mode switching. Existing
+asAt migrates once when restoring an older monthly setup. Workbook Summary now
+identifies Monthly pending tickets and Reporting / export date explicitly.
+
+Regression coverage: sequential uploads adding On Hold and Forward Schedule,
+unchanged All scope, explicit-list exclusion notices, selected future reporting
+date preservation, independent weekly date, saved indicator after reload, monthly
+workbook metadata. Daily core and src/ unchanged. Publish under the owner's standing
+approval for tested prototype updates; no merge required.
+
 ## Monthly report and published logo fixes — 2026-11-19
 
 Owner requests Daily report and Monthly pending tickets, using a raw export

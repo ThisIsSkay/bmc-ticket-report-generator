@@ -25,5 +25,12 @@ try{
  await page.locator('#fileInput').setInputFiles({name:'next.csv',mimeType:'text/csv',buffer:Buffer.from(csv+'\nSRV-EXAMPLE,2026-10-02,,Pending,NCC_Application,EXAMPLE-A')});await page.waitForFunction(()=>document.getElementById('fileLabel').textContent==='next.csv');assert.equal(await page.locator('#outstandingTotal').textContent(),'2');assert.equal(await page.locator('#contractFilter').inputValue(),'EXAMPLE-A');
  await page.selectOption('#pendingStatuses',['Pending']);await page.locator('#fileInput').setInputFiles({name:'later.csv',mimeType:'text/csv',buffer:Buffer.from(csv+'\nSRV-EXAMPLE,2026-10-02,,Pending,NCC_Application,EXAMPLE-A')});await page.waitForFunction(()=>document.getElementById('fileLabel').textContent==='later.csv');assert.equal(await page.locator('#outstandingTotal').textContent(),'1');
 
+ await page.locator('#resetSetup').click();await page.locator('#asAt').fill('2026-11-30');await page.locator('#asAt').dispatchEvent('change');
+ await page.locator('#fileInput').setInputFiles({name:'all-first.csv',mimeType:'text/csv',buffer:Buffer.from(csv)});await page.waitForFunction(()=>document.getElementById('fileLabel').textContent==='all-first.csv');
+ const expanded=csv+'\nINC-HOLD,2025-01-01,,On Hold,NCC_Application,EXAMPLE-A\nFSC-NEW,2025-01-01,,Pending,NCC_Application,EXAMPLE-A';
+ await page.locator('#fileInput').setInputFiles({name:'all-next.csv',mimeType:'text/csv',buffer:Buffer.from(expanded)});await page.waitForFunction(()=>document.getElementById('fileLabel').textContent==='all-next.csv');assert.equal(await page.locator('#outstandingTotal').textContent(),'3');assert.equal(await page.locator('#asAt').inputValue(),'2026-11-30');assert.ok(!(await page.locator('#setupStatus').textContent()).includes('Unsaved'));
+ await page.locator('#saveReportSetup').click();await page.selectOption('#pendingStatuses',['Assigned']);assert.match(await page.locator('#newScopeValues').textContent(),/On Hold/);
+ await page.selectOption('#reportContent','pending');await page.locator('#asAt').fill('2026-11-10');await page.locator('#asAt').dispatchEvent('change');await page.selectOption('#reportContent','monthly');assert.equal(await page.locator('#asAt').inputValue(),'2026-11-30');
+ await page.reload();assert.match(await page.locator('#setupStatus').textContent(),/Saved setup/);
  console.log('PASS: weekly browser flow, four themes, Excel round trip, attached draft, setup import, daily unchanged');
 }finally{await browser.close();}

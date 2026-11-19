@@ -4,7 +4,7 @@ import {readFileSync} from 'node:fs';
 import vm from 'node:vm';
 import {ticketAge,dayNumber} from '../lib/ageing.mjs';
 import {buildPendingView} from '../lib/pending-report.mjs';
-import {buildWorkbook} from '../lib/workbook.mjs';
+import {buildWorkbook,workbookSheets} from '../lib/workbook.mjs';
 import {renderPendingEmail,renderPendingPlainText} from '../lib/email-themes.mjs';
 import {renderClassicOutlookScript} from '../lib/classic-outlook.mjs';
 const sandbox={Date};vm.runInNewContext(readFileSync(new URL('../vendor/xlsx.mini.min.js',import.meta.url),'utf8'),sandbox);const XLSX=sandbox.XLSX;
@@ -24,3 +24,5 @@ test('Theme C header logo has explicit proportional dimensions and becomes a CID
 });
 
 test('Exported priority headings are escaped',()=>{const hostile=buildPendingView({pending:[{...rows[0],priority:'<img src=x onerror=alert(1)>'}]},{});const html=renderPendingEmail(hostile,{},'A');assert.doesNotMatch(html,/<img src=x/);assert.match(html,/&lt;img/);});
+
+test('Monthly workbook identifies report and reporting date',()=>{const rows=workbookSheets({...view,monthly:true},false).Summary;assert.deepEqual(rows[0],['Report','Monthly pending tickets']);assert.ok(rows.some(row=>row[0]==='Reporting / export date'&&row[1]===view.asAt));assert.ok(!rows.some(row=>row[0]==='Age reference date'));});
