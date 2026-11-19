@@ -164,6 +164,53 @@ branch when `main` deploys. Native clipboard after the contract confirmation
 (W5) remains a manual check; my probes used a specific contract, so no
 confirmation dialog appeared.
 
+## Review of `e05128e` (N1–N4 corrections) — 2026-11-19
+
+Reviewer: Claude. Scope: `git diff 218f597..e05128e`, fictional data only. No
+code changed in this review. Verdict: **N1–N4 fixed; no blocking findings.**
+
+### Verified (reproduced here)
+
+- `report-core.mjs` and `src/` unchanged. **Daily output byte-identical** to
+  `218f597` and `7bf6e5c` (42 combinations each).
+- 111/111 prototype tests, 61/61 main-app tests, typecheck and
+  `build:gh-pages` pass; `node --check` passes. `verify-weekly`,
+  `verify-header-logo` and `verify-outstanding` each passed 2/2 runs.
+- Listener order checked: the "uncheck All" handler is registered before the
+  capture and refresh handlers, so a manual selection is never recorded or
+  rendered as "All".
+- **N1:** with default All types/statuses, month 1 (Pending, Assigned, Work in
+  Progress) → month 2 adding On Hold and Forward Schedule → all 4 included.
+  An explicit selection (Pending only) stays explicit across uploads, saves
+  and reloads, and shows "Values outside your selected setup: On Hold (1),
+  Assigned (1)". Ticking All again includes everything on the next upload.
+- **N2:** monthly date 2026-11-30 survives uploads, a switch to the
+  outstanding report (which keeps its own, separate date) and back, and a
+  reload. A setup saved by the previous release (explicit lists, shared
+  `asAt`, no `monthlyAsAt`) migrates its date and keeps its lists, with the
+  outside-values notice. Imported settings with an explicit status list apply
+  correctly.
+- **N3:** workbook Summary starts with "Report: Monthly pending tickets" and
+  "Reporting / export date"; filename `BMC_Monthly_Pending_2026-11-30.xlsx`.
+- **N4:** status reads "All types/statuses (default scope)", "Unsaved scope
+  changes", "Setup saved" or "Saved setup" (after reload) as appropriate; an
+  upload alone no longer marks the scope as changed. "Clear saved scope"
+  returns to All with the default-scope status.
+
+### Notes (low)
+
+- **L1.** Unsaved scope changes are discarded on reload without warning: after
+  ticking All (unsaved) and reloading, the saved explicit list returns and the
+  status reads "Saved setup". Consider a reload/close warning while the status
+  is "Unsaved scope changes".
+- **L2.** The "Values outside your selected setup" notice appears only under
+  Report options, not in the scope summary beside the export buttons. Repeat it
+  there (or in the export confirmation) so excluded tickets are seen at export.
+
+Still open: W5 native clipboard after contract confirmation; real Classic
+Outlook rendering, attachment and logo scaling; A/B/D header logo designs;
+multi-preset management.
+
 ## Cross-upload scope/date corrections — 2026-11-19
 
 N1–N4 corrected after review `218f597`. Types and statuses now each have an
@@ -649,3 +696,4 @@ and record the result below.
 - 2026-11-18 — `7a2dae9` Outstanding report (Codex). Reviewed: daily output byte-identical, 98/61 tests pass; findings R1–R8 recorded above.
 - 2026-11-18 — `1f503e1` Weekly ageing release 1 (Codex). Reviewed: daily output byte-identical, 107/61 tests pass; findings W1–W5 recorded above.
 - 2026-11-19 — `4c5d4d5` + `4900232` Header logo fix and monthly report (Codex). Reviewed: daily output byte-identical, 110/61 tests pass; findings N1–N4 recorded above.
+- 2026-11-19 — `e05128e` N1–N4 corrections (Codex). Reviewed: fixed; daily output byte-identical, 111/61 tests pass; low notes L1–L2 recorded above.
