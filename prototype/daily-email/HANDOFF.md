@@ -92,6 +92,78 @@ Still open: R7 harness flake; real Classic Outlook rendering, attachment and
 logo scaling (100/125/150%); A/B/D header logo designs; multi-preset
 management.
 
+## Review of `4c5d4d5` + `4900232` (header logo, monthly report) — 2026-11-19
+
+Reviewer: Claude. Scope: `git diff 7bf6e5c..4900232`, fictional data only. No
+code changed in this review. Verdict: **logo fix and W1/W2/W3/W4 are good; one
+high finding (N1) and one medium (N2) before monthly use.**
+
+### Verified (reproduced here)
+
+- `report-core.mjs` and `src/` unchanged. **Daily output byte-identical** to
+  both `7bf6e5c` and `4c5d4d5` (42 combinations each). Daily theme C still
+  shows the "LOGO" placeholder, as before.
+- 110/110 prototype tests, 61/61 main-app tests, typecheck and
+  `build:gh-pages` pass; `node --check` passes. `scripts/verify-weekly.mjs`
+  and `scripts/verify-header-logo.mjs` each passed 2/2.
+- Monthly scope: a ticket submitted in 2025 and still Pending is included; a
+  Resolved ticket and another contract's ticket are excluded. Title "BMC
+  Monthly Pending Tickets — age as at {date}", subject "Monthly pending
+  tickets — {date}", introduction with the date, workbook
+  `BMC_Monthly_Pending_{date}.xlsx`, and the Classic Outlook draft's subject
+  and attachment name all use the selected reporting date.
+- W1: weekly setup on a file with only Assigned/Incident, then Save report
+  setup, then a file with Pending Service Requests → both included; contract
+  kept.
+- W2: a manual status change survives the next upload; after a reload the
+  saved setup is used; a file without the saved contract blocks export with a
+  clear message.
+- W3: Tickets sheet has separate Status and Priority columns (blank priority
+  shows "—"). W4: default status choices are the outstanding statuses only.
+- Header logo: a generated 1200×1200 transparent PNG is stored at 120×120
+  (5.1 KiB), shows a thumbnail, "Logo saved" status and no size warning,
+  renders 40×40 in monthly theme C, survives reload; the signature profile is
+  untouched. The user's original logo file has not been examined.
+
+### Findings
+
+**N1 — High. Untouched "all" type/status scope narrows on the next upload.**
+On every upload the current selections are captured as an explicit list
+(`importRows` → `captureActiveSetup`), even if the user never changed them.
+Repro: month 1 has Pending, Assigned and Work in Progress (all selected by
+default) → month 2 adds an EXAMPLE-A ticket On Hold and a Forward Schedule
+ticket → both are excluded and the monthly total drops to 1. The only sign is
+the "Excluded by type/status" count; the setup status says "Unsaved scope
+changes" although nothing was changed. This contradicts the monthly intent
+(all current outstanding tickets). Fix: keep "All" as an explicit state for
+types and statuses (as groups already do, with `null`); only a deliberate
+selection becomes a list; when a saved explicit list meets new values, show
+"New values not in your setup: On Hold (1)" rather than silently excluding.
+
+**N2 — Medium. Reporting date resets to the browser's today on every monthly
+upload.** `importRows` sets `asAt` to `dateDefault()` whenever monthly mode is
+active (app.mjs, line ~126). Repro: set 2026-11-30, upload another file → the
+date becomes today's date and the title, subject, filenames and ages change
+without notice. The same `settings.asAt` is shared with the weekly
+outstanding report. Suggest: default only when empty, otherwise keep the
+user's date and show "Reporting date: {date} — change if the export was
+prepared on a different day".
+
+**N3 — Low. Workbook does not say it is the monthly report.** Summary sheet
+starts with "Outstanding tickets" and labels the date "Age reference date";
+add a title row ("Monthly pending tickets") and use "Reporting / export date"
+in monthly mode to match the email.
+
+**N4 — Low. "Unsaved scope changes" appears after every upload** even when
+nothing was changed (same root cause as N1); after a reload the status is
+blank. Show "Using saved setup" / "Unsaved changes" accurately.
+
+**Info.** The root `README.md` link added on this branch only becomes public if
+`main`'s README carries it; the deployed preview itself is built from this
+branch when `main` deploys. Native clipboard after the contract confirmation
+(W5) remains a manual check; my probes used a specific contract, so no
+confirmation dialog appeared.
+
 ## Monthly report and published logo fixes — 2026-11-19
 
 Owner requests Daily report and Monthly pending tickets, using a raw export
@@ -556,3 +628,4 @@ and record the result below.
 - 2026-11-16 — This branch's history rewritten with dummy names (force-push); `main` README reworded, then the last four `main` commits rewritten (force-push, new tip `0cd198b`). Sample/test data confirmed fictional.
 - 2026-11-18 — `7a2dae9` Outstanding report (Codex). Reviewed: daily output byte-identical, 98/61 tests pass; findings R1–R8 recorded above.
 - 2026-11-18 — `1f503e1` Weekly ageing release 1 (Codex). Reviewed: daily output byte-identical, 107/61 tests pass; findings W1–W5 recorded above.
+- 2026-11-19 — `4c5d4d5` + `4900232` Header logo fix and monthly report (Codex). Reviewed: daily output byte-identical, 110/61 tests pass; findings N1–N4 recorded above.
