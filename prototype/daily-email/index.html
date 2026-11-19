@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Daily Pivot &amp; Email Report</title><link rel="stylesheet" href="./style.css"></head>
+<body>
+<div class="shell">
+  <header class="topbar"><div class="brand"><span class="brand-mark">B</span><div><div class="brand-name">Daily Pivot &amp; Email Report</div><div class="brand-meta">Local reporting workspace · prototype 0.1</div></div></div><div class="top-actions"><span class="privacy"><span class="dot"></span>Data stays in this browser</span><button id="settingsBtn" class="btn small">Email settings</button></div></header>
+  <main>
+    <section class="panel upload-panel">
+      <div class="section-header"><div><h2>01 / Source data</h2><p>Use the BMC export. Uploads are processed locally and are not stored.</p></div><div class="inline-actions"><button id="demoBtn" class="btn">Load fictional sample</button><label class="btn primary" for="fileInput">Upload Excel / CSV <input id="fileInput" type="file" accept=".xlsx,.csv" hidden></label></div></div>
+      <div class="source-row"><span id="fileLabel">No file selected</span><span id="sourceMeta" class="muted">Supported: .xlsx and .csv · worksheet detection enabled</span></div>
+      <div id="fileWarning" class="notice" hidden></div>
+    </section>
+
+    <section class="panel control-panel">
+      <div class="section-header"><div><h2>02 / Report options</h2><p>Adjust the date and scope before generating the email.</p></div><button id="latestBtn" class="btn small" disabled>Use latest activity date</button></div>
+      <div class="filter-row">
+        <label>Report content<select id="reportContent"><option value="daily">Daily activity</option><option value="monthly">Monthly pending tickets</option><option value="pending">Outstanding tickets</option></select></label>
+        <label id="dailyDateControl">Report date<input type="date" id="dateInput"></label>
+        <label id="dailyGroupControl">Assigned group<select id="groupFilter" disabled><option value="All">All groups</option></select></label>
+        <label>Contract<select id="contractFilter" disabled><option value="All">All contracts</option></select></label>
+        <label>Ticket scope<select id="eventFilter"><option value="exclude">Exclude EVT monitoring</option><option value="include">Include EVT monitoring</option></select></label>
+      </div>
+      <div id="pendingOptions" hidden>
+        <button id="weeklySetup" class="btn" type="button">Use weekly ageing setup</button><button id="saveReportSetup" class="btn" type="button">Save report setup</button><span id="setupStatus" role="status"></span><p id="newScopeValues" role="status" class="help"></p><button id="resetSetup" class="btn" type="button">Clear saved scope</button>
+        <div class="grid-two"><label>Age reference date (calendar days since submission)<input id="asAt" type="date"></label><label>Ticket types (select multiple)<input id="allPendingTypes" type="checkbox" checked> All ticket types <select id="pendingTypes" multiple></select></label><label>Raw statuses (select multiple)<input id="allPendingStatuses" type="checkbox" checked> All outstanding statuses <select id="pendingStatuses" multiple></select></label></div>
+        <p class="help">Weekly setup selects Incident + Service Request and Assigned + Pending. Clear all selections for an empty report. The reference date does not reconstruct historical status.</p>
+        <fieldset class="pending-groups"><legend>Assigned groups / teams</legend>
+          <label><input type="checkbox" id="allPendingGroups" checked> All assigned groups</label>
+          <div id="pendingGroups"></div>
+        </fieldset>
+        <p class="help">Select one or more groups from your export, including NCC Application when present. Group names are matched exactly; Application membership is not inferred.</p>
+        <label class="pending-check"><input type="checkbox" id="summaryOnly"> Email summaries only (full details in Excel)</label>
+        <label class="pending-check"><input type="checkbox" id="showEngineer"> Include engineer names in the customer report</label>
+        <p class="help">Outstanding means every ticket except Closed, Resolved, Cancelled or Canceled. Figures reflect the uploaded export's current snapshot, not a historical backlog for the daily report date.</p>
+        <div id="customerScopeNote" class="notice" role="status"></div>
+      </div>
+      <div class="info-row" id="importInfo">Upload an export or load the fictional sample to begin.</div>
+    </section>
+
+    <section class="result" id="result" hidden>
+      <div class="panel" id="dailySummary">
+        <div class="section-header"><div><h2>03 / Daily report</h2><p id="reportCaption">Pivot-style summary and ticket lists</p></div><div class="inline-actions"><button id="detailsToggle" class="btn small">Show ticket lists</button></div></div>
+        <div class="kpis"><div><span>Created on date</span><strong id="createdCount">0</strong></div><div><span>Closed / resolved on date</span><strong id="closedCount">0</strong></div><div><span>Current outstanding</span><strong id="pendingCount">0</strong></div><div><span>In report scope</span><strong id="uniqueCount">0</strong></div></div>
+        <div class="two-cols"><div><h3>Summary by assigned group</h3><div class="table-scroll" id="pivotTable"></div></div><div><h3>Summary by ticket type</h3><div class="table-scroll" id="typeTable"></div></div></div>
+        <div id="ticketLists" hidden><div class="divider"></div><h3>Tickets created on report date</h3><div class="table-scroll" id="createdTable"></div><h3>Tickets closed / resolved on report date</h3><div class="table-scroll" id="closedTable"></div></div>
+      </div>
+      <div class="panel" id="pendingSummary" hidden>
+        <div class="section-header"><div><h2>03 / Outstanding tickets</h2><p id="pendingCaption"></p></div></div>
+        <div class="kpis pending-kpis"><div><span>Outstanding</span><strong id="outstandingTotal">0</strong></div><div><span>Incidents</span><strong id="outstandingIncidents">0</strong></div><div><span>Service requests &amp; other</span><strong id="outstandingOther">0</strong></div></div>
+        <div class="two-cols"><div><h3>Outstanding by assigned group</h3><div class="table-scroll" id="pendingGroupTable"></div></div><div><h3>Outstanding by status</h3><div class="table-scroll" id="pendingStatusTable"></div></div></div>
+        <div id="weeklyBreakdowns"></div><h3 class="pending-detail-title">Outstanding ticket details</h3><div class="table-scroll" id="pendingTicketTable"></div>
+      </div>
+      <div class="panel email-panel">
+        <div class="section-header"><div><h2>04 / Email preview & export</h2><p>Choose an Outlook-safe email theme, preview it, then copy or download the generated HTML.</p></div></div>
+        <div id="exportScope" class="notice" hidden></div><div class="email-toolbar"><button id="downloadWorkbook" class="btn" hidden>Download Excel details</button><label>Email theme<select id="emailVariant"><option value="A">A · Navy band</option><option value="B">B · Ruled minimal</option><option value="C">C · Boxed grid</option><option value="D">D · Tinted panels</option></select></label><label>Email client<select id="clientChoice"><option value="classic">Classic Outlook</option><option value="new">New Outlook</option><option value="gmail">Gmail</option></select></label><label>Signature<select id="signatureChoice"></select></label><span class="spacer"></span><button id="downloadClassic" class="btn primary" hidden>Download Classic Outlook draft (.ps1)</button><button id="downloadEml" class="btn primary">Download .eml</button><button id="copyHtml" class="btn">Copy formatted email</button><button id="downloadHtml" class="btn">Download .html</button></div>
+        <div id="clientNote" class="help"></div>
+        <div id="senderWarning" class="notice" role="status" hidden></div>
+        <div class="email-header"><div><span>To</span><span id="previewTo">—</span></div><div><span>Cc</span><span id="previewCc">—</span></div><div><span>Subject</span><strong id="previewSubject">—</strong></div></div>
+        <iframe id="emailFrame" title="Generated HTML email preview" sandbox="" referrerpolicy="no-referrer"></iframe>
+        <div class="help">Export never sends messages. Classic Outlook uses a local helper to create an editable .msg using the signed-in Outlook profile. Review the report and recipients before sending.</div>
+      </div>
+    </section>
+  </main>
+  <footer>Reference project: <a href="https://github.com/ThisIsSkay/bmc-ticket-report-generator" target="_blank" rel="noopener">bmc-ticket-report-generator</a> · Pilot implementation · No external API or account credentials</footer>
+</div>
+<div id="modal" class="modal" hidden>
+ <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-head"><div><h2 id="modalTitle">Email setup</h2><p>Saved to this browser only; no account credentials required.</p></div><button id="modalClose" class="icon-btn" aria-label="Close settings">×</button></div>
+  <div class="modal-body">
+   <div class="grid-two"><label>To addresses <small>(semicolon-separated)</small><textarea id="toInput" rows="2" placeholder="recipient@example.com"></textarea></label><label>CC addresses<small>(semicolon-separated)</small><textarea id="ccInput" rows="2" placeholder="manager@example.com"></textarea></label></div>
+   <label>BCC addresses <small>(optional)</small><input id="bccInput" placeholder="bcc@example.com"></label>
+   <label>Subject template <small>(use {date})</small><input id="subjectInput" value="Daily BMC Ticket Report – {date}"></label>
+   <div class="grid-two"><label>Greeting<textarea id="greetingInput" rows="2"></textarea></label><label>Introductory message<textarea id="introInput" rows="2"></textarea></label></div>
+   <label>Header logo: Outstanding / Monthly pending tickets, theme C only<input id="headerLogo" type="file" accept="image/png,image/jpeg"></label><p class="help">PNG or JPEG, up to 8 MiB. Best around 360 × 120 (3:1). Resized to fit 360 × 120; displayed within 120 × 40.</p>
+   <div id="headerLogoPanel"><img id="headerLogoThumbnail" alt="Saved header logo" hidden><p id="headerLogoInfo"></p><p id="headerLogoWarning"></p><p id="headerLogoStatus" role="status" aria-live="polite"></p><p id="settingsStorageUse" class="help"></p></div>
+   <button id="clearHeaderLogo" class="btn" type="button">Remove header logo</button>
+   <label>Monthly report subject<input id="monthlySubjectInput" placeholder="Monthly pending tickets — {date}"></label><label>Monthly report introduction<textarea id="monthlyIntroInput" rows="2"></textarea></label><label>Outstanding report subject<input id="pendingSubjectInput"></label>
+   <label>Outstanding report introduction<textarea id="pendingIntroInput" rows="2"></textarea></label>
+   <p class="help">The outstanding subject and introduction are separate from the daily report. No historical date is inferred from the uploaded file.</p>
+   <div class="divider"></div>
+   <div class="section-header"><div><h3>Sender details</h3><p>Shown under "Best regards," when no signature profile is selected. Blank lines are left out of the email.</p></div></div>
+   <div class="grid-two"><label>Sender name<input id="senderName" placeholder="e.g. Alex Example" autocomplete="off"></label><label>Job title<input id="senderTitle" placeholder="e.g. IT Executive" autocomplete="off"></label></div>
+   <div class="grid-two"><label>Company<input id="senderCompany" placeholder="e.g. Example Pte Ltd" autocomplete="off"></label><label>Office phone<input id="senderPhone" placeholder="Office phone number" autocomplete="off"></label></div>
+   <div class="divider"></div>
+   <div class="section-header"><div><h3>Signature profiles</h3><p>Choose a saved signature in the preview. The same profiles work for all three email clients.</p></div><button id="addSignature" class="btn small">+ New signature</button></div>
+   <div class="grid-two"><label>Profile<select id="profileList"></select></label><label>Profile name<input id="profileName" placeholder="e.g. Support Team"></label></div>
+   <div class="signature-field"><div class="signature-label">Signature editor <small>Paste formatted text, PNG/JPEG, or an Outlook signature. You can also insert a logo.</small></div>
+    <div class="signature-tools" role="toolbar" aria-label="Signature formatting">
+      <button id="sigBold" class="btn small" type="button" title="Bold"><b>B</b></button>
+      <button id="sigItalic" class="btn small" type="button" title="Italic"><i>I</i></button>
+      <button id="sigUnderline" class="btn small" type="button" title="Underline"><u>U</u></button>
+      <button id="sigLink" class="btn small" type="button" title="Insert hyperlink">Link</button>
+      <label for="signatureImage" class="btn small sig-image-btn">+ Insert PNG/JPEG<input id="signatureImage" type="file" accept="image/png,image/jpeg" multiple hidden></label>
+    </div>
+    <div id="profileEditor" class="signature-editor" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Signature content"></div>
+    <p class="signature-hint">Images stay in your browser settings and are embedded in downloaded .eml emails. Verify the result in your email client.</p>
+   </div>
+   <button id="removeSignature" class="btn small danger">Delete selected profile</button>
+   <div class="divider"></div>
+   <div class="section-header"><div><h3>Settings backup</h3><p>Use a JSON file to move your recipient and signature presets to another PC.</p></div><div class="inline-actions"><button id="exportSettings" class="btn small">Export settings</button><label for="importSettings" class="btn small">Import settings<input id="importSettings" type="file" accept=".json" hidden></label></div></div>
+  </div>
+  <div class="modal-footer"><span id="settingsStatus" class="muted">Changes are applied after saving.</span><button id="saveSettings" class="btn primary">Save settings</button></div>
+ </div>
+</div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script src="./vendor/xlsx.mini.min.js"></script>
+<script type="module" src="./app.mjs"></script>
+</body></html>

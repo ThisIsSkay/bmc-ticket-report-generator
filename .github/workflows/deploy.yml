@@ -13,7 +13,9 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
+  # Pull-request validation runs get their own group so they can never
+  # cancel an in-progress production Pages deploy.
+  group: pages-${{ github.event_name == 'pull_request' && github.ref || 'deploy' }}
   cancel-in-progress: true
 
 jobs:
