@@ -2,6 +2,18 @@
 
 A local-only starter project for the **Daily Pivot & Email Report** navigation item that will sit beneath the existing NCC **Report Dashboard** in [bmc-ticket-report-generator](https://github.com/ThisIsSkay/bmc-ticket-report-generator). This prototype is a standalone proof of concept; it does **not** change the existing report generator. Customer email design is **provisional** until the reference design is approved.
 
+## Test the prototype
+
+[Open the live Daily / Monthly report prototype](https://thisisskay.github.io/bmc-ticket-report-generator/daily-email/).
+
+Choose **Monthly pending tickets** under Report content, upload that day's raw
+export and confirm **Reporting / export date**. This includes older outstanding
+tickets, subject to your selected scope; it does not filter to tickets created
+that month. Monthly subject and introduction are separate fields in Email settings.
+Use **Save report setup** to persist scope. Manual scope edits remain active across
+uploads. The header logo panel supports square PNGs as well as wide logos and is
+visible in monthly/outstanding theme C. Daily header branding is unchanged.
+
 ## Current functions
 - Import a BMC `.xlsx`/`.csv` export with automatic worksheet and column identification.
 - Apply report date, assigned-group and contract filters; exclude EVT monitoring by default.

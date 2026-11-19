@@ -1,6 +1,6 @@
 import {ticketAge,AGE_BANDS,matrix} from './ageing.mjs';
 /** Presentation of generateReport().pending; never reclassifies lifecycle status. */
-export const normalizeReportContent=value=>value==='pending'?'pending':'daily';
+export const normalizeReportContent=value=>['pending','monthly'].includes(value)?value:'daily';
 export const PENDING_SUBJECT='BMC Outstanding Tickets — {date}';
 export const PENDING_INTRO='Please find below the current outstanding tickets in the uploaded export.';
 

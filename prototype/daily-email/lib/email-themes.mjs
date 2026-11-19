@@ -293,14 +293,14 @@ function pendingSummaryTable(t,rows,label){
 }
 
 export function renderPendingEmail(view,settings={},variant='A'){
- const v=normalizeVariant(variant),t=THEMES[v],title='BMC Outstanding Tickets'+(view.asAt?' — age as at '+view.asAt:'');
+ const v=normalizeVariant(variant),t=THEMES[v],title=(view.monthly?'BMC Monthly Pending Tickets':'BMC Outstanding Tickets')+(view.asAt?' — age as at '+view.asAt:'');
  settings={...settings,pendingIntro:String(settings.pendingIntro||PENDING_INTRO).replaceAll('{date}',view.asAt||'current snapshot')};
  const columns=pendingColumns(settings.showEngineer===true);
  const logoSize=signatureImageSize(settings.headerLogo),logoScale=logoSize?Math.min(120/logoSize.width,40/logoSize.height):1;
  const logoWidth=logoSize?Math.max(1,Math.round(logoSize.width*logoScale)):120,logoHeight=logoSize?Math.max(1,Math.round(logoSize.height*logoScale)):40;
  const d={sender:normalizeSender(settings.emailSender),signatureHtml:selectedSignatureHtml(settings)};
  const body=[
-  v==='C'?topBar(view.asAt?'Age reference: '+esc(view.asAt):'Current outstanding tickets','Outstanding Tickets','').replace('>LOGO</td>',validHeaderLogo(settings.headerLogo)?`><img src="${settings.headerLogo}" width="${logoWidth}" height="${logoHeight}" alt="Report logo" style="width:${logoWidth}px;height:${logoHeight}px;" /></td>`:'>LOGO</td>'):'',
+  v==='C'?topBar(view.asAt?'Age reference: '+esc(view.asAt):'Current outstanding tickets',view.monthly?'Monthly Pending Tickets':'Outstanding Tickets','').replace('>LOGO</td>',validHeaderLogo(settings.headerLogo)?`><img src="${settings.headerLogo}" width="${logoWidth}" height="${logoHeight}" alt="Report logo" style="width:${logoWidth}px;height:${logoHeight}px;" /></td>`:'>LOGO</td>'):'',
   `<tr><td style="${t.greeting.td}"><p style="margin:0 0 ${t.greeting.gap} 0;${F}${t.greeting.p}">${multiline(String(settings.greeting||'').trim()||'Hi Team,')}</p><p style="margin:0;${F}${t.greeting.p}">${String(settings.pendingIntro||PENDING_INTRO).split(/\r?\n/).map(line=>softBreak(esc(line),640,14)).join('<br />')}</p></td></tr>`,
   HEADERS[v](title,softBreak(esc(pendingCaption(view)),640,13)),
   KPIS[v]([['Outstanding',view.total],['Incidents',view.incidents],['Service requests &amp; other',view.other]]),
@@ -319,7 +319,7 @@ export function renderPendingPlainText(view,settings={}){
  const summary=(title,rows)=>[title,...rows.map(row=>`- ${row.name}: ${row.count}`),`TOTAL: ${view.total}`];
  const columns=pendingColumns(settings.showEngineer===true);
  return [String(settings.greeting||'').trim()||'Hi Team,',settings.pendingIntro||PENDING_INTRO,'',
-  'BMC Outstanding Tickets',view.asAt?'Age since submitted (days), as at '+view.asAt:'Current snapshot',pendingCaption(view),'',
+  view.monthly?'BMC Monthly Pending Tickets':'BMC Outstanding Tickets',view.asAt?'Age since submitted (days), as at '+view.asAt:'Current snapshot',pendingCaption(view),'',
  ...(view.byAge||[]).map(r=>`${r.name}: ${r.count}`),
  ...[['Group by type',view.groupType],['Type by priority',view.typePriority]].filter(([,m])=>m).flatMap(([title,m])=>[title,['',...m.columns,'Total'].join(' | '),...m.rows.map(r=>[r.name,...r.counts,r.counts.reduce((a,b)=>a+b,0)].join(' | '))]),
   `Outstanding: ${view.total}`,`Incidents: ${view.incidents}`,`Service requests & other: ${view.other}`,'',

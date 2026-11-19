@@ -13,14 +13,14 @@
     <section class="panel control-panel">
       <div class="section-header"><div><h2>02 / Report options</h2><p>Adjust the date and scope before generating the email.</p></div><button id="latestBtn" class="btn small" disabled>Use latest activity date</button></div>
       <div class="filter-row">
-        <label>Report content<select id="reportContent"><option value="daily">Daily activity</option><option value="pending">Outstanding tickets</option></select></label>
+        <label>Report content<select id="reportContent"><option value="daily">Daily activity</option><option value="monthly">Monthly pending tickets</option><option value="pending">Outstanding tickets</option></select></label>
         <label id="dailyDateControl">Report date<input type="date" id="dateInput"></label>
         <label id="dailyGroupControl">Assigned group<select id="groupFilter" disabled><option value="All">All groups</option></select></label>
         <label>Contract<select id="contractFilter" disabled><option value="All">All contracts</option></select></label>
         <label>Ticket scope<select id="eventFilter"><option value="exclude">Exclude EVT monitoring</option><option value="include">Include EVT monitoring</option></select></label>
       </div>
       <div id="pendingOptions" hidden>
-        <button id="weeklySetup" class="btn" type="button">Use weekly ageing setup</button><button id="resetSetup" class="btn" type="button">Clear saved scope</button>
+        <button id="weeklySetup" class="btn" type="button">Use weekly ageing setup</button><button id="saveReportSetup" class="btn" type="button">Save report setup</button><span id="setupStatus" role="status"></span><button id="resetSetup" class="btn" type="button">Clear saved scope</button>
         <div class="grid-two"><label>Age reference date (calendar days since submission)<input id="asAt" type="date"></label><label>Ticket types (select multiple)<select id="pendingTypes" multiple></select></label><label>Raw statuses (select multiple)<select id="pendingStatuses" multiple></select></label></div>
         <p class="help">Weekly setup selects Incident + Service Request and Assigned + Pending. Clear all selections for an empty report. The reference date does not reconstruct historical status.</p>
         <fieldset class="pending-groups"><legend>Assigned groups / teams</legend>
@@ -70,10 +70,10 @@
    <label>BCC addresses <small>(optional)</small><input id="bccInput" placeholder="bcc@example.com"></label>
    <label>Subject template <small>(use {date})</small><input id="subjectInput" value="Daily BMC Ticket Report – {date}"></label>
    <div class="grid-two"><label>Greeting<textarea id="greetingInput" rows="2"></textarea></label><label>Introductory message<textarea id="introInput" rows="2"></textarea></label></div>
-   <label>Header logo: Outstanding tickets, theme C only<input id="headerLogo" type="file" accept="image/png,image/jpeg"></label><p class="help">PNG or JPEG, up to 8 MiB. Best around 360 × 120 (3:1). Resized to fit 360 × 120; displayed within 120 × 40.</p>
+   <label>Header logo: Outstanding / Monthly pending tickets, theme C only<input id="headerLogo" type="file" accept="image/png,image/jpeg"></label><p class="help">PNG or JPEG, up to 8 MiB. Best around 360 × 120 (3:1). Resized to fit 360 × 120; displayed within 120 × 40.</p>
    <div id="headerLogoPanel"><img id="headerLogoThumbnail" alt="Saved header logo" hidden><p id="headerLogoInfo"></p><p id="headerLogoWarning"></p><p id="headerLogoStatus" role="status" aria-live="polite"></p><p id="settingsStorageUse" class="help"></p></div>
    <button id="clearHeaderLogo" class="btn" type="button">Remove header logo</button>
-   <label>Outstanding report subject<input id="pendingSubjectInput"></label>
+   <label>Monthly report subject<input id="monthlySubjectInput" placeholder="Monthly pending tickets — {date}"></label><label>Monthly report introduction<textarea id="monthlyIntroInput" rows="2"></textarea></label><label>Outstanding report subject<input id="pendingSubjectInput"></label>
    <label>Outstanding report introduction<textarea id="pendingIntroInput" rows="2"></textarea></label>
    <p class="help">The outstanding subject and introduction are separate from the daily report. No historical date is inferred from the uploaded file.</p>
    <div class="divider"></div>

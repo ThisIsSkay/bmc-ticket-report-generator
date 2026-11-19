@@ -4,6 +4,8 @@
 
 A local-only React/TypeScript web app for turning the daily AsiaPac/BMC Excel export into the Excel-style landscape report shown in the supplied reference screenshot, with one-click WhatsApp-friendly JPEG export.
 
+[**Test Daily / Monthly email reports**](https://thisisskay.github.io/bmc-ticket-report-generator/daily-email/) — separate prototype with pending-ticket Excel export and Outlook draft preparation.
+
 ## Daily workflow
 
 1. Upload the fresh BMC `.xlsx`, `.xls`, or `.csv` export.

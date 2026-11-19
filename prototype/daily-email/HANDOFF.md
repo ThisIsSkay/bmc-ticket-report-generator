@@ -92,6 +92,33 @@ Still open: R7 harness flake; real Classic Outlook rendering, attachment and
 logo scaling (100/125/150%); A/B/D header logo designs; multi-preset
 management.
 
+## Monthly report and published logo fixes — 2026-11-19
+
+Owner requests Daily report and Monthly pending tickets, using a raw export
+prepared on the reporting day. Monthly mode includes older outstanding tickets
+from that snapshot; there is no creation-month cutoff or reconstructed historical
+backlog. Select Monthly pending tickets, confirm the Reporting/export date,
+review customer scope, then copy/download or open the unsent Outlook draft.
+Monthly subject/introduction are separate from daily and outstanding settings.
+
+W1/W2: intended weekly type/status values survive absence from a file. Missing
+contract/groups still require review. Active scope survives subsequent uploads;
+Save report setup explicitly persists it. Weekly setup preserves contract/groups.
+Clear saved scope resets selections. W3: workbook Status and Priority are separate
+columns. W4: initial status choices come from the deduplicated outstanding set.
+W5 native clipboard activation after confirmation remains a manual-client check.
+
+Prior logo fixes are included in this release. Generated 1200×1200 PNG upload,
+resize, persistence and failure rollback verified; the user's actual logo has
+not been supplied. Header logo appears in outstanding/monthly theme C only.
+Daily output, src/ and report-core.mjs remain unchanged.
+
+Validation: 110 prototype tests; monthly/weekly browser flow including cross-file
+scope regression, Excel round trip and daily unchanged; header-logo browser flow
+including 1200×1200 image and storage failures. Owner authorized publishing approved
+changes through the README prototype link; no merge into main is required.
+Review request for Claude: see CLAUDE_REVIEW_MONTHLY.md in this directory.
+
 ## Header logo reliability fix — 2026-11-18
 
 Owner authorized the logo fixes first; daily theme C remains unchanged, with
