@@ -35,3 +35,28 @@ test('UTF16 big endian, malformed fields and empty sheets',()=>{
  const input=Buffer.from('Name;Email\nAlex;alex@example.com','utf16le');input.swap16();const decoded=decodeCsv(Buffer.concat([Buffer.from([254,255]),input]));assert.equal(csvRows(decoded)[1][1],'alex@example.com');
  assert.throws(()=>tableFromRows([]));assert.throws(()=>csvRows('Name,Email\n"Alex"bad,a@example.com'));assert.throws(()=>tableFromRows([['Name','Email'],['A','a@example.com','unexpected']]));
 });
+test('V1/V3 short near-namesakes and weak ties do not appear unique',()=>{
+ const r=matchRequester(request('Tan Wei Ming'),dir([['Tan Wei Ming','one@example.com'],['Tan Wei Min','two@example.com']]));assert.equal(r.candidates.length,2);assert.equal(r.status,'Review required');assert.equal(r.candidates[1].tier,8);
+ assert.equal(matchRequester(request('A Tan'),dir([['Alex Tan','a@example.com'],['Alan Tan','b@example.com'],['Amy Tan','c@example.com']])).status,'Ambiguous');
+});
+test('V4 organisation equivalence is narrow; genuine conflicts remain',()=>{
+ assert.equal(matchRequester({...request('Alex Example'),company:'Example Co Pte Ltd',department:'IT'},dir([['Alex Example','a@example.com','Example Co','Information Technology']])).status,'Unique proposal');
+ assert.equal(matchRequester({...request('Alex Example'),department:'Finance'},dir([['Alex Example','a@example.com','','Information Technology']])).status,'Review required');
+});
+test('V5/V6 invisible characters, Latin variants and reordered aliases',()=>{
+ for(const [a,b] of [['Alex\u200b Example','Alex Example'],['“Alex” (Example)','Alex Example'],['Đan Ølsen','Dan Olsen']])assert.ok(matchRequester(request(a),dir([[b,'a@example.com']])).candidates.length);
+ assert.equal(matchRequester(request('Jamie Example'),dir([['James Example','j@example.com','','','Example, Jamie']])).candidates[0].tier,4);
+});
+test('V7 explicit Windows-1252, empty trailing columns and source row offsets',()=>{
+ const data=Buffer.from('Name,Email,\nJos\xe9 Example,j@example.com,','latin1');assert.throws(()=>decodeCsv(data),/Windows-1252/);const table=tableFromRows(csvRows(decodeCsv(data,'windows-1252')));assert.equal(table.rows[0].Name,'José Example');assert.equal(table.headers.length,2);
+ const offset=tableFromRows([['Cover'],['Name','Email'],[],['Alex','a@example.com']],1);assert.deepEqual(offset.rowNumbers,[4]);assert.equal(requestsFromRows(offset.rows,{name:'Name'},offset.rowNumbers)[0].ticket,'Row 4');
+});
+test('V8/V9 mailbox formats and case-insensitive duplicate ticket IDs',()=>{
+ for(const email of ['a@b..com','.a@example.com','a..b@example.com','a@-b.com','a@example.com;other@example.com'])assert.equal(dir([['Alex Example',email]])[0].valid,false,email);
+ const e=dir([['Alex Example','Alex Example <alex@example.com>']])[0];assert.equal(e.email,'alex@example.com');assert.equal(e.valid,true);
+ assert.ok(requestsFromRows([{id:'INC-1'},{id:'inc-1'}],{ticket:'id'}).every(r=>r.duplicateTicket));
+});
+test('V2 repeated requesters reuse matching work while preserving separate rows',()=>{
+ const entries=dir([['Alex Example','a@example.com']]);let reads=0;const key=entries[0].keys;Object.defineProperty(entries[0],'keys',{get(){reads++;return key;}});
+ const requests=Array.from({length:12000},(_,i)=>({...request('Alex Example'),id:i}));const matched=matchBatch(requests,entries);assert.equal(matched.length,12000);assert.equal(reads,1);assert.notEqual(matched[0],matched[1]);
+});

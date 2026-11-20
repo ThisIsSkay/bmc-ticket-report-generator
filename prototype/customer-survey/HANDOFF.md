@@ -1,5 +1,35 @@
 # Customer Survey handoff — 2026-11-20
 
+## Corrections after Claude review of 9fd8046
+
+Owner supplied Claude’s review summary and authorized fixes. The full review was
+not pushed by Claude; its local commit e6294c1 is not available here. No attempt
+was made to overwrite Claude’s branch. Summary and implemented corrections:
+
+- V1/V3: short near-namesakes are shown; an exact result with competing candidates
+  is Review required, and tied weak candidates are Ambiguous. No auto-confirm.
+- V2: cache once per name/company/department while retaining per-row decisions;
+  background worker keeps UI responsive and supports cancellation/replacement.
+  Limits are 100,000 rows/file, 20 MiB/file and 50 million unique comparisons.
+- V4: narrowly normalise company legal suffixes and IT/HR expansions; retain genuine
+  company/department contradictions for review.
+- V5/V6: common invisible characters, punctuation, Latin letter variants, and
+  reordered/compact supplied aliases produce explainable proposals.
+- V7: explicit Windows-1252 selection and readable decoding errors; ignore empty
+  trailing columns; choose usable sheets; show actionable import status.
+- V8–V11: stricter email syntax, single display-name mailbox extraction, case-insensitive
+  duplicate ticket IDs, source row offsets, persistent per-row search text.
+
+Validation: 13 survey regression groups, 61 main tests, typecheck/build. Browser
+flow additionally checks Windows-1252, preserved search text, 12,000 ticket rows
+against 5,000 directory records, background matching cancellation, and data clearing.
+The scale fixture repeats a requester; it does not establish worst-case performance
+for 12,000 distinct requesters. Real customer data and mail delivery remain untested.
+All confirmation and matching-only constraints remain in force.
+
+## Original release
+
+
 Owner authorized building the matching-only first release and committing directly
 to main, followed by Claude review before user interaction testing. Work starts
 from main 0cd198b; the daily/monthly feature branch is not merged or changed.

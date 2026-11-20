@@ -1,0 +1,2 @@
+import {matchBatch,identityKey} from './match.mjs';
+self.onmessage=event=>{try{const {requests,entries}=event.data;const unique=new Set(requests.map(identityKey)).size;if(unique*entries.length>50000000)throw Error('Over 50 million distinct-requester comparisons. Narrow the files before matching.');self.postMessage({results:matchBatch(requests,entries),unique});}catch(error){self.postMessage({error:error.message});}};
