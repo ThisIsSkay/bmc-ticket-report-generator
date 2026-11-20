@@ -1,5 +1,7 @@
 # BMC Ticket Report Generator
 
+**[Customer Survey matching preview](https://thisisskay.github.io/bmc-ticket-report-generator/customer-survey/)** — upload ticket and directory files, review suggested recipients; no emails are sent. [Review handoff](prototype/customer-survey/HANDOFF.md).
+
 🌐 **[Open the BMC Ticket Report Generator](https://thisisskay.github.io/bmc-ticket-report-generator/)** — existing NCC screenshot/JPEG dashboard.
 
 ✉️ **[Open Daily Pivot & Email Report (Prototype)](https://thisisskay.github.io/bmc-ticket-report-generator/daily-email/)** — separate browser-based test version.
