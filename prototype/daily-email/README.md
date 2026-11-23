@@ -16,7 +16,7 @@ visible in monthly/outstanding theme C. Daily header branding is unchanged.
 
 ## Current functions
 - Import a BMC `.xlsx`/`.csv` export with automatic worksheet and column identification.
-- Apply report date, assigned-group and contract filters; exclude EVT monitoring by default.
+- Apply report date, assigned-group and one or more contract filters; exclude EVT monitoring by default.
 - Pivot-style summaries by assigned group and ticket type; lists of tickets **created** and **closed/resolved** on the report date, plus current outstanding tickets.
 - Avoid double-counting duplicate Ticket IDs. A ticket created and closed on the same date appears in both activity lists.
 - First-run email settings: To, Cc, Bcc, subject template, greeting and introduction. Multiple editable rich-text signature presets with clipboard PNG/JPEG paste, logo uploads and formatted Outlook signatures; selectable per export. Stored locally in the browser; export/import as JSON.
@@ -30,7 +30,7 @@ visible in monthly/outstanding theme C. Daily header branding is unchanged.
 
 1. Upload an export or load the fictional sample.
 2. Under **02 / Report options**, set **Report content** to **Outstanding tickets**.
-3. Select the intended contract. To choose specific teams, uncheck **All assigned
+3. Select **All contracts** to include every contract, or uncheck it and choose one or more contracts. The selected contracts are shown in the report caption and carry into the email, Excel workbook, and Outlook draft. To choose specific teams, uncheck **All assigned
    groups**, then select the groups you need. Application groups appear using
    their exact names in the uploaded export; the built-in daily sample does not
    contain an Application group.

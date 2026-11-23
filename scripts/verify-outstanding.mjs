@@ -60,7 +60,7 @@ try{
  'INC000000000004,2026-11-12,,2026-11-12,Pending,Alex Example,NCC_Application,Other customer,EXAMPLE-B,Low',
  'INC000000000005,2026-11-12,2026-11-12,2026-11-12,Resolved,Alex Example,NCC_Application,Resolved,EXAMPLE-A,Low'].join('\n');
  await page.locator('#fileInput').setInputFiles({name:'fictional-outstanding.csv',mimeType:'text/csv',buffer:Buffer.from(csv)});
- await page.selectOption('#reportContent','pending');await page.selectOption('#contractFilter','EXAMPLE-A');
+ await page.selectOption('#reportContent','pending');await page.locator('#contractFilter').evaluate(el=>el.open=true);await page.locator('#contractChoices input[value="EXAMPLE-A"]').check();
  await page.locator('#allPendingGroups').uncheck();
  await page.locator('#pendingGroups input[value="NCC_EUC"]').uncheck();
  check(await page.locator('#outstandingTotal').textContent()==='2','Application filtered after dedupe');

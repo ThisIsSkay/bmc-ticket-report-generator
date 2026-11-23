@@ -20,3 +20,11 @@
 #headerLogoWarning{color:#854d0e}
 
 #allPendingTypes,#allPendingStatuses{width:auto;min-height:0;margin-right:6px}
+
+/* Contract checkboxes avoid Ctrl/Cmd-click multi-selection. */
+.contract-control{display:flex;flex-direction:column;gap:8px;min-width:0;font-size:14px;color:#334155}
+#contractFilter{border:1px solid #cbd5e1;border-radius:6px;background:#ffffff}
+#contractSelection{padding:12px;cursor:pointer;overflow-wrap:anywhere}
+.contract-menu{padding:10px;border-top:1px solid #cbd5e1;max-height:240px;overflow:auto}
+.contract-menu label{display:flex;align-items:flex-start;gap:8px;padding:6px 0;overflow-wrap:anywhere}
+.contract-menu input[type=checkbox]{width:auto;flex-shrink:0;margin-top:3px}

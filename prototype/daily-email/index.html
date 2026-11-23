@@ -16,9 +16,10 @@
         <label>Report content<select id="reportContent"><option value="daily">Daily activity</option><option value="monthly">Monthly pending tickets</option><option value="pending">Outstanding tickets</option></select></label>
         <label id="dailyDateControl">Report date<input type="date" id="dateInput"></label>
         <label id="dailyGroupControl">Assigned group<select id="groupFilter" disabled><option value="All">All groups</option></select></label>
-        <label>Contract<select id="contractFilter" disabled><option value="All">All contracts</option></select></label>
+        <div class="contract-control"><span id="contractLabel">Contracts (select one or more)</span><details id="contractFilter"><summary id="contractSelection" aria-labelledby="contractLabel contractSelection">All contracts</summary><div class="contract-menu"><label><input id="allContracts" type="checkbox" checked> All contracts (including new contracts)</label><div id="contractChoices"></div></div></details></div>
         <label>Ticket scope<select id="eventFilter"><option value="exclude">Exclude EVT monitoring</option><option value="include">Include EVT monitoring</option></select></label>
       </div>
+      <p id="contractWarning" class="notice" role="status" hidden></p>
       <div id="pendingOptions" hidden>
         <button id="weeklySetup" class="btn" type="button">Use weekly ageing setup</button><button id="saveReportSetup" class="btn" type="button">Save report setup</button><span id="setupStatus" role="status"></span><p id="newScopeValues" role="status" class="help"></p><button id="resetSetup" class="btn" type="button">Clear saved scope</button>
         <div class="grid-two"><label>Age reference date (calendar days since submission)<input id="asAt" type="date"></label><label>Ticket types (select multiple)<input id="allPendingTypes" type="checkbox" checked> All ticket types <select id="pendingTypes" multiple></select></label><label>Raw statuses (select multiple)<input id="allPendingStatuses" type="checkbox" checked> All outstanding statuses <select id="pendingStatuses" multiple></select></label></div>
