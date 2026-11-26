@@ -1,4 +1,4 @@
-BATON: Claude — Phases 1–3 build (owner: complete the merge and publish; Codex bug-check after) — 2026-11-26
+BATON: Codex — bug check of the live unified app (/app/) — 2026-11-26
 
 # Unified app merge — handoff
 
@@ -53,18 +53,21 @@ privacy, and record findings below.
 
 ## Phase checklist
 
-- [x] **Phase 0 — Freeze and baseline** (awaiting owner gate)
+- [x] **Phase 0 — Freeze and baseline** (owner approved by asking Claude to complete the merge)
   - [x] Step 1: branch, tags (local only, see above), PLAN.md, HANDOFF.md
   - [x] Step 2: baseline test counts (BASELINE.md)
   - [x] Step 3: storage inventory and fixtures
   - [x] Step 4: goldens (WhatsApp, email, survey) and determinism check
   - [x] Step 5: handover
-- [ ] Phase 1 — merge feature branch, self-contained deploy
-- [ ] Phase 2 — shared app frame
-- [ ] Phase 3 — email tool into the app (3a, 3b, 3c)
-- [ ] Phase 4 — survey tool into the app
-- [ ] Phase 5 — one upload, one Clear all data, one settings backup
-- [ ] Phase 6 — hardening and switch-over
+- [x] Phase 0.1 — harness fixes from the ChatGPT review
+- [x] Phase 1 — merge feature branch, self-contained deploy (`f8336a6`)
+- [x] Phase 2 (fast version, owner decision) — unified app at `/app/`: tool bar, WhatsApp section native, Email and Survey pages in themed same-origin frames, one theme (`c731b0f`)
+- [x] Publish — `integration/unified-app` fast-forwarded to `main`; Pages deploys `/`, `/app/`, `/daily-email/`, `/customer-survey/`
+- [ ] **Codex bug check of the live `/app/`** (see "Codex bug-check brief" below)
+- [ ] Phase 3 — rebuild the Email screens natively in React (3a, 3b, 3c) — later, after the bug check
+- [ ] Phase 4 — rebuild the Survey screens natively in React — later
+- [ ] Phase 5 — one upload, one Clear all data, one settings backup — later (owner chose separate uploads first)
+- [ ] Phase 6 — hardening and switch-over (retire old pages after sign-off; keep them until then)
 
 ## Phase 0 results
 
@@ -122,7 +125,96 @@ non-browser groups on Windows:
 `node scripts/golden/check.mjs --skip-visual --email-root=..\email-3fcc777\prototype\daily-email --expect-email-commit=3fcc777`
 (run it twice; every line should say PASS).
 
-## Notes for next agent (Phase 1)
+## Owner decisions (2026-11-26)
+
+The owner asked Claude to complete the merge and publish a live page, then
+have Codex check it for bugs. Answers given:
+
+- **D1:** fast first. The Email and Survey pages run unchanged inside the new
+  app, restyled to the WhatsApp theme. The React rebuild comes later.
+- **D2:** separate uploads per section first. The shared upload comes after
+  the bug check.
+- **D3:** "WhatsApp Report · Email Reports · Customer Survey".
+- **D4:** old pages stay available, unchanged, until the owner signs off.
+- **D5:** live page at `/app/`, linked first in the README.
+- **D6:** Claude builds, Codex checks for bugs.
+- **P0-2 (date order):** not decided. Business rules are unchanged.
+
+## How the unified app works (Phase 2, fast version)
+
+- `app/index.html` → `src/unified/main.tsx` → `UnifiedApp.tsx`. Vite builds it
+  as a second page (`vite.config.ts` `build.rollupOptions.input`). The live
+  page `index.html` is unchanged.
+- **Tool bar:** three sections with hash routes `#/whatsapp`, `#/email` and
+  `#/survey`, plus one theme toggle stored under `bmc-report:theme:v1`.
+  Sections mount on first visit and stay mounted, so switching keeps state.
+- **WhatsApp section:** `src/App.tsx`, lazy-loaded. App gained optional
+  `theme` / `onThemeChange` props; without them, as on the live page, it
+  behaves exactly as before.
+- **Email and Survey sections:** the published `../daily-email/` and
+  `../customer-survey/` pages in same-origin iframes
+  (`allow="clipboard-read; clipboard-write"`).
+  - `src/unified/frameTheme.ts` injects `src/unified/embed-theme.css` into the
+    frame and sets `html.bmc-embedded` and `data-theme`.
+  - All rules are scoped to `html.bmc-embedded`, so the standalone pages look
+    exactly as before.
+  - The email preview (`#emailFrame`) and the signature editor keep white
+    backgrounds, because they show real email HTML.
+- **No web fonts and no outside requests on `/app/`.** The live root page
+  still loads Google Fonts (P0-1).
+- **Deploy:** `scripts/stage-pages.mjs` copies the browser files of both
+  prototypes into `dist/`. CI runs every test suite and
+  `golden:check --skip-visual`.
+- **Browser checks:** `scripts/verify-unified.mjs` (9 checks, passed 3/3
+  locally). Among them:
+  - the PNG and JPEG exported inside `/app/` are byte-identical to the
+    standalone goldens;
+  - the Email `.html` download equals the preview, and no theme leaks into
+    the email HTML;
+  - the Survey samples match;
+  - switching sections keeps state;
+  - the theme reaches every section;
+  - deep links and lazy loading work;
+  - the standalone pages are unchanged;
+  - no outside requests and no page errors.
+
+## Codex bug-check brief
+
+Codex: you hold the baton. Check the LIVE unified app at
+https://thisisskay.github.io/bmc-ticket-report-generator/app/ and the code on
+`main`. Fictional data only. Don't change product code in this check: record
+severity-ranked findings, with reproduction steps and file:line, in a new
+section "## Codex bug check (<date>)" here, then set
+`BATON: Owner — review Codex findings`.
+
+1. Run `npm ci`, `npm test`, `npm run test:email`, `npm run test:survey`,
+   `npm run typecheck`, `npm run golden:check` (add `--skip-visual` if your
+   Chromium or fonts differ from BASELINE.md),
+   `npm run build:gh-pages && npm run stage:pages`, and
+   `NODE_PATH=… npm run verify:unified`.
+2. In a browser, try every section with its fictional samples, in light and
+   dark. Switch sections mid-task, reload, open deep links (`#/email`,
+   `#/survey`), and test narrow and very wide windows and keyboard navigation.
+3. **Email inside `/app/`:**
+   - first-run settings window;
+   - Email settings: save and import/export;
+   - signature with an image, header logo;
+   - every report mode and theme A–D;
+   - Copy formatted email (clipboard inside a frame), `.html`, `.eml`,
+     Classic Outlook `.ps1`, Excel;
+   - compare each with the same steps on `/daily-email/`.
+4. **Survey inside `/app/`:** XLSX and CSV uploads, header row, matching,
+   confirm/exclude, Clear all data, and the worker on large fictional files.
+5. **WhatsApp inside `/app/`:** the full workflow, including Engineer
+   Selection, Rules, Configuration import/export, and JPEG/PNG/copy/print.
+6. Look for:
+   - theme gaps: unreadable text or white boxes in dark mode;
+   - layout overlaps with the tool bar (sticky sidebar and status strip);
+   - state lost when switching;
+   - storage conflicts between sections;
+   - anything the standalone pages do that `/app/` doesn't.
+
+## Notes for next agent (Phase 1, historical)
 
 - Merge `feature/daily-pivot-email-report` into `integration/unified-app`
   with a merge commit; no rebase, no squash. Expected conflicts:
@@ -159,4 +251,8 @@ an owner decision.
 | 2026-11-26 | `1553faf` | Golden harness (`scripts/golden/`) |
 | 2026-11-26 | `311b36d` | Recorded goldens (132 files) |
 | 2026-11-26 | `232527f` | BASELINE golden section, Phase 0 results and findings, baton to owner |
-| 2026-11-26 | (this commit) | Phase 0.1: P0-8 to P0-13 fixed in the harness, `storage` group, process isolation, P0-14 and P0-15, re-recorded goldens (only intended changes), baton to owner |
+| 2026-11-26 | `15ca475` | Phase 0.1 harness fixes |
+| 2026-11-26 | `f73be7e` | Phase 0.1 goldens re-recorded (only intended changes) and review responses |
+| 2026-11-26 | `f8336a6` | Phase 1: merge of `feature/daily-pivot-email-report` (`3fcc777`), self-contained deploy, CI runs email tests and golden check |
+| 2026-11-26 | `c731b0f` | Phase 2: unified app at `/app/` |
+| 2026-11-26 | (this commit) | README link and unified-app docs, Codex bug-check brief; then fast-forwarded to `main` |

@@ -1,14 +1,32 @@
 # BMC Ticket Report Generator
 
-**[Customer Survey matching preview](https://thisisskay.github.io/bmc-ticket-report-generator/customer-survey/)** — upload ticket and directory files, review suggested recipients; no emails are sent. [Review handoff](prototype/customer-survey/HANDOFF.md).
+🧩 **[Open BMC Ticket Tools — unified app (preview)](https://thisisskay.github.io/bmc-ticket-report-generator/app/)** — **new:** the WhatsApp report, the email reports and the customer survey in one place, with one light/dark theme. Please test it and report problems (see [Testing the unified app](#testing-the-unified-app)).
 
-🌐 **[Open the BMC Ticket Report Generator](https://thisisskay.github.io/bmc-ticket-report-generator/)** — existing NCC screenshot/JPEG dashboard.
+🌐 **[Open the BMC Ticket Report Generator](https://thisisskay.github.io/bmc-ticket-report-generator/)** — existing NCC screenshot/JPEG dashboard (live, unchanged).
 
-✉️ **[Open Daily Pivot & Email Report (Prototype)](https://thisisskay.github.io/bmc-ticket-report-generator/daily-email/)** — separate browser-based test version.
+✉️ **[Open Daily Pivot & Email Report (Prototype)](https://thisisskay.github.io/bmc-ticket-report-generator/daily-email/)** — the email reports page on its own (unchanged).
+
+👥 **[Customer Survey matching preview](https://thisisskay.github.io/bmc-ticket-report-generator/customer-survey/)** — upload ticket and directory files, review suggested recipients; no emails are sent. [Review handoff](prototype/customer-survey/HANDOFF.md).
+
+### BMC Ticket Tools — unified app (preview)
+
+The unified app at **`/app/`** puts the three tools behind one tool bar: **WhatsApp Report · Email Reports · Customer Survey**, with one light/dark toggle.
+
+- **WhatsApp Report** is the live app itself. Its report image is byte-identical to the one exported from the original page (checked automatically).
+- **Email Reports** and **Customer Survey** are the same pages as the separate links above, shown inside the app and restyled to match. Their code, calculations and generated files are unchanged.
+- Each section keeps its own upload for now. Switching sections keeps your files and selections until you reload or close the tab.
+- The original pages stay available while the unified app is tested. The merge plan, safety checks and results are in [docs/merge/](docs/merge/).
+
+#### Testing the unified app
+
+1. Open the unified app link above. Try each section with its fictional sample first (**Load bundled sample workbook**, **Load fictional sample**, **Load fictional tickets** + **Load fictional directory**).
+2. Then use the same daily BMC export you normally use and compare with the original pages: the WhatsApp image, email preview, Classic Outlook draft (`.ps1`), `.eml`, Excel attachment and survey matches should be identical.
+3. Switch between sections and between light and dark; nothing you loaded should be lost.
+4. Report anything that differs, with the section, the steps, and a screenshot without customer data.
 
 ### Daily Pivot & Email Report — prototype preview
 
-This is an **early prototype** that is kept apart from the main NCC screenshot tool: a skeleton for automating the daily email, with a human check before anything is sent. It lives on a separate [working branch](https://github.com/ThisIsSkay/bmc-ticket-report-generator/tree/feature/daily-pivot-email-report/prototype/daily-email) and is published alongside the original dashboard for testing.
+This is an **early prototype** that is kept apart from the main NCC screenshot tool: a skeleton for automating the daily email, with a human check before anything is sent. Its code is in [`prototype/daily-email/`](prototype/daily-email/). It is published on its own page and inside the unified app.
 
 1. Open **Daily Pivot & Email Report (Prototype)** above and select **Load fictional sample** or upload a BMC Excel/CSV file.
 2. Choose the report date and filters. Check the **created today**, **closed/resolved today**, and pivot-style ticket summaries.
@@ -184,7 +202,9 @@ The report canvas is the only DOM section captured. Buttons, filters, browser co
 
 ## Privacy
 
-There is no application backend. SheetJS reads the workbook in the browser, and all ticket processing stays in the active browser session. Ticket data is not sent to an application API or server. Browser local storage stores only configuration, engineer selections, column mappings, and feedback values.
+There is no application backend. SheetJS reads the workbook in the browser, and all ticket processing stays in the active browser session. Ticket data is not sent to an application API or server. Browser local storage stores only configuration, engineer selections, column mappings, feedback values, the theme, and the email tool's settings (recipients, sender, signatures, logo). The customer survey stores nothing.
+
+The original WhatsApp page loads the Figtree web font from Google Fonts for its screens (no ticket data is included in that request). The unified app at `/app/` uses system fonts and makes no requests outside this site.
 
 ## Development
 
@@ -192,9 +212,19 @@ Requirements: Node.js 20+.
 
 ```bash
 npm ci
-npm test
-npm run build
-npm run dev
+npm test                 # WhatsApp report (Vitest)
+npm run test:email       # email reports
+npm run test:survey      # customer survey
+npm run golden:check     # every output still matches docs/merge/golden (see docs/merge/BASELINE.md)
+npm run dev              # http://localhost:5173/ (WhatsApp report) and /app/ (unified app shell)
+```
+
+For a full local preview of every page, including the email and survey pages inside `/app/`:
+
+```bash
+npm run build:gh-pages && npm run stage:pages
+npx vite preview --mode github-pages      # then open /bmc-ticket-report-generator/app/
+NODE_PATH=<dir containing playwright> npm run verify:unified   # 9 browser checks of /app/
 ```
 
 `package-lock.json` is committed so that CI and local installs are reproducible; use `npm ci` rather than `npm install` unless you are intentionally changing dependencies.
@@ -234,24 +264,27 @@ A workflow is included at `.github/workflows/deploy.yml`.
 2. In **Settings → Pages**, choose **GitHub Actions** as the source.
 3. Push to `main` or run the deployment workflow manually.
 
+The workflow tests everything (including the golden check), builds the WhatsApp page and the unified app with Vite, then copies the email and survey pages into `dist/` with `scripts/stage-pages.mjs`. Everything is published from this one branch.
+
 Manual build:
 
 ```bash
 npm ci
 npm test
 npm run build:gh-pages
+npm run stage:pages
 ```
 
 ## Netlify
 
-- Build command: `npm run build`
+- Build command: `npm run build && npm run stage:pages`
 - Publish directory: `dist`
 - No backend functions or environment variables required.
 
 ## Vercel
 
 - Framework preset: Vite
-- Build command: `npm run build`
+- Build command: `npm run build && npm run stage:pages`
 - Output directory: `dist`
 
 ## Project structure
@@ -267,6 +300,16 @@ src/
   lib/export.ts                 JPEG/PNG/clipboard/print capture
   screens/                      Seven application screens
   test/                         Unit tests
+  unified/                      Unified app shell (/app/): tool bar, sections, theme bridge
+app/index.html                  Unified app page
+prototype/
+  daily-email/                  Email reports (daily, outstanding, monthly)
+  customer-survey/              Customer survey matching preview
+scripts/
+  golden/                       Golden output checks (docs/merge/BASELINE.md)
+  stage-pages.mjs               Copies the prototype pages into dist/
+  verify-*.mjs                  Browser checks
+docs/merge/                     Unified app plan, handoff and baseline
 public/
   sample-bmc-export.xlsx        Fictional sample data only
   default-team-mapping.json
