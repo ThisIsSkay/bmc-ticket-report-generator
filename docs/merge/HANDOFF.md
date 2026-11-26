@@ -223,10 +223,34 @@ Checklist (continue from the first unticked item):
     343 now carry the confirm text. Re-recorded with
     `node scripts/golden/record.mjs --only=email` after that diff was
     checked field by field.
-- [ ] RD-03 (Medium) A worksheet whose `<dimension>` says `A1` but holds
+- [x] RD-03 (Medium) A worksheet whose `<dimension>` says `A1` but holds
   many rows. Fictional regression fixture, tested against the email
   `xlsx-lite` reader, the WhatsApp import (SheetJS) and the survey import.
   Fix any parser that truncates.
+  - Result: **no parser truncates; no code change needed.** `xlsx-lite`
+    (`prototype/daily-email/lib/xlsx-lite.mjs:29` `cellsFromXML`) never
+    reads `<dimension>`; SheetJS 0.20.3 (WhatsApp `src/lib/import.ts:11`,
+    survey vendored `xlsx.mini.min.js` read at
+    `prototype/customer-survey/app.mjs:13`) widens the sheet range to the
+    cells it finds. Each tool picks the populated fourth sheet.
+  - Fixture: `scripts/fixtures/dimension-a1.mjs` builds, at test time, a
+    fictional workbook (three empty sheets, then 12 BMC-style rows × 13
+    columns, dates as numeric serials, IDs with leading zeros) in a
+    well-formed copy and a copy that differs only in
+    `<dimension ref="A1"/>` on the populated sheet. Nothing binary is
+    committed.
+  - Tests: `prototype/daily-email/test/xlsx-dimension.test.mjs` (3),
+    `prototype/customer-survey/test/xlsx-dimension.checks.mjs` (2, using
+    the vendored bundle the page loads), `src/test/xlsx-dimension.test.ts`
+    (3; passed under UTC, Asia/Singapore and America/Los_Angeles). Each
+    asserts the fourth sheet, every row and column, dates, IDs, explicit
+    totals (email 6 created / 4 closed / 6 outstanding on 2026-11-10;
+    WhatsApp 6 new EUC, 12 unique), and equality with the well-formed copy.
+    Browser: `npm run verify:xlsx-dimension` uploads both copies into all
+    three sections of `/app/` and compares what each shows.
+  - Golden: no change.
+  - Should the email tool ever move to SheetJS, these tests guard the
+    switch.
 - [ ] RD-02 (Medium) Monthly/outstanding reference date earlier than the
   snapshot: show the future-dated count prominently in the UI and in the
   email HTML and plain text. Counting rules unchanged. Reports with no
