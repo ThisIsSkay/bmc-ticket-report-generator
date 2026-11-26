@@ -1,4 +1,4 @@
-BATON: Owner — Phase 0 gate (optional independent review by Codex first) — 2026-11-26
+BATON: Owner — Phase 0 gate (after Phase 0.1 fixes; executed independent check still recommended) — 2026-11-26
 
 # Unified app merge — handoff
 
@@ -76,9 +76,10 @@ privacy, and record findings below.
     (known harness flake).
 
   Details are in BASELINE.md.
-- **Goldens:** 132 files plus 429 hashed email combinations. `check.mjs`
-  passed twice in a row, and again from a clean checkout of the pushed branch.
-  Each of the four groups fails on a deliberate one-line change.
+- **Goldens:** 132 files plus 429 hashed email combinations in Phase 0;
+  138 files and five groups after Phase 0.1. `check.mjs` passed twice in a
+  row each time, and from a clean checkout of the pushed branch. Every group
+  fails on a deliberate one-line change.
 - **Only `docs/merge/**` and `scripts/golden/**` changed:**
   `git diff --stat origin/main..integration/unified-app` lists nothing else.
 
@@ -93,6 +94,33 @@ privacy, and record findings below.
 | P0-5 | Info | `node --test prototype/daily-email/test/` (a directory argument) fails on Node 22. Use `node --test prototype/daily-email/test/*.test.mjs`. | email branch docs | Phase 1 (`package.json` script) |
 | P0-6 | Info | The goldens use npm `xlsx` 0.20.3 (the vendored tarball). The email app uses its vendored `xlsx.mini.min.js` of the same version, so workbooks are compared by cell values, not bytes. | `scripts/golden/groups/email.mjs` | Phase 2 (one SheetJS copy) |
 | P0-7 | Info | Visual goldens depend on Chromium 153 (Playwright build 1243) and on Arial resolving to Liberation Sans. GitHub-hosted runners differ. | BASELINE.md "Environment dependence" | Phase 1 CI design |
+| P0-14 | Medium-low (robustness) | Every WhatsApp-app save runs in a React `useEffect` with no try/catch. If the browser blocks storage or the quota is full, `saveConfig`, `saveColumnMapping`, `saveFeedback` and `saveTheme` throw inside the effect, which can crash the whole app. Loading already falls back safely. Recorded by the `storage` golden (scenarios `storage-unavailable` and `storage-full`). | `src/App.tsx:69-75`, `src/lib/storage.ts` `save*` | Phase 2 (shared storage helper with error handling) |
+| P0-15 | Medium (merge risk) | SheetJS keeps a process-wide number-format table. A workbook read or written earlier with custom formats (e.g. `00000`, `yyyy-mm-dd`) changes the `styles.xml` bytes of later workbooks in the same page or process. Cell values are unchanged. Today each tool has its own SheetJS copy and page, so nothing leaks. Once Phase 2 shares one copy across all tools, the email tool's Excel attachment bytes could depend on what the user opened earlier in the session. The golden harness now runs each group in its own process. | `node_modules/xlsx` (SSF table) | Phase 2 (isolate or reset the format table; compare workbooks by cells) |
+
+## Phase 0 review (ChatGPT, 2026-11-26)
+
+ChatGPT reviewed Phase 0 by reading the source only. Its environment couldn't
+reach GitHub with git and had no Playwright, so it ran no tests, golden checks
+or mutation tests. Its verdict, "FAIL — verification incomplete", means
+"not independently executed", not a failing result. It agreed with P0-1 to
+P0-7 (P0-4 partly, since the flake wasn't reproduced) and raised six new
+findings. Claude checked each one against the code and fixed all six in
+Phase 0.1 (test harness only, no product code):
+
+| # | Finding | Status after Phase 0.1 |
+|---|---|---|
+| P0-8 | Email goldens recorded outputs the app refuses to export (e.g. `.ps1` with no age reference date) | **Fixed.** The harness mirrors `confirmScope()`, `contractScopeError()` and `workbookBytes()`. Refused deliveries are recorded as `BLOCKED: <message>`. Every matrix entry records its `guards`. This was wider than reported: it also covered every selected-contract case on the sample fixture, whose only contract is `SAMPLE-CONTRACT` (110 outputs in total). |
+| P0-9 | WhatsApp data harness bypassed `parseWorkbookFile()` and saved-mapping precedence | **Fixed.** Every fixture goes through `parseWorkbookFile(new File(...))`. Added a `.csv` fixture, saved-mapping precedence and fallback, and parser outcomes for wrong-extension, empty, corrupt and upper-case-extension files. |
+| P0-10 | No fixture for `bmc-report:column-mapping:v1`; fixtures never actually loaded | **Fixed.** Added the fixture and the `storage` golden group (WhatsApp `load*`/`save*` across 9 scenarios; email `normalizeSettings`, signature sanitising, logo validity, full-quota save). |
+| P0-11 | Survey goldens lacked XLSX, header-row and leading-zero cases | **Fixed** for the data path (`survey/xlsx-upload.json`). Worker matching, cancelling, replacing a file and Clear all data are browser behaviour, still covered by `scripts/verify-survey.mjs` (3/3). |
+| P0-12 | PNG comparison ignored transparency | **Fixed.** Alpha is compared for PNG. Proven with a transparency-only difference (16 of 16 pixels reported). |
+| P0-13 | Nothing enforced the pinned email commit | **Fixed.** Optional `--expect-email-commit=3fcc777` fails on another commit or on local changes. |
+| Privacy | "AsiaPac" sheet names in a fixture | **Fixed.** The worksheets are now `1-Export` … `4-All Tickets`. The "NCC" group names and the people in `docs/email-design/sample-data.json` predate this work, are marked fictional, and belong to the email tool's files. Phase 0 doesn't change them. |
+
+An independent **executed** review is still outstanding. The owner can run the
+non-browser groups on Windows:
+`node scripts/golden/check.mjs --skip-visual --email-root=..\email-3fcc777\prototype\daily-email --expect-email-commit=3fcc777`
+(run it twice; every line should say PASS).
 
 ## Notes for next agent (Phase 1)
 
@@ -130,4 +158,5 @@ an owner decision.
 | 2026-11-26 | `0b61c4e` | Baseline test counts, storage inventory, storage fixtures |
 | 2026-11-26 | `1553faf` | Golden harness (`scripts/golden/`) |
 | 2026-11-26 | `311b36d` | Recorded goldens (132 files) |
-| 2026-11-26 | (this commit) | BASELINE golden section, Phase 0 results and findings, baton to owner |
+| 2026-11-26 | `232527f` | BASELINE golden section, Phase 0 results and findings, baton to owner |
+| 2026-11-26 | (this commit) | Phase 0.1: P0-8 to P0-13 fixed in the harness, `storage` group, process isolation, P0-14 and P0-15, re-recorded goldens (only intended changes), baton to owner |

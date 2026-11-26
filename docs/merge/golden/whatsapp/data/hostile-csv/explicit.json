@@ -1,0 +1,645 @@
+{
+  "assignees": [
+    "Alex Example",
+    "Chris Example",
+    "Jamie Example",
+    "Monitor Example",
+    "Sam Example",
+    "Unmapped Example"
+  ],
+  "byDate": {
+    "2026-11-10": {
+      "closedOnReportDateIds": [
+        [
+          "INC200000002",
+          1
+        ],
+        [
+          "SRV200000003",
+          2
+        ]
+      ],
+      "filterDescription": "Report date: 2026-11-10",
+      "metrics": {
+        "newTickets": {
+          "EUC": 3,
+          "Network": 0,
+          "System": 1
+        },
+        "pendingBreakdown": {
+          "EUC": {
+            "onHold": 0,
+            "pending": 1,
+            "waitingUserReply": 0,
+            "workInProgress": 0
+          },
+          "Network": {
+            "onHold": 0,
+            "pending": 2,
+            "waitingUserReply": 0,
+            "workInProgress": 1
+          },
+          "System": {
+            "onHold": 0,
+            "pending": 2,
+            "waitingUserReply": 0,
+            "workInProgress": 0
+          }
+        },
+        "pendingClosed": {
+          "EUC": {
+            "closed": 2,
+            "pending": 0,
+            "scheduledOnOffBoarding": 1
+          },
+          "Network": {
+            "closed": 0,
+            "pending": 1,
+            "scheduledOnOffBoarding": 0
+          },
+          "System": {
+            "closed": 0,
+            "pending": 0,
+            "scheduledOnOffBoarding": 2
+          }
+        },
+        "summaries": {
+          "EUC": {
+            "incidentTotal": 0,
+            "offboarding": 1,
+            "onboarding": 0,
+            "pendingIncidents": 0,
+            "scheduleRequests": 0,
+            "totalTickets": 1,
+            "waitingUserReplyIncidents": 0,
+            "workInProgressIncidents": 0
+          },
+          "Network": {
+            "incidentTotal": 2,
+            "offboarding": 0,
+            "onboarding": 0,
+            "pendingIncidents": 1,
+            "scheduleRequests": 0,
+            "totalTickets": 0,
+            "waitingUserReplyIncidents": 0,
+            "workInProgressIncidents": 1
+          },
+          "System": {
+            "incidentTotal": 0,
+            "offboarding": 0,
+            "onboarding": 0,
+            "pendingIncidents": 0,
+            "scheduleRequests": 2,
+            "totalTickets": 2,
+            "waitingUserReplyIncidents": 0,
+            "workInProgressIncidents": 0
+          }
+        },
+        "summaryBuckets": {
+          "EUC": {
+            "onOffBoarding": 1,
+            "pending": 1
+          },
+          "Network": {
+            "onOffBoarding": 0,
+            "pending": 3
+          },
+          "System": {
+            "onOffBoarding": 0,
+            "pending": 2
+          }
+        },
+        "totalUniqueTickets": 10
+      },
+      "narrowedFilter": {
+        "description": "Report date: 2026-11-10 • Created: 2026-11-01 to End • Team: EUC • Search: “example”",
+        "metrics": {
+          "newTickets": {
+            "EUC": 3,
+            "Network": 0,
+            "System": 0
+          },
+          "pendingBreakdown": {
+            "EUC": {
+              "onHold": 0,
+              "pending": 1,
+              "waitingUserReply": 0,
+              "workInProgress": 0
+            },
+            "Network": {
+              "onHold": 0,
+              "pending": 0,
+              "waitingUserReply": 0,
+              "workInProgress": 0
+            },
+            "System": {
+              "onHold": 0,
+              "pending": 0,
+              "waitingUserReply": 0,
+              "workInProgress": 0
+            }
+          },
+          "pendingClosed": {
+            "EUC": {
+              "closed": 2,
+              "pending": 0,
+              "scheduledOnOffBoarding": 0
+            },
+            "Network": {
+              "closed": 0,
+              "pending": 0,
+              "scheduledOnOffBoarding": 0
+            },
+            "System": {
+              "closed": 0,
+              "pending": 0,
+              "scheduledOnOffBoarding": 0
+            }
+          },
+          "summaries": {
+            "EUC": {
+              "incidentTotal": 0,
+              "offboarding": 0,
+              "onboarding": 0,
+              "pendingIncidents": 0,
+              "scheduleRequests": 0,
+              "totalTickets": 0,
+              "waitingUserReplyIncidents": 0,
+              "workInProgressIncidents": 0
+            },
+            "Network": {
+              "incidentTotal": 0,
+              "offboarding": 0,
+              "onboarding": 0,
+              "pendingIncidents": 0,
+              "scheduleRequests": 0,
+              "totalTickets": 0,
+              "waitingUserReplyIncidents": 0,
+              "workInProgressIncidents": 0
+            },
+            "System": {
+              "incidentTotal": 0,
+              "offboarding": 0,
+              "onboarding": 0,
+              "pendingIncidents": 0,
+              "scheduleRequests": 0,
+              "totalTickets": 0,
+              "waitingUserReplyIncidents": 0,
+              "workInProgressIncidents": 0
+            }
+          },
+          "summaryBuckets": {
+            "EUC": {
+              "onOffBoarding": 0,
+              "pending": 1
+            },
+            "Network": {
+              "onOffBoarding": 0,
+              "pending": 0
+            },
+            "System": {
+              "onOffBoarding": 0,
+              "pending": 0
+            }
+          },
+          "totalUniqueTickets": 3
+        }
+      },
+      "outOfScope": {
+        "rows": [
+          {
+            "count": 2,
+            "label": "EXAMPLE_EUC"
+          },
+          {
+            "count": 1,
+            "label": "EXAMPLE_NOC"
+          }
+        ],
+        "total": 3
+      },
+      "pendingDiagnostics": [
+        {
+          "byGroup": [],
+          "incident": 0,
+          "other": 0,
+          "serviceRequest": 0,
+          "team": "EUC",
+          "total": 0
+        },
+        {
+          "byGroup": [],
+          "incident": 0,
+          "other": 0,
+          "serviceRequest": 0,
+          "team": "System",
+          "total": 0
+        },
+        {
+          "byGroup": [
+            {
+              "count": 1,
+              "label": "EXAMPLE_SYSTEM"
+            }
+          ],
+          "incident": 1,
+          "other": 0,
+          "serviceRequest": 0,
+          "team": "Network",
+          "total": 1
+        }
+      ],
+      "reportPendingDiagnostics": [
+        {
+          "byGroup": [
+            {
+              "count": 1,
+              "label": "EXAMPLE_EUC"
+            }
+          ],
+          "incident": 1,
+          "other": 0,
+          "serviceRequest": 0,
+          "team": "EUC",
+          "total": 1
+        },
+        {
+          "byGroup": [
+            {
+              "count": 1,
+              "label": "EXAMPLE <GROUP> & CO"
+            },
+            {
+              "count": 1,
+              "label": "EXAMPLE_SYSTEM"
+            }
+          ],
+          "incident": 0,
+          "other": 1,
+          "serviceRequest": 1,
+          "team": "System",
+          "total": 2
+        },
+        {
+          "byGroup": [
+            {
+              "count": 2,
+              "label": "EXAMPLE_NETWORK"
+            },
+            {
+              "count": 1,
+              "label": "EXAMPLE_SYSTEM"
+            }
+          ],
+          "incident": 3,
+          "other": 0,
+          "serviceRequest": 0,
+          "team": "Network",
+          "total": 3
+        }
+      ],
+      "reportPendingTicketIds": [
+        [
+          "INC200000001",
+          0
+        ],
+        [
+          "INC200000005",
+          5
+        ],
+        [
+          "FSC200000008",
+          8
+        ],
+        [
+          "INC200000010",
+          10
+        ],
+        [
+          "INC200000011",
+          11
+        ],
+        [
+          "SRV200000013",
+          13
+        ]
+      ]
+    }
+  },
+  "teamMappingErrors": [],
+  "teams": {
+    "EUC": [
+      "Alex Example",
+      "Jamie Example"
+    ],
+    "Network": [
+      "Chris Example"
+    ],
+    "System": [
+      "Sam Example"
+    ]
+  },
+  "tickets": [
+    {
+      "assignedTo": "Alex Example",
+      "category": "Incident",
+      "closedDate": null,
+      "contract": "CN-EXAMPLE-1",
+      "createdDate": "2026-11-10T00:00:00.000Z",
+      "dateInvalid": false,
+      "duplicateId": false,
+      "id": "INC200000001",
+      "idPrefix": "INC",
+      "kind": "Incident",
+      "raw": null,
+      "rawCategory": "Incident",
+      "rawStatus": "Assigned",
+      "reportStatus": "New",
+      "sourceIndex": 0,
+      "summary": "<script>alert(1)</script> & \"quoted\"",
+      "supportGroup": "EXAMPLE_EUC",
+      "team": "EUC"
+    },
+    {
+      "assignedTo": "Jamie Example",
+      "category": "Incident",
+      "closedDate": "2026-11-10T01:00:00.000Z",
+      "contract": "CN-EXAMPLE-1",
+      "createdDate": "2026-11-10T00:30:00.000Z",
+      "dateInvalid": false,
+      "duplicateId": false,
+      "id": "INC200000002",
+      "idPrefix": "INC",
+      "kind": "Incident",
+      "raw": null,
+      "rawCategory": "Incident",
+      "rawStatus": "Resolved",
+      "reportStatus": "Closed",
+      "sourceIndex": 1,
+      "summary": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "supportGroup": "EXAMPLE_EUC",
+      "team": "EUC"
+    },
+    {
+      "assignedTo": "Jamie Example",
+      "category": "Onboarding",
+      "closedDate": "2026-11-10T04:00:00.000Z",
+      "contract": "CN-EXAMPLE-2",
+      "createdDate": "2026-11-10T01:00:00.000Z",
+      "dateInvalid": false,
+      "duplicateId": false,
+      "id": "SRV200000003",
+      "idPrefix": "SRV",
+      "kind": "Service Request",
+      "raw": null,
+      "rawCategory": "Service Request",
+      "rawStatus": "Closed",
+      "reportStatus": "Closed",
+      "sourceIndex": 2,
+      "summary": "New joiner onboarding for JosÃ© Example",
+      "supportGroup": "EXAMPLE_EUC",
+      "team": "EUC"
+    },
+    {
+      "assignedTo": "Sam Example",
+      "category": "Other",
+      "closedDate": "2026-11-10T02:00:00.000Z",
+      "contract": "CN-EXAMPLE-2",
+      "createdDate": "2026-11-10T01:30:00.000Z",
+      "dateInvalid": false,
+      "duplicateId": false,
+      "id": "SRV200000004",
+      "idPrefix": "SRV",
+      "kind": "Service Request",
+      "raw": null,
+      "rawCategory": "Service Request",
+      "rawStatus": "Cancelled",
+      "reportStatus": "Cancelled",
+      "sourceIndex": 3,
+      "summary": "Cancelled request",
+      "supportGroup": "EXAMPLE_NETWORK",
+      "team": "System"
+    },
+    {
+      "assignedTo": "Chris Example",
+      "category": "Incident",
+      "closedDate": "2026-11-03T02:00:00.000Z",
+      "contract": "CN-EXAMPLE-1",
+      "createdDate": "2026-11-01T02:00:00.000Z",
+      "dateInvalid": false,
+      "duplicateId": true,
+      "id": "INC200000005",
+      "idPrefix": "INC",
+      "kind": "Incident",
+      "raw": null,
+      "rawCategory": "Incident",
+      "rawStatus": "Resolved",
+      "reportStatus": "Closed",
+      "sourceIndex": 4,
+      "summary": "Reopened ticket (older row)",
+      "supportGroup": "EXAMPLE_SYSTEM",
+      "team": "Network"
+    },
+    {
+      "assignedTo": "Chris Example",
+      "category": "Incident",
+      "closedDate": null,
+      "contract": "CN-EXAMPLE-1",
+      "createdDate": "2026-11-01T02:00:00.000Z",
+      "dateInvalid": false,
+      "duplicateId": true,
+      "id": "INC200000005",
+      "idPrefix": "INC",
+      "kind": "Incident",
+      "raw": null,
+      "rawCategory": "Incident",
+      "rawStatus": "Pending",
+      "reportStatus": "Pending",
+      "sourceIndex": 5,
+      "summary": "Reopened ticket (latest row)",
+      "supportGroup": "EXAMPLE_SYSTEM",
+      "team": "Network"
+    },
+    {
+      "assignedTo": "",
+      "category": "Incident",
+      "closedDate": null,
+      "contract": "CN-EXAMPLE-1",
+      "createdDate": "2026-10-02T02:00:00.000Z",
+      "dateInvalid": false,
+      "duplicateId": false,
+      "id": "INC200000006",
+      "idPrefix": "INC",
+      "kind": "Incident",
+      "raw": null,
+      "rawCategory": "Incident",
+      "rawStatus": "On Hold",
+      "reportStatus": "On Hold",
+      "sourceIndex": 6,
+      "summary": "Blank engineer",
+      "supportGroup": "EXAMPLE_EUC",
+      "team": "Review / Unassigned"
+    },
+    {
+      "assignedTo": "Monitor Example",
+      "category": "Other",
+      "closedDate": null,
+      "contract": "CN-EXAMPLE-1",
+      "createdDate": "2026-11-09T23:00:00.000Z",
+      "dateInvalid": false,
+      "duplicateId": false,
+      "id": "EVT200000007",
+      "idPrefix": "EVT",
+      "kind": "Event",
+      "raw": null,
+      "rawCategory": "Event",
+      "rawStatus": "Assigned",
+      "reportStatus": "New",
+      "sourceIndex": 7,
+      "summary": "Monitoring event",
+      "supportGroup": "EXAMPLE_NOC",
+      "team": "Review / Unassigned"
+    },
+    {
+      "assignedTo": "Sam Example",
+      "category": "Schedule",
+      "closedDate": null,
+      "contract": "",
+      "createdDate": "2026-09-15T02:00:00.000Z",
+      "dateInvalid": false,
+      "duplicateId": false,
+      "id": "FSC200000008",
+      "idPrefix": "FSC",
+      "kind": "Forward Schedule",
+      "raw": null,
+      "rawCategory": "Forward Schedule",
+      "rawStatus": "Pending",
+      "reportStatus": "Pending",
+      "sourceIndex": 8,
+      "summary": "Preventive maintenance",
+      "supportGroup": "EXAMPLE_SYSTEM",
+      "team": "System"
+    },
+    {
+      "assignedTo": "Alex Example",
+      "category": "Offboarding",
+      "closedDate": null,
+      "contract": "CN-EXAMPLE-2",
+      "createdDate": "2026-08-01T02:00:00.000Z",
+      "dateInvalid": false,
+      "duplicateId": false,
+      "id": "SRV200000009",
+      "idPrefix": "SRV",
+      "kind": "Service Request",
+      "raw": null,
+      "rawCategory": "Service Request",
+      "rawStatus": "Waiting User Reply",
+      "reportStatus": "Waiting User Reply",
+      "sourceIndex": 9,
+      "summary": "Offboarding: terminate access for leaver",
+      "supportGroup": "EXAMPLE_EUC",
+      "team": "EUC"
+    },
+    {
+      "assignedTo": "Chris Example",
+      "category": "Incident",
+      "closedDate": null,
+      "contract": "CN-EXAMPLE-1",
+      "createdDate": "2026-10-10T16:00:00.000Z",
+      "dateInvalid": false,
+      "duplicateId": false,
+      "id": "INC200000010",
+      "idPrefix": "INC",
+      "kind": "Incident",
+      "raw": null,
+      "rawCategory": "Incident",
+      "rawStatus": "Work in Progress",
+      "reportStatus": "Work in Progress",
+      "sourceIndex": 10,
+      "summary": "Ambiguous slash date",
+      "supportGroup": "EXAMPLE_NETWORK",
+      "team": "Network"
+    },
+    {
+      "assignedTo": "Chris Example",
+      "category": "Incident",
+      "closedDate": null,
+      "contract": "CN-EXAMPLE-1",
+      "createdDate": "2026-11-12T16:00:00.000Z",
+      "dateInvalid": false,
+      "duplicateId": false,
+      "id": "INC200000011",
+      "idPrefix": "INC",
+      "kind": "Incident",
+      "raw": null,
+      "rawCategory": "Incident",
+      "rawStatus": "New",
+      "reportStatus": "New",
+      "sourceIndex": 11,
+      "summary": "Day-first slash date",
+      "supportGroup": "EXAMPLE_NETWORK",
+      "team": "Network"
+    },
+    {
+      "assignedTo": "Unmapped Example",
+      "category": "Other",
+      "closedDate": null,
+      "contract": "CN-EXAMPLE-1",
+      "createdDate": null,
+      "dateInvalid": true,
+      "duplicateId": false,
+      "id": "CHG200000012",
+      "idPrefix": "CHG",
+      "kind": "Unknown",
+      "raw": null,
+      "rawCategory": "Incident",
+      "rawStatus": "Mystery Status",
+      "reportStatus": "Other",
+      "sourceIndex": 12,
+      "summary": "Invalid date, unknown prefix and status",
+      "supportGroup": "EXAMPLE_EUC",
+      "team": "Review / Unassigned"
+    },
+    {
+      "assignedTo": "Sam Example",
+      "category": "Schedule",
+      "closedDate": null,
+      "contract": "CN-EXAMPLE-2",
+      "createdDate": "2026-11-10T05:00:00.000Z",
+      "dateInvalid": false,
+      "duplicateId": false,
+      "id": "SRV200000013",
+      "idPrefix": "SRV",
+      "kind": "Service Request",
+      "raw": null,
+      "rawCategory": "Service Request",
+      "rawStatus": "Pending",
+      "reportStatus": "Pending",
+      "sourceIndex": 13,
+      "summary": "Schedule a planned work window",
+      "supportGroup": "EXAMPLE <GROUP> & CO",
+      "team": "System"
+    }
+  ],
+  "validation": {
+    "blankAssigneeCount": 1,
+    "duplicateTicketIds": [
+      "INC200000005"
+    ],
+    "invalidDateCount": 1,
+    "missingRequiredColumns": [],
+    "unclassifiedAssignees": [
+      "(blank)",
+      "Monitor Example",
+      "Unmapped Example"
+    ],
+    "unknownCategoryCount": 1,
+    "unknownPrefixes": [
+      {
+        "count": 1,
+        "label": "CHG"
+      }
+    ],
+    "unknownStatusCount": 1
+  }
+}

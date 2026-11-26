@@ -1,0 +1,2 @@
+# Fixtures are parsed byte for byte by the golden harness; keep them exactly as committed.
+* -text

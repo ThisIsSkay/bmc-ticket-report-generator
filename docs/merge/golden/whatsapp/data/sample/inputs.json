@@ -22,6 +22,17 @@
     "ticketId": "Display ID",
     "ticketType": "Ticket Type"
   },
+  "mappingWithSavedMapping": {
+    "assignedTo": "Assigned To",
+    "closedDate": "Closed Date",
+    "contract": "Contract",
+    "createdDate": "Created Date",
+    "status": "Status",
+    "summary": "Summary",
+    "supportGroup": "Support Group",
+    "ticketId": "Display ID",
+    "ticketType": "Ticket Type"
+  },
   "recommendedSheet": "Tickets",
   "rows": [
     {

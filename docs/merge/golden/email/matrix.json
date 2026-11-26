@@ -4,6 +4,11 @@
       "bytes": 32794,
       "sha256": "abeae4a39c9b1f818e001c063d973b4a111db316f28dd059cefa786f0503d5d8"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 23544,
       "sha256": "799b8e61f7be6ec4e1f6e5ed88918832c55e3309dff533de5a5f02cb4f0f70b0"
@@ -21,6 +26,11 @@
     "eml": {
       "bytes": 31944,
       "sha256": "49b5b929dffd62d4a691153b7c5f7641fa5fd9cb7f750261ec61da43e15b81d8"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 22923,
@@ -40,6 +50,11 @@
       "bytes": 35840,
       "sha256": "c4aef158096ec4d9700071973eca121451a56c40fa982c2169531e71998b102d"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 25769,
       "sha256": "6a9eb6ef3c647770ff5f18c1e567c7228ecabe573eb7b18e1f81d9c487b1efb6"
@@ -57,6 +72,11 @@
     "eml": {
       "bytes": 31316,
       "sha256": "70ad402e6c56d1f5f2538fb0d4e2818042d0e0656d9e6434d452005622a6b2ac"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 22463,
@@ -76,6 +96,11 @@
       "bytes": 25660,
       "sha256": "e3b45c26b01c235fa8bdf5c3846f447c0c92893aeb06a2cb9244e5ca0970dbe7"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 18330,
       "sha256": "12f0b2b29b33d085309c57123db605e912e0f2722c920bb440fe81d7d0aa000c"
@@ -93,6 +118,11 @@
     "eml": {
       "bytes": 51518,
       "sha256": "507cd91f24b6bde17d68026043608abde1a955c91c412538d1913c727fe4d077"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 37226,
@@ -116,6 +146,11 @@
       "bytes": 50850,
       "sha256": "249db3a746564974e67542976f05fbc069c915bf02c416060d4f45e901c86c5a"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 36737,
       "sha256": "48fcb7c50269ee0cc2754118c615291bce8fe470cdc1fae10104920ed9431bcd"
@@ -137,6 +172,11 @@
     "eml": {
       "bytes": 55408,
       "sha256": "be48254cd10b93e8c669e043e5539725c6dd8c000a808065a7e817b1f88d59a0"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 39959,
@@ -160,6 +200,11 @@
       "bytes": 48246,
       "sha256": "592e1bb5361612cc02387a854420e36c0547e585e4979f67470898c16941035d"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 34836,
       "sha256": "f0cd7925a96d62e3f955facec7a4f2808212943a78f779da1a5378a382edd61c"
@@ -181,6 +226,11 @@
     "eml": {
       "bytes": 51514,
       "sha256": "7cc8cb4c9a43d0b869639f480e0739071de13565fd9baaedc78f27cadfe0dd21"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 37222,
@@ -204,6 +254,11 @@
       "bytes": 50844,
       "sha256": "c4c811cdfdf45cb4c3a57943619ca8cd2bedc4cbda2b3aca68548bf440e05596"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 36733,
       "sha256": "c951321dc60f82b8c99d42fefcd791e6e17149f8695a92b4e96d5cd13ad5c273"
@@ -225,6 +280,11 @@
     "eml": {
       "bytes": 55396,
       "sha256": "7dd70747839de1f3fdb6cf07a1dbf713b04abccc5d91dd592892fd037cb702ea"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 39951,
@@ -248,6 +308,11 @@
       "bytes": 48242,
       "sha256": "06e8fb3bf5fead1e87ce79ee056b713ec890a43872806b310e677d9af0810091"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 34832,
       "sha256": "1e61e3edf0027602a68321b29a3ae94b5f9bf2926db1f370237d8c0562e2c5dd"
@@ -266,275 +331,196 @@
     }
   },
   "contract-multi/sample/daily/A": {
-    "eml": {
-      "bytes": 16816,
-      "sha256": "219b079f9d36405f93d8bb1846d69d29c175d4053932a8abf2cc48e720261639"
+    "eml": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting.",
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting.",
+      "workbookBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting."
     },
     "html": {
       "bytes": 11866,
       "sha256": "b44233f55953375150e459a5c35824b45c81a3481508b82c9a51434cbc613403"
     },
-    "ps1": {
-      "bytes": 14421,
-      "sha256": "7586657bb69cb17a5f4d84334a7ee6ec0e3eb4a0784613cfcf693c3fdf34aa31"
-    },
-    "txt": {
-      "bytes": 850,
-      "sha256": "3e6d2413310c1ee87e5592897bcaf7e95b7d22d952614f0dd8b3d10681e8e0f9"
-    }
+    "ps1": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting.",
+    "txt": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting."
   },
   "contract-multi/sample/daily/B": {
-    "eml": {
-      "bytes": 16690,
-      "sha256": "77d649d47b46b6c811aa5d65dd7e3a7b09e3ca0cf95b1586b3d520dcf4270b31"
+    "eml": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting.",
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting.",
+      "workbookBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting."
     },
     "html": {
       "bytes": 11773,
       "sha256": "fbc19feaac46e5bb8b9cc7d561b4ef1b5d78b1fa7b4bd3aecb0999e453a17852"
     },
-    "ps1": {
-      "bytes": 14328,
-      "sha256": "c2ef7adbf5295e8a669c4b0a79293d9efa8c327095e5f11f65e8f9f9f71ae1e9"
-    },
-    "txt": {
-      "bytes": 850,
-      "sha256": "3e6d2413310c1ee87e5592897bcaf7e95b7d22d952614f0dd8b3d10681e8e0f9"
-    }
+    "ps1": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting.",
+    "txt": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting."
   },
   "contract-multi/sample/daily/C": {
-    "eml": {
-      "bytes": 19800,
-      "sha256": "d65f51932b40c10cfa80b5b01fbcf1211d3b2c8ecb50fde97d0ece61383c7fd9"
+    "eml": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting.",
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting.",
+      "workbookBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting."
     },
     "html": {
       "bytes": 14047,
       "sha256": "0c32868507423b9ce156ced139a54bd30c27724f480172d57167e25409aca347"
     },
-    "ps1": {
-      "bytes": 16602,
-      "sha256": "b81b33424a21b8bddf4723b572cb0c11099b95551535eeba803dd5c413029df8"
-    },
-    "txt": {
-      "bytes": 850,
-      "sha256": "3e6d2413310c1ee87e5592897bcaf7e95b7d22d952614f0dd8b3d10681e8e0f9"
-    }
+    "ps1": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting.",
+    "txt": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting."
   },
   "contract-multi/sample/daily/D": {
-    "eml": {
-      "bytes": 17140,
-      "sha256": "62c15ec408f9c8a192408a4365d2e44c9cead77b64cca280da430b928f384f59"
+    "eml": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting.",
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting.",
+      "workbookBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting."
     },
     "html": {
       "bytes": 12103,
       "sha256": "8099f29a1b2e5b719462772f35b467548c4263c9c8d02e0b0872bd3c303be9b0"
     },
-    "ps1": {
-      "bytes": 14658,
-      "sha256": "91e94daea88e5eff28eead9cf73fda5767e751c1c7936e2679337842e5a95f2d"
-    },
-    "txt": {
-      "bytes": 850,
-      "sha256": "3e6d2413310c1ee87e5592897bcaf7e95b7d22d952614f0dd8b3d10681e8e0f9"
-    }
+    "ps1": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting.",
+    "txt": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting."
   },
   "contract-multi/sample/daily/legacy": {
-    "eml": {
-      "bytes": 8466,
-      "sha256": "f7f263d6bf6b5a96ab7cdf8b0e0700f452b594409819ca90f03aa83db8214a54"
+    "eml": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting.",
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting.",
+      "workbookBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting."
     },
     "html": {
       "bytes": 5766,
       "sha256": "124c1fd079c3d98c71041b1539ef1e5506b2029674b1cb8e64af8c2e8ff55de5"
     },
-    "ps1": {
-      "bytes": 8321,
-      "sha256": "7190808badd45a4090f746f50438bdedfb86e922705eb0e8292c35236e66b2df"
-    },
-    "txt": {
-      "bytes": 850,
-      "sha256": "3e6d2413310c1ee87e5592897bcaf7e95b7d22d952614f0dd8b3d10681e8e0f9"
-    }
+    "ps1": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting.",
+    "txt": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting."
   },
   "contract-multi/sample/monthly/A": {
-    "eml": {
-      "bytes": 23602,
-      "sha256": "0b6c1363403a7625d66800aa74f6ba4978f38ce0dfb584863f3b01ae09782946"
+    "eml": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting.",
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting.",
+      "workbookBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting."
     },
     "html": {
       "bytes": 16826,
       "sha256": "d1b444e61787a1f6c0b2bc0a47b20fe4c7e118aa035f203ada89feda5faab296"
     },
-    "ps1": {
-      "bytes": 34906,
-      "sha256": "21614133252a2447e711e987eaaf6364e461a5430662bd92a623f5f02800e076"
-    },
-    "txt": {
-      "bytes": 1116,
-      "sha256": "cfe94924a222e1429b697e85c06b778a07207185f216681cb3bead54c4675bae"
-    },
-    "workbook": {
-      "bytes": 4826,
-      "sha256": "1583e914ae9ba3030008b64f387d206685259734145ec176f6e2cd8f18b504c9"
-    }
+    "ps1": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting.",
+    "txt": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting."
   },
   "contract-multi/sample/monthly/B": {
-    "eml": {
-      "bytes": 23862,
-      "sha256": "0f4dcf3c358f2edce477b237572445f6063e5e597ebf985c333b69f25174e38c"
+    "eml": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting.",
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting.",
+      "workbookBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting."
     },
     "html": {
       "bytes": 17015,
       "sha256": "7337906464dc05e8a20ea9c32d35276470aca9086c8399f1913970fc6dabdb1b"
     },
-    "ps1": {
-      "bytes": 35095,
-      "sha256": "1ddcde70d5d6694a403ece91c012c686e571cbb7eaef5b00d37302ffc0788fdf"
-    },
-    "txt": {
-      "bytes": 1116,
-      "sha256": "cfe94924a222e1429b697e85c06b778a07207185f216681cb3bead54c4675bae"
-    },
-    "workbook": {
-      "bytes": 4826,
-      "sha256": "1583e914ae9ba3030008b64f387d206685259734145ec176f6e2cd8f18b504c9"
-    }
+    "ps1": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting.",
+    "txt": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting."
   },
   "contract-multi/sample/monthly/C": {
-    "eml": {
-      "bytes": 27402,
-      "sha256": "a6b93bea6947f42b6e5dd5fa811b73b627f2a543f5b05133d6401c6f83005893"
+    "eml": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting.",
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting.",
+      "workbookBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting."
     },
     "html": {
       "bytes": 19493,
       "sha256": "37fc1fadb54f903b4580754f8c310ba765932d9a6a09de05ac06a06bbe7ec4c3"
     },
-    "ps1": {
-      "bytes": 37681,
-      "sha256": "60b67e19ab229394a55df26f52d2e127cbd78abbf6ed1ef6ed0a2ed808aad365"
-    },
-    "txt": {
-      "bytes": 1116,
-      "sha256": "cfe94924a222e1429b697e85c06b778a07207185f216681cb3bead54c4675bae"
-    },
-    "workbook": {
-      "bytes": 4826,
-      "sha256": "1583e914ae9ba3030008b64f387d206685259734145ec176f6e2cd8f18b504c9"
-    }
+    "ps1": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting.",
+    "txt": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting."
   },
   "contract-multi/sample/monthly/D": {
-    "eml": {
-      "bytes": 23450,
-      "sha256": "cfc12e961622599b65a84f40dd6a4b521d60ec61f17f4a5a97ff3cf03cdcdf57"
+    "eml": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting.",
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting.",
+      "workbookBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting."
     },
     "html": {
       "bytes": 16716,
       "sha256": "30fc7db380e91172a5a144abd8256e43d8a17dd4a919f0ff490d081b8cae1a00"
     },
-    "ps1": {
-      "bytes": 34796,
-      "sha256": "afb41df0f93804db27ca5533eb86d76c9c95c8c5a0320bef1a7439346aac6e3c"
-    },
-    "txt": {
-      "bytes": 1116,
-      "sha256": "cfe94924a222e1429b697e85c06b778a07207185f216681cb3bead54c4675bae"
-    },
-    "workbook": {
-      "bytes": 4826,
-      "sha256": "1583e914ae9ba3030008b64f387d206685259734145ec176f6e2cd8f18b504c9"
-    }
+    "ps1": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting.",
+    "txt": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting."
   },
   "contract-multi/sample/pending/A": {
-    "eml": {
-      "bytes": 23598,
-      "sha256": "84f8f1bf89c9b4fd7a10d9bd94ad923de69fdeda46c27b2f1e0e7a15eb670ae0"
+    "eml": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting.",
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting.",
+      "workbookBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting."
     },
     "html": {
       "bytes": 16822,
       "sha256": "5115aca32e0f119678cf898a702d9d1138322dca4011c85870f1beea1f09e5d0"
     },
-    "ps1": {
-      "bytes": 34883,
-      "sha256": "da2bb218219305ada54a93b26701efb2bc9969122e5d83baa44687a04ec4ce3a"
-    },
-    "txt": {
-      "bytes": 1116,
-      "sha256": "2514b48208312b216735b106206c446aea5061c07903212c0f278c6d547afbec"
-    },
-    "workbook": {
-      "bytes": 4808,
-      "sha256": "73bbd4d9f6c8fff514f0e458a5a718632b999e765f694382e4cdae0755f5175c"
-    }
+    "ps1": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting.",
+    "txt": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting."
   },
   "contract-multi/sample/pending/B": {
-    "eml": {
-      "bytes": 23856,
-      "sha256": "104dcdf38b9d02942889627f8708c6295f6a76467e5a3e55740174e791319942"
+    "eml": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting.",
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting.",
+      "workbookBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting."
     },
     "html": {
       "bytes": 17011,
       "sha256": "db4788cc1b91fb12fbbbd3ad35ca9946a37606790959e9d635e9987b0821e789"
     },
-    "ps1": {
-      "bytes": 35072,
-      "sha256": "2fa9f313e128fc206aad9be1a955e411a84e8432fcea9286787dcd2341baf82a"
-    },
-    "txt": {
-      "bytes": 1116,
-      "sha256": "2514b48208312b216735b106206c446aea5061c07903212c0f278c6d547afbec"
-    },
-    "workbook": {
-      "bytes": 4808,
-      "sha256": "73bbd4d9f6c8fff514f0e458a5a718632b999e765f694382e4cdae0755f5175c"
-    }
+    "ps1": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting.",
+    "txt": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting."
   },
   "contract-multi/sample/pending/C": {
-    "eml": {
-      "bytes": 27390,
-      "sha256": "debf0b8a8a051edf23736f7aed4035f513e70edfca523933c07b73dc11e9d056"
+    "eml": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting.",
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting.",
+      "workbookBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting."
     },
     "html": {
       "bytes": 19485,
       "sha256": "fdba07a639a9ac112d97c7c4531372740bbadc758da93e539d24f2507578764e"
     },
-    "ps1": {
-      "bytes": 37654,
-      "sha256": "10f1c027f7a28eaafe7174f9aed9d73a19614a920e02947de685fbc3f0fd8b17"
-    },
-    "txt": {
-      "bytes": 1116,
-      "sha256": "2514b48208312b216735b106206c446aea5061c07903212c0f278c6d547afbec"
-    },
-    "workbook": {
-      "bytes": 4808,
-      "sha256": "73bbd4d9f6c8fff514f0e458a5a718632b999e765f694382e4cdae0755f5175c"
-    }
+    "ps1": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting.",
+    "txt": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting."
   },
   "contract-multi/sample/pending/D": {
-    "eml": {
-      "bytes": 23446,
-      "sha256": "d14a1b4d9ff39da3aaab581a138a4e2e9305f8048d92a326a096b993ef0e1901"
+    "eml": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting.",
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting.",
+      "workbookBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting."
     },
     "html": {
       "bytes": 16712,
       "sha256": "c8c3b931984563b4dd9398f1db2482162fe694d8dbdde25450c625d3b0e0adcc"
     },
-    "ps1": {
-      "bytes": 34773,
-      "sha256": "dcf42a0f55a68dc2750d7abdf6bdaa61210fcacacacef53a31713a938d7df73f"
-    },
-    "txt": {
-      "bytes": 1116,
-      "sha256": "2514b48208312b216735b106206c446aea5061c07903212c0f278c6d547afbec"
-    },
-    "workbook": {
-      "bytes": 4808,
-      "sha256": "73bbd4d9f6c8fff514f0e458a5a718632b999e765f694382e4cdae0755f5175c"
-    }
+    "ps1": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting.",
+    "txt": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1, CN-EXAMPLE-2. Review the contracts before exporting."
   },
   "contract-none-selected/hostile/daily/A": {
     "eml": {
       "bytes": 16796,
       "sha256": "c81ad03cf7712ba5f945d4b48a3cad882da0673596a8ca4ccf54e378617fafc4"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 11853,
@@ -554,6 +540,11 @@
       "bytes": 16668,
       "sha256": "dcd523ae4769a8fe11dd73777fda038bfc0bc5e6989129756cc0b26a12cc997b"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 11760,
       "sha256": "8e8d24a2a5ec9470713290461ae10062539e4728b32336213a1d6bfaf0a8a211"
@@ -571,6 +562,11 @@
     "eml": {
       "bytes": 19780,
       "sha256": "0fbe94fbff3fdff42b0d0f89678682374c2280b845009f6a7f3b2074b7f62cb4"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 14034,
@@ -590,6 +586,11 @@
       "bytes": 17120,
       "sha256": "610b6f74d7043c0f8dcec0a60528a349fe57721a62862eedee86f777e33996b0"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 12090,
       "sha256": "391989ea24255850ea378edcbd6e09fe15ad0cedf97a05a8ede0bebf940fff8f"
@@ -608,6 +609,11 @@
       "bytes": 8450,
       "sha256": "96be7b5273246a3832de8b66b7b18d443ba2047160c59dd061beba8dc0038c30"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 5753,
       "sha256": "b14efdc61186e8deb3754d0aa5228a5d51b7fafdf1838b8d525e45c6236fd048"
@@ -625,6 +631,11 @@
     "eml": {
       "bytes": 23586,
       "sha256": "dbe9632a0a4e3926b09427aa7ea7893726693fc3beb0a1d938ab66d061e6a029"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 16813,
@@ -648,6 +659,11 @@
       "bytes": 23844,
       "sha256": "f7763a0b5012509922afce4f55933259e79520fd9e67e5fc8d9e06f25b7499d6"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 17002,
       "sha256": "25815e98b0d0d4a75c0eb3a4b6578f6f0c0c6efbc8feb9da11ce17abcbabe355"
@@ -669,6 +685,11 @@
     "eml": {
       "bytes": 27382,
       "sha256": "98566095407cd6a4642761f2757a866242a5292ecac2616b12856fd5fa50ac23"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 19480,
@@ -692,6 +713,11 @@
       "bytes": 23434,
       "sha256": "1add253858ee099751c2c51ddcbe322ba2b612fbbc1a5a7c1ac249ced5abf333"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 16703,
       "sha256": "fb19c736e55a0abbf15c2bbd97d5da4dd55323696d3f9ee24c0aeeaf37668135"
@@ -713,6 +739,11 @@
     "eml": {
       "bytes": 23578,
       "sha256": "0806cd8b0c48f1068ed163aa03d328fb868f8d802a4dd4a75c999402d81b5b1a"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 16809,
@@ -736,6 +767,11 @@
       "bytes": 23836,
       "sha256": "7d0c55e02196fc5d694dfdb0cee0a18adcdd4e2a94136e0e9bc4bef5bd1d896d"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 16998,
       "sha256": "fa082d8633e442b488c4fff61cb396ddcbb777bf0371666fcc24c79a67dca8f9"
@@ -757,6 +793,11 @@
     "eml": {
       "bytes": 27374,
       "sha256": "675aba32b45b6051a38d0e8b9008c2a7ff147c2ae5a421e720b3ed2017d19d56"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 19472,
@@ -780,6 +821,11 @@
       "bytes": 23430,
       "sha256": "687276df344f388982eb1e341131f88ba8460bb652d612a1af35e37e77713782"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 16699,
       "sha256": "df5ae1d007c1c8cc72cf6eb1c1dca30330816c646a73e94b7010852573a4257f"
@@ -802,6 +848,11 @@
       "bytes": 16796,
       "sha256": "c81ad03cf7712ba5f945d4b48a3cad882da0673596a8ca4ccf54e378617fafc4"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 11853,
       "sha256": "4def951fe8c19287cfe3b66395670c8c5407d0709083a4f577351b5914ca0d1d"
@@ -819,6 +870,11 @@
     "eml": {
       "bytes": 16668,
       "sha256": "dcd523ae4769a8fe11dd73777fda038bfc0bc5e6989129756cc0b26a12cc997b"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 11760,
@@ -838,6 +894,11 @@
       "bytes": 19780,
       "sha256": "0fbe94fbff3fdff42b0d0f89678682374c2280b845009f6a7f3b2074b7f62cb4"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 14034,
       "sha256": "07a7def094ed899536afb8bdfa2bae9e146d543e4527c508c2a3dbfcaa3139c4"
@@ -855,6 +916,11 @@
     "eml": {
       "bytes": 17120,
       "sha256": "610b6f74d7043c0f8dcec0a60528a349fe57721a62862eedee86f777e33996b0"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 12090,
@@ -874,6 +940,11 @@
       "bytes": 8450,
       "sha256": "96be7b5273246a3832de8b66b7b18d443ba2047160c59dd061beba8dc0038c30"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 5753,
       "sha256": "b14efdc61186e8deb3754d0aa5228a5d51b7fafdf1838b8d525e45c6236fd048"
@@ -891,6 +962,11 @@
     "eml": {
       "bytes": 23586,
       "sha256": "dbe9632a0a4e3926b09427aa7ea7893726693fc3beb0a1d938ab66d061e6a029"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 16813,
@@ -914,6 +990,11 @@
       "bytes": 23844,
       "sha256": "f7763a0b5012509922afce4f55933259e79520fd9e67e5fc8d9e06f25b7499d6"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 17002,
       "sha256": "25815e98b0d0d4a75c0eb3a4b6578f6f0c0c6efbc8feb9da11ce17abcbabe355"
@@ -935,6 +1016,11 @@
     "eml": {
       "bytes": 27382,
       "sha256": "98566095407cd6a4642761f2757a866242a5292ecac2616b12856fd5fa50ac23"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 19480,
@@ -958,6 +1044,11 @@
       "bytes": 23434,
       "sha256": "1add253858ee099751c2c51ddcbe322ba2b612fbbc1a5a7c1ac249ced5abf333"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 16703,
       "sha256": "fb19c736e55a0abbf15c2bbd97d5da4dd55323696d3f9ee24c0aeeaf37668135"
@@ -979,6 +1070,11 @@
     "eml": {
       "bytes": 23578,
       "sha256": "0806cd8b0c48f1068ed163aa03d328fb868f8d802a4dd4a75c999402d81b5b1a"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 16809,
@@ -1002,6 +1098,11 @@
       "bytes": 23836,
       "sha256": "7d0c55e02196fc5d694dfdb0cee0a18adcdd4e2a94136e0e9bc4bef5bd1d896d"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 16998,
       "sha256": "fa082d8633e442b488c4fff61cb396ddcbb777bf0371666fcc24c79a67dca8f9"
@@ -1023,6 +1124,11 @@
     "eml": {
       "bytes": 27374,
       "sha256": "675aba32b45b6051a38d0e8b9008c2a7ff147c2ae5a421e720b3ed2017d19d56"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 19472,
@@ -1046,6 +1152,11 @@
       "bytes": 23430,
       "sha256": "687276df344f388982eb1e341131f88ba8460bb652d612a1af35e37e77713782"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 16699,
       "sha256": "df5ae1d007c1c8cc72cf6eb1c1dca30330816c646a73e94b7010852573a4257f"
@@ -1068,6 +1179,11 @@
       "bytes": 23882,
       "sha256": "3249d013624beca8e3cc75a5da98e04a003466435398e8ca10dd682cd2ec8161"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 17029,
       "sha256": "59e8cbe4fcd2c40825ef00111ccb24c624c12c08e9d86732678a50b40cf8ad37"
@@ -1085,6 +1201,11 @@
     "eml": {
       "bytes": 23722,
       "sha256": "c6c08b310d5e00c32fec4f0b0c8ebd6aea234af20eb5ddf2d4d1342072fdc9ee"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 16914,
@@ -1104,6 +1225,11 @@
       "bytes": 27128,
       "sha256": "e262a7d6def5d8e29ebd433752d96ba12d88f58d2b5e00c4d0d47197f5aa48b7"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 19404,
       "sha256": "c7e02ea771fff538df828de0ead747bd274e8f45e798964546a135c55e03e0eb"
@@ -1121,6 +1247,11 @@
     "eml": {
       "bytes": 23614,
       "sha256": "1bf210e4f00273f7bfcbc950c65d8449c27ab310ac9e87d75fe9abcff94b8f4f"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 16836,
@@ -1140,6 +1271,11 @@
       "bytes": 18758,
       "sha256": "96240d798b5b3dea2e68ee821e4771448946d0af2bb555930b8f432f2f622873"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 13285,
       "sha256": "c79d427e960633f78b273cc52f08b9f06467650ba09a41a86b90d728f780ac88"
@@ -1157,6 +1293,11 @@
     "eml": {
       "bytes": 41714,
       "sha256": "0cc55194dced3426cbc0283a79613a84d001c68e1875621b5ecef68dec80660f"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 30062,
@@ -1180,6 +1321,11 @@
       "bytes": 41350,
       "sha256": "4c777290978a705bef36c83dbef4f58a795d3ac09fe0ed2a61b3d8075232d2b7"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 29796,
       "sha256": "27e9942af4429d6393111e0b66f3b6f8cee0ade020e83c939668837afbe1ecf1"
@@ -1201,6 +1347,11 @@
     "eml": {
       "bytes": 45680,
       "sha256": "06d0ee64f018b4ad7b031dcb586e277f1a2044bc385f367d29eb4cbf38919abb"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 32849,
@@ -1224,6 +1375,11 @@
       "bytes": 39642,
       "sha256": "857a3313ccb3564a055abbc22c885995a634c1b622f4a2cf672dd2d5e3fa6913"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 28546,
       "sha256": "0e32970b6dd45315799a0c4762a10302896561e0ca4186b085612e537a9940fa"
@@ -1245,6 +1401,11 @@
     "eml": {
       "bytes": 41710,
       "sha256": "058d7f745f4b0ac6d73ce4e1e6a64f7e5a809cfaa68afae4724159f61e40fb92"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 30058,
@@ -1268,6 +1429,11 @@
       "bytes": 41346,
       "sha256": "47b7308ee54bdf8c2541cab6b5a970df8bc66c2797c96eb05504e040d0a7418e"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 29792,
       "sha256": "b03a9783129276462727ffbc07f4fbad8c6a723feba1b3eedb65009373e08468"
@@ -1289,6 +1455,11 @@
     "eml": {
       "bytes": 45666,
       "sha256": "1911918eb16b09063a7aff79dd173542f8554615756d445d42b002539218cccb"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 32841,
@@ -1312,6 +1483,11 @@
       "bytes": 39634,
       "sha256": "0bad6c1a0fae8bfdfda438a056cc7b61c7b644e627ca7404d3f3c8e5353bb6b7"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 28542,
       "sha256": "00cc5b46fa25cb858e33167746dc2c2e5353ad3acbf5be77d9756740ebdba0c7"
@@ -1330,275 +1506,196 @@
     }
   },
   "contract-single/sample/daily/A": {
-    "eml": {
-      "bytes": 16796,
-      "sha256": "71e2a2647f5516cdd0e1d3caa41ae8676a3c2bf42a544b74f2ff551caa87faa1"
+    "eml": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting.",
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting.",
+      "workbookBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting."
     },
     "html": {
       "bytes": 11852,
       "sha256": "fbaf0e2ebc954fba93371a91858e542e02e791b86495ad8656c49124a93a1c73"
     },
-    "ps1": {
-      "bytes": 14407,
-      "sha256": "f8e4f576caa3a6482d1505217a2354d39dc0d1651442b74bc0b0242d588b0b0e"
-    },
-    "txt": {
-      "bytes": 836,
-      "sha256": "1bcc8a38a85f3411692a2fc9e13ad52e7d44b94a170ff50db0e3538f80c8aef1"
-    }
+    "ps1": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting.",
+    "txt": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting."
   },
   "contract-single/sample/daily/B": {
-    "eml": {
-      "bytes": 16668,
-      "sha256": "eb0aad5b9c219dd436c08cee8cfe65d79007f03d3657b1160449f4c2833b3f12"
+    "eml": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting.",
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting.",
+      "workbookBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting."
     },
     "html": {
       "bytes": 11759,
       "sha256": "53829b698ab77be63057ead9c467b48b715c24a5fd294e82d1b868a442348095"
     },
-    "ps1": {
-      "bytes": 14314,
-      "sha256": "fa0e7665add46813ea717e2b9795d76b14cb0b0e28d5e14a6340a50c39d80e23"
-    },
-    "txt": {
-      "bytes": 836,
-      "sha256": "1bcc8a38a85f3411692a2fc9e13ad52e7d44b94a170ff50db0e3538f80c8aef1"
-    }
+    "ps1": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting.",
+    "txt": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting."
   },
   "contract-single/sample/daily/C": {
-    "eml": {
-      "bytes": 19780,
-      "sha256": "835f92c6420fe86ba6892ff3144e00a9639c782aba25bca51ac6a039d5a9ca52"
+    "eml": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting.",
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting.",
+      "workbookBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting."
     },
     "html": {
       "bytes": 14033,
       "sha256": "0382ebbc7774c4596f41631ca1a8dc54f3e3e1b3dc154a03c59ddc83515ddf4c"
     },
-    "ps1": {
-      "bytes": 16588,
-      "sha256": "85e8861e59a594e98a9e72c0ee240b84017b614a2da48ddca0198b4beaf12669"
-    },
-    "txt": {
-      "bytes": 836,
-      "sha256": "1bcc8a38a85f3411692a2fc9e13ad52e7d44b94a170ff50db0e3538f80c8aef1"
-    }
+    "ps1": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting.",
+    "txt": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting."
   },
   "contract-single/sample/daily/D": {
-    "eml": {
-      "bytes": 17120,
-      "sha256": "e29241254ffa528bcb20310297e8b8df2131b7f42106a2e7a0a314db73c0ce68"
+    "eml": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting.",
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting.",
+      "workbookBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting."
     },
     "html": {
       "bytes": 12089,
       "sha256": "768ede669303a437a883cdb824bf7c2803ac4558274b9592741c04eebc104652"
     },
-    "ps1": {
-      "bytes": 14644,
-      "sha256": "b1dcbcda37af342430b58d0b326e52690ca483d0ebbfd0044668cb086a2ee1e6"
-    },
-    "txt": {
-      "bytes": 836,
-      "sha256": "1bcc8a38a85f3411692a2fc9e13ad52e7d44b94a170ff50db0e3538f80c8aef1"
-    }
+    "ps1": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting.",
+    "txt": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting."
   },
   "contract-single/sample/daily/legacy": {
-    "eml": {
-      "bytes": 8450,
-      "sha256": "0618a031e91a7a97927519bcaba23c37418cab03b2faa01afd4e2376ca4fdcd6"
+    "eml": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting.",
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting.",
+      "workbookBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting."
     },
     "html": {
       "bytes": 5752,
       "sha256": "f1b6f987442a0133e5d8f0f857515b9405eb4ec494a390fc63c35cc994ddc1d9"
     },
-    "ps1": {
-      "bytes": 8307,
-      "sha256": "f99e64e69459723e36ef5268ffb6a579192d997357cd1958dfd9d9eea68e2468"
-    },
-    "txt": {
-      "bytes": 836,
-      "sha256": "1bcc8a38a85f3411692a2fc9e13ad52e7d44b94a170ff50db0e3538f80c8aef1"
-    }
+    "ps1": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting.",
+    "txt": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting."
   },
   "contract-single/sample/monthly/A": {
-    "eml": {
-      "bytes": 23582,
-      "sha256": "5e0efbb80d65f0b4a05c47cc4bcd7804ecfb2f11a6ed45da01777d891a498c85"
+    "eml": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting.",
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting.",
+      "workbookBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting."
     },
     "html": {
       "bytes": 16812,
       "sha256": "081363c3d20b74127b21a3ba963490fa5d9a088a1bf245add891f5fc1fe7413d"
     },
-    "ps1": {
-      "bytes": 34876,
-      "sha256": "3f8d4c8978cc7784fdc6537b644fd87923df2c072fbd8af084f2cc3c5875d187"
-    },
-    "txt": {
-      "bytes": 1102,
-      "sha256": "c937c86fc349ca5299cbebf7e912e314758f97ca5d1f02a96fdd49a9654437c6"
-    },
-    "workbook": {
-      "bytes": 4770,
-      "sha256": "b95be13bba95d15e3d5e62834566be4cbbf5281e79f1c8705635d7fc5f5237e7"
-    }
+    "ps1": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting.",
+    "txt": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting."
   },
   "contract-single/sample/monthly/B": {
-    "eml": {
-      "bytes": 23840,
-      "sha256": "0190891801e69600e274eaf188b3719c943f5c1bb189f042fcbb23d4218e3755"
+    "eml": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting.",
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting.",
+      "workbookBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting."
     },
     "html": {
       "bytes": 17001,
       "sha256": "37e7d4eaa90e6e6494ec8c110e3d7badedea782b612e162116bac5d95c6b61af"
     },
-    "ps1": {
-      "bytes": 35065,
-      "sha256": "ebced84748ebe18b31a38c376c11fa3610608350c786209b0d35ead79f978e48"
-    },
-    "txt": {
-      "bytes": 1102,
-      "sha256": "c937c86fc349ca5299cbebf7e912e314758f97ca5d1f02a96fdd49a9654437c6"
-    },
-    "workbook": {
-      "bytes": 4770,
-      "sha256": "b95be13bba95d15e3d5e62834566be4cbbf5281e79f1c8705635d7fc5f5237e7"
-    }
+    "ps1": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting.",
+    "txt": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting."
   },
   "contract-single/sample/monthly/C": {
-    "eml": {
-      "bytes": 27382,
-      "sha256": "62140a41158d4e244029a52f9a933393537563dac1307a8e7f0acb079f65fca5"
+    "eml": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting.",
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting.",
+      "workbookBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting."
     },
     "html": {
       "bytes": 19479,
       "sha256": "08c66cefb6b70765d0c41bdcfe19c963a00426a6e54be154628520f5bb6d8dbc"
     },
-    "ps1": {
-      "bytes": 37651,
-      "sha256": "b93d4c4fad5113b01943d03577e8adf0f8aaa7104557392c527a0b1f5fbfb7d5"
-    },
-    "txt": {
-      "bytes": 1102,
-      "sha256": "c937c86fc349ca5299cbebf7e912e314758f97ca5d1f02a96fdd49a9654437c6"
-    },
-    "workbook": {
-      "bytes": 4770,
-      "sha256": "b95be13bba95d15e3d5e62834566be4cbbf5281e79f1c8705635d7fc5f5237e7"
-    }
+    "ps1": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting.",
+    "txt": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting."
   },
   "contract-single/sample/monthly/D": {
-    "eml": {
-      "bytes": 23434,
-      "sha256": "efbcb47a52ebc6ab2402b24c7fd542ada9356931b3bd29f6dcaab9a8ccaf15a9"
+    "eml": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting.",
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting.",
+      "workbookBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting."
     },
     "html": {
       "bytes": 16702,
       "sha256": "af4de52484cc1d3f76100a595ecb9d7832e56b7c9b14ff77f0af3de20f122664"
     },
-    "ps1": {
-      "bytes": 34766,
-      "sha256": "da214aed9b81d272fa7bd1e11cac03d604a1502b7802c9f8b16e34a647f1e917"
-    },
-    "txt": {
-      "bytes": 1102,
-      "sha256": "c937c86fc349ca5299cbebf7e912e314758f97ca5d1f02a96fdd49a9654437c6"
-    },
-    "workbook": {
-      "bytes": 4770,
-      "sha256": "b95be13bba95d15e3d5e62834566be4cbbf5281e79f1c8705635d7fc5f5237e7"
-    }
+    "ps1": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting.",
+    "txt": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting."
   },
   "contract-single/sample/pending/A": {
-    "eml": {
-      "bytes": 23578,
-      "sha256": "21e9ff339f711c4cdbbe2b92de0b72cb35dbae303d673118416c831041a0d498"
+    "eml": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting.",
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting.",
+      "workbookBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting."
     },
     "html": {
       "bytes": 16808,
       "sha256": "4acf9f45cdfa173e795e0bf97c65a0c565ef27e3d53c9f6ad96b678c6de57ed3"
     },
-    "ps1": {
-      "bytes": 34853,
-      "sha256": "3b8dc37d34173e91f4a2fd7f007d896a31c7a0279faff0e4915c1acbdebb8c63"
-    },
-    "txt": {
-      "bytes": 1102,
-      "sha256": "b9769fa63ca9e6f0df7ad0f7ee57073f3b0ba10c20beec157347d0e997eed5c0"
-    },
-    "workbook": {
-      "bytes": 4752,
-      "sha256": "5dd86f1a19714ab7b144360801cb431bad119909dc5a10ec1d824498a28dd16d"
-    }
+    "ps1": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting.",
+    "txt": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting."
   },
   "contract-single/sample/pending/B": {
-    "eml": {
-      "bytes": 23836,
-      "sha256": "47b0c880c074c9e332fdd8ee0af0b359a554528b76860b27d2440b11f48cb473"
+    "eml": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting.",
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting.",
+      "workbookBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting."
     },
     "html": {
       "bytes": 16997,
       "sha256": "c6d0c73a06b32d42307ca14f5b96f79ad324f73a4740ad993dc7772df5760bb9"
     },
-    "ps1": {
-      "bytes": 35042,
-      "sha256": "90072cf2ef9d60f617435216aaf898487f3d090f374f7c87f3d3d5bd84845d77"
-    },
-    "txt": {
-      "bytes": 1102,
-      "sha256": "b9769fa63ca9e6f0df7ad0f7ee57073f3b0ba10c20beec157347d0e997eed5c0"
-    },
-    "workbook": {
-      "bytes": 4752,
-      "sha256": "5dd86f1a19714ab7b144360801cb431bad119909dc5a10ec1d824498a28dd16d"
-    }
+    "ps1": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting.",
+    "txt": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting."
   },
   "contract-single/sample/pending/C": {
-    "eml": {
-      "bytes": 27370,
-      "sha256": "561eac353cb9a44e43644fd6be81c65c3c544dd07c36a7dcb4835a0f0bebe446"
+    "eml": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting.",
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting.",
+      "workbookBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting."
     },
     "html": {
       "bytes": 19471,
       "sha256": "a77f8c657789aa7e88c7a67a8ca32c73657c6e51f64c31df80a74e64de58c191"
     },
-    "ps1": {
-      "bytes": 37624,
-      "sha256": "10b540b588270c7eaf3e78a176f84342b8415ac450cdde0d4c81eac5d084f84c"
-    },
-    "txt": {
-      "bytes": 1102,
-      "sha256": "b9769fa63ca9e6f0df7ad0f7ee57073f3b0ba10c20beec157347d0e997eed5c0"
-    },
-    "workbook": {
-      "bytes": 4752,
-      "sha256": "5dd86f1a19714ab7b144360801cb431bad119909dc5a10ec1d824498a28dd16d"
-    }
+    "ps1": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting.",
+    "txt": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting."
   },
   "contract-single/sample/pending/D": {
-    "eml": {
-      "bytes": 23426,
-      "sha256": "069ef2d353f27a286352e221b525ec5b82df632c33e707a75c7becdc8cafda95"
+    "eml": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting.",
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting.",
+      "workbookBlocked": "Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting."
     },
     "html": {
       "bytes": 16698,
       "sha256": "37d781beb7b4d5f302511fff39920dc81064810d986f98eace98265ded7df470"
     },
-    "ps1": {
-      "bytes": 34743,
-      "sha256": "d436f6bade39db75d47aa4eeb1b104ab165d87be53fa21f6c95fb8eca55c708d"
-    },
-    "txt": {
-      "bytes": 1102,
-      "sha256": "b9769fa63ca9e6f0df7ad0f7ee57073f3b0ba10c20beec157347d0e997eed5c0"
-    },
-    "workbook": {
-      "bytes": 4752,
-      "sha256": "5dd86f1a19714ab7b144360801cb431bad119909dc5a10ec1d824498a28dd16d"
-    }
+    "ps1": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting.",
+    "txt": "BLOCKED: Selected contracts are missing from this export: CN-EXAMPLE-1. Review the contracts before exporting."
   },
   "core/hostile/daily/A": {
     "eml": {
       "bytes": 33758,
       "sha256": "2cb4711e3683377a471e3e4813adc6e66869d04492a896f191bb916d6522e973"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 24248,
@@ -1618,6 +1715,11 @@
       "bytes": 32930,
       "sha256": "70327e5ac103ae97ffcec03d4568d394753d05809dd6325681421cea46d9a983"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 23641,
       "sha256": "8e52bd0728a6e70bf58f386825148b37ae2349cb25564db01ec7d8dbed60c6e2"
@@ -1635,6 +1737,11 @@
     "eml": {
       "bytes": 36776,
       "sha256": "b6d3911460d5e4ebc401932660e4c1733d8b0e16d92fa6cce4bc030fa5ec29ec"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 26453,
@@ -1654,6 +1761,11 @@
       "bytes": 32112,
       "sha256": "4495eb4ed892ba3e6a7bef4135986d03c3eee9caed487919be5f87bcdcece76f"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 23045,
       "sha256": "d667c70549dd3eb3b89162fde4d30e3563ad97cc115674cf6e823784bb209101"
@@ -1672,6 +1784,11 @@
       "bytes": 26324,
       "sha256": "729297cec7aa4186afdf4d476cde5f2aa6e18b90a27a43daf6f7f0eaef890fea"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 18814,
       "sha256": "f4043692306af54ddf1f463ab2de7db9632e5079380f9a8a95e9bb39e87e76de"
@@ -1689,6 +1806,11 @@
     "eml": {
       "bytes": 58494,
       "sha256": "2bb41daeb3960e2f36fda8aa9eb81f42b69816ad583cac317631fbaa84d4cd5f"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 42322,
@@ -1712,6 +1834,11 @@
       "bytes": 57114,
       "sha256": "76c2d31bfedd3a94f7b8640b76870535e502f8e8c9773e2fc2993dc74fba0a50"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 41314,
       "sha256": "8c46569bb5be70bea4e939ec74e09c4d4af217585cb842b64461d0f89dfceab6"
@@ -1733,6 +1860,11 @@
     "eml": {
       "bytes": 62384,
       "sha256": "f01aa1d4aa053e8af11eaf1b10d2e8d8df43e8c98ebf034efa8afb5565436b90"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 45056,
@@ -1756,6 +1888,11 @@
       "bytes": 54466,
       "sha256": "25b345a396c36731493ee6e01cd2e470b93b6c411b42a40c94d4ca8e2629b12f"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 39381,
       "sha256": "4cca38e2f3188906ded7e03d970323abe348c8704a5c1f48bde644d55481d909"
@@ -1777,6 +1914,11 @@
     "eml": {
       "bytes": 58484,
       "sha256": "b009e8a0841cfa512fcb603bf6f94e4f35f5cfb2dbd55712b02051c9c3cf1c8d"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 42318,
@@ -1800,6 +1942,11 @@
       "bytes": 57106,
       "sha256": "324ce43980e1f2b0edb0aa6ba1e743a0aa4491fe02f88d03853e2b26b2af40a5"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 41310,
       "sha256": "d8a488bc875075a20bc39d41024f3e7cdbde047f794fc1f31418fbcf87c0ec1c"
@@ -1821,6 +1968,11 @@
     "eml": {
       "bytes": 62372,
       "sha256": "d2ebdc9b58bef0ba4dda819235b50c9b3d906bbbbbf033d1e68b3f949a344aad"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 45048,
@@ -1844,6 +1996,11 @@
       "bytes": 54462,
       "sha256": "71767d19f4faa4217b8cb7db92896c53f79ccd43ca2860589ccec6359038ee2c"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 39377,
       "sha256": "ed408ac4cf0b8ec994ff04109ff84c70d5260339eb82c360192e68b3e6e8b602"
@@ -1866,6 +2023,11 @@
       "bytes": 30852,
       "sha256": "93ae1c1597a2dc154ae286a0cf5db793fe4e737483b336128be505c86897e82b"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 22124,
       "sha256": "a7a81209462eb08709821657c2dc94deeb209d8d83705dbe9ef4b172d601c1a8"
@@ -1883,6 +2045,11 @@
     "eml": {
       "bytes": 30220,
       "sha256": "ec40e6f975a441ecd43947145a252603a808c7d744f3df0c8ae0b931015d33df"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 21661,
@@ -1902,6 +2069,11 @@
       "bytes": 33924,
       "sha256": "ac56a7430545b23087b7f0a217f63a03ad8f66e6cef410323d1e584e26d2ebba"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 24369,
       "sha256": "ab610dd5c06436e2ce36c3488e99dbcb92c795e3a6c17c4fd538ab187a6d909f"
@@ -1919,6 +2091,11 @@
     "eml": {
       "bytes": 29538,
       "sha256": "3cb9f8e3e247da0bb7913746fed2ad53141431333149b4c3639013982432990a"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 21165,
@@ -1938,6 +2115,11 @@
       "bytes": 25162,
       "sha256": "7ea968522c6d62abf694dea5ce37a70e65e1a3c32b1eb0c73814abddc6f7af14"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 17967,
       "sha256": "7f7e414269c3bc8b8f933f304dfd4812cd5046315c134e2ece0a7a756da3deed"
@@ -1955,6 +2137,11 @@
     "eml": {
       "bytes": 47458,
       "sha256": "d9d368a635fa69cda4075403c61585f9dbb14e6ff4f7b9ad0c2c0957499898a8"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 34259,
@@ -1978,6 +2165,11 @@
       "bytes": 46802,
       "sha256": "5aba1f3290cf6a890cde1404e14ed79870b24c76a5a228c7e1e83bdad2800afa"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 33778,
       "sha256": "092808b1154a6772e99fc89c18703df1b488126c8f2f3218e2cff97c24508642"
@@ -1999,6 +2191,11 @@
     "eml": {
       "bytes": 51442,
       "sha256": "a5bcc0541b9029aeab156fec65dcf639ddad0fc49b6986e944e73abfe1e039c3"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 37062,
@@ -2022,6 +2219,11 @@
       "bytes": 44748,
       "sha256": "08ae16539458af1065300ee3606a05c3d1b0cc7f06f21ca3cc9965f26d7392c3"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 32279,
       "sha256": "b74a59549b6ed99bb0da1d6c8a103425eda5424e120be5f53a49b6c5afbc8f87"
@@ -2043,6 +2245,11 @@
     "eml": {
       "bytes": 47454,
       "sha256": "934bac7ef3a45cab98c301ccdd1006a747c9caab9ab4ec7d8075395655c630d5"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 34255,
@@ -2066,6 +2273,11 @@
       "bytes": 46794,
       "sha256": "3ef4ef558e7c666ef4c0b361a8042ca7ad0e27f3f56cfb98df916beae744b769"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 33774,
       "sha256": "38e289d05b757a0cf5c2b12859ea1a24c9c6a295daac6de80cc23ca2b09ba6a7"
@@ -2087,6 +2299,11 @@
     "eml": {
       "bytes": 51430,
       "sha256": "1223fb925e4fbf0303bed44d72e80ddea455ca64c8d1cda93e2bdbd15caafcfa"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 37054,
@@ -2110,6 +2327,11 @@
       "bytes": 44744,
       "sha256": "9e7096201a084543875f82cc1aa83249cbeb3ba564143e07e8c002f5e53d83dc"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 32275,
       "sha256": "e1e404125968ca5b61505bfb41cd22c6f51250e6fbe9be93d71f26f260aec74c"
@@ -2132,6 +2354,11 @@
       "bytes": 38164,
       "sha256": "f00e46423d789d148a6d2d2e5202b8dcd6622fe3a66405def4d7536da98a1d89"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 27466,
       "sha256": "05f715f13b8967c7d6f9cdb583c6b946e45907b1c8e1c545bf85d187c86b93a3"
@@ -2149,6 +2376,11 @@
     "eml": {
       "bytes": 36570,
       "sha256": "1107058f32f8d7efa9950d19752a86b28a0b218529c9cee35ca1115ae42322aa"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 26303,
@@ -2168,6 +2400,11 @@
       "bytes": 41082,
       "sha256": "5b0a011536974789c6d286ded3189247879ca892101140f8c99f9715dddcea2f"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 29601,
       "sha256": "0a1c6b678f874676013637a14e26138c3c785d9451b636a83194f4c8a9938856"
@@ -2185,6 +2422,11 @@
     "eml": {
       "bytes": 35942,
       "sha256": "acdddffa3ff69a4b2333be612fdc3da5560e925adebda10fd27d426e89685b5f"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 25845,
@@ -2204,6 +2446,11 @@
       "bytes": 28816,
       "sha256": "85da278637c723497f73716c847fa457284710c3a2063c7b828ac428ddf57ef2"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 20636,
       "sha256": "9b3cec4e00a13bfd0476e30b45cd7b84ab763d653fc921989c2baaab274d03f8"
@@ -2221,6 +2468,11 @@
     "eml": {
       "bytes": 65968,
       "sha256": "f712bf92ebb427b8ef42e3598e1b9e8a8055b04fc3b944001dc68979599d08d4"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 47787,
@@ -2244,6 +2496,11 @@
       "bytes": 64310,
       "sha256": "f2bb519c6809cbafaf361d9c5eb7001fe3f3e888afcbe7519ac36ef7b85dc3a2"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 46574,
       "sha256": "dff553069263f50ea3787e909ef308dd4016e6073521fa2744633b089459e4bd"
@@ -2265,6 +2522,11 @@
     "eml": {
       "bytes": 69756,
       "sha256": "93280173e1db833d2f7a8dbbf1e160cc333eae43546f0755684f59a750c4de9e"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 50444,
@@ -2288,6 +2550,11 @@
       "bytes": 60952,
       "sha256": "fd13943140327f2bca619d26078c5556922a149d75b730bce54c433aec7ad1de"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 44119,
       "sha256": "a305844867857182a4aaa8aad9a78efb770f415fa82e5019317fdf751b65cce7"
@@ -2309,6 +2576,11 @@
     "eml": {
       "bytes": 65964,
       "sha256": "f6ea813176459423992710f6d2ea1eaf11540d51f9b148d1d8a0d822b3cc4427"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 47783,
@@ -2332,6 +2604,11 @@
       "bytes": 64306,
       "sha256": "3cfd326fc011ad04c6d0346dea5a53d7c57e95020616323b7703d64c6c3e22e9"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 46570,
       "sha256": "1259ab659e6c6ac5e8be22e368a297325d7330c5677f6e72d0069d2d38f64c11"
@@ -2353,6 +2630,11 @@
     "eml": {
       "bytes": 69744,
       "sha256": "5a244628588e01166885c916b31c207ceb1a9f42afbbe1e2c36051a8b523c53c"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 50436,
@@ -2376,6 +2658,11 @@
       "bytes": 60944,
       "sha256": "1461c14e647b90aa22965d7e837beec3efc2dd6dc6c01474044495f1d67695f1"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 44115,
       "sha256": "565c6ad81fc05bd8f9d8c4d7fe7570c6ae34411394a872b280809e72bce35b18"
@@ -2398,6 +2685,11 @@
       "bytes": 35258,
       "sha256": "e3e89563032ae40b1a1444cf7ca0ef5e8851a25db7c967e627fab73ca926ee8a"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 25343,
       "sha256": "a2a0f699249f431cac4649bb922df2c9cdcf280e527cebf68d6f8ef469a0d903"
@@ -2415,6 +2707,11 @@
     "eml": {
       "bytes": 33862,
       "sha256": "b578778bb68119083cd3a69a453aadc0ffb303edfe46e051984004c9f7948803"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 24324,
@@ -2434,6 +2731,11 @@
       "bytes": 38234,
       "sha256": "c9344a53de3a6539dbf28bed098bf177a2b13f26bbf4eca2309109ab8807e73b"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 27518,
       "sha256": "2b236c2bd5f0e5741c05f0ad50bb3d170a3ac6506f2afd2bf9b7a92ae2566a10"
@@ -2451,6 +2753,11 @@
     "eml": {
       "bytes": 33372,
       "sha256": "9b67c99e97ce29a1e0a837f78a75e18aae4c18a3198c779e179faf657d3f02ab"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 23966,
@@ -2470,6 +2777,11 @@
       "bytes": 28784,
       "sha256": "7b2134fe5431ed8a2a703ae4572772a2aa4d1226d5f35459c643ceb431173bc0"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 20612,
       "sha256": "1d738389153ff903d4887b2e07cc8a0b965adbaa7c1400b9809218cb77bdf438"
@@ -2487,6 +2799,11 @@
     "eml": {
       "bytes": 47458,
       "sha256": "9408b835c6fbedf93e50a9f51c05341d456c069546d150da8af752c6d3ba56b7"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 34259,
@@ -2510,6 +2827,11 @@
       "bytes": 46802,
       "sha256": "4a11ecddc6b82c06dc1d8fb5f6240817a65207631afff503d7834278a39ea30d"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 33778,
       "sha256": "dabe7f66883fb3d99647841d45c46ca7b3c14dbf819e5ff2ca69762c5e1b0456"
@@ -2531,6 +2853,11 @@
     "eml": {
       "bytes": 51442,
       "sha256": "e7f91be4ab51b04a6195606fdb27973ef2cef4edffbca814817ec550ab9633a9"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 37062,
@@ -2554,6 +2881,11 @@
       "bytes": 44748,
       "sha256": "2bf6d260f6e063f5abbd9b29a4c82c5546bf7f0c89c0aa94a7c9d61f902e3576"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 32279,
       "sha256": "44832defde2649edafb45c2cae4fded4adc3e8ef2fc4cb261f67276b6ac4564b"
@@ -2575,6 +2907,11 @@
     "eml": {
       "bytes": 47454,
       "sha256": "d4f3ee01cb409213f8959b2aa7660699e36e85574060eaeb02cc9f6dbd08b1d1"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 34255,
@@ -2598,6 +2935,11 @@
       "bytes": 46794,
       "sha256": "09c1f065d5705834290601fdea04cd775c9ff59ddad4901ddf40b88871d60bc8"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 33774,
       "sha256": "1ebea054bb1c80ecd373a37b8875d2deb0d96c0f2576d1484c3c64c5b0827918"
@@ -2619,6 +2961,11 @@
     "eml": {
       "bytes": 51430,
       "sha256": "2ce6efafb86cc89a43586108d807a8c05925188d1c74a125fb142227722111e8"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 37054,
@@ -2642,6 +2989,11 @@
       "bytes": 44744,
       "sha256": "951fc38cbc1e496305aa953a2f197169209e96ad65e4b45be04330ca04d1c93a"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 32275,
       "sha256": "8cdc772241ab7c9cfca47c08c3b9e62f51f6b256b158dd71b47c6441950bcd4a"
@@ -2664,6 +3016,11 @@
       "bytes": 22868,
       "sha256": "994f7194c64a5fd491dc6993c6e71fae1e2518c32e8fd267be6524280692dc47"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 16288,
       "sha256": "dbd66f69bd0abd53dbd21f932fd6a7875e88f4ec0861d72ed5be8a138727e976"
@@ -2681,6 +3038,11 @@
     "eml": {
       "bytes": 22692,
       "sha256": "940d76800d4733b0b48a45ef46505347d9cba4fcbd67bf01bfab140208bd6905"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 16159,
@@ -2700,6 +3062,11 @@
       "bytes": 26144,
       "sha256": "c8f35a955913316df69f05aae694201fd951b9708f04d7cbdb62d3611ca7afe8"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 18683,
       "sha256": "e4d36a909b748b3bc4176f6d86dc6e952dae0e427474f7a1ee9acddc9fd139b8"
@@ -2717,6 +3084,11 @@
     "eml": {
       "bytes": 22770,
       "sha256": "d53a788ea93a43f79dc6e38df8c67cd325c51346aebdedf5aab166d89c5a8939"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 16217,
@@ -2736,6 +3108,11 @@
       "bytes": 18044,
       "sha256": "9449f8281f606f9c9f21cd1bcdba7b8ab6abc60562b21f46ccb4548aeffc1403"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 12764,
       "sha256": "4db1e2c9c5a5e40c3a36d288c18b6d512790b79947c32e7a1e9fc802ac06e3a8"
@@ -2753,6 +3130,11 @@
     "eml": {
       "bytes": 38714,
       "sha256": "da3dc8a81139db28784d96a75ce83b4c75804507ee05948e138060fae1fc6cdb"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 27870,
@@ -2776,6 +3158,11 @@
       "bytes": 38660,
       "sha256": "0cd77daaaf3f095069f6a90af0fdc2cf68df53639a4b510aba89f9c9063647c1"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 27830,
       "sha256": "e11998861f03b18a08e9110eef85637fc8fb792e019d05ae93e8d14aca944ed9"
@@ -2797,6 +3184,11 @@
     "eml": {
       "bytes": 42826,
       "sha256": "ecc0927b04f2fe3fadd62d2d2d669b3506a6cd058634f35fc62e90fff56fce03"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 30765,
@@ -2820,6 +3212,11 @@
       "bytes": 37126,
       "sha256": "100f05563dc369575d448646c33d3346aee9343075b6bffd95ab62ce4e4eceb0"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 26708,
       "sha256": "71ff92f95e92beebdc3a317dccd0a69d3595c43a69ebc8fc96bfaddb2d7cbece"
@@ -2841,6 +3238,11 @@
     "eml": {
       "bytes": 38710,
       "sha256": "87ef7d54621c9ca65287ba9cf0a82d4550725e55a09cd27d5a51e990fca2ec9f"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 27866,
@@ -2864,6 +3266,11 @@
       "bytes": 38656,
       "sha256": "58b9f8fc0b86a027ca513f4f0cdf177575b35d6235968532b0be15ba33c6111b"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 27826,
       "sha256": "28b272b2e5c52ca5f69f0e8f672f0542b1f5b81316f79571e3349107d995f1ac"
@@ -2885,6 +3292,11 @@
     "eml": {
       "bytes": 42814,
       "sha256": "3c9dd751a9b8e1586cb4e9f6afaa4aee3d6b790d874bbe397fd722cac875f27f"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 30757,
@@ -2908,6 +3320,11 @@
       "bytes": 37122,
       "sha256": "9a36dea38c17395961881659cd4f22645539ca7afeaa84e1136e7cc5b213fb49"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 26704,
       "sha256": "e59bb1cb1b4d04bbe401511c525cfeca21df0dedb403a9e0f6c61c7f7c9c2c9d"
@@ -2930,6 +3347,11 @@
       "bytes": 16792,
       "sha256": "6c761d764140f7b83313124397285da326029e8436c158db6cdd7646b58e58a0"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 11848,
       "sha256": "f990a69f11ae8564ba5845890ecb123183050c6e07aebbf67e9304a78c4dc25d"
@@ -2947,6 +3369,11 @@
     "eml": {
       "bytes": 16664,
       "sha256": "06c3f526309f0f103481d6b9451abb1470959279919d17178119a8d0cef75b37"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 11755,
@@ -2966,6 +3393,11 @@
       "bytes": 19776,
       "sha256": "e32ca6ee863c2258ee47063ecb4f3db7357850aadc1327507fdafcae803a6b41"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 14029,
       "sha256": "49923eb1decdef7ace4892d4ac15a6c2785a0ea45610c826774ffd062393f52e"
@@ -2983,6 +3415,11 @@
     "eml": {
       "bytes": 17116,
       "sha256": "1110f5696bddef52c1b4d843516cf43eba3005413b85a28f1c61b84b4e1d6f68"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 12085,
@@ -3002,6 +3439,11 @@
       "bytes": 8442,
       "sha256": "e6e34a33e86d5a49119f6bd1e49d6d77aa3e6e8aec6544c8b775cd3b857d3206"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 5748,
       "sha256": "d8df8d1b2be9ab1eaffa62999cf9edeced12eab75f07525afb680a398c26c079"
@@ -3019,6 +3461,11 @@
     "eml": {
       "bytes": 23562,
       "sha256": "0e8dedb4c644b4a00113f06d47b91fcd27011b71b3a98c2b4f0ef3a4585da27c"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 16795,
@@ -3042,6 +3489,11 @@
       "bytes": 23820,
       "sha256": "ea56f4a76a928d04b5bc7e1b3c408ad1a585b39070c614bee976909ff699f57f"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 16984,
       "sha256": "59bb54bb699b35c68c973437cbe8399463e1e061565bfd20112a12b32e1581e3"
@@ -3063,6 +3515,11 @@
     "eml": {
       "bytes": 27358,
       "sha256": "7e0e6019b9aac18c75f0e497fb57eaf0ca43c261197aed1b437fcde711df9cfd"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 19462,
@@ -3086,6 +3543,11 @@
       "bytes": 23410,
       "sha256": "27688749732d953d1619ebbc5e1bcd4e1b9863d38773ac4144b38abda886496b"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 16685,
       "sha256": "68c264e675a859b75532eb780c0d5377a904959bce6f720af75d281ec044ce20"
@@ -3107,6 +3569,11 @@
     "eml": {
       "bytes": 23554,
       "sha256": "dad3e251b29ae5d3f25e2a131aa953d914d12cb5c16f6440ec635723c2cad73e"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 16791,
@@ -3130,6 +3597,11 @@
       "bytes": 23812,
       "sha256": "41659eba93b291d44284434a7775d2fd80a132775b019ec94e4af9a6395fda44"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 16980,
       "sha256": "7b0cdf7304b539400837d7ee0fd48a2f295d411343141858ada3c23f6b690a4e"
@@ -3151,6 +3623,11 @@
     "eml": {
       "bytes": 27350,
       "sha256": "d0b04c72079aff2cda0721a6597cfcddd45e3bc1b5e4c829d9f66f6fd5601e5c"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 19454,
@@ -3174,6 +3651,11 @@
       "bytes": 23406,
       "sha256": "f2d586683eaafb85271551976c526804491812f6e15952f61b72bd6143105a65"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 16681,
       "sha256": "adf8e5075ca1cb9e9a4eb6e40eeea93fa2778891034b91236a8d94465927ccf9"
@@ -3196,6 +3678,11 @@
       "bytes": 33702,
       "sha256": "1cd4a0314d1b0bff50e2f8a528bc279037e738478ffb3bf6ae8bfcfba813111a"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 24206,
       "sha256": "06cd5719239331b5ba3230f9fb8a4f266a6ce48b369614534b76399b05a8b9d0"
@@ -3213,6 +3700,11 @@
     "eml": {
       "bytes": 32872,
       "sha256": "8b514b3b4c76398ab702f152803bb876184a4d99e5627a093a0617c60756d99b"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 23599,
@@ -3232,6 +3724,11 @@
       "bytes": 36718,
       "sha256": "a04cd359a09b57792d75761e8b622fa83a89f9a8b791738b385e73d64586764f"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 26411,
       "sha256": "678454871458827a95749afe6024d3a73eb59f7ad23d7026207b6c99dac157bd"
@@ -3249,6 +3746,11 @@
     "eml": {
       "bytes": 32056,
       "sha256": "e1d092a475e238a39116f961738061a8d3587a90bed9c1481f2f939a7b511b5b"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 23003,
@@ -3268,6 +3770,11 @@
       "bytes": 26262,
       "sha256": "83bf80436c10e72bf291d8a99e822e90a8c164d3c484258f0a7a6bd757a222dc"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 18771,
       "sha256": "0b88c7c0e06c4dfa8d916675ebae26eb243de6251807ca6a02e465c4794ba6a4"
@@ -3285,6 +3792,11 @@
     "eml": {
       "bytes": 58494,
       "sha256": "2bb41daeb3960e2f36fda8aa9eb81f42b69816ad583cac317631fbaa84d4cd5f"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 42322,
@@ -3308,6 +3820,11 @@
       "bytes": 57114,
       "sha256": "76c2d31bfedd3a94f7b8640b76870535e502f8e8c9773e2fc2993dc74fba0a50"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 41314,
       "sha256": "8c46569bb5be70bea4e939ec74e09c4d4af217585cb842b64461d0f89dfceab6"
@@ -3329,6 +3846,11 @@
     "eml": {
       "bytes": 62384,
       "sha256": "f01aa1d4aa053e8af11eaf1b10d2e8d8df43e8c98ebf034efa8afb5565436b90"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 45056,
@@ -3352,6 +3874,11 @@
       "bytes": 54466,
       "sha256": "25b345a396c36731493ee6e01cd2e470b93b6c411b42a40c94d4ca8e2629b12f"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 39381,
       "sha256": "4cca38e2f3188906ded7e03d970323abe348c8704a5c1f48bde644d55481d909"
@@ -3373,6 +3900,11 @@
     "eml": {
       "bytes": 58484,
       "sha256": "b009e8a0841cfa512fcb603bf6f94e4f35f5cfb2dbd55712b02051c9c3cf1c8d"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 42318,
@@ -3396,6 +3928,11 @@
       "bytes": 57106,
       "sha256": "324ce43980e1f2b0edb0aa6ba1e743a0aa4491fe02f88d03853e2b26b2af40a5"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 41310,
       "sha256": "d8a488bc875075a20bc39d41024f3e7cdbde047f794fc1f31418fbcf87c0ec1c"
@@ -3417,6 +3954,11 @@
     "eml": {
       "bytes": 62372,
       "sha256": "d2ebdc9b58bef0ba4dda819235b50c9b3d906bbbbbf033d1e68b3f949a344aad"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 45048,
@@ -3440,6 +3982,11 @@
       "bytes": 54462,
       "sha256": "71767d19f4faa4217b8cb7db92896c53f79ccd43ca2860589ccec6359038ee2c"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 39377,
       "sha256": "ed408ac4cf0b8ec994ff04109ff84c70d5260339eb82c360192e68b3e6e8b602"
@@ -3462,6 +4009,11 @@
       "bytes": 30794,
       "sha256": "205b6aaf93e4ce71c530d0f8ccadff7b01120ff89b2a51f5a232da1e9c261ad8"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 22082,
       "sha256": "b10c6bce57f80b5c437d462f3cd62292d2ac87e9d98fe19f1ff3c6d0184af927"
@@ -3479,6 +4031,11 @@
     "eml": {
       "bytes": 30162,
       "sha256": "940b5c5fc627f85709bcbbca7dda6c9d90206bd3fb1f3bb774dc72118274e17d"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 21619,
@@ -3498,6 +4055,11 @@
       "bytes": 33866,
       "sha256": "e47af6a42c69b4666c2f56a585403992f8aca2de51fad0fad563b281b7e5844f"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 24327,
       "sha256": "efdb12156e752918097c3354f71182df886fcd97055274ae36add0d9ed7d1148"
@@ -3515,6 +4077,11 @@
     "eml": {
       "bytes": 29482,
       "sha256": "032245afdb1d26366aa9e9344178c5e10584fe033236c0ef00ea3d8d1aaf9529"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 21123,
@@ -3534,6 +4101,11 @@
       "bytes": 25104,
       "sha256": "25009997474ffef3f53738b7958923d2e290ba207be849bbb81b19e865ad14b9"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 17924,
       "sha256": "9719d8b725ebdb480ef8e36de1a00897b00fe95da6318f571c71607b5514c792"
@@ -3551,6 +4123,11 @@
     "eml": {
       "bytes": 47458,
       "sha256": "d9d368a635fa69cda4075403c61585f9dbb14e6ff4f7b9ad0c2c0957499898a8"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 34259,
@@ -3574,6 +4151,11 @@
       "bytes": 46802,
       "sha256": "5aba1f3290cf6a890cde1404e14ed79870b24c76a5a228c7e1e83bdad2800afa"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 33778,
       "sha256": "092808b1154a6772e99fc89c18703df1b488126c8f2f3218e2cff97c24508642"
@@ -3595,6 +4177,11 @@
     "eml": {
       "bytes": 51442,
       "sha256": "a5bcc0541b9029aeab156fec65dcf639ddad0fc49b6986e944e73abfe1e039c3"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 37062,
@@ -3618,6 +4205,11 @@
       "bytes": 44748,
       "sha256": "08ae16539458af1065300ee3606a05c3d1b0cc7f06f21ca3cc9965f26d7392c3"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 32279,
       "sha256": "b74a59549b6ed99bb0da1d6c8a103425eda5424e120be5f53a49b6c5afbc8f87"
@@ -3639,6 +4231,11 @@
     "eml": {
       "bytes": 47454,
       "sha256": "934bac7ef3a45cab98c301ccdd1006a747c9caab9ab4ec7d8075395655c630d5"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 34255,
@@ -3662,6 +4259,11 @@
       "bytes": 46794,
       "sha256": "3ef4ef558e7c666ef4c0b361a8042ca7ad0e27f3f56cfb98df916beae744b769"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 33774,
       "sha256": "38e289d05b757a0cf5c2b12859ea1a24c9c6a295daac6de80cc23ca2b09ba6a7"
@@ -3683,6 +4285,11 @@
     "eml": {
       "bytes": 51430,
       "sha256": "1223fb925e4fbf0303bed44d72e80ddea455ca64c8d1cda93e2bdbd15caafcfa"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 37054,
@@ -3706,6 +4313,11 @@
       "bytes": 44744,
       "sha256": "9e7096201a084543875f82cc1aa83249cbeb3ba564143e07e8c002f5e53d83dc"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 32275,
       "sha256": "e1e404125968ca5b61505bfb41cd22c6f51250e6fbe9be93d71f26f260aec74c"
@@ -3728,6 +4340,11 @@
       "bytes": 33758,
       "sha256": "2cb4711e3683377a471e3e4813adc6e66869d04492a896f191bb916d6522e973"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 24248,
       "sha256": "2a9bcb6ab89ac77f803aa5953fc064b922df0c6a462819836b48bc7cd677e740"
@@ -3745,6 +4362,11 @@
     "eml": {
       "bytes": 32930,
       "sha256": "70327e5ac103ae97ffcec03d4568d394753d05809dd6325681421cea46d9a983"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 23641,
@@ -3764,6 +4386,11 @@
       "bytes": 36776,
       "sha256": "b6d3911460d5e4ebc401932660e4c1733d8b0e16d92fa6cce4bc030fa5ec29ec"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 26453,
       "sha256": "f691554465674f3e1e261ee42132593692a93cd0e4dda486eae5f46795738fbc"
@@ -3781,6 +4408,11 @@
     "eml": {
       "bytes": 32112,
       "sha256": "4495eb4ed892ba3e6a7bef4135986d03c3eee9caed487919be5f87bcdcece76f"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 23045,
@@ -3800,6 +4432,11 @@
       "bytes": 26324,
       "sha256": "729297cec7aa4186afdf4d476cde5f2aa6e18b90a27a43daf6f7f0eaef890fea"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 18814,
       "sha256": "f4043692306af54ddf1f463ab2de7db9632e5079380f9a8a95e9bb39e87e76de"
@@ -3814,90 +4451,76 @@
     }
   },
   "no-age-reference/hostile/monthly/A": {
-    "eml": {
-      "bytes": 52606,
-      "sha256": "24b3a1a2d1c282feddb3ba560d25e3cb1370d2d091b037db07dd8ba474cda507"
+    "eml": "BLOCKED: Choose the monthly reporting date.",
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": "Choose the monthly reporting date.",
+      "workbookBlocked": "Choose the monthly reporting date."
     },
     "html": {
       "bytes": 38015,
       "sha256": "22e3f52abb9b8f8f93153b830c2a3e35bb87c01c85b734105c4bd9df734cd22d"
     },
-    "ps1": {
-      "bytes": 40576,
-      "sha256": "d4d654d77b39908f0904e004f9eb393ecfad0625153444a1422931331ecf4baf"
-    },
-    "txt": {
-      "bytes": 2278,
-      "sha256": "977eac593992c9b679e08126caa5296676c8d7c33f97a80f663aaf0df044f9ac"
-    }
+    "ps1": "BLOCKED: Choose the monthly reporting date.",
+    "txt": "BLOCKED: Choose the monthly reporting date."
   },
   "no-age-reference/hostile/monthly/B": {
-    "eml": {
-      "bytes": 51416,
-      "sha256": "db1753b455ecb1edbe032a4d40af719d6398525f7ba2940a094522867cabe8c5"
+    "eml": "BLOCKED: Choose the monthly reporting date.",
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": "Choose the monthly reporting date.",
+      "workbookBlocked": "Choose the monthly reporting date."
     },
     "html": {
       "bytes": 37145,
       "sha256": "c83135891340e85c2bb40a0eae7f5811cbf3e0fd5597013ab55db3550cef174d"
     },
-    "ps1": {
-      "bytes": 39706,
-      "sha256": "c11cede35c83f34d2092fe0e0d977e25e60914ac706e6b5c0451ef4035ccf6b7"
-    },
-    "txt": {
-      "bytes": 2278,
-      "sha256": "977eac593992c9b679e08126caa5296676c8d7c33f97a80f663aaf0df044f9ac"
-    }
+    "ps1": "BLOCKED: Choose the monthly reporting date.",
+    "txt": "BLOCKED: Choose the monthly reporting date."
   },
   "no-age-reference/hostile/monthly/C": {
-    "eml": {
-      "bytes": 56434,
-      "sha256": "a6126002f932ff24a68524459eac20c6783718ea9328bd1ad67c43faf82b44ef"
+    "eml": "BLOCKED: Choose the monthly reporting date.",
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": "Choose the monthly reporting date.",
+      "workbookBlocked": "Choose the monthly reporting date."
     },
     "html": {
       "bytes": 40704,
       "sha256": "d3db11939741f3e542e95e56920abc8896416908da05003c187880570b0931c1"
     },
-    "ps1": {
-      "bytes": 43373,
-      "sha256": "172fd80cacf0968a590e0f94399bc38bd2b0c969c311ba8330e17d22fc979475"
-    },
-    "txt": {
-      "bytes": 2278,
-      "sha256": "977eac593992c9b679e08126caa5296676c8d7c33f97a80f663aaf0df044f9ac"
-    }
+    "ps1": "BLOCKED: Choose the monthly reporting date.",
+    "txt": "BLOCKED: Choose the monthly reporting date."
   },
   "no-age-reference/hostile/monthly/D": {
-    "eml": {
-      "bytes": 49080,
-      "sha256": "c5880e4e1eaed87e2896f8192c0e3e5d20d2af89bf0291d7bac8d2907aa66146"
+    "eml": "BLOCKED: Choose the monthly reporting date.",
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": "Choose the monthly reporting date.",
+      "workbookBlocked": "Choose the monthly reporting date."
     },
     "html": {
       "bytes": 35439,
       "sha256": "584f5af4ce28adf2884d0f89fd413552957d71fdcdfcb39fd492bbd1e32a7779"
     },
-    "ps1": {
-      "bytes": 38000,
-      "sha256": "9e6c169609ad1661155d164deb91fe717803879b4fa4f9a6253a194089f28c44"
-    },
-    "txt": {
-      "bytes": 2278,
-      "sha256": "977eac593992c9b679e08126caa5296676c8d7c33f97a80f663aaf0df044f9ac"
-    }
+    "ps1": "BLOCKED: Choose the monthly reporting date.",
+    "txt": "BLOCKED: Choose the monthly reporting date."
   },
   "no-age-reference/hostile/pending/A": {
     "eml": {
       "bytes": 52594,
       "sha256": "f2dc93a12365990284fbe6302b989f73015a27761139d7a45b9a46e76b3a42f0"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": "Choose an age reference date before exporting Excel."
+    },
     "html": {
       "bytes": 38005,
       "sha256": "89bca81819e9905f3b55a32c4b89aa50edf9e1c9dc633212b679754963c303ee"
     },
-    "ps1": {
-      "bytes": 40566,
-      "sha256": "dd1b7d029f725348d552d4f9c683a9f30c0e6e00e106dd1e14a68ff01f2a4ee1"
-    },
+    "ps1": "BLOCKED: Choose an age reference date before exporting Excel.",
     "txt": {
       "bytes": 2272,
       "sha256": "9c6ff7ba0bbb5c3c8c192dd3dccee14c82a5c9a3e0aad5d6615547e2923757ee"
@@ -3908,14 +4531,16 @@
       "bytes": 51404,
       "sha256": "8656b31c343556c7ccc59480b7f1e0131475f4d07896a6387a3cec6461471a05"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": "Choose an age reference date before exporting Excel."
+    },
     "html": {
       "bytes": 37135,
       "sha256": "c510a0a480992147c8428c433f96357cae26db76bfeedbb0ed5364e93a4cacb2"
     },
-    "ps1": {
-      "bytes": 39696,
-      "sha256": "7fb546e273424cffc8aa009969ef46dd0966e59eaa4b07bb468c26ae11cc4944"
-    },
+    "ps1": "BLOCKED: Choose an age reference date before exporting Excel.",
     "txt": {
       "bytes": 2272,
       "sha256": "9c6ff7ba0bbb5c3c8c192dd3dccee14c82a5c9a3e0aad5d6615547e2923757ee"
@@ -3926,14 +4551,16 @@
       "bytes": 56414,
       "sha256": "f80e9b4d09b455febfda1c7a65750962ea4a71b588dc41b89f79adce5d6a9654"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": "Choose an age reference date before exporting Excel."
+    },
     "html": {
       "bytes": 40690,
       "sha256": "300222891c7fa18ed02ea129ef9495fd3241bf9ca6dadc71b7cd752ee124215a"
     },
-    "ps1": {
-      "bytes": 43359,
-      "sha256": "5d870f6fd2e966f671724a82a7b06023f98db4b3d0056c4e8af1c8faed05d9ea"
-    },
+    "ps1": "BLOCKED: Choose an age reference date before exporting Excel.",
     "txt": {
       "bytes": 2272,
       "sha256": "9c6ff7ba0bbb5c3c8c192dd3dccee14c82a5c9a3e0aad5d6615547e2923757ee"
@@ -3944,14 +4571,16 @@
       "bytes": 49068,
       "sha256": "6396067a355376ef06918bd8cac1c3307022b33aa9ad50635cf37c217c9141a2"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": "Choose an age reference date before exporting Excel."
+    },
     "html": {
       "bytes": 35429,
       "sha256": "9c89e64b6678d4f5a782ad5251a6bee77d78ee0b31580be15a420666ab2e9e8b"
     },
-    "ps1": {
-      "bytes": 37990,
-      "sha256": "ff3f9b346b23550c6e099071a5ca9c66623026592e1ba08948575e913107919e"
-    },
+    "ps1": "BLOCKED: Choose an age reference date before exporting Excel.",
     "txt": {
       "bytes": 2272,
       "sha256": "9c6ff7ba0bbb5c3c8c192dd3dccee14c82a5c9a3e0aad5d6615547e2923757ee"
@@ -3961,6 +4590,11 @@
     "eml": {
       "bytes": 30852,
       "sha256": "93ae1c1597a2dc154ae286a0cf5db793fe4e737483b336128be505c86897e82b"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 22124,
@@ -3980,6 +4614,11 @@
       "bytes": 30220,
       "sha256": "ec40e6f975a441ecd43947145a252603a808c7d744f3df0c8ae0b931015d33df"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 21661,
       "sha256": "f24e19f7838f2ebf5174e540c423986171cbb3c766a4de0fa706ad13cf0d4729"
@@ -3997,6 +4636,11 @@
     "eml": {
       "bytes": 33924,
       "sha256": "ac56a7430545b23087b7f0a217f63a03ad8f66e6cef410323d1e584e26d2ebba"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 24369,
@@ -4016,6 +4660,11 @@
       "bytes": 29538,
       "sha256": "3cb9f8e3e247da0bb7913746fed2ad53141431333149b4c3639013982432990a"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 21165,
       "sha256": "981ee6143b7528731f6a431722d5d35b2a498cd8a18f9242427c2e188210e7f7"
@@ -4034,6 +4683,11 @@
       "bytes": 25162,
       "sha256": "7ea968522c6d62abf694dea5ce37a70e65e1a3c32b1eb0c73814abddc6f7af14"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 17967,
       "sha256": "7f7e414269c3bc8b8f933f304dfd4812cd5046315c134e2ece0a7a756da3deed"
@@ -4048,90 +4702,76 @@
     }
   },
   "no-age-reference/sample/monthly/A": {
-    "eml": {
-      "bytes": 41570,
-      "sha256": "06b9d783c771f292d902eb004e944dd6ecc81c4081eeb9e9d8dda4443eb62103"
+    "eml": "BLOCKED: Choose the monthly reporting date.",
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": "Choose the monthly reporting date.",
+      "workbookBlocked": "Choose the monthly reporting date."
     },
     "html": {
       "bytes": 29952,
       "sha256": "16c133cd614c39412a71063866dae712e92dc636a8f0366d517d63f4cb06ed6b"
     },
-    "ps1": {
-      "bytes": 32513,
-      "sha256": "1673fb0eccee78178ac6dad9d77ea9d2a3d64dabf90f7e1626251c02381724c4"
-    },
-    "txt": {
-      "bytes": 1829,
-      "sha256": "9a459c4ef0270777229050775e78ffba9e17ae5601a8680d8de50c9c3da92d4e"
-    }
+    "ps1": "BLOCKED: Choose the monthly reporting date.",
+    "txt": "BLOCKED: Choose the monthly reporting date."
   },
   "no-age-reference/sample/monthly/B": {
-    "eml": {
-      "bytes": 41102,
-      "sha256": "b86169c527321861e02c88fb12f6def4262b60057f75bf7bd647a6912f62e95d"
+    "eml": "BLOCKED: Choose the monthly reporting date.",
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": "Choose the monthly reporting date.",
+      "workbookBlocked": "Choose the monthly reporting date."
     },
     "html": {
       "bytes": 29609,
       "sha256": "2aaeebd671804a1adbedee675441f349f8415288ed926abbe0758e1914a8da85"
     },
-    "ps1": {
-      "bytes": 32170,
-      "sha256": "d8e55182676b73cb33bff625cbce5714bb203abc2df07f2c00447da28ef3ca40"
-    },
-    "txt": {
-      "bytes": 1829,
-      "sha256": "9a459c4ef0270777229050775e78ffba9e17ae5601a8680d8de50c9c3da92d4e"
-    }
+    "ps1": "BLOCKED: Choose the monthly reporting date.",
+    "txt": "BLOCKED: Choose the monthly reporting date."
   },
   "no-age-reference/sample/monthly/C": {
-    "eml": {
-      "bytes": 45494,
-      "sha256": "df07d01f0651aba50be97e6273ee57ff812ca9ad6bd46cd974106861af290964"
+    "eml": "BLOCKED: Choose the monthly reporting date.",
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": "Choose the monthly reporting date.",
+      "workbookBlocked": "Choose the monthly reporting date."
     },
     "html": {
       "bytes": 32710,
       "sha256": "98bbd6bad139d727eebc2946a94ed1bf8a05df242d27c93145623c3b6b1b4a2d"
     },
-    "ps1": {
-      "bytes": 35379,
-      "sha256": "99fbda5b2c9c4099d41876a4cd5d4f96d9aa8bd452bdfcfd9bb8e0718f4a5693"
-    },
-    "txt": {
-      "bytes": 1829,
-      "sha256": "9a459c4ef0270777229050775e78ffba9e17ae5601a8680d8de50c9c3da92d4e"
-    }
+    "ps1": "BLOCKED: Choose the monthly reporting date.",
+    "txt": "BLOCKED: Choose the monthly reporting date."
   },
   "no-age-reference/sample/monthly/D": {
-    "eml": {
-      "bytes": 39362,
-      "sha256": "d19f4768d0566f23ae9b67bf05eca72b588e0bc8e7cf9b47f4f893e503cb9668"
+    "eml": "BLOCKED: Choose the monthly reporting date.",
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": "Choose the monthly reporting date.",
+      "workbookBlocked": "Choose the monthly reporting date."
     },
     "html": {
       "bytes": 28337,
       "sha256": "17e94b2096704a40386904c15bf79e745c69c988a056b3820740814cb10c6363"
     },
-    "ps1": {
-      "bytes": 30898,
-      "sha256": "03264beaf505ddc18de6e299f5b772cb4889dd0bb0add84a4bc2c06c14c3b41e"
-    },
-    "txt": {
-      "bytes": 1829,
-      "sha256": "9a459c4ef0270777229050775e78ffba9e17ae5601a8680d8de50c9c3da92d4e"
-    }
+    "ps1": "BLOCKED: Choose the monthly reporting date.",
+    "txt": "BLOCKED: Choose the monthly reporting date."
   },
   "no-age-reference/sample/pending/A": {
     "eml": {
       "bytes": 41558,
       "sha256": "3aed1e521d04f0f889ebab858806e6bf6811500bd53c83556faf97e7002615e6"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": "Choose an age reference date before exporting Excel."
+    },
     "html": {
       "bytes": 29942,
       "sha256": "a2390fb2506ec65c0c183ecd6c4cb1cd0aeb036ee2c454ad1567ec1adcd19951"
     },
-    "ps1": {
-      "bytes": 32503,
-      "sha256": "61774339ed35db88f817482cb79d0b6e060aa7af8cc6135925da99ea33c5745d"
-    },
+    "ps1": "BLOCKED: Choose an age reference date before exporting Excel.",
     "txt": {
       "bytes": 1823,
       "sha256": "d46c771e542d65ecb8147d3159e71ebff6dfc07871e825bed30165394baa72cb"
@@ -4142,14 +4782,16 @@
       "bytes": 41090,
       "sha256": "7688e1ec0db76df69419bfbf2321c892559183110f406c57f0a8d7eb680dc23f"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": "Choose an age reference date before exporting Excel."
+    },
     "html": {
       "bytes": 29599,
       "sha256": "238cec7d6601ea3f38d1af3bbaf6360068bcc1893fbcfa07c3a5dbd60094ddfa"
     },
-    "ps1": {
-      "bytes": 32160,
-      "sha256": "5d056c52e8b43db32f1b3b2d437d94ef794af32636a9abc9105a849fe575fa8d"
-    },
+    "ps1": "BLOCKED: Choose an age reference date before exporting Excel.",
     "txt": {
       "bytes": 1823,
       "sha256": "d46c771e542d65ecb8147d3159e71ebff6dfc07871e825bed30165394baa72cb"
@@ -4160,14 +4802,16 @@
       "bytes": 45478,
       "sha256": "70bdc1f684f9860e00322f40131f39ed5dd99a0e8a6ef7de3cf95ed15b853380"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": "Choose an age reference date before exporting Excel."
+    },
     "html": {
       "bytes": 32696,
       "sha256": "3cbe7e6ae435cc6e0f2160faa371bcf122427a5cdee425357adadf2ac259bb0f"
     },
-    "ps1": {
-      "bytes": 35365,
-      "sha256": "e63c5b3f2ce65a61dbad67316758020aa1de55e75ab4d73b520c26d885e44986"
-    },
+    "ps1": "BLOCKED: Choose an age reference date before exporting Excel.",
     "txt": {
       "bytes": 1823,
       "sha256": "d46c771e542d65ecb8147d3159e71ebff6dfc07871e825bed30165394baa72cb"
@@ -4178,14 +4822,16 @@
       "bytes": 39350,
       "sha256": "22762ac0d28905d478186e477e16ee07a7876420211992c32f9e121ce777aef2"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": "Choose an age reference date before exporting Excel."
+    },
     "html": {
       "bytes": 28327,
       "sha256": "66f88f208ec21339418e94484105e1b8f4caff5b158a629880a0f3239a637c28"
     },
-    "ps1": {
-      "bytes": 30888,
-      "sha256": "f275970eac1f2d851aab81cae8e2c5432bdd754ea00695b5e78d90a11c48e90a"
-    },
+    "ps1": "BLOCKED: Choose an age reference date before exporting Excel.",
     "txt": {
       "bytes": 1823,
       "sha256": "d46c771e542d65ecb8147d3159e71ebff6dfc07871e825bed30165394baa72cb"
@@ -4195,6 +4841,11 @@
     "eml": {
       "bytes": 33758,
       "sha256": "2cb4711e3683377a471e3e4813adc6e66869d04492a896f191bb916d6522e973"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 24248,
@@ -4214,6 +4865,11 @@
       "bytes": 32930,
       "sha256": "70327e5ac103ae97ffcec03d4568d394753d05809dd6325681421cea46d9a983"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 23641,
       "sha256": "8e52bd0728a6e70bf58f386825148b37ae2349cb25564db01ec7d8dbed60c6e2"
@@ -4231,6 +4887,11 @@
     "eml": {
       "bytes": 36776,
       "sha256": "b6d3911460d5e4ebc401932660e4c1733d8b0e16d92fa6cce4bc030fa5ec29ec"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 26453,
@@ -4250,6 +4911,11 @@
       "bytes": 32112,
       "sha256": "4495eb4ed892ba3e6a7bef4135986d03c3eee9caed487919be5f87bcdcece76f"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 23045,
       "sha256": "d667c70549dd3eb3b89162fde4d30e3563ad97cc115674cf6e823784bb209101"
@@ -4268,6 +4934,11 @@
       "bytes": 26324,
       "sha256": "729297cec7aa4186afdf4d476cde5f2aa6e18b90a27a43daf6f7f0eaef890fea"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 18814,
       "sha256": "f4043692306af54ddf1f463ab2de7db9632e5079380f9a8a95e9bb39e87e76de"
@@ -4285,6 +4956,11 @@
     "eml": {
       "bytes": 58494,
       "sha256": "2bb41daeb3960e2f36fda8aa9eb81f42b69816ad583cac317631fbaa84d4cd5f"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 42322,
@@ -4308,6 +4984,11 @@
       "bytes": 57114,
       "sha256": "76c2d31bfedd3a94f7b8640b76870535e502f8e8c9773e2fc2993dc74fba0a50"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 41314,
       "sha256": "8c46569bb5be70bea4e939ec74e09c4d4af217585cb842b64461d0f89dfceab6"
@@ -4329,6 +5010,11 @@
     "eml": {
       "bytes": 61856,
       "sha256": "fb4cf695259f8b0b233004471822ae07883f0704d50e5c1f14609cbbc965c1ff"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 44781,
@@ -4352,6 +5038,11 @@
       "bytes": 54466,
       "sha256": "25b345a396c36731493ee6e01cd2e470b93b6c411b42a40c94d4ca8e2629b12f"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 39381,
       "sha256": "4cca38e2f3188906ded7e03d970323abe348c8704a5c1f48bde644d55481d909"
@@ -4373,6 +5064,11 @@
     "eml": {
       "bytes": 58484,
       "sha256": "b009e8a0841cfa512fcb603bf6f94e4f35f5cfb2dbd55712b02051c9c3cf1c8d"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 42318,
@@ -4396,6 +5092,11 @@
       "bytes": 57106,
       "sha256": "324ce43980e1f2b0edb0aa6ba1e743a0aa4491fe02f88d03853e2b26b2af40a5"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 41310,
       "sha256": "d8a488bc875075a20bc39d41024f3e7cdbde047f794fc1f31418fbcf87c0ec1c"
@@ -4417,6 +5118,11 @@
     "eml": {
       "bytes": 61848,
       "sha256": "b08574caa3768f75ce2560a93e93cf6bf0183fc4d6f79c058041de916e79d555"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 44773,
@@ -4440,6 +5146,11 @@
       "bytes": 54462,
       "sha256": "71767d19f4faa4217b8cb7db92896c53f79ccd43ca2860589ccec6359038ee2c"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 39377,
       "sha256": "ed408ac4cf0b8ec994ff04109ff84c70d5260339eb82c360192e68b3e6e8b602"
@@ -4462,6 +5173,11 @@
       "bytes": 30852,
       "sha256": "93ae1c1597a2dc154ae286a0cf5db793fe4e737483b336128be505c86897e82b"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 22124,
       "sha256": "a7a81209462eb08709821657c2dc94deeb209d8d83705dbe9ef4b172d601c1a8"
@@ -4479,6 +5195,11 @@
     "eml": {
       "bytes": 30220,
       "sha256": "ec40e6f975a441ecd43947145a252603a808c7d744f3df0c8ae0b931015d33df"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 21661,
@@ -4498,6 +5219,11 @@
       "bytes": 33924,
       "sha256": "ac56a7430545b23087b7f0a217f63a03ad8f66e6cef410323d1e584e26d2ebba"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 24369,
       "sha256": "ab610dd5c06436e2ce36c3488e99dbcb92c795e3a6c17c4fd538ab187a6d909f"
@@ -4515,6 +5241,11 @@
     "eml": {
       "bytes": 29538,
       "sha256": "3cb9f8e3e247da0bb7913746fed2ad53141431333149b4c3639013982432990a"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 21165,
@@ -4534,6 +5265,11 @@
       "bytes": 25162,
       "sha256": "7ea968522c6d62abf694dea5ce37a70e65e1a3c32b1eb0c73814abddc6f7af14"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 17967,
       "sha256": "7f7e414269c3bc8b8f933f304dfd4812cd5046315c134e2ece0a7a756da3deed"
@@ -4551,6 +5287,11 @@
     "eml": {
       "bytes": 47458,
       "sha256": "d9d368a635fa69cda4075403c61585f9dbb14e6ff4f7b9ad0c2c0957499898a8"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 34259,
@@ -4574,6 +5315,11 @@
       "bytes": 46802,
       "sha256": "5aba1f3290cf6a890cde1404e14ed79870b24c76a5a228c7e1e83bdad2800afa"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 33778,
       "sha256": "092808b1154a6772e99fc89c18703df1b488126c8f2f3218e2cff97c24508642"
@@ -4595,6 +5341,11 @@
     "eml": {
       "bytes": 50918,
       "sha256": "ade1dc348b8d229babdb629adc987afc70fb10a1d4b71ba6af66095fd4a40c72"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 36787,
@@ -4618,6 +5369,11 @@
       "bytes": 44748,
       "sha256": "08ae16539458af1065300ee3606a05c3d1b0cc7f06f21ca3cc9965f26d7392c3"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 32279,
       "sha256": "b74a59549b6ed99bb0da1d6c8a103425eda5424e120be5f53a49b6c5afbc8f87"
@@ -4639,6 +5395,11 @@
     "eml": {
       "bytes": 47454,
       "sha256": "934bac7ef3a45cab98c301ccdd1006a747c9caab9ab4ec7d8075395655c630d5"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 34255,
@@ -4662,6 +5423,11 @@
       "bytes": 46794,
       "sha256": "3ef4ef558e7c666ef4c0b361a8042ca7ad0e27f3f56cfb98df916beae744b769"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 33774,
       "sha256": "38e289d05b757a0cf5c2b12859ea1a24c9c6a295daac6de80cc23ca2b09ba6a7"
@@ -4683,6 +5449,11 @@
     "eml": {
       "bytes": 50906,
       "sha256": "8e9e7c4cbbcb4f516c7ebf2680a37821acc24a8c041ac0cbdf146fd1dc93ba22"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 36779,
@@ -4706,6 +5477,11 @@
       "bytes": 44744,
       "sha256": "9e7096201a084543875f82cc1aa83249cbeb3ba564143e07e8c002f5e53d83dc"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 32275,
       "sha256": "e1e404125968ca5b61505bfb41cd22c6f51250e6fbe9be93d71f26f260aec74c"
@@ -4728,6 +5504,11 @@
       "bytes": 33699,
       "sha256": "f708c28ee5bed872c9a3f11af5660fdd1085466610a6d45d1897a4c22c256837"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 24248,
       "sha256": "2a9bcb6ab89ac77f803aa5953fc064b922df0c6a462819836b48bc7cd677e740"
@@ -4745,6 +5526,11 @@
     "eml": {
       "bytes": 32871,
       "sha256": "5f4ec0d97aecec81e169db05485103e3e95804c89c384de3e6abef912ec1399f"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 23641,
@@ -4764,6 +5550,11 @@
       "bytes": 36717,
       "sha256": "336bf951ac5a0b664578b4bf178f8ff8945809e8e39d4e872f55d628a1290865"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 26453,
       "sha256": "f691554465674f3e1e261ee42132593692a93cd0e4dda486eae5f46795738fbc"
@@ -4781,6 +5572,11 @@
     "eml": {
       "bytes": 32053,
       "sha256": "19f4c2d984ee00e9d7bdbface0f8e91cd563992115fbdbd814699442d601a7c9"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 23045,
@@ -4800,6 +5596,11 @@
       "bytes": 26265,
       "sha256": "11eb32a244752394b44bb51195d2af2dacf1d8f56e7c73161bd6f13d2ba0786f"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 18814,
       "sha256": "f4043692306af54ddf1f463ab2de7db9632e5079380f9a8a95e9bb39e87e76de"
@@ -4817,6 +5618,11 @@
     "eml": {
       "bytes": 58435,
       "sha256": "cc1f09b376eae26ed6c90f4e90eddde059c4f32f58d11237d6ef2290ebc90bf5"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 42322,
@@ -4840,6 +5646,11 @@
       "bytes": 57055,
       "sha256": "3b88d982f9a1eae0ef7f5a36733f3910b565bed8ed2897662d739192bc45bfe4"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 41314,
       "sha256": "8c46569bb5be70bea4e939ec74e09c4d4af217585cb842b64461d0f89dfceab6"
@@ -4861,6 +5672,11 @@
     "eml": {
       "bytes": 62325,
       "sha256": "d185d8f78d0b033c5550ac6a596859bb753daef2565e1e64b03fbc92926a142f"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 45056,
@@ -4884,6 +5700,11 @@
       "bytes": 54407,
       "sha256": "b7fcb20a01b419c33aec929e39d664b991ab865699c6120e5d88f40cf90d7a80"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 39381,
       "sha256": "4cca38e2f3188906ded7e03d970323abe348c8704a5c1f48bde644d55481d909"
@@ -4905,6 +5726,11 @@
     "eml": {
       "bytes": 58425,
       "sha256": "766dbe7b03fcc9803d2e627d93aaee1b99b1efd766b328214aec6b023b087db9"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 42318,
@@ -4928,6 +5754,11 @@
       "bytes": 57047,
       "sha256": "b79189d610faabf7d1adab2e8118f3bd835205fa1791ee1181d6d7c72a8750a5"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 41310,
       "sha256": "d8a488bc875075a20bc39d41024f3e7cdbde047f794fc1f31418fbcf87c0ec1c"
@@ -4949,6 +5780,11 @@
     "eml": {
       "bytes": 62313,
       "sha256": "c6942e129ff27f0f5bda9f0d44af5cdd319c5a916180f2ea3a03404b224770a5"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 45048,
@@ -4972,6 +5808,11 @@
       "bytes": 54403,
       "sha256": "a7b94272db813a0c597d7058205ad122c7726904cb1130058dc983e0e1c68c86"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 39377,
       "sha256": "ed408ac4cf0b8ec994ff04109ff84c70d5260339eb82c360192e68b3e6e8b602"
@@ -4994,6 +5835,11 @@
       "bytes": 30793,
       "sha256": "4286606b0705c431d2ec03fb2982541970724ca57da90d85054b8418b1d37cd7"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 22124,
       "sha256": "a7a81209462eb08709821657c2dc94deeb209d8d83705dbe9ef4b172d601c1a8"
@@ -5011,6 +5857,11 @@
     "eml": {
       "bytes": 30161,
       "sha256": "f6bee82e575fcab1f578db2e7dbd64d9425890225721813624e0db76a2991259"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 21661,
@@ -5030,6 +5881,11 @@
       "bytes": 33865,
       "sha256": "f81add48d1ac632eb1b597095948545afbf9f011d1e2e47849d5b11df61855a7"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 24369,
       "sha256": "ab610dd5c06436e2ce36c3488e99dbcb92c795e3a6c17c4fd538ab187a6d909f"
@@ -5047,6 +5903,11 @@
     "eml": {
       "bytes": 29479,
       "sha256": "5950227efa841860a3fdd271a080d47262e53ff723452f016f9fccf9d183f80a"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 21165,
@@ -5066,6 +5927,11 @@
       "bytes": 25103,
       "sha256": "4887110f1a1e0c02345bc8bc8fbc54497a8c52c457b481ffc26521b5135e9b73"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 17967,
       "sha256": "7f7e414269c3bc8b8f933f304dfd4812cd5046315c134e2ece0a7a756da3deed"
@@ -5083,6 +5949,11 @@
     "eml": {
       "bytes": 47399,
       "sha256": "33e9b66edc5b81460c3be9958d040b96c4eee025b37001c981584498de6a0896"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 34259,
@@ -5106,6 +5977,11 @@
       "bytes": 46743,
       "sha256": "393f6d6af7df1544b3794ea6945c981a9dda7c56c6a4faea6af5f89e58c221be"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 33778,
       "sha256": "092808b1154a6772e99fc89c18703df1b488126c8f2f3218e2cff97c24508642"
@@ -5127,6 +6003,11 @@
     "eml": {
       "bytes": 51383,
       "sha256": "efc54df1990d4ce32bd8456a0ff21b5e20ae0f4a719b55100422045e7027bcc9"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 37062,
@@ -5150,6 +6031,11 @@
       "bytes": 44689,
       "sha256": "7dffcb4da134e7fe542a93d3874630b7e4ff9a147c93e7ce1b9794a4b814e5ba"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 32279,
       "sha256": "b74a59549b6ed99bb0da1d6c8a103425eda5424e120be5f53a49b6c5afbc8f87"
@@ -5171,6 +6057,11 @@
     "eml": {
       "bytes": 47395,
       "sha256": "f49eb2f02d617253c51850327a2ca73fcc709ab8796c5d67287128b7e31bcddf"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 34255,
@@ -5194,6 +6085,11 @@
       "bytes": 46735,
       "sha256": "2ad6a45214de1d500254414e188914991220af42a3af1855b7889fbe25839b00"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 33774,
       "sha256": "38e289d05b757a0cf5c2b12859ea1a24c9c6a295daac6de80cc23ca2b09ba6a7"
@@ -5215,6 +6111,11 @@
     "eml": {
       "bytes": 51371,
       "sha256": "ad76ac0223faa703881d5cc70c384a16bbc176d263f39f7c477a6c5888e927e0"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 37054,
@@ -5238,6 +6139,11 @@
       "bytes": 44685,
       "sha256": "95080be82df2ccba118ea204da7604521cac09b40b5b098be3b181e471550b80"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 32275,
       "sha256": "e1e404125968ca5b61505bfb41cd22c6f51250e6fbe9be93d71f26f260aec74c"
@@ -5260,6 +6166,11 @@
       "bytes": 33758,
       "sha256": "2cb4711e3683377a471e3e4813adc6e66869d04492a896f191bb916d6522e973"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 24248,
       "sha256": "2a9bcb6ab89ac77f803aa5953fc064b922df0c6a462819836b48bc7cd677e740"
@@ -5277,6 +6188,11 @@
     "eml": {
       "bytes": 32930,
       "sha256": "70327e5ac103ae97ffcec03d4568d394753d05809dd6325681421cea46d9a983"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 23641,
@@ -5296,6 +6212,11 @@
       "bytes": 36776,
       "sha256": "b6d3911460d5e4ebc401932660e4c1733d8b0e16d92fa6cce4bc030fa5ec29ec"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 26453,
       "sha256": "f691554465674f3e1e261ee42132593692a93cd0e4dda486eae5f46795738fbc"
@@ -5313,6 +6234,11 @@
     "eml": {
       "bytes": 32112,
       "sha256": "4495eb4ed892ba3e6a7bef4135986d03c3eee9caed487919be5f87bcdcece76f"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 23045,
@@ -5332,6 +6258,11 @@
       "bytes": 26324,
       "sha256": "729297cec7aa4186afdf4d476cde5f2aa6e18b90a27a43daf6f7f0eaef890fea"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 18814,
       "sha256": "f4043692306af54ddf1f463ab2de7db9632e5079380f9a8a95e9bb39e87e76de"
@@ -5349,6 +6280,11 @@
     "eml": {
       "bytes": 58494,
       "sha256": "2bb41daeb3960e2f36fda8aa9eb81f42b69816ad583cac317631fbaa84d4cd5f"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 42322,
@@ -5372,6 +6308,11 @@
       "bytes": 57114,
       "sha256": "76c2d31bfedd3a94f7b8640b76870535e502f8e8c9773e2fc2993dc74fba0a50"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 41314,
       "sha256": "8c46569bb5be70bea4e939ec74e09c4d4af217585cb842b64461d0f89dfceab6"
@@ -5393,6 +6334,11 @@
     "eml": {
       "bytes": 62384,
       "sha256": "f01aa1d4aa053e8af11eaf1b10d2e8d8df43e8c98ebf034efa8afb5565436b90"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 45056,
@@ -5416,6 +6362,11 @@
       "bytes": 54466,
       "sha256": "25b345a396c36731493ee6e01cd2e470b93b6c411b42a40c94d4ca8e2629b12f"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 39381,
       "sha256": "4cca38e2f3188906ded7e03d970323abe348c8704a5c1f48bde644d55481d909"
@@ -5437,6 +6388,11 @@
     "eml": {
       "bytes": 58484,
       "sha256": "b009e8a0841cfa512fcb603bf6f94e4f35f5cfb2dbd55712b02051c9c3cf1c8d"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 42318,
@@ -5460,6 +6416,11 @@
       "bytes": 57106,
       "sha256": "324ce43980e1f2b0edb0aa6ba1e743a0aa4491fe02f88d03853e2b26b2af40a5"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 41310,
       "sha256": "d8a488bc875075a20bc39d41024f3e7cdbde047f794fc1f31418fbcf87c0ec1c"
@@ -5481,6 +6442,11 @@
     "eml": {
       "bytes": 62372,
       "sha256": "d2ebdc9b58bef0ba4dda819235b50c9b3d906bbbbbf033d1e68b3f949a344aad"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 45048,
@@ -5504,6 +6470,11 @@
       "bytes": 54462,
       "sha256": "71767d19f4faa4217b8cb7db92896c53f79ccd43ca2860589ccec6359038ee2c"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 39377,
       "sha256": "ed408ac4cf0b8ec994ff04109ff84c70d5260339eb82c360192e68b3e6e8b602"
@@ -5526,6 +6497,11 @@
       "bytes": 30852,
       "sha256": "93ae1c1597a2dc154ae286a0cf5db793fe4e737483b336128be505c86897e82b"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 22124,
       "sha256": "a7a81209462eb08709821657c2dc94deeb209d8d83705dbe9ef4b172d601c1a8"
@@ -5543,6 +6519,11 @@
     "eml": {
       "bytes": 30220,
       "sha256": "ec40e6f975a441ecd43947145a252603a808c7d744f3df0c8ae0b931015d33df"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 21661,
@@ -5562,6 +6543,11 @@
       "bytes": 33924,
       "sha256": "ac56a7430545b23087b7f0a217f63a03ad8f66e6cef410323d1e584e26d2ebba"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 24369,
       "sha256": "ab610dd5c06436e2ce36c3488e99dbcb92c795e3a6c17c4fd538ab187a6d909f"
@@ -5579,6 +6565,11 @@
     "eml": {
       "bytes": 29538,
       "sha256": "3cb9f8e3e247da0bb7913746fed2ad53141431333149b4c3639013982432990a"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 21165,
@@ -5598,6 +6589,11 @@
       "bytes": 25162,
       "sha256": "7ea968522c6d62abf694dea5ce37a70e65e1a3c32b1eb0c73814abddc6f7af14"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 17967,
       "sha256": "7f7e414269c3bc8b8f933f304dfd4812cd5046315c134e2ece0a7a756da3deed"
@@ -5615,6 +6611,11 @@
     "eml": {
       "bytes": 47458,
       "sha256": "d9d368a635fa69cda4075403c61585f9dbb14e6ff4f7b9ad0c2c0957499898a8"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 34259,
@@ -5638,6 +6639,11 @@
       "bytes": 46802,
       "sha256": "5aba1f3290cf6a890cde1404e14ed79870b24c76a5a228c7e1e83bdad2800afa"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 33778,
       "sha256": "092808b1154a6772e99fc89c18703df1b488126c8f2f3218e2cff97c24508642"
@@ -5659,6 +6665,11 @@
     "eml": {
       "bytes": 51442,
       "sha256": "a5bcc0541b9029aeab156fec65dcf639ddad0fc49b6986e944e73abfe1e039c3"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 37062,
@@ -5682,6 +6693,11 @@
       "bytes": 44748,
       "sha256": "08ae16539458af1065300ee3606a05c3d1b0cc7f06f21ca3cc9965f26d7392c3"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 32279,
       "sha256": "b74a59549b6ed99bb0da1d6c8a103425eda5424e120be5f53a49b6c5afbc8f87"
@@ -5703,6 +6719,11 @@
     "eml": {
       "bytes": 47454,
       "sha256": "934bac7ef3a45cab98c301ccdd1006a747c9caab9ab4ec7d8075395655c630d5"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 34255,
@@ -5726,6 +6747,11 @@
       "bytes": 46794,
       "sha256": "3ef4ef558e7c666ef4c0b361a8042ca7ad0e27f3f56cfb98df916beae744b769"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 33774,
       "sha256": "38e289d05b757a0cf5c2b12859ea1a24c9c6a295daac6de80cc23ca2b09ba6a7"
@@ -5747,6 +6773,11 @@
     "eml": {
       "bytes": 51430,
       "sha256": "1223fb925e4fbf0303bed44d72e80ddea455ca64c8d1cda93e2bdbd15caafcfa"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 37054,
@@ -5770,6 +6801,11 @@
       "bytes": 44744,
       "sha256": "9e7096201a084543875f82cc1aa83249cbeb3ba564143e07e8c002f5e53d83dc"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 32275,
       "sha256": "e1e404125968ca5b61505bfb41cd22c6f51250e6fbe9be93d71f26f260aec74c"
@@ -5792,6 +6828,11 @@
       "bytes": 33592,
       "sha256": "2bb820f3d5ef3e6aec20541a4ef509366603015d5941aa5b5a3191e2488e225f"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 24337,
       "sha256": "c8369f8bd1eb158420004b26a95a173657f44bd79f94b8cb2fe0a708c5c72e61"
@@ -5809,6 +6850,11 @@
     "eml": {
       "bytes": 32760,
       "sha256": "636cd3a3eefe3c9939147db598771de46d06d74137e4baee23d270aa40ce7f12"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 23730,
@@ -5828,6 +6874,11 @@
       "bytes": 36610,
       "sha256": "a6f850992f68d87d565bf516d2bbe4da395b153204120076798cbe9155fcd0a1"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 26542,
       "sha256": "adff7403745ff4b3769eed516a2de4755664abe4b8d6c5d7a00fccfd3202cb55"
@@ -5845,6 +6896,11 @@
     "eml": {
       "bytes": 31946,
       "sha256": "343e55cac508e6e8414ab7fc032c33f98a6b17b17afdf394e56eb1b93688dbcd"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 23134,
@@ -5864,6 +6920,11 @@
       "bytes": 25526,
       "sha256": "a7580bab6201e3229b4514b4432ce201608dbeba8767f6356298ad2da345f5c8"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 18444,
       "sha256": "c475f7ef47f624ed233f2992897dcf90dea6ddf0a96bfb48590fe12cbdb31b5d"
@@ -5881,6 +6942,11 @@
     "eml": {
       "bytes": 58324,
       "sha256": "b0c00858a9481b1a555ac57f5c36c9a26fc0f82c97006e48c58b7d81dc1dff42"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 42411,
@@ -5904,6 +6970,11 @@
       "bytes": 56944,
       "sha256": "6e3ce0401b850ad48cc798fa8287ad3d9403b1e6a6cd70b7e80490cf8c196e0a"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 41403,
       "sha256": "476b5caca989e592d05ec814604b5c787a255ad24f5148d298c75e20262aa6a5"
@@ -5925,6 +6996,11 @@
     "eml": {
       "bytes": 62350,
       "sha256": "05a3ecd2c5f6876de47e9df3ea05b4c63baa0ace30b9719852fa90d0935fe21a"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 45145,
@@ -5948,6 +7024,11 @@
       "bytes": 54300,
       "sha256": "82321be360c0f1ed0a78949586ed1c650731c553091add56112fb0faf6821628"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 39470,
       "sha256": "82566873d6efcb0bd7f09c7416c55de76a564a4c5738a49380e3c2eba39c81f7"
@@ -5969,6 +7050,11 @@
     "eml": {
       "bytes": 58318,
       "sha256": "2e1bcedbda97c794bb949f54644365e488340a749b9d17033d9bc63a1e891475"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 42407,
@@ -5992,6 +7078,11 @@
       "bytes": 56940,
       "sha256": "d0529ad1f2b985737c9943e53f3520323b575a55bf92f78c911a9b3efdcb00f1"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 41399,
       "sha256": "e822c9b4b27de11635809fe98b243a1836436a50882146208df53bbf2a7023d3"
@@ -6013,6 +7104,11 @@
     "eml": {
       "bytes": 62342,
       "sha256": "4e181a1ddb4f78915e5e457f4ca289b35d95df483dedc349c4d4356f05db6572"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 45137,
@@ -6036,6 +7132,11 @@
       "bytes": 54296,
       "sha256": "150141c8075ff428756142b1c4c422d1dfa27e5eb3a6aa112864a01957c7f8ab"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 39466,
       "sha256": "b243be9d4259aedc24b2ea1ed7b5ad3d90a30037de6ff92062b5aaae220a589e"
@@ -6058,6 +7159,11 @@
       "bytes": 30686,
       "sha256": "a4a1f72eb29ab899642d30dd56e7efb9110b37f83a032abce50dc0db7cf8df6a"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 22213,
       "sha256": "57f8e167c0f40d1272f672972b31eabc88c5a2ea3f391a88c279413ce1d8cc4d"
@@ -6075,6 +7181,11 @@
     "eml": {
       "bytes": 30050,
       "sha256": "4f4cb4dfbf6230c48ffa9aab8b75d853d85ae007e3221493a8f040db90a62d4d"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 21750,
@@ -6094,6 +7205,11 @@
       "bytes": 33758,
       "sha256": "d1e3b415cb8e5d564fcf3c3e0edcb60025518d8bbc79e1703b1c544aa343bffe"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 24458,
       "sha256": "79ae8e6cbda169318dbd60c5aa5ced417da8487a1d43830523413e74b37c1e8a"
@@ -6111,6 +7227,11 @@
     "eml": {
       "bytes": 29372,
       "sha256": "b3d9e3df4acecd8fd0061d2055cd9629f28975d0379a2c7e3ba8cf427c1f505f"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 21254,
@@ -6130,6 +7251,11 @@
       "bytes": 24368,
       "sha256": "a9a6d720631a9fdbe709b0f8542f8f457fcafbc648299a16fd1e5290a16c11d8"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 17597,
       "sha256": "455995287586a67ba9aaf21bb3cadf59bd0716977df320f4420a6c80509ee0f5"
@@ -6147,6 +7273,11 @@
     "eml": {
       "bytes": 47292,
       "sha256": "ba9f0b9bad14bf7c1b918e5b6bf59b1a506a67508ca83801edff9873baf5b3ba"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 34348,
@@ -6170,6 +7301,11 @@
       "bytes": 46632,
       "sha256": "ba44b99a3c4405bf84e62bb2ad91c15627047df90e3a9f2e9d5bb9f91ff7beba"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 33867,
       "sha256": "9f0c098a4745752dc2d356906508bac4006be97cf99e6c60e6c88ece3fbf4b81"
@@ -6191,6 +7327,11 @@
     "eml": {
       "bytes": 51414,
       "sha256": "534ea3219d73f29e28c1b074f617d2ed9dc1cce26090418bf535c0aff395c026"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 37151,
@@ -6214,6 +7355,11 @@
       "bytes": 44582,
       "sha256": "39478b2372b28b86beddb451f1f76db505c80589483d58265e0b1491e14ca745"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 32368,
       "sha256": "880e2785d76ccc5910643c0673642d71b38de65f724ce51a0382589dbf4aec0b"
@@ -6235,6 +7381,11 @@
     "eml": {
       "bytes": 47284,
       "sha256": "7e3f6aab11c847d077ec6e1ddc46eba578b4fe4a0a00f76d74afd21450d5d993"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 34344,
@@ -6258,6 +7409,11 @@
       "bytes": 46628,
       "sha256": "c72f7fe9c04934894d2cf942087905d4f5a43c3204080b8635abd9403e5ad72c"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 33863,
       "sha256": "3e539e8779e2cc0af2f52a91e7af941137698ee7030db8b60c7643bdd881c9dc"
@@ -6279,6 +7435,11 @@
     "eml": {
       "bytes": 51400,
       "sha256": "10eed669f6a3cfea7370a151a780526c8e1d56c1a5c2b2b836e53096df82021a"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 37143,
@@ -6302,6 +7463,11 @@
       "bytes": 44574,
       "sha256": "f509bbd2de23cee3f1ac68cbee73f3a4124397fb1ab5196e12eb3a82324f9a04"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 32364,
       "sha256": "f11e0cf0f89544953ae56d31bd179b34c1368f2eb5aa7178c53cc90a9aa00f0f"
@@ -6324,6 +7490,11 @@
       "bytes": 32964,
       "sha256": "9fef16d9433d50fd69ad553c5d5648c74f11215e48620c526239a17ddef2a93d"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 23880,
       "sha256": "cc8edc07dc9dbc999b5ff4857653569c6457cecfa86a306cf3d072573736bf14"
@@ -6341,6 +7512,11 @@
     "eml": {
       "bytes": 32136,
       "sha256": "c0e2c9d5d734257c459f79881dbb5a5b37f2084feee344a727916f86502a8b80"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 23273,
@@ -6360,6 +7536,11 @@
       "bytes": 35982,
       "sha256": "9c93c66f8b1a13331b8d9efb8a6ab921b94b2f808387b613a844b2a43c4a80c1"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 26085,
       "sha256": "80a6966e2ea81a053cd0c1f11389181f2e0d64b2573b395e65a820063cccb296"
@@ -6377,6 +7558,11 @@
     "eml": {
       "bytes": 31318,
       "sha256": "f6a1bd493155be6fb46fa7beef5a79b256ada68123ca6118f5f810c9072a6ebd"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 22677,
@@ -6396,6 +7582,11 @@
       "bytes": 25658,
       "sha256": "fbb8720e7fb095bb12451c6bbc53890928b06b25232a3faf34e01689469db811"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 18540,
       "sha256": "0c7905584e84d3a91fb7e54b32ee6cc78d1b54b902151d5150f13fb9de0dfb03"
@@ -6413,6 +7604,11 @@
     "eml": {
       "bytes": 57700,
       "sha256": "a3eb7d50093cf812b5b5131a3731e5e87d60d51e29cf7c778c9759838f89fbe7"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 41954,
@@ -6436,6 +7632,11 @@
       "bytes": 56320,
       "sha256": "7d32371cdb9464c301f867a8ce019559e24d7cb73046ff70bdf2eb2bbf176971"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 40946,
       "sha256": "7ffdb97ef00534c584821222f8a0a4c38f4e3b7f1736fbffaf48bf6bb5ae126e"
@@ -6457,6 +7658,11 @@
     "eml": {
       "bytes": 61726,
       "sha256": "eaff2012c77df2abd981aae6fb4f7ae2a41e9f15352cb3dbe02b9b6ed8777978"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 44688,
@@ -6480,6 +7686,11 @@
       "bytes": 53676,
       "sha256": "2ef2d4bc07b72a1750104beece6a2dd8a61d5cd3396cb6415f5d4cf5ebe89b65"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 39013,
       "sha256": "d6264a6fce869965144af410be44b40828e35380f139221b9d79a114b722a822"
@@ -6501,6 +7712,11 @@
     "eml": {
       "bytes": 57694,
       "sha256": "7f22bb83c211461e6daa73dfb1e71c931692f2d1c0a069482908da171cac2e59"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 41950,
@@ -6524,6 +7740,11 @@
       "bytes": 56316,
       "sha256": "73e7461768d90a0e5849dcb7030f20f9667f6dbacc54b1efbb1276fc951ae769"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 40942,
       "sha256": "742f772d0d8bf5cd500b4c7bcbb6eeb86c3177548e1e2d8a5af60ff039287624"
@@ -6545,6 +7766,11 @@
     "eml": {
       "bytes": 61714,
       "sha256": "b946adf3ec8df8800471f480009765955f4f8bbb657b7a2261f52a9432eab7c7"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 44680,
@@ -6568,6 +7794,11 @@
       "bytes": 53668,
       "sha256": "cbded963e6b3b9986468fbb1588262212237ebeb24d4dd36a79d047f2e359de9"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 39009,
       "sha256": "ef1a93fb5c63d5c04acd8cd34915bad1759cf799ce3a4a23d6eecac2adf0bf13"
@@ -6590,6 +7821,11 @@
       "bytes": 30058,
       "sha256": "434d03872d3773eb6da183e9e4aab0d4a2878d20329186c89cfabc3d4ab103d2"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 21756,
       "sha256": "29e1b07a605aab98f7ca797f05921c8030237b0539ae43de06fdb933eaea1736"
@@ -6607,6 +7843,11 @@
     "eml": {
       "bytes": 29426,
       "sha256": "66d88cee3994d5c38e6d3306a25e79e4babb3c677c049cba37ad5eb18f134d72"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 21293,
@@ -6626,6 +7867,11 @@
       "bytes": 33134,
       "sha256": "c6f44f2d207a2a3b2c5050b2d7eee8a3b1cafe875099b3fc1ab55c08d2990ae3"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 24001,
       "sha256": "c57ca8893c9f1ffa125feb7ec417da6e1755b743d95b570d7090bf01064a45b1"
@@ -6643,6 +7889,11 @@
     "eml": {
       "bytes": 28748,
       "sha256": "6603586ff39fa653ac3c9fb9b551d05a21c6869059a928fca10cf1712ca85faa"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 20797,
@@ -6662,6 +7913,11 @@
       "bytes": 24500,
       "sha256": "1af699113972fdbd52749e20ce77f0c68b27fa0f6e02eb1aa5b2a5bf928c099b"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 17693,
       "sha256": "d798dfc78bf8925d7ded0abc8332826764c067bdc5d0e7525fb4fda54f53daaf"
@@ -6679,6 +7935,11 @@
     "eml": {
       "bytes": 46664,
       "sha256": "6a1a7a315b32aa1a27740be698f53ff35e31f9fa1489822b3f7ca893d9a14224"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 33891,
@@ -6702,6 +7963,11 @@
       "bytes": 46008,
       "sha256": "1e40f5dfd261f839a8f192b5d1658316d0aaa081ee54d1c3525baee209d84a0c"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 33410,
       "sha256": "0292c27460da823c380a00f9c5f2ae282135a5b9e10081c990f7832c8f628cfa"
@@ -6723,6 +7989,11 @@
     "eml": {
       "bytes": 50784,
       "sha256": "281f097761e1c89d61ca9b6dce427efaaa371dbafa788ea2fdf47b6d20becd18"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 36694,
@@ -6746,6 +8017,11 @@
       "bytes": 43954,
       "sha256": "58c018a60f784108dc6dc6bbba2423a519789aabc5cea4e28616d43a83403e14"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 31911,
       "sha256": "b50dc65eff2631139ca8fc3c867502bab7b3fbb358de6fc848e8a82c1022fc2e"
@@ -6767,6 +8043,11 @@
     "eml": {
       "bytes": 46660,
       "sha256": "ca3e63eede8fbf6c40006c8034db5fd2f07b362ea34712aa6e27bd25c8920a2c"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 33887,
@@ -6790,6 +8071,11 @@
       "bytes": 46004,
       "sha256": "61b2cc786f25bb36f782c67173f3a133b2971a44f4565929dadaef0ec0ac06d3"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 33406,
       "sha256": "fe254c491a96773d129dc937a216a143f7ee75726cbdbca1c877ee3644064fa2"
@@ -6811,6 +8097,11 @@
     "eml": {
       "bytes": 50776,
       "sha256": "a2b5e04a11cbfdeb1bb2895f0a9370cb3b51cde4764a3fbb20496ac3951c992d"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 36686,
@@ -6834,6 +8125,11 @@
       "bytes": 43950,
       "sha256": "599d127eb457da916ea624d233bedc6fc2600cb719727394af1ef4a64fe988b9"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 31907,
       "sha256": "95c07797ee3245c004b9de0dd4f0a13bb2f1c81d844d9b9fae119b390270ce78"
@@ -6856,6 +8152,11 @@
       "bytes": 33758,
       "sha256": "2cb4711e3683377a471e3e4813adc6e66869d04492a896f191bb916d6522e973"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 24248,
       "sha256": "2a9bcb6ab89ac77f803aa5953fc064b922df0c6a462819836b48bc7cd677e740"
@@ -6873,6 +8174,11 @@
     "eml": {
       "bytes": 32930,
       "sha256": "70327e5ac103ae97ffcec03d4568d394753d05809dd6325681421cea46d9a983"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 23641,
@@ -6892,6 +8198,11 @@
       "bytes": 36776,
       "sha256": "b6d3911460d5e4ebc401932660e4c1733d8b0e16d92fa6cce4bc030fa5ec29ec"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 26453,
       "sha256": "f691554465674f3e1e261ee42132593692a93cd0e4dda486eae5f46795738fbc"
@@ -6909,6 +8220,11 @@
     "eml": {
       "bytes": 32112,
       "sha256": "4495eb4ed892ba3e6a7bef4135986d03c3eee9caed487919be5f87bcdcece76f"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 23045,
@@ -6928,6 +8244,11 @@
       "bytes": 26324,
       "sha256": "729297cec7aa4186afdf4d476cde5f2aa6e18b90a27a43daf6f7f0eaef890fea"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 18814,
       "sha256": "f4043692306af54ddf1f463ab2de7db9632e5079380f9a8a95e9bb39e87e76de"
@@ -6945,6 +8266,11 @@
     "eml": {
       "bytes": 61124,
       "sha256": "ff9e8a445644b558a12aa59f68fbeffb2fa91481472b27aa7978aa16da607d91"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 44247,
@@ -6968,6 +8294,11 @@
       "bytes": 59598,
       "sha256": "ccfbac4718c79d9e1d2d5a2119c1f464304869914a32a8d38dcaa2ca263782cb"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 43130,
       "sha256": "fb609d87fc5bf6cb4b505c4ab9b94bbcc287cf56efc31df9db323ae8ba546855"
@@ -6989,6 +8320,11 @@
     "eml": {
       "bytes": 65036,
       "sha256": "d1ea61263a3e72aa1677956fc8e85941bedf7bc101714b9217964eeba862b1f6"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 46994,
@@ -7012,6 +8348,11 @@
       "bytes": 56822,
       "sha256": "82ce79b3298c731e4a462b395b1ea7dedf9660a559836bfaca885309b4014206"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 41103,
       "sha256": "cf96a13819544c50b9750583ee38d87a3069ad3e058c662bcf7a9c6363c6bb06"
@@ -7033,6 +8374,11 @@
     "eml": {
       "bytes": 61120,
       "sha256": "eb0f6668ac69b070891dd767f9bfa2759c369ef365e569072ec0cfb4824c8ba1"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 44243,
@@ -7056,6 +8402,11 @@
       "bytes": 59594,
       "sha256": "6da585cd392031f43106a91caa19842ed160444fe0ce2ea88ece93d78dafafb3"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 43126,
       "sha256": "4d40a35becfcc6231876e30df9964df8968eac1df8ca0aa26b15a177166accb4"
@@ -7077,6 +8428,11 @@
     "eml": {
       "bytes": 65024,
       "sha256": "fb08274d8d390a8455c33fb136382c631e7305bde575eb793e7480f1c1c230dc"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 46986,
@@ -7100,6 +8456,11 @@
       "bytes": 56818,
       "sha256": "d3845be64b477a73e11f019b65b9dde37b16c32d9356df56b97e8cf0359442ec"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 41099,
       "sha256": "d367110b13802c8fa916d675b70ef90a1088f2fd04bb4016602bc03c2854048a"
@@ -7122,6 +8483,11 @@
       "bytes": 30852,
       "sha256": "93ae1c1597a2dc154ae286a0cf5db793fe4e737483b336128be505c86897e82b"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 22124,
       "sha256": "a7a81209462eb08709821657c2dc94deeb209d8d83705dbe9ef4b172d601c1a8"
@@ -7139,6 +8505,11 @@
     "eml": {
       "bytes": 30220,
       "sha256": "ec40e6f975a441ecd43947145a252603a808c7d744f3df0c8ae0b931015d33df"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 21661,
@@ -7158,6 +8529,11 @@
       "bytes": 33924,
       "sha256": "ac56a7430545b23087b7f0a217f63a03ad8f66e6cef410323d1e584e26d2ebba"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 24369,
       "sha256": "ab610dd5c06436e2ce36c3488e99dbcb92c795e3a6c17c4fd538ab187a6d909f"
@@ -7175,6 +8551,11 @@
     "eml": {
       "bytes": 29538,
       "sha256": "3cb9f8e3e247da0bb7913746fed2ad53141431333149b4c3639013982432990a"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 21165,
@@ -7194,6 +8575,11 @@
       "bytes": 25162,
       "sha256": "7ea968522c6d62abf694dea5ce37a70e65e1a3c32b1eb0c73814abddc6f7af14"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 17967,
       "sha256": "7f7e414269c3bc8b8f933f304dfd4812cd5046315c134e2ece0a7a756da3deed"
@@ -7211,6 +8597,11 @@
     "eml": {
       "bytes": 49212,
       "sha256": "4cf90d9bbafd7a4b1c0a3edce4d909247f441176f1954e1ec21ba74172ef1fec"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 35539,
@@ -7234,6 +8625,11 @@
       "bytes": 48526,
       "sha256": "fc1f26f1f0cccfc756a3b92d570df110a031d246c6bc29d170e9c22b1a47421f"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 35038,
       "sha256": "923b154872d7d88dad2c755fd043889d7a65d565d5ac2376385b582250318f0d"
@@ -7255,6 +8651,11 @@
     "eml": {
       "bytes": 53232,
       "sha256": "9b887f425a9e29967977390dee205e8f9b990a7fe09fe3a93da1a4e029d0b2c9"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 38370,
@@ -7278,6 +8679,11 @@
       "bytes": 46342,
       "sha256": "b6806dd5d0d41e4cc2466353b1b749c62881ee5b7edb41c2a7d8034aed268f1c"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 33443,
       "sha256": "557cd18cbe3b94f23ee90eb2c50115dc22c5424f074a998f0d36632f9e129165"
@@ -7299,6 +8705,11 @@
     "eml": {
       "bytes": 49202,
       "sha256": "4e0d454c203a220dfccb5bb5ea34fb13d5425d0e61bcf571602c9c5849d01ab1"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 35535,
@@ -7322,6 +8733,11 @@
       "bytes": 48518,
       "sha256": "5e1623e420f56e77b6f64426f3ed356f097449919b4f72d7e02e92d298c7fbfa"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 35034,
       "sha256": "70aefa075bd96700ab78dc1d87c97906c6103a37b65d66093d68ff5cb283ec0f"
@@ -7343,6 +8759,11 @@
     "eml": {
       "bytes": 53220,
       "sha256": "e51b4fe21a6d453c2c55fb6694d24cf144d7605e99323958daa4dc524e51d556"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 38362,
@@ -7366,6 +8787,11 @@
       "bytes": 46338,
       "sha256": "3c93807af2d1ad939d5a5613f80217bb27bb2c1bb9703b40a32d3a01bc0c9971"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 33439,
       "sha256": "142c8745bf180999452eb149ff7a2de912d71db82fec4e27e2613a19e276ee95"
@@ -7388,6 +8814,11 @@
       "bytes": 33758,
       "sha256": "2cb4711e3683377a471e3e4813adc6e66869d04492a896f191bb916d6522e973"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 24248,
       "sha256": "2a9bcb6ab89ac77f803aa5953fc064b922df0c6a462819836b48bc7cd677e740"
@@ -7405,6 +8836,11 @@
     "eml": {
       "bytes": 32930,
       "sha256": "70327e5ac103ae97ffcec03d4568d394753d05809dd6325681421cea46d9a983"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 23641,
@@ -7424,6 +8860,11 @@
       "bytes": 36776,
       "sha256": "b6d3911460d5e4ebc401932660e4c1733d8b0e16d92fa6cce4bc030fa5ec29ec"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 26453,
       "sha256": "f691554465674f3e1e261ee42132593692a93cd0e4dda486eae5f46795738fbc"
@@ -7441,6 +8882,11 @@
     "eml": {
       "bytes": 32112,
       "sha256": "4495eb4ed892ba3e6a7bef4135986d03c3eee9caed487919be5f87bcdcece76f"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 23045,
@@ -7460,6 +8906,11 @@
       "bytes": 26324,
       "sha256": "729297cec7aa4186afdf4d476cde5f2aa6e18b90a27a43daf6f7f0eaef890fea"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 18814,
       "sha256": "f4043692306af54ddf1f463ab2de7db9632e5079380f9a8a95e9bb39e87e76de"
@@ -7477,6 +8928,11 @@
     "eml": {
       "bytes": 41456,
       "sha256": "9057f2ff05ed8fb28ba1f0a04e0ff490074ccaf0374e3a0409eec42cbd4332fe"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 29874,
@@ -7500,6 +8956,11 @@
       "bytes": 40750,
       "sha256": "0c61a8abdaada627e7881d22049ac4c9e42faf31dfdeea49516ef82abc742e13"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 29358,
       "sha256": "d82d8659bc5094fa06669dd667196c5b2f05bc38150d76d132c7713ca0b6a30c"
@@ -7521,6 +8982,11 @@
     "eml": {
       "bytes": 45212,
       "sha256": "1e6cd10188acdbb51c11661b75f912029b668eb172ea472e514e75b396340a17"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 32509,
@@ -7544,6 +9010,11 @@
       "bytes": 39100,
       "sha256": "03be8444885b86d1106762d9ad48f04284d1a2452b308a70d1667a5ab478af8a"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 28150,
       "sha256": "0d2b2faa1308e1e2a880e3d5623b3e41d2662d2fa5fd8b513b9a37182b7fff12"
@@ -7565,6 +9036,11 @@
     "eml": {
       "bytes": 41452,
       "sha256": "19c6e434cde5182a58d167f40dc2d19686cd23de4adb3f581530391db5ce0577"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 29870,
@@ -7588,6 +9064,11 @@
       "bytes": 40746,
       "sha256": "e88e7e299636979f3c1801f1d6006823833b3218609ec819c175fded15a855cc"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 29354,
       "sha256": "a38c63c3d4612d3370ec1804c22af9e83bf08e7cb5b921924b0ced18c54dda4e"
@@ -7609,6 +9090,11 @@
     "eml": {
       "bytes": 45202,
       "sha256": "0282e926f3b8340b2f5bead7883619b564ae226e865035c5c2a47a16bb10717a"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 32501,
@@ -7632,6 +9118,11 @@
       "bytes": 39092,
       "sha256": "ec6261afb4fa60d278f52d4e87afb5a72528744f8b85deea963edcee76dac81f"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 28146,
       "sha256": "884814e48be9598950e7c9f4d2a248560a8935527b149514f14bc79326b8dac4"
@@ -7654,6 +9145,11 @@
       "bytes": 30852,
       "sha256": "93ae1c1597a2dc154ae286a0cf5db793fe4e737483b336128be505c86897e82b"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 22124,
       "sha256": "a7a81209462eb08709821657c2dc94deeb209d8d83705dbe9ef4b172d601c1a8"
@@ -7671,6 +9167,11 @@
     "eml": {
       "bytes": 30220,
       "sha256": "ec40e6f975a441ecd43947145a252603a808c7d744f3df0c8ae0b931015d33df"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 21661,
@@ -7690,6 +9191,11 @@
       "bytes": 33924,
       "sha256": "ac56a7430545b23087b7f0a217f63a03ad8f66e6cef410323d1e584e26d2ebba"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 24369,
       "sha256": "ab610dd5c06436e2ce36c3488e99dbcb92c795e3a6c17c4fd538ab187a6d909f"
@@ -7707,6 +9213,11 @@
     "eml": {
       "bytes": 29538,
       "sha256": "3cb9f8e3e247da0bb7913746fed2ad53141431333149b4c3639013982432990a"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 21165,
@@ -7726,6 +9237,11 @@
       "bytes": 25162,
       "sha256": "7ea968522c6d62abf694dea5ce37a70e65e1a3c32b1eb0c73814abddc6f7af14"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 17967,
       "sha256": "7f7e414269c3bc8b8f933f304dfd4812cd5046315c134e2ece0a7a756da3deed"
@@ -7743,6 +9259,11 @@
     "eml": {
       "bytes": 36132,
       "sha256": "c2f1a2d57bc52dab2314ae2a9bcf9821839460085c1e6cae0c0f466766145729"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 25981,
@@ -7766,6 +9287,11 @@
       "bytes": 35512,
       "sha256": "96263dd478be62fb6ff518978363640318ea34c80ee9f5fbca56ea6786c2d656"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 25530,
       "sha256": "ae756ebb7cff3430a53387e96a186563c6ea1ba3cbc6af0564e7ac0d572f1cea"
@@ -7787,6 +9313,11 @@
     "eml": {
       "bytes": 39858,
       "sha256": "d655631e86b41c556693a8a713c10c0d52e1e5c26e43fe3305b5d5502d9ff0a4"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 28595,
@@ -7810,6 +9341,11 @@
       "bytes": 34370,
       "sha256": "fb8065114fddbbb61024fea443987e16772c09b114584532ac830b50c4e4715b"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 24696,
       "sha256": "d1f550322269a7715c5a893ddfb413b382fe509eb0bedbe8ed33f6e4ea437bcc"
@@ -7831,6 +9367,11 @@
     "eml": {
       "bytes": 36124,
       "sha256": "62d1ad26bafe37995bd850a6aa2d526028847b6e53ca88ee1754315e40562737"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 25977,
@@ -7854,6 +9395,11 @@
       "bytes": 35508,
       "sha256": "c36b6df0f37cf75313f846fb6ef0f3f38b203769d5d2e94f3c3c6ca547dcb6f1"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 25526,
       "sha256": "aa4d0e3aaa892576cf3a6f0f591448773b8b2028006319252472b8ad9d6d2397"
@@ -7875,6 +9421,11 @@
     "eml": {
       "bytes": 39846,
       "sha256": "a965582721183fcd4698a5631198039dc2717d22653565feac76a23b2fe94c82"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 28587,
@@ -7898,6 +9449,11 @@
       "bytes": 34366,
       "sha256": "90bac6a94ffcfc427f47af7bac1eb3776ee18846b8fcab65d3fdfa19c7a32944"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 24692,
       "sha256": "eab08af9ea3afc32cafe8f10eebd253901d3180575d3a7d4aa46e08935009f26"
@@ -7920,6 +9476,11 @@
       "bytes": 33758,
       "sha256": "2cb4711e3683377a471e3e4813adc6e66869d04492a896f191bb916d6522e973"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 24248,
       "sha256": "2a9bcb6ab89ac77f803aa5953fc064b922df0c6a462819836b48bc7cd677e740"
@@ -7937,6 +9498,11 @@
     "eml": {
       "bytes": 32930,
       "sha256": "70327e5ac103ae97ffcec03d4568d394753d05809dd6325681421cea46d9a983"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 23641,
@@ -7956,6 +9522,11 @@
       "bytes": 36776,
       "sha256": "b6d3911460d5e4ebc401932660e4c1733d8b0e16d92fa6cce4bc030fa5ec29ec"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 26453,
       "sha256": "f691554465674f3e1e261ee42132593692a93cd0e4dda486eae5f46795738fbc"
@@ -7973,6 +9544,11 @@
     "eml": {
       "bytes": 32112,
       "sha256": "4495eb4ed892ba3e6a7bef4135986d03c3eee9caed487919be5f87bcdcece76f"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 23045,
@@ -7992,6 +9568,11 @@
       "bytes": 26324,
       "sha256": "729297cec7aa4186afdf4d476cde5f2aa6e18b90a27a43daf6f7f0eaef890fea"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 18814,
       "sha256": "f4043692306af54ddf1f463ab2de7db9632e5079380f9a8a95e9bb39e87e76de"
@@ -8009,6 +9590,11 @@
     "eml": {
       "bytes": 39166,
       "sha256": "95bec07fa676db672a5a4302a1f1707d9f96f388b7b84f3df086131d212cd56a"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 28200,
@@ -8032,6 +9618,11 @@
       "bytes": 38842,
       "sha256": "833ae978d6ec65cb44503189f9434f1e6d484a96c1b3c6cfa60b9ca2679fd0fd"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 27962,
       "sha256": "f2e6a94dc0e75c977a87e48f9214612441f5c1a7f0bae2be3c46371c13c3d786"
@@ -8053,6 +9644,11 @@
     "eml": {
       "bytes": 43200,
       "sha256": "772e9e6fcdeb31dd66fe1c74a90f30ad5f9c546f3b165b13d88145c40919be83"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 31037,
@@ -8076,6 +9672,11 @@
       "bytes": 37494,
       "sha256": "dda377ebe9922668323cb6ef0ca1be2dc1e896b8b4d9323e9379caff32925e60"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 26978,
       "sha256": "b69471a344f949426819d4ddf41b484602d30e410b9edb37a5f2bdbbaf712c41"
@@ -8097,6 +9698,11 @@
     "eml": {
       "bytes": 39162,
       "sha256": "b371293ed2220df9c503ff6e44284a0e8b5dfc0244bca5dd881b67b9ab38899d"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 28196,
@@ -8120,6 +9726,11 @@
       "bytes": 38838,
       "sha256": "c663bf4c792c3f6c990d645fe79637fb6b5f9a80d3425acf4203f42024dc7432"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 27958,
       "sha256": "76b38c24a28ead0595b172ae6f0613d72b4c10af5ed9d24327e719c7a87b5dbe"
@@ -8141,6 +9752,11 @@
     "eml": {
       "bytes": 43188,
       "sha256": "5430d0e32e2f99032df731060463520ab2c81663087a677752a59f28fd7f06b0"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 31029,
@@ -8164,6 +9780,11 @@
       "bytes": 37490,
       "sha256": "50170c11f52b7fa11ea40970b94cbf9845843d2cb00e4a7dc85e4872034389f2"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 26974,
       "sha256": "bc205bbe1f3bac42d5d377b438759de93e6e9dca0c7b7016cbaf4b1a967a0a2e"
@@ -8186,6 +9807,11 @@
       "bytes": 30852,
       "sha256": "93ae1c1597a2dc154ae286a0cf5db793fe4e737483b336128be505c86897e82b"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 22124,
       "sha256": "a7a81209462eb08709821657c2dc94deeb209d8d83705dbe9ef4b172d601c1a8"
@@ -8203,6 +9829,11 @@
     "eml": {
       "bytes": 30220,
       "sha256": "ec40e6f975a441ecd43947145a252603a808c7d744f3df0c8ae0b931015d33df"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 21661,
@@ -8222,6 +9853,11 @@
       "bytes": 33924,
       "sha256": "ac56a7430545b23087b7f0a217f63a03ad8f66e6cef410323d1e584e26d2ebba"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 24369,
       "sha256": "ab610dd5c06436e2ce36c3488e99dbcb92c795e3a6c17c4fd538ab187a6d909f"
@@ -8239,6 +9875,11 @@
     "eml": {
       "bytes": 29538,
       "sha256": "3cb9f8e3e247da0bb7913746fed2ad53141431333149b4c3639013982432990a"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 21165,
@@ -8258,6 +9899,11 @@
       "bytes": 25162,
       "sha256": "7ea968522c6d62abf694dea5ce37a70e65e1a3c32b1eb0c73814abddc6f7af14"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 17967,
       "sha256": "7f7e414269c3bc8b8f933f304dfd4812cd5046315c134e2ece0a7a756da3deed"
@@ -8275,6 +9921,11 @@
     "eml": {
       "bytes": 35130,
       "sha256": "45129d6997f784b7b7eb490a4e239683db0503a7393c731413345d7c4b21703c"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 25251,
@@ -8298,6 +9949,11 @@
       "bytes": 35258,
       "sha256": "2b0bd76ee236b497b878ce24640c47873a89a2f0bbdf6b77aeca6189579c253d"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 25342,
       "sha256": "8c172fb53ba730da6231a9dc58cb9a573cd4e1abb9d15a0f87d6a8dcda2a306c"
@@ -8319,6 +9975,11 @@
     "eml": {
       "bytes": 39246,
       "sha256": "13859d12606def4989284d55d4d648c34bb57cd99dd25f2b8e3ee52476f988c8"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 28148,
@@ -8342,6 +10003,11 @@
       "bytes": 33940,
       "sha256": "515a9552972de00edab1700080156db8f606c2a381e4c1a3005bfdd08c6e6c93"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 24379,
       "sha256": "7ba3989d6d4bd8f2038c804e3a42160f5564ffbd954fb731adc7d9b637553c9a"
@@ -8363,6 +10029,11 @@
     "eml": {
       "bytes": 35126,
       "sha256": "f3c9d554769fccc04078f2ad8ebf82f8f030cee5d208195b2df3c19005d8c2f9"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 25247,
@@ -8386,6 +10057,11 @@
       "bytes": 35250,
       "sha256": "4bcedafb0912d49f5276269db2469db9e9e26aa969c8062ebeea4be3fa6669ef"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 25338,
       "sha256": "aca6096775f0e525ac390fcb40bbf23d7d80b1a937125875f95c7e3bd8c2c652"
@@ -8407,6 +10083,11 @@
     "eml": {
       "bytes": 39234,
       "sha256": "2a75475880ff5fc18399bc51b4b23b5cec28a179658c96e087d8a3c029556619"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 28140,
@@ -8430,6 +10111,11 @@
       "bytes": 33932,
       "sha256": "fd562bb30e94c6327115736ce1e0b04d230e61984501867c1395fc9a7cf6be94"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 24375,
       "sha256": "c12399e6ae274353e21c055bc00a1e866e2b6448e200634ad958f93508e63cb8"
@@ -8452,6 +10138,11 @@
       "bytes": 33758,
       "sha256": "2cb4711e3683377a471e3e4813adc6e66869d04492a896f191bb916d6522e973"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 24248,
       "sha256": "2a9bcb6ab89ac77f803aa5953fc064b922df0c6a462819836b48bc7cd677e740"
@@ -8469,6 +10160,11 @@
     "eml": {
       "bytes": 32930,
       "sha256": "70327e5ac103ae97ffcec03d4568d394753d05809dd6325681421cea46d9a983"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 23641,
@@ -8488,6 +10184,11 @@
       "bytes": 36776,
       "sha256": "b6d3911460d5e4ebc401932660e4c1733d8b0e16d92fa6cce4bc030fa5ec29ec"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 26453,
       "sha256": "f691554465674f3e1e261ee42132593692a93cd0e4dda486eae5f46795738fbc"
@@ -8505,6 +10206,11 @@
     "eml": {
       "bytes": 32112,
       "sha256": "4495eb4ed892ba3e6a7bef4135986d03c3eee9caed487919be5f87bcdcece76f"
+    },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 23045,
@@ -8524,6 +10230,11 @@
       "bytes": 26324,
       "sha256": "729297cec7aa4186afdf4d476cde5f2aa6e18b90a27a43daf6f7f0eaef890fea"
     },
+    "guards": {
+      "contractConfirmation": false,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 18814,
       "sha256": "f4043692306af54ddf1f463ab2de7db9632e5079380f9a8a95e9bb39e87e76de"
@@ -8541,6 +10252,11 @@
     "eml": {
       "bytes": 58494,
       "sha256": "2bb41daeb3960e2f36fda8aa9eb81f42b69816ad583cac317631fbaa84d4cd5f"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 42322,
@@ -8564,6 +10280,11 @@
       "bytes": 57114,
       "sha256": "76c2d31bfedd3a94f7b8640b76870535e502f8e8c9773e2fc2993dc74fba0a50"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 41314,
       "sha256": "8c46569bb5be70bea4e939ec74e09c4d4af217585cb842b64461d0f89dfceab6"
@@ -8585,6 +10306,11 @@
     "eml": {
       "bytes": 62384,
       "sha256": "f01aa1d4aa053e8af11eaf1b10d2e8d8df43e8c98ebf034efa8afb5565436b90"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 45056,
@@ -8608,6 +10334,11 @@
       "bytes": 54466,
       "sha256": "25b345a396c36731493ee6e01cd2e470b93b6c411b42a40c94d4ca8e2629b12f"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 39381,
       "sha256": "4cca38e2f3188906ded7e03d970323abe348c8704a5c1f48bde644d55481d909"
@@ -8629,6 +10360,11 @@
     "eml": {
       "bytes": 58484,
       "sha256": "b009e8a0841cfa512fcb603bf6f94e4f35f5cfb2dbd55712b02051c9c3cf1c8d"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 42318,
@@ -8652,6 +10388,11 @@
       "bytes": 57106,
       "sha256": "324ce43980e1f2b0edb0aa6ba1e743a0aa4491fe02f88d03853e2b26b2af40a5"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 41310,
       "sha256": "d8a488bc875075a20bc39d41024f3e7cdbde047f794fc1f31418fbcf87c0ec1c"
@@ -8674,6 +10415,11 @@
       "bytes": 62372,
       "sha256": "d2ebdc9b58bef0ba4dda819235b50c9b3d906bbbbbf033d1e68b3f949a344aad"
     },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
+    },
     "html": {
       "bytes": 45048,
       "sha256": "82374083cbd84ef1523544043cf9dd30ebaddfbaa2bed0a5d6a3ed08b0039ef6"
@@ -8695,6 +10441,11 @@
     "eml": {
       "bytes": 54462,
       "sha256": "71767d19f4faa4217b8cb7db92896c53f79ccd43ca2860589ccec6359038ee2c"
+    },
+    "guards": {
+      "contractConfirmation": true,
+      "exportBlocked": null,
+      "workbookBlocked": null
     },
     "html": {
       "bytes": 39377,

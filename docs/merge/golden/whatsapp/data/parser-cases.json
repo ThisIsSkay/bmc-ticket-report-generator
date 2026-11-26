@@ -1,0 +1,24 @@
+{
+  "corrupt-xlsx": {
+    "error": "The workbook could not be read: Unsupported ZIP encryption",
+    "ok": false
+  },
+  "empty-xlsx": {
+    "error": "The selected file is empty.",
+    "ok": false
+  },
+  "uppercase-extension": {
+    "ok": true,
+    "recommendedSheet": "4-All Tickets",
+    "sheetNames": [
+      "1-Export",
+      "2-Export",
+      "3-Export",
+      "4-All Tickets"
+    ]
+  },
+  "wrong-extension": {
+    "error": "Please choose an .xlsx, .xls, or .csv file.",
+    "ok": false
+  }
+}

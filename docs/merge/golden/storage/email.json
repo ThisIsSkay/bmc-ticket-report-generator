@@ -1,0 +1,240 @@
+{
+  "full": {
+    "headerLogoValid": true,
+    "renderedSignatures": [
+      {
+        "html": "Best regards,<br>IT Support Team",
+        "id": "support"
+      },
+      {
+        "html": "<p>Best regards,<br>Alex Example</p><p><img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAIAAADYYG7QAAAAOUlEQVR42u3OMQ0AAAgDsElENrLmgnA0qYBmJ69ESEhISEhISEhISEhISEhISEhISEhISEhISOhOATtB2IifDkUWAAAAAElFTkSuQmCC\" alt=\"Example logo\" width=\"48\" height=\"48\" style=\"max-width:100%;height:auto\"></p>",
+        "id": "logo-sig"
+      }
+    ],
+    "settings": {
+      "asAt": "2026-11-09",
+      "bcc": "",
+      "cc": "manager@example.org",
+      "client": "classic",
+      "emailSender": {
+        "company": "Example Company",
+        "name": "Alex Example",
+        "phone": "+65 6000 0000",
+        "title": "IT Executive"
+      },
+      "emailVariant": "C",
+      "greeting": "Hi Team,",
+      "headerLogo": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAAAgCAIAAABiouoDAAAARUlEQVR42u3QQQkAAAgEsOthE7PYP4cN/AuDJViqh0MUCBIkSJAgQYIEIUiQIEGCBAkShCBBggQJEiRIEIIECRIkSNBfC6BeTHmLjCJlAAAAAElFTkSuQmCC",
+      "headerLogoName": "example-logo.png",
+      "intro": "Please find below the daily BMC ticket activity report.",
+      "monthlyAsAt": "2026-11-10",
+      "monthlyIntro": "Please find below the monthly pending ticket report as at {date}.",
+      "monthlySubject": "Monthly pending tickets — {date}",
+      "pendingIntro": "Please find below the outstanding tickets as at {date}.",
+      "pendingSubject": "BMC Outstanding Tickets – {date}",
+      "reportContent": "monthly",
+      "reportSetup": {
+        "contracts": [
+          "CN-EXAMPLE-1",
+          "CN-EXAMPLE-2"
+        ],
+        "events": "exclude",
+        "groups": [
+          "Example Network Group",
+          "Example Service Desk"
+        ],
+        "statuses": [
+          "Assigned",
+          "Pending"
+        ],
+        "types": [
+          "Incident",
+          "Service Request"
+        ]
+      },
+      "showEngineer": true,
+      "signatureId": "logo-sig",
+      "signatures": [
+        {
+          "content": "Best regards,\nIT Support Team",
+          "id": "support",
+          "name": "IT Support Team"
+        },
+        {
+          "content": "Best regards,\nAlex Example",
+          "html": "<p>Best regards,<br>Alex Example</p><p><img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAIAAADYYG7QAAAAOUlEQVR42u3OMQ0AAAgDsElENrLmgnA0qYBmJ69ESEhISEhISEhISEhISEhISEhISEhISEhISOhOATtB2IifDkUWAAAAAElFTkSuQmCC\" width=\"48\" height=\"48\" alt=\"Example logo\"></p>",
+          "id": "logo-sig",
+          "name": "Signature with logo"
+        }
+      ],
+      "subject": "Daily BMC Ticket Report – {date}",
+      "summaryOnly": false,
+      "to": "team@example.com; lead@example.net"
+    }
+  },
+  "malformed-json": {
+    "headerLogoValid": false,
+    "renderedSignatures": [
+      {
+        "html": "Best regards,<br>IT Support Team",
+        "id": "support"
+      }
+    ],
+    "settings": {
+      "bcc": "",
+      "cc": "",
+      "client": "classic",
+      "emailSender": {
+        "company": "",
+        "name": "",
+        "phone": "",
+        "title": ""
+      },
+      "emailVariant": "A",
+      "greeting": "Hi Team,",
+      "headerLogo": "",
+      "headerLogoName": "",
+      "intro": "Please find below the daily BMC ticket activity report.",
+      "pendingIntro": "Please find below the current outstanding tickets in the uploaded export.",
+      "pendingSubject": "BMC Outstanding Tickets — {date}",
+      "reportContent": "daily",
+      "showEngineer": false,
+      "signatureId": "",
+      "signatures": [
+        {
+          "content": "Best regards,\nIT Support Team",
+          "id": "support",
+          "name": "IT Support Team"
+        }
+      ],
+      "subject": "Daily BMC Ticket Report – {date}",
+      "to": ""
+    }
+  },
+  "minimal-legacy": {
+    "headerLogoValid": false,
+    "renderedSignatures": [
+      {
+        "html": "Best regards,<br>IT Support Team",
+        "id": "support"
+      }
+    ],
+    "settings": {
+      "bcc": "",
+      "cc": "",
+      "client": "classic",
+      "emailSender": {
+        "company": "",
+        "name": "",
+        "phone": "",
+        "title": ""
+      },
+      "emailVariant": "A",
+      "greeting": "Hi Team,",
+      "headerLogo": "",
+      "headerLogoName": "",
+      "intro": "Please find below the daily BMC ticket activity report.",
+      "pendingIntro": "Please find below the current outstanding tickets in the uploaded export.",
+      "pendingSubject": "BMC Outstanding Tickets — {date}",
+      "reportContent": "daily",
+      "showEngineer": false,
+      "signatureId": "",
+      "signatures": [
+        {
+          "content": "Best regards,\nIT Support Team",
+          "id": "support",
+          "name": "IT Support Team"
+        }
+      ],
+      "subject": "Daily BMC Ticket Report – {date}",
+      "to": "team@example.com"
+    }
+  },
+  "missing": {
+    "headerLogoValid": false,
+    "renderedSignatures": [
+      {
+        "html": "Best regards,<br>IT Support Team",
+        "id": "support"
+      }
+    ],
+    "settings": {
+      "bcc": "",
+      "cc": "",
+      "client": "classic",
+      "emailSender": {
+        "company": "",
+        "name": "",
+        "phone": "",
+        "title": ""
+      },
+      "emailVariant": "A",
+      "greeting": "Hi Team,",
+      "headerLogo": "",
+      "headerLogoName": "",
+      "intro": "Please find below the daily BMC ticket activity report.",
+      "pendingIntro": "Please find below the current outstanding tickets in the uploaded export.",
+      "pendingSubject": "BMC Outstanding Tickets — {date}",
+      "reportContent": "daily",
+      "showEngineer": false,
+      "signatureId": "",
+      "signatures": [
+        {
+          "content": "Best regards,\nIT Support Team",
+          "id": "support",
+          "name": "IT Support Team"
+        }
+      ],
+      "subject": "Daily BMC Ticket Report – {date}",
+      "to": ""
+    }
+  },
+  "not-an-object": {
+    "headerLogoValid": false,
+    "renderedSignatures": [
+      {
+        "html": "Best regards,<br>IT Support Team",
+        "id": "support"
+      }
+    ],
+    "settings": {
+      "bcc": "",
+      "cc": "",
+      "client": "classic",
+      "emailSender": {
+        "company": "",
+        "name": "",
+        "phone": "",
+        "title": ""
+      },
+      "emailVariant": "A",
+      "greeting": "Hi Team,",
+      "headerLogo": "",
+      "headerLogoName": "",
+      "intro": "Please find below the daily BMC ticket activity report.",
+      "pendingIntro": "Please find below the current outstanding tickets in the uploaded export.",
+      "pendingSubject": "BMC Outstanding Tickets — {date}",
+      "reportContent": "daily",
+      "showEngineer": false,
+      "signatureId": "",
+      "signatures": [
+        {
+          "content": "Best regards,\nIT Support Team",
+          "id": "support",
+          "name": "IT Support Team"
+        }
+      ],
+      "subject": "Daily BMC Ticket Report – {date}",
+      "to": ""
+    }
+  },
+  "save-when-quota-full": {
+    "save": {
+      "error": "QuotaExceededError: fake storage setItem refused (full)",
+      "ok": false
+    },
+    "storedAfter": {
+      "bmc-daily-email-report:settings:v1": "{\n  \"to\": \"team@example.com\",\n  \"subject\": \"Daily BMC Ticket Report – {date}\",\n  \"emailVariant\": \"Z\",\n  \"signatures\": [\n    {\n      \"id\": \"support\",\n      \"name\": \"IT Support Team\",\n      \"content\": \"Best regards,\\nIT Support Team\"\n    }\n  ]\n}\n"
+    }
+  }
+}

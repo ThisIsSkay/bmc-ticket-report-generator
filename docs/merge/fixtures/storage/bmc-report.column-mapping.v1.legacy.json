@@ -1,0 +1,10 @@
+{
+  "ticketId": "Display ID",
+  "assignedTo": "Assigned To",
+  "status": "Status",
+  "ticketType": "Ticket Type",
+  "summary": "Summary",
+  "createdDate": "Created Date",
+  "closedDate": "Closed Date",
+  "supportGroup": "Support Group"
+}

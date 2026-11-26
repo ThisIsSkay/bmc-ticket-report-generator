@@ -91,6 +91,8 @@ the key with `:` replaced by `.`:
 - `bmc-report.config.v1.legacy-cancelled-under-closed.json` and
   `bmc-report.config.v1.legacy-placeholder-teams.json`, the two legacy cases
   `loadConfig` rewrites;
+- `bmc-report.column-mapping.v1.legacy.json`: an older mapping without the
+  `contract` key (added in Phase 0.1);
 - `bmc-daily-email-report.settings.v1.json`: every field, a signature with an
   inline PNG, a header logo, a monthly scope with two contracts and variant C;
 - `bmc-daily-email-report.settings.v1.minimal-legacy.json`: an older,
@@ -98,7 +100,8 @@ the key with `:` replaced by `.`:
 
 Both email fixtures were loaded through the tool's own `normalizeSettings` at
 `3fcc777`. The full fixture keeps variant C, the logo, monthly mode and both
-contracts.
+contracts. Since Phase 0.1, the `storage` golden group loads every fixture
+automatically (see below).
 
 ## Golden outputs
 
@@ -112,16 +115,22 @@ and makes no network requests: the browser blocks every outside host.
 # Phase 0: the email tool is read from a worktree pinned to the pre-merge commit
 git worktree add --detach ../email-3fcc777 3fcc777
 npm ci
-NODE_PATH=<dir containing playwright> node scripts/golden/check.mjs --email-root=../email-3fcc777/prototype/daily-email
+NODE_PATH=<dir containing playwright> node scripts/golden/check.mjs --email-root=../email-3fcc777/prototype/daily-email --expect-email-commit=3fcc777
 
 # After Phase 1 merges the email tool into this branch, --email-root can be omitted
 node scripts/golden/check.mjs
 
 # Options
-#   --only=survey,email,whatsapp-data,whatsapp-visual   check some groups
-#   --skip-visual                                       no browser (e.g. CI without Playwright)
-#   GOLDEN_EMAIL_ROOT=<path>                            same as --email-root
+#   --only=survey,email,storage,whatsapp-data,whatsapp-visual   check some groups
+#   --skip-visual                 no browser (e.g. CI without Playwright, or a different Chromium/fonts)
+#   --expect-email-commit=<sha>   fail unless the email tool is that commit with no local changes
+#   GOLDEN_EMAIL_ROOT=<path>      same as --email-root
 ```
+
+Each group runs in its own Node process (`scripts/golden/lib/child.mjs`). The
+results therefore don't depend on group order or on library state left behind
+by another group. Phase 0.1 found that SheetJS keeps a process-wide
+number-format table (finding P0-15).
 
 `record.mjs` takes the same options and rewrites the goldens. Use it only from
 the pre-merge commits, to move the goldens to a new environment, and note it in
@@ -137,10 +146,13 @@ byte, except as listed below.
 
 | Group | Files | Source of truth | Comparison |
 |---|---|---|---|
-| `survey/` | 3 | `prototype/customer-survey/lib` at `1a74ff4` | JSON text |
-| `email/` | 114 + 429 hashed combinations | `prototype/daily-email/lib` at `3fcc777` | text bytes; `.xlsx` by parsed cell values and cell types |
-| `whatsapp/data/` | 6 | `src/lib/*.ts` at `1a74ff4` (loaded through Vite SSR) | JSON text |
-| `whatsapp/visual/` | 8 images + `meta.json` | production build of `src/` at `1a74ff4`, exported with the app's own Save as PNG / Save as JPEG buttons | PNG: every pixel; JPEG: 2700×1425 and at most 0.1% of pixels off by more than 16 levels |
+| `survey/` | 4 | `prototype/customer-survey/lib` at `1a74ff4` | JSON text |
+| `email/` | 114 + 429 hashed combinations (with export guards) | `prototype/daily-email/lib` at `3fcc777` | text bytes; `.xlsx` by parsed cell values and cell types |
+| `storage/` | 2 | `src/lib/storage.ts` at `1a74ff4`; the email tool's `normalizeSettings`, `persistCandidate` and signature sanitiser at `3fcc777` | JSON text |
+| `whatsapp/data/` | 9 | `src/lib/*.ts` at `1a74ff4` (loaded through Vite SSR), starting from the app's own `parseWorkbookFile()` | JSON text |
+| `whatsapp/visual/` | 8 images + `meta.json` | production build of `src/` at `1a74ff4`, exported with the app's own Save as PNG / Save as JPEG buttons | PNG: every pixel, including transparency; JPEG: 2700×1425 and at most 0.1% of pixels off by more than 16 levels in R, G or B |
+
+Total: 138 files (132 in Phase 0, plus 6 added in Phase 0.1).
 
 - **Survey:**
   - CSV import: UTF-8 with quotes and multi-line values, UTF-8 BOM with
@@ -151,7 +163,14 @@ byte, except as listed below.
   - 24 requesters through `matchBatch`: exact, case-only duplicate ticket,
     ambiguous, near-namesake, reordered, alias (normal and reversed),
     initials, accents, CJK, punctuation variants, zero-width space, title,
-    blank, hostile, no match.
+    blank, hostile, no match;
+  - XLSX upload read exactly as `prototype/customer-survey/app.mjs:13` does
+    (`cellDates:false`; `sheet_to_json` with `header:1`, `defval:''`,
+    `raw:false`). It has a cover sheet, the header on row 2, and leading-zero
+    IDs (`000123`, `00007`) that must survive.
+
+  The browser-only behaviour (worker matching and cancelling it, replacing a
+  file, Clear all data) stays covered by `scripts/verify-survey.mjs`.
 - **Email:**
   - fixtures: the tool's sample CSV, an adversarial CSV (hostile markup and
     quotes, 260-character unbroken text, accented and CJK text, cancelled,
@@ -168,7 +187,32 @@ byte, except as listed below.
     type/status scope; no age reference; intro without a period; no
     recipients. Also the XLSX-read path;
   - `sample-data/`: variants A–D from `docs/email-design/sample-data.json`,
-    adapted exactly as the existing M4 test does.
+    adapted exactly as the existing M4 test does;
+  - export guards (Phase 0.1), mirroring `app.mjs` `confirmScope()` :227,
+    `contractScopeError()` :149, `workbookBytes()` :228 and the download
+    handlers :249 and :291-293. A delivery the app refuses is recorded as
+    `BLOCKED: <the app's message>`, never as a file. Every matrix entry also
+    records `guards`: `exportBlocked`, `workbookBlocked`, and
+    `contractConfirmation` (the "All contracts are selected…" confirm
+    dialog). The email preview is always recorded, because the app always
+    renders it.
+
+    These guards are re-implemented from `app.mjs`, which can't run outside a
+    browser. A change to the guard *text* in `app.mjs` is therefore not
+    detected; a change to the library rules they call (`missingContracts`,
+    `dayNumber`) is. Phase 3 moves the guards into testable modules.
+- **Saved settings (`storage/`, Phase 0.1):**
+  - every fixture loaded through the tools' own code;
+  - the WhatsApp app: empty storage, current keys, both legacy config cases,
+    legacy-only column mapping, v2 and v1 both present (v2 wins), malformed
+    JSON in every key, storage unavailable (every call throws), storage full
+    (writes throw). For each it records `loadConfig`, `loadColumnMapping`,
+    `loadFeedback`, `loadTheme`, `hasSavedWorkflowSetup` and the result of
+    saving;
+  - the email tool: full, minimal-legacy, missing, malformed and non-object
+    settings through `normalizeSettings`, the rendered signature HTML (the
+    PNG must survive the sanitiser), header-logo validity, and a save into a
+    full quota (must throw and leave the stored value untouched).
 - **WhatsApp data:**
   - fixtures: the bundled sample, and an adversarial export with the real
     BMC header names, three empty sheets first, all ticket prefixes,
@@ -178,7 +222,18 @@ byte, except as listed below.
   - recorded: worksheet choice, column detection, normalised tickets,
     validation and, for several report dates, the aggregated metrics,
     out-of-scope counts, both pending diagnostics, pending and
-    closed-on-date ticket lists, and a narrowed filter.
+    closed-on-date ticket lists, and a narrowed filter;
+  - since Phase 0.1:
+    - every fixture enters through the app's own
+      `parseWorkbookFile(new File(...))`;
+    - the adversarial rows are also read as a `.csv`;
+    - column detection is recorded with and without a saved mapping (one
+      saved entry still matches a header and wins; one names a removed
+      header and falls back to detection);
+    - `parser-cases.json` records the parser's outcome for a wrong
+      extension, an empty file, a corrupt file and an upper-case `.XLSX`;
+    - the fixture's worksheet names are neutral (`1-Export` … `4-All
+      Tickets`).
 - **WhatsApp visual:** sample light, sample dark, sample on a second date,
   adversarial export. The bundled sample's six placeholder engineer names are
   renamed to fictional people, because `loadConfig()` deliberately resets
@@ -200,6 +255,24 @@ byte, except as listed below.
 
   A +1 px change to the canvas *bottom* padding did not change the export. The
   canvas has a fixed height and content does not move, so this is correct.
+- **Phase 0.1 re-run (2026-11-26):**
+  - Before re-recording, the check showed only the intended differences.
+    All 113 stored full email outputs, all hostile WhatsApp data and every
+    image were unchanged.
+  - In `email/matrix.json`, 1,838 output hashes were identical. The only
+    changes were 110 deliveries the app refuses, now recorded as `BLOCKED`
+    (78 because the sample fixture has no `CN-EXAMPLE-*` contract, 24 because
+    the monthly date is missing, 8 because the age reference date is
+    missing), plus 16 workbook entries removed for those blocked cases.
+  - After re-recording, `check.mjs --expect-email-commit=3fcc777` passed
+    twice in a row (138 files).
+  - Each new check failed on a deliberate, reverted change:
+    - the default theme in `storage.ts`: storage FAIL;
+    - the empty-file message in `import.ts`: whatsapp-data FAIL;
+    - `missingContracts()` returning nothing: email FAIL;
+    - the survey row-number offset: survey FAIL;
+    - a PNG differing only in transparency: the comparison reports 16 of 16
+      pixels.
 - The dark-theme export is byte-identical to the light-theme export, so the
   app theme does not leak into the image.
 - The JPEG is byte-identical with Google Fonts blocked or allowed. The report

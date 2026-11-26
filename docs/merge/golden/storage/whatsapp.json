@@ -1,0 +1,1097 @@
+{
+  "current-v2-keys": {
+    "hasSavedWorkflowSetup": {
+      "ok": true,
+      "value": true
+    },
+    "loadColumnMapping": {
+      "ok": true,
+      "value": {
+        "assignedTo": "Assigned To",
+        "closedDate": "Closed Date",
+        "contract": "Contract",
+        "createdDate": "Created Date",
+        "status": "Status",
+        "summary": "Summary",
+        "supportGroup": "Support Group",
+        "ticketId": "Display ID",
+        "ticketType": "Ticket Type"
+      }
+    },
+    "loadConfig": {
+      "ok": true,
+      "value": {
+        "categories": {
+          "Incident": [
+            "incident",
+            "outage",
+            "unavailable",
+            "error",
+            "failure"
+          ],
+          "Offboarding": [
+            "offboarding",
+            "terminate access",
+            "leaver",
+            "termination",
+            "resignation"
+          ],
+          "Onboarding": [
+            "onboarding",
+            "onboard ",
+            "new joiner",
+            "joiner"
+          ],
+          "Schedule": [
+            "forward schedule",
+            "preventive maintenance",
+            "schedule",
+            "scheduling",
+            "planned work"
+          ]
+        },
+        "statuses": {
+          "Cancelled": [
+            "cancelled",
+            "canceled"
+          ],
+          "Closed": [
+            "closed",
+            "resolved"
+          ],
+          "New": [
+            "new",
+            "assigned",
+            "created"
+          ],
+          "On Hold": [
+            "on hold",
+            "hold"
+          ],
+          "Other": [],
+          "Pending": [
+            "pending"
+          ],
+          "Waiting User Reply": [
+            "waiting user reply",
+            "awaiting user",
+            "pending user",
+            "waiting for user"
+          ],
+          "Work in Progress": [
+            "work in progress",
+            "in progress",
+            "wip"
+          ]
+        },
+        "teams": {
+          "EUC": [
+            "Alex Example",
+            "Jamie Example"
+          ],
+          "Network": [
+            "Chris Example"
+          ],
+          "System": [
+            "Sam Example"
+          ]
+        }
+      }
+    },
+    "loadFeedback": {
+      "ok": true,
+      "value": {
+        "EUC": 2,
+        "Network": 1,
+        "System": 0
+      }
+    },
+    "loadTheme": {
+      "ok": true,
+      "value": "dark"
+    },
+    "saveConfig": {
+      "ok": true,
+      "value": null
+    },
+    "saveTheme": {
+      "ok": true,
+      "value": null
+    },
+    "storageAfter": {
+      "bmc-report:column-mapping:v2": "{\n  \"ticketId\": \"Display ID\",\n  \"assignedTo\": \"Assigned To\",\n  \"status\": \"Status\",\n  \"ticketType\": \"Ticket Type\",\n  \"summary\": \"Summary\",\n  \"createdDate\": \"Created Date\",\n  \"closedDate\": \"Closed Date\",\n  \"supportGroup\": \"Support Group\",\n  \"contract\": \"Contract\"\n}\n",
+      "bmc-report:config:v2": "{\"teams\":{\"EUC\":[\"Alex Example\",\"Jamie Example\"],\"System\":[\"Sam Example\"],\"Network\":[\"Chris Example\"]},\"statuses\":{\"New\":[\"new\",\"assigned\",\"created\"],\"Pending\":[\"pending\"],\"Closed\":[\"closed\",\"resolved\"],\"Work in Progress\":[\"work in progress\",\"in progress\",\"wip\"],\"Waiting User Reply\":[\"waiting user reply\",\"awaiting user\",\"pending user\",\"waiting for user\"],\"On Hold\":[\"on hold\",\"hold\"],\"Cancelled\":[\"cancelled\",\"canceled\"],\"Other\":[]},\"categories\":{\"Onboarding\":[\"onboarding\",\"onboard \",\"new joiner\",\"joiner\"],\"Offboarding\":[\"offboarding\",\"terminate access\",\"leaver\",\"termination\",\"resignation\"],\"Schedule\":[\"forward schedule\",\"preventive maintenance\",\"schedule\",\"scheduling\",\"planned work\"],\"Incident\":[\"incident\",\"outage\",\"unavailable\",\"error\",\"failure\"]}}",
+      "bmc-report:feedback:v1": "{\n  \"EUC\": 2,\n  \"System\": 0,\n  \"Network\": 1\n}\n",
+      "bmc-report:theme:v1": "light"
+    }
+  },
+  "empty": {
+    "hasSavedWorkflowSetup": {
+      "ok": true,
+      "value": false
+    },
+    "loadColumnMapping": {
+      "ok": true,
+      "value": {
+        "assignedTo": "",
+        "closedDate": "",
+        "contract": "",
+        "createdDate": "",
+        "status": "",
+        "summary": "",
+        "supportGroup": "",
+        "ticketId": "",
+        "ticketType": ""
+      }
+    },
+    "loadConfig": {
+      "ok": true,
+      "value": {
+        "categories": {
+          "Incident": [
+            "incident",
+            "outage",
+            "unavailable",
+            "error",
+            "failure"
+          ],
+          "Offboarding": [
+            "offboarding",
+            "terminate access",
+            "leaver",
+            "termination",
+            "resignation"
+          ],
+          "Onboarding": [
+            "onboarding",
+            "onboard ",
+            "new joiner",
+            "joiner"
+          ],
+          "Schedule": [
+            "forward schedule",
+            "preventive maintenance",
+            "schedule",
+            "scheduling",
+            "planned work"
+          ]
+        },
+        "statuses": {
+          "Cancelled": [
+            "cancelled",
+            "canceled"
+          ],
+          "Closed": [
+            "closed",
+            "resolved"
+          ],
+          "New": [
+            "new",
+            "assigned",
+            "created"
+          ],
+          "On Hold": [
+            "on hold",
+            "hold"
+          ],
+          "Other": [],
+          "Pending": [
+            "pending"
+          ],
+          "Waiting User Reply": [
+            "waiting user reply",
+            "awaiting user",
+            "pending user",
+            "waiting for user"
+          ],
+          "Work in Progress": [
+            "work in progress",
+            "in progress",
+            "wip"
+          ]
+        },
+        "teams": {
+          "EUC": [],
+          "Network": [],
+          "System": []
+        }
+      }
+    },
+    "loadFeedback": {
+      "ok": true,
+      "value": {
+        "EUC": 0,
+        "Network": 0,
+        "System": 0
+      }
+    },
+    "loadTheme": {
+      "ok": true,
+      "value": "light"
+    },
+    "saveConfig": {
+      "ok": true,
+      "value": null
+    },
+    "saveTheme": {
+      "ok": true,
+      "value": null
+    },
+    "storageAfter": {
+      "bmc-report:config:v2": "{\"teams\":{\"EUC\":[],\"System\":[],\"Network\":[]},\"statuses\":{\"New\":[\"new\",\"assigned\",\"created\"],\"Pending\":[\"pending\"],\"Closed\":[\"closed\",\"resolved\"],\"Work in Progress\":[\"work in progress\",\"in progress\",\"wip\"],\"Waiting User Reply\":[\"waiting user reply\",\"awaiting user\",\"pending user\",\"waiting for user\"],\"On Hold\":[\"on hold\",\"hold\"],\"Cancelled\":[\"cancelled\",\"canceled\"],\"Other\":[]},\"categories\":{\"Onboarding\":[\"onboarding\",\"onboard \",\"new joiner\",\"joiner\"],\"Offboarding\":[\"offboarding\",\"terminate access\",\"leaver\",\"termination\",\"resignation\"],\"Schedule\":[\"forward schedule\",\"preventive maintenance\",\"schedule\",\"scheduling\",\"planned work\"],\"Incident\":[\"incident\",\"outage\",\"unavailable\",\"error\",\"failure\"]}}",
+      "bmc-report:theme:v1": "light"
+    }
+  },
+  "legacy-column-mapping-only": {
+    "hasSavedWorkflowSetup": {
+      "ok": true,
+      "value": true
+    },
+    "loadColumnMapping": {
+      "ok": true,
+      "value": {
+        "assignedTo": "Assigned To",
+        "closedDate": "Closed Date",
+        "contract": "",
+        "createdDate": "Created Date",
+        "status": "Status",
+        "summary": "Summary",
+        "supportGroup": "Support Group",
+        "ticketId": "Display ID",
+        "ticketType": "Ticket Type"
+      }
+    },
+    "loadConfig": {
+      "ok": true,
+      "value": {
+        "categories": {
+          "Incident": [
+            "incident",
+            "outage",
+            "unavailable",
+            "error",
+            "failure"
+          ],
+          "Offboarding": [
+            "offboarding",
+            "terminate access",
+            "leaver",
+            "termination",
+            "resignation"
+          ],
+          "Onboarding": [
+            "onboarding",
+            "onboard ",
+            "new joiner",
+            "joiner"
+          ],
+          "Schedule": [
+            "forward schedule",
+            "preventive maintenance",
+            "schedule",
+            "scheduling",
+            "planned work"
+          ]
+        },
+        "statuses": {
+          "Cancelled": [
+            "cancelled",
+            "canceled"
+          ],
+          "Closed": [
+            "closed",
+            "resolved"
+          ],
+          "New": [
+            "new",
+            "assigned",
+            "created"
+          ],
+          "On Hold": [
+            "on hold",
+            "hold"
+          ],
+          "Other": [],
+          "Pending": [
+            "pending"
+          ],
+          "Waiting User Reply": [
+            "waiting user reply",
+            "awaiting user",
+            "pending user",
+            "waiting for user"
+          ],
+          "Work in Progress": [
+            "work in progress",
+            "in progress",
+            "wip"
+          ]
+        },
+        "teams": {
+          "EUC": [
+            "Alex Example",
+            "Jamie Example"
+          ],
+          "Network": [
+            "Chris Example"
+          ],
+          "System": [
+            "Sam Example"
+          ]
+        }
+      }
+    },
+    "loadFeedback": {
+      "ok": true,
+      "value": {
+        "EUC": 0,
+        "Network": 0,
+        "System": 0
+      }
+    },
+    "loadTheme": {
+      "ok": true,
+      "value": "light"
+    },
+    "saveConfig": {
+      "ok": true,
+      "value": null
+    },
+    "saveTheme": {
+      "ok": true,
+      "value": null
+    },
+    "storageAfter": {
+      "bmc-report:column-mapping:v1": "{\n  \"ticketId\": \"Display ID\",\n  \"assignedTo\": \"Assigned To\",\n  \"status\": \"Status\",\n  \"ticketType\": \"Ticket Type\",\n  \"summary\": \"Summary\",\n  \"createdDate\": \"Created Date\",\n  \"closedDate\": \"Closed Date\",\n  \"supportGroup\": \"Support Group\"\n}\n",
+      "bmc-report:config:v2": "{\"teams\":{\"EUC\":[\"Alex Example\",\"Jamie Example\"],\"System\":[\"Sam Example\"],\"Network\":[\"Chris Example\"]},\"statuses\":{\"New\":[\"new\",\"assigned\",\"created\"],\"Pending\":[\"pending\"],\"Closed\":[\"closed\",\"resolved\"],\"Work in Progress\":[\"work in progress\",\"in progress\",\"wip\"],\"Waiting User Reply\":[\"waiting user reply\",\"awaiting user\",\"pending user\",\"waiting for user\"],\"On Hold\":[\"on hold\",\"hold\"],\"Cancelled\":[\"cancelled\",\"canceled\"],\"Other\":[]},\"categories\":{\"Onboarding\":[\"onboarding\",\"onboard \",\"new joiner\",\"joiner\"],\"Offboarding\":[\"offboarding\",\"terminate access\",\"leaver\",\"termination\",\"resignation\"],\"Schedule\":[\"forward schedule\",\"preventive maintenance\",\"schedule\",\"scheduling\",\"planned work\"],\"Incident\":[\"incident\",\"outage\",\"unavailable\",\"error\",\"failure\"]}}",
+      "bmc-report:theme:v1": "light"
+    }
+  },
+  "legacy-config-cancelled-under-closed": {
+    "hasSavedWorkflowSetup": {
+      "ok": true,
+      "value": true
+    },
+    "loadColumnMapping": {
+      "ok": true,
+      "value": {
+        "assignedTo": "Assigned To",
+        "closedDate": "Closed Date",
+        "contract": "Contract",
+        "createdDate": "Created Date",
+        "status": "Status",
+        "summary": "Summary",
+        "supportGroup": "Support Group",
+        "ticketId": "Display ID",
+        "ticketType": "Ticket Type"
+      }
+    },
+    "loadConfig": {
+      "ok": true,
+      "value": {
+        "categories": {
+          "Incident": [
+            "incident",
+            "outage",
+            "unavailable",
+            "error",
+            "failure"
+          ],
+          "Offboarding": [
+            "offboarding",
+            "terminate access",
+            "leaver",
+            "termination",
+            "resignation"
+          ],
+          "Onboarding": [
+            "onboarding",
+            "onboard ",
+            "new joiner",
+            "joiner"
+          ],
+          "Schedule": [
+            "forward schedule",
+            "preventive maintenance",
+            "schedule",
+            "scheduling",
+            "planned work"
+          ]
+        },
+        "statuses": {
+          "Cancelled": [
+            "cancelled",
+            "canceled"
+          ],
+          "Closed": [
+            "closed",
+            "resolved"
+          ],
+          "New": [
+            "new",
+            "assigned",
+            "created"
+          ],
+          "On Hold": [
+            "on hold",
+            "hold"
+          ],
+          "Other": [],
+          "Pending": [
+            "pending"
+          ],
+          "Waiting User Reply": [
+            "waiting user reply",
+            "awaiting user",
+            "pending user",
+            "waiting for user"
+          ],
+          "Work in Progress": [
+            "work in progress",
+            "in progress",
+            "wip"
+          ]
+        },
+        "teams": {
+          "EUC": [
+            "Alex Example"
+          ],
+          "Network": [],
+          "System": []
+        }
+      }
+    },
+    "loadFeedback": {
+      "ok": true,
+      "value": {
+        "EUC": 0,
+        "Network": 0,
+        "System": 0
+      }
+    },
+    "loadTheme": {
+      "ok": true,
+      "value": "light"
+    },
+    "saveConfig": {
+      "ok": true,
+      "value": null
+    },
+    "saveTheme": {
+      "ok": true,
+      "value": null
+    },
+    "storageAfter": {
+      "bmc-report:column-mapping:v2": "{\n  \"ticketId\": \"Display ID\",\n  \"assignedTo\": \"Assigned To\",\n  \"status\": \"Status\",\n  \"ticketType\": \"Ticket Type\",\n  \"summary\": \"Summary\",\n  \"createdDate\": \"Created Date\",\n  \"closedDate\": \"Closed Date\",\n  \"supportGroup\": \"Support Group\",\n  \"contract\": \"Contract\"\n}\n",
+      "bmc-report:config:v1": "{\n  \"teams\": {\n    \"EUC\": [\n      \"Alex Example\"\n    ],\n    \"System\": [],\n    \"Network\": []\n  },\n  \"statuses\": {\n    \"New\": [\n      \"new\",\n      \"assigned\",\n      \"created\"\n    ],\n    \"Pending\": [\n      \"pending\"\n    ],\n    \"Closed\": [\n      \"closed\",\n      \"resolved\",\n      \"cancelled\",\n      \"canceled\"\n    ],\n    \"Work in Progress\": [\n      \"work in progress\",\n      \"in progress\",\n      \"wip\"\n    ],\n    \"Waiting User Reply\": [\n      \"waiting user reply\",\n      \"awaiting user\",\n      \"pending user\",\n      \"waiting for user\"\n    ],\n    \"On Hold\": [\n      \"on hold\",\n      \"hold\"\n    ],\n    \"Cancelled\": [\n      \"cancelled\",\n      \"canceled\"\n    ],\n    \"Other\": []\n  },\n  \"categories\": {\n    \"Onboarding\": [\n      \"onboarding\",\n      \"onboard \",\n      \"new joiner\",\n      \"joiner\"\n    ],\n    \"Offboarding\": [\n      \"offboarding\",\n      \"terminate access\",\n      \"leaver\",\n      \"termination\",\n      \"resignation\"\n    ],\n    \"Schedule\": [\n      \"forward schedule\",\n      \"preventive maintenance\",\n      \"schedule\",\n      \"scheduling\",\n      \"planned work\"\n    ],\n    \"Incident\": [\n      \"incident\",\n      \"outage\",\n      \"unavailable\",\n      \"error\",\n      \"failure\"\n    ]\n  }\n}\n",
+      "bmc-report:config:v2": "{\"teams\":{\"EUC\":[\"Alex Example\"],\"System\":[],\"Network\":[]},\"statuses\":{\"New\":[\"new\",\"assigned\",\"created\"],\"Pending\":[\"pending\"],\"Closed\":[\"closed\",\"resolved\"],\"Work in Progress\":[\"work in progress\",\"in progress\",\"wip\"],\"Waiting User Reply\":[\"waiting user reply\",\"awaiting user\",\"pending user\",\"waiting for user\"],\"On Hold\":[\"on hold\",\"hold\"],\"Cancelled\":[\"cancelled\",\"canceled\"],\"Other\":[]},\"categories\":{\"Onboarding\":[\"onboarding\",\"onboard \",\"new joiner\",\"joiner\"],\"Offboarding\":[\"offboarding\",\"terminate access\",\"leaver\",\"termination\",\"resignation\"],\"Schedule\":[\"forward schedule\",\"preventive maintenance\",\"schedule\",\"scheduling\",\"planned work\"],\"Incident\":[\"incident\",\"outage\",\"unavailable\",\"error\",\"failure\"]}}",
+      "bmc-report:theme:v1": "light"
+    }
+  },
+  "legacy-config-placeholder-teams": {
+    "hasSavedWorkflowSetup": {
+      "ok": true,
+      "value": false
+    },
+    "loadColumnMapping": {
+      "ok": true,
+      "value": {
+        "assignedTo": "Assigned To",
+        "closedDate": "Closed Date",
+        "contract": "Contract",
+        "createdDate": "Created Date",
+        "status": "Status",
+        "summary": "Summary",
+        "supportGroup": "Support Group",
+        "ticketId": "Display ID",
+        "ticketType": "Ticket Type"
+      }
+    },
+    "loadConfig": {
+      "ok": true,
+      "value": {
+        "categories": {
+          "Incident": [
+            "incident",
+            "outage",
+            "unavailable",
+            "error",
+            "failure"
+          ],
+          "Offboarding": [
+            "offboarding",
+            "terminate access",
+            "leaver",
+            "termination",
+            "resignation"
+          ],
+          "Onboarding": [
+            "onboarding",
+            "onboard ",
+            "new joiner",
+            "joiner"
+          ],
+          "Schedule": [
+            "forward schedule",
+            "preventive maintenance",
+            "schedule",
+            "scheduling",
+            "planned work"
+          ]
+        },
+        "statuses": {
+          "Cancelled": [
+            "cancelled",
+            "canceled"
+          ],
+          "Closed": [
+            "closed",
+            "resolved"
+          ],
+          "New": [
+            "new",
+            "assigned",
+            "created"
+          ],
+          "On Hold": [
+            "on hold",
+            "hold"
+          ],
+          "Other": [],
+          "Pending": [
+            "pending"
+          ],
+          "Waiting User Reply": [
+            "waiting user reply",
+            "awaiting user",
+            "pending user",
+            "waiting for user"
+          ],
+          "Work in Progress": [
+            "work in progress",
+            "in progress",
+            "wip"
+          ]
+        },
+        "teams": {
+          "EUC": [],
+          "Network": [],
+          "System": []
+        }
+      }
+    },
+    "loadFeedback": {
+      "ok": true,
+      "value": {
+        "EUC": 0,
+        "Network": 0,
+        "System": 0
+      }
+    },
+    "loadTheme": {
+      "ok": true,
+      "value": "light"
+    },
+    "saveConfig": {
+      "ok": true,
+      "value": null
+    },
+    "saveTheme": {
+      "ok": true,
+      "value": null
+    },
+    "storageAfter": {
+      "bmc-report:column-mapping:v2": "{\n  \"ticketId\": \"Display ID\",\n  \"assignedTo\": \"Assigned To\",\n  \"status\": \"Status\",\n  \"ticketType\": \"Ticket Type\",\n  \"summary\": \"Summary\",\n  \"createdDate\": \"Created Date\",\n  \"closedDate\": \"Closed Date\",\n  \"supportGroup\": \"Support Group\",\n  \"contract\": \"Contract\"\n}\n",
+      "bmc-report:config:v1": "{\n  \"teams\": {\n    \"EUC\": [\n      \"EUC Analyst\",\n      \"EUC Engineer\"\n    ],\n    \"System\": [\n      \"Systems Analyst\",\n      \"Systems Engineer\"\n    ],\n    \"Network\": [\n      \"Network Analyst\",\n      \"Network Engineer\"\n    ]\n  },\n  \"statuses\": {\n    \"New\": [\n      \"new\",\n      \"assigned\",\n      \"created\"\n    ],\n    \"Pending\": [\n      \"pending\"\n    ],\n    \"Closed\": [\n      \"closed\",\n      \"resolved\"\n    ],\n    \"Work in Progress\": [\n      \"work in progress\",\n      \"in progress\",\n      \"wip\"\n    ],\n    \"Waiting User Reply\": [\n      \"waiting user reply\",\n      \"awaiting user\",\n      \"pending user\",\n      \"waiting for user\"\n    ],\n    \"On Hold\": [\n      \"on hold\",\n      \"hold\"\n    ],\n    \"Cancelled\": [\n      \"cancelled\",\n      \"canceled\"\n    ],\n    \"Other\": []\n  },\n  \"categories\": {\n    \"Onboarding\": [\n      \"onboarding\",\n      \"onboard \",\n      \"new joiner\",\n      \"joiner\"\n    ],\n    \"Offboarding\": [\n      \"offboarding\",\n      \"terminate access\",\n      \"leaver\",\n      \"termination\",\n      \"resignation\"\n    ],\n    \"Schedule\": [\n      \"forward schedule\",\n      \"preventive maintenance\",\n      \"schedule\",\n      \"scheduling\",\n      \"planned work\"\n    ],\n    \"Incident\": [\n      \"incident\",\n      \"outage\",\n      \"unavailable\",\n      \"error\",\n      \"failure\"\n    ]\n  }\n}\n",
+      "bmc-report:config:v2": "{\"teams\":{\"EUC\":[],\"System\":[],\"Network\":[]},\"statuses\":{\"New\":[\"new\",\"assigned\",\"created\"],\"Pending\":[\"pending\"],\"Closed\":[\"closed\",\"resolved\"],\"Work in Progress\":[\"work in progress\",\"in progress\",\"wip\"],\"Waiting User Reply\":[\"waiting user reply\",\"awaiting user\",\"pending user\",\"waiting for user\"],\"On Hold\":[\"on hold\",\"hold\"],\"Cancelled\":[\"cancelled\",\"canceled\"],\"Other\":[]},\"categories\":{\"Onboarding\":[\"onboarding\",\"onboard \",\"new joiner\",\"joiner\"],\"Offboarding\":[\"offboarding\",\"terminate access\",\"leaver\",\"termination\",\"resignation\"],\"Schedule\":[\"forward schedule\",\"preventive maintenance\",\"schedule\",\"scheduling\",\"planned work\"],\"Incident\":[\"incident\",\"outage\",\"unavailable\",\"error\",\"failure\"]}}",
+      "bmc-report:theme:v1": "light"
+    }
+  },
+  "malformed-json-everywhere": {
+    "hasSavedWorkflowSetup": {
+      "ok": true,
+      "value": false
+    },
+    "loadColumnMapping": {
+      "ok": true,
+      "value": {
+        "assignedTo": "",
+        "closedDate": "",
+        "contract": "",
+        "createdDate": "",
+        "status": "",
+        "summary": "",
+        "supportGroup": "",
+        "ticketId": "",
+        "ticketType": ""
+      }
+    },
+    "loadConfig": {
+      "ok": true,
+      "value": {
+        "categories": {
+          "Incident": [
+            "incident",
+            "outage",
+            "unavailable",
+            "error",
+            "failure"
+          ],
+          "Offboarding": [
+            "offboarding",
+            "terminate access",
+            "leaver",
+            "termination",
+            "resignation"
+          ],
+          "Onboarding": [
+            "onboarding",
+            "onboard ",
+            "new joiner",
+            "joiner"
+          ],
+          "Schedule": [
+            "forward schedule",
+            "preventive maintenance",
+            "schedule",
+            "scheduling",
+            "planned work"
+          ]
+        },
+        "statuses": {
+          "Cancelled": [
+            "cancelled",
+            "canceled"
+          ],
+          "Closed": [
+            "closed",
+            "resolved"
+          ],
+          "New": [
+            "new",
+            "assigned",
+            "created"
+          ],
+          "On Hold": [
+            "on hold",
+            "hold"
+          ],
+          "Other": [],
+          "Pending": [
+            "pending"
+          ],
+          "Waiting User Reply": [
+            "waiting user reply",
+            "awaiting user",
+            "pending user",
+            "waiting for user"
+          ],
+          "Work in Progress": [
+            "work in progress",
+            "in progress",
+            "wip"
+          ]
+        },
+        "teams": {
+          "EUC": [],
+          "Network": [],
+          "System": []
+        }
+      }
+    },
+    "loadFeedback": {
+      "ok": true,
+      "value": {
+        "EUC": 0,
+        "Network": 0,
+        "System": 0
+      }
+    },
+    "loadTheme": {
+      "ok": true,
+      "value": "light"
+    },
+    "saveConfig": {
+      "ok": true,
+      "value": null
+    },
+    "saveTheme": {
+      "ok": true,
+      "value": null
+    },
+    "storageAfter": {
+      "bmc-report:column-mapping:v2": "[1,",
+      "bmc-report:config:v2": "{\"teams\":{\"EUC\":[],\"System\":[],\"Network\":[]},\"statuses\":{\"New\":[\"new\",\"assigned\",\"created\"],\"Pending\":[\"pending\"],\"Closed\":[\"closed\",\"resolved\"],\"Work in Progress\":[\"work in progress\",\"in progress\",\"wip\"],\"Waiting User Reply\":[\"waiting user reply\",\"awaiting user\",\"pending user\",\"waiting for user\"],\"On Hold\":[\"on hold\",\"hold\"],\"Cancelled\":[\"cancelled\",\"canceled\"],\"Other\":[]},\"categories\":{\"Onboarding\":[\"onboarding\",\"onboard \",\"new joiner\",\"joiner\"],\"Offboarding\":[\"offboarding\",\"terminate access\",\"leaver\",\"termination\",\"resignation\"],\"Schedule\":[\"forward schedule\",\"preventive maintenance\",\"schedule\",\"scheduling\",\"planned work\"],\"Incident\":[\"incident\",\"outage\",\"unavailable\",\"error\",\"failure\"]}}",
+      "bmc-report:feedback:v1": "undefined",
+      "bmc-report:theme:v1": "light"
+    }
+  },
+  "storage-full": {
+    "hasSavedWorkflowSetup": {
+      "ok": true,
+      "value": true
+    },
+    "loadColumnMapping": {
+      "ok": true,
+      "value": {
+        "assignedTo": "Assigned To",
+        "closedDate": "Closed Date",
+        "contract": "Contract",
+        "createdDate": "Created Date",
+        "status": "Status",
+        "summary": "Summary",
+        "supportGroup": "Support Group",
+        "ticketId": "Display ID",
+        "ticketType": "Ticket Type"
+      }
+    },
+    "loadConfig": {
+      "ok": true,
+      "value": {
+        "categories": {
+          "Incident": [
+            "incident",
+            "outage",
+            "unavailable",
+            "error",
+            "failure"
+          ],
+          "Offboarding": [
+            "offboarding",
+            "terminate access",
+            "leaver",
+            "termination",
+            "resignation"
+          ],
+          "Onboarding": [
+            "onboarding",
+            "onboard ",
+            "new joiner",
+            "joiner"
+          ],
+          "Schedule": [
+            "forward schedule",
+            "preventive maintenance",
+            "schedule",
+            "scheduling",
+            "planned work"
+          ]
+        },
+        "statuses": {
+          "Cancelled": [
+            "cancelled",
+            "canceled"
+          ],
+          "Closed": [
+            "closed",
+            "resolved"
+          ],
+          "New": [
+            "new",
+            "assigned",
+            "created"
+          ],
+          "On Hold": [
+            "on hold",
+            "hold"
+          ],
+          "Other": [],
+          "Pending": [
+            "pending"
+          ],
+          "Waiting User Reply": [
+            "waiting user reply",
+            "awaiting user",
+            "pending user",
+            "waiting for user"
+          ],
+          "Work in Progress": [
+            "work in progress",
+            "in progress",
+            "wip"
+          ]
+        },
+        "teams": {
+          "EUC": [
+            "Alex Example",
+            "Jamie Example"
+          ],
+          "Network": [
+            "Chris Example"
+          ],
+          "System": [
+            "Sam Example"
+          ]
+        }
+      }
+    },
+    "loadFeedback": {
+      "ok": true,
+      "value": {
+        "EUC": 2,
+        "Network": 1,
+        "System": 0
+      }
+    },
+    "loadTheme": {
+      "ok": true,
+      "value": "dark"
+    },
+    "saveConfig": {
+      "error": "QuotaExceededError: fake storage setItem refused (full)",
+      "ok": false
+    },
+    "saveTheme": {
+      "error": "QuotaExceededError: fake storage setItem refused (full)",
+      "ok": false
+    },
+    "storageAfter": {
+      "bmc-report:column-mapping:v2": "{\n  \"ticketId\": \"Display ID\",\n  \"assignedTo\": \"Assigned To\",\n  \"status\": \"Status\",\n  \"ticketType\": \"Ticket Type\",\n  \"summary\": \"Summary\",\n  \"createdDate\": \"Created Date\",\n  \"closedDate\": \"Closed Date\",\n  \"supportGroup\": \"Support Group\",\n  \"contract\": \"Contract\"\n}\n",
+      "bmc-report:config:v2": "{\n  \"teams\": {\n    \"EUC\": [\n      \"Alex Example\",\n      \"Jamie Example\"\n    ],\n    \"System\": [\n      \"Sam Example\"\n    ],\n    \"Network\": [\n      \"Chris Example\"\n    ]\n  },\n  \"statuses\": {\n    \"New\": [\n      \"new\",\n      \"assigned\",\n      \"created\"\n    ],\n    \"Pending\": [\n      \"pending\"\n    ],\n    \"Closed\": [\n      \"closed\",\n      \"resolved\"\n    ],\n    \"Work in Progress\": [\n      \"work in progress\",\n      \"in progress\",\n      \"wip\"\n    ],\n    \"Waiting User Reply\": [\n      \"waiting user reply\",\n      \"awaiting user\",\n      \"pending user\",\n      \"waiting for user\"\n    ],\n    \"On Hold\": [\n      \"on hold\",\n      \"hold\"\n    ],\n    \"Cancelled\": [\n      \"cancelled\",\n      \"canceled\"\n    ],\n    \"Other\": []\n  },\n  \"categories\": {\n    \"Onboarding\": [\n      \"onboarding\",\n      \"onboard \",\n      \"new joiner\",\n      \"joiner\"\n    ],\n    \"Offboarding\": [\n      \"offboarding\",\n      \"terminate access\",\n      \"leaver\",\n      \"termination\",\n      \"resignation\"\n    ],\n    \"Schedule\": [\n      \"forward schedule\",\n      \"preventive maintenance\",\n      \"schedule\",\n      \"scheduling\",\n      \"planned work\"\n    ],\n    \"Incident\": [\n      \"incident\",\n      \"outage\",\n      \"unavailable\",\n      \"error\",\n      \"failure\"\n    ]\n  }\n}\n",
+      "bmc-report:feedback:v1": "{\n  \"EUC\": 2,\n  \"System\": 0,\n  \"Network\": 1\n}\n",
+      "bmc-report:theme:v1": "dark"
+    }
+  },
+  "storage-unavailable": {
+    "hasSavedWorkflowSetup": {
+      "ok": true,
+      "value": false
+    },
+    "loadColumnMapping": {
+      "ok": true,
+      "value": {
+        "assignedTo": "",
+        "closedDate": "",
+        "contract": "",
+        "createdDate": "",
+        "status": "",
+        "summary": "",
+        "supportGroup": "",
+        "ticketId": "",
+        "ticketType": ""
+      }
+    },
+    "loadConfig": {
+      "ok": true,
+      "value": {
+        "categories": {
+          "Incident": [
+            "incident",
+            "outage",
+            "unavailable",
+            "error",
+            "failure"
+          ],
+          "Offboarding": [
+            "offboarding",
+            "terminate access",
+            "leaver",
+            "termination",
+            "resignation"
+          ],
+          "Onboarding": [
+            "onboarding",
+            "onboard ",
+            "new joiner",
+            "joiner"
+          ],
+          "Schedule": [
+            "forward schedule",
+            "preventive maintenance",
+            "schedule",
+            "scheduling",
+            "planned work"
+          ]
+        },
+        "statuses": {
+          "Cancelled": [
+            "cancelled",
+            "canceled"
+          ],
+          "Closed": [
+            "closed",
+            "resolved"
+          ],
+          "New": [
+            "new",
+            "assigned",
+            "created"
+          ],
+          "On Hold": [
+            "on hold",
+            "hold"
+          ],
+          "Other": [],
+          "Pending": [
+            "pending"
+          ],
+          "Waiting User Reply": [
+            "waiting user reply",
+            "awaiting user",
+            "pending user",
+            "waiting for user"
+          ],
+          "Work in Progress": [
+            "work in progress",
+            "in progress",
+            "wip"
+          ]
+        },
+        "teams": {
+          "EUC": [],
+          "Network": [],
+          "System": []
+        }
+      }
+    },
+    "loadFeedback": {
+      "ok": true,
+      "value": {
+        "EUC": 0,
+        "Network": 0,
+        "System": 0
+      }
+    },
+    "loadTheme": {
+      "ok": true,
+      "value": "light"
+    },
+    "saveConfig": {
+      "error": "SecurityError: fake storage setItem refused (unavailable)",
+      "ok": false
+    },
+    "saveTheme": {
+      "error": "SecurityError: fake storage setItem refused (unavailable)",
+      "ok": false
+    },
+    "storageAfter": null
+  },
+  "v2-and-v1-both-present": {
+    "hasSavedWorkflowSetup": {
+      "ok": true,
+      "value": true
+    },
+    "loadColumnMapping": {
+      "ok": true,
+      "value": {
+        "assignedTo": "Assigned To",
+        "closedDate": "Closed Date",
+        "contract": "Contract",
+        "createdDate": "Created Date",
+        "status": "Status",
+        "summary": "Summary",
+        "supportGroup": "Support Group",
+        "ticketId": "Display ID",
+        "ticketType": "Ticket Type"
+      }
+    },
+    "loadConfig": {
+      "ok": true,
+      "value": {
+        "categories": {
+          "Incident": [
+            "incident",
+            "outage",
+            "unavailable",
+            "error",
+            "failure"
+          ],
+          "Offboarding": [
+            "offboarding",
+            "terminate access",
+            "leaver",
+            "termination",
+            "resignation"
+          ],
+          "Onboarding": [
+            "onboarding",
+            "onboard ",
+            "new joiner",
+            "joiner"
+          ],
+          "Schedule": [
+            "forward schedule",
+            "preventive maintenance",
+            "schedule",
+            "scheduling",
+            "planned work"
+          ]
+        },
+        "statuses": {
+          "Cancelled": [
+            "cancelled",
+            "canceled"
+          ],
+          "Closed": [
+            "closed",
+            "resolved"
+          ],
+          "New": [
+            "new",
+            "assigned",
+            "created"
+          ],
+          "On Hold": [
+            "on hold",
+            "hold"
+          ],
+          "Other": [],
+          "Pending": [
+            "pending"
+          ],
+          "Waiting User Reply": [
+            "waiting user reply",
+            "awaiting user",
+            "pending user",
+            "waiting for user"
+          ],
+          "Work in Progress": [
+            "work in progress",
+            "in progress",
+            "wip"
+          ]
+        },
+        "teams": {
+          "EUC": [
+            "Alex Example",
+            "Jamie Example"
+          ],
+          "Network": [
+            "Chris Example"
+          ],
+          "System": [
+            "Sam Example"
+          ]
+        }
+      }
+    },
+    "loadFeedback": {
+      "ok": true,
+      "value": {
+        "EUC": 2,
+        "Network": 1,
+        "System": 0
+      }
+    },
+    "loadTheme": {
+      "ok": true,
+      "value": "dark"
+    },
+    "saveConfig": {
+      "ok": true,
+      "value": null
+    },
+    "saveTheme": {
+      "ok": true,
+      "value": null
+    },
+    "storageAfter": {
+      "bmc-report:column-mapping:v1": "{\n  \"ticketId\": \"Display ID\",\n  \"assignedTo\": \"Assigned To\",\n  \"status\": \"Status\",\n  \"ticketType\": \"Ticket Type\",\n  \"summary\": \"Summary\",\n  \"createdDate\": \"Created Date\",\n  \"closedDate\": \"Closed Date\",\n  \"supportGroup\": \"Support Group\"\n}\n",
+      "bmc-report:column-mapping:v2": "{\n  \"ticketId\": \"Display ID\",\n  \"assignedTo\": \"Assigned To\",\n  \"status\": \"Status\",\n  \"ticketType\": \"Ticket Type\",\n  \"summary\": \"Summary\",\n  \"createdDate\": \"Created Date\",\n  \"closedDate\": \"Closed Date\",\n  \"supportGroup\": \"Support Group\",\n  \"contract\": \"Contract\"\n}\n",
+      "bmc-report:config:v1": "{\n  \"teams\": {\n    \"EUC\": [\n      \"EUC Analyst\",\n      \"EUC Engineer\"\n    ],\n    \"System\": [\n      \"Systems Analyst\",\n      \"Systems Engineer\"\n    ],\n    \"Network\": [\n      \"Network Analyst\",\n      \"Network Engineer\"\n    ]\n  },\n  \"statuses\": {\n    \"New\": [\n      \"new\",\n      \"assigned\",\n      \"created\"\n    ],\n    \"Pending\": [\n      \"pending\"\n    ],\n    \"Closed\": [\n      \"closed\",\n      \"resolved\"\n    ],\n    \"Work in Progress\": [\n      \"work in progress\",\n      \"in progress\",\n      \"wip\"\n    ],\n    \"Waiting User Reply\": [\n      \"waiting user reply\",\n      \"awaiting user\",\n      \"pending user\",\n      \"waiting for user\"\n    ],\n    \"On Hold\": [\n      \"on hold\",\n      \"hold\"\n    ],\n    \"Cancelled\": [\n      \"cancelled\",\n      \"canceled\"\n    ],\n    \"Other\": []\n  },\n  \"categories\": {\n    \"Onboarding\": [\n      \"onboarding\",\n      \"onboard \",\n      \"new joiner\",\n      \"joiner\"\n    ],\n    \"Offboarding\": [\n      \"offboarding\",\n      \"terminate access\",\n      \"leaver\",\n      \"termination\",\n      \"resignation\"\n    ],\n    \"Schedule\": [\n      \"forward schedule\",\n      \"preventive maintenance\",\n      \"schedule\",\n      \"scheduling\",\n      \"planned work\"\n    ],\n    \"Incident\": [\n      \"incident\",\n      \"outage\",\n      \"unavailable\",\n      \"error\",\n      \"failure\"\n    ]\n  }\n}\n",
+      "bmc-report:config:v2": "{\"teams\":{\"EUC\":[\"Alex Example\",\"Jamie Example\"],\"System\":[\"Sam Example\"],\"Network\":[\"Chris Example\"]},\"statuses\":{\"New\":[\"new\",\"assigned\",\"created\"],\"Pending\":[\"pending\"],\"Closed\":[\"closed\",\"resolved\"],\"Work in Progress\":[\"work in progress\",\"in progress\",\"wip\"],\"Waiting User Reply\":[\"waiting user reply\",\"awaiting user\",\"pending user\",\"waiting for user\"],\"On Hold\":[\"on hold\",\"hold\"],\"Cancelled\":[\"cancelled\",\"canceled\"],\"Other\":[]},\"categories\":{\"Onboarding\":[\"onboarding\",\"onboard \",\"new joiner\",\"joiner\"],\"Offboarding\":[\"offboarding\",\"terminate access\",\"leaver\",\"termination\",\"resignation\"],\"Schedule\":[\"forward schedule\",\"preventive maintenance\",\"schedule\",\"scheduling\",\"planned work\"],\"Incident\":[\"incident\",\"outage\",\"unavailable\",\"error\",\"failure\"]}}",
+      "bmc-report:feedback:v1": "{\n  \"EUC\": 2,\n  \"System\": 0,\n  \"Network\": 1\n}\n",
+      "bmc-report:theme:v1": "light"
+    }
+  }
+}

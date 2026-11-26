@@ -1,0 +1,134 @@
+{
+  "coverSheetAsHeader": "Choose a header row with at least two unique, nonblank column names.",
+  "matches": [
+    {
+      "candidates": [
+        {
+          "contradictions": [],
+          "entry": {
+            "email": "alex@example.com",
+            "id": 0,
+            "name": "Alex Example"
+          },
+          "reason": "Same name after case and whitespace normalisation",
+          "tier": 1
+        }
+      ],
+      "company": "",
+      "department": "",
+      "duplicateTicket": false,
+      "id": 0,
+      "name": "Alex Example",
+      "sourceRow": 3,
+      "status": "Unique proposal",
+      "ticket": "000123"
+    },
+    {
+      "candidates": [
+        {
+          "contradictions": [],
+          "entry": {
+            "email": "jamie@example.com",
+            "id": 6,
+            "name": "Jamie Q Example"
+          },
+          "reason": "Same name after case and whitespace normalisation",
+          "tier": 1
+        }
+      ],
+      "company": "",
+      "department": "",
+      "duplicateTicket": false,
+      "id": 1,
+      "name": "Jamie Q Example",
+      "sourceRow": 4,
+      "status": "Unique proposal",
+      "ticket": "INC-000124"
+    }
+  ],
+  "requests": [
+    {
+      "company": "",
+      "department": "",
+      "duplicateTicket": false,
+      "id": 0,
+      "name": "Alex Example",
+      "sourceRow": 3,
+      "status": "",
+      "ticket": "000123"
+    },
+    {
+      "company": "",
+      "department": "",
+      "duplicateTicket": false,
+      "id": 1,
+      "name": "Jamie Q Example",
+      "sourceRow": 4,
+      "status": "",
+      "ticket": "INC-000124"
+    }
+  ],
+  "sheetNames": [
+    "Cover",
+    "Data"
+  ],
+  "sheets": {
+    "Cover": [
+      [
+        "Fictional export cover sheet"
+      ]
+    ],
+    "Data": [
+      [
+        "Fictional export",
+        "",
+        "",
+        ""
+      ],
+      [
+        "Ticket ID",
+        "Customer Name",
+        "Employee No",
+        "Submitted"
+      ],
+      [
+        "000123",
+        "Alex Example",
+        "00007",
+        "2026-11-10"
+      ],
+      [
+        "INC-000124",
+        "Jamie Q Example",
+        "00042",
+        "2026-11-11"
+      ]
+    ]
+  },
+  "table": {
+    "headers": [
+      "Ticket ID",
+      "Customer Name",
+      "Employee No",
+      "Submitted"
+    ],
+    "rowNumbers": [
+      3,
+      4
+    ],
+    "rows": [
+      {
+        "Customer Name": "Alex Example",
+        "Employee No": "00007",
+        "Submitted": "2026-11-10",
+        "Ticket ID": "000123"
+      },
+      {
+        "Customer Name": "Jamie Q Example",
+        "Employee No": "00042",
+        "Submitted": "2026-11-11",
+        "Ticket ID": "INC-000124"
+      }
+    ]
+  }
+}
