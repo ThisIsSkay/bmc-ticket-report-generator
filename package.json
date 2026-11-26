@@ -15,7 +15,8 @@
     "test:email": "node --test prototype/daily-email/test/*.test.mjs",
     "golden:check": "node scripts/golden/check.mjs",
     "stage:pages": "node scripts/stage-pages.mjs",
-    "verify:unified": "node scripts/verify-unified.mjs"
+    "verify:unified": "node scripts/verify-unified.mjs",
+    "verify:export-scope": "node scripts/verify-export-scope.mjs"
   },
   "dependencies": {
     "html-to-image": "1.11.13",

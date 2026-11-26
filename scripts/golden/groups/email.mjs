@@ -8,7 +8,7 @@
 //   email/matrix.json   sha256 of every output for every combination
 //   email/inputs.json   normalised tickets per fixture (CSV and XLSX paths)
 //   email/sample-data/<variant>.html, plain.txt               design fixture
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -67,6 +67,7 @@ export async function generate({ emailRoot }) {
   const { buildPendingView, PENDING_SUBJECT, PENDING_INTRO } = await lib('pending-report.mjs');
   const { contractLabel, generateContractReport, missingContracts } = await lib('contract-scope.mjs');
   const { dayNumber } = await lib('ageing.mjs');
+  const exportGuardLib = existsSync(resolve(emailRoot, 'lib', 'export-guard.mjs')) ? await lib('export-guard.mjs') : null;
   const { sanitizeSignatureHtml, plainToSignatureHtml } = await lib('signature-html.mjs');
   const { workbookSheets, buildWorkbook } = await lib('workbook.mjs');
   const { normalizeVariant, renderThemedEmail } = await lib('email-themes.mjs');
@@ -105,23 +106,25 @@ export async function generate({ emailRoot }) {
       ? { ...settings, subject: settings.monthlySubject || 'Monthly pending tickets — {date}' }
       : pending ? { ...settings, subject: settings.pendingSubject === 'BMC Outstanding Tickets' ? PENDING_SUBJECT : settings.pendingSubject } : settings;
     const deliveryDate = pending ? view.asAt || 'current snapshot' : report.reportDate;
+    // Pre-RD-01 rules, only used when the email tool has no lib/export-guard.mjs.
+    const legacyGuard = () => {
+      const missing = missingContracts(fixtures[fixture], contracts);
+      const block = missing.length ? 'Selected contracts are missing from this export: ' + contractLabel(missing) + '. Review the contracts before exporting.' : monthly && dayNumber(asAt) === null ? 'Choose the monthly reporting date.' : '';
+      return { block: block || null, confirm: pending && !block && contracts === null ? 'All contracts are selected or the Contract column is missing. Confirm these tickets belong to the intended customer before exporting.' : null };
+    };
     const html = pending
       ? renderPendingEmail(view, emailSettings, normalizeVariant(variant))
       : renderEmail(report, emailSettings, options, variant === 'legacy' ? 'legacy' : normalizeVariant(variant));
-    // Export guards, mirroring app.mjs confirmScope() :227, contractScopeError() :149,
-    // workbookBytes() :228 and the download handlers :249 and :291-293. The preview
-    // (html) is always rendered; a blocked delivery is recorded as "BLOCKED: <toast>".
-    const missing = missingContracts(fixtures[fixture], contracts);
-    const scopeError = missing.length
-      ? 'Selected contracts are missing from this export: ' + contractLabel(missing) + '. Review the contracts before exporting.'
-      : monthly && dayNumber(asAt) === null ? 'Choose the monthly reporting date.' : '';
+    // Export guards: the app's own lib/export-guard.mjs (RD-01), called the way
+    // app.mjs confirmScope() calls it. The preview (html) is always rendered; a
+    // blocked delivery is recorded as "BLOCKED: <toast>". `confirm` is the text of
+    // the customer-scope dialog the user must accept before any delivery.
+    const guard = exportGuardLib
+      ? exportGuardLib.exportGuard({ tickets: fixtures[fixture], contracts, hasContractColumn: true, mode, asAt, scopeError: '', to: settings.to, reportDate: pending ? (asAt || 'current snapshot') : report.reportDate, counts: pending ? { total: view.total } : report.counts })
+      : legacyGuard();
+    const scopeError = guard.block || '';
     const workbookError = pending && dayNumber(asAt) === null ? 'Choose an age reference date before exporting Excel.' : '';
-    const guards = {
-      exportBlocked: scopeError || null,
-      workbookBlocked: scopeError || workbookError || null,
-      // pending modes ask confirm() when all contracts are selected (the fixtures always have a Contract column)
-      contractConfirmation: pending && !scopeError && contracts === null,
-    };
+    const guards = { exportBlocked: scopeError || null, workbookBlocked: scopeError || workbookError || null, confirm: guard.confirm };
     const blocked = (message) => 'BLOCKED: ' + message;
     if (scopeError) {
       return { html, txt: blocked(scopeError), eml: blocked(scopeError), ps1: blocked(scopeError), workbook: null, guards };

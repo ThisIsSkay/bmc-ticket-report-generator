@@ -190,13 +190,39 @@ Owner decisions (2026-11-26):
   the owner approves.
 
 Checklist (continue from the first unticked item):
-- [ ] RD-01 (High) Customer-scope safeguard for every export path, daily
+- [x] RD-01 (High) Customer-scope safeguard for every export path, daily
   included. "All contracts" or a missing Contract column asks for
   confirmation, showing the scope, recipients and counts; cancel means no
   clipboard write and no download. Empty selection is blocked. The guard
   logic moves into a tested module that the app and the golden harness
   share. Golden `email/matrix.json` guards change intentionally (owner
   request).
+  - Reproduced: `confirmScope()` returned early for daily reports, so a
+    daily export with All contracts went out with no prompt; an empty
+    selection fell back to All in daily mode.
+  - Fix: `prototype/daily-email/lib/export-guard.mjs` (pure, no DOM);
+    `app.mjs:234` `confirmScope()` now calls it for every mode; call sites
+    are copy (`app.mjs:209`, before the clipboard write), Excel (`:263`),
+    .ps1/.eml/.html (`:305-307`). `contractScopeError()` (`:150`) reports
+    an empty selection first. The preview header shows a new Scope line
+    (`index.html:58`, `previewScopeText()` at `app.mjs:229`).
+  - Tests: `test/export-guard.test.mjs` (8 tests);
+    `npm run verify:export-scope` (44 browser checks, standalone
+    `/daily-email/` and `/app/#/email`, fictional CN-EXAMPLE-A/B/blank
+    CSV): Cancel gives no download and leaves the clipboard untouched for
+    copy, .html, .eml, .ps1 and Excel in daily, outstanding and monthly;
+    OK produces each output; a selected contract exports only its tickets
+    with no prompt; an empty selection is blocked with no prompt; a missing
+    Contract column prompts and says why.
+  - Golden: only `email/matrix.json`, only the `contract-none-selected`
+    scenario's outputs (26 cases): 78 deliveries are now `BLOCKED: No
+    contract is selected…` and 16 Excel entries are gone (blocked). Every
+    other output hash is unchanged; the 113 full-output files are
+    byte-identical. The guards record changed shape in all 429 entries
+    (`contractConfirmation` → `{exportBlocked, workbookBlocked, confirm}`);
+    343 now carry the confirm text. Re-recorded with
+    `node scripts/golden/record.mjs --only=email` after that diff was
+    checked field by field.
 - [ ] RD-03 (Medium) A worksheet whose `<dimension>` says `A1` but holds
   many rows. Fictional regression fixture, tested against the email
   `xlsx-lite` reader, the WhatsApp import (SheetJS) and the survey import.

@@ -1,4 +1,5 @@
 import {contractsFromSetup,contractLabel,missingContracts,generateContractReport} from './lib/contract-scope.mjs';
+import {exportGuard,EMPTY_SCOPE_MESSAGE} from './lib/export-guard.mjs';
 import {readHeaderLogo,validHeaderLogo,logoDisplaySize,logoWarning,persistCandidate} from './lib/header-logo.mjs';
 import {buildWorkbook} from './lib/workbook.mjs';
 import {dayNumber} from './lib/ageing.mjs';
@@ -147,6 +148,7 @@ function updateContractSelection(){
  text('contractSelection',state.contracts===null?'All contracts':state.contracts.length===1?contractLabel(state.contracts):`${state.contracts.length} contracts selected`);
 }
 function contractScopeError(){
+ if(Array.isArray(state.contracts)&&state.contracts.length===0)return EMPTY_SCOPE_MESSAGE;
  const missing=missingContracts(state.tickets,state.contracts);
  return missing.length?'Selected contracts are missing from this export: '+contractLabel(missing)+'. Review the contracts before exporting.':'';
 }
@@ -202,7 +204,7 @@ function refreshReport(){syncReportControls();scopeStatus();if(!state.tickets.le
  $('createdTable').innerHTML=makeTable(['Ticket ID','Type','Summary','Engineer','Group','Status'],r.created.map(t=>[t.id,t.kind,t.description,t.assigned,t.group,t.status]),{textCols:[2]});
  $('closedTable').innerHTML=makeTable(['Ticket ID','Type','Summary','Engineer','Group','Status'],r.closed.map(t=>[t.id,t.kind,t.description,t.assigned,t.group,t.status]),{textCols:[2]});
  const html=makeEmail();$('emailFrame').srcdoc=html;updateSenderWarning();
- text('previewTo',state.settings.to||'(not configured)');text('previewCc',state.settings.cc||'—');text('previewSubject',buildSubject(deliverySettings().subject,deliveryDate()));updateClientNotes();
+ text('previewTo',state.settings.to||'(not configured)');text('previewCc',state.settings.cc||'—');text('previewSubject',buildSubject(deliverySettings().subject,deliveryDate()));text('previewScope',previewScopeText());updateClientNotes();
 }
 async function copyEmail(){try{if(!confirmScope())return;if(!state.report)throw Error('Load a report first.');const html=makeEmail();const plain=isPending()?renderPendingPlainText(state.pendingView,emailSettings()):renderPlainText(state.report,emailSettings(),filters());
  if(navigator.clipboard?.write&&typeof ClipboardItem!=='undefined')await navigator.clipboard.write([new ClipboardItem({'text/html':new Blob([html],{type:'text/html'}),'text/plain':new Blob([plain],{type:'text/plain'})})]);
@@ -224,7 +226,19 @@ function applySetup(){
 
  $('eventFilter').value=setup.events==='include'?'include':'exclude';
 }
-function confirmScope(){const contractError=contractScopeError();if(contractError){toast(contractError);return false;}if(isMonthly()&&dayNumber($('asAt').value)===null){toast('Choose the monthly reporting date.');return false;}if(isPending()&&state.scopeError){toast(state.scopeError);return false;}return !isPending()||((state.contracts!==null&&state.mapping.contract)||confirm('All contracts are selected or the Contract column is missing. Confirm these tickets belong to the intended customer before exporting.'));}
+function previewScopeText(){
+ if(Array.isArray(state.contracts)&&state.contracts.length===0)return 'No contract selected: exports are blocked until you select one.';
+ if(state.contracts!==null&&state.mapping.contract)return 'Contract: '+contractLabel(state.contracts);
+ return state.mapping.contract?'All contracts: you will be asked to confirm the customer scope when exporting.':'No Contract column: you will be asked to confirm the customer scope when exporting.';
+}
+function confirmScope(){
+ // RD-01: one safeguard for every export path and every report mode (lib/export-guard.mjs).
+ const mode=isMonthly()?'monthly':isPending()?'pending':'daily';
+ const counts=isPending()?(state.pendingView?{total:state.pendingView.total}:null):(state.report?state.report.counts:null);
+ const guard=exportGuard({tickets:state.tickets,contracts:state.contracts,hasContractColumn:Boolean(state.mapping.contract),mode,asAt:$('asAt').value,scopeError:state.scopeError,to:state.settings.to,reportDate:isPending()?($('asAt').value||'current snapshot'):(state.report?.reportDate||''),counts});
+ if(guard.block){toast(guard.block);return false;}
+ return guard.confirm?confirm(guard.confirm):true;
+}
 function workbookBytes(){if(dayNumber($('asAt').value)===null)throw Error('Choose an age reference date before exporting Excel.');return buildWorkbook(state.pendingView,state.settings.showEngineer,globalThis.XLSX);}
 function workbookAttachment(){const bytes=new Uint8Array(workbookBytes());let binary='';for(const byte of bytes)binary+=String.fromCharCode(byte);return {filename:exportBase()+'.xlsx',base64:btoa(binary)};}
 function init(){

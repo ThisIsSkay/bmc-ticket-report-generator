@@ -91,11 +91,15 @@ try {
   const preview = await emailFrame.evaluate(() => document.getElementById('emailFrame').srcdoc);
   assert.match(preview, /<html/i);
   assert.ok(!preview.includes('bmc-embedded'), 'theme never enters the email HTML');
+  // The demo covers All contracts, so the customer-scope check asks first (RD-01).
+  let scopeDialog = '';
+  page.once('dialog', (d) => { scopeDialog = d.message(); return d.accept(); });
   const htmlDl = page.waitForEvent('download');
   await email.locator('#downloadHtml').click();
   const htmlFile = readFileSync(await (await htmlDl).path(), 'utf8');
+  assert.match(scopeDialog, /Check the customer scope before exporting/, 'All contracts export asks for confirmation');
   assert.equal(htmlFile, preview, 'downloaded .html equals the preview HTML');
-  ok('Email section: themed, demo report renders, .html download equals preview, no theme in email HTML');
+  ok('Email section: themed, demo report renders, scope check asks, .html download equals preview, no theme in email HTML');
 
   // ---------- 3. Survey section ----------
   await page.locator('.tool-tab', { hasText: 'Customer Survey' }).click();
