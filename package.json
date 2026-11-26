@@ -14,7 +14,8 @@
     "test:survey": "node --test prototype/customer-survey/test/*.checks.mjs",
     "test:email": "node --test prototype/daily-email/test/*.test.mjs",
     "golden:check": "node scripts/golden/check.mjs",
-    "stage:pages": "node scripts/stage-pages.mjs"
+    "stage:pages": "node scripts/stage-pages.mjs",
+    "verify:unified": "node scripts/verify-unified.mjs"
   },
   "dependencies": {
     "html-to-image": "1.11.13",

@@ -1,0 +1,105 @@
+/* Injected by the unified app into the Email and Survey pages (see frameTheme.ts).
+   Every rule is scoped to html.bmc-embedded, so the standalone pages never see it.
+   It restyles page chrome only: the email preview (#emailFrame, its own document),
+   the signature editor (shows email HTML) and all generated files are untouched.
+   Token values mirror src/index.css (:root and :root[data-theme="dark"]). */
+
+html.bmc-embedded {
+  --app-bg: #f3f1ee; --app-surface: #ffffff; --app-surface-muted: #f3f4f6; --app-control-bg: #ffffff;
+  --app-control-border: #d1d5db; --app-ink: #111827; --app-ink-soft: #6b7280; --app-secondary-text: #4b5563;
+  --app-line: #e5e7eb; --app-nav-hover: #f3f4f6; --app-table-head: #f9fafb;
+  --accent-50: #fdf3ea; --accent-100: #fbe4d2; --accent-200: #f6c9a6; --accent-400: #e2925a; --accent-500: #c67139; --accent-600: #a85c2b; --accent-700: #8c491a;
+  --sage-100: #eef2e5; --sage-500: #8fa073; --sage-700: #56633f;
+  --warn-bg: #fff8eb; --warn-line: #f3d7a1; --warn-ink: #67420d; --danger-ink: #a12a35;
+  --radius-control: 6px; --radius-panel: 10px;
+  --elev-sm: 0 1px 2px rgba(17,24,39,.07); --elev-lg: 0 8px 24px rgba(17,24,39,.13);
+  /* email prototype variables */
+  --bg: var(--app-bg); --paper: var(--app-surface); --ink: var(--app-ink); --muted: var(--app-ink-soft);
+  --border: var(--app-line); --brand: var(--accent-600); --brand-dark: var(--accent-700); --soft: var(--app-surface-muted);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color: var(--app-ink);
+  background: var(--app-bg);
+}
+html.bmc-embedded[data-theme="dark"] {
+  --app-bg: #0b1117; --app-surface: #111820; --app-surface-muted: #17202a; --app-control-bg: #151e27;
+  --app-control-border: #394653; --app-ink: #f4f7fb; --app-ink-soft: #9ca9b7; --app-secondary-text: #b4bec9;
+  --app-line: #2b3642; --app-nav-hover: #1a2430; --app-table-head: #18222c;
+  --accent-50: #2a1d15; --accent-100: #3b2719; --accent-200: #6f4126; --accent-400: #e2925a; --accent-500: #ed9e63; --accent-600: #cb7138; --accent-700: #ffc08f;
+  --sage-100: #17251a; --sage-500: #83a174; --sage-700: #bdd2b2;
+  --warn-bg: #2a2212; --warn-line: #6b5420; --warn-ink: #f4d58d; --danger-ink: #f19aa3;
+  --elev-sm: 0 1px 2px rgba(0,0,0,.28); --elev-lg: 0 10px 28px rgba(0,0,0,.38);
+}
+
+/* ---------- shared basics ---------- */
+html.bmc-embedded body { background: var(--app-bg); color: var(--app-ink); font-family: inherit; }
+html.bmc-embedded a { color: var(--accent-600); }
+html.bmc-embedded[data-theme="dark"] a { color: var(--accent-700); }
+html.bmc-embedded ::selection { background: var(--accent-100); }
+html.bmc-embedded :focus-visible { outline: 2px solid var(--accent-400); outline-offset: 2px; }
+
+/* ========== Email Reports (prototype/daily-email) ========== */
+html.bmc-embedded-email .shell { max-width: 1320px; }
+html.bmc-embedded-email .brand-mark { background: var(--accent-400); color: #111827; border-radius: 9999px; }
+html.bmc-embedded-email .brand-name { color: var(--app-ink); }
+html.bmc-embedded-email .privacy { background: var(--sage-100); border-color: var(--sage-500); color: var(--sage-700); }
+html.bmc-embedded-email .dot { background: var(--sage-500); }
+html.bmc-embedded-email .panel { background: var(--app-surface); border-color: var(--app-line); border-radius: var(--radius-panel); box-shadow: var(--elev-sm); }
+html.bmc-embedded-email .section-header p, html.bmc-embedded-email .modal-head p,
+html.bmc-embedded-email .muted, html.bmc-embedded-email .help, html.bmc-embedded-email .info-row,
+html.bmc-embedded-email footer, html.bmc-embedded-email label small, html.bmc-embedded-email .signature-hint { color: var(--app-ink-soft); }
+html.bmc-embedded-email label, html.bmc-embedded-email .signature-label { color: var(--app-secondary-text); }
+html.bmc-embedded-email .btn { background: var(--app-control-bg); border-color: var(--app-line); color: var(--app-ink); border-radius: var(--radius-control); }
+html.bmc-embedded-email .btn:hover { background: var(--accent-50); border-color: var(--accent-200); }
+html.bmc-embedded-email .btn.primary { background: var(--accent-400); border-color: var(--accent-500); color: #111827; }
+html.bmc-embedded-email .btn.primary:hover { background: var(--accent-500); color: #111827; }
+html.bmc-embedded-email .btn.danger { color: var(--danger-ink); }
+html.bmc-embedded-email label input:not([type=file]), html.bmc-embedded-email label textarea, html.bmc-embedded-email label select,
+html.bmc-embedded-email select, html.bmc-embedded-email input[type=date], html.bmc-embedded-email input[type=text] {
+  background: var(--app-control-bg); border-color: var(--app-control-border); color: var(--app-ink);
+}
+html.bmc-embedded-email label input:focus, html.bmc-embedded-email label select:focus, html.bmc-embedded-email label textarea:focus { border-color: var(--accent-400); box-shadow: 0 0 0 1px var(--accent-400); }
+html.bmc-embedded-email .source-row { background: var(--app-surface-muted); border-color: var(--app-control-border); }
+html.bmc-embedded-email .notice { background: var(--warn-bg); border-color: var(--warn-line); color: var(--warn-ink); }
+html.bmc-embedded-email .kpis > div { background: var(--app-surface-muted); border-color: var(--app-line); }
+html.bmc-embedded-email .kpis span { color: var(--app-ink-soft); }
+html.bmc-embedded-email .table-scroll { border-color: var(--app-line); }
+html.bmc-embedded-email .report-table th, html.bmc-embedded-email .report-table td { border-bottom-color: var(--app-line); }
+html.bmc-embedded-email .report-table th, html.bmc-embedded-email .report-table tfoot td { background: var(--app-table-head); color: var(--app-secondary-text); }
+html.bmc-embedded-email .divider { background: var(--app-line); }
+html.bmc-embedded-email .email-toolbar { background: var(--app-surface-muted); border-color: var(--app-line); }
+html.bmc-embedded-email .email-header { background: var(--app-surface-muted); border-color: var(--app-line); }
+html.bmc-embedded-email .email-header > div span:first-child { color: var(--app-ink-soft); }
+/* The preview frame shows the real email: keep its white page in both themes. */
+html.bmc-embedded-email #emailFrame { border-color: var(--app-line); background: #ffffff; }
+html.bmc-embedded-email .modal { background: rgba(5, 10, 16, .55); }
+html.bmc-embedded-email .modal-card { background: var(--app-surface); color: var(--app-ink); box-shadow: var(--elev-lg); }
+html.bmc-embedded-email .modal-head, html.bmc-embedded-email .modal-footer { border-color: var(--app-line); }
+html.bmc-embedded-email .icon-btn { color: var(--app-ink-soft); }
+html.bmc-embedded-email .toast { background: var(--nav-active-bg, #1f2937); color: #ffffff; }
+html.bmc-embedded-email .signature-tools { background: var(--app-surface-muted); border-color: var(--app-control-border); }
+/* The signature editor shows email HTML as it will be sent: keep it on white. */
+html.bmc-embedded-email .signature-editor { background: #ffffff; color: #111827; border-color: var(--app-control-border); }
+html.bmc-embedded-email .pending-groups, html.bmc-embedded-email #headerLogoPanel { border-color: var(--app-line); background: var(--app-surface-muted); }
+html.bmc-embedded-email .contract-control { color: var(--app-ink); }
+html.bmc-embedded-email #contractFilter { background: var(--app-control-bg); border-color: var(--app-control-border); }
+html.bmc-embedded-email .contract-menu { border-top-color: var(--app-control-border); }
+html.bmc-embedded-email #headerLogoWarning { color: var(--warn-ink); }
+
+/* ========== Customer Survey (prototype/customer-survey) ========== */
+html.bmc-embedded-survey body { font: 14px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
+html.bmc-embedded-survey main { max-width: 1400px; }
+html.bmc-embedded-survey h1 { font-size: 22px; }
+html.bmc-embedded-survey h2 { font-size: 16px; }
+html.bmc-embedded-survey section { background: var(--app-surface); border-color: var(--app-line); border-radius: var(--radius-panel); box-shadow: var(--elev-sm); }
+html.bmc-embedded-survey input, html.bmc-embedded-survey select { background: var(--app-control-bg); border-color: var(--app-control-border); color: var(--app-ink); border-radius: var(--radius-control); }
+html.bmc-embedded-survey button { background: var(--app-control-bg); border-color: var(--app-line); color: var(--app-ink); border-radius: var(--radius-control); font-weight: 600; }
+html.bmc-embedded-survey button:hover:not(:disabled) { background: var(--accent-50); border-color: var(--accent-200); }
+html.bmc-embedded-survey button.primary, html.bmc-embedded-survey .primary { background: var(--accent-400); border-color: var(--accent-500); color: #111827; }
+html.bmc-embedded-survey button.primary:hover:not(:disabled) { background: var(--accent-500); }
+html.bmc-embedded-survey .notice { background: var(--accent-50); border-left-color: var(--accent-400); color: var(--app-ink); }
+html.bmc-embedded-survey .error { color: var(--danger-ink); }
+html.bmc-embedded-survey th, html.bmc-embedded-survey td { border-color: var(--app-line); }
+html.bmc-embedded-survey th { background: var(--app-table-head); color: var(--app-secondary-text); }
+html.bmc-embedded-survey small { color: var(--app-ink-soft); }
+/* Links to the separate pages would open a page inside the frame; the tool bar replaces them. */
+html.bmc-embedded-survey footer { display: none; }

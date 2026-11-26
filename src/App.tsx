@@ -45,7 +45,14 @@ const navGroups: Array<{ label: string; items: NavItem[] }> = [
   },
 ]
 
-export default function App() {
+// Optional props let the unified app (/app/) own the theme for every section.
+// The standalone page renders <App /> with no props and behaves exactly as before.
+export interface AppProps {
+  theme?: AppTheme
+  onThemeChange?: (theme: AppTheme) => void
+}
+
+export default function App({ theme: controlledTheme, onThemeChange }: AppProps = {}) {
   const [screen, setScreen] = useState<Screen>('upload')
   const [parsed, setParsed] = useState<ParsedWorkbook | null>(null)
   const [selectedSheet, setSelectedSheet] = useState('')
@@ -60,7 +67,13 @@ export default function App() {
   const [demoLoaded, setDemoLoaded] = useState(false)
   const [now, setNow] = useState(new Date())
   const [validationOpen, setValidationOpen] = useState(false)
-  const [theme, setTheme] = useState<AppTheme>(() => loadTheme())
+  const [ownTheme, setOwnTheme] = useState<AppTheme>(() => loadTheme())
+  const theme = controlledTheme ?? ownTheme
+  const setTheme = (next: AppTheme | ((value: AppTheme) => AppTheme)) => {
+    const value = typeof next === 'function' ? next(theme) : next
+    if (onThemeChange) onThemeChange(value)
+    else setOwnTheme(value)
+  }
 
   const tickets = useMemo(() => normalizeRows(rows, columnMapping, config), [rows, columnMapping, config])
   const validation = useMemo(() => buildValidation(tickets), [tickets])
@@ -226,10 +239,10 @@ export default function App() {
             <div className="status-value">{hasData ? rows.length.toLocaleString() : '—'}</div>
           </div>
           <div className="status-actions">
-            <button className="theme-toggle" type="button" onClick={() => setTheme((value) => value === 'dark' ? 'light' : 'dark')} aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}>
+            {!onThemeChange && <button className="theme-toggle" type="button" onClick={() => setTheme((value) => value === 'dark' ? 'light' : 'dark')} aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}>
               {theme === 'dark' ? <Sun size={16} strokeWidth={2.3} /> : <Moon size={16} strokeWidth={2.3} />}
               {theme === 'dark' ? 'Light' : 'Dark'}
-            </button>
+            </button>}
             <button className={warningCount ? 'review-pill' : 'review-pill review-pill-ok'} type="button" onClick={() => setValidationOpen((open) => !open)} aria-expanded={validationOpen}>
               <span className="review-pill-dot" aria-hidden="true" />
               {warningCount ? `${warningCount} items to review` : 'Validation clear'}
