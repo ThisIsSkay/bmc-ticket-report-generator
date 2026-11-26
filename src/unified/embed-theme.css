@@ -93,7 +93,7 @@ html.bmc-embedded-survey main { max-width: 1400px; }
 html.bmc-embedded-survey h1 { font-size: 22px; }
 html.bmc-embedded-survey h2 { font-size: 16px; }
 html.bmc-embedded-survey section { background: var(--app-surface); border-color: var(--app-line); border-radius: var(--radius-panel); box-shadow: var(--elev-sm); }
-html.bmc-embedded-survey input, html.bmc-embedded-survey select { background: var(--app-control-bg); border-color: var(--app-control-border); color: var(--app-ink); border-radius: var(--radius-control); }
+html.bmc-embedded-survey input, html.bmc-embedded-survey select, html.bmc-embedded-survey textarea { background: var(--app-control-bg); border-color: var(--app-control-border); color: var(--app-ink); border-radius: var(--radius-control); }
 html.bmc-embedded-survey button { background: var(--app-control-bg); border-color: var(--app-line); color: var(--app-ink); border-radius: var(--radius-control); font-weight: 600; }
 html.bmc-embedded-survey button:hover:not(:disabled) { background: var(--accent-50); border-color: var(--accent-200); }
 html.bmc-embedded-survey button.primary, html.bmc-embedded-survey .primary { background: var(--accent-400); border-color: var(--accent-500); color: #111827; }
@@ -103,5 +103,7 @@ html.bmc-embedded-survey .error { color: var(--danger-ink); }
 html.bmc-embedded-survey th, html.bmc-embedded-survey td { border-color: var(--app-line); }
 html.bmc-embedded-survey th { background: var(--app-table-head); color: var(--app-secondary-text); }
 html.bmc-embedded-survey small { color: var(--app-ink-soft); }
+html.bmc-embedded-survey .hint { color: var(--app-ink-soft); }
+html.bmc-embedded-survey .checks, html.bmc-embedded-survey #draft { border-color: var(--app-line); }
 /* Links to the separate pages would open a page inside the frame; the tool bar replaces them. */
 html.bmc-embedded-survey footer { display: none; }

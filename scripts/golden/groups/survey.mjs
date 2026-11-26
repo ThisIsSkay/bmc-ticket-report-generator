@@ -106,7 +106,7 @@ export async function generate() {
   const requests = requestsFromRows(ticketRows, ticketMap, ticketRows.map((_, i) => i + 2));
   const results = matchBatch(requests, dir.entries).map(compactResult);
 
-  // XLSX upload, read exactly as prototype/customer-survey/app.mjs:13 does
+  // XLSX upload, read exactly as the ticketFile/directoryFile change handler in prototype/customer-survey/app.mjs does (formatted text; app.mjs also reads raw values for the Resolved date)
   // (cellDates:false, sheet_to_json header:1, defval:'', raw:false), with a cover
   // sheet, the header on row 2, and IDs whose leading zeros must survive.
   const XLSX = createRequire(resolve(repoRoot, 'package.json'))('xlsx');

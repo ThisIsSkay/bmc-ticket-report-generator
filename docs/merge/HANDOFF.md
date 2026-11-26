@@ -1,4 +1,4 @@
-BATON: Owner — RD-01 to RD-04 done on integration/unified-app; review before anything goes to main — 2026-11-26
+BATON: Owner — RD-01 to RD-04 and the survey Resolved-day/BCC-draft change are on integration/unified-app; review before anything goes to main — 2026-11-26
 
 # Unified app merge — handoff
 
@@ -231,7 +231,7 @@ Checklist (continue from the first unticked item):
     (`prototype/daily-email/lib/xlsx-lite.mjs:29` `cellsFromXML`) never
     reads `<dimension>`; SheetJS 0.20.3 (WhatsApp `src/lib/import.ts:11`,
     survey vendored `xlsx.mini.min.js` read at
-    `prototype/customer-survey/app.mjs:13`) widens the sheet range to the
+    `prototype/customer-survey/app.mjs:20`) widens the sheet range to the
     cells it finds. Each tool picks the populated fourth sheet.
   - Fixture: `scripts/fixtures/dimension-a1.mjs` builds, at test time, a
     fictional workbook (three empty sheets, then 12 BMC-style rows × 13
@@ -320,6 +320,24 @@ Checklist (continue from the first unticked item):
   survey match with the private dummy directory, sending nothing.
 - Owner decisions open: export acknowledgement for future-dated monthly
   reports (RD-02); whether to publish this work to `main`.
+
+## Customer Survey: Resolved-day scope, groups, BCC draft (owner, 2026-11-26)
+
+Owner decisions: survey tickets are status **Resolved** only (not Closed) with a
+Resolved date on one day, defaulting to the latest; groups are ticked from the
+Assigned Group column; the output is one unsent Outlook draft with confirmed
+customers in BCC (.eml and Classic Outlook .ps1); draft text, survey link, To
+line, group ticks and date order are remembered in the browser (no customer
+data). Details: `prototype/customer-survey/HANDOFF.md` and `README.md`.
+
+- Tests: `test:survey` 30 (was 15: +8 scope, +7 draft/settings);
+  `scripts/verify-survey.mjs` updated and passing; `verify:unified` passing
+  (the survey sample still matches 4 rows on its default day).
+- Goldens: unchanged (the survey golden covers the import and matching
+  libraries, which did not change).
+- Owner check still needed: open a downloaded .eml in New Outlook / Outlook
+  on the web and run the .ps1 in Classic Outlook with two test addresses;
+  confirm both land in BCC, To is empty (or your own line), and nothing sends.
 
 ## Claude bug check of /app/ (started 2026-11-26)
 

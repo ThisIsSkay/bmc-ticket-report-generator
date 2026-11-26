@@ -1,4 +1,29 @@
-# Customer Survey handoff — 2026-11-20
+# Customer Survey handoff
+
+## Resolved-day scope, groups and BCC draft — 2026-11-26
+
+Owner instructions (Claude, branch `integration/unified-app`, not on `main`):
+- Survey tickets: status exactly Resolved, Resolved date on one chosen day
+  (default: the latest Resolved date in the export). Closed is NOT included.
+- Groups: tick Assigned Group values from the export (null = All, [] = none,
+  which blocks matching). Without a mapped group column, all groups.
+- Output: one unsent Outlook draft, confirmed recipients in BCC, as .eml and a
+  Classic Outlook .ps1 helper (Save + Display, no Send).
+- Remember draft text, survey link, To line, group ticks and date order in this
+  browser. No customer or ticket data is stored.
+
+Code: `lib/scope.mjs` (status rule, day parsing incl. Excel serials and
+day/month order detection, group counts), `lib/draft.mjs` (.eml/.ps1, BCC,
+de-duplication, link check, 500-recipient cap), `lib/settings.mjs` (the only
+storage), `app.mjs` (new mappings, raw XLSX values for the Resolved date,
+matching on in-scope rows only, draft section), `index.html`, `style.css`.
+Tests: `test/scope.checks.mjs` (8), `test/draft.checks.mjs` (7),
+`scripts/verify-survey.mjs` (updated: XLSX/CSV flows now carry Status and
+Resolved Date; new scope, draft and storage checks).
+Not yet verified: opening the .eml and running the .ps1 in real Outlook (the
+owner must check with test addresses that BCC is kept and nothing is in To).
+
+## 2026-11-20
 
 ## Corrections after Claude review of 9fd8046
 
