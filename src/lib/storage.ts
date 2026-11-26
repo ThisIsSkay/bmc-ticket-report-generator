@@ -12,6 +12,20 @@ const KEYS = {
   theme: 'bmc-report:theme:v1',
 }
 
+// Saving must never crash the app. Browser storage can be blocked (privacy
+// settings) or full: every tool on this site shares one quota, and the email
+// tool stores signature images and a logo there. The report keeps working for
+// this visit; the settings are simply not remembered.
+function writeItem(key: string, value: string): boolean {
+  try {
+    localStorage.setItem(key, value)
+    return true
+  } catch (error) {
+    console.warn(`Could not save ${key} to browser storage`, error)
+    return false
+  }
+}
+
 function readUnknown(key: string): unknown {
   try {
     const raw = localStorage.getItem(key)
@@ -63,8 +77,8 @@ export function loadConfig(): AppConfig {
   }
 }
 
-export function saveConfig(config: AppConfig): void {
-  localStorage.setItem(KEYS.config, JSON.stringify(config))
+export function saveConfig(config: AppConfig): boolean {
+  return writeItem(KEYS.config, JSON.stringify(config))
 }
 
 export function loadColumnMapping(): ColumnMapping {
@@ -72,8 +86,8 @@ export function loadColumnMapping(): ColumnMapping {
   return { ...defaultColumnMapping, ...(raw ?? {}) }
 }
 
-export function saveColumnMapping(mapping: ColumnMapping): void {
-  localStorage.setItem(KEYS.columns, JSON.stringify(mapping))
+export function saveColumnMapping(mapping: ColumnMapping): boolean {
+  return writeItem(KEYS.columns, JSON.stringify(mapping))
 }
 
 export function loadFeedback(): FeedbackValues {
@@ -81,8 +95,8 @@ export function loadFeedback(): FeedbackValues {
   return { ...defaultFeedback, ...(raw ?? {}) }
 }
 
-export function saveFeedback(feedback: FeedbackValues): void {
-  localStorage.setItem(KEYS.feedback, JSON.stringify(feedback))
+export function saveFeedback(feedback: FeedbackValues): boolean {
+  return writeItem(KEYS.feedback, JSON.stringify(feedback))
 }
 
 export function loadTheme(): AppTheme {
@@ -93,8 +107,8 @@ export function loadTheme(): AppTheme {
   }
 }
 
-export function saveTheme(theme: AppTheme): void {
-  localStorage.setItem(KEYS.theme, theme)
+export function saveTheme(theme: AppTheme): boolean {
+  return writeItem(KEYS.theme, theme)
 }
 
 export function hasSavedWorkflowSetup(): boolean {

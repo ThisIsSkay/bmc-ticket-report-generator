@@ -3,6 +3,7 @@ import { FileImage, Mail, Moon, Sun, Users } from 'lucide-react'
 import { loadTheme, saveTheme } from '../lib/storage'
 import type { AppTheme } from '../lib/storage'
 import { themeFrame } from './frameTheme'
+import { SectionBoundary } from './SectionBoundary'
 import { TOOLS, toolFromHash } from './tools'
 import type { ToolId } from './tools'
 
@@ -82,9 +83,11 @@ export function UnifiedApp() {
       <div className="tool-panes">
         {visited.includes('whatsapp') && (
           <section className="tool-pane tool-pane-native" hidden={tool !== 'whatsapp'} aria-label="WhatsApp Report">
-            <Suspense fallback={<div className="tool-loading">Loading WhatsApp Report…</div>}>
-              <WhatsAppReport theme={theme} onThemeChange={setTheme} />
-            </Suspense>
+            <SectionBoundary name="WhatsApp Report">
+              <Suspense fallback={<div className="tool-loading">Loading WhatsApp Report…</div>}>
+                <WhatsAppReport theme={theme} onThemeChange={setTheme} />
+              </Suspense>
+            </SectionBoundary>
           </section>
         )}
         {TOOLS.filter((item) => item.frameSrc && visited.includes(item.id)).map((item) => (

@@ -112,11 +112,11 @@
     },
     "saveConfig": {
       "ok": true,
-      "value": null
+      "value": true
     },
     "saveTheme": {
       "ok": true,
-      "value": null
+      "value": true
     },
     "storageAfter": {
       "bmc-report:column-mapping:v2": "{\n  \"ticketId\": \"Display ID\",\n  \"assignedTo\": \"Assigned To\",\n  \"status\": \"Status\",\n  \"ticketType\": \"Ticket Type\",\n  \"summary\": \"Summary\",\n  \"createdDate\": \"Created Date\",\n  \"closedDate\": \"Closed Date\",\n  \"supportGroup\": \"Support Group\",\n  \"contract\": \"Contract\"\n}\n",
@@ -231,11 +231,11 @@
     },
     "saveConfig": {
       "ok": true,
-      "value": null
+      "value": true
     },
     "saveTheme": {
       "ok": true,
-      "value": null
+      "value": true
     },
     "storageAfter": {
       "bmc-report:config:v2": "{\"teams\":{\"EUC\":[],\"System\":[],\"Network\":[]},\"statuses\":{\"New\":[\"new\",\"assigned\",\"created\"],\"Pending\":[\"pending\"],\"Closed\":[\"closed\",\"resolved\"],\"Work in Progress\":[\"work in progress\",\"in progress\",\"wip\"],\"Waiting User Reply\":[\"waiting user reply\",\"awaiting user\",\"pending user\",\"waiting for user\"],\"On Hold\":[\"on hold\",\"hold\"],\"Cancelled\":[\"cancelled\",\"canceled\"],\"Other\":[]},\"categories\":{\"Onboarding\":[\"onboarding\",\"onboard \",\"new joiner\",\"joiner\"],\"Offboarding\":[\"offboarding\",\"terminate access\",\"leaver\",\"termination\",\"resignation\"],\"Schedule\":[\"forward schedule\",\"preventive maintenance\",\"schedule\",\"scheduling\",\"planned work\"],\"Incident\":[\"incident\",\"outage\",\"unavailable\",\"error\",\"failure\"]}}",
@@ -355,11 +355,11 @@
     },
     "saveConfig": {
       "ok": true,
-      "value": null
+      "value": true
     },
     "saveTheme": {
       "ok": true,
-      "value": null
+      "value": true
     },
     "storageAfter": {
       "bmc-report:column-mapping:v1": "{\n  \"ticketId\": \"Display ID\",\n  \"assignedTo\": \"Assigned To\",\n  \"status\": \"Status\",\n  \"ticketType\": \"Ticket Type\",\n  \"summary\": \"Summary\",\n  \"createdDate\": \"Created Date\",\n  \"closedDate\": \"Closed Date\",\n  \"supportGroup\": \"Support Group\"\n}\n",
@@ -475,11 +475,11 @@
     },
     "saveConfig": {
       "ok": true,
-      "value": null
+      "value": true
     },
     "saveTheme": {
       "ok": true,
-      "value": null
+      "value": true
     },
     "storageAfter": {
       "bmc-report:column-mapping:v2": "{\n  \"ticketId\": \"Display ID\",\n  \"assignedTo\": \"Assigned To\",\n  \"status\": \"Status\",\n  \"ticketType\": \"Ticket Type\",\n  \"summary\": \"Summary\",\n  \"createdDate\": \"Created Date\",\n  \"closedDate\": \"Closed Date\",\n  \"supportGroup\": \"Support Group\",\n  \"contract\": \"Contract\"\n}\n",
@@ -594,11 +594,11 @@
     },
     "saveConfig": {
       "ok": true,
-      "value": null
+      "value": true
     },
     "saveTheme": {
       "ok": true,
-      "value": null
+      "value": true
     },
     "storageAfter": {
       "bmc-report:column-mapping:v2": "{\n  \"ticketId\": \"Display ID\",\n  \"assignedTo\": \"Assigned To\",\n  \"status\": \"Status\",\n  \"ticketType\": \"Ticket Type\",\n  \"summary\": \"Summary\",\n  \"createdDate\": \"Created Date\",\n  \"closedDate\": \"Closed Date\",\n  \"supportGroup\": \"Support Group\",\n  \"contract\": \"Contract\"\n}\n",
@@ -713,11 +713,11 @@
     },
     "saveConfig": {
       "ok": true,
-      "value": null
+      "value": true
     },
     "saveTheme": {
       "ok": true,
-      "value": null
+      "value": true
     },
     "storageAfter": {
       "bmc-report:column-mapping:v2": "[1,",
@@ -838,12 +838,12 @@
       "value": "dark"
     },
     "saveConfig": {
-      "error": "QuotaExceededError: fake storage setItem refused (full)",
-      "ok": false
+      "ok": true,
+      "value": false
     },
     "saveTheme": {
-      "error": "QuotaExceededError: fake storage setItem refused (full)",
-      "ok": false
+      "ok": true,
+      "value": false
     },
     "storageAfter": {
       "bmc-report:column-mapping:v2": "{\n  \"ticketId\": \"Display ID\",\n  \"assignedTo\": \"Assigned To\",\n  \"status\": \"Status\",\n  \"ticketType\": \"Ticket Type\",\n  \"summary\": \"Summary\",\n  \"createdDate\": \"Created Date\",\n  \"closedDate\": \"Closed Date\",\n  \"supportGroup\": \"Support Group\",\n  \"contract\": \"Contract\"\n}\n",
@@ -957,12 +957,12 @@
       "value": "light"
     },
     "saveConfig": {
-      "error": "SecurityError: fake storage setItem refused (unavailable)",
-      "ok": false
+      "ok": true,
+      "value": false
     },
     "saveTheme": {
-      "error": "SecurityError: fake storage setItem refused (unavailable)",
-      "ok": false
+      "ok": true,
+      "value": false
     },
     "storageAfter": null
   },
@@ -1079,11 +1079,11 @@
     },
     "saveConfig": {
       "ok": true,
-      "value": null
+      "value": true
     },
     "saveTheme": {
       "ok": true,
-      "value": null
+      "value": true
     },
     "storageAfter": {
       "bmc-report:column-mapping:v1": "{\n  \"ticketId\": \"Display ID\",\n  \"assignedTo\": \"Assigned To\",\n  \"status\": \"Status\",\n  \"ticketType\": \"Ticket Type\",\n  \"summary\": \"Summary\",\n  \"createdDate\": \"Created Date\",\n  \"closedDate\": \"Closed Date\",\n  \"supportGroup\": \"Support Group\"\n}\n",

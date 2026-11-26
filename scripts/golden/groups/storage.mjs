@@ -54,6 +54,9 @@ export async function generate({ emailRoot }) {
       'storage-full': [v2, 'full'],
     };
     const results = {};
+    // Saves that fail on purpose log a warning (src/lib/storage.ts writeItem); keep the output quiet.
+    const realWarn = console.warn;
+    console.warn = () => {};
     for (const [name, [entries, mode]] of Object.entries(scenarios)) {
       const fake = fakeStorage(entries, mode);
       globalThis.localStorage = fake;
@@ -68,6 +71,7 @@ export async function generate({ emailRoot }) {
         storageAfter: mode === 'unavailable' ? null : fake.dump(),
       };
     }
+    console.warn = realWarn;
     files.set('storage/whatsapp.json', stableJson(results));
   } finally {
     globalThis.localStorage = realStorage;

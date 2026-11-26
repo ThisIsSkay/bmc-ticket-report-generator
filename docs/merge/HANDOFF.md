@@ -197,14 +197,14 @@ Checklist (in order of risk):
   validation panel, sticky table headers, modals/overlays, print.
 - [x] B-scan-3 Every Email export from inside /app/ (.ps1, .eml, .xlsx, copy
   to clipboard) against the same steps on /daily-email/.
-- [ ] B-scan-4 Navigation: back/forward, unknown hash, deep links, reload,
+- [x] B-scan-4 Navigation: back/forward, unknown hash, deep links, reload,
   keyboard focus order, window title.
 - [ ] B-scan-5 WhatsApp section workflows inside /app/ (Engineer Selection,
   Rules, Configuration import/export, copy and print).
 - [ ] B-scan-6 Survey inside /app/ (XLSX upload, Clear all data, worker).
 - [x] B-scan-7 Dev experience: `npm run dev` serves the email and survey
   pages for /app/.
-- [ ] B-scan-8 Edge cases: narrow and very wide windows, storage blocked,
+- [~] B-scan-8 Edge cases (storage blocked/full done; narrow/wide windows and frame load failure still to do): narrow and very wide windows, storage blocked,
   frame load failure.
 
 Scan results:
@@ -219,6 +219,9 @@ Scan results:
 - **B-scan-2:** every sticky table header sits inside its own scroll box,
   print uses its own window, and the sidebar and status strip sit below the
   tool bar. No issues.
+- **B-scan-4:** back/forward follow the tabs and update the title; an
+  unknown hash falls back to WhatsApp; `#/survey/extra?x=1` opens Survey;
+  Tab reaches the tool bar tabs, Enter switches, and focus is visible.
 - **B-scan-3:** done in a browser with a fixed clock. `.ps1`, `.eml`,
   `.html`, clipboard (HTML and plain text) for themes A and C in daily,
   outstanding and monthly modes, plus both `.xlsx` files: **28 of 28
@@ -229,6 +232,7 @@ Findings:
 | # | Severity | Finding | Fix |
 |---|---|---|---|
 | B-1 | Medium (developers) | Under `npm run dev`, the Email and Survey sections showed the **WhatsApp app** inside their frames: Vite's SPA fallback answered `/daily-email/` and `/customer-survey/` with `index.html`. Production was not affected. | `scripts/vite-prototype-pages.mjs`, a dev-only plugin serving both prototype folders at their published paths (bare path → 301; `test/` and traversal refused). |
+| B-3 | **High** (robustness) | With browser storage full or blocked, **/app/ rendered a blank page**. The WhatsApp section's save calls (`saveConfig`, `saveTheme`, …) threw inside React effects with no error boundary, so React unmounted everything, including the tool bar and the Email/Survey sections. This is realistic because all tools share one storage quota and the email tool stores images and a logo there. The same throw crashed the standalone WhatsApp page (P0-14). | `src/lib/storage.ts`: every save goes through `writeItem`, which catches, warns and returns `false`; the report keeps working for the visit. `SectionBoundary` wraps the WhatsApp section, so any future crash stays inside its section with a Reload button. **Intentional golden update:** `storage/whatsapp.json` save results only (`null`→`true` on success, throw→`false` when blocked or full); every load result and stored value is unchanged, and `email.json` is identical. Regression: `verify-unified` check 10. Closes P0-14. |
 | B-2 | Low (cosmetic) | In dark mode, the Email multi-select lists (ticket types, statuses) showed the browser's grey selected rows. | `embed-theme.css`: selected rows use the accent tint. |
 
 ## Codex bug-check brief

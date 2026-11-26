@@ -159,6 +159,24 @@ try {
   assert.deepEqual(errors, []);
   ok('no outside requests from /app/ and no page errors');
   await ctx.close();
+
+  // ---------- 7. Full or blocked browser storage must not blank the app (B-3) ----------
+  for (const mode of ['full', 'blocked']) {
+    const sctx = await browser.newContext();
+    await sctx.route((u) => !u.href.startsWith(origin) && !u.href.startsWith('data:') && !u.href.startsWith('blob:'), (route) => route.abort());
+    const sp = await sctx.newPage();
+    const serrors = [];
+    sp.on('pageerror', (e) => serrors.push(e.message));
+    await sp.addInitScript((m) => { if (window !== window.top) return; const fail = () => { throw new DOMException('test ' + m, m === 'full' ? 'QuotaExceededError' : 'SecurityError'); }; Storage.prototype.setItem = fail; if (m === 'blocked') Storage.prototype.getItem = fail; }, mode);
+    await sp.goto(site + 'app/');
+    await sp.locator('.app-shell').waitFor({ timeout: 10000 });
+    assert.equal(await sp.locator('.tool-bar').count(), 1);
+    await sp.locator('.tool-tab', { hasText: 'Customer Survey' }).click();
+    await sp.locator('iframe[title="Customer Survey"]').waitFor({ state: 'visible' });
+    assert.deepEqual(serrors, [], `no page errors with storage ${mode}`);
+    await sctx.close();
+  }
+  ok('full or blocked browser storage: tool bar, WhatsApp section and frames still work');
 } finally {
   await browser.close();
   server.close();
