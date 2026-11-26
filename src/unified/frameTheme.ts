@@ -9,6 +9,32 @@ import type { ToolId } from './tools'
 
 const STYLE_ID = 'bmc-unified-embed-theme'
 
+/**
+ * A file dropped where nothing accepts it makes the browser open the file and
+ * leave the page. In the unified app that would lose every section's work, so
+ * such drops are ignored. File inputs and drop zones that handle the drop
+ * themselves (they call preventDefault first) keep working.
+ */
+export function guardFileDrops(win: Window | null | undefined): void {
+  const target = win as (Window & { __bmcDropGuard?: boolean }) | null | undefined
+  if (!target || target.__bmcDropGuard) return
+  target.__bmcDropGuard = true
+  const acceptsFiles = (node: EventTarget | null) => {
+    const element = node as HTMLInputElement | null
+    return element?.tagName === 'INPUT' && element.type === 'file'
+  }
+  const hasFiles = (event: DragEvent) => Array.from(event.dataTransfer?.types ?? []).includes('Files')
+  target.addEventListener('dragover', (event) => {
+    if (event.defaultPrevented || !hasFiles(event) || acceptsFiles(event.target)) return
+    event.preventDefault()
+    if (event.dataTransfer) event.dataTransfer.dropEffect = 'none'
+  })
+  target.addEventListener('drop', (event) => {
+    if (event.defaultPrevented || !hasFiles(event) || acceptsFiles(event.target)) return
+    event.preventDefault()
+  })
+}
+
 /** True when the frame shows the expected page (not a 404 or an empty document). */
 export function frameHasPage(frame: HTMLIFrameElement | null | undefined, selector: string | undefined): boolean {
   if (!selector) return true

@@ -177,6 +177,25 @@ try {
     await sctx.close();
   }
   ok('full or blocked browser storage: tool bar, WhatsApp section and frames still work');
+
+  // ---------- 8. A file dropped outside a file input must not replace the page ----------
+  {
+    const dctx = await browser.newContext();
+    await dctx.route((u) => !u.href.startsWith(origin) && !u.href.startsWith('data:') && !u.href.startsWith('blob:'), (route) => route.abort());
+    const dp = await dctx.newPage();
+    await dp.goto(site + 'app/#/survey');
+    const frame = dp.frameLocator('iframe[title="Customer Survey"]');
+    await frame.locator('#ticketSample').waitFor();
+    const sf = dp.frames().find((f) => f.url().includes('/customer-survey/'));
+    await sf.waitForFunction(() => window.__bmcDropGuard === true);
+    const drop = (selector) => sf.evaluate((sel) => { const dt = new DataTransfer(); dt.items.add(new File(['x'], 'fictional.csv', { type: 'text/csv' })); const el = document.querySelector(sel); const over = new DragEvent('dragover', { dataTransfer: dt, bubbles: true, cancelable: true }); const drop = new DragEvent('drop', { dataTransfer: dt, bubbles: true, cancelable: true }); el.dispatchEvent(over); el.dispatchEvent(drop); return [over.defaultPrevented, drop.defaultPrevented]; }, selector);
+    assert.deepEqual(await drop('main'), [true, true], 'drop on the page is ignored');
+    assert.deepEqual(await drop('#ticketFile'), [false, false], 'drop on a file input keeps the browser default');
+    const top = await dp.evaluate(() => { const dt = new DataTransfer(); dt.items.add(new File(['x'], 'fictional.csv')); const e = new DragEvent('drop', { dataTransfer: dt, bubbles: true, cancelable: true }); document.querySelector('.tool-bar').dispatchEvent(e); return e.defaultPrevented; });
+    assert.equal(top, true, 'drop on the tool bar is ignored');
+    await dctx.close();
+  }
+  ok('files dropped outside a file input or drop zone are ignored (no page replaced)');
 } finally {
   await browser.close();
   server.close();

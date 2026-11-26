@@ -2,7 +2,7 @@ import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { FileImage, Mail, Moon, Sun, Users } from 'lucide-react'
 import { loadTheme, saveTheme } from '../lib/storage'
 import type { AppTheme } from '../lib/storage'
-import { frameHasPage, themeFrame } from './frameTheme'
+import { frameHasPage, guardFileDrops, themeFrame } from './frameTheme'
 import { SectionBoundary } from './SectionBoundary'
 import { TOOLS, toolFromHash } from './tools'
 import type { ToolId } from './tools'
@@ -21,6 +21,8 @@ export function UnifiedApp() {
   const frames = useRef<Partial<Record<ToolId, HTMLIFrameElement | null>>>({})
   const [themed, setThemed] = useState<Partial<Record<ToolId, boolean>>>({})
   const [missing, setMissing] = useState<Partial<Record<ToolId, boolean>>>({})
+
+  useEffect(() => { guardFileDrops(window) }, [])
 
   useEffect(() => {
     const onHash = () => setTool(toolFromHash(window.location.hash))
@@ -49,6 +51,7 @@ export function UnifiedApp() {
   const onFrameLoad = useCallback((id: ToolId) => {
     const frame = frames.current[id]
     themeFrame(frame, theme, id)
+    try { guardFileDrops(frame?.contentWindow) } catch { /* not same-origin */ }
     setMissing((state) => ({ ...state, [id]: !frameHasPage(frame, TOOLS.find((item) => item.id === id)?.readySelector) }))
     setThemed((state) => ({ ...state, [id]: true }))
   }, [theme])

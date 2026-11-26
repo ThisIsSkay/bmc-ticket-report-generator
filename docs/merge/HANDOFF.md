@@ -207,6 +207,15 @@ Checklist (in order of risk):
 - [x] B-scan-8 Edge cases: narrow and very wide windows, storage blocked,
   frame load failure.
 
+Round 2 (after all eight scans):
+- [x] R2-1 Read through the shell code (hash handling, theme on frame
+  load, state per section): no logic errors found.
+- [x] R2-2 README local preview (`vite preview --mode github-pages`): every
+  page serves.
+- [x] R2-3 Email settings inside the frame: header logo upload, save,
+  reload, logo and sender in the theme C email, settings export. All work.
+- [x] R2-4 File drag-and-drop: see B-6 (fixed).
+
 Scan results:
 - **B-scan-1:** 16 states × 2 themes (WhatsApp upload, dashboard, validation
   panel, Ticket Data, Engineer Selection, Rules, Configuration, Column
@@ -246,6 +255,7 @@ Findings:
 | B-3 | **High** (robustness) | With browser storage full or blocked, **/app/ rendered a blank page**. The WhatsApp section's save calls (`saveConfig`, `saveTheme`, …) threw inside React effects with no error boundary, so React unmounted everything, including the tool bar and the Email/Survey sections. This is realistic because all tools share one storage quota and the email tool stores images and a logo there. The same throw crashed the standalone WhatsApp page (P0-14). | `src/lib/storage.ts`: every save goes through `writeItem`, which catches, warns and returns `false`; the report keeps working for the visit. `SectionBoundary` wraps the WhatsApp section, so any future crash stays inside its section with a Reload button. **Intentional golden update:** `storage/whatsapp.json` save results only (`null`→`true` on success, throw→`false` when blocked or full); every load result and stored value is unchanged, and `email.json` is identical. Regression: `verify-unified` check 10. Closes P0-14. |
 | B-4 | Low | If a framed page is missing (a host where `stage:pages` was not run), the section showed a bare "404". | The shell checks for a page-specific element after load (`readySelector`) and shows "Email Reports could not be loaded" with the fix to run. |
 | B-5 | Low (cosmetic) | In dark mode, /app/ flashed the light theme until React started. | Inline script in `app/index.html` applies the saved theme before the first paint (verified with JavaScript delayed 800 ms). |
+| B-6 | Medium (data loss) | Dropping a file anywhere that doesn't accept it (Email and Survey pages beside their file inputs, the tool bar, empty areas) makes the browser open the file in place of the page. In /app/ that throws away the work in **all three sections** at once. | `guardFileDrops()` on the /app/ window and on each frame ignores file drops that nothing handles. File inputs and the WhatsApp drop zone, which handle drops themselves, keep working (verified: a dropped workbook still reaches the dashboard). Regression: `verify-unified` check 11. |
 | B-2 | Low (cosmetic) | In dark mode, the Email multi-select lists (ticket types, statuses) showed the browser's grey selected rows. | `embed-theme.css`: selected rows use the accent tint. |
 
 ## Codex bug-check brief
