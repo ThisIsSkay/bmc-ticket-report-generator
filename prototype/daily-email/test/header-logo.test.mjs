@@ -1,0 +1,8 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {persistCandidate,validHeaderLogo,logoWarning,logoDisplaySize} from '../lib/header-logo.mjs';
+import {MAX_IMAGE_DATA_LENGTH,allowedSignatureImage} from '../lib/signature-html.mjs';
+import {normalizeSettings} from '../lib/settings-persistence.mjs';
+function png(w,h){const bytes=Buffer.alloc(24);bytes.write('IHDR',12);bytes.writeUInt32BE(w,16);bytes.writeUInt32BE(h,20);return 'data:image/png;base64,'+bytes.toString('base64');}
+test('Failed logo replacement/removal/import never adopt candidate',()=>{const old={headerLogo:png(300,100),to:'old@example.com'};let active=old;for(const candidate of [{...old,headerLogo:png(100,100)},{...old,headerLogo:''},{headerLogo:png(200,100),to:'new@example.com'}]){assert.throws(()=>{active=persistCandidate({setItem(){throw Error('quota')}},'key',candidate)});assert.equal(active,old);}const saved=[];active=persistCandidate({setItem:(...args)=>saved.push(args)},'key',{...old,headerLogo:''});assert.equal(active.headerLogo,'');assert.equal(JSON.parse(saved[0][1]).headerLogo,'');});
+test('Shared inclusive limit and imported data validation',()=>{const src=png(360,120);const boundary=src+'A'.repeat(MAX_IMAGE_DATA_LENGTH-src.length);assert.ok(allowedSignatureImage(boundary));assert.ok(validHeaderLogo(boundary));assert.ok(!validHeaderLogo(boundary+'A'));assert.equal(normalizeSettings({headerLogo:'javascript:alert(1)'},{signatures:[]}).headerLogo,'');});
+test('Proportional display and small-result warnings',()=>{assert.deepEqual(logoDisplaySize(png(360,120)),{width:120,height:40});assert.equal(logoWarning(png(360,120)),'');assert.match(logoWarning(png(200,2000)),/very small/);assert.match(logoWarning(png(3000,100)),/very small/);});

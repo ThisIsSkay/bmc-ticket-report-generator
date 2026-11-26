@@ -1,4 +1,4 @@
-BATON: Owner — Phase 0 gate (after Phase 0.1 fixes; executed independent check still recommended) — 2026-11-26
+BATON: Claude — Phases 1–3 build (owner: complete the merge and publish; Codex bug-check after) — 2026-11-26
 
 # Unified app merge — handoff
 

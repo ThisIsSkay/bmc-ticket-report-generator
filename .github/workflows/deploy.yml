@@ -13,7 +13,9 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
+  # Pull-request validation runs get their own group so they can never
+  # cancel an in-progress production Pages deploy.
+  group: pages-${{ github.event_name == 'pull_request' && github.ref || 'deploy' }}
   cancel-in-progress: true
 
 jobs:
@@ -31,28 +33,18 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run test:survey
+      - run: npm run test:email
       - run: npm run typecheck
+      # Proves every report output still matches the recorded Phase 0 goldens.
+      # The image group needs a pinned browser and fonts, so CI checks the
+      # data, email, storage and survey outputs (docs/merge/BASELINE.md).
+      - run: npm run golden:check -- --skip-visual
       - run: npm run build:gh-pages
-      # Keep the NCC screenshot dashboard on main while publishing a separate
-      # testable email prototype from its feature branch at /daily-email/.
-      - name: Checkout Daily Pivot & Email Report working branch
-        uses: actions/checkout@v5
-        with:
-          ref: feature/daily-pivot-email-report
-          path: .email-preview-source
-          persist-credentials: false
-      - name: Test and stage Daily Pivot & Email Report preview
-        run: |
-          node --test .email-preview-source/prototype/daily-email/test/report.test.mjs
-          mkdir -p dist/daily-email
-          cp -R .email-preview-source/prototype/daily-email/. dist/daily-email/
-          rm -f dist/daily-email/.gitignore dist/daily-email/README.md dist/daily-email/server.mjs dist/daily-email/package.json
-          rm -rf dist/daily-email/test
-      - name: Stage customer survey matching preview
-        run: |
-          mkdir -p dist/customer-survey
-          cp prototype/customer-survey/index.html prototype/customer-survey/app.mjs prototype/customer-survey/style.css dist/customer-survey/
-          cp -R prototype/customer-survey/lib prototype/customer-survey/vendor dist/customer-survey/
+      # One checkout publishes every page: the WhatsApp report at the root, the
+      # unified app at /app/, and the two prototypes at /daily-email/ and
+      # /customer-survey/. No other branch is fetched at build time.
+      - name: Stage the email and survey pages
+        run: node scripts/stage-pages.mjs
       - uses: actions/upload-pages-artifact@v3
         if: github.event_name != 'pull_request'
         with:
