@@ -1,4 +1,4 @@
-BATON: Claude — bug check and fixes of /app/ (owner request; Codex may continue from the checklist below) — 2026-11-26
+BATON: Owner — review Claude's bug-check results; Codex may continue from "Round 3" below — 2026-11-26
 
 # Unified app merge — handoff
 
@@ -215,6 +215,33 @@ Round 2 (after all eight scans):
 - [x] R2-3 Email settings inside the frame: header logo upload, save,
   reload, logo and sender in the theme C email, settings export. All work.
 - [x] R2-4 File drag-and-drop: see B-6 (fixed).
+- [x] R2-5 `npm run dev` in a browser: both frames load and are themed, and
+  the survey worker matches (confirms B-1).
+- [x] R2-6 Background cost: with the WhatsApp dashboard mounted but
+  hidden, the Email tab uses about 4 ms of script per second (under 0.5%
+  CPU). Not an issue.
+
+**Status at hand-over:** B-1 to B-6 fixed and published. `main` = `2e23da3`;
+every gate passed before each publish (61 Vitest, 117 email, 13 survey,
+typecheck, all golden groups, build, stage, `verify:unified` 11 checks).
+
+Round 3 (not started; continue here):
+- [ ] R3-1 Owner decision: warn before closing or reloading /app/ while any
+  section has loaded data? It would protect work across three sections,
+  but it changes behaviour and can annoy.
+- [ ] R3-2 P0-1: stop the live root page loading Google Fonts (self-host
+  Figtree or use system fonts). Changes the root page's look slightly, but
+  not the report image.
+- [ ] R3-3 Manual checks that can't run here: Edge/Firefox/Safari, a real
+  Classic Outlook run of a `.ps1` downloaded from /app/, a real BMC export
+  compared between /app/ and the original pages.
+- [ ] R3-4 P0-15 before any shared SheetJS copy (full Phase 2): reset or
+  isolate the number-format table, and compare workbooks by cells.
+- [ ] R3-5 Preview-only: `vite preview` serves the root page for a bare
+  `/app` (no trailing slash). GitHub Pages redirects to `/app/`, so
+  production is fine.
+- [ ] R3-6 Later phases from PLAN.md: rebuild the Email and Survey screens in
+  React, one shared upload, retire the old pages after sign-off.
 
 Scan results:
 - **B-scan-1:** 16 states × 2 themes (WhatsApp upload, dashboard, validation
