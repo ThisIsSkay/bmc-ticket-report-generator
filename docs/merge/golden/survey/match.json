@@ -1,0 +1,829 @@
+{
+  "requests": [
+    {
+      "company": "Example Co",
+      "department": "Support",
+      "duplicateTicket": true,
+      "id": 0,
+      "name": "Alex Example",
+      "sourceRow": 2,
+      "status": "",
+      "ticket": "INC-1"
+    },
+    {
+      "company": "Example Co",
+      "department": "",
+      "duplicateTicket": true,
+      "id": 1,
+      "name": "alex example",
+      "sourceRow": 3,
+      "status": "",
+      "ticket": "inc-1"
+    },
+    {
+      "company": "Example Co",
+      "department": "",
+      "duplicateTicket": false,
+      "id": 2,
+      "name": "Chris Example",
+      "sourceRow": 4,
+      "status": "",
+      "ticket": "INC-2"
+    },
+    {
+      "company": "Example Co",
+      "department": "Finance",
+      "duplicateTicket": false,
+      "id": 3,
+      "name": "Tan Wei Ming",
+      "sourceRow": 5,
+      "status": "",
+      "ticket": "INC-3"
+    },
+    {
+      "company": "Example Co",
+      "department": "Finance",
+      "duplicateTicket": false,
+      "id": 4,
+      "name": "Tan Wei Min",
+      "sourceRow": 6,
+      "status": "",
+      "ticket": "INC-4"
+    },
+    {
+      "company": "Example Co",
+      "department": "",
+      "duplicateTicket": false,
+      "id": 5,
+      "name": "Wei Ming Tan",
+      "sourceRow": 7,
+      "status": "",
+      "ticket": "INC-5"
+    },
+    {
+      "company": "Example Co",
+      "department": "",
+      "duplicateTicket": false,
+      "id": 6,
+      "name": "Example Jamie",
+      "sourceRow": 8,
+      "status": "",
+      "ticket": "INC-6"
+    },
+    {
+      "company": "Example Co",
+      "department": "",
+      "duplicateTicket": false,
+      "id": 7,
+      "name": "Jamie Example",
+      "sourceRow": 9,
+      "status": "",
+      "ticket": "INC-7"
+    },
+    {
+      "company": "Example Co",
+      "department": "",
+      "duplicateTicket": false,
+      "id": 8,
+      "name": "Sam Example",
+      "sourceRow": 10,
+      "status": "",
+      "ticket": "INC-8"
+    },
+    {
+      "company": "Example Co",
+      "department": "",
+      "duplicateTicket": false,
+      "id": 9,
+      "name": "Pat Example",
+      "sourceRow": 11,
+      "status": "",
+      "ticket": "INC-9"
+    },
+    {
+      "company": "Example Co",
+      "department": "IT",
+      "duplicateTicket": false,
+      "id": 10,
+      "name": "Morgan Example",
+      "sourceRow": 12,
+      "status": "",
+      "ticket": "INC-10"
+    },
+    {
+      "company": "Example Co",
+      "department": "",
+      "duplicateTicket": false,
+      "id": 11,
+      "name": "R Example",
+      "sourceRow": 13,
+      "status": "",
+      "ticket": "INC-11"
+    },
+    {
+      "company": "Example Co",
+      "department": "",
+      "duplicateTicket": false,
+      "id": 12,
+      "name": "Jose Example",
+      "sourceRow": 14,
+      "status": "",
+      "ticket": "INC-12"
+    },
+    {
+      "company": "Example Co",
+      "department": "",
+      "duplicateTicket": false,
+      "id": 13,
+      "name": "李明 Example",
+      "sourceRow": 15,
+      "status": "",
+      "ticket": "INC-13"
+    },
+    {
+      "company": "Example Co",
+      "department": "",
+      "duplicateTicket": false,
+      "id": 14,
+      "name": "Ahmad Example",
+      "sourceRow": 16,
+      "status": "",
+      "ticket": "INC-14"
+    },
+    {
+      "company": "Example Co",
+      "department": "",
+      "duplicateTicket": false,
+      "id": 15,
+      "name": "O‘Brien Alex",
+      "sourceRow": 17,
+      "status": "",
+      "ticket": "INC-15"
+    },
+    {
+      "company": "Example Co",
+      "department": "",
+      "duplicateTicket": false,
+      "id": 16,
+      "name": "Alex​ Example",
+      "sourceRow": 18,
+      "status": "",
+      "ticket": "INC-16"
+    },
+    {
+      "company": "Example Co",
+      "department": "",
+      "duplicateTicket": false,
+      "id": 17,
+      "name": "Robin Example",
+      "sourceRow": 19,
+      "status": "",
+      "ticket": "INC-17"
+    },
+    {
+      "company": "Example Co",
+      "department": "",
+      "duplicateTicket": false,
+      "id": 18,
+      "name": "",
+      "sourceRow": 20,
+      "status": "",
+      "ticket": "INC-18"
+    },
+    {
+      "company": "Example Co",
+      "department": "",
+      "duplicateTicket": false,
+      "id": 19,
+      "name": "<script>alert(1)</script>",
+      "sourceRow": 21,
+      "status": "",
+      "ticket": "INC-19"
+    },
+    {
+      "company": "Example Co",
+      "department": "",
+      "duplicateTicket": false,
+      "id": 20,
+      "name": "Meiling Example",
+      "sourceRow": 22,
+      "status": "",
+      "ticket": "INC-20"
+    },
+    {
+      "company": "Example Co",
+      "department": "",
+      "duplicateTicket": false,
+      "id": 21,
+      "name": "Dr Alex Example",
+      "sourceRow": 23,
+      "status": "",
+      "ticket": "INC-21"
+    },
+    {
+      "company": "Example Co",
+      "department": "",
+      "duplicateTicket": false,
+      "id": 22,
+      "name": "Unknown Person",
+      "sourceRow": 24,
+      "status": "",
+      "ticket": "INC-22"
+    },
+    {
+      "company": "Example Co",
+      "department": "Support",
+      "duplicateTicket": false,
+      "id": 23,
+      "name": "Alex Example",
+      "sourceRow": 25,
+      "status": "",
+      "ticket": "Row 25"
+    }
+  ],
+  "results": [
+    {
+      "candidates": [
+        {
+          "contradictions": [],
+          "entry": {
+            "email": "alex@example.com",
+            "id": 0,
+            "name": "Alex Example"
+          },
+          "reason": "Same name after case and whitespace normalisation",
+          "tier": 1
+        }
+      ],
+      "company": "Example Co",
+      "department": "Support",
+      "duplicateTicket": true,
+      "id": 0,
+      "name": "Alex Example",
+      "reverseWarning": "This directory record also matches another requester identity.",
+      "sourceRow": 2,
+      "status": "Review required",
+      "ticket": "INC-1"
+    },
+    {
+      "candidates": [
+        {
+          "contradictions": [],
+          "entry": {
+            "email": "alex@example.com",
+            "id": 0,
+            "name": "Alex Example"
+          },
+          "reason": "Same name after case and whitespace normalisation",
+          "tier": 1
+        }
+      ],
+      "company": "Example Co",
+      "department": "",
+      "duplicateTicket": true,
+      "id": 1,
+      "name": "alex example",
+      "reverseWarning": "This directory record also matches another requester identity.",
+      "sourceRow": 3,
+      "status": "Review required",
+      "ticket": "inc-1"
+    },
+    {
+      "candidates": [
+        {
+          "contradictions": [],
+          "entry": {
+            "email": "chris.one@example.com",
+            "id": 1,
+            "name": "Chris Example"
+          },
+          "reason": "Same name after case and whitespace normalisation",
+          "tier": 1
+        },
+        {
+          "contradictions": [],
+          "entry": {
+            "email": "chris.two@example.com",
+            "id": 2,
+            "name": "Chris Example"
+          },
+          "reason": "Same name after case and whitespace normalisation",
+          "tier": 1
+        }
+      ],
+      "company": "Example Co",
+      "department": "",
+      "duplicateTicket": false,
+      "id": 2,
+      "name": "Chris Example",
+      "sourceRow": 4,
+      "status": "Ambiguous",
+      "ticket": "INC-2"
+    },
+    {
+      "candidates": [
+        {
+          "contradictions": [],
+          "entry": {
+            "email": "weiming@example.com",
+            "id": 3,
+            "name": "Tan Wei Ming"
+          },
+          "reason": "Same name after case and whitespace normalisation",
+          "tier": 1
+        },
+        {
+          "contradictions": [
+            "department"
+          ],
+          "entry": {
+            "email": "jason@example.com",
+            "id": 5,
+            "name": "Tan Wei Ming Jason"
+          },
+          "reason": "Partial name; additional name parts differ",
+          "tier": 6
+        },
+        {
+          "contradictions": [],
+          "entry": {
+            "email": "weimin@example.com",
+            "id": 4,
+            "name": "Tan Wei Min"
+          },
+          "reason": "Possible one-letter spelling difference",
+          "tier": 8
+        }
+      ],
+      "company": "Example Co",
+      "department": "Finance",
+      "duplicateTicket": false,
+      "id": 3,
+      "name": "Tan Wei Ming",
+      "sourceRow": 5,
+      "status": "Review required",
+      "ticket": "INC-3"
+    },
+    {
+      "candidates": [
+        {
+          "contradictions": [],
+          "entry": {
+            "email": "weimin@example.com",
+            "id": 4,
+            "name": "Tan Wei Min"
+          },
+          "reason": "Same name after case and whitespace normalisation",
+          "tier": 1
+        },
+        {
+          "contradictions": [],
+          "entry": {
+            "email": "weiming@example.com",
+            "id": 3,
+            "name": "Tan Wei Ming"
+          },
+          "reason": "Possible one-letter spelling difference",
+          "tier": 8
+        }
+      ],
+      "company": "Example Co",
+      "department": "Finance",
+      "duplicateTicket": false,
+      "id": 4,
+      "name": "Tan Wei Min",
+      "sourceRow": 6,
+      "status": "Review required",
+      "ticket": "INC-4"
+    },
+    {
+      "candidates": [
+        {
+          "contradictions": [],
+          "entry": {
+            "email": "weiming@example.com",
+            "id": 3,
+            "name": "Tan Wei Ming"
+          },
+          "reason": "Same name tokens in a different order",
+          "tier": 3
+        },
+        {
+          "contradictions": [],
+          "entry": {
+            "email": "jason@example.com",
+            "id": 5,
+            "name": "Tan Wei Ming Jason"
+          },
+          "reason": "Partial name; additional name parts differ",
+          "tier": 6
+        }
+      ],
+      "company": "Example Co",
+      "department": "",
+      "duplicateTicket": false,
+      "id": 5,
+      "name": "Wei Ming Tan",
+      "sourceRow": 7,
+      "status": "Review required",
+      "ticket": "INC-5"
+    },
+    {
+      "candidates": [
+        {
+          "contradictions": [],
+          "entry": {
+            "email": "jamie@example.com",
+            "id": 6,
+            "name": "Jamie Q Example"
+          },
+          "reason": "Matches an alias supplied in the directory",
+          "tier": 4
+        }
+      ],
+      "company": "Example Co",
+      "department": "",
+      "duplicateTicket": false,
+      "id": 6,
+      "name": "Example Jamie",
+      "reverseWarning": "This directory record also matches another requester identity.",
+      "sourceRow": 8,
+      "status": "Review required",
+      "ticket": "INC-6"
+    },
+    {
+      "candidates": [
+        {
+          "contradictions": [],
+          "entry": {
+            "email": "jamie@example.com",
+            "id": 6,
+            "name": "Jamie Q Example"
+          },
+          "reason": "Matches an alias supplied in the directory",
+          "tier": 4
+        }
+      ],
+      "company": "Example Co",
+      "department": "",
+      "duplicateTicket": false,
+      "id": 7,
+      "name": "Jamie Example",
+      "reverseWarning": "This directory record also matches another requester identity.",
+      "sourceRow": 9,
+      "status": "Review required",
+      "ticket": "INC-7"
+    },
+    {
+      "candidates": [
+        {
+          "contradictions": [],
+          "entry": {
+            "email": "not-an-email",
+            "id": 7,
+            "name": "Sam Example"
+          },
+          "reason": "Same name after case and whitespace normalisation",
+          "tier": 1
+        }
+      ],
+      "company": "Example Co",
+      "department": "",
+      "duplicateTicket": false,
+      "id": 8,
+      "name": "Sam Example",
+      "sourceRow": 10,
+      "status": "Review required",
+      "ticket": "INC-8"
+    },
+    {
+      "candidates": [
+        {
+          "contradictions": [],
+          "entry": {
+            "email": "shared@example.com",
+            "id": 8,
+            "name": "Pat Example"
+          },
+          "reason": "Same name after case and whitespace normalisation",
+          "tier": 1
+        }
+      ],
+      "company": "Example Co",
+      "department": "",
+      "duplicateTicket": false,
+      "id": 9,
+      "name": "Pat Example",
+      "sourceRow": 11,
+      "status": "Review required",
+      "ticket": "INC-9"
+    },
+    {
+      "candidates": [
+        {
+          "contradictions": [],
+          "entry": {
+            "email": "morgan@example.com",
+            "id": 10,
+            "name": "Example, Morgan"
+          },
+          "reason": "Same name tokens in a different order",
+          "tier": 3
+        }
+      ],
+      "company": "Example Co",
+      "department": "IT",
+      "duplicateTicket": false,
+      "id": 10,
+      "name": "Morgan Example",
+      "sourceRow": 12,
+      "status": "Unique proposal",
+      "ticket": "INC-10"
+    },
+    {
+      "candidates": [
+        {
+          "contradictions": [],
+          "entry": {
+            "email": "rana@example.com",
+            "id": 12,
+            "name": "Rana Example"
+          },
+          "reason": "Initial matches; confirmation required",
+          "tier": 7
+        },
+        {
+          "contradictions": [],
+          "entry": {
+            "email": "ravi@example.com",
+            "id": 11,
+            "name": "Ravi Example"
+          },
+          "reason": "Initial matches; confirmation required",
+          "tier": 7
+        },
+        {
+          "contradictions": [],
+          "entry": {
+            "email": "robin@example.com",
+            "id": 18,
+            "name": "Robin Example"
+          },
+          "reason": "Initial matches; confirmation required",
+          "tier": 7
+        }
+      ],
+      "company": "Example Co",
+      "department": "",
+      "duplicateTicket": false,
+      "id": 11,
+      "name": "R Example",
+      "sourceRow": 13,
+      "status": "Ambiguous",
+      "ticket": "INC-11"
+    },
+    {
+      "candidates": [
+        {
+          "contradictions": [],
+          "entry": {
+            "email": "jose@example.com",
+            "id": 13,
+            "name": "José Example"
+          },
+          "reason": "Same name ignoring punctuation or Latin accents",
+          "tier": 2
+        }
+      ],
+      "company": "Example Co",
+      "department": "",
+      "duplicateTicket": false,
+      "id": 12,
+      "name": "Jose Example",
+      "sourceRow": 14,
+      "status": "Unique proposal",
+      "ticket": "INC-12"
+    },
+    {
+      "candidates": [
+        {
+          "contradictions": [],
+          "entry": {
+            "email": "li@example.com",
+            "id": 14,
+            "name": "李明 Example"
+          },
+          "reason": "Same name after case and whitespace normalisation",
+          "tier": 1
+        }
+      ],
+      "company": "Example Co",
+      "department": "",
+      "duplicateTicket": false,
+      "id": 13,
+      "name": "李明 Example",
+      "sourceRow": 15,
+      "status": "Unique proposal",
+      "ticket": "INC-13"
+    },
+    {
+      "candidates": [
+        {
+          "contradictions": [],
+          "entry": {
+            "email": "mah@example.com",
+            "id": 15,
+            "name": "Ahmad Example bin Hassan"
+          },
+          "reason": "Partial name; additional name parts differ",
+          "tier": 6
+        },
+        {
+          "contradictions": [],
+          "entry": {
+            "email": "mar@example.com",
+            "id": 16,
+            "name": "Ahmad Example bin Rahman"
+          },
+          "reason": "Partial name; additional name parts differ",
+          "tier": 6
+        }
+      ],
+      "company": "Example Co",
+      "department": "",
+      "duplicateTicket": false,
+      "id": 14,
+      "name": "Ahmad Example",
+      "sourceRow": 16,
+      "status": "Ambiguous",
+      "ticket": "INC-14"
+    },
+    {
+      "candidates": [
+        {
+          "contradictions": [],
+          "entry": {
+            "email": "obrien@example.com",
+            "id": 17,
+            "name": "O'Brien Alex"
+          },
+          "reason": "Same name ignoring punctuation or Latin accents",
+          "tier": 2
+        }
+      ],
+      "company": "Example Co",
+      "department": "",
+      "duplicateTicket": false,
+      "id": 15,
+      "name": "O‘Brien Alex",
+      "sourceRow": 17,
+      "status": "Unique proposal",
+      "ticket": "INC-15"
+    },
+    {
+      "candidates": [
+        {
+          "contradictions": [],
+          "entry": {
+            "email": "alex@example.com",
+            "id": 0,
+            "name": "Alex Example"
+          },
+          "reason": "Same name after case and whitespace normalisation",
+          "tier": 1
+        }
+      ],
+      "company": "Example Co",
+      "department": "",
+      "duplicateTicket": false,
+      "id": 16,
+      "name": "Alex​ Example",
+      "reverseWarning": "This directory record also matches another requester identity.",
+      "sourceRow": 18,
+      "status": "Review required",
+      "ticket": "INC-16"
+    },
+    {
+      "candidates": [
+        {
+          "contradictions": [],
+          "entry": {
+            "email": "robin@example.com",
+            "id": 18,
+            "name": "Robin Example"
+          },
+          "reason": "Same name after case and whitespace normalisation",
+          "tier": 1
+        }
+      ],
+      "company": "Example Co",
+      "department": "",
+      "duplicateTicket": false,
+      "id": 17,
+      "name": "Robin Example",
+      "sourceRow": 19,
+      "status": "Unique proposal",
+      "ticket": "INC-17"
+    },
+    {
+      "candidates": [],
+      "company": "Example Co",
+      "department": "",
+      "duplicateTicket": false,
+      "id": 18,
+      "name": "",
+      "sourceRow": 20,
+      "status": "Missing requester",
+      "ticket": "INC-18"
+    },
+    {
+      "candidates": [],
+      "company": "Example Co",
+      "department": "",
+      "duplicateTicket": false,
+      "id": 19,
+      "name": "<script>alert(1)</script>",
+      "sourceRow": 21,
+      "status": "No match",
+      "ticket": "INC-19"
+    },
+    {
+      "candidates": [
+        {
+          "contradictions": [],
+          "entry": {
+            "email": "meiling@example.com",
+            "id": 21,
+            "name": "Mei-Ling Example"
+          },
+          "reason": "Same name with different spacing",
+          "tier": 5
+        }
+      ],
+      "company": "Example Co",
+      "department": "",
+      "duplicateTicket": false,
+      "id": 20,
+      "name": "Meiling Example",
+      "sourceRow": 22,
+      "status": "Unique proposal",
+      "ticket": "INC-20"
+    },
+    {
+      "candidates": [
+        {
+          "contradictions": [],
+          "entry": {
+            "email": "alex@example.com",
+            "id": 0,
+            "name": "Alex Example"
+          },
+          "reason": "Same name without a leading title; review required",
+          "tier": 6
+        }
+      ],
+      "company": "Example Co",
+      "department": "",
+      "duplicateTicket": false,
+      "id": 21,
+      "name": "Dr Alex Example",
+      "sourceRow": 23,
+      "status": "Suggestion",
+      "ticket": "INC-21"
+    },
+    {
+      "candidates": [],
+      "company": "Example Co",
+      "department": "",
+      "duplicateTicket": false,
+      "id": 22,
+      "name": "Unknown Person",
+      "sourceRow": 24,
+      "status": "No match",
+      "ticket": "INC-22"
+    },
+    {
+      "candidates": [
+        {
+          "contradictions": [],
+          "entry": {
+            "email": "alex@example.com",
+            "id": 0,
+            "name": "Alex Example"
+          },
+          "reason": "Same name after case and whitespace normalisation",
+          "tier": 1
+        }
+      ],
+      "company": "Example Co",
+      "department": "Support",
+      "duplicateTicket": false,
+      "id": 23,
+      "name": "Alex Example",
+      "reverseWarning": "This directory record also matches another requester identity.",
+      "sourceRow": 25,
+      "status": "Review required",
+      "ticket": "Row 25"
+    }
+  ]
+}

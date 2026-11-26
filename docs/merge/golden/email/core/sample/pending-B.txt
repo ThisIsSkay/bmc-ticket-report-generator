@@ -1,0 +1,53 @@
+Hi Team,
+Please find below the current outstanding tickets in the uploaded export.
+
+BMC Outstanding Tickets
+Age since submitted (days), as at 2026-11-10
+Assigned groups: All assigned groups · Contract: All · Types: All · Statuses: All · Monitoring events excluded
+
+0–7: 5
+8–14: 0
+15–30: 0
+31–60: 0
+Over 60: 0
+Age unknown: 0
+Future-dated: 0
+Group by type
+ | Forward Schedule | Incident | Service Request | Total
+NCC_EUC | 0 | 1 | 1 | 2
+NCC_NETWORK | 0 | 1 | 0 | 1
+NCC_SYSTEM | 1 | 0 | 1 | 2
+Type by priority
+ | High | Medium | Low | Total
+Forward Schedule | 0 | 0 | 1 | 1
+Incident | 1 | 1 | 0 | 2
+Service Request | 0 | 0 | 2 | 2
+Outstanding: 5
+Incidents: 2
+Service requests & other: 3
+
+Outstanding by assigned group
+- NCC_EUC: 2
+- NCC_NETWORK: 1
+- NCC_SYSTEM: 2
+TOTAL: 5
+
+Outstanding by status
+- Assigned: 1
+- Pending: 2
+- Waiting User Reply: 1
+- Work in Progress: 1
+TOTAL: 5
+
+Outstanding tickets (5)
+Ticket ID | Type | Summary | Assigned group | Status / Priority | Submitted
+1. INC000000004 | Incident | Conference room display flickering | NCC_EUC | Work in Progress · Priority: Medium | 2026-11-10
+2. SRV000000002 | Service Request | Request to set up account for new starter | NCC_EUC | Pending · Priority: Low | 2026-11-10
+3. INC000000007 | Incident | Unable to connect to VPN | NCC_NETWORK | Assigned · Priority: High | 2026-11-10
+4. FSC000000006 | Forward Schedule | Scheduled firmware update | NCC_SYSTEM | Pending · Priority: Low | 2026-11-07
+5. SRV000000009 | Service Request | Pending mailbox migration | NCC_SYSTEM | Waiting User Reply · Priority: Low | 2026-11-08
+
+Best regards,
+Alex Example
+
+Figures reflect current ticket status in the uploaded BMC export, not a historical backlog for a selected date. Age since submission uses 2026-11-10; this is not an export timestamp. 0 tickets excluded by type and 0 by status. Monitoring events are excluded. This email is intended only for the named recipients; if you received it in error, please notify the sender and delete it.

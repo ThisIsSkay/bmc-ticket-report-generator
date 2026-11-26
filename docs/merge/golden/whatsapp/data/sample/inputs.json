@@ -1,0 +1,230 @@
+{
+  "fingerprint": "assigned to|closed date|contract|created date|display id|status|summary|support group|ticket type",
+  "headers": [
+    "Display ID",
+    "Assigned To",
+    "Status",
+    "Ticket Type",
+    "Summary",
+    "Created Date",
+    "Closed Date",
+    "Support Group",
+    "Contract"
+  ],
+  "mapping": {
+    "assignedTo": "Assigned To",
+    "closedDate": "Closed Date",
+    "contract": "Contract",
+    "createdDate": "Created Date",
+    "status": "Status",
+    "summary": "Summary",
+    "supportGroup": "Support Group",
+    "ticketId": "Display ID",
+    "ticketType": "Ticket Type"
+  },
+  "recommendedSheet": "Tickets",
+  "rows": [
+    {
+      "Assigned To": "EUC Analyst",
+      "Closed Date": "",
+      "Contract": "NCC Managed Services",
+      "Created Date": "2026-09-09T00:04:59.999Z",
+      "Display ID": "SRV000000400001",
+      "Status": "New",
+      "Summary": "Request: Onboarding - New joiner Alice starting 9 Sep 2026",
+      "Support Group": "EUC Support",
+      "Ticket Type": "Service Request"
+    },
+    {
+      "Assigned To": "EUC Analyst",
+      "Closed Date": "",
+      "Contract": "NCC Managed Services",
+      "Created Date": "2026-09-08T07:40:00.000Z",
+      "Display ID": "SRV000000400002",
+      "Status": "Pending",
+      "Summary": "Request: Offboarding - Terminate access for Bob",
+      "Support Group": "EUC Support",
+      "Ticket Type": "Service Request"
+    },
+    {
+      "Assigned To": "EUC Engineer",
+      "Closed Date": "",
+      "Contract": "NCC Managed Services",
+      "Created Date": "2026-09-08T03:25:00.000Z",
+      "Display ID": "INC000000400003",
+      "Status": "In Progress",
+      "Summary": "Issue: Laptop failure after Windows update",
+      "Support Group": "EUC Support",
+      "Ticket Type": "Incident"
+    },
+    {
+      "Assigned To": "EUC Engineer",
+      "Closed Date": "",
+      "Contract": "NCC Managed Services",
+      "Created Date": "2026-09-07T02:00:00.000Z",
+      "Display ID": "INC000000400004",
+      "Status": "Waiting User Reply",
+      "Summary": "Issue: Zoom audio error - awaiting user test",
+      "Support Group": "EUC Support",
+      "Ticket Type": "Incident"
+    },
+    {
+      "Assigned To": "EUC Analyst",
+      "Closed Date": "2026-09-08T09:10:00.000Z",
+      "Contract": "NCC Managed Services",
+      "Created Date": "2026-09-06T01:00:00.000Z",
+      "Display ID": "SRV000000400005",
+      "Status": "Closed",
+      "Summary": "Planned work schedule for meeting-room iPads",
+      "Support Group": "EUC Support",
+      "Ticket Type": "Service Request"
+    },
+    {
+      "Assigned To": "EUC Engineer",
+      "Closed Date": "2026-09-08T10:00:00.000Z",
+      "Contract": "NCC Managed Services",
+      "Created Date": "2026-09-05T06:00:00.000Z",
+      "Display ID": "SRV000000400006",
+      "Status": "Closed",
+      "Summary": "Request: Onboarding - provision laptop for Carol",
+      "Support Group": "EUC Support",
+      "Ticket Type": "Service Request"
+    },
+    {
+      "Assigned To": "Systems Analyst",
+      "Closed Date": "",
+      "Contract": "NCC Managed Services",
+      "Created Date": "2026-09-09T00:12:00.000Z",
+      "Display ID": "SRV000000400007",
+      "Status": "New",
+      "Summary": "Request: schedule planned work for server patching",
+      "Support Group": "Systems Support",
+      "Ticket Type": "Service Request"
+    },
+    {
+      "Assigned To": "Systems Engineer",
+      "Closed Date": "",
+      "Contract": "NCC Managed Services",
+      "Created Date": "2026-09-08T05:15:00.000Z",
+      "Display ID": "INC000000400008",
+      "Status": "Pending",
+      "Summary": "Incident: application unavailable for finance team",
+      "Support Group": "Systems Support",
+      "Ticket Type": "Incident"
+    },
+    {
+      "Assigned To": "Systems Analyst",
+      "Closed Date": "",
+      "Contract": "NCC Managed Services",
+      "Created Date": "2026-09-07T08:19:59.999Z",
+      "Display ID": "INC000000400009",
+      "Status": "On Hold",
+      "Summary": "Incident: database outage - vendor investigation",
+      "Support Group": "Systems Support",
+      "Ticket Type": "Incident"
+    },
+    {
+      "Assigned To": "Systems Engineer",
+      "Closed Date": "2026-09-08T03:00:00.000Z",
+      "Contract": "NCC Managed Services",
+      "Created Date": "2026-09-06T03:45:00.000Z",
+      "Display ID": "SRV000000400010",
+      "Status": "Closed",
+      "Summary": "Request: Offboarding - disable server account",
+      "Support Group": "Systems Support",
+      "Ticket Type": "Service Request"
+    },
+    {
+      "Assigned To": "Systems Engineer",
+      "Closed Date": "",
+      "Contract": "NCC Managed Services",
+      "Created Date": "2026-09-08T14:30:00.000Z",
+      "Display ID": "INC000000400011",
+      "Status": "Work in Progress",
+      "Summary": "Error: batch service failure during nightly job",
+      "Support Group": "Systems Support",
+      "Ticket Type": "Incident"
+    },
+    {
+      "Assigned To": "Systems Analyst",
+      "Closed Date": "",
+      "Contract": "NCC Managed Services",
+      "Created Date": "2026-09-05T02:30:00.000Z",
+      "Display ID": "SRV000000400012",
+      "Status": "Pending",
+      "Summary": "Request: Onboarding - create application account",
+      "Support Group": "Systems Support",
+      "Ticket Type": "Service Request"
+    },
+    {
+      "Assigned To": "Network Analyst",
+      "Closed Date": "",
+      "Contract": "NCC Managed Services",
+      "Created Date": "2026-09-08T23:47:59.999Z",
+      "Display ID": "INC000000400013",
+      "Status": "New",
+      "Summary": "Incident: network outage reported at branch",
+      "Support Group": "Network Support",
+      "Ticket Type": "Incident"
+    },
+    {
+      "Assigned To": "Network Engineer",
+      "Closed Date": "",
+      "Contract": "NCC Managed Services",
+      "Created Date": "2026-09-08T01:10:00.000Z",
+      "Display ID": "INC000000400014",
+      "Status": "Pending",
+      "Summary": "Issue: Wi-Fi unavailable in meeting room",
+      "Support Group": "Network Support",
+      "Ticket Type": "Incident"
+    },
+    {
+      "Assigned To": "Network Engineer",
+      "Closed Date": "2026-09-08T15:30:00.000Z",
+      "Contract": "NCC Managed Services",
+      "Created Date": "2026-09-06T12:00:00.000Z",
+      "Display ID": "SRV000000400015",
+      "Status": "Closed",
+      "Summary": "Planned work schedule for firewall maintenance",
+      "Support Group": "Network Support",
+      "Ticket Type": "Service Request"
+    },
+    {
+      "Assigned To": "Network Analyst",
+      "Closed Date": "2026-09-07T08:00:00.000Z",
+      "Contract": "NCC Managed Services",
+      "Created Date": "2026-09-05T04:00:00.000Z",
+      "Display ID": "SRV000000400016",
+      "Status": "Closed",
+      "Summary": "Request: Onboarding - configure VPN access for new joiner",
+      "Support Group": "Network Support",
+      "Ticket Type": "Service Request"
+    },
+    {
+      "Assigned To": "Network Engineer",
+      "Closed Date": "",
+      "Contract": "NCC Managed Services",
+      "Created Date": "2026-09-07T06:49:59.999Z",
+      "Display ID": "INC000000400017",
+      "Status": "Waiting User Reply",
+      "Summary": "Error: intermittent VPN failure - waiting user reply",
+      "Support Group": "Network Support",
+      "Ticket Type": "Incident"
+    },
+    {
+      "Assigned To": "Network Analyst",
+      "Closed Date": "",
+      "Contract": "NCC Managed Services",
+      "Created Date": "2026-09-08T09:19:59.999Z",
+      "Display ID": "SRV000000400018",
+      "Status": "Pending",
+      "Summary": "Request: Offboarding - remove VPN access for leaver",
+      "Support Group": "Network Support",
+      "Ticket Type": "Service Request"
+    }
+  ],
+  "sheetNames": [
+    "Tickets",
+    "Read Me"
+  ]
+}

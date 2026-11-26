@@ -1,0 +1,59 @@
+Hi Team,
+Please find below the current outstanding tickets in the uploaded export.
+
+BMC Outstanding Tickets
+Age since submitted (days), as at 2026-11-10
+Assigned groups: All assigned groups · Contract: All · Types: All · Statuses: All · Monitoring events excluded
+
+0–7: 2
+8–14: 1
+15–30: 0
+31–60: 2
+Over 60: 1
+Age unknown: 1
+Future-dated: 1
+Group by type
+ | Forward Schedule | Incident | Service Request | Total
+EXAMPLE <GROUP> & CO | 0 | 1 | 0 | 1
+EXAMPLE_EUC | 0 | 3 | 1 | 4
+EXAMPLE_SYSTEM | 1 | 1 | 0 | 2
+Unassigned | 0 | 1 | 0 | 1
+Type by priority
+ | Critical | High | Medium | Low | (blank) | Total
+Forward Schedule | 0 | 0 | 0 | 1 | 0 | 1
+Incident | 1 | 2 | 1 | 0 | 2 | 6
+Service Request | 0 | 0 | 1 | 0 | 0 | 1
+Outstanding: 8
+Incidents: 6
+Service requests & other: 2
+
+Outstanding by assigned group
+- EXAMPLE <GROUP> & CO: 1
+- EXAMPLE_EUC: 4
+- EXAMPLE_SYSTEM: 2
+- Unassigned: 1
+TOTAL: 8
+
+Outstanding by status
+- Assigned: 2
+- Mystery Status: 1
+- Pending: 3
+- Waiting User Reply: 1
+- Work in Progress: 1
+TOTAL: 8
+
+Outstanding tickets (8)
+Ticket ID | Type | Summary | Assigned group | Status / Priority | Submitted
+1. INC100000012 | Incident | Group name with <b>markup</b> & ampersand | EXAMPLE <GROUP> & CO | Pending · Priority: Critical | 2026-11-10
+2. SRV100000009 | Service Request | Old pending request | EXAMPLE_EUC | Waiting User Reply · Priority: Medium | 2026-08-01
+3. INC100000001 | Incident | <script>alert(1)</script> & "quoted" 'single' | EXAMPLE_EUC | Assigned · Priority: High | 2026-11-10
+4. INC100000010 | Incident | Future-dated submission | EXAMPLE_EUC | Assigned · Priority: High | 2026-11-12
+5. INC100000011 | Incident | — | EXAMPLE_EUC | Mystery Status | —
+6. FSC100000008 | Forward Schedule | Forward schedule maintenance | EXAMPLE_SYSTEM | Pending · Priority: Low | 2026-09-15
+7. INC100000005 | Incident | Reopened ticket (latest row) | EXAMPLE_SYSTEM | Pending · Priority: Medium | 2026-11-01
+8. INC100000006 | Incident | Duplicate row B (latest) | Unassigned | Work in Progress | 2026-10-02
+
+Best regards,
+Alex Example
+
+Figures reflect current ticket status in the uploaded BMC export, not a historical backlog for a selected date. Age since submission uses 2026-11-10; this is not an export timestamp. 0 tickets excluded by type and 0 by status. Monitoring events are excluded. This email is intended only for the named recipients; if you received it in error, please notify the sender and delete it.

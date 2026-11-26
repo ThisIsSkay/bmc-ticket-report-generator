@@ -1,0 +1,35 @@
+Hi Team,
+Please find below the daily BMC ticket activity report for 10 November 2026.
+
+BMC Daily Ticket Report — 2026-11-10
+Daily ticket activity · Monitoring events excluded
+
+Created on date: 5
+Closed/resolved: 2
+Outstanding: 8
+
+Summary by assigned group
+- EXAMPLE_EUC: Created 2 | Closed 1 | Outstanding 4
+- EXAMPLE_NETWORK: Created 2 | Closed 1 | Outstanding 0
+- EXAMPLE <GROUP> & CO: Created 1 | Closed 0 | Outstanding 1
+- EXAMPLE_SYSTEM: Created 0 | Closed 0 | Outstanding 2
+- Unassigned: Created 0 | Closed 0 | Outstanding 1
+- TOTAL: Created 5 | Closed 2 | Outstanding 8
+
+Summary by ticket type
+- Forward Schedule: Created 0 | Closed 0 | Outstanding 1
+- Incident: Created 3 | Closed 1 | Outstanding 6
+- Service Request: Created 2 | Closed 1 | Outstanding 1
+- TOTAL: Created 5 | Closed 2 | Outstanding 8
+
+Tickets created on 2026-11-10 (5)
+1. INC100000012 | Incident | Group name with <b>markup</b> & ampersand | Alex Example | EXAMPLE <GROUP> & CO | Pending
+2. INC100000001 | Incident | <script>alert(1)</script> & "quoted" 'single' | Alex Example | EXAMPLE_EUC | Assigned
+3. INC100000002 | Incident | Unbrokenxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx | Jamie Example | EXAMPLE_EUC | Resolved
+4. SRV100000003 | Service Request | José Example requests café access — 李明 Example | José Example | EXAMPLE_NETWORK | Closed
+5. SRV100000004 | Service Request | Cancelled request | Sam Example | EXAMPLE_NETWORK | Cancelled
+
+Best regards,
+Alex Example
+
+This is an automated report generated from BMC Helix ITSM. Figures cover tickets for 2026-11-10 (SGT) and exclude monitoring events. This email is intended only for the named recipients; if you received it in error, please notify the sender and delete it.

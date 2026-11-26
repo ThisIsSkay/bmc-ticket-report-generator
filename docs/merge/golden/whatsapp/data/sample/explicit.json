@@ -1,0 +1,1032 @@
+{
+  "assignees": [
+    "EUC Analyst",
+    "EUC Engineer",
+    "Network Analyst",
+    "Network Engineer",
+    "Systems Analyst",
+    "Systems Engineer"
+  ],
+  "byDate": {
+    "2026-09-08": {
+      "closedOnReportDateIds": [
+        [
+          "SRV000000400005",
+          4
+        ],
+        [
+          "SRV000000400006",
+          5
+        ],
+        [
+          "SRV000000400010",
+          9
+        ],
+        [
+          "SRV000000400015",
+          14
+        ]
+      ],
+      "filterDescription": "Report date: 2026-09-08",
+      "metrics": {
+        "newTickets": {
+          "EUC": 2,
+          "Network": 2,
+          "System": 2
+        },
+        "pendingBreakdown": {
+          "EUC": {
+            "onHold": 0,
+            "pending": 0,
+            "waitingUserReply": 1,
+            "workInProgress": 1
+          },
+          "Network": {
+            "onHold": 0,
+            "pending": 2,
+            "waitingUserReply": 1,
+            "workInProgress": 0
+          },
+          "System": {
+            "onHold": 1,
+            "pending": 2,
+            "waitingUserReply": 0,
+            "workInProgress": 1
+          }
+        },
+        "pendingClosed": {
+          "EUC": {
+            "closed": 2,
+            "pending": 0,
+            "scheduledOnOffBoarding": 2
+          },
+          "Network": {
+            "closed": 1,
+            "pending": 1,
+            "scheduledOnOffBoarding": 1
+          },
+          "System": {
+            "closed": 1,
+            "pending": 2,
+            "scheduledOnOffBoarding": 2
+          }
+        },
+        "summaries": {
+          "EUC": {
+            "incidentTotal": 2,
+            "offboarding": 1,
+            "onboarding": 1,
+            "pendingIncidents": 0,
+            "scheduleRequests": 0,
+            "totalTickets": 2,
+            "waitingUserReplyIncidents": 1,
+            "workInProgressIncidents": 1
+          },
+          "Network": {
+            "incidentTotal": 2,
+            "offboarding": 1,
+            "onboarding": 0,
+            "pendingIncidents": 1,
+            "scheduleRequests": 0,
+            "totalTickets": 1,
+            "waitingUserReplyIncidents": 1,
+            "workInProgressIncidents": 0
+          },
+          "System": {
+            "incidentTotal": 3,
+            "offboarding": 0,
+            "onboarding": 1,
+            "pendingIncidents": 2,
+            "scheduleRequests": 1,
+            "totalTickets": 2,
+            "waitingUserReplyIncidents": 0,
+            "workInProgressIncidents": 1
+          }
+        },
+        "summaryBuckets": {
+          "EUC": {
+            "onOffBoarding": 2,
+            "pending": 2
+          },
+          "Network": {
+            "onOffBoarding": 1,
+            "pending": 3
+          },
+          "System": {
+            "onOffBoarding": 1,
+            "pending": 4
+          }
+        },
+        "totalUniqueTickets": 18
+      },
+      "narrowedFilter": {
+        "description": "Report date: 2026-09-08 • Created: 2026-11-01 to End • Team: EUC • Search: “example”",
+        "metrics": {
+          "newTickets": {
+            "EUC": 0,
+            "Network": 0,
+            "System": 0
+          },
+          "pendingBreakdown": {
+            "EUC": {
+              "onHold": 0,
+              "pending": 0,
+              "waitingUserReply": 0,
+              "workInProgress": 0
+            },
+            "Network": {
+              "onHold": 0,
+              "pending": 0,
+              "waitingUserReply": 0,
+              "workInProgress": 0
+            },
+            "System": {
+              "onHold": 0,
+              "pending": 0,
+              "waitingUserReply": 0,
+              "workInProgress": 0
+            }
+          },
+          "pendingClosed": {
+            "EUC": {
+              "closed": 0,
+              "pending": 0,
+              "scheduledOnOffBoarding": 0
+            },
+            "Network": {
+              "closed": 0,
+              "pending": 0,
+              "scheduledOnOffBoarding": 0
+            },
+            "System": {
+              "closed": 0,
+              "pending": 0,
+              "scheduledOnOffBoarding": 0
+            }
+          },
+          "summaries": {
+            "EUC": {
+              "incidentTotal": 0,
+              "offboarding": 0,
+              "onboarding": 0,
+              "pendingIncidents": 0,
+              "scheduleRequests": 0,
+              "totalTickets": 0,
+              "waitingUserReplyIncidents": 0,
+              "workInProgressIncidents": 0
+            },
+            "Network": {
+              "incidentTotal": 0,
+              "offboarding": 0,
+              "onboarding": 0,
+              "pendingIncidents": 0,
+              "scheduleRequests": 0,
+              "totalTickets": 0,
+              "waitingUserReplyIncidents": 0,
+              "workInProgressIncidents": 0
+            },
+            "System": {
+              "incidentTotal": 0,
+              "offboarding": 0,
+              "onboarding": 0,
+              "pendingIncidents": 0,
+              "scheduleRequests": 0,
+              "totalTickets": 0,
+              "waitingUserReplyIncidents": 0,
+              "workInProgressIncidents": 0
+            }
+          },
+          "summaryBuckets": {
+            "EUC": {
+              "onOffBoarding": 0,
+              "pending": 0
+            },
+            "Network": {
+              "onOffBoarding": 0,
+              "pending": 0
+            },
+            "System": {
+              "onOffBoarding": 0,
+              "pending": 0
+            }
+          },
+          "totalUniqueTickets": 0
+        }
+      },
+      "outOfScope": {
+        "rows": [],
+        "total": 0
+      },
+      "pendingDiagnostics": [
+        {
+          "byGroup": [],
+          "incident": 0,
+          "other": 0,
+          "serviceRequest": 0,
+          "team": "EUC",
+          "total": 0
+        },
+        {
+          "byGroup": [
+            {
+              "count": 2,
+              "label": "Systems Support"
+            }
+          ],
+          "incident": 2,
+          "other": 0,
+          "serviceRequest": 0,
+          "team": "System",
+          "total": 2
+        },
+        {
+          "byGroup": [
+            {
+              "count": 1,
+              "label": "Network Support"
+            }
+          ],
+          "incident": 1,
+          "other": 0,
+          "serviceRequest": 0,
+          "team": "Network",
+          "total": 1
+        }
+      ],
+      "reportPendingDiagnostics": [
+        {
+          "byGroup": [
+            {
+              "count": 2,
+              "label": "EUC Support"
+            }
+          ],
+          "incident": 2,
+          "other": 0,
+          "serviceRequest": 0,
+          "team": "EUC",
+          "total": 2
+        },
+        {
+          "byGroup": [
+            {
+              "count": 4,
+              "label": "Systems Support"
+            }
+          ],
+          "incident": 3,
+          "other": 0,
+          "serviceRequest": 1,
+          "team": "System",
+          "total": 4
+        },
+        {
+          "byGroup": [
+            {
+              "count": 3,
+              "label": "Network Support"
+            }
+          ],
+          "incident": 3,
+          "other": 0,
+          "serviceRequest": 0,
+          "team": "Network",
+          "total": 3
+        }
+      ],
+      "reportPendingTicketIds": [
+        [
+          "INC000000400003",
+          2
+        ],
+        [
+          "INC000000400004",
+          3
+        ],
+        [
+          "SRV000000400007",
+          6
+        ],
+        [
+          "INC000000400008",
+          7
+        ],
+        [
+          "INC000000400009",
+          8
+        ],
+        [
+          "INC000000400011",
+          10
+        ],
+        [
+          "INC000000400013",
+          12
+        ],
+        [
+          "INC000000400014",
+          13
+        ],
+        [
+          "INC000000400017",
+          16
+        ]
+      ]
+    },
+    "2026-09-09": {
+      "closedOnReportDateIds": [],
+      "filterDescription": "Report date: 2026-09-09",
+      "metrics": {
+        "newTickets": {
+          "EUC": 1,
+          "Network": 1,
+          "System": 1
+        },
+        "pendingBreakdown": {
+          "EUC": {
+            "onHold": 0,
+            "pending": 0,
+            "waitingUserReply": 1,
+            "workInProgress": 1
+          },
+          "Network": {
+            "onHold": 0,
+            "pending": 2,
+            "waitingUserReply": 1,
+            "workInProgress": 0
+          },
+          "System": {
+            "onHold": 1,
+            "pending": 2,
+            "waitingUserReply": 0,
+            "workInProgress": 1
+          }
+        },
+        "pendingClosed": {
+          "EUC": {
+            "closed": 0,
+            "pending": 0,
+            "scheduledOnOffBoarding": 2
+          },
+          "Network": {
+            "closed": 0,
+            "pending": 1,
+            "scheduledOnOffBoarding": 1
+          },
+          "System": {
+            "closed": 0,
+            "pending": 2,
+            "scheduledOnOffBoarding": 2
+          }
+        },
+        "summaries": {
+          "EUC": {
+            "incidentTotal": 2,
+            "offboarding": 1,
+            "onboarding": 1,
+            "pendingIncidents": 0,
+            "scheduleRequests": 0,
+            "totalTickets": 2,
+            "waitingUserReplyIncidents": 1,
+            "workInProgressIncidents": 1
+          },
+          "Network": {
+            "incidentTotal": 2,
+            "offboarding": 1,
+            "onboarding": 0,
+            "pendingIncidents": 1,
+            "scheduleRequests": 0,
+            "totalTickets": 1,
+            "waitingUserReplyIncidents": 1,
+            "workInProgressIncidents": 0
+          },
+          "System": {
+            "incidentTotal": 3,
+            "offboarding": 0,
+            "onboarding": 1,
+            "pendingIncidents": 2,
+            "scheduleRequests": 1,
+            "totalTickets": 2,
+            "waitingUserReplyIncidents": 0,
+            "workInProgressIncidents": 1
+          }
+        },
+        "summaryBuckets": {
+          "EUC": {
+            "onOffBoarding": 2,
+            "pending": 2
+          },
+          "Network": {
+            "onOffBoarding": 1,
+            "pending": 3
+          },
+          "System": {
+            "onOffBoarding": 1,
+            "pending": 4
+          }
+        },
+        "totalUniqueTickets": 18
+      },
+      "narrowedFilter": {
+        "description": "Report date: 2026-09-09 • Created: 2026-11-01 to End • Team: EUC • Search: “example”",
+        "metrics": {
+          "newTickets": {
+            "EUC": 0,
+            "Network": 0,
+            "System": 0
+          },
+          "pendingBreakdown": {
+            "EUC": {
+              "onHold": 0,
+              "pending": 0,
+              "waitingUserReply": 0,
+              "workInProgress": 0
+            },
+            "Network": {
+              "onHold": 0,
+              "pending": 0,
+              "waitingUserReply": 0,
+              "workInProgress": 0
+            },
+            "System": {
+              "onHold": 0,
+              "pending": 0,
+              "waitingUserReply": 0,
+              "workInProgress": 0
+            }
+          },
+          "pendingClosed": {
+            "EUC": {
+              "closed": 0,
+              "pending": 0,
+              "scheduledOnOffBoarding": 0
+            },
+            "Network": {
+              "closed": 0,
+              "pending": 0,
+              "scheduledOnOffBoarding": 0
+            },
+            "System": {
+              "closed": 0,
+              "pending": 0,
+              "scheduledOnOffBoarding": 0
+            }
+          },
+          "summaries": {
+            "EUC": {
+              "incidentTotal": 0,
+              "offboarding": 0,
+              "onboarding": 0,
+              "pendingIncidents": 0,
+              "scheduleRequests": 0,
+              "totalTickets": 0,
+              "waitingUserReplyIncidents": 0,
+              "workInProgressIncidents": 0
+            },
+            "Network": {
+              "incidentTotal": 0,
+              "offboarding": 0,
+              "onboarding": 0,
+              "pendingIncidents": 0,
+              "scheduleRequests": 0,
+              "totalTickets": 0,
+              "waitingUserReplyIncidents": 0,
+              "workInProgressIncidents": 0
+            },
+            "System": {
+              "incidentTotal": 0,
+              "offboarding": 0,
+              "onboarding": 0,
+              "pendingIncidents": 0,
+              "scheduleRequests": 0,
+              "totalTickets": 0,
+              "waitingUserReplyIncidents": 0,
+              "workInProgressIncidents": 0
+            }
+          },
+          "summaryBuckets": {
+            "EUC": {
+              "onOffBoarding": 0,
+              "pending": 0
+            },
+            "Network": {
+              "onOffBoarding": 0,
+              "pending": 0
+            },
+            "System": {
+              "onOffBoarding": 0,
+              "pending": 0
+            }
+          },
+          "totalUniqueTickets": 0
+        }
+      },
+      "outOfScope": {
+        "rows": [],
+        "total": 0
+      },
+      "pendingDiagnostics": [
+        {
+          "byGroup": [],
+          "incident": 0,
+          "other": 0,
+          "serviceRequest": 0,
+          "team": "EUC",
+          "total": 0
+        },
+        {
+          "byGroup": [
+            {
+              "count": 2,
+              "label": "Systems Support"
+            }
+          ],
+          "incident": 2,
+          "other": 0,
+          "serviceRequest": 0,
+          "team": "System",
+          "total": 2
+        },
+        {
+          "byGroup": [
+            {
+              "count": 1,
+              "label": "Network Support"
+            }
+          ],
+          "incident": 1,
+          "other": 0,
+          "serviceRequest": 0,
+          "team": "Network",
+          "total": 1
+        }
+      ],
+      "reportPendingDiagnostics": [
+        {
+          "byGroup": [
+            {
+              "count": 2,
+              "label": "EUC Support"
+            }
+          ],
+          "incident": 2,
+          "other": 0,
+          "serviceRequest": 0,
+          "team": "EUC",
+          "total": 2
+        },
+        {
+          "byGroup": [
+            {
+              "count": 4,
+              "label": "Systems Support"
+            }
+          ],
+          "incident": 3,
+          "other": 0,
+          "serviceRequest": 1,
+          "team": "System",
+          "total": 4
+        },
+        {
+          "byGroup": [
+            {
+              "count": 3,
+              "label": "Network Support"
+            }
+          ],
+          "incident": 3,
+          "other": 0,
+          "serviceRequest": 0,
+          "team": "Network",
+          "total": 3
+        }
+      ],
+      "reportPendingTicketIds": [
+        [
+          "INC000000400003",
+          2
+        ],
+        [
+          "INC000000400004",
+          3
+        ],
+        [
+          "SRV000000400007",
+          6
+        ],
+        [
+          "INC000000400008",
+          7
+        ],
+        [
+          "INC000000400009",
+          8
+        ],
+        [
+          "INC000000400011",
+          10
+        ],
+        [
+          "INC000000400013",
+          12
+        ],
+        [
+          "INC000000400014",
+          13
+        ],
+        [
+          "INC000000400017",
+          16
+        ]
+      ]
+    }
+  },
+  "teamMappingErrors": [],
+  "teams": {
+    "EUC": [
+      "EUC Analyst",
+      "EUC Engineer"
+    ],
+    "Network": [
+      "Network Analyst",
+      "Network Engineer"
+    ],
+    "System": [
+      "Systems Analyst",
+      "Systems Engineer"
+    ]
+  },
+  "tickets": [
+    {
+      "assignedTo": "EUC Analyst",
+      "category": "Onboarding",
+      "closedDate": null,
+      "contract": "NCC Managed Services",
+      "createdDate": "2026-09-09T00:04:59.999Z",
+      "dateInvalid": false,
+      "duplicateId": false,
+      "id": "SRV000000400001",
+      "idPrefix": "SRV",
+      "kind": "Service Request",
+      "raw": null,
+      "rawCategory": "Service Request",
+      "rawStatus": "New",
+      "reportStatus": "New",
+      "sourceIndex": 0,
+      "summary": "Request: Onboarding - New joiner Alice starting 9 Sep 2026",
+      "supportGroup": "EUC Support",
+      "team": "EUC"
+    },
+    {
+      "assignedTo": "EUC Analyst",
+      "category": "Offboarding",
+      "closedDate": null,
+      "contract": "NCC Managed Services",
+      "createdDate": "2026-09-08T07:40:00.000Z",
+      "dateInvalid": false,
+      "duplicateId": false,
+      "id": "SRV000000400002",
+      "idPrefix": "SRV",
+      "kind": "Service Request",
+      "raw": null,
+      "rawCategory": "Service Request",
+      "rawStatus": "Pending",
+      "reportStatus": "Pending",
+      "sourceIndex": 1,
+      "summary": "Request: Offboarding - Terminate access for Bob",
+      "supportGroup": "EUC Support",
+      "team": "EUC"
+    },
+    {
+      "assignedTo": "EUC Engineer",
+      "category": "Incident",
+      "closedDate": null,
+      "contract": "NCC Managed Services",
+      "createdDate": "2026-09-08T03:25:00.000Z",
+      "dateInvalid": false,
+      "duplicateId": false,
+      "id": "INC000000400003",
+      "idPrefix": "INC",
+      "kind": "Incident",
+      "raw": null,
+      "rawCategory": "Incident",
+      "rawStatus": "In Progress",
+      "reportStatus": "Work in Progress",
+      "sourceIndex": 2,
+      "summary": "Issue: Laptop failure after Windows update",
+      "supportGroup": "EUC Support",
+      "team": "EUC"
+    },
+    {
+      "assignedTo": "EUC Engineer",
+      "category": "Incident",
+      "closedDate": null,
+      "contract": "NCC Managed Services",
+      "createdDate": "2026-09-07T02:00:00.000Z",
+      "dateInvalid": false,
+      "duplicateId": false,
+      "id": "INC000000400004",
+      "idPrefix": "INC",
+      "kind": "Incident",
+      "raw": null,
+      "rawCategory": "Incident",
+      "rawStatus": "Waiting User Reply",
+      "reportStatus": "Waiting User Reply",
+      "sourceIndex": 3,
+      "summary": "Issue: Zoom audio error - awaiting user test",
+      "supportGroup": "EUC Support",
+      "team": "EUC"
+    },
+    {
+      "assignedTo": "EUC Analyst",
+      "category": "Schedule",
+      "closedDate": "2026-09-08T09:10:00.000Z",
+      "contract": "NCC Managed Services",
+      "createdDate": "2026-09-06T01:00:00.000Z",
+      "dateInvalid": false,
+      "duplicateId": false,
+      "id": "SRV000000400005",
+      "idPrefix": "SRV",
+      "kind": "Service Request",
+      "raw": null,
+      "rawCategory": "Service Request",
+      "rawStatus": "Closed",
+      "reportStatus": "Closed",
+      "sourceIndex": 4,
+      "summary": "Planned work schedule for meeting-room iPads",
+      "supportGroup": "EUC Support",
+      "team": "EUC"
+    },
+    {
+      "assignedTo": "EUC Engineer",
+      "category": "Onboarding",
+      "closedDate": "2026-09-08T10:00:00.000Z",
+      "contract": "NCC Managed Services",
+      "createdDate": "2026-09-05T06:00:00.000Z",
+      "dateInvalid": false,
+      "duplicateId": false,
+      "id": "SRV000000400006",
+      "idPrefix": "SRV",
+      "kind": "Service Request",
+      "raw": null,
+      "rawCategory": "Service Request",
+      "rawStatus": "Closed",
+      "reportStatus": "Closed",
+      "sourceIndex": 5,
+      "summary": "Request: Onboarding - provision laptop for Carol",
+      "supportGroup": "EUC Support",
+      "team": "EUC"
+    },
+    {
+      "assignedTo": "Systems Analyst",
+      "category": "Schedule",
+      "closedDate": null,
+      "contract": "NCC Managed Services",
+      "createdDate": "2026-09-09T00:12:00.000Z",
+      "dateInvalid": false,
+      "duplicateId": false,
+      "id": "SRV000000400007",
+      "idPrefix": "SRV",
+      "kind": "Service Request",
+      "raw": null,
+      "rawCategory": "Service Request",
+      "rawStatus": "New",
+      "reportStatus": "New",
+      "sourceIndex": 6,
+      "summary": "Request: schedule planned work for server patching",
+      "supportGroup": "Systems Support",
+      "team": "System"
+    },
+    {
+      "assignedTo": "Systems Engineer",
+      "category": "Incident",
+      "closedDate": null,
+      "contract": "NCC Managed Services",
+      "createdDate": "2026-09-08T05:15:00.000Z",
+      "dateInvalid": false,
+      "duplicateId": false,
+      "id": "INC000000400008",
+      "idPrefix": "INC",
+      "kind": "Incident",
+      "raw": null,
+      "rawCategory": "Incident",
+      "rawStatus": "Pending",
+      "reportStatus": "Pending",
+      "sourceIndex": 7,
+      "summary": "Incident: application unavailable for finance team",
+      "supportGroup": "Systems Support",
+      "team": "System"
+    },
+    {
+      "assignedTo": "Systems Analyst",
+      "category": "Incident",
+      "closedDate": null,
+      "contract": "NCC Managed Services",
+      "createdDate": "2026-09-07T08:19:59.999Z",
+      "dateInvalid": false,
+      "duplicateId": false,
+      "id": "INC000000400009",
+      "idPrefix": "INC",
+      "kind": "Incident",
+      "raw": null,
+      "rawCategory": "Incident",
+      "rawStatus": "On Hold",
+      "reportStatus": "On Hold",
+      "sourceIndex": 8,
+      "summary": "Incident: database outage - vendor investigation",
+      "supportGroup": "Systems Support",
+      "team": "System"
+    },
+    {
+      "assignedTo": "Systems Engineer",
+      "category": "Offboarding",
+      "closedDate": "2026-09-08T03:00:00.000Z",
+      "contract": "NCC Managed Services",
+      "createdDate": "2026-09-06T03:45:00.000Z",
+      "dateInvalid": false,
+      "duplicateId": false,
+      "id": "SRV000000400010",
+      "idPrefix": "SRV",
+      "kind": "Service Request",
+      "raw": null,
+      "rawCategory": "Service Request",
+      "rawStatus": "Closed",
+      "reportStatus": "Closed",
+      "sourceIndex": 9,
+      "summary": "Request: Offboarding - disable server account",
+      "supportGroup": "Systems Support",
+      "team": "System"
+    },
+    {
+      "assignedTo": "Systems Engineer",
+      "category": "Incident",
+      "closedDate": null,
+      "contract": "NCC Managed Services",
+      "createdDate": "2026-09-08T14:30:00.000Z",
+      "dateInvalid": false,
+      "duplicateId": false,
+      "id": "INC000000400011",
+      "idPrefix": "INC",
+      "kind": "Incident",
+      "raw": null,
+      "rawCategory": "Incident",
+      "rawStatus": "Work in Progress",
+      "reportStatus": "Work in Progress",
+      "sourceIndex": 10,
+      "summary": "Error: batch service failure during nightly job",
+      "supportGroup": "Systems Support",
+      "team": "System"
+    },
+    {
+      "assignedTo": "Systems Analyst",
+      "category": "Onboarding",
+      "closedDate": null,
+      "contract": "NCC Managed Services",
+      "createdDate": "2026-09-05T02:30:00.000Z",
+      "dateInvalid": false,
+      "duplicateId": false,
+      "id": "SRV000000400012",
+      "idPrefix": "SRV",
+      "kind": "Service Request",
+      "raw": null,
+      "rawCategory": "Service Request",
+      "rawStatus": "Pending",
+      "reportStatus": "Pending",
+      "sourceIndex": 11,
+      "summary": "Request: Onboarding - create application account",
+      "supportGroup": "Systems Support",
+      "team": "System"
+    },
+    {
+      "assignedTo": "Network Analyst",
+      "category": "Incident",
+      "closedDate": null,
+      "contract": "NCC Managed Services",
+      "createdDate": "2026-09-08T23:47:59.999Z",
+      "dateInvalid": false,
+      "duplicateId": false,
+      "id": "INC000000400013",
+      "idPrefix": "INC",
+      "kind": "Incident",
+      "raw": null,
+      "rawCategory": "Incident",
+      "rawStatus": "New",
+      "reportStatus": "New",
+      "sourceIndex": 12,
+      "summary": "Incident: network outage reported at branch",
+      "supportGroup": "Network Support",
+      "team": "Network"
+    },
+    {
+      "assignedTo": "Network Engineer",
+      "category": "Incident",
+      "closedDate": null,
+      "contract": "NCC Managed Services",
+      "createdDate": "2026-09-08T01:10:00.000Z",
+      "dateInvalid": false,
+      "duplicateId": false,
+      "id": "INC000000400014",
+      "idPrefix": "INC",
+      "kind": "Incident",
+      "raw": null,
+      "rawCategory": "Incident",
+      "rawStatus": "Pending",
+      "reportStatus": "Pending",
+      "sourceIndex": 13,
+      "summary": "Issue: Wi-Fi unavailable in meeting room",
+      "supportGroup": "Network Support",
+      "team": "Network"
+    },
+    {
+      "assignedTo": "Network Engineer",
+      "category": "Schedule",
+      "closedDate": "2026-09-08T15:30:00.000Z",
+      "contract": "NCC Managed Services",
+      "createdDate": "2026-09-06T12:00:00.000Z",
+      "dateInvalid": false,
+      "duplicateId": false,
+      "id": "SRV000000400015",
+      "idPrefix": "SRV",
+      "kind": "Service Request",
+      "raw": null,
+      "rawCategory": "Service Request",
+      "rawStatus": "Closed",
+      "reportStatus": "Closed",
+      "sourceIndex": 14,
+      "summary": "Planned work schedule for firewall maintenance",
+      "supportGroup": "Network Support",
+      "team": "Network"
+    },
+    {
+      "assignedTo": "Network Analyst",
+      "category": "Onboarding",
+      "closedDate": "2026-09-07T08:00:00.000Z",
+      "contract": "NCC Managed Services",
+      "createdDate": "2026-09-05T04:00:00.000Z",
+      "dateInvalid": false,
+      "duplicateId": false,
+      "id": "SRV000000400016",
+      "idPrefix": "SRV",
+      "kind": "Service Request",
+      "raw": null,
+      "rawCategory": "Service Request",
+      "rawStatus": "Closed",
+      "reportStatus": "Closed",
+      "sourceIndex": 15,
+      "summary": "Request: Onboarding - configure VPN access for new joiner",
+      "supportGroup": "Network Support",
+      "team": "Network"
+    },
+    {
+      "assignedTo": "Network Engineer",
+      "category": "Incident",
+      "closedDate": null,
+      "contract": "NCC Managed Services",
+      "createdDate": "2026-09-07T06:49:59.999Z",
+      "dateInvalid": false,
+      "duplicateId": false,
+      "id": "INC000000400017",
+      "idPrefix": "INC",
+      "kind": "Incident",
+      "raw": null,
+      "rawCategory": "Incident",
+      "rawStatus": "Waiting User Reply",
+      "reportStatus": "Waiting User Reply",
+      "sourceIndex": 16,
+      "summary": "Error: intermittent VPN failure - waiting user reply",
+      "supportGroup": "Network Support",
+      "team": "Network"
+    },
+    {
+      "assignedTo": "Network Analyst",
+      "category": "Offboarding",
+      "closedDate": null,
+      "contract": "NCC Managed Services",
+      "createdDate": "2026-09-08T09:19:59.999Z",
+      "dateInvalid": false,
+      "duplicateId": false,
+      "id": "SRV000000400018",
+      "idPrefix": "SRV",
+      "kind": "Service Request",
+      "raw": null,
+      "rawCategory": "Service Request",
+      "rawStatus": "Pending",
+      "reportStatus": "Pending",
+      "sourceIndex": 17,
+      "summary": "Request: Offboarding - remove VPN access for leaver",
+      "supportGroup": "Network Support",
+      "team": "Network"
+    }
+  ],
+  "validation": {
+    "blankAssigneeCount": 0,
+    "duplicateTicketIds": [],
+    "invalidDateCount": 0,
+    "missingRequiredColumns": [],
+    "unclassifiedAssignees": [],
+    "unknownCategoryCount": 0,
+    "unknownPrefixes": [],
+    "unknownStatusCount": 0
+  }
+}

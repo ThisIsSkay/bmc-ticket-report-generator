@@ -1,0 +1,543 @@
+{
+  "duplicates": 1,
+  "entries": [
+    {
+      "aliasKeys": [],
+      "aliases": [],
+      "company": "Example Co",
+      "department": "Support",
+      "email": "alex@example.com",
+      "id": 0,
+      "keys": {
+        "canonical": "alex example",
+        "compact": "alexexample",
+        "exact": "alex example",
+        "sorted": "alex example",
+        "tokens": [
+          "alex",
+          "example"
+        ],
+        "untitled": "alex example"
+      },
+      "name": "Alex Example",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "aliasKeys": [],
+      "aliases": [],
+      "company": "Example Co",
+      "department": "Support",
+      "email": "chris.one@example.com",
+      "id": 1,
+      "keys": {
+        "canonical": "chris example",
+        "compact": "chrisexample",
+        "exact": "chris example",
+        "sorted": "chris example",
+        "tokens": [
+          "chris",
+          "example"
+        ],
+        "untitled": "chris example"
+      },
+      "name": "Chris Example",
+      "valid": true,
+      "warnings": [
+        "Multiple directory records share this name"
+      ]
+    },
+    {
+      "aliasKeys": [],
+      "aliases": [],
+      "company": "Example Co",
+      "department": "Finance",
+      "email": "chris.two@example.com",
+      "id": 2,
+      "keys": {
+        "canonical": "chris example",
+        "compact": "chrisexample",
+        "exact": "chris example",
+        "sorted": "chris example",
+        "tokens": [
+          "chris",
+          "example"
+        ],
+        "untitled": "chris example"
+      },
+      "name": "Chris Example",
+      "valid": true,
+      "warnings": [
+        "Multiple directory records share this name"
+      ]
+    },
+    {
+      "aliasKeys": [],
+      "aliases": [],
+      "company": "Example Co",
+      "department": "Finance",
+      "email": "weiming@example.com",
+      "id": 3,
+      "keys": {
+        "canonical": "tan wei ming",
+        "compact": "tanweiming",
+        "exact": "tan wei ming",
+        "sorted": "ming tan wei",
+        "tokens": [
+          "tan",
+          "wei",
+          "ming"
+        ],
+        "untitled": "tan wei ming"
+      },
+      "name": "Tan Wei Ming",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "aliasKeys": [],
+      "aliases": [],
+      "company": "Example Co",
+      "department": "Finance",
+      "email": "weimin@example.com",
+      "id": 4,
+      "keys": {
+        "canonical": "tan wei min",
+        "compact": "tanweimin",
+        "exact": "tan wei min",
+        "sorted": "min tan wei",
+        "tokens": [
+          "tan",
+          "wei",
+          "min"
+        ],
+        "untitled": "tan wei min"
+      },
+      "name": "Tan Wei Min",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "aliasKeys": [],
+      "aliases": [],
+      "company": "Example Co",
+      "department": "Support",
+      "email": "jason@example.com",
+      "id": 5,
+      "keys": {
+        "canonical": "tan wei ming jason",
+        "compact": "tanweimingjason",
+        "exact": "tan wei ming jason",
+        "sorted": "jason ming tan wei",
+        "tokens": [
+          "tan",
+          "wei",
+          "ming",
+          "jason"
+        ],
+        "untitled": "tan wei ming jason"
+      },
+      "name": "Tan Wei Ming Jason",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "aliasKeys": [
+        {
+          "canonical": "jamie example",
+          "compact": "jamieexample",
+          "exact": "jamie example",
+          "sorted": "example jamie",
+          "tokens": [
+            "jamie",
+            "example"
+          ],
+          "untitled": "jamie example"
+        },
+        {
+          "canonical": "example jamie",
+          "compact": "examplejamie",
+          "exact": "example, jamie",
+          "sorted": "example jamie",
+          "tokens": [
+            "example",
+            "jamie"
+          ],
+          "untitled": "example jamie"
+        }
+      ],
+      "aliases": [
+        "Jamie Example",
+        "Example, Jamie"
+      ],
+      "company": "Example Co",
+      "department": "Finance",
+      "email": "jamie@example.com",
+      "id": 6,
+      "keys": {
+        "canonical": "jamie q example",
+        "compact": "jamieqexample",
+        "exact": "jamie q example",
+        "sorted": "example jamie q",
+        "tokens": [
+          "jamie",
+          "q",
+          "example"
+        ],
+        "untitled": "jamie q example"
+      },
+      "name": "Jamie Q Example",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "aliasKeys": [],
+      "aliases": [],
+      "company": "Example Co",
+      "department": "Support",
+      "email": "not-an-email",
+      "id": 7,
+      "keys": {
+        "canonical": "sam example",
+        "compact": "samexample",
+        "exact": "sam example",
+        "sorted": "example sam",
+        "tokens": [
+          "sam",
+          "example"
+        ],
+        "untitled": "sam example"
+      },
+      "name": "Sam Example",
+      "valid": false,
+      "warnings": [
+        "Missing name or invalid single email address"
+      ]
+    },
+    {
+      "aliasKeys": [],
+      "aliases": [],
+      "company": "Example Co",
+      "department": "Support",
+      "email": "shared@example.com",
+      "id": 8,
+      "keys": {
+        "canonical": "pat example",
+        "compact": "patexample",
+        "exact": "pat example",
+        "sorted": "example pat",
+        "tokens": [
+          "pat",
+          "example"
+        ],
+        "untitled": "pat example"
+      },
+      "name": "Pat Example",
+      "valid": true,
+      "warnings": [
+        "Email shared by different names"
+      ]
+    },
+    {
+      "aliasKeys": [],
+      "aliases": [],
+      "company": "Example Co",
+      "department": "Support",
+      "email": "shared@example.com",
+      "id": 9,
+      "keys": {
+        "canonical": "lee example",
+        "compact": "leeexample",
+        "exact": "lee example",
+        "sorted": "example lee",
+        "tokens": [
+          "lee",
+          "example"
+        ],
+        "untitled": "lee example"
+      },
+      "name": "Lee Example",
+      "valid": true,
+      "warnings": [
+        "Email shared by different names"
+      ]
+    },
+    {
+      "aliasKeys": [],
+      "aliases": [],
+      "company": "Example Co Pte Ltd",
+      "department": "Information Technology",
+      "email": "morgan@example.com",
+      "id": 10,
+      "keys": {
+        "canonical": "example morgan",
+        "compact": "examplemorgan",
+        "exact": "example, morgan",
+        "sorted": "example morgan",
+        "tokens": [
+          "example",
+          "morgan"
+        ],
+        "untitled": "example morgan"
+      },
+      "name": "Example, Morgan",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "aliasKeys": [],
+      "aliases": [],
+      "company": "Example Co",
+      "department": "Support",
+      "email": "ravi@example.com",
+      "id": 11,
+      "keys": {
+        "canonical": "ravi example",
+        "compact": "raviexample",
+        "exact": "ravi example",
+        "sorted": "example ravi",
+        "tokens": [
+          "ravi",
+          "example"
+        ],
+        "untitled": "ravi example"
+      },
+      "name": "Ravi Example",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "aliasKeys": [],
+      "aliases": [],
+      "company": "Example Co",
+      "department": "Support",
+      "email": "rana@example.com",
+      "id": 12,
+      "keys": {
+        "canonical": "rana example",
+        "compact": "ranaexample",
+        "exact": "rana example",
+        "sorted": "example rana",
+        "tokens": [
+          "rana",
+          "example"
+        ],
+        "untitled": "rana example"
+      },
+      "name": "Rana Example",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "aliasKeys": [],
+      "aliases": [],
+      "company": "Example Co",
+      "department": "Finance",
+      "email": "jose@example.com",
+      "id": 13,
+      "keys": {
+        "canonical": "jose example",
+        "compact": "joseexample",
+        "exact": "josé example",
+        "sorted": "example jose",
+        "tokens": [
+          "jose",
+          "example"
+        ],
+        "untitled": "jose example"
+      },
+      "name": "José Example",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "aliasKeys": [],
+      "aliases": [],
+      "company": "Example Co",
+      "department": "Support",
+      "email": "li@example.com",
+      "id": 14,
+      "keys": {
+        "canonical": "李明 example",
+        "compact": "李明example",
+        "exact": "李明 example",
+        "sorted": "example 李明",
+        "tokens": [
+          "李明",
+          "example"
+        ],
+        "untitled": "李明 example"
+      },
+      "name": "李明 Example",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "aliasKeys": [],
+      "aliases": [],
+      "company": "Example Co",
+      "department": "Support",
+      "email": "mah@example.com",
+      "id": 15,
+      "keys": {
+        "canonical": "ahmad example bin hassan",
+        "compact": "ahmadexamplebinhassan",
+        "exact": "ahmad example bin hassan",
+        "sorted": "ahmad bin example hassan",
+        "tokens": [
+          "ahmad",
+          "example",
+          "bin",
+          "hassan"
+        ],
+        "untitled": "ahmad example bin hassan"
+      },
+      "name": "Ahmad Example bin Hassan",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "aliasKeys": [],
+      "aliases": [],
+      "company": "Example Co",
+      "department": "Support",
+      "email": "mar@example.com",
+      "id": 16,
+      "keys": {
+        "canonical": "ahmad example bin rahman",
+        "compact": "ahmadexamplebinrahman",
+        "exact": "ahmad example bin rahman",
+        "sorted": "ahmad bin example rahman",
+        "tokens": [
+          "ahmad",
+          "example",
+          "bin",
+          "rahman"
+        ],
+        "untitled": "ahmad example bin rahman"
+      },
+      "name": "Ahmad Example bin Rahman",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "aliasKeys": [],
+      "aliases": [],
+      "company": "Example Co",
+      "department": "Support",
+      "email": "obrien@example.com",
+      "id": 17,
+      "keys": {
+        "canonical": "o brien alex",
+        "compact": "obrienalex",
+        "exact": "o'brien alex",
+        "sorted": "alex brien o",
+        "tokens": [
+          "o",
+          "brien",
+          "alex"
+        ],
+        "untitled": "o brien alex"
+      },
+      "name": "O'Brien Alex",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "aliasKeys": [],
+      "aliases": [],
+      "company": "Example Co",
+      "department": "Support",
+      "email": "robin@example.com",
+      "id": 18,
+      "keys": {
+        "canonical": "robin example",
+        "compact": "robinexample",
+        "exact": "robin example",
+        "sorted": "example robin",
+        "tokens": [
+          "robin",
+          "example"
+        ],
+        "untitled": "robin example"
+      },
+      "name": "Robin Example",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "aliasKeys": [],
+      "aliases": [],
+      "company": "Example Co",
+      "department": "Support",
+      "email": "",
+      "id": 19,
+      "keys": {
+        "canonical": "blank email example",
+        "compact": "blankemailexample",
+        "exact": "blank email example",
+        "sorted": "blank email example",
+        "tokens": [
+          "blank",
+          "email",
+          "example"
+        ],
+        "untitled": "blank email example"
+      },
+      "name": "Blank Email Example",
+      "valid": false,
+      "warnings": [
+        "Missing name or invalid single email address"
+      ]
+    },
+    {
+      "aliasKeys": [],
+      "aliases": [],
+      "company": "Example Co",
+      "department": "Support",
+      "email": "hostile@example.com",
+      "id": 20,
+      "keys": {
+        "canonical": "<img src=x onerror=alert 1 >",
+        "compact": "<imgsrc=xonerror=alert1>",
+        "exact": "<img src=x onerror=alert(1)>",
+        "sorted": "1 <img > onerror=alert src=x",
+        "tokens": [
+          "<img",
+          "src=x",
+          "onerror=alert",
+          "1",
+          ">"
+        ],
+        "untitled": "<img src=x onerror=alert 1 >"
+      },
+      "name": "<img src=x onerror=alert(1)>",
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "aliasKeys": [],
+      "aliases": [],
+      "company": "Example Co",
+      "department": "Support",
+      "email": "meiling@example.com",
+      "id": 21,
+      "keys": {
+        "canonical": "mei ling example",
+        "compact": "meilingexample",
+        "exact": "mei-ling example",
+        "sorted": "example ling mei",
+        "tokens": [
+          "mei",
+          "ling",
+          "example"
+        ],
+        "untitled": "mei ling example"
+      },
+      "name": "Mei-Ling Example",
+      "valid": true,
+      "warnings": []
+    }
+  ],
+  "invalid": 2
+}

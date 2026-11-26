@@ -1,0 +1,97 @@
+{
+  "cases": {
+    "hostile-light": {
+      "blockedExternalHosts": [
+        "fonts.googleapis.com"
+      ],
+      "fixture": "hostile",
+      "jpeg": {
+        "dimensions": {
+          "height": 1425,
+          "width": 2700
+        },
+        "fileName": "BMC_Ticket_Report_2026-11-10.jpg"
+      },
+      "now": "2026-11-10T10:00:00+08:00",
+      "pageErrors": [],
+      "png": {
+        "dimensions": {
+          "height": 1425,
+          "width": 2700
+        },
+        "fileName": "BMC_Ticket_Report_2026-11-10.png"
+      },
+      "theme": "light"
+    },
+    "sample-2026-09-09": {
+      "blockedExternalHosts": [
+        "fonts.googleapis.com"
+      ],
+      "fixture": "sample",
+      "jpeg": {
+        "dimensions": {
+          "height": 1425,
+          "width": 2700
+        },
+        "fileName": "BMC_Ticket_Report_2026-09-09.jpg"
+      },
+      "now": "2026-09-09T17:30:00+08:00",
+      "pageErrors": [],
+      "png": {
+        "dimensions": {
+          "height": 1425,
+          "width": 2700
+        },
+        "fileName": "BMC_Ticket_Report_2026-09-09.png"
+      },
+      "theme": "light"
+    },
+    "sample-dark": {
+      "blockedExternalHosts": [
+        "fonts.googleapis.com"
+      ],
+      "fixture": "sample",
+      "jpeg": {
+        "dimensions": {
+          "height": 1425,
+          "width": 2700
+        },
+        "fileName": "BMC_Ticket_Report_2026-09-08.jpg"
+      },
+      "now": "2026-09-08T10:00:00+08:00",
+      "pageErrors": [],
+      "png": {
+        "dimensions": {
+          "height": 1425,
+          "width": 2700
+        },
+        "fileName": "BMC_Ticket_Report_2026-09-08.png"
+      },
+      "theme": "dark"
+    },
+    "sample-light": {
+      "blockedExternalHosts": [
+        "fonts.googleapis.com"
+      ],
+      "fixture": "sample",
+      "jpeg": {
+        "dimensions": {
+          "height": 1425,
+          "width": 2700
+        },
+        "fileName": "BMC_Ticket_Report_2026-09-08.jpg"
+      },
+      "now": "2026-09-08T10:00:00+08:00",
+      "pageErrors": [],
+      "png": {
+        "dimensions": {
+          "height": 1425,
+          "width": 2700
+        },
+        "fileName": "BMC_Ticket_Report_2026-09-08.png"
+      },
+      "theme": "light"
+    }
+  },
+  "chromium": "153.0.8010.12"
+}

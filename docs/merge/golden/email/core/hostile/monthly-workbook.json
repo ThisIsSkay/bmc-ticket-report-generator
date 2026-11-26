@@ -1,0 +1,864 @@
+{
+  "cells": {
+    "Scope": [
+      [
+        "Groups",
+        "All"
+      ],
+      [
+        "Contract",
+        "All"
+      ],
+      [
+        "Types",
+        "All"
+      ],
+      [
+        "Raw statuses",
+        "All"
+      ],
+      [
+        "Engineer included",
+        "No"
+      ],
+      [
+        "Monitoring excluded",
+        "Yes"
+      ]
+    ],
+    "Summary": [
+      [
+        "Report",
+        "Monthly pending tickets",
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "Outstanding tickets",
+        8,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "Reporting / export date",
+        "2026-11-10",
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "Scope",
+        "Assigned groups: All assigned groups · Contract: All · Types: All · Statuses: All · Monitoring events excluded",
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "Excluded by type",
+        0,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "Excluded by status",
+        0,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "Age basis",
+        "Calendar days since submission; current export status, not historical backlog",
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "0–7",
+        2,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "8–14",
+        1,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "15–30",
+        0,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "31–60",
+        2,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "Over 60",
+        1,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "Age unknown",
+        1,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "Future-dated",
+        1,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "Group by type",
+        "Forward Schedule",
+        "Incident",
+        "Service Request",
+        "Total",
+        null,
+        null
+      ],
+      [
+        "EXAMPLE <GROUP> & CO",
+        0,
+        1,
+        0,
+        1,
+        null,
+        null
+      ],
+      [
+        "EXAMPLE_EUC",
+        0,
+        3,
+        1,
+        4,
+        null,
+        null
+      ],
+      [
+        "EXAMPLE_SYSTEM",
+        1,
+        1,
+        0,
+        2,
+        null,
+        null
+      ],
+      [
+        "Unassigned",
+        0,
+        1,
+        0,
+        1,
+        null,
+        null
+      ],
+      [
+        "TOTAL",
+        1,
+        6,
+        1,
+        8,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "Type by priority",
+        "Critical",
+        "High",
+        "Medium",
+        "Low",
+        "(blank)",
+        "Total"
+      ],
+      [
+        "Forward Schedule",
+        0,
+        0,
+        0,
+        1,
+        0,
+        1
+      ],
+      [
+        "Incident",
+        1,
+        2,
+        1,
+        0,
+        2,
+        6
+      ],
+      [
+        "Service Request",
+        0,
+        0,
+        1,
+        0,
+        0,
+        1
+      ],
+      [
+        "TOTAL",
+        1,
+        2,
+        2,
+        1,
+        2,
+        8
+      ]
+    ],
+    "Tickets": [
+      [
+        "Ticket ID",
+        "Type",
+        "Summary",
+        "Assigned group",
+        "Status",
+        "Priority",
+        "Submitted",
+        "Age since submitted (days)",
+        "Age band"
+      ],
+      [
+        "INC100000012",
+        "Incident",
+        "Group name with <b>markup</b> & ampersand",
+        "EXAMPLE <GROUP> & CO",
+        "Pending",
+        "Critical",
+        {
+          "date": "2026-11-10T00:00:00.000Z"
+        },
+        0,
+        "0–7"
+      ],
+      [
+        "SRV100000009",
+        "Service Request",
+        "Old pending request",
+        "EXAMPLE_EUC",
+        "Waiting User Reply",
+        "Medium",
+        {
+          "date": "2026-08-01T00:00:00.000Z"
+        },
+        101,
+        "Over 60"
+      ],
+      [
+        "INC100000001",
+        "Incident",
+        "<script>alert(1)</script> & \"quoted\" 'single'",
+        "EXAMPLE_EUC",
+        "Assigned",
+        "High",
+        {
+          "date": "2026-11-10T00:00:00.000Z"
+        },
+        0,
+        "0–7"
+      ],
+      [
+        "INC100000010",
+        "Incident",
+        "Future-dated submission",
+        "EXAMPLE_EUC",
+        "Assigned",
+        "High",
+        {
+          "date": "2026-11-12T00:00:00.000Z"
+        },
+        -2,
+        "Future-dated"
+      ],
+      [
+        "INC100000011",
+        "Incident",
+        "—",
+        "EXAMPLE_EUC",
+        "Mystery Status",
+        "—",
+        "",
+        null,
+        "Age unknown"
+      ],
+      [
+        "FSC100000008",
+        "Forward Schedule",
+        "Forward schedule maintenance",
+        "EXAMPLE_SYSTEM",
+        "Pending",
+        "Low",
+        {
+          "date": "2026-09-15T00:00:00.000Z"
+        },
+        56,
+        "31–60"
+      ],
+      [
+        "INC100000005",
+        "Incident",
+        "Reopened ticket (latest row)",
+        "EXAMPLE_SYSTEM",
+        "Pending",
+        "Medium",
+        {
+          "date": "2026-11-01T00:00:00.000Z"
+        },
+        9,
+        "8–14"
+      ],
+      [
+        "INC100000006",
+        "Incident",
+        "Duplicate row B (latest)",
+        "Unassigned",
+        "Work in Progress",
+        "—",
+        {
+          "date": "2026-10-02T00:00:00.000Z"
+        },
+        39,
+        "31–60"
+      ]
+    ]
+  },
+  "sheetNames": [
+    "Summary",
+    "Tickets",
+    "Scope"
+  ],
+  "sheets": {
+    "Scope": [
+      [
+        "Groups",
+        "All"
+      ],
+      [
+        "Contract",
+        "All"
+      ],
+      [
+        "Types",
+        "All"
+      ],
+      [
+        "Raw statuses",
+        "All"
+      ],
+      [
+        "Engineer included",
+        "No"
+      ],
+      [
+        "Monitoring excluded",
+        "Yes"
+      ]
+    ],
+    "Summary": [
+      [
+        "Report",
+        "Monthly pending tickets"
+      ],
+      [
+        "Outstanding tickets",
+        8
+      ],
+      [
+        "Reporting / export date",
+        "2026-11-10"
+      ],
+      [
+        "Scope",
+        "Assigned groups: All assigned groups · Contract: All · Types: All · Statuses: All · Monitoring events excluded"
+      ],
+      [
+        "Excluded by type",
+        0
+      ],
+      [
+        "Excluded by status",
+        0
+      ],
+      [
+        "Age basis",
+        "Calendar days since submission; current export status, not historical backlog"
+      ],
+      [
+        "0–7",
+        2
+      ],
+      [
+        "8–14",
+        1
+      ],
+      [
+        "15–30",
+        0
+      ],
+      [
+        "31–60",
+        2
+      ],
+      [
+        "Over 60",
+        1
+      ],
+      [
+        "Age unknown",
+        1
+      ],
+      [
+        "Future-dated",
+        1
+      ],
+      [],
+      [
+        "Group by type",
+        "Forward Schedule",
+        "Incident",
+        "Service Request",
+        "Total"
+      ],
+      [
+        "EXAMPLE <GROUP> & CO",
+        0,
+        1,
+        0,
+        1
+      ],
+      [
+        "EXAMPLE_EUC",
+        0,
+        3,
+        1,
+        4
+      ],
+      [
+        "EXAMPLE_SYSTEM",
+        1,
+        1,
+        0,
+        2
+      ],
+      [
+        "Unassigned",
+        0,
+        1,
+        0,
+        1
+      ],
+      [
+        "TOTAL",
+        1,
+        6,
+        1,
+        8
+      ],
+      [],
+      [
+        "Type by priority",
+        "Critical",
+        "High",
+        "Medium",
+        "Low",
+        "(blank)",
+        "Total"
+      ],
+      [
+        "Forward Schedule",
+        0,
+        0,
+        0,
+        1,
+        0,
+        1
+      ],
+      [
+        "Incident",
+        1,
+        2,
+        1,
+        0,
+        2,
+        6
+      ],
+      [
+        "Service Request",
+        0,
+        0,
+        1,
+        0,
+        0,
+        1
+      ],
+      [
+        "TOTAL",
+        1,
+        2,
+        2,
+        1,
+        2,
+        8
+      ]
+    ],
+    "Tickets": [
+      [
+        "Ticket ID",
+        "Type",
+        "Summary",
+        "Assigned group",
+        "Status",
+        "Priority",
+        "Submitted",
+        "Age since submitted (days)",
+        "Age band"
+      ],
+      [
+        "INC100000012",
+        "Incident",
+        "Group name with <b>markup</b> & ampersand",
+        "EXAMPLE <GROUP> & CO",
+        "Pending",
+        "Critical",
+        "2026-11-10T00:00:00.000Z",
+        0,
+        "0–7"
+      ],
+      [
+        "SRV100000009",
+        "Service Request",
+        "Old pending request",
+        "EXAMPLE_EUC",
+        "Waiting User Reply",
+        "Medium",
+        "2026-08-01T00:00:00.000Z",
+        101,
+        "Over 60"
+      ],
+      [
+        "INC100000001",
+        "Incident",
+        "<script>alert(1)</script> & \"quoted\" 'single'",
+        "EXAMPLE_EUC",
+        "Assigned",
+        "High",
+        "2026-11-10T00:00:00.000Z",
+        0,
+        "0–7"
+      ],
+      [
+        "INC100000010",
+        "Incident",
+        "Future-dated submission",
+        "EXAMPLE_EUC",
+        "Assigned",
+        "High",
+        "2026-11-12T00:00:00.000Z",
+        -2,
+        "Future-dated"
+      ],
+      [
+        "INC100000011",
+        "Incident",
+        "—",
+        "EXAMPLE_EUC",
+        "Mystery Status",
+        "—",
+        "",
+        null,
+        "Age unknown"
+      ],
+      [
+        "FSC100000008",
+        "Forward Schedule",
+        "Forward schedule maintenance",
+        "EXAMPLE_SYSTEM",
+        "Pending",
+        "Low",
+        "2026-09-15T00:00:00.000Z",
+        56,
+        "31–60"
+      ],
+      [
+        "INC100000005",
+        "Incident",
+        "Reopened ticket (latest row)",
+        "EXAMPLE_SYSTEM",
+        "Pending",
+        "Medium",
+        "2026-11-01T00:00:00.000Z",
+        9,
+        "8–14"
+      ],
+      [
+        "INC100000006",
+        "Incident",
+        "Duplicate row B (latest)",
+        "Unassigned",
+        "Work in Progress",
+        "—",
+        "2026-10-02T00:00:00.000Z",
+        39,
+        "31–60"
+      ]
+    ]
+  },
+  "types": {
+    "Scope": {
+      "A1": "s",
+      "A2": "s",
+      "A3": "s",
+      "A4": "s",
+      "A5": "s",
+      "A6": "s",
+      "B1": "s",
+      "B2": "s",
+      "B3": "s",
+      "B4": "s",
+      "B5": "s",
+      "B6": "s"
+    },
+    "Summary": {
+      "A1": "s",
+      "A10": "s",
+      "A11": "s",
+      "A12": "s",
+      "A13": "s",
+      "A14": "s",
+      "A16": "s",
+      "A17": "s",
+      "A18": "s",
+      "A19": "s",
+      "A2": "s",
+      "A20": "s",
+      "A21": "s",
+      "A23": "s",
+      "A24": "s",
+      "A25": "s",
+      "A26": "s",
+      "A27": "s",
+      "A3": "s",
+      "A4": "s",
+      "A5": "s",
+      "A6": "s",
+      "A7": "s",
+      "A8": "s",
+      "A9": "s",
+      "B1": "s",
+      "B10": "n",
+      "B11": "n",
+      "B12": "n",
+      "B13": "n",
+      "B14": "n",
+      "B16": "s",
+      "B17": "n",
+      "B18": "n",
+      "B19": "n",
+      "B2": "n",
+      "B20": "n",
+      "B21": "n",
+      "B23": "s",
+      "B24": "n",
+      "B25": "n",
+      "B26": "n",
+      "B27": "n",
+      "B3": "s",
+      "B4": "s",
+      "B5": "n",
+      "B6": "n",
+      "B7": "s",
+      "B8": "n",
+      "B9": "n",
+      "C16": "s",
+      "C17": "n",
+      "C18": "n",
+      "C19": "n",
+      "C20": "n",
+      "C21": "n",
+      "C23": "s",
+      "C24": "n",
+      "C25": "n",
+      "C26": "n",
+      "C27": "n",
+      "D16": "s",
+      "D17": "n",
+      "D18": "n",
+      "D19": "n",
+      "D20": "n",
+      "D21": "n",
+      "D23": "s",
+      "D24": "n",
+      "D25": "n",
+      "D26": "n",
+      "D27": "n",
+      "E16": "s",
+      "E17": "n",
+      "E18": "n",
+      "E19": "n",
+      "E20": "n",
+      "E21": "n",
+      "E23": "s",
+      "E24": "n",
+      "E25": "n",
+      "E26": "n",
+      "E27": "n",
+      "F23": "s",
+      "F24": "n",
+      "F25": "n",
+      "F26": "n",
+      "F27": "n",
+      "G23": "s",
+      "G24": "n",
+      "G25": "n",
+      "G26": "n",
+      "G27": "n"
+    },
+    "Tickets": {
+      "A1": "s",
+      "A2": "s",
+      "A3": "s",
+      "A4": "s",
+      "A5": "s",
+      "A6": "s",
+      "A7": "s",
+      "A8": "s",
+      "A9": "s",
+      "B1": "s",
+      "B2": "s",
+      "B3": "s",
+      "B4": "s",
+      "B5": "s",
+      "B6": "s",
+      "B7": "s",
+      "B8": "s",
+      "B9": "s",
+      "C1": "s",
+      "C2": "s",
+      "C3": "s",
+      "C4": "s",
+      "C5": "s",
+      "C6": "s",
+      "C7": "s",
+      "C8": "s",
+      "C9": "s",
+      "D1": "s",
+      "D2": "s",
+      "D3": "s",
+      "D4": "s",
+      "D5": "s",
+      "D6": "s",
+      "D7": "s",
+      "D8": "s",
+      "D9": "s",
+      "E1": "s",
+      "E2": "s",
+      "E3": "s",
+      "E4": "s",
+      "E5": "s",
+      "E6": "s",
+      "E7": "s",
+      "E8": "s",
+      "E9": "s",
+      "F1": "s",
+      "F2": "s",
+      "F3": "s",
+      "F4": "s",
+      "F5": "s",
+      "F6": "s",
+      "F7": "s",
+      "F8": "s",
+      "F9": "s",
+      "G1": "s",
+      "G2": "d",
+      "G3": "d",
+      "G4": "d",
+      "G5": "d",
+      "G6": "s",
+      "G7": "d",
+      "G8": "d",
+      "G9": "d",
+      "H1": "s",
+      "H2": "n",
+      "H3": "n",
+      "H4": "n",
+      "H5": "n",
+      "H7": "n",
+      "H8": "n",
+      "H9": "n",
+      "I1": "s",
+      "I2": "s",
+      "I3": "s",
+      "I4": "s",
+      "I5": "s",
+      "I6": "s",
+      "I7": "s",
+      "I8": "s",
+      "I9": "s"
+    }
+  }
+}

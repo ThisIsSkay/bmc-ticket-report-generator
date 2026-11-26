@@ -1,0 +1,248 @@
+{
+  "cr-only-line-endings": {
+    "rows": [
+      [
+        "Name",
+        "Email"
+      ],
+      [
+        "Alex",
+        "alex@example.com"
+      ],
+      [
+        "Jamie",
+        "jamie@example.com"
+      ]
+    ],
+    "table": {
+      "headers": [
+        "Name",
+        "Email"
+      ],
+      "rowNumbers": [
+        2,
+        3
+      ],
+      "rows": [
+        {
+          "Email": "alex@example.com",
+          "Name": "Alex"
+        },
+        {
+          "Email": "jamie@example.com",
+          "Name": "Jamie"
+        }
+      ]
+    }
+  },
+  "extra-values": {
+    "rows": [
+      [
+        "Name",
+        "Email"
+      ],
+      [
+        "Alex",
+        "alex@example.com",
+        "unexpected"
+      ]
+    ],
+    "table": {
+      "error": "Row 2 has more values than the header."
+    }
+  },
+  "malformed-quote": {
+    "error": "Unexpected text after a closing CSV quote."
+  },
+  "trailing-blank-column": {
+    "rows": [
+      [
+        "Name",
+        "Email",
+        ""
+      ],
+      [
+        "Alex Example",
+        "alex@example.com",
+        ""
+      ]
+    ],
+    "table": {
+      "headers": [
+        "Name",
+        "Email"
+      ],
+      "rowNumbers": [
+        2
+      ],
+      "rows": [
+        {
+          "Email": "alex@example.com",
+          "Name": "Alex Example"
+        }
+      ]
+    }
+  },
+  "utf16be-bom-semicolon": {
+    "rows": [
+      [
+        "Name",
+        "Email"
+      ],
+      [
+        "Sam Example",
+        "sam@example.com"
+      ]
+    ],
+    "table": {
+      "headers": [
+        "Name",
+        "Email"
+      ],
+      "rowNumbers": [
+        2
+      ],
+      "rows": [
+        {
+          "Email": "sam@example.com",
+          "Name": "Sam Example"
+        }
+      ]
+    }
+  },
+  "utf16le-bom-tab": {
+    "rows": [
+      [
+        "Name",
+        "Email"
+      ],
+      [
+        "Alex Example",
+        "alex@example.com"
+      ]
+    ],
+    "table": {
+      "headers": [
+        "Name",
+        "Email"
+      ],
+      "rowNumbers": [
+        2
+      ],
+      "rows": [
+        {
+          "Email": "alex@example.com",
+          "Name": "Alex Example"
+        }
+      ]
+    }
+  },
+  "utf8-bom-semicolon": {
+    "rows": [
+      [
+        "Name",
+        "Email",
+        "Department"
+      ],
+      [
+        "José Example",
+        "jose@example.com",
+        "Finance"
+      ],
+      [
+        "李明 Example",
+        "li@example.com",
+        "Support"
+      ]
+    ],
+    "table": {
+      "headers": [
+        "Name",
+        "Email",
+        "Department"
+      ],
+      "rowNumbers": [
+        2,
+        3
+      ],
+      "rows": [
+        {
+          "Department": "Finance",
+          "Email": "jose@example.com",
+          "Name": "José Example"
+        },
+        {
+          "Department": "Support",
+          "Email": "li@example.com",
+          "Name": "李明 Example"
+        }
+      ]
+    }
+  },
+  "utf8-comma-quoted-multiline": {
+    "rows": [
+      [
+        "Name",
+        "Email"
+      ],
+      [
+        "Example, Alex",
+        "alex@example.com"
+      ],
+      [
+        "Jamie\n\"Q\" Example",
+        "jamie@example.com"
+      ]
+    ],
+    "table": {
+      "headers": [
+        "Name",
+        "Email"
+      ],
+      "rowNumbers": [
+        2,
+        3
+      ],
+      "rows": [
+        {
+          "Email": "alex@example.com",
+          "Name": "Example, Alex"
+        },
+        {
+          "Email": "jamie@example.com",
+          "Name": "Jamie\n\"Q\" Example"
+        }
+      ]
+    }
+  },
+  "windows-1252-bytes-auto": {
+    "error": "Could not decode this CSV. Choose Windows-1252 for older Windows Excel exports, or re-export as UTF-8."
+  },
+  "windows-1252-requested": {
+    "rows": [
+      [
+        "Name",
+        "Email"
+      ],
+      [
+        "René Example",
+        "rene@example.com"
+      ]
+    ],
+    "table": {
+      "headers": [
+        "Name",
+        "Email"
+      ],
+      "rowNumbers": [
+        2
+      ],
+      "rows": [
+        {
+          "Email": "rene@example.com",
+          "Name": "René Example"
+        }
+      ]
+    }
+  }
+}
