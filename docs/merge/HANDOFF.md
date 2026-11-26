@@ -190,24 +190,46 @@ stops mid-way, **continue from the first unticked item**. Rules:
   fix commit (or "open").
 
 Checklist (in order of risk):
-- [ ] B-scan-1 Dark/light readability scan: every visible text element in
+- [x] B-scan-1 Dark/light readability scan: every visible text element in
   each section and state (settings window open, results, modals), for text
   contrast below 3:1 and for light boxes left in dark mode.
-- [ ] B-scan-2 Layout under the tool bar: sticky sidebar and status strip,
+- [x] B-scan-2 Layout under the tool bar: sticky sidebar and status strip,
   validation panel, sticky table headers, modals/overlays, print.
-- [ ] B-scan-3 Every Email export from inside /app/ (.ps1, .eml, .xlsx, copy
+- [x] B-scan-3 Every Email export from inside /app/ (.ps1, .eml, .xlsx, copy
   to clipboard) against the same steps on /daily-email/.
 - [ ] B-scan-4 Navigation: back/forward, unknown hash, deep links, reload,
   keyboard focus order, window title.
 - [ ] B-scan-5 WhatsApp section workflows inside /app/ (Engineer Selection,
   Rules, Configuration import/export, copy and print).
 - [ ] B-scan-6 Survey inside /app/ (XLSX upload, Clear all data, worker).
-- [ ] B-scan-7 Dev experience: `npm run dev` serves the email and survey
+- [x] B-scan-7 Dev experience: `npm run dev` serves the email and survey
   pages for /app/.
 - [ ] B-scan-8 Edge cases: narrow and very wide windows, storage blocked,
   frame load failure.
 
-Findings: (none yet)
+Scan results:
+- **B-scan-1:** 16 states × 2 themes (WhatsApp upload, dashboard, validation
+  panel, Ticket Data, Engineer Selection, Rules, Configuration, Column
+  Mapping; Email first-run window, daily, contract menu, outstanding,
+  monthly, settings; Survey review; tool bar). No text below 3:1 contrast
+  except one disabled button (expected). No light boxes in dark mode
+  outside the email preview and signature editor, which are white on
+  purpose. The scanner caught both planted test failures, so the clean
+  result is real.
+- **B-scan-2:** every sticky table header sits inside its own scroll box,
+  print uses its own window, and the sidebar and status strip sit below the
+  tool bar. No issues.
+- **B-scan-3:** done in a browser with a fixed clock. `.ps1`, `.eml`,
+  `.html`, clipboard (HTML and plain text) for themes A and C in daily,
+  outstanding and monthly modes, plus both `.xlsx` files: **28 of 28
+  byte-identical** between /app/ and /daily-email/. Clipboard copy works
+  inside the frame. The "All contracts" confirm dialog appears in both.
+
+Findings:
+| # | Severity | Finding | Fix |
+|---|---|---|---|
+| B-1 | Medium (developers) | Under `npm run dev`, the Email and Survey sections showed the **WhatsApp app** inside their frames: Vite's SPA fallback answered `/daily-email/` and `/customer-survey/` with `index.html`. Production was not affected. | `scripts/vite-prototype-pages.mjs`, a dev-only plugin serving both prototype folders at their published paths (bare path → 301; `test/` and traversal refused). |
+| B-2 | Low (cosmetic) | In dark mode, the Email multi-select lists (ticket types, statuses) showed the browser's grey selected rows. | `embed-theme.css`: selected rows use the accent tint. |
 
 ## Codex bug-check brief
 

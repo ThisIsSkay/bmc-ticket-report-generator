@@ -84,6 +84,8 @@ html.bmc-embedded-email .contract-control { color: var(--app-ink); }
 html.bmc-embedded-email #contractFilter { background: var(--app-control-bg); border-color: var(--app-control-border); }
 html.bmc-embedded-email .contract-menu { border-top-color: var(--app-control-border); }
 html.bmc-embedded-email #headerLogoWarning { color: var(--warn-ink); }
+/* Multi-select lists (ticket types, statuses): theme the selected rows instead of the browser's grey. */
+html.bmc-embedded-email select[multiple] option:checked { background: var(--accent-100) linear-gradient(0deg, var(--accent-100), var(--accent-100)); color: var(--app-ink); }
 
 /* ========== Customer Survey (prototype/customer-survey) ========== */
 html.bmc-embedded-survey body { font: 14px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
