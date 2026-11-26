@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 import { prototypePages } from './scripts/vite-prototype-pages.mjs'
 
 export default defineConfig(({ mode }) => ({
-  // prototypePages(): dev server only, so /app/'s Email and Survey frames work under `npm run dev`.
+  // prototypePages(): dev server and preview only (no effect on the build), so /app/'s Email and Survey frames work under `npm run dev`.
   plugins: [react(), prototypePages()],
   base: mode === 'github-pages' ? '/bmc-ticket-report-generator/' : '/',
   build: {

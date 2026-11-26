@@ -237,9 +237,10 @@ Round 3 (not started; continue here):
   compared between /app/ and the original pages.
 - [ ] R3-4 P0-15 before any shared SheetJS copy (full Phase 2): reset or
   isolate the number-format table, and compare workbooks by cells.
-- [ ] R3-5 Preview-only: `vite preview` serves the root page for a bare
-  `/app` (no trailing slash). GitHub Pages redirects to `/app/`, so
-  production is fine.
+- [x] R3-5 A bare `/app`, `/daily-email` or `/customer-survey` (no
+  trailing slash) now redirects under `npm run dev` and `vite preview`, as
+  on GitHub Pages. The same plugin serves both prototype pages in preview
+  even before `stage:pages`.
 - [ ] R3-6 Later phases from PLAN.md: rebuild the Email and Survey screens in
   React, one shared upload, retire the old pages after sign-off.
 
