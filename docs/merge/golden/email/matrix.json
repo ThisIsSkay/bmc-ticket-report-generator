@@ -116,8 +116,8 @@
   },
   "contract-multi/hostile/monthly/A": {
     "eml": {
-      "bytes": 51518,
-      "sha256": "507cd91f24b6bde17d68026043608abde1a955c91c412538d1913c727fe4d077"
+      "bytes": 52404,
+      "sha256": "ed59b7f6b5b4434e9703a2713b8e8a3adbe9b0ba31b52235ea2b9462ae606c04"
     },
     "guards": {
       "confirm": null,
@@ -125,26 +125,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 37226,
-      "sha256": "3f4b63cd5edc581c963e0e2ecac8a79a151a23b4edcc4255510f262b24b27421"
+      "bytes": 37875,
+      "sha256": "d6ce8d8ae19614faf7aa13b75279b34f57b51e1bea2871dbbe18093442e7c21f"
     },
     "ps1": {
-      "bytes": 57730,
-      "sha256": "b90c03374506136e2e666dd05bf11a83331c0b6e87bfc9efb6e60a8c02d47d0b"
+      "bytes": 58635,
+      "sha256": "524e8846d3033e6f1c6c39f9cb3fbad9caf8e268c0257679eb4e43f9f815458c"
     },
     "txt": {
-      "bytes": 2263,
-      "sha256": "88c9148ff7013a008ac55a3076101a0adb20f2bf1ce8677fbe9bad020280f060"
+      "bytes": 2496,
+      "sha256": "577b59b1c86fba51194026292e09aa1985d8c5d74c3ec11a35540e91c7837184"
     },
     "workbook": {
-      "bytes": 12358,
-      "sha256": "ae6d45ad26dbab3ed0665811d94f0dce82ccbfd0512c22714f26bacfca64065b"
+      "bytes": 13006,
+      "sha256": "a7cf09926d5d8f8c0b95208912386ab78e83745e26452cb7f235118a6385b661"
     }
   },
   "contract-multi/hostile/monthly/B": {
     "eml": {
-      "bytes": 50850,
-      "sha256": "249db3a746564974e67542976f05fbc069c915bf02c416060d4f45e901c86c5a"
+      "bytes": 51736,
+      "sha256": "1365c122a7fb8e4d3591c909b86c5f53ff2afab259dfc543b9dfcd98af2cd37d"
     },
     "guards": {
       "confirm": null,
@@ -152,26 +152,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 36737,
-      "sha256": "48fcb7c50269ee0cc2754118c615291bce8fe470cdc1fae10104920ed9431bcd"
+      "bytes": 37386,
+      "sha256": "8dc58d1d5896de6986c6e19a2fbbed89c56f1765f5c0bf43cdbbfa43c9b07ad9"
     },
     "ps1": {
-      "bytes": 57241,
-      "sha256": "21f7c281b8f72a5d05457f43d8d3a983567d0c5aa87b6ce01f86d1deda60f594"
+      "bytes": 58146,
+      "sha256": "ad169f6d5d41e588c385508c7c0a9f33285771d561f94ad2b78e5ebd230db7e8"
     },
     "txt": {
-      "bytes": 2263,
-      "sha256": "88c9148ff7013a008ac55a3076101a0adb20f2bf1ce8677fbe9bad020280f060"
+      "bytes": 2496,
+      "sha256": "577b59b1c86fba51194026292e09aa1985d8c5d74c3ec11a35540e91c7837184"
     },
     "workbook": {
-      "bytes": 12358,
-      "sha256": "ae6d45ad26dbab3ed0665811d94f0dce82ccbfd0512c22714f26bacfca64065b"
+      "bytes": 13006,
+      "sha256": "a7cf09926d5d8f8c0b95208912386ab78e83745e26452cb7f235118a6385b661"
     }
   },
   "contract-multi/hostile/monthly/C": {
     "eml": {
-      "bytes": 55408,
-      "sha256": "be48254cd10b93e8c669e043e5539725c6dd8c000a808065a7e817b1f88d59a0"
+      "bytes": 56296,
+      "sha256": "dc5d6c65e5b0152c6b3f763841ca53ef0af560dfa7ca0f5c49b17fc8dfe4ce28"
     },
     "guards": {
       "confirm": null,
@@ -179,26 +179,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 39959,
-      "sha256": "7941ba3f7f4355e3a257b4967e57719ea73193b2507ee1cdc9971c390e89a563"
+      "bytes": 40608,
+      "sha256": "e7eecd1cfb9f1fe0fc01d2d09cc1a55596bbe1fb737331347c805eef4e463545"
     },
     "ps1": {
-      "bytes": 60571,
-      "sha256": "c776c4949ca8eb94356199cc741036242afd19777f6e2ca9fa6c2484836202a3"
+      "bytes": 61476,
+      "sha256": "40d1feaf853d9767c3fed343172ec304f82d2ed6d9a2a396e70c1e1c09604e4d"
     },
     "txt": {
-      "bytes": 2263,
-      "sha256": "88c9148ff7013a008ac55a3076101a0adb20f2bf1ce8677fbe9bad020280f060"
+      "bytes": 2496,
+      "sha256": "577b59b1c86fba51194026292e09aa1985d8c5d74c3ec11a35540e91c7837184"
     },
     "workbook": {
-      "bytes": 12358,
-      "sha256": "ae6d45ad26dbab3ed0665811d94f0dce82ccbfd0512c22714f26bacfca64065b"
+      "bytes": 13006,
+      "sha256": "a7cf09926d5d8f8c0b95208912386ab78e83745e26452cb7f235118a6385b661"
     }
   },
   "contract-multi/hostile/monthly/D": {
     "eml": {
-      "bytes": 48246,
-      "sha256": "592e1bb5361612cc02387a854420e36c0547e585e4979f67470898c16941035d"
+      "bytes": 49138,
+      "sha256": "a4bb187ed039b28e0818984cfb64edc434a2a095ce703644378076f7cca1e702"
     },
     "guards": {
       "confirm": null,
@@ -206,26 +206,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 34836,
-      "sha256": "f0cd7925a96d62e3f955facec7a4f2808212943a78f779da1a5378a382edd61c"
+      "bytes": 35485,
+      "sha256": "91d1080b0f9ec5139cd36d07f395aafa0e28b087c7d84a3b560346fc4b44304e"
     },
     "ps1": {
-      "bytes": 55340,
-      "sha256": "b4d0fd5b671d7adb97272599b0695fdff28a3918c201697b6c2fad08a44db36b"
+      "bytes": 56245,
+      "sha256": "10bd496e406031c04bb77d158ac094e46621fc6087e3d4641226697b0b296819"
     },
     "txt": {
-      "bytes": 2263,
-      "sha256": "88c9148ff7013a008ac55a3076101a0adb20f2bf1ce8677fbe9bad020280f060"
+      "bytes": 2496,
+      "sha256": "577b59b1c86fba51194026292e09aa1985d8c5d74c3ec11a35540e91c7837184"
     },
     "workbook": {
-      "bytes": 12358,
-      "sha256": "ae6d45ad26dbab3ed0665811d94f0dce82ccbfd0512c22714f26bacfca64065b"
+      "bytes": 13006,
+      "sha256": "a7cf09926d5d8f8c0b95208912386ab78e83745e26452cb7f235118a6385b661"
     }
   },
   "contract-multi/hostile/pending/A": {
     "eml": {
-      "bytes": 51514,
-      "sha256": "7cc8cb4c9a43d0b869639f480e0739071de13565fd9baaedc78f27cadfe0dd21"
+      "bytes": 52400,
+      "sha256": "21e3e627b3376fff421d8ee318b00f19c8126493550a67233005df2705003f04"
     },
     "guards": {
       "confirm": null,
@@ -233,26 +233,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 37222,
-      "sha256": "7d62c9090326994b57d5812893936dab78251f77bc285ddb0f40e91194b43450"
+      "bytes": 37871,
+      "sha256": "647a2c61cfda918c6f55c3109f0fad4849d4038b6f1b4266efab884774ad417d"
     },
     "ps1": {
-      "bytes": 57707,
-      "sha256": "6ba049d19caed46713510ea99099a9ab6eaa6e4b145586e903f51fcddee0dbea"
+      "bytes": 58628,
+      "sha256": "d0e4dd509a324d7694044613d4754fdb4de04235f297aced26b06a5faaa98037"
     },
     "txt": {
-      "bytes": 2263,
-      "sha256": "3dd2366f61e24ab64a5dbcdc8d48f48455da07121f2f46556abe56953de913ec"
+      "bytes": 2496,
+      "sha256": "84249826c5bd549fd75a3e16c2652eea655a5beda3afa5d3128794e522707b65"
     },
     "workbook": {
-      "bytes": 12340,
-      "sha256": "b00ebfb5d8bc513aac88380085c1067bdeebb3b41cc849b3cc0e23e8b33f8843"
+      "bytes": 12988,
+      "sha256": "7d35bcbbb3585d9c02ac7c4b3171300937aed4fd098f8d6503c9f29fe2191e8e"
     }
   },
   "contract-multi/hostile/pending/B": {
     "eml": {
-      "bytes": 50844,
-      "sha256": "c4c811cdfdf45cb4c3a57943619ca8cd2bedc4cbda2b3aca68548bf440e05596"
+      "bytes": 51732,
+      "sha256": "f40722ab0bc72b9efc91d05e77e19ae9923a6af7c1449c41338a63e9fc59a1e2"
     },
     "guards": {
       "confirm": null,
@@ -260,26 +260,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 36733,
-      "sha256": "c951321dc60f82b8c99d42fefcd791e6e17149f8695a92b4e96d5cd13ad5c273"
+      "bytes": 37382,
+      "sha256": "5e7d32e62ba146dc76453a6581f6f0510ac02fd7bffaa01526ce9d62a879637d"
     },
     "ps1": {
-      "bytes": 57218,
-      "sha256": "42b4a5e9ed20715c2322ec8c6185aa2882a331b8d0ef91c289ceb3bccf273f46"
+      "bytes": 58139,
+      "sha256": "651d5a37d0ab1204bb2292b6189fa3c4f8ce48d45d7449b00ebd228fcc9d965a"
     },
     "txt": {
-      "bytes": 2263,
-      "sha256": "3dd2366f61e24ab64a5dbcdc8d48f48455da07121f2f46556abe56953de913ec"
+      "bytes": 2496,
+      "sha256": "84249826c5bd549fd75a3e16c2652eea655a5beda3afa5d3128794e522707b65"
     },
     "workbook": {
-      "bytes": 12340,
-      "sha256": "b00ebfb5d8bc513aac88380085c1067bdeebb3b41cc849b3cc0e23e8b33f8843"
+      "bytes": 12988,
+      "sha256": "7d35bcbbb3585d9c02ac7c4b3171300937aed4fd098f8d6503c9f29fe2191e8e"
     }
   },
   "contract-multi/hostile/pending/C": {
     "eml": {
-      "bytes": 55396,
-      "sha256": "7dd70747839de1f3fdb6cf07a1dbf713b04abccc5d91dd592892fd037cb702ea"
+      "bytes": 56284,
+      "sha256": "b02d384e12f71a79d3da8ad0a28d4752201ce1c9cb767ddd54c87ec066845cf5"
     },
     "guards": {
       "confirm": null,
@@ -287,26 +287,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 39951,
-      "sha256": "fae05d66593a161e30945b25a03ea55bd10f793b07dfee0a9030760c5b4030bf"
+      "bytes": 40600,
+      "sha256": "840d0bf98195f4b1c33dba54c9383cb860c59d0db65922026f84e71baf892c30"
     },
     "ps1": {
-      "bytes": 60544,
-      "sha256": "aa1b7a7749bd02a5c786c97cf1b8d775bbf9e2e4a0126c11c07b9406f1296fed"
+      "bytes": 61465,
+      "sha256": "96b6c3d6d25c60b53a4107c0d967462d0f8cbccb85d89b7df7abd9a974e57942"
     },
     "txt": {
-      "bytes": 2263,
-      "sha256": "3dd2366f61e24ab64a5dbcdc8d48f48455da07121f2f46556abe56953de913ec"
+      "bytes": 2496,
+      "sha256": "84249826c5bd549fd75a3e16c2652eea655a5beda3afa5d3128794e522707b65"
     },
     "workbook": {
-      "bytes": 12340,
-      "sha256": "b00ebfb5d8bc513aac88380085c1067bdeebb3b41cc849b3cc0e23e8b33f8843"
+      "bytes": 12988,
+      "sha256": "7d35bcbbb3585d9c02ac7c4b3171300937aed4fd098f8d6503c9f29fe2191e8e"
     }
   },
   "contract-multi/hostile/pending/D": {
     "eml": {
-      "bytes": 48242,
-      "sha256": "06e8fb3bf5fead1e87ce79ee056b713ec890a43872806b310e677d9af0810091"
+      "bytes": 49128,
+      "sha256": "94a200a0103c31079592cb94ad8f21cc1bf8d68290f2b992245bbd285f3d9c06"
     },
     "guards": {
       "confirm": null,
@@ -314,20 +314,20 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 34832,
-      "sha256": "1e61e3edf0027602a68321b29a3ae94b5f9bf2926db1f370237d8c0562e2c5dd"
+      "bytes": 35481,
+      "sha256": "e633119e104ca83a6a7162d44158541d00ee6fc59cfe05ff6fe73d8b8a4a1cee"
     },
     "ps1": {
-      "bytes": 55317,
-      "sha256": "99c60d9d96fef83b7411a759018c87bb149591f7bdb3c7ae6b96f33e0cb86518"
+      "bytes": 56238,
+      "sha256": "da2976867578267fbc9cb375c58201ffbcb5cb98b8292d5a6254e71e4eb64181"
     },
     "txt": {
-      "bytes": 2263,
-      "sha256": "3dd2366f61e24ab64a5dbcdc8d48f48455da07121f2f46556abe56953de913ec"
+      "bytes": 2496,
+      "sha256": "84249826c5bd549fd75a3e16c2652eea655a5beda3afa5d3128794e522707b65"
     },
     "workbook": {
-      "bytes": 12340,
-      "sha256": "b00ebfb5d8bc513aac88380085c1067bdeebb3b41cc849b3cc0e23e8b33f8843"
+      "bytes": 12988,
+      "sha256": "7d35bcbbb3585d9c02ac7c4b3171300937aed4fd098f8d6503c9f29fe2191e8e"
     }
   },
   "contract-multi/sample/daily/A": {
@@ -993,8 +993,8 @@
   },
   "contract-single/hostile/monthly/A": {
     "eml": {
-      "bytes": 41714,
-      "sha256": "0cc55194dced3426cbc0283a79613a84d001c68e1875621b5ecef68dec80660f"
+      "bytes": 42602,
+      "sha256": "a2b6bcf0e86f5e6b1a088335b9e2ad2672bb8e584a2b63624f3aa276ddc4a910"
     },
     "guards": {
       "confirm": null,
@@ -1002,26 +1002,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 30062,
-      "sha256": "81d824d63531ac93f5adc7fb4b2410614ec179a723fa9ec9b2e7dfa3f1da7bc8"
+      "bytes": 30711,
+      "sha256": "57bb59af4cc30da5bc437733dcc8d50461eadb66d03b45ad5a15e09f5ace9be0"
     },
     "ps1": {
-      "bytes": 49742,
-      "sha256": "f612aa0f24b9d28a978a5f6b761c95fcd9a5de3d341e3b4e70a690d2abd11778"
+      "bytes": 50663,
+      "sha256": "da4468fd728cda3854503afaada9d3c79f6ccd0e88b9c99f64f52ff8dc5cd0ce"
     },
     "txt": {
-      "bytes": 1822,
-      "sha256": "6535d7300581c193416ae4f97b0186f64bca1bb06f9d44d0418e1f2915558bd5"
+      "bytes": 2055,
+      "sha256": "94a8ea2e71108d4a5d90b592cf64c91b04c7db02bdd763c2fba05e8504868939"
     },
     "workbook": {
-      "bytes": 9810,
-      "sha256": "6f5c170737acf57fb19e6a17defb36c21dd098d6163ff9e67d8eacd8a8540906"
+      "bytes": 10444,
+      "sha256": "8b007cd3922ca951ec3f528c93ed55153b7a7e4614079eccfc9aea65b3bb99f3"
     }
   },
   "contract-single/hostile/monthly/B": {
     "eml": {
-      "bytes": 41350,
-      "sha256": "4c777290978a705bef36c83dbef4f58a795d3ac09fe0ed2a61b3d8075232d2b7"
+      "bytes": 42240,
+      "sha256": "fb53ca37a804c3a1d6379aa15a3d6421a6f297b779e14f93113bad37c68f5499"
     },
     "guards": {
       "confirm": null,
@@ -1029,26 +1029,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 29796,
-      "sha256": "27e9942af4429d6393111e0b66f3b6f8cee0ade020e83c939668837afbe1ecf1"
+      "bytes": 30445,
+      "sha256": "b9ae8d2c5afb3aec526b18793891dc4b500538dae85ff32d83e25c4f061977d7"
     },
     "ps1": {
-      "bytes": 49476,
-      "sha256": "507c13fdc3c576afe8d61d0094fc5c68d634938a7183e15c78d20b48de8d1ab6"
+      "bytes": 50397,
+      "sha256": "7bdfb4b445a6438b89984e0a108030e0e1768d33d1be3e1b0cf545382a519f2c"
     },
     "txt": {
-      "bytes": 1822,
-      "sha256": "6535d7300581c193416ae4f97b0186f64bca1bb06f9d44d0418e1f2915558bd5"
+      "bytes": 2055,
+      "sha256": "94a8ea2e71108d4a5d90b592cf64c91b04c7db02bdd763c2fba05e8504868939"
     },
     "workbook": {
-      "bytes": 9810,
-      "sha256": "6f5c170737acf57fb19e6a17defb36c21dd098d6163ff9e67d8eacd8a8540906"
+      "bytes": 10444,
+      "sha256": "8b007cd3922ca951ec3f528c93ed55153b7a7e4614079eccfc9aea65b3bb99f3"
     }
   },
   "contract-single/hostile/monthly/C": {
     "eml": {
-      "bytes": 45680,
-      "sha256": "06d0ee64f018b4ad7b031dcb586e277f1a2044bc385f367d29eb4cbf38919abb"
+      "bytes": 46566,
+      "sha256": "f3747a7a9b4d0587810d42e6cf1d7b186410f3e1defb5f3868fc1851bccf222c"
     },
     "guards": {
       "confirm": null,
@@ -1056,26 +1056,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 32849,
-      "sha256": "582d95790c7c37242cc5dbdc00f096d81d0c09147257556f8d90c149fee1c059"
+      "bytes": 33498,
+      "sha256": "8ddd9303b8e1ee99f79b29928353eaa27c059aaef3df38e5361616d2fdec319f"
     },
     "ps1": {
-      "bytes": 52637,
-      "sha256": "1e4b5f0cab3a6e646f5a0b15b4a186e695c8bcc6f6af350c04ee540213a2ab57"
+      "bytes": 53558,
+      "sha256": "4cbc710b1c726d766443e108ae931e8c6e0bd10a2fb1adeaa99685271a66b101"
     },
     "txt": {
-      "bytes": 1822,
-      "sha256": "6535d7300581c193416ae4f97b0186f64bca1bb06f9d44d0418e1f2915558bd5"
+      "bytes": 2055,
+      "sha256": "94a8ea2e71108d4a5d90b592cf64c91b04c7db02bdd763c2fba05e8504868939"
     },
     "workbook": {
-      "bytes": 9810,
-      "sha256": "6f5c170737acf57fb19e6a17defb36c21dd098d6163ff9e67d8eacd8a8540906"
+      "bytes": 10444,
+      "sha256": "8b007cd3922ca951ec3f528c93ed55153b7a7e4614079eccfc9aea65b3bb99f3"
     }
   },
   "contract-single/hostile/monthly/D": {
     "eml": {
-      "bytes": 39642,
-      "sha256": "857a3313ccb3564a055abbc22c885995a634c1b622f4a2cf672dd2d5e3fa6913"
+      "bytes": 40528,
+      "sha256": "ba65fe41d8cb876563472b4a82adef0b3c74f4c2b9cc2a7a72476b1f455415d5"
     },
     "guards": {
       "confirm": null,
@@ -1083,26 +1083,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 28546,
-      "sha256": "0e32970b6dd45315799a0c4762a10302896561e0ca4186b085612e537a9940fa"
+      "bytes": 29195,
+      "sha256": "3291d868030afd2c529665fa10b12ec4f81ea0dd61e85d9053a5e9f6fb99a177"
     },
     "ps1": {
-      "bytes": 48226,
-      "sha256": "49ce04b0589d642d2fcf5ba6128885158e0f6319eabee4f7d7b723e0f59c3c2d"
+      "bytes": 49147,
+      "sha256": "8d8f579cc72759181a2a9b401322921919f5806661236675417696c37dbdaafe"
     },
     "txt": {
-      "bytes": 1822,
-      "sha256": "6535d7300581c193416ae4f97b0186f64bca1bb06f9d44d0418e1f2915558bd5"
+      "bytes": 2055,
+      "sha256": "94a8ea2e71108d4a5d90b592cf64c91b04c7db02bdd763c2fba05e8504868939"
     },
     "workbook": {
-      "bytes": 9810,
-      "sha256": "6f5c170737acf57fb19e6a17defb36c21dd098d6163ff9e67d8eacd8a8540906"
+      "bytes": 10444,
+      "sha256": "8b007cd3922ca951ec3f528c93ed55153b7a7e4614079eccfc9aea65b3bb99f3"
     }
   },
   "contract-single/hostile/pending/A": {
     "eml": {
-      "bytes": 41710,
-      "sha256": "058d7f745f4b0ac6d73ce4e1e6a64f7e5a809cfaa68afae4724159f61e40fb92"
+      "bytes": 42598,
+      "sha256": "065731d128e6437471b6d57000e2a6d9b1457d546973c9b06acffaaba02adbf2"
     },
     "guards": {
       "confirm": null,
@@ -1110,26 +1110,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 30058,
-      "sha256": "d34bc7ad2ab9e712ef16a86e7e488ccaf7d28beebdebc567220366c8bf5db6d7"
+      "bytes": 30707,
+      "sha256": "9414eaecadbb54eacb343024c884ad4f459baed9a79e7a031beb1f99bf3247cc"
     },
     "ps1": {
-      "bytes": 49715,
-      "sha256": "d95c15dcbed245d9ae3e09cd40116223e8f200e4fb7a415adfd5a9776675782c"
+      "bytes": 50660,
+      "sha256": "1691a293c5e9d8c2f5d0be64f2abfee12b9cbfa3e373da2a4c89c436376d3998"
     },
     "txt": {
-      "bytes": 1822,
-      "sha256": "de240f3817b753e35802e6f583898b3776663e5547440f57c148722e333f8254"
+      "bytes": 2055,
+      "sha256": "45a77cc4ceb1018bbbc74d942fe8e3ed4c24cb701ef682602ab5004d81a9983c"
     },
     "workbook": {
-      "bytes": 9792,
-      "sha256": "a40ca054e1661181f51c4499123ce6113390a8bd51c0c4ca1f881caa83f2f93f"
+      "bytes": 10426,
+      "sha256": "07298d3e48b94504572bd0dbb6867700d02cce08ea8c227ee7d7a50a4fa42ce7"
     }
   },
   "contract-single/hostile/pending/B": {
     "eml": {
-      "bytes": 41346,
-      "sha256": "47b7308ee54bdf8c2541cab6b5a970df8bc66c2797c96eb05504e040d0a7418e"
+      "bytes": 42232,
+      "sha256": "6ab7a2679aa1498aaeecfcea627d074ae26585140066d704ce82f5eb021feef9"
     },
     "guards": {
       "confirm": null,
@@ -1137,26 +1137,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 29792,
-      "sha256": "b03a9783129276462727ffbc07f4fbad8c6a723feba1b3eedb65009373e08468"
+      "bytes": 30441,
+      "sha256": "60f777a51afd58de20f294bc925eed0e56705222744aa3e3865383e96aa0e81e"
     },
     "ps1": {
-      "bytes": 49449,
-      "sha256": "5cf6578c6c1f6f46f7e2a35f2cf89613f8a79f5fead4be4442deb82eb15659b9"
+      "bytes": 50394,
+      "sha256": "5b6269379faca5a9b9836fb1cf40f37859baccfe96c53081d16b7fe3c11d0058"
     },
     "txt": {
-      "bytes": 1822,
-      "sha256": "de240f3817b753e35802e6f583898b3776663e5547440f57c148722e333f8254"
+      "bytes": 2055,
+      "sha256": "45a77cc4ceb1018bbbc74d942fe8e3ed4c24cb701ef682602ab5004d81a9983c"
     },
     "workbook": {
-      "bytes": 9792,
-      "sha256": "a40ca054e1661181f51c4499123ce6113390a8bd51c0c4ca1f881caa83f2f93f"
+      "bytes": 10426,
+      "sha256": "07298d3e48b94504572bd0dbb6867700d02cce08ea8c227ee7d7a50a4fa42ce7"
     }
   },
   "contract-single/hostile/pending/C": {
     "eml": {
-      "bytes": 45666,
-      "sha256": "1911918eb16b09063a7aff79dd173542f8554615756d445d42b002539218cccb"
+      "bytes": 46554,
+      "sha256": "7165fdcca9146f4d235e087a1820b5d82bc6295601265d0edc3c37c9a5c905d4"
     },
     "guards": {
       "confirm": null,
@@ -1164,26 +1164,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 32841,
-      "sha256": "f5ac1db97d9a41160a49fa27a179d766a27b29d8f368442f61d3f6b5fb9c83f8"
+      "bytes": 33490,
+      "sha256": "764db8048fb07a540ed0df57904e411a32ddc8d85de31991feee082a716365de"
     },
     "ps1": {
-      "bytes": 52606,
-      "sha256": "bc5ce9e89b49f588c15fcceb1e17199f31c07a73c73a1c00a8eb178684796231"
+      "bytes": 53551,
+      "sha256": "953194abf4fa2e501ab405bee2392d77bdf81953ffea3a04979e0d0d0e6aa675"
     },
     "txt": {
-      "bytes": 1822,
-      "sha256": "de240f3817b753e35802e6f583898b3776663e5547440f57c148722e333f8254"
+      "bytes": 2055,
+      "sha256": "45a77cc4ceb1018bbbc74d942fe8e3ed4c24cb701ef682602ab5004d81a9983c"
     },
     "workbook": {
-      "bytes": 9792,
-      "sha256": "a40ca054e1661181f51c4499123ce6113390a8bd51c0c4ca1f881caa83f2f93f"
+      "bytes": 10426,
+      "sha256": "07298d3e48b94504572bd0dbb6867700d02cce08ea8c227ee7d7a50a4fa42ce7"
     }
   },
   "contract-single/hostile/pending/D": {
     "eml": {
-      "bytes": 39634,
-      "sha256": "0bad6c1a0fae8bfdfda438a056cc7b61c7b644e627ca7404d3f3c8e5353bb6b7"
+      "bytes": 40524,
+      "sha256": "27b41d8f94d9876020df474fc19dac22c159c5b2607ddc5cf78963d8fd930de9"
     },
     "guards": {
       "confirm": null,
@@ -1191,20 +1191,20 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 28542,
-      "sha256": "00cc5b46fa25cb858e33167746dc2c2e5353ad3acbf5be77d9756740ebdba0c7"
+      "bytes": 29191,
+      "sha256": "d4d8057fd43b67540825c30a13952624318ee41c9fe9d2793d5e4ebad473784c"
     },
     "ps1": {
-      "bytes": 48199,
-      "sha256": "5e16697fc916926145e1f2a8acd47d83167ed35cf49c72f70f66b0ec7843d9ed"
+      "bytes": 49144,
+      "sha256": "5b09a64f757b25313d5bdb181414678ae78c7f23413d087d462b2d9341ec55d7"
     },
     "txt": {
-      "bytes": 1822,
-      "sha256": "de240f3817b753e35802e6f583898b3776663e5547440f57c148722e333f8254"
+      "bytes": 2055,
+      "sha256": "45a77cc4ceb1018bbbc74d942fe8e3ed4c24cb701ef682602ab5004d81a9983c"
     },
     "workbook": {
-      "bytes": 9792,
-      "sha256": "a40ca054e1661181f51c4499123ce6113390a8bd51c0c4ca1f881caa83f2f93f"
+      "bytes": 10426,
+      "sha256": "07298d3e48b94504572bd0dbb6867700d02cce08ea8c227ee7d7a50a4fa42ce7"
     }
   },
   "contract-single/sample/daily/A": {
@@ -1506,8 +1506,8 @@
   },
   "core/hostile/monthly/A": {
     "eml": {
-      "bytes": 58494,
-      "sha256": "2bb41daeb3960e2f36fda8aa9eb81f42b69816ad583cac317631fbaa84d4cd5f"
+      "bytes": 59380,
+      "sha256": "f42fec9e03eec5a697da6bcff80bf9d43f8c9ce4aef30a3e537b33057579c23d"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -1515,26 +1515,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 42322,
-      "sha256": "bd0a250bbc41d0d3a37987ea71c6615c327e42860dbb4039877b36cf970f2ab3"
+      "bytes": 42971,
+      "sha256": "387ba6dac74b6620d66927c1434fd4ec8962376c04f784fb848f84aab5989ce5"
     },
     "ps1": {
-      "bytes": 63286,
-      "sha256": "97162cf0d40c3617e1de2414a6f1b07a3bbd70e86f4ba84477f8afd2399d26d4"
+      "bytes": 64207,
+      "sha256": "1df527a6eccf1c854dd306752b582725dc5c988ecac4e63d4656e07304776449"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "387bd3631276478ff373b6ee7b2019f41b3315efe774ca80f9242a0bddbb0016"
+      "bytes": 2686,
+      "sha256": "2b0c6be56e738a21f998cec2f3187a2f3eea625523fb48379b463c5e7d0c67aa"
     },
     "workbook": {
-      "bytes": 13927,
-      "sha256": "31842b8af0766a9b5ea9f1cad0343bf97718d6ff16660654f77c1ca6651cb6d1"
+      "bytes": 14589,
+      "sha256": "bbf06e772ac5201726b6f5695e5a5416ecbb8a75e20f60ced4c6bc0106231aa2"
     }
   },
   "core/hostile/monthly/B": {
     "eml": {
-      "bytes": 57114,
-      "sha256": "76c2d31bfedd3a94f7b8640b76870535e502f8e8c9773e2fc2993dc74fba0a50"
+      "bytes": 58000,
+      "sha256": "6166d6e6ac5d2227699599c20cc247e9410716586d3ddf37105aabd540f741c2"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -1542,26 +1542,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 41314,
-      "sha256": "8c46569bb5be70bea4e939ec74e09c4d4af217585cb842b64461d0f89dfceab6"
+      "bytes": 41963,
+      "sha256": "9b03a9137170ff8c1546e8899733d0716a33c49c544932176194deff289f1e69"
     },
     "ps1": {
-      "bytes": 62278,
-      "sha256": "d99eb86f05a61954b7f8a00f5c27b944ed83ddeafbec6240ce3181397824bf83"
+      "bytes": 63199,
+      "sha256": "829eece850e3f300854e581e7520a3f7ae3c51df35edf14c6b5adef3d27c6218"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "387bd3631276478ff373b6ee7b2019f41b3315efe774ca80f9242a0bddbb0016"
+      "bytes": 2686,
+      "sha256": "2b0c6be56e738a21f998cec2f3187a2f3eea625523fb48379b463c5e7d0c67aa"
     },
     "workbook": {
-      "bytes": 13927,
-      "sha256": "31842b8af0766a9b5ea9f1cad0343bf97718d6ff16660654f77c1ca6651cb6d1"
+      "bytes": 14589,
+      "sha256": "bbf06e772ac5201726b6f5695e5a5416ecbb8a75e20f60ced4c6bc0106231aa2"
     }
   },
   "core/hostile/monthly/C": {
     "eml": {
-      "bytes": 62384,
-      "sha256": "f01aa1d4aa053e8af11eaf1b10d2e8d8df43e8c98ebf034efa8afb5565436b90"
+      "bytes": 63270,
+      "sha256": "bbe58452d55a83659474b7d247a7d549515883bb753427c47584dd10d72f0625"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -1569,26 +1569,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 45056,
-      "sha256": "2acdc5e1117aed70994aa0671e348799ffd3bad5090916f3278f477ce438e477"
+      "bytes": 45705,
+      "sha256": "5cb50d575057dbb91de8e31c2991f2809eac9a2b1ce25a15776a1241d78df0a6"
     },
     "ps1": {
-      "bytes": 66128,
-      "sha256": "d30daf0e734c44cc3c10a77806710fbf4246ad8e34c9bcc886c1ab9b82596669"
+      "bytes": 67049,
+      "sha256": "1a7beb30410ade73c43bdec82f0893f3e6c3fe35fc501317d694eec2f14049b3"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "387bd3631276478ff373b6ee7b2019f41b3315efe774ca80f9242a0bddbb0016"
+      "bytes": 2686,
+      "sha256": "2b0c6be56e738a21f998cec2f3187a2f3eea625523fb48379b463c5e7d0c67aa"
     },
     "workbook": {
-      "bytes": 13927,
-      "sha256": "31842b8af0766a9b5ea9f1cad0343bf97718d6ff16660654f77c1ca6651cb6d1"
+      "bytes": 14589,
+      "sha256": "bbf06e772ac5201726b6f5695e5a5416ecbb8a75e20f60ced4c6bc0106231aa2"
     }
   },
   "core/hostile/monthly/D": {
     "eml": {
-      "bytes": 54466,
-      "sha256": "25b345a396c36731493ee6e01cd2e470b93b6c411b42a40c94d4ca8e2629b12f"
+      "bytes": 55356,
+      "sha256": "51778643a39ee286a43208c5df84c5544994b6cdc9b8b169fd2357de96cdbb3c"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -1596,26 +1596,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 39381,
-      "sha256": "4cca38e2f3188906ded7e03d970323abe348c8704a5c1f48bde644d55481d909"
+      "bytes": 40030,
+      "sha256": "b16f8bd4492006cafb0bd83adb1e128e8651049b20de2ad71a09f997e0c4d8ec"
     },
     "ps1": {
-      "bytes": 60345,
-      "sha256": "4787b37bfed35d148b8a732199df207ef495b5f352676b0eadb90db598e567f9"
+      "bytes": 61266,
+      "sha256": "6e6a5439e9b48322689850c6cb43269c119ba6b2c0dc3f27a1a0c1cc494df3ac"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "387bd3631276478ff373b6ee7b2019f41b3315efe774ca80f9242a0bddbb0016"
+      "bytes": 2686,
+      "sha256": "2b0c6be56e738a21f998cec2f3187a2f3eea625523fb48379b463c5e7d0c67aa"
     },
     "workbook": {
-      "bytes": 13927,
-      "sha256": "31842b8af0766a9b5ea9f1cad0343bf97718d6ff16660654f77c1ca6651cb6d1"
+      "bytes": 14589,
+      "sha256": "bbf06e772ac5201726b6f5695e5a5416ecbb8a75e20f60ced4c6bc0106231aa2"
     }
   },
   "core/hostile/pending/A": {
     "eml": {
-      "bytes": 58484,
-      "sha256": "b009e8a0841cfa512fcb603bf6f94e4f35f5cfb2dbd55712b02051c9c3cf1c8d"
+      "bytes": 59376,
+      "sha256": "152dbc0d81def2024b0eee35251eefa44ba10a64b3a519611c9555e134d0466f"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -1623,26 +1623,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 42318,
-      "sha256": "1bc05c63c294bb9cbdd7b75d890e566081050abaeb4638a95932f9035e44dbc8"
+      "bytes": 42967,
+      "sha256": "17b25e3547c700b271a99946a622721ab8108c11565ba08700c08f0202aa4f88"
     },
     "ps1": {
-      "bytes": 63263,
-      "sha256": "0709ecbd4e1b48f5fc057a78cc7f718268905926fb5e865b9f8017366af6c669"
+      "bytes": 64200,
+      "sha256": "8e68e092274bcf316c10be44f5d72de74caec4216887673736eec27660d19494"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "c0d0d0a1dce49364857230f5bd00ed36beb8499d8aafead11bb6a619f464518c"
+      "bytes": 2686,
+      "sha256": "1db7e29efc13f365bb8cf3b563be828d5f306bcc209acf3311862129dbd5bade"
     },
     "workbook": {
-      "bytes": 13909,
-      "sha256": "069f246f4ba260d2a1429e0a7df2e28db587c73c9fb392a67c956db21076d0de"
+      "bytes": 14571,
+      "sha256": "c0ee7cbe6de47f55063a8c55b287520ed85c9a4af6d18000302e6f733e55c0e2"
     }
   },
   "core/hostile/pending/B": {
     "eml": {
-      "bytes": 57106,
-      "sha256": "324ce43980e1f2b0edb0aa6ba1e743a0aa4491fe02f88d03853e2b26b2af40a5"
+      "bytes": 57996,
+      "sha256": "4d29a8c6d9062eeb50fc37080b80e311210ac9c773825b49b7a3ff30afcfec00"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -1650,26 +1650,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 41310,
-      "sha256": "d8a488bc875075a20bc39d41024f3e7cdbde047f794fc1f31418fbcf87c0ec1c"
+      "bytes": 41959,
+      "sha256": "4cc50cb48be08de238aec02e69a017e6c2802e1198947e98657946189e57cd9e"
     },
     "ps1": {
-      "bytes": 62255,
-      "sha256": "bfa63f303aa7eaf355a761ad9178164ebbaa57013848cf424ff5cf283786107c"
+      "bytes": 63192,
+      "sha256": "98d6142666a3f8704919f238ae670750533e1a4219cc00683b1fe7d1f4a9383b"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "c0d0d0a1dce49364857230f5bd00ed36beb8499d8aafead11bb6a619f464518c"
+      "bytes": 2686,
+      "sha256": "1db7e29efc13f365bb8cf3b563be828d5f306bcc209acf3311862129dbd5bade"
     },
     "workbook": {
-      "bytes": 13909,
-      "sha256": "069f246f4ba260d2a1429e0a7df2e28db587c73c9fb392a67c956db21076d0de"
+      "bytes": 14571,
+      "sha256": "c0ee7cbe6de47f55063a8c55b287520ed85c9a4af6d18000302e6f733e55c0e2"
     }
   },
   "core/hostile/pending/C": {
     "eml": {
-      "bytes": 62372,
-      "sha256": "d2ebdc9b58bef0ba4dda819235b50c9b3d906bbbbbf033d1e68b3f949a344aad"
+      "bytes": 63258,
+      "sha256": "e32f3c611c676ada51b9cdf76e6b172e791560e3eb341757165c6027224d6720"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -1677,26 +1677,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 45048,
-      "sha256": "82374083cbd84ef1523544043cf9dd30ebaddfbaa2bed0a5d6a3ed08b0039ef6"
+      "bytes": 45697,
+      "sha256": "44bbc17f62bcd47421d3fc4c06e917f3edfb2404d428412f05fa0db9e1a47cdc"
     },
     "ps1": {
-      "bytes": 66101,
-      "sha256": "ba5b3545b741673ae4bcb82db2609e0086ff79d5c5bc550d77367b5200d5119d"
+      "bytes": 67038,
+      "sha256": "c674dbadc5806d15abfd131dc5aded1b02310d141f096bc48bad5f72dbb891fc"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "c0d0d0a1dce49364857230f5bd00ed36beb8499d8aafead11bb6a619f464518c"
+      "bytes": 2686,
+      "sha256": "1db7e29efc13f365bb8cf3b563be828d5f306bcc209acf3311862129dbd5bade"
     },
     "workbook": {
-      "bytes": 13909,
-      "sha256": "069f246f4ba260d2a1429e0a7df2e28db587c73c9fb392a67c956db21076d0de"
+      "bytes": 14571,
+      "sha256": "c0ee7cbe6de47f55063a8c55b287520ed85c9a4af6d18000302e6f733e55c0e2"
     }
   },
   "core/hostile/pending/D": {
     "eml": {
-      "bytes": 54462,
-      "sha256": "71767d19f4faa4217b8cb7db92896c53f79ccd43ca2860589ccec6359038ee2c"
+      "bytes": 55348,
+      "sha256": "10cee3f2eb2fd10280d9720784851c675afb1ab12db434ccba666a8d6e06f304"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -1704,20 +1704,20 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 39377,
-      "sha256": "ed408ac4cf0b8ec994ff04109ff84c70d5260339eb82c360192e68b3e6e8b602"
+      "bytes": 40026,
+      "sha256": "1accf94cbea28d467d61c0e21ad0aa15ac4a6c629939d818eef13b50363b1c73"
     },
     "ps1": {
-      "bytes": 60322,
-      "sha256": "67f2e05d8b8008cc237cd34634bd9036d6cfa62c041374bff8a2a0ebcd446827"
+      "bytes": 61259,
+      "sha256": "961edc48ace5db1aa65b25e5996a3d86d8a395bc487a8918029cba5f6be1c880"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "c0d0d0a1dce49364857230f5bd00ed36beb8499d8aafead11bb6a619f464518c"
+      "bytes": 2686,
+      "sha256": "1db7e29efc13f365bb8cf3b563be828d5f306bcc209acf3311862129dbd5bade"
     },
     "workbook": {
-      "bytes": 13909,
-      "sha256": "069f246f4ba260d2a1429e0a7df2e28db587c73c9fb392a67c956db21076d0de"
+      "bytes": 14571,
+      "sha256": "c0ee7cbe6de47f55063a8c55b287520ed85c9a4af6d18000302e6f733e55c0e2"
     }
   },
   "core/sample/daily/A": {
@@ -2168,8 +2168,8 @@
   },
   "events-included/hostile/monthly/A": {
     "eml": {
-      "bytes": 65968,
-      "sha256": "f712bf92ebb427b8ef42e3598e1b9e8a8055b04fc3b944001dc68979599d08d4"
+      "bytes": 66860,
+      "sha256": "91316389ac016ff74aa6c65df623fde66f5ed73a9f64cee53155d6850112a7b7"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 9 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -2177,26 +2177,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 47787,
-      "sha256": "c811815f1555b5d15169bad6ac8245663284f75e511c5d45228e01c4df5133a2"
+      "bytes": 48436,
+      "sha256": "b095a10a0eb3d8d74514e58966f058c5f8c87cfe145ace91db6943c0d73aa556"
     },
     "ps1": {
-      "bytes": 69223,
-      "sha256": "540a1de046cd500b6a74f29aa84f599bb7358a1f7f73b1eeb2e373eed53f5d61"
+      "bytes": 70148,
+      "sha256": "d222e3248adfc54dd2aa8a6de86f20eb1bd4c4340d61f049be655d54e6671572"
     },
     "txt": {
-      "bytes": 2654,
-      "sha256": "d3f31f2973cc8bf6af6b9532906cd8f99c856973e4aab41599fe9920546b09cd"
+      "bytes": 2887,
+      "sha256": "3a3ec2a44f42f8d9487a66d12de97c9630b03461a7bf64531fc75d33018bce74"
     },
     "workbook": {
-      "bytes": 15329,
-      "sha256": "9ae2a626f6450a75b57498f056d87b592c4d9886f6fc2476c4d94c4b49d4d6d7"
+      "bytes": 15991,
+      "sha256": "5adfa0246f50df6d4a87907dd264347299edb863d32013fdc37a581e6290ca38"
     }
   },
   "events-included/hostile/monthly/B": {
     "eml": {
-      "bytes": 64310,
-      "sha256": "f2bb519c6809cbafaf361d9c5eb7001fe3f3e888afcbe7519ac36ef7b85dc3a2"
+      "bytes": 65196,
+      "sha256": "46ceb309cef1d608849ae68e888882c91eef2047e8f2ec15ccb685b90cc7868f"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 9 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -2204,26 +2204,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 46574,
-      "sha256": "dff553069263f50ea3787e909ef308dd4016e6073521fa2744633b089459e4bd"
+      "bytes": 47223,
+      "sha256": "9f662e70ba8be03d5d01c6996ca493fe1580472df4433149a09f3fcb192b9dbb"
     },
     "ps1": {
-      "bytes": 68010,
-      "sha256": "789b464a7fcdb669fc34344e927bac3c60de2359c09fbb8affa199835f2ea2fc"
+      "bytes": 68935,
+      "sha256": "213f82fa94e273bc92dc2214bdce0675d90e774d0339cadba8b5d48e88a49885"
     },
     "txt": {
-      "bytes": 2654,
-      "sha256": "d3f31f2973cc8bf6af6b9532906cd8f99c856973e4aab41599fe9920546b09cd"
+      "bytes": 2887,
+      "sha256": "3a3ec2a44f42f8d9487a66d12de97c9630b03461a7bf64531fc75d33018bce74"
     },
     "workbook": {
-      "bytes": 15329,
-      "sha256": "9ae2a626f6450a75b57498f056d87b592c4d9886f6fc2476c4d94c4b49d4d6d7"
+      "bytes": 15991,
+      "sha256": "5adfa0246f50df6d4a87907dd264347299edb863d32013fdc37a581e6290ca38"
     }
   },
   "events-included/hostile/monthly/C": {
     "eml": {
-      "bytes": 69756,
-      "sha256": "93280173e1db833d2f7a8dbbf1e160cc333eae43546f0755684f59a750c4de9e"
+      "bytes": 70644,
+      "sha256": "1893939e8ac8d9ebfb26878945b9260e130a837e86cadec083a1f133d0c8cd02"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 9 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -2231,26 +2231,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 50444,
-      "sha256": "f9b38fccebd93d9b3b8d4cfd0a0d642779a239b420d88c30d1c506bd3b9375ec"
+      "bytes": 51093,
+      "sha256": "e548b3962c2b78820b08b72c0b41076a32e1a15e13d56b608296e29e23703f3b"
     },
     "ps1": {
-      "bytes": 71988,
-      "sha256": "d71f24fc3e24f10e0931d37dc3bc6623abbfc381ffa67464702715ac2ec2a436"
+      "bytes": 72913,
+      "sha256": "45df74e1b0187f02f380cf71888a5c8cd60698db2e8512e284914d23f057acbe"
     },
     "txt": {
-      "bytes": 2654,
-      "sha256": "d3f31f2973cc8bf6af6b9532906cd8f99c856973e4aab41599fe9920546b09cd"
+      "bytes": 2887,
+      "sha256": "3a3ec2a44f42f8d9487a66d12de97c9630b03461a7bf64531fc75d33018bce74"
     },
     "workbook": {
-      "bytes": 15329,
-      "sha256": "9ae2a626f6450a75b57498f056d87b592c4d9886f6fc2476c4d94c4b49d4d6d7"
+      "bytes": 15991,
+      "sha256": "5adfa0246f50df6d4a87907dd264347299edb863d32013fdc37a581e6290ca38"
     }
   },
   "events-included/hostile/monthly/D": {
     "eml": {
-      "bytes": 60952,
-      "sha256": "fd13943140327f2bca619d26078c5556922a149d75b730bce54c433aec7ad1de"
+      "bytes": 61838,
+      "sha256": "c6b8061dab59fb1daf1ffe2854677728fbd5535a31e90ec2455032bab138a2b7"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 9 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -2258,26 +2258,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 44119,
-      "sha256": "a305844867857182a4aaa8aad9a78efb770f415fa82e5019317fdf751b65cce7"
+      "bytes": 44768,
+      "sha256": "02626b3ba3e31b85e08b0793004b5768d0fea9d726edf34d3acbcdd423887f53"
     },
     "ps1": {
-      "bytes": 65555,
-      "sha256": "99551f3c6ed49954a4f81c11581679e7c7e1b010012b6d673533a2d0deac7168"
+      "bytes": 66480,
+      "sha256": "67d1baf348e3d7540e7c4aaf45319ef0f2dc0d7470cde4b19badc15829223ab9"
     },
     "txt": {
-      "bytes": 2654,
-      "sha256": "d3f31f2973cc8bf6af6b9532906cd8f99c856973e4aab41599fe9920546b09cd"
+      "bytes": 2887,
+      "sha256": "3a3ec2a44f42f8d9487a66d12de97c9630b03461a7bf64531fc75d33018bce74"
     },
     "workbook": {
-      "bytes": 15329,
-      "sha256": "9ae2a626f6450a75b57498f056d87b592c4d9886f6fc2476c4d94c4b49d4d6d7"
+      "bytes": 15991,
+      "sha256": "5adfa0246f50df6d4a87907dd264347299edb863d32013fdc37a581e6290ca38"
     }
   },
   "events-included/hostile/pending/A": {
     "eml": {
-      "bytes": 65964,
-      "sha256": "f6ea813176459423992710f6d2ea1eaf11540d51f9b148d1d8a0d822b3cc4427"
+      "bytes": 66852,
+      "sha256": "64e46d86a7d8454fb82ad4d98fdc6f60c78da34fd49a7c6306fc973b9d872679"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 9 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -2285,26 +2285,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 47783,
-      "sha256": "cc9ee5fb89e3f2e8d16b7ba023c745ee6f1adc8684ef3740a5e115bca488ab35"
+      "bytes": 48432,
+      "sha256": "68191b5e42308f8d173778500fcc157b11c3501d6e7be532fb28fbde8adb5a4e"
     },
     "ps1": {
-      "bytes": 69196,
-      "sha256": "93ec45c6d8f9b8ba2109de3b7dd8cda4389e6b50de94dfc311619aee35b43d1a"
+      "bytes": 70141,
+      "sha256": "319bf470253584b91b324599c77b1c9f75d6a75bdfc2e082f3c3a6a3dc923d17"
     },
     "txt": {
-      "bytes": 2654,
-      "sha256": "48608ade85d8db8aef8d0c8bd7c9b4845d05a4433fa59ad4bbec87b8fa175f95"
+      "bytes": 2887,
+      "sha256": "74587f0a1670652bef2cf273f307a5f5ada2f55bd9958225f0802fb3a28177a0"
     },
     "workbook": {
-      "bytes": 15311,
-      "sha256": "82c08251ced3fe3f742289a034c287eaa0424ce66c69cf1d214e439dbae1d7f9"
+      "bytes": 15973,
+      "sha256": "cfaa95c86431444103398f32575a711e2edf1d71e730b8a4f19c365f346b4aad"
     }
   },
   "events-included/hostile/pending/B": {
     "eml": {
-      "bytes": 64306,
-      "sha256": "3cfd326fc011ad04c6d0346dea5a53d7c57e95020616323b7703d64c6c3e22e9"
+      "bytes": 65192,
+      "sha256": "2eafc98cd257d0de8cb394b7f027dfeab6fedc1483657260465caf35f0cc1a0b"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 9 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -2312,26 +2312,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 46570,
-      "sha256": "1259ab659e6c6ac5e8be22e368a297325d7330c5677f6e72d0069d2d38f64c11"
+      "bytes": 47219,
+      "sha256": "359f0f54587af9f51f862e26552553463c0ca0595707b40bc49114a06b605aa6"
     },
     "ps1": {
-      "bytes": 67983,
-      "sha256": "7f09d89fb7f75d3c816167309a5a8d4dc4a4e0581ebb44816362d7157b0bc25f"
+      "bytes": 68928,
+      "sha256": "4a6166fb410e0ed3e00579bbb8e58f1615648e752813b18becddbd2389faa80a"
     },
     "txt": {
-      "bytes": 2654,
-      "sha256": "48608ade85d8db8aef8d0c8bd7c9b4845d05a4433fa59ad4bbec87b8fa175f95"
+      "bytes": 2887,
+      "sha256": "74587f0a1670652bef2cf273f307a5f5ada2f55bd9958225f0802fb3a28177a0"
     },
     "workbook": {
-      "bytes": 15311,
-      "sha256": "82c08251ced3fe3f742289a034c287eaa0424ce66c69cf1d214e439dbae1d7f9"
+      "bytes": 15973,
+      "sha256": "cfaa95c86431444103398f32575a711e2edf1d71e730b8a4f19c365f346b4aad"
     }
   },
   "events-included/hostile/pending/C": {
     "eml": {
-      "bytes": 69744,
-      "sha256": "5a244628588e01166885c916b31c207ceb1a9f42afbbe1e2c36051a8b523c53c"
+      "bytes": 70630,
+      "sha256": "dfa0b3d231003828608d156fe67e8b83c039ef68adb2f6272899e47b15fe0360"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 9 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -2339,26 +2339,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 50436,
-      "sha256": "de244028eb801e38196fc03e2280fcf3e42164fdf3b4106cdcd35a78f6ff5a4f"
+      "bytes": 51085,
+      "sha256": "1977d1c06bf56d62e51185ed550ea8de552bf5c4101f0970540e016a955f02c5"
     },
     "ps1": {
-      "bytes": 71957,
-      "sha256": "69e3099abb06a0df8c3f17aae951c7a83d31935cda1916ca59260605ecbc4524"
+      "bytes": 72902,
+      "sha256": "d0a12f8460b7b3204feb7cb8f6e86deb778512629abb4d39a2785e0a3b01d5bc"
     },
     "txt": {
-      "bytes": 2654,
-      "sha256": "48608ade85d8db8aef8d0c8bd7c9b4845d05a4433fa59ad4bbec87b8fa175f95"
+      "bytes": 2887,
+      "sha256": "74587f0a1670652bef2cf273f307a5f5ada2f55bd9958225f0802fb3a28177a0"
     },
     "workbook": {
-      "bytes": 15311,
-      "sha256": "82c08251ced3fe3f742289a034c287eaa0424ce66c69cf1d214e439dbae1d7f9"
+      "bytes": 15973,
+      "sha256": "cfaa95c86431444103398f32575a711e2edf1d71e730b8a4f19c365f346b4aad"
     }
   },
   "events-included/hostile/pending/D": {
     "eml": {
-      "bytes": 60944,
-      "sha256": "1461c14e647b90aa22965d7e837beec3efc2dd6dc6c01474044495f1d67695f1"
+      "bytes": 61834,
+      "sha256": "7a591dc66b85ace0bfbf99fc33c63795333058ea24e21aeab1cf19ef6a8b7194"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 9 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -2366,20 +2366,20 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 44115,
-      "sha256": "565c6ad81fc05bd8f9d8c4d7fe7570c6ae34411394a872b280809e72bce35b18"
+      "bytes": 44764,
+      "sha256": "fe1f67f11863d767fbb6dc1968adb62747fd4eab8334521543d23ead86150794"
     },
     "ps1": {
-      "bytes": 65528,
-      "sha256": "fcc8504b1d5ce8c32dc470ca25c11aad053ea805db59d46227c0f3af031dbe09"
+      "bytes": 66473,
+      "sha256": "89ab3154c29b485f69c8f83b37d4f821d85a5935305b1cd3ff20cb95b5de2509"
     },
     "txt": {
-      "bytes": 2654,
-      "sha256": "48608ade85d8db8aef8d0c8bd7c9b4845d05a4433fa59ad4bbec87b8fa175f95"
+      "bytes": 2887,
+      "sha256": "74587f0a1670652bef2cf273f307a5f5ada2f55bd9958225f0802fb3a28177a0"
     },
     "workbook": {
-      "bytes": 15311,
-      "sha256": "82c08251ced3fe3f742289a034c287eaa0424ce66c69cf1d214e439dbae1d7f9"
+      "bytes": 15973,
+      "sha256": "cfaa95c86431444103398f32575a711e2edf1d71e730b8a4f19c365f346b4aad"
     }
   },
   "events-included/sample/daily/A": {
@@ -2830,8 +2830,8 @@
   },
   "group-filter/hostile/monthly/A": {
     "eml": {
-      "bytes": 38714,
-      "sha256": "da3dc8a81139db28784d96a75ce83b4c75804507ee05948e138060fae1fc6cdb"
+      "bytes": 39604,
+      "sha256": "83c451b63a56125b920c1250cace52a4fdb08259a2e85d943025b3aed0d0eb77"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 4 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -2839,26 +2839,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 27870,
-      "sha256": "076a021280537e0a5eb15fc9ab77fe8ff6e67ff9d363fbd6ad9fd928a94155d0"
+      "bytes": 28519,
+      "sha256": "447350504a8c023a926811a2197033de2dd947a81d72ed99f82fdd8825d91e9b"
     },
     "ps1": {
-      "bytes": 47330,
-      "sha256": "6caebd492a0a8182040dc9ed243bbc69e5b6f1345c8b0eb90be8c7434a7d3a46"
+      "bytes": 48251,
+      "sha256": "a4c0cba86f076012e03b60007a1f135003d54ce47ef0c6663b7e0551d7610aa1"
     },
     "txt": {
-      "bytes": 1677,
-      "sha256": "096c2a3acf7baf1dbfc3cf69f9fda461cf615728be4341e1e43f0392d1e1dba4"
+      "bytes": 1910,
+      "sha256": "53e7813bd52422f7cb4976788998dd893b8a4f0af17bb90f11f08aa0fe53306d"
     },
     "workbook": {
-      "bytes": 9127,
-      "sha256": "e649c40e49d3c2a7527e46c8ea158db433b4f0ce0a3de848d613f6f993a1ba8d"
+      "bytes": 9761,
+      "sha256": "4fe902f7c76b9aea8b635e5952c992b07973c3316302c43dd9b48273bdb84f57"
     }
   },
   "group-filter/hostile/monthly/B": {
     "eml": {
-      "bytes": 38660,
-      "sha256": "0cd77daaaf3f095069f6a90af0fdc2cf68df53639a4b510aba89f9c9063647c1"
+      "bytes": 39548,
+      "sha256": "80e30882a52f2c09d91916096c4254f25ad1cb8cfd9bbdd9957c206fe962f92d"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 4 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -2866,26 +2866,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 27830,
-      "sha256": "e11998861f03b18a08e9110eef85637fc8fb792e019d05ae93e8d14aca944ed9"
+      "bytes": 28479,
+      "sha256": "e3d3a2a030dfcb09666094f07e10c154f39ae0611d1a747b2457c8facee3d139"
     },
     "ps1": {
-      "bytes": 47290,
-      "sha256": "c4a78dd62850d8ad998917e976248cc7e2c2c1ea9001327f03e8549f9adf86cf"
+      "bytes": 48211,
+      "sha256": "db8506267be297b6f906dafb0926b21c52dd63b97c1a7a79b7e11e19d4435ad2"
     },
     "txt": {
-      "bytes": 1677,
-      "sha256": "096c2a3acf7baf1dbfc3cf69f9fda461cf615728be4341e1e43f0392d1e1dba4"
+      "bytes": 1910,
+      "sha256": "53e7813bd52422f7cb4976788998dd893b8a4f0af17bb90f11f08aa0fe53306d"
     },
     "workbook": {
-      "bytes": 9127,
-      "sha256": "e649c40e49d3c2a7527e46c8ea158db433b4f0ce0a3de848d613f6f993a1ba8d"
+      "bytes": 9761,
+      "sha256": "4fe902f7c76b9aea8b635e5952c992b07973c3316302c43dd9b48273bdb84f57"
     }
   },
   "group-filter/hostile/monthly/C": {
     "eml": {
-      "bytes": 42826,
-      "sha256": "ecc0927b04f2fe3fadd62d2d2d669b3506a6cd058634f35fc62e90fff56fce03"
+      "bytes": 43712,
+      "sha256": "ffc5db17e6ed665b67af352dafedb8c4d605738fa63e8dcfc5f4bd51f8b7ba20"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 4 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -2893,26 +2893,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 30765,
-      "sha256": "259af1e87dfef5b8502bc824278beb104621e9e6ce2f1938ed5833203f6d98bd"
+      "bytes": 31414,
+      "sha256": "bc63d28a643bcf5bf49587c18b2d31f6a4afbbdf65e729d5dc21420596b87f9f"
     },
     "ps1": {
-      "bytes": 50333,
-      "sha256": "fd8627f2066a0ebf0000623f5a641a2f93aab87d9c988aae1b0135fff0305d0f"
+      "bytes": 51254,
+      "sha256": "d40d407b963d2fe5c7d5897e7688c50dd8be8359b17cd74e408a5ed04b9f0681"
     },
     "txt": {
-      "bytes": 1677,
-      "sha256": "096c2a3acf7baf1dbfc3cf69f9fda461cf615728be4341e1e43f0392d1e1dba4"
+      "bytes": 1910,
+      "sha256": "53e7813bd52422f7cb4976788998dd893b8a4f0af17bb90f11f08aa0fe53306d"
     },
     "workbook": {
-      "bytes": 9127,
-      "sha256": "e649c40e49d3c2a7527e46c8ea158db433b4f0ce0a3de848d613f6f993a1ba8d"
+      "bytes": 9761,
+      "sha256": "4fe902f7c76b9aea8b635e5952c992b07973c3316302c43dd9b48273bdb84f57"
     }
   },
   "group-filter/hostile/monthly/D": {
     "eml": {
-      "bytes": 37126,
-      "sha256": "100f05563dc369575d448646c33d3346aee9343075b6bffd95ab62ce4e4eceb0"
+      "bytes": 38012,
+      "sha256": "3992683b7bafbd04435ba64e59e0c39482da1f67346ed1294881be56ed7d323f"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 4 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -2920,26 +2920,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 26708,
-      "sha256": "71ff92f95e92beebdc3a317dccd0a69d3595c43a69ebc8fc96bfaddb2d7cbece"
+      "bytes": 27357,
+      "sha256": "4b9a6c11c739878e7d6a449341df0b34b2702c51bfb699146050c81a57027d23"
     },
     "ps1": {
-      "bytes": 46168,
-      "sha256": "56129a2050d822c84e582d050941955772815a4def733a62a1e605bfa08b40de"
+      "bytes": 47089,
+      "sha256": "9e82238632666f42e3b95aca08eade4238987b362b8ee67a53ba919ea4486206"
     },
     "txt": {
-      "bytes": 1677,
-      "sha256": "096c2a3acf7baf1dbfc3cf69f9fda461cf615728be4341e1e43f0392d1e1dba4"
+      "bytes": 1910,
+      "sha256": "53e7813bd52422f7cb4976788998dd893b8a4f0af17bb90f11f08aa0fe53306d"
     },
     "workbook": {
-      "bytes": 9127,
-      "sha256": "e649c40e49d3c2a7527e46c8ea158db433b4f0ce0a3de848d613f6f993a1ba8d"
+      "bytes": 9761,
+      "sha256": "4fe902f7c76b9aea8b635e5952c992b07973c3316302c43dd9b48273bdb84f57"
     }
   },
   "group-filter/hostile/pending/A": {
     "eml": {
-      "bytes": 38710,
-      "sha256": "87ef7d54621c9ca65287ba9cf0a82d4550725e55a09cd27d5a51e990fca2ec9f"
+      "bytes": 39596,
+      "sha256": "3f819333f325b328d2a3c82ae941f562af947d82d21f6f27a39374126c6d409f"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 4 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -2947,26 +2947,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 27866,
-      "sha256": "fda07017fc6913da367f338b3bbe90ad9e2be380008e9457a87f574179059e04"
+      "bytes": 28515,
+      "sha256": "be071b24d72295e38b5fdc6ac243617da70d2944bad580922d2890af0e14f6ad"
     },
     "ps1": {
-      "bytes": 47303,
-      "sha256": "dc3e7567cf8788bb3fa8d5707d7e3c348630726f4ecff2481e2132d90971800e"
+      "bytes": 48248,
+      "sha256": "9e7530ef9eab79e8f29176f48d1a0f1f385e3a7688eb7ac6c50fac637cf8a16f"
     },
     "txt": {
-      "bytes": 1677,
-      "sha256": "9e200d505b6f2d944a6fc6a4b75d99b23a3e4625d853d72eff49584f7fd02166"
+      "bytes": 1910,
+      "sha256": "e82a4914df28685a5de52646d1354820ce35c1ed98b5fab43f4408bcec59eb85"
     },
     "workbook": {
-      "bytes": 9109,
-      "sha256": "f756627851f0ecbc92f6c95116cf888f1578ac58fca3f1e25c434e4e8f3b4a52"
+      "bytes": 9743,
+      "sha256": "b34cdb12009e71dd0607230ec91666f4c51d66e3ab1262e948bf980c734eafec"
     }
   },
   "group-filter/hostile/pending/B": {
     "eml": {
-      "bytes": 38656,
-      "sha256": "58b9f8fc0b86a027ca513f4f0cdf177575b35d6235968532b0be15ba33c6111b"
+      "bytes": 39544,
+      "sha256": "374d845556f11adc1e4a80ae93368b366ea0a2d03a42406e47ef2ed0d43a4809"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 4 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -2974,26 +2974,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 27826,
-      "sha256": "28b272b2e5c52ca5f69f0e8f672f0542b1f5b81316f79571e3349107d995f1ac"
+      "bytes": 28475,
+      "sha256": "d9d475691fd537db9629e9c87257e57510df47fd4fc36d86f4561c74e86174c3"
     },
     "ps1": {
-      "bytes": 47263,
-      "sha256": "990a3c60f54e395ec7bc87b42f484c0a412860f103488605ae462b64c728b137"
+      "bytes": 48208,
+      "sha256": "2c199a8193824ce809fbd446d6b39d378e6575449a842667144ea3af2d8c2e85"
     },
     "txt": {
-      "bytes": 1677,
-      "sha256": "9e200d505b6f2d944a6fc6a4b75d99b23a3e4625d853d72eff49584f7fd02166"
+      "bytes": 1910,
+      "sha256": "e82a4914df28685a5de52646d1354820ce35c1ed98b5fab43f4408bcec59eb85"
     },
     "workbook": {
-      "bytes": 9109,
-      "sha256": "f756627851f0ecbc92f6c95116cf888f1578ac58fca3f1e25c434e4e8f3b4a52"
+      "bytes": 9743,
+      "sha256": "b34cdb12009e71dd0607230ec91666f4c51d66e3ab1262e948bf980c734eafec"
     }
   },
   "group-filter/hostile/pending/C": {
     "eml": {
-      "bytes": 42814,
-      "sha256": "3c9dd751a9b8e1586cb4e9f6afaa4aee3d6b790d874bbe397fd722cac875f27f"
+      "bytes": 43704,
+      "sha256": "f266e95998ecc080d09a29800309d07f8ede72c83d9b448220f8ab5e03f70436"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 4 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -3001,26 +3001,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 30757,
-      "sha256": "e3fe875bfe3d2e230b249eeab4fab037d6dfbfec27de40e2a119df7133f9d448"
+      "bytes": 31406,
+      "sha256": "ef094d69af2700984f7c0d8a408067935a5a06d10fc03ded4187e393bc59d640"
     },
     "ps1": {
-      "bytes": 50302,
-      "sha256": "88b0a48c709c5265b213f15ce787f82a2d97d17ee6404cc20bf8390b39f549e7"
+      "bytes": 51247,
+      "sha256": "10c880077fa1f211629fe430d183f5594c9dfd0f804ed04c0d99454fde0626c4"
     },
     "txt": {
-      "bytes": 1677,
-      "sha256": "9e200d505b6f2d944a6fc6a4b75d99b23a3e4625d853d72eff49584f7fd02166"
+      "bytes": 1910,
+      "sha256": "e82a4914df28685a5de52646d1354820ce35c1ed98b5fab43f4408bcec59eb85"
     },
     "workbook": {
-      "bytes": 9109,
-      "sha256": "f756627851f0ecbc92f6c95116cf888f1578ac58fca3f1e25c434e4e8f3b4a52"
+      "bytes": 9743,
+      "sha256": "b34cdb12009e71dd0607230ec91666f4c51d66e3ab1262e948bf980c734eafec"
     }
   },
   "group-filter/hostile/pending/D": {
     "eml": {
-      "bytes": 37122,
-      "sha256": "9a36dea38c17395961881659cd4f22645539ca7afeaa84e1136e7cc5b213fb49"
+      "bytes": 38008,
+      "sha256": "5ba00b52eac6bf12ef97f71c9511c7ba529691b725f49c6377c2fac382558ff8"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 4 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -3028,20 +3028,20 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 26704,
-      "sha256": "e59bb1cb1b4d04bbe401511c525cfeca21df0dedb403a9e0f6c61c7f7c9c2c9d"
+      "bytes": 27353,
+      "sha256": "971ac089b6729fc9b568f5d26f4b18eca76dc2d304dafa00ac60efcf83d0c601"
     },
     "ps1": {
-      "bytes": 46141,
-      "sha256": "934713a0a5857e5c78c9a0fc30b91adc062849a1776697cd59ec34a31136d846"
+      "bytes": 47086,
+      "sha256": "d24aed61fe74a21c237f80d265b421d77b2b49a70a50fc3de642977640fb5c75"
     },
     "txt": {
-      "bytes": 1677,
-      "sha256": "9e200d505b6f2d944a6fc6a4b75d99b23a3e4625d853d72eff49584f7fd02166"
+      "bytes": 1910,
+      "sha256": "e82a4914df28685a5de52646d1354820ce35c1ed98b5fab43f4408bcec59eb85"
     },
     "workbook": {
-      "bytes": 9109,
-      "sha256": "f756627851f0ecbc92f6c95116cf888f1578ac58fca3f1e25c434e4e8f3b4a52"
+      "bytes": 9743,
+      "sha256": "b34cdb12009e71dd0607230ec91666f4c51d66e3ab1262e948bf980c734eafec"
     }
   },
   "group-filter/sample/daily/A": {
@@ -3492,8 +3492,8 @@
   },
   "intro-no-period/hostile/monthly/A": {
     "eml": {
-      "bytes": 58494,
-      "sha256": "2bb41daeb3960e2f36fda8aa9eb81f42b69816ad583cac317631fbaa84d4cd5f"
+      "bytes": 59380,
+      "sha256": "f42fec9e03eec5a697da6bcff80bf9d43f8c9ce4aef30a3e537b33057579c23d"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -3501,26 +3501,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 42322,
-      "sha256": "bd0a250bbc41d0d3a37987ea71c6615c327e42860dbb4039877b36cf970f2ab3"
+      "bytes": 42971,
+      "sha256": "387ba6dac74b6620d66927c1434fd4ec8962376c04f784fb848f84aab5989ce5"
     },
     "ps1": {
-      "bytes": 63286,
-      "sha256": "97162cf0d40c3617e1de2414a6f1b07a3bbd70e86f4ba84477f8afd2399d26d4"
+      "bytes": 64207,
+      "sha256": "1df527a6eccf1c854dd306752b582725dc5c988ecac4e63d4656e07304776449"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "387bd3631276478ff373b6ee7b2019f41b3315efe774ca80f9242a0bddbb0016"
+      "bytes": 2686,
+      "sha256": "2b0c6be56e738a21f998cec2f3187a2f3eea625523fb48379b463c5e7d0c67aa"
     },
     "workbook": {
-      "bytes": 13927,
-      "sha256": "31842b8af0766a9b5ea9f1cad0343bf97718d6ff16660654f77c1ca6651cb6d1"
+      "bytes": 14589,
+      "sha256": "bbf06e772ac5201726b6f5695e5a5416ecbb8a75e20f60ced4c6bc0106231aa2"
     }
   },
   "intro-no-period/hostile/monthly/B": {
     "eml": {
-      "bytes": 57114,
-      "sha256": "76c2d31bfedd3a94f7b8640b76870535e502f8e8c9773e2fc2993dc74fba0a50"
+      "bytes": 58000,
+      "sha256": "6166d6e6ac5d2227699599c20cc247e9410716586d3ddf37105aabd540f741c2"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -3528,26 +3528,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 41314,
-      "sha256": "8c46569bb5be70bea4e939ec74e09c4d4af217585cb842b64461d0f89dfceab6"
+      "bytes": 41963,
+      "sha256": "9b03a9137170ff8c1546e8899733d0716a33c49c544932176194deff289f1e69"
     },
     "ps1": {
-      "bytes": 62278,
-      "sha256": "d99eb86f05a61954b7f8a00f5c27b944ed83ddeafbec6240ce3181397824bf83"
+      "bytes": 63199,
+      "sha256": "829eece850e3f300854e581e7520a3f7ae3c51df35edf14c6b5adef3d27c6218"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "387bd3631276478ff373b6ee7b2019f41b3315efe774ca80f9242a0bddbb0016"
+      "bytes": 2686,
+      "sha256": "2b0c6be56e738a21f998cec2f3187a2f3eea625523fb48379b463c5e7d0c67aa"
     },
     "workbook": {
-      "bytes": 13927,
-      "sha256": "31842b8af0766a9b5ea9f1cad0343bf97718d6ff16660654f77c1ca6651cb6d1"
+      "bytes": 14589,
+      "sha256": "bbf06e772ac5201726b6f5695e5a5416ecbb8a75e20f60ced4c6bc0106231aa2"
     }
   },
   "intro-no-period/hostile/monthly/C": {
     "eml": {
-      "bytes": 62384,
-      "sha256": "f01aa1d4aa053e8af11eaf1b10d2e8d8df43e8c98ebf034efa8afb5565436b90"
+      "bytes": 63270,
+      "sha256": "bbe58452d55a83659474b7d247a7d549515883bb753427c47584dd10d72f0625"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -3555,26 +3555,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 45056,
-      "sha256": "2acdc5e1117aed70994aa0671e348799ffd3bad5090916f3278f477ce438e477"
+      "bytes": 45705,
+      "sha256": "5cb50d575057dbb91de8e31c2991f2809eac9a2b1ce25a15776a1241d78df0a6"
     },
     "ps1": {
-      "bytes": 66128,
-      "sha256": "d30daf0e734c44cc3c10a77806710fbf4246ad8e34c9bcc886c1ab9b82596669"
+      "bytes": 67049,
+      "sha256": "1a7beb30410ade73c43bdec82f0893f3e6c3fe35fc501317d694eec2f14049b3"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "387bd3631276478ff373b6ee7b2019f41b3315efe774ca80f9242a0bddbb0016"
+      "bytes": 2686,
+      "sha256": "2b0c6be56e738a21f998cec2f3187a2f3eea625523fb48379b463c5e7d0c67aa"
     },
     "workbook": {
-      "bytes": 13927,
-      "sha256": "31842b8af0766a9b5ea9f1cad0343bf97718d6ff16660654f77c1ca6651cb6d1"
+      "bytes": 14589,
+      "sha256": "bbf06e772ac5201726b6f5695e5a5416ecbb8a75e20f60ced4c6bc0106231aa2"
     }
   },
   "intro-no-period/hostile/monthly/D": {
     "eml": {
-      "bytes": 54466,
-      "sha256": "25b345a396c36731493ee6e01cd2e470b93b6c411b42a40c94d4ca8e2629b12f"
+      "bytes": 55356,
+      "sha256": "51778643a39ee286a43208c5df84c5544994b6cdc9b8b169fd2357de96cdbb3c"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -3582,26 +3582,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 39381,
-      "sha256": "4cca38e2f3188906ded7e03d970323abe348c8704a5c1f48bde644d55481d909"
+      "bytes": 40030,
+      "sha256": "b16f8bd4492006cafb0bd83adb1e128e8651049b20de2ad71a09f997e0c4d8ec"
     },
     "ps1": {
-      "bytes": 60345,
-      "sha256": "4787b37bfed35d148b8a732199df207ef495b5f352676b0eadb90db598e567f9"
+      "bytes": 61266,
+      "sha256": "6e6a5439e9b48322689850c6cb43269c119ba6b2c0dc3f27a1a0c1cc494df3ac"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "387bd3631276478ff373b6ee7b2019f41b3315efe774ca80f9242a0bddbb0016"
+      "bytes": 2686,
+      "sha256": "2b0c6be56e738a21f998cec2f3187a2f3eea625523fb48379b463c5e7d0c67aa"
     },
     "workbook": {
-      "bytes": 13927,
-      "sha256": "31842b8af0766a9b5ea9f1cad0343bf97718d6ff16660654f77c1ca6651cb6d1"
+      "bytes": 14589,
+      "sha256": "bbf06e772ac5201726b6f5695e5a5416ecbb8a75e20f60ced4c6bc0106231aa2"
     }
   },
   "intro-no-period/hostile/pending/A": {
     "eml": {
-      "bytes": 58484,
-      "sha256": "b009e8a0841cfa512fcb603bf6f94e4f35f5cfb2dbd55712b02051c9c3cf1c8d"
+      "bytes": 59376,
+      "sha256": "152dbc0d81def2024b0eee35251eefa44ba10a64b3a519611c9555e134d0466f"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -3609,26 +3609,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 42318,
-      "sha256": "1bc05c63c294bb9cbdd7b75d890e566081050abaeb4638a95932f9035e44dbc8"
+      "bytes": 42967,
+      "sha256": "17b25e3547c700b271a99946a622721ab8108c11565ba08700c08f0202aa4f88"
     },
     "ps1": {
-      "bytes": 63263,
-      "sha256": "0709ecbd4e1b48f5fc057a78cc7f718268905926fb5e865b9f8017366af6c669"
+      "bytes": 64200,
+      "sha256": "8e68e092274bcf316c10be44f5d72de74caec4216887673736eec27660d19494"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "c0d0d0a1dce49364857230f5bd00ed36beb8499d8aafead11bb6a619f464518c"
+      "bytes": 2686,
+      "sha256": "1db7e29efc13f365bb8cf3b563be828d5f306bcc209acf3311862129dbd5bade"
     },
     "workbook": {
-      "bytes": 13909,
-      "sha256": "069f246f4ba260d2a1429e0a7df2e28db587c73c9fb392a67c956db21076d0de"
+      "bytes": 14571,
+      "sha256": "c0ee7cbe6de47f55063a8c55b287520ed85c9a4af6d18000302e6f733e55c0e2"
     }
   },
   "intro-no-period/hostile/pending/B": {
     "eml": {
-      "bytes": 57106,
-      "sha256": "324ce43980e1f2b0edb0aa6ba1e743a0aa4491fe02f88d03853e2b26b2af40a5"
+      "bytes": 57996,
+      "sha256": "4d29a8c6d9062eeb50fc37080b80e311210ac9c773825b49b7a3ff30afcfec00"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -3636,26 +3636,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 41310,
-      "sha256": "d8a488bc875075a20bc39d41024f3e7cdbde047f794fc1f31418fbcf87c0ec1c"
+      "bytes": 41959,
+      "sha256": "4cc50cb48be08de238aec02e69a017e6c2802e1198947e98657946189e57cd9e"
     },
     "ps1": {
-      "bytes": 62255,
-      "sha256": "bfa63f303aa7eaf355a761ad9178164ebbaa57013848cf424ff5cf283786107c"
+      "bytes": 63192,
+      "sha256": "98d6142666a3f8704919f238ae670750533e1a4219cc00683b1fe7d1f4a9383b"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "c0d0d0a1dce49364857230f5bd00ed36beb8499d8aafead11bb6a619f464518c"
+      "bytes": 2686,
+      "sha256": "1db7e29efc13f365bb8cf3b563be828d5f306bcc209acf3311862129dbd5bade"
     },
     "workbook": {
-      "bytes": 13909,
-      "sha256": "069f246f4ba260d2a1429e0a7df2e28db587c73c9fb392a67c956db21076d0de"
+      "bytes": 14571,
+      "sha256": "c0ee7cbe6de47f55063a8c55b287520ed85c9a4af6d18000302e6f733e55c0e2"
     }
   },
   "intro-no-period/hostile/pending/C": {
     "eml": {
-      "bytes": 62372,
-      "sha256": "d2ebdc9b58bef0ba4dda819235b50c9b3d906bbbbbf033d1e68b3f949a344aad"
+      "bytes": 63258,
+      "sha256": "e32f3c611c676ada51b9cdf76e6b172e791560e3eb341757165c6027224d6720"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -3663,26 +3663,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 45048,
-      "sha256": "82374083cbd84ef1523544043cf9dd30ebaddfbaa2bed0a5d6a3ed08b0039ef6"
+      "bytes": 45697,
+      "sha256": "44bbc17f62bcd47421d3fc4c06e917f3edfb2404d428412f05fa0db9e1a47cdc"
     },
     "ps1": {
-      "bytes": 66101,
-      "sha256": "ba5b3545b741673ae4bcb82db2609e0086ff79d5c5bc550d77367b5200d5119d"
+      "bytes": 67038,
+      "sha256": "c674dbadc5806d15abfd131dc5aded1b02310d141f096bc48bad5f72dbb891fc"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "c0d0d0a1dce49364857230f5bd00ed36beb8499d8aafead11bb6a619f464518c"
+      "bytes": 2686,
+      "sha256": "1db7e29efc13f365bb8cf3b563be828d5f306bcc209acf3311862129dbd5bade"
     },
     "workbook": {
-      "bytes": 13909,
-      "sha256": "069f246f4ba260d2a1429e0a7df2e28db587c73c9fb392a67c956db21076d0de"
+      "bytes": 14571,
+      "sha256": "c0ee7cbe6de47f55063a8c55b287520ed85c9a4af6d18000302e6f733e55c0e2"
     }
   },
   "intro-no-period/hostile/pending/D": {
     "eml": {
-      "bytes": 54462,
-      "sha256": "71767d19f4faa4217b8cb7db92896c53f79ccd43ca2860589ccec6359038ee2c"
+      "bytes": 55348,
+      "sha256": "10cee3f2eb2fd10280d9720784851c675afb1ab12db434ccba666a8d6e06f304"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -3690,20 +3690,20 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 39377,
-      "sha256": "ed408ac4cf0b8ec994ff04109ff84c70d5260339eb82c360192e68b3e6e8b602"
+      "bytes": 40026,
+      "sha256": "1accf94cbea28d467d61c0e21ad0aa15ac4a6c629939d818eef13b50363b1c73"
     },
     "ps1": {
-      "bytes": 60322,
-      "sha256": "67f2e05d8b8008cc237cd34634bd9036d6cfa62c041374bff8a2a0ebcd446827"
+      "bytes": 61259,
+      "sha256": "961edc48ace5db1aa65b25e5996a3d86d8a395bc487a8918029cba5f6be1c880"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "c0d0d0a1dce49364857230f5bd00ed36beb8499d8aafead11bb6a619f464518c"
+      "bytes": 2686,
+      "sha256": "1db7e29efc13f365bb8cf3b563be828d5f306bcc209acf3311862129dbd5bade"
     },
     "workbook": {
-      "bytes": 13909,
-      "sha256": "069f246f4ba260d2a1429e0a7df2e28db587c73c9fb392a67c956db21076d0de"
+      "bytes": 14571,
+      "sha256": "c0ee7cbe6de47f55063a8c55b287520ed85c9a4af6d18000302e6f733e55c0e2"
     }
   },
   "intro-no-period/sample/daily/A": {
@@ -4656,8 +4656,8 @@
   },
   "no-header-logo/hostile/monthly/A": {
     "eml": {
-      "bytes": 58494,
-      "sha256": "2bb41daeb3960e2f36fda8aa9eb81f42b69816ad583cac317631fbaa84d4cd5f"
+      "bytes": 59380,
+      "sha256": "f42fec9e03eec5a697da6bcff80bf9d43f8c9ce4aef30a3e537b33057579c23d"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -4665,26 +4665,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 42322,
-      "sha256": "bd0a250bbc41d0d3a37987ea71c6615c327e42860dbb4039877b36cf970f2ab3"
+      "bytes": 42971,
+      "sha256": "387ba6dac74b6620d66927c1434fd4ec8962376c04f784fb848f84aab5989ce5"
     },
     "ps1": {
-      "bytes": 63286,
-      "sha256": "97162cf0d40c3617e1de2414a6f1b07a3bbd70e86f4ba84477f8afd2399d26d4"
+      "bytes": 64207,
+      "sha256": "1df527a6eccf1c854dd306752b582725dc5c988ecac4e63d4656e07304776449"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "387bd3631276478ff373b6ee7b2019f41b3315efe774ca80f9242a0bddbb0016"
+      "bytes": 2686,
+      "sha256": "2b0c6be56e738a21f998cec2f3187a2f3eea625523fb48379b463c5e7d0c67aa"
     },
     "workbook": {
-      "bytes": 13927,
-      "sha256": "31842b8af0766a9b5ea9f1cad0343bf97718d6ff16660654f77c1ca6651cb6d1"
+      "bytes": 14589,
+      "sha256": "bbf06e772ac5201726b6f5695e5a5416ecbb8a75e20f60ced4c6bc0106231aa2"
     }
   },
   "no-header-logo/hostile/monthly/B": {
     "eml": {
-      "bytes": 57114,
-      "sha256": "76c2d31bfedd3a94f7b8640b76870535e502f8e8c9773e2fc2993dc74fba0a50"
+      "bytes": 58000,
+      "sha256": "6166d6e6ac5d2227699599c20cc247e9410716586d3ddf37105aabd540f741c2"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -4692,26 +4692,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 41314,
-      "sha256": "8c46569bb5be70bea4e939ec74e09c4d4af217585cb842b64461d0f89dfceab6"
+      "bytes": 41963,
+      "sha256": "9b03a9137170ff8c1546e8899733d0716a33c49c544932176194deff289f1e69"
     },
     "ps1": {
-      "bytes": 62278,
-      "sha256": "d99eb86f05a61954b7f8a00f5c27b944ed83ddeafbec6240ce3181397824bf83"
+      "bytes": 63199,
+      "sha256": "829eece850e3f300854e581e7520a3f7ae3c51df35edf14c6b5adef3d27c6218"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "387bd3631276478ff373b6ee7b2019f41b3315efe774ca80f9242a0bddbb0016"
+      "bytes": 2686,
+      "sha256": "2b0c6be56e738a21f998cec2f3187a2f3eea625523fb48379b463c5e7d0c67aa"
     },
     "workbook": {
-      "bytes": 13927,
-      "sha256": "31842b8af0766a9b5ea9f1cad0343bf97718d6ff16660654f77c1ca6651cb6d1"
+      "bytes": 14589,
+      "sha256": "bbf06e772ac5201726b6f5695e5a5416ecbb8a75e20f60ced4c6bc0106231aa2"
     }
   },
   "no-header-logo/hostile/monthly/C": {
     "eml": {
-      "bytes": 61856,
-      "sha256": "fb4cf695259f8b0b233004471822ae07883f0704d50e5c1f14609cbbc965c1ff"
+      "bytes": 62746,
+      "sha256": "e1ae8a0f42cca6c7fb3e8263695600eabd38b2fe520b30e32012a1256a95f1df"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -4719,26 +4719,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 44781,
-      "sha256": "f7ad3b4e364fa3e11814e35c56aedb4d07ae99c59adbf4dad26779b469855fc1"
+      "bytes": 45430,
+      "sha256": "12c27990ce48847d7b67d14e0ca6be00555c246fb0450e546425e29ad9c5b202"
     },
     "ps1": {
-      "bytes": 65745,
-      "sha256": "b9af4afd6beaea79c0f77b0d0c309daea39c58b9963a22e036598ead22180bc8"
+      "bytes": 66666,
+      "sha256": "3c3fee5664be3712a6ca90ce55164991069e9dfb646794c4845cbe98344516e6"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "387bd3631276478ff373b6ee7b2019f41b3315efe774ca80f9242a0bddbb0016"
+      "bytes": 2686,
+      "sha256": "2b0c6be56e738a21f998cec2f3187a2f3eea625523fb48379b463c5e7d0c67aa"
     },
     "workbook": {
-      "bytes": 13927,
-      "sha256": "31842b8af0766a9b5ea9f1cad0343bf97718d6ff16660654f77c1ca6651cb6d1"
+      "bytes": 14589,
+      "sha256": "bbf06e772ac5201726b6f5695e5a5416ecbb8a75e20f60ced4c6bc0106231aa2"
     }
   },
   "no-header-logo/hostile/monthly/D": {
     "eml": {
-      "bytes": 54466,
-      "sha256": "25b345a396c36731493ee6e01cd2e470b93b6c411b42a40c94d4ca8e2629b12f"
+      "bytes": 55356,
+      "sha256": "51778643a39ee286a43208c5df84c5544994b6cdc9b8b169fd2357de96cdbb3c"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -4746,26 +4746,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 39381,
-      "sha256": "4cca38e2f3188906ded7e03d970323abe348c8704a5c1f48bde644d55481d909"
+      "bytes": 40030,
+      "sha256": "b16f8bd4492006cafb0bd83adb1e128e8651049b20de2ad71a09f997e0c4d8ec"
     },
     "ps1": {
-      "bytes": 60345,
-      "sha256": "4787b37bfed35d148b8a732199df207ef495b5f352676b0eadb90db598e567f9"
+      "bytes": 61266,
+      "sha256": "6e6a5439e9b48322689850c6cb43269c119ba6b2c0dc3f27a1a0c1cc494df3ac"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "387bd3631276478ff373b6ee7b2019f41b3315efe774ca80f9242a0bddbb0016"
+      "bytes": 2686,
+      "sha256": "2b0c6be56e738a21f998cec2f3187a2f3eea625523fb48379b463c5e7d0c67aa"
     },
     "workbook": {
-      "bytes": 13927,
-      "sha256": "31842b8af0766a9b5ea9f1cad0343bf97718d6ff16660654f77c1ca6651cb6d1"
+      "bytes": 14589,
+      "sha256": "bbf06e772ac5201726b6f5695e5a5416ecbb8a75e20f60ced4c6bc0106231aa2"
     }
   },
   "no-header-logo/hostile/pending/A": {
     "eml": {
-      "bytes": 58484,
-      "sha256": "b009e8a0841cfa512fcb603bf6f94e4f35f5cfb2dbd55712b02051c9c3cf1c8d"
+      "bytes": 59376,
+      "sha256": "152dbc0d81def2024b0eee35251eefa44ba10a64b3a519611c9555e134d0466f"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -4773,26 +4773,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 42318,
-      "sha256": "1bc05c63c294bb9cbdd7b75d890e566081050abaeb4638a95932f9035e44dbc8"
+      "bytes": 42967,
+      "sha256": "17b25e3547c700b271a99946a622721ab8108c11565ba08700c08f0202aa4f88"
     },
     "ps1": {
-      "bytes": 63263,
-      "sha256": "0709ecbd4e1b48f5fc057a78cc7f718268905926fb5e865b9f8017366af6c669"
+      "bytes": 64200,
+      "sha256": "8e68e092274bcf316c10be44f5d72de74caec4216887673736eec27660d19494"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "c0d0d0a1dce49364857230f5bd00ed36beb8499d8aafead11bb6a619f464518c"
+      "bytes": 2686,
+      "sha256": "1db7e29efc13f365bb8cf3b563be828d5f306bcc209acf3311862129dbd5bade"
     },
     "workbook": {
-      "bytes": 13909,
-      "sha256": "069f246f4ba260d2a1429e0a7df2e28db587c73c9fb392a67c956db21076d0de"
+      "bytes": 14571,
+      "sha256": "c0ee7cbe6de47f55063a8c55b287520ed85c9a4af6d18000302e6f733e55c0e2"
     }
   },
   "no-header-logo/hostile/pending/B": {
     "eml": {
-      "bytes": 57106,
-      "sha256": "324ce43980e1f2b0edb0aa6ba1e743a0aa4491fe02f88d03853e2b26b2af40a5"
+      "bytes": 57996,
+      "sha256": "4d29a8c6d9062eeb50fc37080b80e311210ac9c773825b49b7a3ff30afcfec00"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -4800,26 +4800,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 41310,
-      "sha256": "d8a488bc875075a20bc39d41024f3e7cdbde047f794fc1f31418fbcf87c0ec1c"
+      "bytes": 41959,
+      "sha256": "4cc50cb48be08de238aec02e69a017e6c2802e1198947e98657946189e57cd9e"
     },
     "ps1": {
-      "bytes": 62255,
-      "sha256": "bfa63f303aa7eaf355a761ad9178164ebbaa57013848cf424ff5cf283786107c"
+      "bytes": 63192,
+      "sha256": "98d6142666a3f8704919f238ae670750533e1a4219cc00683b1fe7d1f4a9383b"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "c0d0d0a1dce49364857230f5bd00ed36beb8499d8aafead11bb6a619f464518c"
+      "bytes": 2686,
+      "sha256": "1db7e29efc13f365bb8cf3b563be828d5f306bcc209acf3311862129dbd5bade"
     },
     "workbook": {
-      "bytes": 13909,
-      "sha256": "069f246f4ba260d2a1429e0a7df2e28db587c73c9fb392a67c956db21076d0de"
+      "bytes": 14571,
+      "sha256": "c0ee7cbe6de47f55063a8c55b287520ed85c9a4af6d18000302e6f733e55c0e2"
     }
   },
   "no-header-logo/hostile/pending/C": {
     "eml": {
-      "bytes": 61848,
-      "sha256": "b08574caa3768f75ce2560a93e93cf6bf0183fc4d6f79c058041de916e79d555"
+      "bytes": 62734,
+      "sha256": "5af39b5a4097fc041d7f7b6430741a942f82844e3df9bf85b914c12c157a0364"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -4827,26 +4827,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 44773,
-      "sha256": "d2f3534ff6ab170147fcae0d7fbedc03680fe6a903b6893abe4efabae116724b"
+      "bytes": 45422,
+      "sha256": "71e9c99ee55378f656d5e26b6ef9bf93ab57be07418e4b63e3aff80f025c2653"
     },
     "ps1": {
-      "bytes": 65718,
-      "sha256": "827a2df806a1d4701a04fe3e2e3f9e82e2df9aa85d1526c012a155b5db6595f9"
+      "bytes": 66655,
+      "sha256": "5aecd6d813b5a02483a974938d531d8914a00eba3aaf7cbfce8413395e944be2"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "c0d0d0a1dce49364857230f5bd00ed36beb8499d8aafead11bb6a619f464518c"
+      "bytes": 2686,
+      "sha256": "1db7e29efc13f365bb8cf3b563be828d5f306bcc209acf3311862129dbd5bade"
     },
     "workbook": {
-      "bytes": 13909,
-      "sha256": "069f246f4ba260d2a1429e0a7df2e28db587c73c9fb392a67c956db21076d0de"
+      "bytes": 14571,
+      "sha256": "c0ee7cbe6de47f55063a8c55b287520ed85c9a4af6d18000302e6f733e55c0e2"
     }
   },
   "no-header-logo/hostile/pending/D": {
     "eml": {
-      "bytes": 54462,
-      "sha256": "71767d19f4faa4217b8cb7db92896c53f79ccd43ca2860589ccec6359038ee2c"
+      "bytes": 55348,
+      "sha256": "10cee3f2eb2fd10280d9720784851c675afb1ab12db434ccba666a8d6e06f304"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -4854,20 +4854,20 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 39377,
-      "sha256": "ed408ac4cf0b8ec994ff04109ff84c70d5260339eb82c360192e68b3e6e8b602"
+      "bytes": 40026,
+      "sha256": "1accf94cbea28d467d61c0e21ad0aa15ac4a6c629939d818eef13b50363b1c73"
     },
     "ps1": {
-      "bytes": 60322,
-      "sha256": "67f2e05d8b8008cc237cd34634bd9036d6cfa62c041374bff8a2a0ebcd446827"
+      "bytes": 61259,
+      "sha256": "961edc48ace5db1aa65b25e5996a3d86d8a395bc487a8918029cba5f6be1c880"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "c0d0d0a1dce49364857230f5bd00ed36beb8499d8aafead11bb6a619f464518c"
+      "bytes": 2686,
+      "sha256": "1db7e29efc13f365bb8cf3b563be828d5f306bcc209acf3311862129dbd5bade"
     },
     "workbook": {
-      "bytes": 13909,
-      "sha256": "069f246f4ba260d2a1429e0a7df2e28db587c73c9fb392a67c956db21076d0de"
+      "bytes": 14571,
+      "sha256": "c0ee7cbe6de47f55063a8c55b287520ed85c9a4af6d18000302e6f733e55c0e2"
     }
   },
   "no-header-logo/sample/daily/A": {
@@ -5318,8 +5318,8 @@
   },
   "no-recipients/hostile/monthly/A": {
     "eml": {
-      "bytes": 58435,
-      "sha256": "cc1f09b376eae26ed6c90f4e90eddde059c4f32f58d11237d6ef2290ebc90bf5"
+      "bytes": 59321,
+      "sha256": "1bb76e7bad5e6c9d9fd398a01c45e2808200aacb7b39444b8aa0176f1f8ddd01"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: (not configured)\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -5327,26 +5327,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 42322,
-      "sha256": "bd0a250bbc41d0d3a37987ea71c6615c327e42860dbb4039877b36cf970f2ab3"
+      "bytes": 42971,
+      "sha256": "387ba6dac74b6620d66927c1434fd4ec8962376c04f784fb848f84aab5989ce5"
     },
     "ps1": {
-      "bytes": 63233,
-      "sha256": "dcc00c5f7ec910bb50b4291116db8df019babf40804884fa85ec9ca2247915b1"
+      "bytes": 64154,
+      "sha256": "71e469cce715525852b973116d16a2569e342e3256d138b1bbae34a15cddf7fb"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "387bd3631276478ff373b6ee7b2019f41b3315efe774ca80f9242a0bddbb0016"
+      "bytes": 2686,
+      "sha256": "2b0c6be56e738a21f998cec2f3187a2f3eea625523fb48379b463c5e7d0c67aa"
     },
     "workbook": {
-      "bytes": 13927,
-      "sha256": "31842b8af0766a9b5ea9f1cad0343bf97718d6ff16660654f77c1ca6651cb6d1"
+      "bytes": 14589,
+      "sha256": "bbf06e772ac5201726b6f5695e5a5416ecbb8a75e20f60ced4c6bc0106231aa2"
     }
   },
   "no-recipients/hostile/monthly/B": {
     "eml": {
-      "bytes": 57055,
-      "sha256": "3b88d982f9a1eae0ef7f5a36733f3910b565bed8ed2897662d739192bc45bfe4"
+      "bytes": 57941,
+      "sha256": "2488394253e34be055ba9dc2b70e2d6707b555e9604e5e21c9238eb3daa81f2b"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: (not configured)\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -5354,26 +5354,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 41314,
-      "sha256": "8c46569bb5be70bea4e939ec74e09c4d4af217585cb842b64461d0f89dfceab6"
+      "bytes": 41963,
+      "sha256": "9b03a9137170ff8c1546e8899733d0716a33c49c544932176194deff289f1e69"
     },
     "ps1": {
-      "bytes": 62225,
-      "sha256": "34358b49f4a8d7994a086d0e89d0f51baa5871361640092435ea7079248858d0"
+      "bytes": 63146,
+      "sha256": "a26fb58c3d7040ff1e13cb0a58dfe6a85581e014ecdb2de3eca0ff6eadc6b73f"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "387bd3631276478ff373b6ee7b2019f41b3315efe774ca80f9242a0bddbb0016"
+      "bytes": 2686,
+      "sha256": "2b0c6be56e738a21f998cec2f3187a2f3eea625523fb48379b463c5e7d0c67aa"
     },
     "workbook": {
-      "bytes": 13927,
-      "sha256": "31842b8af0766a9b5ea9f1cad0343bf97718d6ff16660654f77c1ca6651cb6d1"
+      "bytes": 14589,
+      "sha256": "bbf06e772ac5201726b6f5695e5a5416ecbb8a75e20f60ced4c6bc0106231aa2"
     }
   },
   "no-recipients/hostile/monthly/C": {
     "eml": {
-      "bytes": 62325,
-      "sha256": "d185d8f78d0b033c5550ac6a596859bb753daef2565e1e64b03fbc92926a142f"
+      "bytes": 63211,
+      "sha256": "87d3991a8b65a50f95055f2c6238ac798c9318573bda40bb4e34b9903770d315"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: (not configured)\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -5381,26 +5381,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 45056,
-      "sha256": "2acdc5e1117aed70994aa0671e348799ffd3bad5090916f3278f477ce438e477"
+      "bytes": 45705,
+      "sha256": "5cb50d575057dbb91de8e31c2991f2809eac9a2b1ce25a15776a1241d78df0a6"
     },
     "ps1": {
-      "bytes": 66075,
-      "sha256": "4af5dddf2b14a6fc9a002989cfac1f19cae8ee21bea82dcb3bd4fa5b014ff895"
+      "bytes": 66996,
+      "sha256": "1936df8de49fb3ce205d6d54687437c810ce6627ef394ac772eff9fdeb7363cb"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "387bd3631276478ff373b6ee7b2019f41b3315efe774ca80f9242a0bddbb0016"
+      "bytes": 2686,
+      "sha256": "2b0c6be56e738a21f998cec2f3187a2f3eea625523fb48379b463c5e7d0c67aa"
     },
     "workbook": {
-      "bytes": 13927,
-      "sha256": "31842b8af0766a9b5ea9f1cad0343bf97718d6ff16660654f77c1ca6651cb6d1"
+      "bytes": 14589,
+      "sha256": "bbf06e772ac5201726b6f5695e5a5416ecbb8a75e20f60ced4c6bc0106231aa2"
     }
   },
   "no-recipients/hostile/monthly/D": {
     "eml": {
-      "bytes": 54407,
-      "sha256": "b7fcb20a01b419c33aec929e39d664b991ab865699c6120e5d88f40cf90d7a80"
+      "bytes": 55297,
+      "sha256": "a89e90135fdca4bc563a29dd3ffa036800ed47251b58041c58d2bf86fa057f5f"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: (not configured)\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -5408,26 +5408,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 39381,
-      "sha256": "4cca38e2f3188906ded7e03d970323abe348c8704a5c1f48bde644d55481d909"
+      "bytes": 40030,
+      "sha256": "b16f8bd4492006cafb0bd83adb1e128e8651049b20de2ad71a09f997e0c4d8ec"
     },
     "ps1": {
-      "bytes": 60292,
-      "sha256": "a9aed159d7a4e395ea9151dfe0ffec6301463308b9e9eb381083359dd01f8b93"
+      "bytes": 61213,
+      "sha256": "a60aaa16156bc307cbfc0c3e46827eb620360b12e40e8864fecc3b0f50ea6756"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "387bd3631276478ff373b6ee7b2019f41b3315efe774ca80f9242a0bddbb0016"
+      "bytes": 2686,
+      "sha256": "2b0c6be56e738a21f998cec2f3187a2f3eea625523fb48379b463c5e7d0c67aa"
     },
     "workbook": {
-      "bytes": 13927,
-      "sha256": "31842b8af0766a9b5ea9f1cad0343bf97718d6ff16660654f77c1ca6651cb6d1"
+      "bytes": 14589,
+      "sha256": "bbf06e772ac5201726b6f5695e5a5416ecbb8a75e20f60ced4c6bc0106231aa2"
     }
   },
   "no-recipients/hostile/pending/A": {
     "eml": {
-      "bytes": 58425,
-      "sha256": "766dbe7b03fcc9803d2e627d93aaee1b99b1efd766b328214aec6b023b087db9"
+      "bytes": 59317,
+      "sha256": "e35a6ac00b376db3770a9ccc2bde1b324f90549d9fc5b957d04a26a906e8d88f"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: (not configured)\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -5435,26 +5435,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 42318,
-      "sha256": "1bc05c63c294bb9cbdd7b75d890e566081050abaeb4638a95932f9035e44dbc8"
+      "bytes": 42967,
+      "sha256": "17b25e3547c700b271a99946a622721ab8108c11565ba08700c08f0202aa4f88"
     },
     "ps1": {
-      "bytes": 63210,
-      "sha256": "8adaa6d65ebd935e7fbdbc233709f88c506816925528bad37394d44f73eca531"
+      "bytes": 64147,
+      "sha256": "6839c625106ebb85cb60c57d6139c5259986df59e83d87ebc4522d6dbaad587d"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "c0d0d0a1dce49364857230f5bd00ed36beb8499d8aafead11bb6a619f464518c"
+      "bytes": 2686,
+      "sha256": "1db7e29efc13f365bb8cf3b563be828d5f306bcc209acf3311862129dbd5bade"
     },
     "workbook": {
-      "bytes": 13909,
-      "sha256": "069f246f4ba260d2a1429e0a7df2e28db587c73c9fb392a67c956db21076d0de"
+      "bytes": 14571,
+      "sha256": "c0ee7cbe6de47f55063a8c55b287520ed85c9a4af6d18000302e6f733e55c0e2"
     }
   },
   "no-recipients/hostile/pending/B": {
     "eml": {
-      "bytes": 57047,
-      "sha256": "b79189d610faabf7d1adab2e8118f3bd835205fa1791ee1181d6d7c72a8750a5"
+      "bytes": 57937,
+      "sha256": "890967519fd15f6d84a74f1a952e72d025f38661ea2ff8176efd5a2db7335c87"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: (not configured)\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -5462,26 +5462,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 41310,
-      "sha256": "d8a488bc875075a20bc39d41024f3e7cdbde047f794fc1f31418fbcf87c0ec1c"
+      "bytes": 41959,
+      "sha256": "4cc50cb48be08de238aec02e69a017e6c2802e1198947e98657946189e57cd9e"
     },
     "ps1": {
-      "bytes": 62202,
-      "sha256": "0ae522be5af62a7dc0263f1c7be44e568d22a0a0223449cb1893b11b2e82b252"
+      "bytes": 63139,
+      "sha256": "4a604d20bcbea98c5be8f36645eeb6b95ef332b3dea460320a31fb176bc9cd70"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "c0d0d0a1dce49364857230f5bd00ed36beb8499d8aafead11bb6a619f464518c"
+      "bytes": 2686,
+      "sha256": "1db7e29efc13f365bb8cf3b563be828d5f306bcc209acf3311862129dbd5bade"
     },
     "workbook": {
-      "bytes": 13909,
-      "sha256": "069f246f4ba260d2a1429e0a7df2e28db587c73c9fb392a67c956db21076d0de"
+      "bytes": 14571,
+      "sha256": "c0ee7cbe6de47f55063a8c55b287520ed85c9a4af6d18000302e6f733e55c0e2"
     }
   },
   "no-recipients/hostile/pending/C": {
     "eml": {
-      "bytes": 62313,
-      "sha256": "c6942e129ff27f0f5bda9f0d44af5cdd319c5a916180f2ea3a03404b224770a5"
+      "bytes": 63199,
+      "sha256": "754b4a98c31b528e1980140851025ec009d0bfebab5f3d61a8af62cdd69819aa"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: (not configured)\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -5489,26 +5489,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 45048,
-      "sha256": "82374083cbd84ef1523544043cf9dd30ebaddfbaa2bed0a5d6a3ed08b0039ef6"
+      "bytes": 45697,
+      "sha256": "44bbc17f62bcd47421d3fc4c06e917f3edfb2404d428412f05fa0db9e1a47cdc"
     },
     "ps1": {
-      "bytes": 66048,
-      "sha256": "5e41420e458c7ebdf1ef52410405d01fae1db36b49efc63b688a5de4be62e6e2"
+      "bytes": 66985,
+      "sha256": "8c726242bc71908e85ee01a24640751d478109f87e304523b4814580ac357009"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "c0d0d0a1dce49364857230f5bd00ed36beb8499d8aafead11bb6a619f464518c"
+      "bytes": 2686,
+      "sha256": "1db7e29efc13f365bb8cf3b563be828d5f306bcc209acf3311862129dbd5bade"
     },
     "workbook": {
-      "bytes": 13909,
-      "sha256": "069f246f4ba260d2a1429e0a7df2e28db587c73c9fb392a67c956db21076d0de"
+      "bytes": 14571,
+      "sha256": "c0ee7cbe6de47f55063a8c55b287520ed85c9a4af6d18000302e6f733e55c0e2"
     }
   },
   "no-recipients/hostile/pending/D": {
     "eml": {
-      "bytes": 54403,
-      "sha256": "a7b94272db813a0c597d7058205ad122c7726904cb1130058dc983e0e1c68c86"
+      "bytes": 55289,
+      "sha256": "f14d9c747743ce2338c535492ca74dcc48c85b570c9853cbaa10d9153e5328f5"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: (not configured)\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -5516,20 +5516,20 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 39377,
-      "sha256": "ed408ac4cf0b8ec994ff04109ff84c70d5260339eb82c360192e68b3e6e8b602"
+      "bytes": 40026,
+      "sha256": "1accf94cbea28d467d61c0e21ad0aa15ac4a6c629939d818eef13b50363b1c73"
     },
     "ps1": {
-      "bytes": 60269,
-      "sha256": "4ee2488d24cc1817c18d05f8bddcf14339da1b828a1a34a8e32f4f76b053e214"
+      "bytes": 61206,
+      "sha256": "82e92565594e3397697fdedee58a01cd7b869d0d6f4e0d885bc8beed811640c3"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "c0d0d0a1dce49364857230f5bd00ed36beb8499d8aafead11bb6a619f464518c"
+      "bytes": 2686,
+      "sha256": "1db7e29efc13f365bb8cf3b563be828d5f306bcc209acf3311862129dbd5bade"
     },
     "workbook": {
-      "bytes": 13909,
-      "sha256": "069f246f4ba260d2a1429e0a7df2e28db587c73c9fb392a67c956db21076d0de"
+      "bytes": 14571,
+      "sha256": "c0ee7cbe6de47f55063a8c55b287520ed85c9a4af6d18000302e6f733e55c0e2"
     }
   },
   "no-recipients/sample/daily/A": {
@@ -5980,8 +5980,8 @@
   },
   "no-sender/hostile/monthly/A": {
     "eml": {
-      "bytes": 58494,
-      "sha256": "2bb41daeb3960e2f36fda8aa9eb81f42b69816ad583cac317631fbaa84d4cd5f"
+      "bytes": 59380,
+      "sha256": "f42fec9e03eec5a697da6bcff80bf9d43f8c9ce4aef30a3e537b33057579c23d"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -5989,26 +5989,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 42322,
-      "sha256": "bd0a250bbc41d0d3a37987ea71c6615c327e42860dbb4039877b36cf970f2ab3"
+      "bytes": 42971,
+      "sha256": "387ba6dac74b6620d66927c1434fd4ec8962376c04f784fb848f84aab5989ce5"
     },
     "ps1": {
-      "bytes": 63286,
-      "sha256": "97162cf0d40c3617e1de2414a6f1b07a3bbd70e86f4ba84477f8afd2399d26d4"
+      "bytes": 64207,
+      "sha256": "1df527a6eccf1c854dd306752b582725dc5c988ecac4e63d4656e07304776449"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "387bd3631276478ff373b6ee7b2019f41b3315efe774ca80f9242a0bddbb0016"
+      "bytes": 2686,
+      "sha256": "2b0c6be56e738a21f998cec2f3187a2f3eea625523fb48379b463c5e7d0c67aa"
     },
     "workbook": {
-      "bytes": 13927,
-      "sha256": "31842b8af0766a9b5ea9f1cad0343bf97718d6ff16660654f77c1ca6651cb6d1"
+      "bytes": 14589,
+      "sha256": "bbf06e772ac5201726b6f5695e5a5416ecbb8a75e20f60ced4c6bc0106231aa2"
     }
   },
   "no-sender/hostile/monthly/B": {
     "eml": {
-      "bytes": 57114,
-      "sha256": "76c2d31bfedd3a94f7b8640b76870535e502f8e8c9773e2fc2993dc74fba0a50"
+      "bytes": 58000,
+      "sha256": "6166d6e6ac5d2227699599c20cc247e9410716586d3ddf37105aabd540f741c2"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -6016,26 +6016,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 41314,
-      "sha256": "8c46569bb5be70bea4e939ec74e09c4d4af217585cb842b64461d0f89dfceab6"
+      "bytes": 41963,
+      "sha256": "9b03a9137170ff8c1546e8899733d0716a33c49c544932176194deff289f1e69"
     },
     "ps1": {
-      "bytes": 62278,
-      "sha256": "d99eb86f05a61954b7f8a00f5c27b944ed83ddeafbec6240ce3181397824bf83"
+      "bytes": 63199,
+      "sha256": "829eece850e3f300854e581e7520a3f7ae3c51df35edf14c6b5adef3d27c6218"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "387bd3631276478ff373b6ee7b2019f41b3315efe774ca80f9242a0bddbb0016"
+      "bytes": 2686,
+      "sha256": "2b0c6be56e738a21f998cec2f3187a2f3eea625523fb48379b463c5e7d0c67aa"
     },
     "workbook": {
-      "bytes": 13927,
-      "sha256": "31842b8af0766a9b5ea9f1cad0343bf97718d6ff16660654f77c1ca6651cb6d1"
+      "bytes": 14589,
+      "sha256": "bbf06e772ac5201726b6f5695e5a5416ecbb8a75e20f60ced4c6bc0106231aa2"
     }
   },
   "no-sender/hostile/monthly/C": {
     "eml": {
-      "bytes": 62384,
-      "sha256": "f01aa1d4aa053e8af11eaf1b10d2e8d8df43e8c98ebf034efa8afb5565436b90"
+      "bytes": 63270,
+      "sha256": "bbe58452d55a83659474b7d247a7d549515883bb753427c47584dd10d72f0625"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -6043,26 +6043,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 45056,
-      "sha256": "2acdc5e1117aed70994aa0671e348799ffd3bad5090916f3278f477ce438e477"
+      "bytes": 45705,
+      "sha256": "5cb50d575057dbb91de8e31c2991f2809eac9a2b1ce25a15776a1241d78df0a6"
     },
     "ps1": {
-      "bytes": 66128,
-      "sha256": "d30daf0e734c44cc3c10a77806710fbf4246ad8e34c9bcc886c1ab9b82596669"
+      "bytes": 67049,
+      "sha256": "1a7beb30410ade73c43bdec82f0893f3e6c3fe35fc501317d694eec2f14049b3"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "387bd3631276478ff373b6ee7b2019f41b3315efe774ca80f9242a0bddbb0016"
+      "bytes": 2686,
+      "sha256": "2b0c6be56e738a21f998cec2f3187a2f3eea625523fb48379b463c5e7d0c67aa"
     },
     "workbook": {
-      "bytes": 13927,
-      "sha256": "31842b8af0766a9b5ea9f1cad0343bf97718d6ff16660654f77c1ca6651cb6d1"
+      "bytes": 14589,
+      "sha256": "bbf06e772ac5201726b6f5695e5a5416ecbb8a75e20f60ced4c6bc0106231aa2"
     }
   },
   "no-sender/hostile/monthly/D": {
     "eml": {
-      "bytes": 54466,
-      "sha256": "25b345a396c36731493ee6e01cd2e470b93b6c411b42a40c94d4ca8e2629b12f"
+      "bytes": 55356,
+      "sha256": "51778643a39ee286a43208c5df84c5544994b6cdc9b8b169fd2357de96cdbb3c"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -6070,26 +6070,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 39381,
-      "sha256": "4cca38e2f3188906ded7e03d970323abe348c8704a5c1f48bde644d55481d909"
+      "bytes": 40030,
+      "sha256": "b16f8bd4492006cafb0bd83adb1e128e8651049b20de2ad71a09f997e0c4d8ec"
     },
     "ps1": {
-      "bytes": 60345,
-      "sha256": "4787b37bfed35d148b8a732199df207ef495b5f352676b0eadb90db598e567f9"
+      "bytes": 61266,
+      "sha256": "6e6a5439e9b48322689850c6cb43269c119ba6b2c0dc3f27a1a0c1cc494df3ac"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "387bd3631276478ff373b6ee7b2019f41b3315efe774ca80f9242a0bddbb0016"
+      "bytes": 2686,
+      "sha256": "2b0c6be56e738a21f998cec2f3187a2f3eea625523fb48379b463c5e7d0c67aa"
     },
     "workbook": {
-      "bytes": 13927,
-      "sha256": "31842b8af0766a9b5ea9f1cad0343bf97718d6ff16660654f77c1ca6651cb6d1"
+      "bytes": 14589,
+      "sha256": "bbf06e772ac5201726b6f5695e5a5416ecbb8a75e20f60ced4c6bc0106231aa2"
     }
   },
   "no-sender/hostile/pending/A": {
     "eml": {
-      "bytes": 58484,
-      "sha256": "b009e8a0841cfa512fcb603bf6f94e4f35f5cfb2dbd55712b02051c9c3cf1c8d"
+      "bytes": 59376,
+      "sha256": "152dbc0d81def2024b0eee35251eefa44ba10a64b3a519611c9555e134d0466f"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -6097,26 +6097,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 42318,
-      "sha256": "1bc05c63c294bb9cbdd7b75d890e566081050abaeb4638a95932f9035e44dbc8"
+      "bytes": 42967,
+      "sha256": "17b25e3547c700b271a99946a622721ab8108c11565ba08700c08f0202aa4f88"
     },
     "ps1": {
-      "bytes": 63263,
-      "sha256": "0709ecbd4e1b48f5fc057a78cc7f718268905926fb5e865b9f8017366af6c669"
+      "bytes": 64200,
+      "sha256": "8e68e092274bcf316c10be44f5d72de74caec4216887673736eec27660d19494"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "c0d0d0a1dce49364857230f5bd00ed36beb8499d8aafead11bb6a619f464518c"
+      "bytes": 2686,
+      "sha256": "1db7e29efc13f365bb8cf3b563be828d5f306bcc209acf3311862129dbd5bade"
     },
     "workbook": {
-      "bytes": 13909,
-      "sha256": "069f246f4ba260d2a1429e0a7df2e28db587c73c9fb392a67c956db21076d0de"
+      "bytes": 14571,
+      "sha256": "c0ee7cbe6de47f55063a8c55b287520ed85c9a4af6d18000302e6f733e55c0e2"
     }
   },
   "no-sender/hostile/pending/B": {
     "eml": {
-      "bytes": 57106,
-      "sha256": "324ce43980e1f2b0edb0aa6ba1e743a0aa4491fe02f88d03853e2b26b2af40a5"
+      "bytes": 57996,
+      "sha256": "4d29a8c6d9062eeb50fc37080b80e311210ac9c773825b49b7a3ff30afcfec00"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -6124,26 +6124,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 41310,
-      "sha256": "d8a488bc875075a20bc39d41024f3e7cdbde047f794fc1f31418fbcf87c0ec1c"
+      "bytes": 41959,
+      "sha256": "4cc50cb48be08de238aec02e69a017e6c2802e1198947e98657946189e57cd9e"
     },
     "ps1": {
-      "bytes": 62255,
-      "sha256": "bfa63f303aa7eaf355a761ad9178164ebbaa57013848cf424ff5cf283786107c"
+      "bytes": 63192,
+      "sha256": "98d6142666a3f8704919f238ae670750533e1a4219cc00683b1fe7d1f4a9383b"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "c0d0d0a1dce49364857230f5bd00ed36beb8499d8aafead11bb6a619f464518c"
+      "bytes": 2686,
+      "sha256": "1db7e29efc13f365bb8cf3b563be828d5f306bcc209acf3311862129dbd5bade"
     },
     "workbook": {
-      "bytes": 13909,
-      "sha256": "069f246f4ba260d2a1429e0a7df2e28db587c73c9fb392a67c956db21076d0de"
+      "bytes": 14571,
+      "sha256": "c0ee7cbe6de47f55063a8c55b287520ed85c9a4af6d18000302e6f733e55c0e2"
     }
   },
   "no-sender/hostile/pending/C": {
     "eml": {
-      "bytes": 62372,
-      "sha256": "d2ebdc9b58bef0ba4dda819235b50c9b3d906bbbbbf033d1e68b3f949a344aad"
+      "bytes": 63258,
+      "sha256": "e32f3c611c676ada51b9cdf76e6b172e791560e3eb341757165c6027224d6720"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -6151,26 +6151,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 45048,
-      "sha256": "82374083cbd84ef1523544043cf9dd30ebaddfbaa2bed0a5d6a3ed08b0039ef6"
+      "bytes": 45697,
+      "sha256": "44bbc17f62bcd47421d3fc4c06e917f3edfb2404d428412f05fa0db9e1a47cdc"
     },
     "ps1": {
-      "bytes": 66101,
-      "sha256": "ba5b3545b741673ae4bcb82db2609e0086ff79d5c5bc550d77367b5200d5119d"
+      "bytes": 67038,
+      "sha256": "c674dbadc5806d15abfd131dc5aded1b02310d141f096bc48bad5f72dbb891fc"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "c0d0d0a1dce49364857230f5bd00ed36beb8499d8aafead11bb6a619f464518c"
+      "bytes": 2686,
+      "sha256": "1db7e29efc13f365bb8cf3b563be828d5f306bcc209acf3311862129dbd5bade"
     },
     "workbook": {
-      "bytes": 13909,
-      "sha256": "069f246f4ba260d2a1429e0a7df2e28db587c73c9fb392a67c956db21076d0de"
+      "bytes": 14571,
+      "sha256": "c0ee7cbe6de47f55063a8c55b287520ed85c9a4af6d18000302e6f733e55c0e2"
     }
   },
   "no-sender/hostile/pending/D": {
     "eml": {
-      "bytes": 54462,
-      "sha256": "71767d19f4faa4217b8cb7db92896c53f79ccd43ca2860589ccec6359038ee2c"
+      "bytes": 55348,
+      "sha256": "10cee3f2eb2fd10280d9720784851c675afb1ab12db434ccba666a8d6e06f304"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -6178,20 +6178,20 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 39377,
-      "sha256": "ed408ac4cf0b8ec994ff04109ff84c70d5260339eb82c360192e68b3e6e8b602"
+      "bytes": 40026,
+      "sha256": "1accf94cbea28d467d61c0e21ad0aa15ac4a6c629939d818eef13b50363b1c73"
     },
     "ps1": {
-      "bytes": 60322,
-      "sha256": "67f2e05d8b8008cc237cd34634bd9036d6cfa62c041374bff8a2a0ebcd446827"
+      "bytes": 61259,
+      "sha256": "961edc48ace5db1aa65b25e5996a3d86d8a395bc487a8918029cba5f6be1c880"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "c0d0d0a1dce49364857230f5bd00ed36beb8499d8aafead11bb6a619f464518c"
+      "bytes": 2686,
+      "sha256": "1db7e29efc13f365bb8cf3b563be828d5f306bcc209acf3311862129dbd5bade"
     },
     "workbook": {
-      "bytes": 13909,
-      "sha256": "069f246f4ba260d2a1429e0a7df2e28db587c73c9fb392a67c956db21076d0de"
+      "bytes": 14571,
+      "sha256": "c0ee7cbe6de47f55063a8c55b287520ed85c9a4af6d18000302e6f733e55c0e2"
     }
   },
   "no-sender/sample/daily/A": {
@@ -6642,8 +6642,8 @@
   },
   "no-signature/hostile/monthly/A": {
     "eml": {
-      "bytes": 58324,
-      "sha256": "b0c00858a9481b1a555ac57f5c36c9a26fc0f82c97006e48c58b7d81dc1dff42"
+      "bytes": 59214,
+      "sha256": "56cc9830905d8cfb61a29aaa09417b14b2d41d61d61772f521ebcfd5c96bf8cd"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -6651,26 +6651,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 42411,
-      "sha256": "417aec1d4d150c0c89008df6759595a33f0e644f6f23feb02e77f6e4043b0b1a"
+      "bytes": 43060,
+      "sha256": "2a488ba4b7f61ef26aca192072b72fd83292ba161323ba300cf211504e134d2e"
     },
     "ps1": {
-      "bytes": 63267,
-      "sha256": "233226ea6a3457e3025874ff06787fa37d44fa7916733c6c9568c05610e53a17"
+      "bytes": 64188,
+      "sha256": "02093c8b37bcf80a4e48459e567d5411a6329828c0553db0874ca8854b8e2cfd"
     },
     "txt": {
-      "bytes": 2499,
-      "sha256": "3cef4c3702ded96df2912ddcae04011acbfcb2752b91ea9c560af54605a6fbd4"
+      "bytes": 2732,
+      "sha256": "87f26cabf64a8c015cd5322e89978206a35ba9bd551b352eca52c10ece2b09e5"
     },
     "workbook": {
-      "bytes": 13927,
-      "sha256": "31842b8af0766a9b5ea9f1cad0343bf97718d6ff16660654f77c1ca6651cb6d1"
+      "bytes": 14589,
+      "sha256": "bbf06e772ac5201726b6f5695e5a5416ecbb8a75e20f60ced4c6bc0106231aa2"
     }
   },
   "no-signature/hostile/monthly/B": {
     "eml": {
-      "bytes": 56944,
-      "sha256": "6e3ce0401b850ad48cc798fa8287ad3d9403b1e6a6cd70b7e80490cf8c196e0a"
+      "bytes": 57834,
+      "sha256": "312aef0d3957045b6bda022be7d0ba7cec3364032c05e738b0a7a034483c2cf2"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -6678,26 +6678,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 41403,
-      "sha256": "476b5caca989e592d05ec814604b5c787a255ad24f5148d298c75e20262aa6a5"
+      "bytes": 42052,
+      "sha256": "c150e69f82761356bb8d89ff9e9a6bae13ae35736e14097888c211e5ef20b181"
     },
     "ps1": {
-      "bytes": 62259,
-      "sha256": "41f1f28cd46ae29d63e428fe36934664e67e2995325e933d8456ffdfc171a4e6"
+      "bytes": 63180,
+      "sha256": "088fcd1b708a7b9cc6d3728a1310c1a719746c12a91f011b14bac991bcaa80f2"
     },
     "txt": {
-      "bytes": 2499,
-      "sha256": "3cef4c3702ded96df2912ddcae04011acbfcb2752b91ea9c560af54605a6fbd4"
+      "bytes": 2732,
+      "sha256": "87f26cabf64a8c015cd5322e89978206a35ba9bd551b352eca52c10ece2b09e5"
     },
     "workbook": {
-      "bytes": 13927,
-      "sha256": "31842b8af0766a9b5ea9f1cad0343bf97718d6ff16660654f77c1ca6651cb6d1"
+      "bytes": 14589,
+      "sha256": "bbf06e772ac5201726b6f5695e5a5416ecbb8a75e20f60ced4c6bc0106231aa2"
     }
   },
   "no-signature/hostile/monthly/C": {
     "eml": {
-      "bytes": 62350,
-      "sha256": "05a3ecd2c5f6876de47e9df3ea05b4c63baa0ace30b9719852fa90d0935fe21a"
+      "bytes": 63240,
+      "sha256": "f24049a808a4caf1ab43c738b132d0d4f6232505fdce32ef051be267fd478298"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -6705,26 +6705,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 45145,
-      "sha256": "ea76691f43f9a4d948e9d730234f6f6fd440412f1198cd923931c2443ef79e6b"
+      "bytes": 45794,
+      "sha256": "82464bec3a5d3a3ed70d3e3d8a5f2bbe7c12d161e96b1d248dbdb9cea0aa3afb"
     },
     "ps1": {
-      "bytes": 66109,
-      "sha256": "4ba651e51b20766848f44e9957562062131314fff28451d1e21d3172ceb0b129"
+      "bytes": 67030,
+      "sha256": "de53814ef040641ee2a3c0cbba02f99cff510ccc00558c9034e7e6ac2a8d5275"
     },
     "txt": {
-      "bytes": 2499,
-      "sha256": "3cef4c3702ded96df2912ddcae04011acbfcb2752b91ea9c560af54605a6fbd4"
+      "bytes": 2732,
+      "sha256": "87f26cabf64a8c015cd5322e89978206a35ba9bd551b352eca52c10ece2b09e5"
     },
     "workbook": {
-      "bytes": 13927,
-      "sha256": "31842b8af0766a9b5ea9f1cad0343bf97718d6ff16660654f77c1ca6651cb6d1"
+      "bytes": 14589,
+      "sha256": "bbf06e772ac5201726b6f5695e5a5416ecbb8a75e20f60ced4c6bc0106231aa2"
     }
   },
   "no-signature/hostile/monthly/D": {
     "eml": {
-      "bytes": 54300,
-      "sha256": "82321be360c0f1ed0a78949586ed1c650731c553091add56112fb0faf6821628"
+      "bytes": 55186,
+      "sha256": "1f5be043d7b151530cbb15f152eb7c02621bb855c9a8405431aef1a3f0623ca1"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -6732,26 +6732,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 39470,
-      "sha256": "82566873d6efcb0bd7f09c7416c55de76a564a4c5738a49380e3c2eba39c81f7"
+      "bytes": 40119,
+      "sha256": "a5a9fa92a7af134b502926d3b73ebdb389c3edbd3bb6c5b8f94a3a35a421c84d"
     },
     "ps1": {
-      "bytes": 60326,
-      "sha256": "b56a761e53d128e8a2538b05d0932348749e7575bc838322951c65941e8e3904"
+      "bytes": 61247,
+      "sha256": "32527f752529e71c2ff0a51a398913bae6f3cdb3f866b780b2ad76febbdfea23"
     },
     "txt": {
-      "bytes": 2499,
-      "sha256": "3cef4c3702ded96df2912ddcae04011acbfcb2752b91ea9c560af54605a6fbd4"
+      "bytes": 2732,
+      "sha256": "87f26cabf64a8c015cd5322e89978206a35ba9bd551b352eca52c10ece2b09e5"
     },
     "workbook": {
-      "bytes": 13927,
-      "sha256": "31842b8af0766a9b5ea9f1cad0343bf97718d6ff16660654f77c1ca6651cb6d1"
+      "bytes": 14589,
+      "sha256": "bbf06e772ac5201726b6f5695e5a5416ecbb8a75e20f60ced4c6bc0106231aa2"
     }
   },
   "no-signature/hostile/pending/A": {
     "eml": {
-      "bytes": 58318,
-      "sha256": "2e1bcedbda97c794bb949f54644365e488340a749b9d17033d9bc63a1e891475"
+      "bytes": 59206,
+      "sha256": "5b3f1a2890d71b912b1019ecebfef28251dec01ace88ee35f9006d84cd31c2a7"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -6759,26 +6759,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 42407,
-      "sha256": "1a5ab13add389c9dfba13f5fc3c288b636ab8a592a80e063fc2eb06e19e737c7"
+      "bytes": 43056,
+      "sha256": "d90243663f318fc8a4ef1777ed2f56f670cbcdcf11bbc6a9c5ebb10758837f99"
     },
     "ps1": {
-      "bytes": 63244,
-      "sha256": "6e34fd7e4d0ea47ae769b9f3e5cc8a24f5d41121e2554bd4b4a7fce5d2f28343"
+      "bytes": 64181,
+      "sha256": "8935e485d338d8d526dbe30544d732d25a7cc7269715701b56510ae7590ac42a"
     },
     "txt": {
-      "bytes": 2499,
-      "sha256": "1e090fbeccecbe824cbefbbca1418cd38ac46ea50aff4018f766c969a7188680"
+      "bytes": 2732,
+      "sha256": "2aa51060f7144ac1b331e5cc74f9c176a8aa4666b9bcfa3475ee96fc359b9124"
     },
     "workbook": {
-      "bytes": 13909,
-      "sha256": "069f246f4ba260d2a1429e0a7df2e28db587c73c9fb392a67c956db21076d0de"
+      "bytes": 14571,
+      "sha256": "c0ee7cbe6de47f55063a8c55b287520ed85c9a4af6d18000302e6f733e55c0e2"
     }
   },
   "no-signature/hostile/pending/B": {
     "eml": {
-      "bytes": 56940,
-      "sha256": "d0529ad1f2b985737c9943e53f3520323b575a55bf92f78c911a9b3efdcb00f1"
+      "bytes": 57826,
+      "sha256": "d8e611a25bd126282902a0d4e23e18009484f76ba6a6aa36b9ade76f423c0252"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -6786,26 +6786,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 41399,
-      "sha256": "e822c9b4b27de11635809fe98b243a1836436a50882146208df53bbf2a7023d3"
+      "bytes": 42048,
+      "sha256": "fab12203e8c07cb73b0ad2c2dd4ad2b64c0291a5b863f754f3bf033bc4194f6c"
     },
     "ps1": {
-      "bytes": 62236,
-      "sha256": "5481d773925d85692890f0a38b17ef2211eade3e561a6ee64bde44cc6e6408af"
+      "bytes": 63173,
+      "sha256": "955d0b305e8274e895ab1265064d2fbf7a5185c66cd6018d36b608b942ac299b"
     },
     "txt": {
-      "bytes": 2499,
-      "sha256": "1e090fbeccecbe824cbefbbca1418cd38ac46ea50aff4018f766c969a7188680"
+      "bytes": 2732,
+      "sha256": "2aa51060f7144ac1b331e5cc74f9c176a8aa4666b9bcfa3475ee96fc359b9124"
     },
     "workbook": {
-      "bytes": 13909,
-      "sha256": "069f246f4ba260d2a1429e0a7df2e28db587c73c9fb392a67c956db21076d0de"
+      "bytes": 14571,
+      "sha256": "c0ee7cbe6de47f55063a8c55b287520ed85c9a4af6d18000302e6f733e55c0e2"
     }
   },
   "no-signature/hostile/pending/C": {
     "eml": {
-      "bytes": 62342,
-      "sha256": "4e181a1ddb4f78915e5e457f4ca289b35d95df483dedc349c4d4356f05db6572"
+      "bytes": 63228,
+      "sha256": "47f7039af3151a9583c1a94ae1dbca73499bdb20dc521246a5150c502d955ea1"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -6813,26 +6813,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 45137,
-      "sha256": "93175a0d694d384ecffdf293935a1372ecf124b2dc2ef71a3058b50e1ceef9a7"
+      "bytes": 45786,
+      "sha256": "0c6cfa7a2489cb150b9627a07d3a85a3362583ef6f4288de2068970d96e7e6ac"
     },
     "ps1": {
-      "bytes": 66082,
-      "sha256": "75d160286853db179c8a1858e8b659a45f31f5734bf9ae922cb08f69820b8409"
+      "bytes": 67019,
+      "sha256": "ab6deb0f56022910998eb28789e02003ef2546b9d24db8295d0cd0f37b5dd381"
     },
     "txt": {
-      "bytes": 2499,
-      "sha256": "1e090fbeccecbe824cbefbbca1418cd38ac46ea50aff4018f766c969a7188680"
+      "bytes": 2732,
+      "sha256": "2aa51060f7144ac1b331e5cc74f9c176a8aa4666b9bcfa3475ee96fc359b9124"
     },
     "workbook": {
-      "bytes": 13909,
-      "sha256": "069f246f4ba260d2a1429e0a7df2e28db587c73c9fb392a67c956db21076d0de"
+      "bytes": 14571,
+      "sha256": "c0ee7cbe6de47f55063a8c55b287520ed85c9a4af6d18000302e6f733e55c0e2"
     }
   },
   "no-signature/hostile/pending/D": {
     "eml": {
-      "bytes": 54296,
-      "sha256": "150141c8075ff428756142b1c4c422d1dfa27e5eb3a6aa112864a01957c7f8ab"
+      "bytes": 55182,
+      "sha256": "eb82215d007fb5b4130a904440611bd1181fff4a3b910dc3e713378c147e4016"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -6840,20 +6840,20 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 39466,
-      "sha256": "b243be9d4259aedc24b2ea1ed7b5ad3d90a30037de6ff92062b5aaae220a589e"
+      "bytes": 40115,
+      "sha256": "9c186e2156ea82800468b0d1a6599cbc8ab9295d65f63b260e4569faa46a35ce"
     },
     "ps1": {
-      "bytes": 60303,
-      "sha256": "2d18c083d6c3633bd837cd743e6358d8e58a3f9f4d27c613281e6d1b36a46677"
+      "bytes": 61240,
+      "sha256": "a20035a19923e130278322dc5ba057b636429beea7acb05e335d42f7ad62ba20"
     },
     "txt": {
-      "bytes": 2499,
-      "sha256": "1e090fbeccecbe824cbefbbca1418cd38ac46ea50aff4018f766c969a7188680"
+      "bytes": 2732,
+      "sha256": "2aa51060f7144ac1b331e5cc74f9c176a8aa4666b9bcfa3475ee96fc359b9124"
     },
     "workbook": {
-      "bytes": 13909,
-      "sha256": "069f246f4ba260d2a1429e0a7df2e28db587c73c9fb392a67c956db21076d0de"
+      "bytes": 14571,
+      "sha256": "c0ee7cbe6de47f55063a8c55b287520ed85c9a4af6d18000302e6f733e55c0e2"
     }
   },
   "no-signature/sample/daily/A": {
@@ -7304,8 +7304,8 @@
   },
   "plain-signature/hostile/monthly/A": {
     "eml": {
-      "bytes": 57700,
-      "sha256": "a3eb7d50093cf812b5b5131a3731e5e87d60d51e29cf7c778c9759838f89fbe7"
+      "bytes": 58586,
+      "sha256": "9b069f876723d85e71550a84e084ef4e603bd44eaa69ba40115eb8abd1f5254c"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -7313,26 +7313,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 41954,
-      "sha256": "8c5fa60991471bceb399cbe38b6011e09c0a6f0c3da80beeb6362446e31f1417"
+      "bytes": 42603,
+      "sha256": "7737d26efe37b1457669ef17f80eb1a4ab40c1a854475db9169553b4e0a07f5d"
     },
     "ps1": {
-      "bytes": 62810,
-      "sha256": "63581841234201c06c47fab7f33967dcbbde2c22a69d58bff4a36a00ea2897bb"
+      "bytes": 63731,
+      "sha256": "bc98e383c692b61c15dc6c9eba79c61abb00c17d3bcb3ec630fb4f01e985a976"
     },
     "txt": {
-      "bytes": 2456,
-      "sha256": "2507cb00ffa55af03484facca26fe257a0bbec98084ce3641a81ca6065555c0b"
+      "bytes": 2689,
+      "sha256": "a42aaafc063776c3f54a3c29edaa5fba1a03c284bd8ae86ed1575618b1953623"
     },
     "workbook": {
-      "bytes": 13927,
-      "sha256": "31842b8af0766a9b5ea9f1cad0343bf97718d6ff16660654f77c1ca6651cb6d1"
+      "bytes": 14589,
+      "sha256": "bbf06e772ac5201726b6f5695e5a5416ecbb8a75e20f60ced4c6bc0106231aa2"
     }
   },
   "plain-signature/hostile/monthly/B": {
     "eml": {
-      "bytes": 56320,
-      "sha256": "7d32371cdb9464c301f867a8ce019559e24d7cb73046ff70bdf2eb2bbf176971"
+      "bytes": 57206,
+      "sha256": "4fefc61eb531e6d72990c879b2d75c74f158295db5ea3d99e1394d7e456cd972"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -7340,26 +7340,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 40946,
-      "sha256": "7ffdb97ef00534c584821222f8a0a4c38f4e3b7f1736fbffaf48bf6bb5ae126e"
+      "bytes": 41595,
+      "sha256": "b7fba763d323e16211fa584b210cc5dbce450b1060418bca62fec4ca4ae9c4cf"
     },
     "ps1": {
-      "bytes": 61802,
-      "sha256": "2b1b888cadcdb9eb536cbfcb4e8e1f4816a3f24536e768a847dab0dca25e49a6"
+      "bytes": 62723,
+      "sha256": "8070b908b1bb8c62c5aba928bdf299383bd9375e58edc5640499341c0db057d5"
     },
     "txt": {
-      "bytes": 2456,
-      "sha256": "2507cb00ffa55af03484facca26fe257a0bbec98084ce3641a81ca6065555c0b"
+      "bytes": 2689,
+      "sha256": "a42aaafc063776c3f54a3c29edaa5fba1a03c284bd8ae86ed1575618b1953623"
     },
     "workbook": {
-      "bytes": 13927,
-      "sha256": "31842b8af0766a9b5ea9f1cad0343bf97718d6ff16660654f77c1ca6651cb6d1"
+      "bytes": 14589,
+      "sha256": "bbf06e772ac5201726b6f5695e5a5416ecbb8a75e20f60ced4c6bc0106231aa2"
     }
   },
   "plain-signature/hostile/monthly/C": {
     "eml": {
-      "bytes": 61726,
-      "sha256": "eaff2012c77df2abd981aae6fb4f7ae2a41e9f15352cb3dbe02b9b6ed8777978"
+      "bytes": 62612,
+      "sha256": "d130bada20c06da9f87d8ca0cdb54f929ac97e81c6a4eafed827db1ccbcce554"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -7367,26 +7367,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 44688,
-      "sha256": "aea72de3f9fb7eb61ea23d2ba81de7f97706b2529877973fa0f7bda10d740579"
+      "bytes": 45337,
+      "sha256": "f2525779c00edc90c471cda21735846d14419d8b28910577597eeaae4fa9cb32"
     },
     "ps1": {
-      "bytes": 65652,
-      "sha256": "54ba1993b41a0f5f94140d398e4081b2fa10407365a7d74c848bf69e23963d56"
+      "bytes": 66573,
+      "sha256": "1119f4e687e9fcd7bff39a11c381df8b55d748a0eb9e8eda63bd1524a85c0b2a"
     },
     "txt": {
-      "bytes": 2456,
-      "sha256": "2507cb00ffa55af03484facca26fe257a0bbec98084ce3641a81ca6065555c0b"
+      "bytes": 2689,
+      "sha256": "a42aaafc063776c3f54a3c29edaa5fba1a03c284bd8ae86ed1575618b1953623"
     },
     "workbook": {
-      "bytes": 13927,
-      "sha256": "31842b8af0766a9b5ea9f1cad0343bf97718d6ff16660654f77c1ca6651cb6d1"
+      "bytes": 14589,
+      "sha256": "bbf06e772ac5201726b6f5695e5a5416ecbb8a75e20f60ced4c6bc0106231aa2"
     }
   },
   "plain-signature/hostile/monthly/D": {
     "eml": {
-      "bytes": 53676,
-      "sha256": "2ef2d4bc07b72a1750104beece6a2dd8a61d5cd3396cb6415f5d4cf5ebe89b65"
+      "bytes": 54562,
+      "sha256": "0c84e934c1f7bd8dd6a0323fd97fbee30fc603c09a2727d524fad20b688dd94d"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -7394,26 +7394,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 39013,
-      "sha256": "d6264a6fce869965144af410be44b40828e35380f139221b9d79a114b722a822"
+      "bytes": 39662,
+      "sha256": "d42e6367d894d0c144bc2f4a1072ec9a6bcc1c385fe2bbafc849aa578dd23606"
     },
     "ps1": {
-      "bytes": 59869,
-      "sha256": "a460cd5fc926ad29f03e78192eab682426b3f01756b9616ad989a83e4b08eb53"
+      "bytes": 60790,
+      "sha256": "647ed22ab5a125e63e73e45a09fbd857f22f36951fd7a4f0f3eb2d6d3f80adfe"
     },
     "txt": {
-      "bytes": 2456,
-      "sha256": "2507cb00ffa55af03484facca26fe257a0bbec98084ce3641a81ca6065555c0b"
+      "bytes": 2689,
+      "sha256": "a42aaafc063776c3f54a3c29edaa5fba1a03c284bd8ae86ed1575618b1953623"
     },
     "workbook": {
-      "bytes": 13927,
-      "sha256": "31842b8af0766a9b5ea9f1cad0343bf97718d6ff16660654f77c1ca6651cb6d1"
+      "bytes": 14589,
+      "sha256": "bbf06e772ac5201726b6f5695e5a5416ecbb8a75e20f60ced4c6bc0106231aa2"
     }
   },
   "plain-signature/hostile/pending/A": {
     "eml": {
-      "bytes": 57694,
-      "sha256": "7f22bb83c211461e6daa73dfb1e71c931692f2d1c0a069482908da171cac2e59"
+      "bytes": 58582,
+      "sha256": "8bc9987bb8574494202d9de77656acb16c9c35450ffe015a88b201366c791614"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -7421,26 +7421,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 41950,
-      "sha256": "2861e1c9e8cb65bd6551b7690cc65cfd71c963ca374808826e520c6eb130a2e9"
+      "bytes": 42599,
+      "sha256": "b0402aed8094ef1aeea703a3c4c46a63348ed110384f5db8124a60fe8a863e36"
     },
     "ps1": {
-      "bytes": 62787,
-      "sha256": "4def8c714c55dade78b7332c80f6ba540c068a9a7f6d6c54ac407d77cfc5d2f5"
+      "bytes": 63724,
+      "sha256": "d56cfd65ac50c45c03f679a26f35e3f2a7bac2b9d69d20a58283ee6660e0a6f9"
     },
     "txt": {
-      "bytes": 2456,
-      "sha256": "a5cfef6e201bcbec45db67d71ea7880797f93695fd3b802ed07b7518b3d9bafc"
+      "bytes": 2689,
+      "sha256": "a3fc4d0e467b0e46fb030d315bef357b9611932c97ee8d4444372af7ac4f5726"
     },
     "workbook": {
-      "bytes": 13909,
-      "sha256": "069f246f4ba260d2a1429e0a7df2e28db587c73c9fb392a67c956db21076d0de"
+      "bytes": 14571,
+      "sha256": "c0ee7cbe6de47f55063a8c55b287520ed85c9a4af6d18000302e6f733e55c0e2"
     }
   },
   "plain-signature/hostile/pending/B": {
     "eml": {
-      "bytes": 56316,
-      "sha256": "73e7461768d90a0e5849dcb7030f20f9667f6dbacc54b1efbb1276fc951ae769"
+      "bytes": 57202,
+      "sha256": "4f8c378af1a8a12ff34631bf2f8fb6d1fec591825f1dcf40947c0aba759a97ff"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -7448,26 +7448,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 40942,
-      "sha256": "742f772d0d8bf5cd500b4c7bcbb6eeb86c3177548e1e2d8a5af60ff039287624"
+      "bytes": 41591,
+      "sha256": "8af3dc5bd1181d1cc3f8d7bf98748b93af6b82db1c6098cb2bfd93b3a75dde2f"
     },
     "ps1": {
-      "bytes": 61779,
-      "sha256": "601f0b4ed579d8c479fd21389447b62d0b6107df01c2750dd87d969e0d7d02ee"
+      "bytes": 62716,
+      "sha256": "d5169c69307c02d5790332804c92f3e478ac7096b03ee73e10ce1c629429ae16"
     },
     "txt": {
-      "bytes": 2456,
-      "sha256": "a5cfef6e201bcbec45db67d71ea7880797f93695fd3b802ed07b7518b3d9bafc"
+      "bytes": 2689,
+      "sha256": "a3fc4d0e467b0e46fb030d315bef357b9611932c97ee8d4444372af7ac4f5726"
     },
     "workbook": {
-      "bytes": 13909,
-      "sha256": "069f246f4ba260d2a1429e0a7df2e28db587c73c9fb392a67c956db21076d0de"
+      "bytes": 14571,
+      "sha256": "c0ee7cbe6de47f55063a8c55b287520ed85c9a4af6d18000302e6f733e55c0e2"
     }
   },
   "plain-signature/hostile/pending/C": {
     "eml": {
-      "bytes": 61714,
-      "sha256": "b946adf3ec8df8800471f480009765955f4f8bbb657b7a2261f52a9432eab7c7"
+      "bytes": 62604,
+      "sha256": "fd2473168ad64caa79b9e1e7477019b0a765bdd7ac50107384122b7f9a988f9f"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -7475,26 +7475,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 44680,
-      "sha256": "a0ef14b61948172c27d547d116e000347c4501b5ed85c6e2401c6dae305a244a"
+      "bytes": 45329,
+      "sha256": "a2450636bf69704e0b21844539151c153fa2e0177dde316f0efe9d61d9364185"
     },
     "ps1": {
-      "bytes": 65625,
-      "sha256": "8cbc4872eca4712e31a5b36da0c22a687233fa712aa7ff1164f48c756dd95b6c"
+      "bytes": 66562,
+      "sha256": "e7fdfc833b9542dd77e660389c1b8a89f1420157c2a181d0e74de861a4b5cec3"
     },
     "txt": {
-      "bytes": 2456,
-      "sha256": "a5cfef6e201bcbec45db67d71ea7880797f93695fd3b802ed07b7518b3d9bafc"
+      "bytes": 2689,
+      "sha256": "a3fc4d0e467b0e46fb030d315bef357b9611932c97ee8d4444372af7ac4f5726"
     },
     "workbook": {
-      "bytes": 13909,
-      "sha256": "069f246f4ba260d2a1429e0a7df2e28db587c73c9fb392a67c956db21076d0de"
+      "bytes": 14571,
+      "sha256": "c0ee7cbe6de47f55063a8c55b287520ed85c9a4af6d18000302e6f733e55c0e2"
     }
   },
   "plain-signature/hostile/pending/D": {
     "eml": {
-      "bytes": 53668,
-      "sha256": "cbded963e6b3b9986468fbb1588262212237ebeb24d4dd36a79d047f2e359de9"
+      "bytes": 54558,
+      "sha256": "035f5ec8ac6202c5e694d86ba5ad775598f01cd79370a7e3d85f718462c07c0b"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -7502,20 +7502,20 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 39009,
-      "sha256": "ef1a93fb5c63d5c04acd8cd34915bad1759cf799ce3a4a23d6eecac2adf0bf13"
+      "bytes": 39658,
+      "sha256": "57e4f2ae2835a52e89498bcb5a783ece94101bfd8fd3e1efae00252dbb5d3540"
     },
     "ps1": {
-      "bytes": 59846,
-      "sha256": "d3247abf4930e6e51fcece4d31a7b9ae59d0969a45cdc9a3f96a8ae07e92eaa5"
+      "bytes": 60783,
+      "sha256": "8d2f481bad3056b66a2f9ea891a3c2c55fb88f8916015746fc05c7b3faddbec3"
     },
     "txt": {
-      "bytes": 2456,
-      "sha256": "a5cfef6e201bcbec45db67d71ea7880797f93695fd3b802ed07b7518b3d9bafc"
+      "bytes": 2689,
+      "sha256": "a3fc4d0e467b0e46fb030d315bef357b9611932c97ee8d4444372af7ac4f5726"
     },
     "workbook": {
-      "bytes": 13909,
-      "sha256": "069f246f4ba260d2a1429e0a7df2e28db587c73c9fb392a67c956db21076d0de"
+      "bytes": 14571,
+      "sha256": "c0ee7cbe6de47f55063a8c55b287520ed85c9a4af6d18000302e6f733e55c0e2"
     }
   },
   "plain-signature/sample/daily/A": {
@@ -7966,8 +7966,8 @@
   },
   "show-engineer/hostile/monthly/A": {
     "eml": {
-      "bytes": 61124,
-      "sha256": "ff9e8a445644b558a12aa59f68fbeffb2fa91481472b27aa7978aa16da607d91"
+      "bytes": 62016,
+      "sha256": "59be8cb4eb1a8867a3d1004598e33eaa3de2aa4849fdd6ea55804c7c8a1709c1"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -7975,26 +7975,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 44247,
-      "sha256": "8782137e30619d0ab769385ce78d9c46f807f3d647b0d4b14aa19de745f3406b"
+      "bytes": 44896,
+      "sha256": "c2d8dd8d4ff4e2aadac01311d896f5e76e8b0a7495cfb379e9625bc39baa46c3"
     },
     "ps1": {
-      "bytes": 65371,
-      "sha256": "d22f65579f102d1d6ce4f8dd4569664223ec53f3bf9566b275df7bd3b2607fbe"
+      "bytes": 66292,
+      "sha256": "18e572f6ed2a06849866b123fa549e5f81f99f0384e6b48a93324e6394cb2cb2"
     },
     "txt": {
-      "bytes": 2567,
-      "sha256": "8fbd6635a097896bbda641d16abd6861b9d0a85cba357e5e75cc73f0d240a7db"
+      "bytes": 2800,
+      "sha256": "aeeed90187ceb742cacffec4522b673e05d8e038b2ac7b2151b03cd327388e92"
     },
     "workbook": {
-      "bytes": 14464,
-      "sha256": "db4552fc14695cb16f39bd8e1e0a6f89ca8fcc1ce7d1072af0946d25efbd89cc"
+      "bytes": 15126,
+      "sha256": "bed81c5dc8e4c469a466e4f74aa9a6d9514618671e40d328ece0654933691c2f"
     }
   },
   "show-engineer/hostile/monthly/B": {
     "eml": {
-      "bytes": 59598,
-      "sha256": "ccfbac4718c79d9e1d2d5a2119c1f464304869914a32a8d38dcaa2ca263782cb"
+      "bytes": 60484,
+      "sha256": "de61e7d4f5f713bef0718c6ec9f1ca6c48f536b3f0d2454a44fc9ba23b3f33fc"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -8002,26 +8002,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 43130,
-      "sha256": "fb609d87fc5bf6cb4b505c4ab9b94bbcc287cf56efc31df9db323ae8ba546855"
+      "bytes": 43779,
+      "sha256": "6bb4fc7c35b66e4d9ec43140b70c9303e42415649a16a361dcd6aa08bc2bb1e9"
     },
     "ps1": {
-      "bytes": 64254,
-      "sha256": "f37bda41e9521bc6d166f21703171815d8d351fabb5b49a270b8c95ebcee1248"
+      "bytes": 65175,
+      "sha256": "da315cbe96cbf073cc57f432649f96b7c1370b4be47aedf476ad15de545f45ee"
     },
     "txt": {
-      "bytes": 2567,
-      "sha256": "8fbd6635a097896bbda641d16abd6861b9d0a85cba357e5e75cc73f0d240a7db"
+      "bytes": 2800,
+      "sha256": "aeeed90187ceb742cacffec4522b673e05d8e038b2ac7b2151b03cd327388e92"
     },
     "workbook": {
-      "bytes": 14464,
-      "sha256": "db4552fc14695cb16f39bd8e1e0a6f89ca8fcc1ce7d1072af0946d25efbd89cc"
+      "bytes": 15126,
+      "sha256": "bed81c5dc8e4c469a466e4f74aa9a6d9514618671e40d328ece0654933691c2f"
     }
   },
   "show-engineer/hostile/monthly/C": {
     "eml": {
-      "bytes": 65036,
-      "sha256": "d1ea61263a3e72aa1677956fc8e85941bedf7bc101714b9217964eeba862b1f6"
+      "bytes": 65922,
+      "sha256": "34209ec05482b56302480cf6239277849c45e95e663bedd03256ed24484023d7"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -8029,26 +8029,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 46994,
-      "sha256": "fbdcece1d466030bb2eb561fe7c68dc61e372c7545d0c30a6e10d1f13f8c148c"
+      "bytes": 47643,
+      "sha256": "c7e05b26af57897f0b4619dbe1b418840f9fb75df82ce1ea666ae87455435fd1"
     },
     "ps1": {
-      "bytes": 68226,
-      "sha256": "2b2a3ca829015c4a2dcd5973c351e9a6aec7d08ae3c8e5ef4d385c19fb3792ae"
+      "bytes": 69147,
+      "sha256": "7cea16ddf99b5d0f96aa0c064cd6beb5fbc572710087eef13196d60b7e1a6a3c"
     },
     "txt": {
-      "bytes": 2567,
-      "sha256": "8fbd6635a097896bbda641d16abd6861b9d0a85cba357e5e75cc73f0d240a7db"
+      "bytes": 2800,
+      "sha256": "aeeed90187ceb742cacffec4522b673e05d8e038b2ac7b2151b03cd327388e92"
     },
     "workbook": {
-      "bytes": 14464,
-      "sha256": "db4552fc14695cb16f39bd8e1e0a6f89ca8fcc1ce7d1072af0946d25efbd89cc"
+      "bytes": 15126,
+      "sha256": "bed81c5dc8e4c469a466e4f74aa9a6d9514618671e40d328ece0654933691c2f"
     }
   },
   "show-engineer/hostile/monthly/D": {
     "eml": {
-      "bytes": 56822,
-      "sha256": "82ce79b3298c731e4a462b395b1ea7dedf9660a559836bfaca885309b4014206"
+      "bytes": 57714,
+      "sha256": "948c0daf5f294c92aeab39fb7815cd5f8e2641b7b1bd82a6f6b7f4c1b99931a8"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -8056,26 +8056,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 41103,
-      "sha256": "cf96a13819544c50b9750583ee38d87a3069ad3e058c662bcf7a9c6363c6bb06"
+      "bytes": 41752,
+      "sha256": "2c54fbf938e58bc6a3649b94ae117821f7a723b010e27afd006d63fd896adc24"
     },
     "ps1": {
-      "bytes": 62227,
-      "sha256": "1e763d329c27dd7cb614134ae5cf849fb7946cc5b23424fd163ab9ba25a19f1d"
+      "bytes": 63148,
+      "sha256": "2e72e0fa89212ccb229a29ecc8a5bf8ed3bba81371385e68f8ec449d7001a4df"
     },
     "txt": {
-      "bytes": 2567,
-      "sha256": "8fbd6635a097896bbda641d16abd6861b9d0a85cba357e5e75cc73f0d240a7db"
+      "bytes": 2800,
+      "sha256": "aeeed90187ceb742cacffec4522b673e05d8e038b2ac7b2151b03cd327388e92"
     },
     "workbook": {
-      "bytes": 14464,
-      "sha256": "db4552fc14695cb16f39bd8e1e0a6f89ca8fcc1ce7d1072af0946d25efbd89cc"
+      "bytes": 15126,
+      "sha256": "bed81c5dc8e4c469a466e4f74aa9a6d9514618671e40d328ece0654933691c2f"
     }
   },
   "show-engineer/hostile/pending/A": {
     "eml": {
-      "bytes": 61120,
-      "sha256": "eb0f6668ac69b070891dd767f9bfa2759c369ef365e569072ec0cfb4824c8ba1"
+      "bytes": 62008,
+      "sha256": "582fe42a6c107e73154332c9951e131bb4129304c1da6844b142018227ef46a2"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -8083,26 +8083,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 44243,
-      "sha256": "de326ed853b1af8d4e041fb189f366f484bd89a95640fdc3a319c4eff96b7365"
+      "bytes": 44892,
+      "sha256": "e3ea6f1b8b5cb002e7360794c084212a46dd17c83a37610792acd501b1cd12ba"
     },
     "ps1": {
-      "bytes": 65348,
-      "sha256": "79cf4f7a8e63e5aeac056af939bf719b85618aa055c2ed41737c4adcfbfea5b2"
+      "bytes": 66285,
+      "sha256": "c370d927c4be2ee2e77d53e8d19da86e99f6f5ee8874a9bc3e65f7fc1abbbf5c"
     },
     "txt": {
-      "bytes": 2567,
-      "sha256": "70d825f0a047637da3952d8b5ab7971c9c99151a331a69ce5a781ca3ceb86775"
+      "bytes": 2800,
+      "sha256": "98ab245de4ab4d95d4f87c68dc8e939ba338fb6f475c32c58c2e1dc00c50bb44"
     },
     "workbook": {
-      "bytes": 14446,
-      "sha256": "469dcd3bb468c966791273e58ba37fb65e06fb5389fa20c3c46f903381a71be3"
+      "bytes": 15108,
+      "sha256": "c708f36c2f48bb9117220b90cd703654dee839f5ad237e92c598aa5d814376cb"
     }
   },
   "show-engineer/hostile/pending/B": {
     "eml": {
-      "bytes": 59594,
-      "sha256": "6da585cd392031f43106a91caa19842ed160444fe0ce2ea88ece93d78dafafb3"
+      "bytes": 60480,
+      "sha256": "ebc89f94c1cc3ad7ca1bd9da3e044a760d5fdcea77da159b8ebe4b017ec10df9"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -8110,26 +8110,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 43126,
-      "sha256": "4d40a35becfcc6231876e30df9964df8968eac1df8ca0aa26b15a177166accb4"
+      "bytes": 43775,
+      "sha256": "b750e680ce513ebb5abb0331f0339bae6ac6f55d096703c0d3615cbedddc19ae"
     },
     "ps1": {
-      "bytes": 64231,
-      "sha256": "0eec3d7d2f97902eb8907565aa225d392d9f58790cd18f9567fadd36479e100b"
+      "bytes": 65168,
+      "sha256": "04e382584b125bbd30707252a40ac388a726baf7b3428a6d752a500d3d540128"
     },
     "txt": {
-      "bytes": 2567,
-      "sha256": "70d825f0a047637da3952d8b5ab7971c9c99151a331a69ce5a781ca3ceb86775"
+      "bytes": 2800,
+      "sha256": "98ab245de4ab4d95d4f87c68dc8e939ba338fb6f475c32c58c2e1dc00c50bb44"
     },
     "workbook": {
-      "bytes": 14446,
-      "sha256": "469dcd3bb468c966791273e58ba37fb65e06fb5389fa20c3c46f903381a71be3"
+      "bytes": 15108,
+      "sha256": "c708f36c2f48bb9117220b90cd703654dee839f5ad237e92c598aa5d814376cb"
     }
   },
   "show-engineer/hostile/pending/C": {
     "eml": {
-      "bytes": 65024,
-      "sha256": "fb08274d8d390a8455c33fb136382c631e7305bde575eb793e7480f1c1c230dc"
+      "bytes": 65910,
+      "sha256": "1621d7e62e5e15d3d9fa09accca9b9dfccee8f32d7eb2d7508df782dc460f5ef"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -8137,26 +8137,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 46986,
-      "sha256": "ea067b1265e6c75c8efa2674c4f38d2bb17e8914b5ec4d4706ed2a07ab0e2eca"
+      "bytes": 47635,
+      "sha256": "262b65bf4774d63ce4d548e6ae3a9c483e14f9e0da04b9801eed3508d790d302"
     },
     "ps1": {
-      "bytes": 68199,
-      "sha256": "9bafe30c2df08de830b095c767216bd4e5bd7e594a44eca7547e40e0fef16a8e"
+      "bytes": 69136,
+      "sha256": "c10197483e963bfc5cccb7ab01a0c88fe1c23d113fe00879675d09d99efd0b9b"
     },
     "txt": {
-      "bytes": 2567,
-      "sha256": "70d825f0a047637da3952d8b5ab7971c9c99151a331a69ce5a781ca3ceb86775"
+      "bytes": 2800,
+      "sha256": "98ab245de4ab4d95d4f87c68dc8e939ba338fb6f475c32c58c2e1dc00c50bb44"
     },
     "workbook": {
-      "bytes": 14446,
-      "sha256": "469dcd3bb468c966791273e58ba37fb65e06fb5389fa20c3c46f903381a71be3"
+      "bytes": 15108,
+      "sha256": "c708f36c2f48bb9117220b90cd703654dee839f5ad237e92c598aa5d814376cb"
     }
   },
   "show-engineer/hostile/pending/D": {
     "eml": {
-      "bytes": 56818,
-      "sha256": "d3845be64b477a73e11f019b65b9dde37b16c32d9356df56b97e8cf0359442ec"
+      "bytes": 57704,
+      "sha256": "e6cab5be4b331f54a71d40ee606d85d8d92e85667036e00e5939d41dae8eee79"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -8164,20 +8164,20 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 41099,
-      "sha256": "d367110b13802c8fa916d675b70ef90a1088f2fd04bb4016602bc03c2854048a"
+      "bytes": 41748,
+      "sha256": "c925813025a840ddc84f607418e289df1769b689d0389ed0f2337824e4da4a62"
     },
     "ps1": {
-      "bytes": 62204,
-      "sha256": "02946683b76648fdf336c081e31f98b9d9eeb0f8f555837c28d4d706ab874b83"
+      "bytes": 63141,
+      "sha256": "2babfb8a91b8b1967af1e10720181e7fd96d460c085443d6e02ebda30432ead6"
     },
     "txt": {
-      "bytes": 2567,
-      "sha256": "70d825f0a047637da3952d8b5ab7971c9c99151a331a69ce5a781ca3ceb86775"
+      "bytes": 2800,
+      "sha256": "98ab245de4ab4d95d4f87c68dc8e939ba338fb6f475c32c58c2e1dc00c50bb44"
     },
     "workbook": {
-      "bytes": 14446,
-      "sha256": "469dcd3bb468c966791273e58ba37fb65e06fb5389fa20c3c46f903381a71be3"
+      "bytes": 15108,
+      "sha256": "c708f36c2f48bb9117220b90cd703654dee839f5ad237e92c598aa5d814376cb"
     }
   },
   "show-engineer/sample/daily/A": {
@@ -8628,8 +8628,8 @@
   },
   "summary-only/hostile/monthly/A": {
     "eml": {
-      "bytes": 41456,
-      "sha256": "9057f2ff05ed8fb28ba1f0a04e0ff490074ccaf0374e3a0409eec42cbd4332fe"
+      "bytes": 42348,
+      "sha256": "9f005d517d0c1288b511af6e906138feb20f78078201ab52f1db7f6d06a716b7"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -8637,26 +8637,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 29874,
-      "sha256": "efca3741ae994c8b8f0aca2a0f9c294507e57312f9c985189519fb522171e5bd"
+      "bytes": 30523,
+      "sha256": "df0d5973c5fd84b45a71d93b1b17d20a250644dc585ebd61e770dab1f8cb48e8"
     },
     "ps1": {
-      "bytes": 50838,
-      "sha256": "cd9ccf14d0a87f6969207fb1083e5e38019e166355a05388dcc99ec84be410d0"
+      "bytes": 51759,
+      "sha256": "e16493269c9851c147a7d2d352bac95f5ab7ef6570369fe6c704239e346a68cd"
     },
     "txt": {
-      "bytes": 1487,
-      "sha256": "0dc267a971ea630a5dcf1190a5574492e715c8308fa2143d234780f81b5482b7"
+      "bytes": 1720,
+      "sha256": "de72ea5af27bd013b27c548750bf8f397b90156f35b9bebaea0c07aa7773b67a"
     },
     "workbook": {
-      "bytes": 13927,
-      "sha256": "31842b8af0766a9b5ea9f1cad0343bf97718d6ff16660654f77c1ca6651cb6d1"
+      "bytes": 14589,
+      "sha256": "bbf06e772ac5201726b6f5695e5a5416ecbb8a75e20f60ced4c6bc0106231aa2"
     }
   },
   "summary-only/hostile/monthly/B": {
     "eml": {
-      "bytes": 40750,
-      "sha256": "0c61a8abdaada627e7881d22049ac4c9e42faf31dfdeea49516ef82abc742e13"
+      "bytes": 41640,
+      "sha256": "834fd353ab277a2caf0823febe407f59b14299880243ec41bcb36539da76b163"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -8664,26 +8664,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 29358,
-      "sha256": "d82d8659bc5094fa06669dd667196c5b2f05bc38150d76d132c7713ca0b6a30c"
+      "bytes": 30007,
+      "sha256": "a07a7df4d7d195149780e950341916d152191c76cb333a0fefe11edd34d119e7"
     },
     "ps1": {
-      "bytes": 50322,
-      "sha256": "ea988d05341390fe8e019916c7e6f2bdfb647d42e18a6477c8e018b49354e3af"
+      "bytes": 51243,
+      "sha256": "5ed94532733bc9ddea0ae4fe679f4b707e796badc89eb51fa68cc59241854726"
     },
     "txt": {
-      "bytes": 1487,
-      "sha256": "0dc267a971ea630a5dcf1190a5574492e715c8308fa2143d234780f81b5482b7"
+      "bytes": 1720,
+      "sha256": "de72ea5af27bd013b27c548750bf8f397b90156f35b9bebaea0c07aa7773b67a"
     },
     "workbook": {
-      "bytes": 13927,
-      "sha256": "31842b8af0766a9b5ea9f1cad0343bf97718d6ff16660654f77c1ca6651cb6d1"
+      "bytes": 14589,
+      "sha256": "bbf06e772ac5201726b6f5695e5a5416ecbb8a75e20f60ced4c6bc0106231aa2"
     }
   },
   "summary-only/hostile/monthly/C": {
     "eml": {
-      "bytes": 45212,
-      "sha256": "1e6cd10188acdbb51c11661b75f912029b668eb172ea472e514e75b396340a17"
+      "bytes": 46102,
+      "sha256": "f07c8bef81fc55a402f387e06118c63eac39a864f3286b716f65f752c7e7d5f8"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -8691,26 +8691,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 32509,
-      "sha256": "224e1334aae78e3a07cbda73c999b91b2a260b6a404d02f4a5260601167fc280"
+      "bytes": 33158,
+      "sha256": "a05d2c1f57a9393cee764dab210ba3361f43ba9e44e768c1708c51e710d4a1b8"
     },
     "ps1": {
-      "bytes": 53581,
-      "sha256": "0b8f35efced16d813267ea681903f5e798133f6f9fdb27f2eabd32fdc8150ca7"
+      "bytes": 54502,
+      "sha256": "b9ca5e60a97f1040907a5a057b6f6b0cf9ff049a5b102b38303152deddef2e80"
     },
     "txt": {
-      "bytes": 1487,
-      "sha256": "0dc267a971ea630a5dcf1190a5574492e715c8308fa2143d234780f81b5482b7"
+      "bytes": 1720,
+      "sha256": "de72ea5af27bd013b27c548750bf8f397b90156f35b9bebaea0c07aa7773b67a"
     },
     "workbook": {
-      "bytes": 13927,
-      "sha256": "31842b8af0766a9b5ea9f1cad0343bf97718d6ff16660654f77c1ca6651cb6d1"
+      "bytes": 14589,
+      "sha256": "bbf06e772ac5201726b6f5695e5a5416ecbb8a75e20f60ced4c6bc0106231aa2"
     }
   },
   "summary-only/hostile/monthly/D": {
     "eml": {
-      "bytes": 39100,
-      "sha256": "03be8444885b86d1106762d9ad48f04284d1a2452b308a70d1667a5ab478af8a"
+      "bytes": 39986,
+      "sha256": "19bba45a08787aa358013983224624fd82ac5b2de7f1cc0f9402277f3725fb78"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -8718,26 +8718,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 28150,
-      "sha256": "0d2b2faa1308e1e2a880e3d5623b3e41d2662d2fa5fd8b513b9a37182b7fff12"
+      "bytes": 28799,
+      "sha256": "128043bfdbc39709599bc90aef78afdd5eda3541c8ae259d4f9f78ff929d52c5"
     },
     "ps1": {
-      "bytes": 49114,
-      "sha256": "a662ccb15e7269ca141228d58232b333788fa54f59d9218eff3a27f79580388f"
+      "bytes": 50035,
+      "sha256": "96ae5a944deb07a2cec4a998f2d8b3c8d0617dfd1d5a8ed1c42da9564bfaf84e"
     },
     "txt": {
-      "bytes": 1487,
-      "sha256": "0dc267a971ea630a5dcf1190a5574492e715c8308fa2143d234780f81b5482b7"
+      "bytes": 1720,
+      "sha256": "de72ea5af27bd013b27c548750bf8f397b90156f35b9bebaea0c07aa7773b67a"
     },
     "workbook": {
-      "bytes": 13927,
-      "sha256": "31842b8af0766a9b5ea9f1cad0343bf97718d6ff16660654f77c1ca6651cb6d1"
+      "bytes": 14589,
+      "sha256": "bbf06e772ac5201726b6f5695e5a5416ecbb8a75e20f60ced4c6bc0106231aa2"
     }
   },
   "summary-only/hostile/pending/A": {
     "eml": {
-      "bytes": 41452,
-      "sha256": "19c6e434cde5182a58d167f40dc2d19686cd23de4adb3f581530391db5ce0577"
+      "bytes": 42338,
+      "sha256": "130aa8cd6b82a2d652e7a9045e07783eb3cbf05bc25eb7ff6c099f7d10655c45"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -8745,26 +8745,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 29870,
-      "sha256": "1b50e1a153cf14f911f7bc1cdecb4639a95635f71bdb6879a04d525d5f71742b"
+      "bytes": 30519,
+      "sha256": "9e0963c2e48658e2eb959715038011305b51937803ce3f853b0c7a03d6861284"
     },
     "ps1": {
-      "bytes": 50815,
-      "sha256": "99b8c875e02ec733fd7a67dd7a735ff7567684557ed6fe3fc196a0d956cbe9ba"
+      "bytes": 51752,
+      "sha256": "35264bc9eaaa51ab39d7b5e90d5a5572758ace08efbafae91bf19843c09982ab"
     },
     "txt": {
-      "bytes": 1487,
-      "sha256": "bad6a4fe5cde49156494b2fa2c0591adce68158bd81300eaacca55444cb5eda6"
+      "bytes": 1720,
+      "sha256": "159a19d9d5d15f30b01a26ed987ed579178daf8de86c314cadf06d7afbc80f1d"
     },
     "workbook": {
-      "bytes": 13909,
-      "sha256": "069f246f4ba260d2a1429e0a7df2e28db587c73c9fb392a67c956db21076d0de"
+      "bytes": 14571,
+      "sha256": "c0ee7cbe6de47f55063a8c55b287520ed85c9a4af6d18000302e6f733e55c0e2"
     }
   },
   "summary-only/hostile/pending/B": {
     "eml": {
-      "bytes": 40746,
-      "sha256": "e88e7e299636979f3c1801f1d6006823833b3218609ec819c175fded15a855cc"
+      "bytes": 41632,
+      "sha256": "ecbb533d50fce3215c914101b4a3332ad0a71b50dc6288396d3e442f5b46e64b"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -8772,26 +8772,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 29354,
-      "sha256": "a38c63c3d4612d3370ec1804c22af9e83bf08e7cb5b921924b0ced18c54dda4e"
+      "bytes": 30003,
+      "sha256": "e550b4348ada96b67ef0f6005a161b1ee9061da752f0eafb3518677e5a6e290e"
     },
     "ps1": {
-      "bytes": 50299,
-      "sha256": "544ec36cfd9a2b78f8d124adf6436c4220b3f57616babf050d166feff7d7803b"
+      "bytes": 51236,
+      "sha256": "8666c4a60fc8a83a2db3e855367500dcf0eaea9159375fc2de6d7b316c390e9f"
     },
     "txt": {
-      "bytes": 1487,
-      "sha256": "bad6a4fe5cde49156494b2fa2c0591adce68158bd81300eaacca55444cb5eda6"
+      "bytes": 1720,
+      "sha256": "159a19d9d5d15f30b01a26ed987ed579178daf8de86c314cadf06d7afbc80f1d"
     },
     "workbook": {
-      "bytes": 13909,
-      "sha256": "069f246f4ba260d2a1429e0a7df2e28db587c73c9fb392a67c956db21076d0de"
+      "bytes": 14571,
+      "sha256": "c0ee7cbe6de47f55063a8c55b287520ed85c9a4af6d18000302e6f733e55c0e2"
     }
   },
   "summary-only/hostile/pending/C": {
     "eml": {
-      "bytes": 45202,
-      "sha256": "0282e926f3b8340b2f5bead7883619b564ae226e865035c5c2a47a16bb10717a"
+      "bytes": 46090,
+      "sha256": "70a767164ff818aa2d83d7fbe84fa025b7aaa82c00dd92caad3d37ef2b69c141"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -8799,26 +8799,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 32501,
-      "sha256": "f652c42e34798e5c57079fbdd6bd76dc4843cc775b9df280145df57ca725d8bd"
+      "bytes": 33150,
+      "sha256": "c58866d786a8d7dbaf83fbb12bac847dc0a7100124cd298c00ed2864be75194d"
     },
     "ps1": {
-      "bytes": 53554,
-      "sha256": "433f936a11b6e2f5502e293b63e55ada5e96efbade72dade2b44404b67de3b6c"
+      "bytes": 54491,
+      "sha256": "d367e3f9034ebec51b5dbc0de56fd91d52471f39f56ee6d279bd10a480de8a68"
     },
     "txt": {
-      "bytes": 1487,
-      "sha256": "bad6a4fe5cde49156494b2fa2c0591adce68158bd81300eaacca55444cb5eda6"
+      "bytes": 1720,
+      "sha256": "159a19d9d5d15f30b01a26ed987ed579178daf8de86c314cadf06d7afbc80f1d"
     },
     "workbook": {
-      "bytes": 13909,
-      "sha256": "069f246f4ba260d2a1429e0a7df2e28db587c73c9fb392a67c956db21076d0de"
+      "bytes": 14571,
+      "sha256": "c0ee7cbe6de47f55063a8c55b287520ed85c9a4af6d18000302e6f733e55c0e2"
     }
   },
   "summary-only/hostile/pending/D": {
     "eml": {
-      "bytes": 39092,
-      "sha256": "ec6261afb4fa60d278f52d4e87afb5a72528744f8b85deea963edcee76dac81f"
+      "bytes": 39982,
+      "sha256": "5c4bdf92cb8edfa591cfdfc2a7482910c1dc95177330458bef41d1eadb1e417b"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -8826,20 +8826,20 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 28146,
-      "sha256": "884814e48be9598950e7c9f4d2a248560a8935527b149514f14bc79326b8dac4"
+      "bytes": 28795,
+      "sha256": "c6d2045f353ea14cafc7cf94567a6d71dfd37c9c806c3f8ed7bd2693fb823049"
     },
     "ps1": {
-      "bytes": 49091,
-      "sha256": "ba62c024c7045a59af970c097d5cff3bbe12c0cf95b488be6a19e30cf572bcac"
+      "bytes": 50028,
+      "sha256": "9f0011686abd68293100a9d6faca1b9cb7fdac4ccf534b7b520de7e54accacb4"
     },
     "txt": {
-      "bytes": 1487,
-      "sha256": "bad6a4fe5cde49156494b2fa2c0591adce68158bd81300eaacca55444cb5eda6"
+      "bytes": 1720,
+      "sha256": "159a19d9d5d15f30b01a26ed987ed579178daf8de86c314cadf06d7afbc80f1d"
     },
     "workbook": {
-      "bytes": 13909,
-      "sha256": "069f246f4ba260d2a1429e0a7df2e28db587c73c9fb392a67c956db21076d0de"
+      "bytes": 14571,
+      "sha256": "c0ee7cbe6de47f55063a8c55b287520ed85c9a4af6d18000302e6f733e55c0e2"
     }
   },
   "summary-only/sample/daily/A": {
@@ -9290,8 +9290,8 @@
   },
   "types-statuses/hostile/monthly/A": {
     "eml": {
-      "bytes": 39166,
-      "sha256": "95bec07fa676db672a5a4302a1f1707d9f96f388b7b84f3df086131d212cd56a"
+      "bytes": 40056,
+      "sha256": "f86982092bc8807b4baa25013c532c7510b5469a9456f98e9dc7e5974e095f86"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 4 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -9299,26 +9299,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 28200,
-      "sha256": "54f97f8a36d466c1fb6db6508a4e68009539ccadfdeb51c84ce6f12b207def52"
+      "bytes": 28849,
+      "sha256": "40ae2d8b10d2ae16be57af8820e8622137cd48bb4dee66ccba3cdf9a8ecbd2b7"
     },
     "ps1": {
-      "bytes": 47900,
-      "sha256": "08e2fedf457b6202e58d0b0867ad356a588a8b3c02a91150e07e08d2b7100466"
+      "bytes": 48829,
+      "sha256": "ff5fd70f6158f6b58329241ea1225b7554d99e16192cc9ceefed5488733566cc"
     },
     "txt": {
-      "bytes": 1798,
-      "sha256": "1729732a0807c7297755b374d6ac7ba74878dc032b8eef4754cb73cebc53e66c"
+      "bytes": 2031,
+      "sha256": "4022628ac2bb3e7e7e2524ef532cd9488aab0a563829b6fc26c186f0fa28eaba"
     },
     "workbook": {
-      "bytes": 9480,
-      "sha256": "2d19bf94b403d98cdf557eeaa84c851821594123fbbed126be681d6c9f7cf263"
+      "bytes": 10114,
+      "sha256": "38f5b68885dbc4b05de7f2851a4c86aa289f8abd54a109fea0b1ade7de048dc3"
     }
   },
   "types-statuses/hostile/monthly/B": {
     "eml": {
-      "bytes": 38842,
-      "sha256": "833ae978d6ec65cb44503189f9434f1e6d484a96c1b3c6cfa60b9ca2679fd0fd"
+      "bytes": 39728,
+      "sha256": "783b832d7fbe8120bb918a29de1fd752a1c1e5b82e1afee932419262cdc1793c"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 4 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -9326,26 +9326,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 27962,
-      "sha256": "f2e6a94dc0e75c977a87e48f9214612441f5c1a7f0bae2be3c46371c13c3d786"
+      "bytes": 28611,
+      "sha256": "c584b9175265c03dcff68e49776c04894f4e1574f3ece144e10cffc964e48761"
     },
     "ps1": {
-      "bytes": 47662,
-      "sha256": "aec567d0f6b385604771dbecf9e2f1276bd88891c8da64f5c5e864db846c1c53"
+      "bytes": 48591,
+      "sha256": "b932e48737fde4bcafa6dda8b74607efa18480084ad812cb7d3a3dea4c9642af"
     },
     "txt": {
-      "bytes": 1798,
-      "sha256": "1729732a0807c7297755b374d6ac7ba74878dc032b8eef4754cb73cebc53e66c"
+      "bytes": 2031,
+      "sha256": "4022628ac2bb3e7e7e2524ef532cd9488aab0a563829b6fc26c186f0fa28eaba"
     },
     "workbook": {
-      "bytes": 9480,
-      "sha256": "2d19bf94b403d98cdf557eeaa84c851821594123fbbed126be681d6c9f7cf263"
+      "bytes": 10114,
+      "sha256": "38f5b68885dbc4b05de7f2851a4c86aa289f8abd54a109fea0b1ade7de048dc3"
     }
   },
   "types-statuses/hostile/monthly/C": {
     "eml": {
-      "bytes": 43200,
-      "sha256": "772e9e6fcdeb31dd66fe1c74a90f30ad5f9c546f3b165b13d88145c40919be83"
+      "bytes": 44086,
+      "sha256": "9fe6570bf273677cdafbfaa745b7ed99f8d6db4f63b72b54ef283e0b97c9231d"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 4 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -9353,26 +9353,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 31037,
-      "sha256": "024bca7a657c71b9d4834822d3ff2daffb1f72d9e4f2b3988b18b5280d718744"
+      "bytes": 31686,
+      "sha256": "4ccc68996be4d1672e070ecde2594d933c826333b1d530bac4be6713ab334fc9"
     },
     "ps1": {
-      "bytes": 50845,
-      "sha256": "b793c2b3fc04c4e846a5507bf6586d92230ae6e30f6d49cbd9c5bb9226378cdf"
+      "bytes": 51774,
+      "sha256": "04952ef996a1f9a7daa2d9e33e7d579f56d43456e3da1f20b1a2be01842abe23"
     },
     "txt": {
-      "bytes": 1798,
-      "sha256": "1729732a0807c7297755b374d6ac7ba74878dc032b8eef4754cb73cebc53e66c"
+      "bytes": 2031,
+      "sha256": "4022628ac2bb3e7e7e2524ef532cd9488aab0a563829b6fc26c186f0fa28eaba"
     },
     "workbook": {
-      "bytes": 9480,
-      "sha256": "2d19bf94b403d98cdf557eeaa84c851821594123fbbed126be681d6c9f7cf263"
+      "bytes": 10114,
+      "sha256": "38f5b68885dbc4b05de7f2851a4c86aa289f8abd54a109fea0b1ade7de048dc3"
     }
   },
   "types-statuses/hostile/monthly/D": {
     "eml": {
-      "bytes": 37494,
-      "sha256": "dda377ebe9922668323cb6ef0ca1be2dc1e896b8b4d9323e9379caff32925e60"
+      "bytes": 38382,
+      "sha256": "fa72bbefd348d44b6bf707bdf71ae8c4751cded2f45cb23c33e0bbf65753e94b"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 4 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -9380,26 +9380,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 26978,
-      "sha256": "b69471a344f949426819d4ddf41b484602d30e410b9edb37a5f2bdbbaf712c41"
+      "bytes": 27627,
+      "sha256": "59b337a335da0d84612cb768e27c59547233086e62ca8d95263985a6e49f2a1b"
     },
     "ps1": {
-      "bytes": 46678,
-      "sha256": "b47f7a7f8cf216bc40ee2f85a2cc546bc9a328a502583ab6b6dc2738dc221a01"
+      "bytes": 47607,
+      "sha256": "6c46090e1850de9da978673030f8f97cd4f1f0a07805dc2d99baf5f59f2db1db"
     },
     "txt": {
-      "bytes": 1798,
-      "sha256": "1729732a0807c7297755b374d6ac7ba74878dc032b8eef4754cb73cebc53e66c"
+      "bytes": 2031,
+      "sha256": "4022628ac2bb3e7e7e2524ef532cd9488aab0a563829b6fc26c186f0fa28eaba"
     },
     "workbook": {
-      "bytes": 9480,
-      "sha256": "2d19bf94b403d98cdf557eeaa84c851821594123fbbed126be681d6c9f7cf263"
+      "bytes": 10114,
+      "sha256": "38f5b68885dbc4b05de7f2851a4c86aa289f8abd54a109fea0b1ade7de048dc3"
     }
   },
   "types-statuses/hostile/pending/A": {
     "eml": {
-      "bytes": 39162,
-      "sha256": "b371293ed2220df9c503ff6e44284a0e8b5dfc0244bca5dd881b67b9ab38899d"
+      "bytes": 40048,
+      "sha256": "9a00918c7bfe77b28290ceb7b325619116dec81ba0f1e3a7bb842e285af50837"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 4 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -9407,26 +9407,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 28196,
-      "sha256": "377c56f624e37756325ed520f252bc2d6abcdb95137c63c51315d0450ba7cc21"
+      "bytes": 28845,
+      "sha256": "ed8fe66ee2047e14d8ec4f59221aa5e40547972c0e76245e87da47b1abc8ad3b"
     },
     "ps1": {
-      "bytes": 47881,
-      "sha256": "b808543bcd41e2ace0d645d008c44289390aafaf3632eabefc5213cae8e78256"
+      "bytes": 48826,
+      "sha256": "1013ebbfc3f88a5dd8738e80abc649bf2bf212699c085d5e70754758cf397fde"
     },
     "txt": {
-      "bytes": 1798,
-      "sha256": "7c5bfac5e27111e42377b849135886b7edd1c0e3ca07ac42858534e03e257c3d"
+      "bytes": 2031,
+      "sha256": "8f651f4645eb85b4409e147e45dff53fb0e8fdd4a74378db8ce088f3fc90e16a"
     },
     "workbook": {
-      "bytes": 9462,
-      "sha256": "7ec09d7cc7791009c8c192e80a57cba136fbbeb66cd767a4950f7e8c9945bb51"
+      "bytes": 10096,
+      "sha256": "8c9182d9cca81cb3da1a8e0bcc765417f6b8775d9a930fe6be4597763a76ffc9"
     }
   },
   "types-statuses/hostile/pending/B": {
     "eml": {
-      "bytes": 38838,
-      "sha256": "c663bf4c792c3f6c990d645fe79637fb6b5f9a80d3425acf4203f42024dc7432"
+      "bytes": 39724,
+      "sha256": "2bb15719c388a23244c4be136c2451ed9978b03f73d77f88dd27eb42ffbe66a4"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 4 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -9434,26 +9434,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 27958,
-      "sha256": "76b38c24a28ead0595b172ae6f0613d72b4c10af5ed9d24327e719c7a87b5dbe"
+      "bytes": 28607,
+      "sha256": "5e2351713b69d784e2431d0feec8ea085f134135848840da0ffe45c16c44691a"
     },
     "ps1": {
-      "bytes": 47643,
-      "sha256": "739184a609a487b5207aaefa69f9d54b7fd2524f5103c11c10a016046dbd3be8"
+      "bytes": 48588,
+      "sha256": "c2b2b72f71ed17bf1c8f7ce9080620d1e993defa39319efce4da66e7a3a6dc19"
     },
     "txt": {
-      "bytes": 1798,
-      "sha256": "7c5bfac5e27111e42377b849135886b7edd1c0e3ca07ac42858534e03e257c3d"
+      "bytes": 2031,
+      "sha256": "8f651f4645eb85b4409e147e45dff53fb0e8fdd4a74378db8ce088f3fc90e16a"
     },
     "workbook": {
-      "bytes": 9462,
-      "sha256": "7ec09d7cc7791009c8c192e80a57cba136fbbeb66cd767a4950f7e8c9945bb51"
+      "bytes": 10096,
+      "sha256": "8c9182d9cca81cb3da1a8e0bcc765417f6b8775d9a930fe6be4597763a76ffc9"
     }
   },
   "types-statuses/hostile/pending/C": {
     "eml": {
-      "bytes": 43188,
-      "sha256": "5430d0e32e2f99032df731060463520ab2c81663087a677752a59f28fd7f06b0"
+      "bytes": 44074,
+      "sha256": "acfe02d0452c3120fa2162ffdd8f7edff3e2c3afc1b56944219f3a139b318524"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 4 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -9461,26 +9461,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 31029,
-      "sha256": "34faf7827ad58121f8a3e0e17f9a4bc3463ad50f08918c08e82ad8c71620c679"
+      "bytes": 31678,
+      "sha256": "694235f751a7d5a464605f83d7507546cb7d511afc88f8429e0dc78d377fc5a3"
     },
     "ps1": {
-      "bytes": 50822,
-      "sha256": "2f44450aabf35012415f114ef7152a717b73d7f1b32b8c0a2f37d4add0f2b804"
+      "bytes": 51767,
+      "sha256": "b77ace426fb709c2e1f504a5b5678a81942b2c837dc4252fe4615229df82ed8c"
     },
     "txt": {
-      "bytes": 1798,
-      "sha256": "7c5bfac5e27111e42377b849135886b7edd1c0e3ca07ac42858534e03e257c3d"
+      "bytes": 2031,
+      "sha256": "8f651f4645eb85b4409e147e45dff53fb0e8fdd4a74378db8ce088f3fc90e16a"
     },
     "workbook": {
-      "bytes": 9462,
-      "sha256": "7ec09d7cc7791009c8c192e80a57cba136fbbeb66cd767a4950f7e8c9945bb51"
+      "bytes": 10096,
+      "sha256": "8c9182d9cca81cb3da1a8e0bcc765417f6b8775d9a930fe6be4597763a76ffc9"
     }
   },
   "types-statuses/hostile/pending/D": {
     "eml": {
-      "bytes": 37490,
-      "sha256": "50170c11f52b7fa11ea40970b94cbf9845843d2cb00e4a7dc85e4872034389f2"
+      "bytes": 38378,
+      "sha256": "decc4e6cd5a64bc0e97a4e916882964e0ed7beac54921b5589a4dd787710bbe7"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 4 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -9488,20 +9488,20 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 26974,
-      "sha256": "bc205bbe1f3bac42d5d377b438759de93e6e9dca0c7b7016cbaf4b1a967a0a2e"
+      "bytes": 27623,
+      "sha256": "bec902ffabcd6a9c1bd200638cdbc563fe2c76b2e6ffbe7d440e1e1e51b08370"
     },
     "ps1": {
-      "bytes": 46659,
-      "sha256": "fb536aa2ba4cde2ce772fca8da3e2dfea1ce30d0ce39ad91cff90392606d2c6c"
+      "bytes": 47604,
+      "sha256": "1e61fdfaaefc7f85387eaba2832ba614bc047c8122e8ccc5ceb576ba2ce63ad7"
     },
     "txt": {
-      "bytes": 1798,
-      "sha256": "7c5bfac5e27111e42377b849135886b7edd1c0e3ca07ac42858534e03e257c3d"
+      "bytes": 2031,
+      "sha256": "8f651f4645eb85b4409e147e45dff53fb0e8fdd4a74378db8ce088f3fc90e16a"
     },
     "workbook": {
-      "bytes": 9462,
-      "sha256": "7ec09d7cc7791009c8c192e80a57cba136fbbeb66cd767a4950f7e8c9945bb51"
+      "bytes": 10096,
+      "sha256": "8c9182d9cca81cb3da1a8e0bcc765417f6b8775d9a930fe6be4597763a76ffc9"
     }
   },
   "types-statuses/sample/daily/A": {
@@ -9952,8 +9952,8 @@
   },
   "xlsx-path/monthly/A": {
     "eml": {
-      "bytes": 58494,
-      "sha256": "2bb41daeb3960e2f36fda8aa9eb81f42b69816ad583cac317631fbaa84d4cd5f"
+      "bytes": 59380,
+      "sha256": "f42fec9e03eec5a697da6bcff80bf9d43f8c9ce4aef30a3e537b33057579c23d"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -9961,26 +9961,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 42322,
-      "sha256": "bd0a250bbc41d0d3a37987ea71c6615c327e42860dbb4039877b36cf970f2ab3"
+      "bytes": 42971,
+      "sha256": "387ba6dac74b6620d66927c1434fd4ec8962376c04f784fb848f84aab5989ce5"
     },
     "ps1": {
-      "bytes": 63286,
-      "sha256": "97162cf0d40c3617e1de2414a6f1b07a3bbd70e86f4ba84477f8afd2399d26d4"
+      "bytes": 64207,
+      "sha256": "1df527a6eccf1c854dd306752b582725dc5c988ecac4e63d4656e07304776449"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "387bd3631276478ff373b6ee7b2019f41b3315efe774ca80f9242a0bddbb0016"
+      "bytes": 2686,
+      "sha256": "2b0c6be56e738a21f998cec2f3187a2f3eea625523fb48379b463c5e7d0c67aa"
     },
     "workbook": {
-      "bytes": 13927,
-      "sha256": "31842b8af0766a9b5ea9f1cad0343bf97718d6ff16660654f77c1ca6651cb6d1"
+      "bytes": 14589,
+      "sha256": "bbf06e772ac5201726b6f5695e5a5416ecbb8a75e20f60ced4c6bc0106231aa2"
     }
   },
   "xlsx-path/monthly/B": {
     "eml": {
-      "bytes": 57114,
-      "sha256": "76c2d31bfedd3a94f7b8640b76870535e502f8e8c9773e2fc2993dc74fba0a50"
+      "bytes": 58000,
+      "sha256": "6166d6e6ac5d2227699599c20cc247e9410716586d3ddf37105aabd540f741c2"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -9988,26 +9988,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 41314,
-      "sha256": "8c46569bb5be70bea4e939ec74e09c4d4af217585cb842b64461d0f89dfceab6"
+      "bytes": 41963,
+      "sha256": "9b03a9137170ff8c1546e8899733d0716a33c49c544932176194deff289f1e69"
     },
     "ps1": {
-      "bytes": 62278,
-      "sha256": "d99eb86f05a61954b7f8a00f5c27b944ed83ddeafbec6240ce3181397824bf83"
+      "bytes": 63199,
+      "sha256": "829eece850e3f300854e581e7520a3f7ae3c51df35edf14c6b5adef3d27c6218"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "387bd3631276478ff373b6ee7b2019f41b3315efe774ca80f9242a0bddbb0016"
+      "bytes": 2686,
+      "sha256": "2b0c6be56e738a21f998cec2f3187a2f3eea625523fb48379b463c5e7d0c67aa"
     },
     "workbook": {
-      "bytes": 13927,
-      "sha256": "31842b8af0766a9b5ea9f1cad0343bf97718d6ff16660654f77c1ca6651cb6d1"
+      "bytes": 14589,
+      "sha256": "bbf06e772ac5201726b6f5695e5a5416ecbb8a75e20f60ced4c6bc0106231aa2"
     }
   },
   "xlsx-path/monthly/C": {
     "eml": {
-      "bytes": 62384,
-      "sha256": "f01aa1d4aa053e8af11eaf1b10d2e8d8df43e8c98ebf034efa8afb5565436b90"
+      "bytes": 63270,
+      "sha256": "bbe58452d55a83659474b7d247a7d549515883bb753427c47584dd10d72f0625"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -10015,26 +10015,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 45056,
-      "sha256": "2acdc5e1117aed70994aa0671e348799ffd3bad5090916f3278f477ce438e477"
+      "bytes": 45705,
+      "sha256": "5cb50d575057dbb91de8e31c2991f2809eac9a2b1ce25a15776a1241d78df0a6"
     },
     "ps1": {
-      "bytes": 66128,
-      "sha256": "d30daf0e734c44cc3c10a77806710fbf4246ad8e34c9bcc886c1ab9b82596669"
+      "bytes": 67049,
+      "sha256": "1a7beb30410ade73c43bdec82f0893f3e6c3fe35fc501317d694eec2f14049b3"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "387bd3631276478ff373b6ee7b2019f41b3315efe774ca80f9242a0bddbb0016"
+      "bytes": 2686,
+      "sha256": "2b0c6be56e738a21f998cec2f3187a2f3eea625523fb48379b463c5e7d0c67aa"
     },
     "workbook": {
-      "bytes": 13927,
-      "sha256": "31842b8af0766a9b5ea9f1cad0343bf97718d6ff16660654f77c1ca6651cb6d1"
+      "bytes": 14589,
+      "sha256": "bbf06e772ac5201726b6f5695e5a5416ecbb8a75e20f60ced4c6bc0106231aa2"
     }
   },
   "xlsx-path/monthly/D": {
     "eml": {
-      "bytes": 54466,
-      "sha256": "25b345a396c36731493ee6e01cd2e470b93b6c411b42a40c94d4ca8e2629b12f"
+      "bytes": 55356,
+      "sha256": "51778643a39ee286a43208c5df84c5544994b6cdc9b8b169fd2357de96cdbb3c"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Monthly pending tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -10042,26 +10042,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 39381,
-      "sha256": "4cca38e2f3188906ded7e03d970323abe348c8704a5c1f48bde644d55481d909"
+      "bytes": 40030,
+      "sha256": "b16f8bd4492006cafb0bd83adb1e128e8651049b20de2ad71a09f997e0c4d8ec"
     },
     "ps1": {
-      "bytes": 60345,
-      "sha256": "4787b37bfed35d148b8a732199df207ef495b5f352676b0eadb90db598e567f9"
+      "bytes": 61266,
+      "sha256": "6e6a5439e9b48322689850c6cb43269c119ba6b2c0dc3f27a1a0c1cc494df3ac"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "387bd3631276478ff373b6ee7b2019f41b3315efe774ca80f9242a0bddbb0016"
+      "bytes": 2686,
+      "sha256": "2b0c6be56e738a21f998cec2f3187a2f3eea625523fb48379b463c5e7d0c67aa"
     },
     "workbook": {
-      "bytes": 13927,
-      "sha256": "31842b8af0766a9b5ea9f1cad0343bf97718d6ff16660654f77c1ca6651cb6d1"
+      "bytes": 14589,
+      "sha256": "bbf06e772ac5201726b6f5695e5a5416ecbb8a75e20f60ced4c6bc0106231aa2"
     }
   },
   "xlsx-path/pending/A": {
     "eml": {
-      "bytes": 58484,
-      "sha256": "b009e8a0841cfa512fcb603bf6f94e4f35f5cfb2dbd55712b02051c9c3cf1c8d"
+      "bytes": 59376,
+      "sha256": "152dbc0d81def2024b0eee35251eefa44ba10a64b3a519611c9555e134d0466f"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -10069,26 +10069,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 42318,
-      "sha256": "1bc05c63c294bb9cbdd7b75d890e566081050abaeb4638a95932f9035e44dbc8"
+      "bytes": 42967,
+      "sha256": "17b25e3547c700b271a99946a622721ab8108c11565ba08700c08f0202aa4f88"
     },
     "ps1": {
-      "bytes": 63263,
-      "sha256": "0709ecbd4e1b48f5fc057a78cc7f718268905926fb5e865b9f8017366af6c669"
+      "bytes": 64200,
+      "sha256": "8e68e092274bcf316c10be44f5d72de74caec4216887673736eec27660d19494"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "c0d0d0a1dce49364857230f5bd00ed36beb8499d8aafead11bb6a619f464518c"
+      "bytes": 2686,
+      "sha256": "1db7e29efc13f365bb8cf3b563be828d5f306bcc209acf3311862129dbd5bade"
     },
     "workbook": {
-      "bytes": 13909,
-      "sha256": "069f246f4ba260d2a1429e0a7df2e28db587c73c9fb392a67c956db21076d0de"
+      "bytes": 14571,
+      "sha256": "c0ee7cbe6de47f55063a8c55b287520ed85c9a4af6d18000302e6f733e55c0e2"
     }
   },
   "xlsx-path/pending/B": {
     "eml": {
-      "bytes": 57106,
-      "sha256": "324ce43980e1f2b0edb0aa6ba1e743a0aa4491fe02f88d03853e2b26b2af40a5"
+      "bytes": 57996,
+      "sha256": "4d29a8c6d9062eeb50fc37080b80e311210ac9c773825b49b7a3ff30afcfec00"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -10096,26 +10096,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 41310,
-      "sha256": "d8a488bc875075a20bc39d41024f3e7cdbde047f794fc1f31418fbcf87c0ec1c"
+      "bytes": 41959,
+      "sha256": "4cc50cb48be08de238aec02e69a017e6c2802e1198947e98657946189e57cd9e"
     },
     "ps1": {
-      "bytes": 62255,
-      "sha256": "bfa63f303aa7eaf355a761ad9178164ebbaa57013848cf424ff5cf283786107c"
+      "bytes": 63192,
+      "sha256": "98d6142666a3f8704919f238ae670750533e1a4219cc00683b1fe7d1f4a9383b"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "c0d0d0a1dce49364857230f5bd00ed36beb8499d8aafead11bb6a619f464518c"
+      "bytes": 2686,
+      "sha256": "1db7e29efc13f365bb8cf3b563be828d5f306bcc209acf3311862129dbd5bade"
     },
     "workbook": {
-      "bytes": 13909,
-      "sha256": "069f246f4ba260d2a1429e0a7df2e28db587c73c9fb392a67c956db21076d0de"
+      "bytes": 14571,
+      "sha256": "c0ee7cbe6de47f55063a8c55b287520ed85c9a4af6d18000302e6f733e55c0e2"
     }
   },
   "xlsx-path/pending/C": {
     "eml": {
-      "bytes": 62372,
-      "sha256": "d2ebdc9b58bef0ba4dda819235b50c9b3d906bbbbbf033d1e68b3f949a344aad"
+      "bytes": 63258,
+      "sha256": "e32f3c611c676ada51b9cdf76e6b172e791560e3eb341757165c6027224d6720"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -10123,26 +10123,26 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 45048,
-      "sha256": "82374083cbd84ef1523544043cf9dd30ebaddfbaa2bed0a5d6a3ed08b0039ef6"
+      "bytes": 45697,
+      "sha256": "44bbc17f62bcd47421d3fc4c06e917f3edfb2404d428412f05fa0db9e1a47cdc"
     },
     "ps1": {
-      "bytes": 66101,
-      "sha256": "ba5b3545b741673ae4bcb82db2609e0086ff79d5c5bc550d77367b5200d5119d"
+      "bytes": 67038,
+      "sha256": "c674dbadc5806d15abfd131dc5aded1b02310d141f096bc48bad5f72dbb891fc"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "c0d0d0a1dce49364857230f5bd00ed36beb8499d8aafead11bb6a619f464518c"
+      "bytes": 2686,
+      "sha256": "1db7e29efc13f365bb8cf3b563be828d5f306bcc209acf3311862129dbd5bade"
     },
     "workbook": {
-      "bytes": 13909,
-      "sha256": "069f246f4ba260d2a1429e0a7df2e28db587c73c9fb392a67c956db21076d0de"
+      "bytes": 14571,
+      "sha256": "c0ee7cbe6de47f55063a8c55b287520ed85c9a4af6d18000302e6f733e55c0e2"
     }
   },
   "xlsx-path/pending/D": {
     "eml": {
-      "bytes": 54462,
-      "sha256": "71767d19f4faa4217b8cb7db92896c53f79ccd43ca2860589ccec6359038ee2c"
+      "bytes": 55348,
+      "sha256": "10cee3f2eb2fd10280d9720784851c675afb1ab12db434ccba666a8d6e06f304"
     },
     "guards": {
       "confirm": "Check the customer scope before exporting.\n\nReport: Outstanding tickets · 2026-11-10\nContracts: All contracts (2 in this export, plus 1 ticket with no contract).\nTo: team@example.com; lead@example.net\nTickets in this email: 8 outstanding.\n\nSelect OK only if every ticket belongs to the intended customer. Select Cancel to choose a contract.",
@@ -10150,20 +10150,20 @@
       "workbookBlocked": null
     },
     "html": {
-      "bytes": 39377,
-      "sha256": "ed408ac4cf0b8ec994ff04109ff84c70d5260339eb82c360192e68b3e6e8b602"
+      "bytes": 40026,
+      "sha256": "1accf94cbea28d467d61c0e21ad0aa15ac4a6c629939d818eef13b50363b1c73"
     },
     "ps1": {
-      "bytes": 60322,
-      "sha256": "67f2e05d8b8008cc237cd34634bd9036d6cfa62c041374bff8a2a0ebcd446827"
+      "bytes": 61259,
+      "sha256": "961edc48ace5db1aa65b25e5996a3d86d8a395bc487a8918029cba5f6be1c880"
     },
     "txt": {
-      "bytes": 2453,
-      "sha256": "c0d0d0a1dce49364857230f5bd00ed36beb8499d8aafead11bb6a619f464518c"
+      "bytes": 2686,
+      "sha256": "1db7e29efc13f365bb8cf3b563be828d5f306bcc209acf3311862129dbd5bade"
     },
     "workbook": {
-      "bytes": 13909,
-      "sha256": "069f246f4ba260d2a1429e0a7df2e28db587c73c9fb392a67c956db21076d0de"
+      "bytes": 14571,
+      "sha256": "c0ee7cbe6de47f55063a8c55b287520ed85c9a4af6d18000302e6f733e55c0e2"
     }
   }
 }

@@ -1,4 +1,4 @@
-BATON: Claude — real-data findings RD-01 to RD-03 (branch only, no publish) — 2026-11-26
+BATON: Owner — RD-01 to RD-04 done on integration/unified-app; review before anything goes to main — 2026-11-26
 
 # Unified app merge — handoff
 
@@ -251,11 +251,75 @@ Checklist (continue from the first unticked item):
   - Golden: no change.
   - Should the email tool ever move to SheetJS, these tests guard the
     switch.
-- [ ] RD-02 (Medium) Monthly/outstanding reference date earlier than the
+- [x] RD-02 (Medium) Monthly/outstanding reference date earlier than the
   snapshot: show the future-dated count prominently in the UI and in the
   email HTML and plain text. Counting rules unchanged. Reports with no
   future-dated tickets must stay byte-identical.
-- [ ] RD-04 (Info) No change; P0-2 stays open.
+  - Reproduced (fictional): two outstanding tickets, one submitted before
+    and one after 2026-10-31; reference date 2026-10-31 keeps both
+    counted, one Future-dated. Before: the only sign was a short clause in
+    the dashboard caption; the email, plain text and Excel said nothing.
+  - Fix: `futureDatedCount()`/`futureDatedWarning()` in
+    `lib/pending-report.mjs:34-36` (empty string when the count is 0 or no
+    reference date is set). Shown in the dashboard as a warning box above
+    the figures (`index.html:49`, `app.mjs:178`, replacing the caption
+    clause); in the email HTML as an Outlook-safe row under the title, all
+    four themes (`lib/email-themes.mjs:234`, `:308`); in the plain text
+    (`:326`); and as a `Warning` row in the Excel Summary sheet
+    (`lib/workbook.mjs:6`). Text: "Warning: N of M outstanding tickets
+    were submitted after DATE (shown as Future-dated). These figures show
+    current status in the uploaded export, not the backlog as at DATE. To
+    report that date, use an export taken on it." No counting change, no
+    filtering.
+  - Tests: `test/future-dated.test.mjs` (5): totals unchanged when the
+    date moves, warning in HTML (4 themes, above the KPIs), text and
+    Excel, Outlook-safe row, and no warning when nothing is future-dated or
+    no date is set. `npm run verify:future-dated` (48 browser checks,
+    standalone and `/app/`, light and dark, text contrast ≥ 4.5:1): the
+    box shows for 2026-10-31, hides for 2026-11-12, the total stays 2, and
+    the preview matches.
+  - Golden (intentional, owner-requested): `email/core/hostile/
+    {pending,monthly}-{A,B,C,D}.{html,txt,eml,ps1}`,
+    `{pending,monthly}-workbook.json` and `email/matrix.json` (120 hostile
+    outstanding/monthly outputs; the hostile fixture has one ticket
+    submitted after 2026-11-10). Verified: with the warning switched off,
+    all 114 email golden files match the previous golden byte for byte;
+    each changed .html/.txt is the old file plus the warning only; each
+    workbook differs only by the inserted Summary row (cells below it move
+    down one row). Unchanged as required: every daily output, the sample
+    fixture, `no-age-reference` (no date) and `contract-none-selected`.
+  - Not done (owner decision): an extra export acknowledgement for
+    monthly reports with future-dated tickets. It would change the export
+    guards (RD-01), so it needs owner approval first.
+- [x] RD-04 (Info) No change; P0-2 stays open.
+
+### Completion report (RD-01 to RD-04)
+
+- Commits on `integration/unified-app` (not on `main`): RD-01 `4659a9c`,
+  RD-03 `b27b4d0`, RD-02/RD-04 in the commit that adds this report.
+- Gate, all passing on the final tree: `npm test` 64 (was 61),
+  `test:survey` 15 (was 13), `test:email` 133 (was 117), `typecheck`,
+  `golden:check` (all five groups), `build:gh-pages`, `stage:pages`,
+  `verify:unified` 11, `verify:export-scope` 44,
+  `verify:xlsx-dimension` (3 sections × 2 workbooks; 6/6 repeat runs
+  after a test-side wait for the survey frame's script),
+  `verify:future-dated` 48. The older `scripts/verify-outstanding.mjs`
+  (127) and `scripts/verify-weekly.mjs` also pass.
+- Golden changes: email only, both intentional and owner-requested,
+  listed under RD-01 and RD-02 above. Storage, survey and WhatsApp
+  goldens unchanged.
+- Data: fixtures and tests are fictional (Example names, CN-EXAMPLE
+  contracts, INC9… IDs). No real workbook, names, IDs, contracts,
+  descriptions or counts from the private report are in the repository.
+- Still for the owner (browser acceptance with the real export, kept on
+  the owner's PC only, per the findings file section 4): upload the real
+  workbook in `/app/#/email` and check the default date and counts;
+  try the four themes and both app themes; HTML, EML, Excel and the Classic
+  Outlook helper (run the helper only in your own Outlook; it must leave
+  an unsent draft); clipboard, signature and logo, settings backup; the
+  survey match with the private dummy directory, sending nothing.
+- Owner decisions open: export acknowledgement for future-dated monthly
+  reports (RD-02); whether to publish this work to `main`.
 
 ## Claude bug check of /app/ (started 2026-11-26)
 

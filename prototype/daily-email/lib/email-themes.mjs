@@ -9,7 +9,7 @@ import {validHeaderLogo} from './header-logo.mjs';
  * text-bearing p/h1/h2/td/th, 1px solid borders, bgcolor + background-color.
  */
 import {signatureEmailHtml,plainToSignatureHtml,signatureImageSize} from './signature-html.mjs';
-import {pendingCaption,pendingDisclaimer,pendingColumns,pendingTicketValues,PENDING_INTRO} from './pending-report.mjs';
+import {pendingCaption,pendingDisclaimer,pendingColumns,pendingTicketValues,futureDatedWarning,PENDING_INTRO} from './pending-report.mjs';
 
 const F='font-family:Arial,Helvetica,sans-serif;';
 const DOCTYPE='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">';
@@ -230,6 +230,8 @@ function signatureRow(t,data){
  const lines=[sender.name&&{html:esc(sender.name),style:`${s.size}font-weight:bold;color:${s.accent};`},sender.title&&{html:esc(sender.title),style:`${s.small}color:${s.muted};`},contact&&{html:contact,style:`${s.small}color:${s.muted};`}].filter(Boolean);
  return `<tr><td style="padding:${s.pad};${F}"><p style="margin:0;${F}${s.size}color:${s.ink};">Best regards,</p>${lines.map((line,i)=>`<p style="margin:${i?'0':s.gap+' 0 0 0'};${F}${line.style}">${line.html}</p>`).join('')}</td></tr>`;
 }
+/** Outlook-safe warning box (RD-02); same in every theme so it reads as a warning. */
+const warningRow=html=>`<tr><td style="padding:0 32px 16px 32px;"><table role="presentation" width="736" cellpadding="0" cellspacing="0" border="0" style="width:736px;border-collapse:collapse;"><tbody><tr><td bgcolor="#FFF4E5" style="background-color:#FFF4E5;border:1px solid #B45309;padding:12px 14px;${F}font-size:13px;line-height:19px;font-weight:bold;color:#7A3E00;">${html}</td></tr></tbody></table></td></tr>`;
 const disclaimerRow=(t,html)=>{const d=t.disclaimer;return `<tr><td style="padding:${d.pad};"><table role="presentation" width="736" cellpadding="0" cellspacing="0" border="0" style="width:736px;border-collapse:collapse;"><tbody><tr><td${d.bg?` bgcolor="${d.bg}"`:''} style="${d.bg?`background-color:${d.bg};`:''}${d.style}${F}${d.text}">${html}</td></tr></tbody></table></td></tr>`;};
 
 export function renderThemedEmail(report,settings={},filters={},variant='A'){
@@ -303,6 +305,7 @@ export function renderPendingEmail(view,settings={},variant='A'){
   v==='C'?topBar(view.asAt?'Age reference: '+esc(view.asAt):'Current outstanding tickets',view.monthly?'Monthly Pending Tickets':'Outstanding Tickets','').replace('>LOGO</td>',validHeaderLogo(settings.headerLogo)?`><img src="${settings.headerLogo}" width="${logoWidth}" height="${logoHeight}" alt="Report logo" style="width:${logoWidth}px;height:${logoHeight}px;" /></td>`:'>LOGO</td>'):'',
   `<tr><td style="${t.greeting.td}"><p style="margin:0 0 ${t.greeting.gap} 0;${F}${t.greeting.p}">${multiline(String(settings.greeting||'').trim()||'Hi Team,')}</p><p style="margin:0;${F}${t.greeting.p}">${String(settings.pendingIntro||PENDING_INTRO).split(/\r?\n/).map(line=>softBreak(esc(line),640,14)).join('<br />')}</p></td></tr>`,
   HEADERS[v](title,softBreak(esc(pendingCaption(view)),640,13)),
+  ...(futureDatedWarning(view)?[warningRow(softBreak(esc(futureDatedWarning(view)),708,13))]:[]),
   KPIS[v]([['Outstanding',view.total],['Incidents',view.incidents],['Service requests &amp; other',view.other]]),
   section(t,'Outstanding by assigned group'),pendingSummaryTable(t,view.byGroup,'Assigned group'),
   section(t,'Outstanding by status'),pendingSummaryTable(t,view.byStatus,'Status'),
@@ -320,6 +323,7 @@ export function renderPendingPlainText(view,settings={}){
  const columns=pendingColumns(settings.showEngineer===true);
  return [String(settings.greeting||'').trim()||'Hi Team,',settings.pendingIntro||PENDING_INTRO,'',
   view.monthly?'BMC Monthly Pending Tickets':'BMC Outstanding Tickets',view.asAt?'Age since submitted (days), as at '+view.asAt:'Current snapshot',pendingCaption(view),'',
+ ...(futureDatedWarning(view)?[futureDatedWarning(view),'']:[]),
  ...(view.byAge||[]).map(r=>`${r.name}: ${r.count}`),
  ...[['Group by type',view.groupType],['Type by priority',view.typePriority]].filter(([,m])=>m).flatMap(([title,m])=>[title,['',...m.columns,'Total'].join(' | '),...m.rows.map(r=>[r.name,...r.counts,r.counts.reduce((a,b)=>a+b,0)].join(' | '))]),
   `Outstanding: ${view.total}`,`Incidents: ${view.incidents}`,`Service requests & other: ${view.other}`,'',

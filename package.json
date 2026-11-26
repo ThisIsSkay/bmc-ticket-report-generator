@@ -17,7 +17,8 @@
     "stage:pages": "node scripts/stage-pages.mjs",
     "verify:unified": "node scripts/verify-unified.mjs",
     "verify:export-scope": "node scripts/verify-export-scope.mjs",
-    "verify:xlsx-dimension": "node scripts/verify-xlsx-dimension.mjs"
+    "verify:xlsx-dimension": "node scripts/verify-xlsx-dimension.mjs",
+    "verify:future-dated": "node scripts/verify-future-dated.mjs"
   },
   "dependencies": {
     "html-to-image": "1.11.13",

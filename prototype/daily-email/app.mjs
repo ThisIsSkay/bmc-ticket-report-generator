@@ -11,7 +11,7 @@ import {renderClassicOutlookScript} from './lib/classic-outlook.mjs';
 import {sanitizeSignatureHtml, plainToSignatureHtml, imageFileToDataUrl, signatureImageSize} from './lib/signature-html.mjs';
 import {createDebouncedSaver, normalizeSettings} from './lib/settings-persistence.mjs';
 
-import {buildPendingView,pendingCaption,pendingColumns,pendingTicketValues,normalizeReportContent,PENDING_SUBJECT,PENDING_INTRO} from './lib/pending-report.mjs';
+import {buildPendingView,pendingCaption,pendingColumns,pendingTicketValues,normalizeReportContent,futureDatedWarning,PENDING_SUBJECT,PENDING_INTRO} from './lib/pending-report.mjs';
 
 const $=id=>document.getElementById(id);
 const CONFIG_KEY='bmc-daily-email-report:settings:v1';
@@ -175,7 +175,7 @@ function syncReportControls(){scopeStatus();
 function updatePendingDashboard(){
  const v=state.pendingView,columns=pendingColumns(state.settings.showEngineer);
  $('pendingSummary').querySelector('h2').textContent=isMonthly()?'03 / Monthly pending tickets':'03 / Outstanding tickets';
- text('pendingCaption',(isMonthly()?`Reporting date: ${v.asAt}. Includes older pending tickets in this export. `:'')+pendingCaption(v)+(v.byAge.some(r=>r.name==='Future-dated'&&r.count)?' · Warning: some submission dates are after the age reference date.':'')+` · Excluded by type: ${v.excludedType}; by status: ${v.excludedStatus}`);text('outstandingTotal',v.total);text('outstandingIncidents',v.incidents);text('outstandingOther',v.other);
+ text('pendingCaption',(isMonthly()?`Reporting date: ${v.asAt}. Includes older pending tickets in this export. `:'')+pendingCaption(v)+` · Excluded by type: ${v.excludedType}; by status: ${v.excludedStatus}`);const futureWarning=futureDatedWarning(v);text('futureDatedWarning',futureWarning);$('futureDatedWarning').hidden=!futureWarning;text('outstandingTotal',v.total);text('outstandingIncidents',v.incidents);text('outstandingOther',v.other);
  $('weeklyBreakdowns').innerHTML=[['Group by type',v.groupType],['Type by priority',v.typePriority]].map(([title,m])=>`<h3>${title}</h3><div class="table-scroll">${makeTable(['',...m.columns,'Total'],[...m.rows.map(r=>[r.name,...r.counts,r.counts.reduce((a,b)=>a+b,0)]),['TOTAL',...m.columns.map((_,i)=>m.rows.reduce((n,r)=>n+r.counts[i],0)),v.total]])}</div>`).join('')+(v.asAt?`<h3>Age since submitted (days), as at ${h(v.asAt)}</h3>${makeTable(['Age band','Tickets'],v.byAge.map(r=>[r.name,r.count]))}`:'');
  const summary=(rows,label)=>makeTable([label,'Outstanding'],[...rows.map(row=>[row.name,row.count]),['TOTAL',v.total]],{textCols:[0]});
  $('pendingGroupTable').innerHTML=summary(v.byGroup,'Assigned group');

@@ -29,6 +29,15 @@ export function buildPendingView(report,{groups=null,contractFilter='All',exclud
   byGroup:countBy(tickets,'group'),byStatus:countBy(tickets,'status')};
 }
 
+/** Outstanding tickets submitted after the age reference date (RD-02). Counting is unchanged:
+ * they stay in the report; this only makes them visible. 0 when no reference date is set. */
+export function futureDatedCount(view){return view&&view.asAt?((view.byAge||[]).find(row=>row.name==='Future-dated')?.count||0):0;}
+/** '' when nothing is future-dated, so ordinary reports are unchanged. */
+export function futureDatedWarning(view){
+ const count=futureDatedCount(view);if(!count)return '';
+ return `Warning: ${count} of ${view.total} outstanding ticket${view.total===1?'':'s'} ${count===1?'was':'were'} submitted after ${view.asAt} (shown as Future-dated). These figures show current status in the uploaded export, not the backlog as at ${view.asAt}. To report that date, use an export taken on it.`;
+}
+
 export function pendingCaption(view){
  const groups=view.groups===null?'All assigned groups':view.groups.length?view.groups.join(', '):'None selected';
  return `Assigned groups: ${groups} · Contract: ${view.contractFilter||'All'} · Types: ${view.types===null?'All':view.types.join(', ')||'None'} · Statuses: ${view.statuses===null?'All':view.statuses.join(', ')||'None'} · Monitoring events ${view.excludeEvents?'excluded':'included'}`;

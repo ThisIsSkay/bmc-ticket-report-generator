@@ -5,6 +5,8 @@ BMC Outstanding Tickets
 Age since submitted (days), as at 2026-11-10
 Assigned groups: All assigned groups · Contract: All · Types: All · Statuses: All · Monitoring events excluded
 
+Warning: 1 of 8 outstanding tickets was submitted after 2026-11-10 (shown as Future-dated). These figures show current status in the uploaded export, not the backlog as at 2026-11-10. To report that date, use an export taken on it.
+
 0–7: 2
 8–14: 1
 15–30: 0
