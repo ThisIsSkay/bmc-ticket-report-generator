@@ -99,3 +99,118 @@ the key with `:` replaced by `.`:
 Both email fixtures were loaded through the tool's own `normalizeSettings` at
 `3fcc777`. The full fixture keeps variant C, the logo, monthly mode and both
 contracts.
+
+## Golden outputs
+
+The harness (`scripts/golden/`) regenerates every output with each tool's own
+code and compares it with `docs/merge/golden/`. It uses fictional inputs only
+and makes no network requests: the browser blocks every outside host.
+
+### Commands
+
+```sh
+# Phase 0: the email tool is read from a worktree pinned to the pre-merge commit
+git worktree add --detach ../email-3fcc777 3fcc777
+npm ci
+NODE_PATH=<dir containing playwright> node scripts/golden/check.mjs --email-root=../email-3fcc777/prototype/daily-email
+
+# After Phase 1 merges the email tool into this branch, --email-root can be omitted
+node scripts/golden/check.mjs
+
+# Options
+#   --only=survey,email,whatsapp-data,whatsapp-visual   check some groups
+#   --skip-visual                                       no browser (e.g. CI without Playwright)
+#   GOLDEN_EMAIL_ROOT=<path>                            same as --email-root
+```
+
+`record.mjs` takes the same options and rewrites the goldens. Use it only from
+the pre-merge commits, to move the goldens to a new environment, and note it in
+`HANDOFF.md`. **Never re-record to make a failing check pass.**
+
+The harness sets `TZ=Asia/Singapore`. Wherever a tool reads the current time it
+sees 2026-11-10 09:00 SGT: a `Date` stub in Node, and `page.clock` in the
+browser. With the clock fixed, the `.eml` `Date:` header and MIME boundary are
+deterministic, so **no output needs normalising**. Files are compared byte for
+byte, except as listed below.
+
+### What is covered
+
+| Group | Files | Source of truth | Comparison |
+|---|---|---|---|
+| `survey/` | 3 | `prototype/customer-survey/lib` at `1a74ff4` | JSON text |
+| `email/` | 114 + 429 hashed combinations | `prototype/daily-email/lib` at `3fcc777` | text bytes; `.xlsx` by parsed cell values and cell types |
+| `whatsapp/data/` | 6 | `src/lib/*.ts` at `1a74ff4` (loaded through Vite SSR) | JSON text |
+| `whatsapp/visual/` | 8 images + `meta.json` | production build of `src/` at `1a74ff4`, exported with the app's own Save as PNG / Save as JPEG buttons | PNG: every pixel; JPEG: 2700×1425 and at most 0.1% of pixels off by more than 16 levels |
+
+- **Survey:**
+  - CSV import: UTF-8 with quotes and multi-line values, UTF-8 BOM with
+    semicolons, UTF-16 LE and BE, Windows-1252 (requested and auto-detected),
+    trailing blank column, malformed quote, extra values, CR-only lines;
+  - directory validation: duplicates, shared email, invalid and angle-bracket
+    addresses, hostile name;
+  - 24 requesters through `matchBatch`: exact, case-only duplicate ticket,
+    ambiguous, near-namesake, reordered, alias (normal and reversed),
+    initials, accents, CJK, punctuation variants, zero-width space, title,
+    blank, hostile, no match.
+- **Email:**
+  - fixtures: the tool's sample CSV, an adversarial CSV (hostile markup and
+    quotes, 260-character unbroken text, accented and CJK text, cancelled,
+    reopened, duplicate, monitoring event, forward schedule, future-dated,
+    blank fields, unknown status, markup in a group name), and the same
+    adversarial rows read through `xlsx-lite`;
+  - core outputs stored in full, for 2 fixtures × daily (legacy, A–D),
+    outstanding (A–D) and monthly (A–D): HTML, plain text, `.eml`, Classic
+    Outlook `.ps1` (with the embedded workbook) and the workbook cells;
+  - `matrix.json`: sha256 of every output for 15 one-setting-at-a-time
+    variations across every mode and variant: no sender; plain, no or logo
+    signature; no header logo; group filter; single, multiple and
+    none-selected contracts; events included; engineer column; summary only;
+    type/status scope; no age reference; intro without a period; no
+    recipients. Also the XLSX-read path;
+  - `sample-data/`: variants A–D from `docs/email-design/sample-data.json`,
+    adapted exactly as the existing M4 test does.
+- **WhatsApp data:**
+  - fixtures: the bundled sample, and an adversarial export with the real
+    BMC header names, three empty sheets first, all ticket prefixes,
+    cancelled, reopened, blank engineer, ambiguous, day-first and invalid
+    dates, and markup;
+  - team mappings: explicit, inferred and none;
+  - recorded: worksheet choice, column detection, normalised tickets,
+    validation and, for several report dates, the aggregated metrics,
+    out-of-scope counts, both pending diagnostics, pending and
+    closed-on-date ticket lists, and a narrowed filter.
+- **WhatsApp visual:** sample light, sample dark, sample on a second date,
+  adversarial export. The bundled sample's six placeholder engineer names are
+  renamed to fictional people, because `loadConfig()` deliberately resets
+  those names, so a saved selection could not reach the dashboard. All other
+  cells are unchanged.
+
+### Determinism and sensitivity
+
+- `check.mjs` was run twice in a row on 2026-11-26 after recording. All 132
+  files passed both times, in about 13 s per run.
+- Each group was then shown to fail on a deliberate, reverted change:
+  - one email colour (`#1B3A5C` → `#1B3A5D`): email FAIL, reported at the
+    exact column;
+  - one survey reason string: survey FAIL;
+  - New Tickets counted twice in `aggregateTickets`: whatsapp-data and
+    whatsapp-visual FAIL;
+  - report canvas top padding +1 px: whatsapp-visual FAIL (268,186 PNG
+    pixels).
+
+  A +1 px change to the canvas *bottom* padding did not change the export. The
+  canvas has a fixed height and content does not move, so this is correct.
+- The dark-theme export is byte-identical to the light-theme export, so the
+  app theme does not leak into the image.
+- The JPEG is byte-identical with Google Fonts blocked or allowed. The report
+  canvas uses Arial.
+
+### Environment dependence
+
+Image pixels depend on the Chromium build and the installed fonts. Here Arial
+resolves to Liberation Sans. The visual goldens are valid for the environment
+listed at the top of this file. A GitHub-hosted runner has different fonts, so
+Phase 1 should either run the visual group in a pinned container (the
+Playwright image for Chromium 153) or run only `--skip-visual` in CI and the
+full check locally. Data, email and survey goldens do not depend on the
+environment.

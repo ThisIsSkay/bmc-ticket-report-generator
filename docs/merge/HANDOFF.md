@@ -1,4 +1,4 @@
-BATON: Claude — Phase 0 build in progress — 2026-11-26
+BATON: Owner — Phase 0 gate (optional independent review by Codex first) — 2026-11-26
 
 # Unified app merge — handoff
 
@@ -23,6 +23,8 @@ survey preview into one app, in phases 0–6 (see PLAN.md). Phase 0 records the
   report it.
 - Business rules stay separate per tool. Suspected bugs are recorded here,
   not fixed, during Phase 0.
+- `node scripts/golden/check.mjs` must pass after every later change.
+  **Never re-record goldens to make a check pass.**
 
 ## Branch and tags
 
@@ -44,15 +46,19 @@ survey preview into one app, in phases 0–6 (see PLAN.md). Phase 0 records the
 
 Codex was unavailable, so the owner asked Claude to lead Phase 0 as the
 builder. The independent review is open: Codex (when available) or the owner.
+A reviewer should follow the "Claude — Phase 0 review" steps in the owner's
+sync message, with the roles swapped: re-run the baseline, run `check.mjs`
+twice from a clean checkout, prove each group can fail, check coverage and
+privacy, and record findings below.
 
 ## Phase checklist
 
-- [ ] **Phase 0 — Freeze and baseline**
-  - [x] Step 1: branch, tags, PLAN.md, HANDOFF.md
+- [x] **Phase 0 — Freeze and baseline** (awaiting owner gate)
+  - [x] Step 1: branch, tags (local only, see above), PLAN.md, HANDOFF.md
   - [x] Step 2: baseline test counts (BASELINE.md)
   - [x] Step 3: storage inventory and fixtures
-  - [ ] Step 4: goldens (WhatsApp, email, survey) and determinism check
-  - [ ] Step 5: handover
+  - [x] Step 4: goldens (WhatsApp, email, survey) and determinism check
+  - [x] Step 5: handover
 - [ ] Phase 1 — merge feature branch, self-contained deploy
 - [ ] Phase 2 — shared app frame
 - [ ] Phase 3 — email tool into the app (3a, 3b, 3c)
@@ -60,16 +66,68 @@ builder. The independent review is open: Codex (when available) or the owner.
 - [ ] Phase 5 — one upload, one Clear all data, one settings backup
 - [ ] Phase 6 — hardening and switch-over
 
+## Phase 0 results
+
+- **Baseline:**
+  - main: 61/61 Vitest, typecheck OK, `build:gh-pages` OK, 13/13 survey
+    checks, `verify-survey` 3/3;
+  - email branch: 117/117 node tests, 18 files pass `node --check`,
+    `verify-weekly` 3/3, `verify-header-logo` 3/3, `verify-outstanding` 2/3
+    (known harness flake).
+
+  Details are in BASELINE.md.
+- **Goldens:** 132 files plus 429 hashed email combinations. `check.mjs`
+  passed twice in a row, and again from a clean checkout of the pushed branch.
+  Each of the four groups fails on a deliberate one-line change.
+- **Only `docs/merge/**` and `scripts/golden/**` changed:**
+  `git diff --stat origin/main..integration/unified-app` lists nothing else.
+
+## Findings recorded during Phase 0 (not fixed)
+
+| # | Severity | Finding | Where | Suggested phase |
+|---|---|---|---|---|
+| P0-1 | Medium (privacy/network) | The WhatsApp app loads Google Fonts (Figtree) for its app chrome on every visit. During an export, html-to-image requests the font CSS and files again (`cacheBust: true`). No ticket data is sent, but this is a third-party request the README privacy section doesn't mention, and it conflicts with "no new network calls" once all tools share the page. The report image itself uses Arial and is byte-identical with the fonts blocked. | `index.html:7-9`, `src/index.css:39`, `src/lib/export.ts:3-9` | Phase 2 (self-host the font or use system fonts) and the Phase 6 audit |
+| P0-2 | Medium (business decision) | Ambiguous slash dates are read month-first: `10/11/2026` becomes 11 Oct 2026 in the WhatsApp app (golden fixture `INC200000010`). Singapore exports are usually DD/MM. Already an open owner decision; recorded so later phases don't "fix" it silently. | `src/lib/normalize.ts` `parseFlexibleDate`; the email tool's `dateOnly` has the same rule | Owner decision before Phase 5 (shared upload) |
+| P0-3 | Low | The bundled sample workbook uses the six placeholder engineer names that `loadConfig()` resets, so a saved engineer selection never reaches the dashboard for the sample. The first-time UI flow (Load bundled sample → Engineer Selection) still works. The visual golden renames them to fictional people. | `public/sample-bmc-export.xlsx`, `src/lib/storage.ts` `isOldPlaceholderTeams` | Phase 5 (shared sample data) |
+| P0-4 | Low (test harness) | `scripts/verify-outstanding.mjs` times out waiting for a download about 1 run in 3 (`:47` → `download()` `:23`). This is the existing R7 flake. | email branch | Phase 1 (make the wait robust; never skip it) |
+| P0-5 | Info | `node --test prototype/daily-email/test/` (a directory argument) fails on Node 22. Use `node --test prototype/daily-email/test/*.test.mjs`. | email branch docs | Phase 1 (`package.json` script) |
+| P0-6 | Info | The goldens use npm `xlsx` 0.20.3 (the vendored tarball). The email app uses its vendored `xlsx.mini.min.js` of the same version, so workbooks are compared by cell values, not bytes. | `scripts/golden/groups/email.mjs` | Phase 2 (one SheetJS copy) |
+| P0-7 | Info | Visual goldens depend on Chromium 153 (Playwright build 1243) and on Arial resolving to Liberation Sans. GitHub-hosted runners differ. | BASELINE.md "Environment dependence" | Phase 1 CI design |
+
+## Notes for next agent (Phase 1)
+
+- Merge `feature/daily-pivot-email-report` into `integration/unified-app`
+  with a merge commit; no rebase, no squash. Expected conflicts:
+  - `.github/workflows/deploy.yml`, which must no longer check out another
+    branch at build time;
+  - `README.md` (keep the live dashboard link first);
+  - `AGENTS.md`, `vite.config.ts` (keep the Vitest `prototype/**` exclude
+    from the email branch) and `package.json` (keep `test:survey`).
+- Three SheetJS copies will exist after the merge (npm tarball, and the
+  vendored minified copies in both prototypes). Leave them until Phase 2.
+- After the merge, `prototype/daily-email/` exists in this branch.
+  `check.mjs` must then pass without `--email-root`. If it doesn't, the merge
+  changed an output: find out why, don't re-record.
+- `.gitignore` ignores `*.csv`. The email tool's
+  `samples/fictional-tickets.csv` is whitelisted by
+  `prototype/daily-email/.gitignore`; confirm it survives the merge.
+- Add to `package.json`: `test:email` (node test glob), `golden:check`.
+  Add to CI: `golden:check --skip-visual` at minimum; the visual group needs
+  the pinned environment (P0-7).
+- Fix the existing deploy concurrency issue (`cancel-in-progress: true` with
+  PR runs) when touching `deploy.yml` (Phase 6 at the latest).
+
 ## Open owner decisions
 
-D1–D6 as listed in PLAN.md. Not yet answered.
-
-## Notes for next agent
-
-(Updated at the end of each step.)
+D1–D6 as listed in PLAN.md. Not yet answered. P0-2 (date order) also needs
+an owner decision.
 
 ## Commit log
 
 | Date | Commit | Summary |
 |---|---|---|
 | 2026-11-26 | `50a7120` | Plan and handoff |
+| 2026-11-26 | `0b61c4e` | Baseline test counts, storage inventory, storage fixtures |
+| 2026-11-26 | `1553faf` | Golden harness (`scripts/golden/`) |
+| 2026-11-26 | `311b36d` | Recorded goldens (132 files) |
+| 2026-11-26 | (this commit) | BASELINE golden section, Phase 0 results and findings, baton to owner |
