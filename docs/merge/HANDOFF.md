@@ -199,12 +199,12 @@ Checklist (in order of risk):
   to clipboard) against the same steps on /daily-email/.
 - [x] B-scan-4 Navigation: back/forward, unknown hash, deep links, reload,
   keyboard focus order, window title.
-- [ ] B-scan-5 WhatsApp section workflows inside /app/ (Engineer Selection,
+- [x] B-scan-5 WhatsApp section workflows inside /app/ (Engineer Selection,
   Rules, Configuration import/export, copy and print).
-- [ ] B-scan-6 Survey inside /app/ (XLSX upload, Clear all data, worker).
+- [x] B-scan-6 Survey inside /app/ (XLSX upload, Clear all data, worker).
 - [x] B-scan-7 Dev experience: `npm run dev` serves the email and survey
   pages for /app/.
-- [~] B-scan-8 Edge cases (storage blocked/full done; narrow/wide windows and frame load failure still to do): narrow and very wide windows, storage blocked,
+- [x] B-scan-8 Edge cases: narrow and very wide windows, storage blocked,
   frame load failure.
 
 Scan results:
@@ -222,6 +222,17 @@ Scan results:
 - **B-scan-4:** back/forward follow the tabs and update the title; an
   unknown hash falls back to WhatsApp; `#/survey/extra?x=1` opens Survey;
   Tab reaches the tool bar tabs, Enter switches, and focus is visible.
+- **B-scan-5:** the bundled sample, Engineer Selection, Configuration
+  export and re-import, Copy image (clipboard PNG 2250×1187) and Print
+  (2160×1140 image in its own window) behave identically on / and inside
+  /app/, with no errors.
+- **B-scan-6:** inside /app/, an XLSX with a cover sheet and the header on
+  row 2 works; leading zeros are kept; 3,000 rows match in the worker in
+  about 0.6 s; Clear all data resets everything; the survey writes nothing
+  to storage.
+- **B-scan-8:** no horizontal overflow at 900, 1180 or 2560 px
+  (`body { min-width: 1180px }` applies, as on the live page). Blocked and
+  full storage: see B-3. A missing framed page: see B-4.
 - **B-scan-3:** done in a browser with a fixed clock. `.ps1`, `.eml`,
   `.html`, clipboard (HTML and plain text) for themes A and C in daily,
   outstanding and monthly modes, plus both `.xlsx` files: **28 of 28
@@ -233,6 +244,8 @@ Findings:
 |---|---|---|---|
 | B-1 | Medium (developers) | Under `npm run dev`, the Email and Survey sections showed the **WhatsApp app** inside their frames: Vite's SPA fallback answered `/daily-email/` and `/customer-survey/` with `index.html`. Production was not affected. | `scripts/vite-prototype-pages.mjs`, a dev-only plugin serving both prototype folders at their published paths (bare path → 301; `test/` and traversal refused). |
 | B-3 | **High** (robustness) | With browser storage full or blocked, **/app/ rendered a blank page**. The WhatsApp section's save calls (`saveConfig`, `saveTheme`, …) threw inside React effects with no error boundary, so React unmounted everything, including the tool bar and the Email/Survey sections. This is realistic because all tools share one storage quota and the email tool stores images and a logo there. The same throw crashed the standalone WhatsApp page (P0-14). | `src/lib/storage.ts`: every save goes through `writeItem`, which catches, warns and returns `false`; the report keeps working for the visit. `SectionBoundary` wraps the WhatsApp section, so any future crash stays inside its section with a Reload button. **Intentional golden update:** `storage/whatsapp.json` save results only (`null`→`true` on success, throw→`false` when blocked or full); every load result and stored value is unchanged, and `email.json` is identical. Regression: `verify-unified` check 10. Closes P0-14. |
+| B-4 | Low | If a framed page is missing (a host where `stage:pages` was not run), the section showed a bare "404". | The shell checks for a page-specific element after load (`readySelector`) and shows "Email Reports could not be loaded" with the fix to run. |
+| B-5 | Low (cosmetic) | In dark mode, /app/ flashed the light theme until React started. | Inline script in `app/index.html` applies the saved theme before the first paint (verified with JavaScript delayed 800 ms). |
 | B-2 | Low (cosmetic) | In dark mode, the Email multi-select lists (ticket types, statuses) showed the browser's grey selected rows. | `embed-theme.css`: selected rows use the accent tint. |
 
 ## Codex bug-check brief

@@ -9,12 +9,14 @@ export interface Tool {
   description: string
   /** Relative to the published /app/ page; undefined for the native WhatsApp section. */
   frameSrc?: string
+  /** An element that only exists on the real page, used to detect a missing page (e.g. a 404). */
+  readySelector?: string
 }
 
 export const TOOLS: Tool[] = [
   { id: 'whatsapp', label: 'WhatsApp Report', description: 'Daily report image for the WhatsApp group' },
-  { id: 'email', label: 'Email Reports', description: 'Daily, outstanding and monthly email reports', frameSrc: '../daily-email/' },
-  { id: 'survey', label: 'Customer Survey', description: 'Match requesters to a customer directory', frameSrc: '../customer-survey/' },
+  { id: 'email', label: 'Email Reports', description: 'Daily, outstanding and monthly email reports', frameSrc: '../daily-email/', readySelector: '#demoBtn' },
+  { id: 'survey', label: 'Customer Survey', description: 'Match requesters to a customer directory', frameSrc: '../customer-survey/', readySelector: '#ticketSample' },
 ]
 
 export function toolFromHash(hash: string): ToolId {

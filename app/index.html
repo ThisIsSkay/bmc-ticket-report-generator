@@ -7,6 +7,15 @@
     <!-- No web fonts or other third-party requests: system fonts only. -->
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%8A%3C/text%3E%3C/svg%3E" />
     <title>BMC Ticket Tools</title>
+    <!-- Apply the saved theme before the first paint (no flash of the light theme). -->
+    <script>
+      try {
+        if (localStorage.getItem('bmc-report:theme:v1') === 'dark') {
+          document.documentElement.dataset.theme = 'dark'
+          document.documentElement.style.colorScheme = 'dark'
+        }
+      } catch (error) { /* storage blocked: React applies the default theme */ }
+    </script>
   </head>
   <body>
     <div id="root"></div>

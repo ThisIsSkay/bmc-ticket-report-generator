@@ -2,7 +2,7 @@ import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { FileImage, Mail, Moon, Sun, Users } from 'lucide-react'
 import { loadTheme, saveTheme } from '../lib/storage'
 import type { AppTheme } from '../lib/storage'
-import { themeFrame } from './frameTheme'
+import { frameHasPage, themeFrame } from './frameTheme'
 import { SectionBoundary } from './SectionBoundary'
 import { TOOLS, toolFromHash } from './tools'
 import type { ToolId } from './tools'
@@ -20,6 +20,7 @@ export function UnifiedApp() {
   const [theme, setTheme] = useState<AppTheme>(() => loadTheme())
   const frames = useRef<Partial<Record<ToolId, HTMLIFrameElement | null>>>({})
   const [themed, setThemed] = useState<Partial<Record<ToolId, boolean>>>({})
+  const [missing, setMissing] = useState<Partial<Record<ToolId, boolean>>>({})
 
   useEffect(() => {
     const onHash = () => setTool(toolFromHash(window.location.hash))
@@ -46,8 +47,10 @@ export function UnifiedApp() {
   }
 
   const onFrameLoad = useCallback((id: ToolId) => {
-    const ok = themeFrame(frames.current[id], theme, id)
-    setThemed((state) => ({ ...state, [id]: ok || true }))
+    const frame = frames.current[id]
+    themeFrame(frame, theme, id)
+    setMissing((state) => ({ ...state, [id]: !frameHasPage(frame, TOOLS.find((item) => item.id === id)?.readySelector) }))
+    setThemed((state) => ({ ...state, [id]: true }))
   }, [theme])
 
   return (
@@ -92,9 +95,15 @@ export function UnifiedApp() {
         )}
         {TOOLS.filter((item) => item.frameSrc && visited.includes(item.id)).map((item) => (
           <section key={item.id} className="tool-pane tool-pane-frame" hidden={tool !== item.id} aria-label={item.label}>
+            {missing[item.id] && (
+              <div className="tool-error" role="alert">
+                <h2>{item.label} could not be loaded</h2>
+                <p>This section's page was not found next to the app ({item.frameSrc}). On a new host, publish it with <code>npm run build:gh-pages &amp;&amp; npm run stage:pages</code>; under <code>npm run dev</code> it is served automatically.</p>
+              </div>
+            )}
             <iframe
               ref={(element) => { frames.current[item.id] = element }}
-              className={themed[item.id] ? 'tool-frame tool-frame-ready' : 'tool-frame'}
+              className={themed[item.id] && !missing[item.id] ? 'tool-frame tool-frame-ready' : missing[item.id] ? 'tool-frame tool-frame-missing' : 'tool-frame'}
               title={item.label}
               src={item.frameSrc}
               allow="clipboard-read; clipboard-write"

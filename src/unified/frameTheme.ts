@@ -9,6 +9,16 @@ import type { ToolId } from './tools'
 
 const STYLE_ID = 'bmc-unified-embed-theme'
 
+/** True when the frame shows the expected page (not a 404 or an empty document). */
+export function frameHasPage(frame: HTMLIFrameElement | null | undefined, selector: string | undefined): boolean {
+  if (!selector) return true
+  try {
+    return Boolean(frame?.contentDocument?.querySelector(selector))
+  } catch {
+    return false
+  }
+}
+
 export function themeFrame(frame: HTMLIFrameElement | null | undefined, theme: AppTheme, tool: ToolId): boolean {
   let doc: Document | null = null
   try {
