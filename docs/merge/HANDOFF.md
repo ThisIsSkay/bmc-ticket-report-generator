@@ -1,4 +1,4 @@
-BATON: Owner — review Claude's bug-check results; Codex may continue from "Round 3" below — 2026-11-26
+BATON: Claude — real-data findings RD-01 to RD-03 (branch only, no publish) — 2026-11-26
 
 # Unified app merge — handoff
 
@@ -177,6 +177,35 @@ have Codex check it for bugs. Answers given:
   - deep links and lazy loading work;
   - the standalone pages are unchanged;
   - no outside requests and no page errors.
+
+## Real-data findings RD-01 to RD-04 (ChatGPT QA, 2026-11-26)
+
+ChatGPT tested the owner's real BMC export locally (logic level, not in a
+browser). Its report stays **private**: no real names, ticket IDs, contracts
+or counts go into this repository. Fixtures are fictional.
+
+Owner decisions (2026-11-26):
+- An explicitly **empty contract selection blocks every export**.
+- Fixes stay on `integration/unified-app`. **Do not push to `main`** until
+  the owner approves.
+
+Checklist (continue from the first unticked item):
+- [ ] RD-01 (High) Customer-scope safeguard for every export path, daily
+  included. "All contracts" or a missing Contract column asks for
+  confirmation, showing the scope, recipients and counts; cancel means no
+  clipboard write and no download. Empty selection is blocked. The guard
+  logic moves into a tested module that the app and the golden harness
+  share. Golden `email/matrix.json` guards change intentionally (owner
+  request).
+- [ ] RD-03 (Medium) A worksheet whose `<dimension>` says `A1` but holds
+  many rows. Fictional regression fixture, tested against the email
+  `xlsx-lite` reader, the WhatsApp import (SheetJS) and the survey import.
+  Fix any parser that truncates.
+- [ ] RD-02 (Medium) Monthly/outstanding reference date earlier than the
+  snapshot: show the future-dated count prominently in the UI and in the
+  email HTML and plain text. Counting rules unchanged. Reports with no
+  future-dated tickets must stay byte-identical.
+- [ ] RD-04 (Info) No change; P0-2 stays open.
 
 ## Claude bug check of /app/ (started 2026-11-26)
 
