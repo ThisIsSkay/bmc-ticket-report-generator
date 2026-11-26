@@ -1,0 +1,79 @@
+{
+  "teams": {
+    "EUC": [
+      "EUC Analyst",
+      "EUC Engineer"
+    ],
+    "System": [
+      "Systems Analyst",
+      "Systems Engineer"
+    ],
+    "Network": [
+      "Network Analyst",
+      "Network Engineer"
+    ]
+  },
+  "statuses": {
+    "New": [
+      "new",
+      "assigned",
+      "created"
+    ],
+    "Pending": [
+      "pending"
+    ],
+    "Closed": [
+      "closed",
+      "resolved"
+    ],
+    "Work in Progress": [
+      "work in progress",
+      "in progress",
+      "wip"
+    ],
+    "Waiting User Reply": [
+      "waiting user reply",
+      "awaiting user",
+      "pending user",
+      "waiting for user"
+    ],
+    "On Hold": [
+      "on hold",
+      "hold"
+    ],
+    "Cancelled": [
+      "cancelled",
+      "canceled"
+    ],
+    "Other": []
+  },
+  "categories": {
+    "Onboarding": [
+      "onboarding",
+      "onboard ",
+      "new joiner",
+      "joiner"
+    ],
+    "Offboarding": [
+      "offboarding",
+      "terminate access",
+      "leaver",
+      "termination",
+      "resignation"
+    ],
+    "Schedule": [
+      "forward schedule",
+      "preventive maintenance",
+      "schedule",
+      "scheduling",
+      "planned work"
+    ],
+    "Incident": [
+      "incident",
+      "outage",
+      "unavailable",
+      "error",
+      "failure"
+    ]
+  }
+}

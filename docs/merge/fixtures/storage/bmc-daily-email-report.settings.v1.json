@@ -1,0 +1,60 @@
+{
+  "to": "team@example.com; lead@example.net",
+  "cc": "manager@example.org",
+  "bcc": "",
+  "subject": "Daily BMC Ticket Report – {date}",
+  "greeting": "Hi Team,",
+  "intro": "Please find below the daily BMC ticket activity report.",
+  "client": "classic",
+  "reportContent": "monthly",
+  "showEngineer": true,
+  "summaryOnly": false,
+  "pendingSubject": "BMC Outstanding Tickets – {date}",
+  "pendingIntro": "Please find below the outstanding tickets as at {date}.",
+  "monthlySubject": "Monthly pending tickets — {date}",
+  "monthlyIntro": "Please find below the monthly pending ticket report as at {date}.",
+  "asAt": "2026-11-09",
+  "monthlyAsAt": "2026-11-10",
+  "emailVariant": "C",
+  "emailSender": {
+    "name": "Alex Example",
+    "title": "IT Executive",
+    "company": "Example Company",
+    "phone": "+65 6000 0000"
+  },
+  "signatureId": "logo-sig",
+  "signatures": [
+    {
+      "id": "support",
+      "name": "IT Support Team",
+      "content": "Best regards,\nIT Support Team"
+    },
+    {
+      "id": "logo-sig",
+      "name": "Signature with logo",
+      "content": "Best regards,\nAlex Example",
+      "html": "<p>Best regards,<br>Alex Example</p><p><img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAIAAADYYG7QAAAAOUlEQVR42u3OMQ0AAAgDsElENrLmgnA0qYBmJ69ESEhISEhISEhISEhISEhISEhISEhISEhISOhOATtB2IifDkUWAAAAAElFTkSuQmCC\" width=\"48\" height=\"48\" alt=\"Example logo\"></p>"
+    }
+  ],
+  "headerLogo": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAAAgCAIAAABiouoDAAAARUlEQVR42u3QQQkAAAgEsOthE7PYP4cN/AuDJViqh0MUCBIkSJAgQYIEIUiQIEGCBAkShCBBggQJEiRIEIIECRIkSNBfC6BeTHmLjCJlAAAAAElFTkSuQmCC",
+  "headerLogoName": "example-logo.png",
+  "reportSetup": {
+    "groups": [
+      "Example Network Group",
+      "Example Service Desk"
+    ],
+    "types": [
+      "Incident",
+      "Service Request"
+    ],
+    "statuses": [
+      "Assigned",
+      "Pending"
+    ],
+    "contracts": [
+      "CN-EXAMPLE-1",
+      "CN-EXAMPLE-2"
+    ],
+    "events": "exclude"
+  }
+}

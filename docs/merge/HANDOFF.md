@@ -30,6 +30,13 @@ survey preview into one app, in phases 0–6 (see PLAN.md). Phase 0 records the
   `1a74ff4`.
 - Tags: `pre-merge/main-1a74ff4` → `1a74ff4`;
   `pre-merge/email-3fcc777` → `3fcc777`.
+  **Not on GitHub yet:** the tags exist only in Claude's local clone. The
+  session's git access refused the tag push (HTTP 403), while the branch push
+  succeeded. The commits themselves are safe because `main` and
+  `feature/daily-pivot-email-report` still contain them. **Owner action:**
+  create the two tags (GitHub → Releases → "Draft a new release" → choose a tag
+  → target the commit), or run, in any clone with push rights:
+  `git tag -a pre-merge/main-1a74ff4 1a74ff4 -m "Rollback point" && git tag -a pre-merge/email-3fcc777 3fcc777 -m "Rollback point" && git push origin pre-merge/main-1a74ff4 pre-merge/email-3fcc777`
 - Phase 0 reads the email tool through a separate worktree pinned to
   `3fcc777`. That branch is not merged in Phase 0.
 
@@ -42,8 +49,8 @@ builder. The independent review is open: Codex (when available) or the owner.
 
 - [ ] **Phase 0 — Freeze and baseline**
   - [x] Step 1: branch, tags, PLAN.md, HANDOFF.md
-  - [ ] Step 2: baseline test counts (BASELINE.md)
-  - [ ] Step 3: storage inventory and fixtures
+  - [x] Step 2: baseline test counts (BASELINE.md)
+  - [x] Step 3: storage inventory and fixtures
   - [ ] Step 4: goldens (WhatsApp, email, survey) and determinism check
   - [ ] Step 5: handover
 - [ ] Phase 1 — merge feature branch, self-contained deploy
@@ -65,3 +72,4 @@ D1–D6 as listed in PLAN.md. Not yet answered.
 
 | Date | Commit | Summary |
 |---|---|---|
+| 2026-11-26 | `50a7120` | Plan and handoff |

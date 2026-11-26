@@ -1,0 +1,12 @@
+{
+  "to": "team@example.com",
+  "subject": "Daily BMC Ticket Report – {date}",
+  "emailVariant": "Z",
+  "signatures": [
+    {
+      "id": "support",
+      "name": "IT Support Team",
+      "content": "Best regards,\nIT Support Team"
+    }
+  ]
+}
