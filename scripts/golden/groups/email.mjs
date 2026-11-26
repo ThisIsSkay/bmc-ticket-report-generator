@@ -65,7 +65,8 @@ export async function generate({ emailRoot }) {
   const { renderEmail, renderEml, renderPlainText, renderPendingEmail, renderPendingPlainText } = await lib('mail.mjs');
   const { renderClassicOutlookScript } = await lib('classic-outlook.mjs');
   const { buildPendingView, PENDING_SUBJECT, PENDING_INTRO } = await lib('pending-report.mjs');
-  const { contractLabel, generateContractReport } = await lib('contract-scope.mjs');
+  const { contractLabel, generateContractReport, missingContracts } = await lib('contract-scope.mjs');
+  const { dayNumber } = await lib('ageing.mjs');
   const { sanitizeSignatureHtml, plainToSignatureHtml } = await lib('signature-html.mjs');
   const { workbookSheets, buildWorkbook } = await lib('workbook.mjs');
   const { normalizeVariant, renderThemedEmail } = await lib('email-themes.mjs');
@@ -107,11 +108,30 @@ export async function generate({ emailRoot }) {
     const html = pending
       ? renderPendingEmail(view, emailSettings, normalizeVariant(variant))
       : renderEmail(report, emailSettings, options, variant === 'legacy' ? 'legacy' : normalizeVariant(variant));
+    // Export guards, mirroring app.mjs confirmScope() :227, contractScopeError() :149,
+    // workbookBytes() :228 and the download handlers :249 and :291-293. The preview
+    // (html) is always rendered; a blocked delivery is recorded as "BLOCKED: <toast>".
+    const missing = missingContracts(fixtures[fixture], contracts);
+    const scopeError = missing.length
+      ? 'Selected contracts are missing from this export: ' + contractLabel(missing) + '. Review the contracts before exporting.'
+      : monthly && dayNumber(asAt) === null ? 'Choose the monthly reporting date.' : '';
+    const workbookError = pending && dayNumber(asAt) === null ? 'Choose an age reference date before exporting Excel.' : '';
+    const guards = {
+      exportBlocked: scopeError || null,
+      workbookBlocked: scopeError || workbookError || null,
+      // pending modes ask confirm() when all contracts are selected (the fixtures always have a Contract column)
+      contractConfirmation: pending && !scopeError && contracts === null,
+    };
+    const blocked = (message) => 'BLOCKED: ' + message;
+    if (scopeError) {
+      return { html, txt: blocked(scopeError), eml: blocked(scopeError), ps1: blocked(scopeError), workbook: null, guards };
+    }
     const txt = pending ? renderPendingPlainText(view, emailSettings) : renderPlainText(report, emailSettings, options);
     const eml = renderEml(html, deliverySettings, deliveryDate);
+    if (workbookError) return { html, txt, eml, ps1: blocked(workbookError), workbook: null, guards };
     let workbook = null;
     const attachments = [];
-    if (pending && view.asAt) {
+    if (pending) {
       const sheets = workbookSheets(view, settings.showEngineer);
       const bytes = new Uint8Array(buildWorkbook(view, settings.showEngineer, XLSX));
       const read = XLSX.read(bytes, { type: 'array', cellDates: true });
@@ -124,13 +144,14 @@ export async function generate({ emailRoot }) {
       attachments.push({ filename: base + '.xlsx', base64: Buffer.from(binary, 'binary').toString('base64') });
     }
     const ps1 = renderClassicOutlookScript(html, deliverySettings, deliveryDate, attachments);
-    return { html, txt, eml, ps1, workbook };
+    return { html, txt, eml, ps1, workbook, guards };
   }
 
   const files = new Map();
   const matrix = {};
-  const record = (key, out) => {
-    matrix[key] = Object.fromEntries(Object.entries(out).filter(([, v]) => v !== null).map(([k, v]) => [k, { bytes: typeof v === 'string' ? Buffer.byteLength(v) : stableJson(v).length, sha256: sha256(typeof v === 'string' ? v : stableJson(v)) }]));
+  const record = (key, { guards, ...out }) => {
+    matrix[key] = Object.fromEntries(Object.entries(out).filter(([, v]) => v !== null).map(([k, v]) => [k, typeof v === 'string' && v.startsWith('BLOCKED: ') ? v : { bytes: typeof v === 'string' ? Buffer.byteLength(v) : stableJson(v).length, sha256: sha256(typeof v === 'string' ? v : stableJson(v)) }]));
+    matrix[key].guards = guards;
   };
 
   await withFixedClock(async () => {

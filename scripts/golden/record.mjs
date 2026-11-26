@@ -3,7 +3,8 @@
 // to a new environment, and must be noted in docs/merge/HANDOFF.md.
 //
 //   node scripts/golden/record.mjs --email-root=<path to prototype/daily-email>
-//   options: --only=survey,email,whatsapp-data,whatsapp-visual  --skip-visual  --out=<dir>
+//   options: --only=survey,email,storage,whatsapp-data,whatsapp-visual  --skip-visual  --out=<dir>
+//            --expect-email-commit=<sha prefix>
 import { generateGroup, options, writeGroup } from './lib/runner.mjs';
 
 const opts = options(process.argv.slice(2));

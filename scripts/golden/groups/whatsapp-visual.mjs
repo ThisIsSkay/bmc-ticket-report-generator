@@ -10,6 +10,7 @@ import { createServer } from 'node:http';
 import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
 import { extname, join, resolve, sep } from 'node:path';
+import { pathToFileURL } from 'node:url';
 import { repoRoot, stableJson } from '../lib/util.mjs';
 
 const BASE = '/bmc-ticket-report-generator/';
@@ -38,7 +39,7 @@ const CASES = [
 ];
 
 async function build() {
-  const vite = await import(resolve(repoRoot, 'node_modules/vite/dist/node/index.js'));
+  const vite = await import(pathToFileURL(resolve(repoRoot, 'node_modules/vite/dist/node/index.js')).href);
   const outDir = mkdtempSync(join(tmpdir(), 'golden-dist-'));
   await vite.build({ root: repoRoot, configFile: resolve(repoRoot, 'vite.config.ts'), mode: 'github-pages', logLevel: 'silent', build: { outDir, emptyOutDir: true } });
   return outDir;
@@ -110,7 +111,7 @@ export async function generate({ fixtures }) {
   return files;
 }
 
-/** PNG: exact pixels. JPEG: same dimensions and at most 0.1% of pixels off by more than 16 levels. */
+/** PNG: exact pixels including transparency (alpha). JPEG: same dimensions and at most 0.1% of pixels off by more than 16 levels in R, G or B. */
 export async function compare(path, expected, actual) {
   if (path.endsWith('.json')) return null; // compared as text by the runner
   if (expected.equals(actual)) return null;
@@ -119,18 +120,18 @@ export async function compare(path, expected, actual) {
   try {
     const page = await browser.newPage();
     const type = path.endsWith('.png') ? 'image/png' : 'image/jpeg';
-    const result = await page.evaluate(async ({ a, b, type, tol }) => {
+    const result = await page.evaluate(async ({ a, b, type, tol, alpha }) => {
       const load = async (b64) => { const img = new Image(); img.src = `data:${type};base64,` + b64; await img.decode(); const c = document.createElement('canvas'); c.width = img.naturalWidth; c.height = img.naturalHeight; const x = c.getContext('2d'); x.drawImage(img, 0, 0); return { w: c.width, h: c.height, data: x.getImageData(0, 0, c.width, c.height).data }; };
       const A = await load(a), B = await load(b);
       if (A.w !== B.w || A.h !== B.h) return { sizeMismatch: `${A.w}x${A.h} vs ${B.w}x${B.h}` };
       let changed = 0, any = 0;
       for (let i = 0; i < A.data.length; i += 4) {
-        const d = Math.max(Math.abs(A.data[i] - B.data[i]), Math.abs(A.data[i + 1] - B.data[i + 1]), Math.abs(A.data[i + 2] - B.data[i + 2]));
+        const d = Math.max(Math.abs(A.data[i] - B.data[i]), Math.abs(A.data[i + 1] - B.data[i + 1]), Math.abs(A.data[i + 2] - B.data[i + 2]), alpha ? Math.abs(A.data[i + 3] - B.data[i + 3]) : 0);
         if (d > 0) any++;
         if (d > tol) changed++;
       }
       return { pixels: A.w * A.h, any, changed };
-    }, { a: expected.toString('base64'), b: actual.toString('base64'), type, tol: JPEG_CHANNEL_TOLERANCE });
+    }, { a: expected.toString('base64'), b: actual.toString('base64'), type, tol: JPEG_CHANNEL_TOLERANCE, alpha: type === 'image/png' });
     if (result.sizeMismatch) return `image size changed: ${result.sizeMismatch}`;
     if (path.endsWith('.png')) return result.any ? `${result.any} of ${result.pixels} pixels differ` : null;
     return result.changed / result.pixels > JPEG_MAX_CHANGED_FRACTION ? `${result.changed} of ${result.pixels} pixels differ by more than ${JPEG_CHANNEL_TOLERANCE} levels` : null;

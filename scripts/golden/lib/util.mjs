@@ -1,4 +1,5 @@
 // Shared helpers for the Phase 0 golden harness. No network access.
+import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { existsSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
@@ -65,6 +66,15 @@ export function resolveEmailRoot(args) {
   const root = resolve(candidate);
   if (!existsSync(resolve(root, 'lib/mail.mjs'))) {
     throw new Error(`Email tool not found at ${root}. Pass --email-root=<path to prototype/daily-email>.`);
+  }
+  // Optional guard for Phase 0 verification: --expect-email-commit=3fcc777 fails
+  // if the email tool is checked out at any other commit or has local changes.
+  const expected = args['expect-email-commit'];
+  if (expected) {
+    const git = (...a) => execFileSync('git', ['-C', root, ...a], { encoding: 'utf8' }).trim();
+    const head = git('rev-parse', 'HEAD');
+    if (!head.startsWith(String(expected))) throw new Error(`Email tool is at ${head.slice(0, 7)}, expected ${expected}.`);
+    if (git('status', '--porcelain', '--', '.')) throw new Error(`Email tool at ${root} has local changes; expected a clean ${expected}.`);
   }
   return root;
 }

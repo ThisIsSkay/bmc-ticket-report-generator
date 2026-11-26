@@ -1,5 +1,6 @@
 // Customer survey goldens: CSV import results, directory validation and match
 // results for fictional, adversarial inputs. Pure Node, no browser.
+import { createRequire } from 'node:module';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { repoRoot, stableJson } from '../lib/util.mjs';
@@ -105,7 +106,25 @@ export async function generate() {
   const requests = requestsFromRows(ticketRows, ticketMap, ticketRows.map((_, i) => i + 2));
   const results = matchBatch(requests, dir.entries).map(compactResult);
 
+  // XLSX upload, read exactly as prototype/customer-survey/app.mjs:13 does
+  // (cellDates:false, sheet_to_json header:1, defval:'', raw:false), with a cover
+  // sheet, the header on row 2, and IDs whose leading zeros must survive.
+  const XLSX = createRequire(resolve(repoRoot, 'package.json'))('xlsx');
+  const book = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(book, XLSX.utils.aoa_to_sheet([['Fictional export cover sheet']]), 'Cover');
+  const data = XLSX.utils.aoa_to_sheet([['Fictional export'], ['Ticket ID', 'Customer Name', 'Employee No', 'Submitted'], ['000123', 'Alex Example', 7, 46336], ['INC-000124', 'Jamie Q Example', 42, 46337]]);
+  data.C3.z = '00000'; data.C4.z = '00000'; data.D3.z = 'yyyy-mm-dd'; data.D4.z = 'yyyy-mm-dd';
+  XLSX.utils.book_append_sheet(book, data, 'Data');
+  const xlsxBook = XLSX.read(XLSX.write(book, { type: 'array', bookType: 'xlsx' }), { type: 'array', cellDates: false });
+  const sheets = Object.fromEntries(xlsxBook.SheetNames.map((name) => [name, XLSX.utils.sheet_to_json(xlsxBook.Sheets[name], { header: 1, defval: '', raw: false })]));
+  const xlsxTable = tableFromRows(sheets.Data, 1);
+  const xlsxRequests = requestsFromRows(xlsxTable.rows, { ticket: 'Ticket ID', name: 'Customer Name' }, xlsxTable.rowNumbers);
+  let coverError = null;
+  try { tableFromRows(sheets.Cover, 0); } catch (error) { coverError = error.message; }
+  const xlsxUpload = { sheetNames: xlsxBook.SheetNames, sheets, table: xlsxTable, requests: xlsxRequests, coverSheetAsHeader: coverError, matches: matchBatch(xlsxRequests, dir.entries).map(compactResult) };
+
   return new Map([
+    ['survey/xlsx-upload.json', stableJson(xlsxUpload)],
     ['survey/import.json', stableJson(imports)],
     ['survey/directory.json', stableJson(dir)],
     ['survey/match.json', stableJson({ requests, results })],

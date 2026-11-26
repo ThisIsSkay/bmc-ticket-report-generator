@@ -4,6 +4,7 @@
 import { readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
 import { repoRoot, stableJson, withFixedClock } from '../lib/util.mjs';
 
 const XLSX = createRequire(resolve(repoRoot, 'package.json'))('xlsx');
@@ -36,8 +37,8 @@ const view = (t) => ({ ...t, raw: undefined }); // raw rows are recorded once in
 
 function hostileWorkbookBytes() {
   const book = XLSX.utils.book_new();
-  for (const name of ['1-AsiaPac', '2-AsiaPac', '3-AsiaPac']) XLSX.utils.book_append_sheet(book, XLSX.utils.aoa_to_sheet([]), name);
-  XLSX.utils.book_append_sheet(book, XLSX.utils.aoa_to_sheet([BMC_HEADERS, ...BMC_ROWS], { cellDates: true }), '4-AsiaPac All Tickets');
+  for (const name of ['1-Export', '2-Export', '3-Export']) XLSX.utils.book_append_sheet(book, XLSX.utils.aoa_to_sheet([]), name);
+  XLSX.utils.book_append_sheet(book, XLSX.utils.aoa_to_sheet([BMC_HEADERS, ...BMC_ROWS], { cellDates: true }), '4-All Tickets');
   return Buffer.from(XLSX.write(book, { type: 'buffer', bookType: 'xlsx', cellDates: true }));
 }
 
@@ -68,7 +69,7 @@ export function visualFixtures() {
 }
 
 export async function generate() {
-  const { createServer } = await import(resolve(repoRoot, 'node_modules/vite/dist/node/index.js'));
+  const { createServer } = await import(pathToFileURL(resolve(repoRoot, 'node_modules/vite/dist/node/index.js')).href);
   const server = await createServer({ root: repoRoot, configFile: resolve(repoRoot, 'vite.config.ts'), logLevel: 'silent', appType: 'custom', server: { middlewareMode: true, hmr: false, ws: false } });
   const files = new Map();
   try {
@@ -79,21 +80,48 @@ export async function generate() {
     const { defaultConfig, defaultFilters } = await load('/src/config/defaults.ts');
 
     const hostileBytes = hostileWorkbookBytes();
+    // The same rows as CSV text (dates as text), read by the same parser.
+    const csvCell = (v) => { const t = v instanceof Date ? `${v.getFullYear()}-${String(v.getMonth() + 1).padStart(2, '0')}-${String(v.getDate()).padStart(2, '0')} ${String(v.getHours()).padStart(2, '0')}:${String(v.getMinutes()).padStart(2, '0')}` : String(v); return /[",\n]/.test(t) ? `"${t.replace(/"/g, '""')}"` : t; };
+    const hostileCsv = Buffer.from([BMC_HEADERS, ...BMC_ROWS].map((r) => r.map(csvCell).join(',')).join('\r\n') + '\r\n');
+
+    // A saved mapping from an earlier day: one entry still matches a header and
+    // must win over detection; one names a header that no longer exists and must
+    // fall back to detection (src/lib/import.ts autoDetectColumns, App.tsx:91).
+    const SAVED_MAPPING = { ticketId: '', assignedTo: '', status: '', ticketType: '', summary: 'Customer Company', createdDate: 'Removed Header', closedDate: '', supportGroup: '', contract: '' };
 
     const fixtures = [
-      { name: 'sample', bytes: readFileSync(resolve(repoRoot, 'public/sample-bmc-export.xlsx')), teams: [['explicit', TEAMS_SAMPLE]], dates: ['2026-09-08', '2026-09-09'] },
-      { name: 'hostile', bytes: hostileBytes, teams: [['explicit', TEAMS_EXPLICIT], ['inferred', null], ['none', { EUC: [], System: [], Network: [] }]], dates: ['2026-11-10', '2026-11-03', '2026-10-11'] },
+      { name: 'sample', fileName: 'sample-bmc-export.xlsx', bytes: readFileSync(resolve(repoRoot, 'public/sample-bmc-export.xlsx')), teams: [['explicit', TEAMS_SAMPLE]], dates: ['2026-09-08', '2026-09-09'] },
+      { name: 'hostile', fileName: 'fictional-bmc-export.xlsx', bytes: hostileBytes, teams: [['explicit', TEAMS_EXPLICIT], ['inferred', null], ['none', { EUC: [], System: [], Network: [] }]], dates: ['2026-11-10', '2026-11-03', '2026-10-11'] },
+      { name: 'hostile-csv', fileName: 'fictional-bmc-export.csv', bytes: hostileCsv, teams: [['explicit', TEAMS_EXPLICIT]], dates: ['2026-11-10'] },
     ];
+
+    // The app's own parser on unusual files: only the outcome is recorded.
+    const parserCases = {
+      'wrong-extension': ['notes.txt', Buffer.from('Ticket ID,Status\nINC1,Assigned\n')],
+      'empty-xlsx': ['empty.xlsx', Buffer.alloc(0)],
+      'corrupt-xlsx': ['corrupt.xlsx', Buffer.concat([Buffer.from('PK\u0003\u0004'), Buffer.alloc(64, 7)])],
+      'uppercase-extension': ['FICTIONAL.XLSX', hostileBytes],
+    };
+    const parserOutcomes = {};
+    for (const [name, [fileName, bytes]] of Object.entries(parserCases)) {
+      try {
+        const parsed = await imp.parseWorkbookFile(new File([bytes], fileName));
+        parserOutcomes[name] = { ok: true, sheetNames: parsed.sheetNames, recommendedSheet: imp.recommendWorksheet(parsed) };
+      } catch (error) {
+        parserOutcomes[name] = { ok: false, error: error.message };
+      }
+    }
+    files.set('whatsapp/data/parser-cases.json', stableJson(parserOutcomes));
 
     await withFixedClock(async () => {
       for (const fixture of fixtures) {
-        // Same read options as parseWorkbookFile (src/lib/import.ts).
-        const workbook = XLSX.read(fixture.bytes, { type: 'array', cellDates: true, dense: true });
-        const parsed = { fileName: fixture.name + '.xlsx', workbook, sheetNames: workbook.SheetNames };
+        // The app's own upload path (App.tsx openFile → importWorksheet).
+        const parsed = await imp.parseWorkbookFile(new File([fixture.bytes], fixture.fileName));
         const sheet = imp.recommendWorksheet(parsed);
         const { headers, rows } = imp.readWorksheet(parsed, sheet);
         const mapping = imp.autoDetectColumns(headers);
-        files.set(`whatsapp/data/${fixture.name}/inputs.json`, stableJson({ sheetNames: parsed.sheetNames, recommendedSheet: sheet, headers, mapping, fingerprint: imp.mappingFingerprint(headers), rows }));
+        const withSavedMapping = imp.autoDetectColumns(headers, SAVED_MAPPING);
+        files.set(`whatsapp/data/${fixture.name}/inputs.json`, stableJson({ sheetNames: parsed.sheetNames, recommendedSheet: sheet, headers, mapping, mappingWithSavedMapping: withSavedMapping, fingerprint: imp.mappingFingerprint(headers), rows }));
         for (const [teamsName, teamsValue] of fixture.teams) {
           let teams = teamsValue;
           if (!teams) teams = norm.inferTeamMappingFromTickets(norm.normalizeRows(rows, mapping, defaultConfig));

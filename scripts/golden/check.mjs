@@ -2,8 +2,9 @@
 // Exits 1 on any NEW, CHANGED or MISSING file.
 //
 //   node scripts/golden/check.mjs --email-root=<path to prototype/daily-email>
-//   options: --only=survey,email,whatsapp-data,whatsapp-visual  --skip-visual
-import { checkGroup, generateGroup, options } from './lib/runner.mjs';
+//   options: --only=survey,email,storage,whatsapp-data,whatsapp-visual  --skip-visual
+//            --expect-email-commit=<sha prefix>  (fail unless the email tool is that clean commit)
+import { GROUPS, checkGroup, generateGroup, options } from './lib/runner.mjs';
 
 const opts = options(process.argv.slice(2));
 let failures = 0;
@@ -16,5 +17,5 @@ for (const name of opts.selected) {
   for (const line of problems.slice(0, 25)) console.log('  ' + line);
   if (problems.length > 25) console.log(`  … and ${problems.length - 25} more`);
 }
-if (opts.selected.length < 4) console.log(`Note: only ${opts.selected.join(', ')} checked.`);
+if (opts.selected.length < Object.keys(GROUPS).length) console.log(`Note: only ${opts.selected.join(', ')} checked.`);
 process.exitCode = failures ? 1 : 0;
