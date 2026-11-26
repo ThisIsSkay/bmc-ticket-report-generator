@@ -1,4 +1,4 @@
-BATON: Codex — bug check of the live unified app (/app/) — 2026-11-26
+BATON: Claude — bug check and fixes of /app/ (owner request; Codex may continue from the checklist below) — 2026-11-26
 
 # Unified app merge — handoff
 
@@ -177,6 +177,37 @@ have Codex check it for bugs. Answers given:
   - deep links and lazy loading work;
   - the standalone pages are unchanged;
   - no outside requests and no page errors.
+
+## Claude bug check of /app/ (started 2026-11-26)
+
+The owner asked Claude to bug-check and fix until its usage runs out. If this
+stops mid-way, **continue from the first unticked item**. Rules:
+- Fixes go to `integration/unified-app`, then fast-forward to `main`, only
+  after the full gate passes: all suites, `golden:check`, `build:gh-pages`,
+  `stage:pages`, `verify:unified`.
+- Never re-record goldens.
+- Each finding is logged below with a `B-` number, severity, reproduction,
+  fix commit (or "open").
+
+Checklist (in order of risk):
+- [ ] B-scan-1 Dark/light readability scan: every visible text element in
+  each section and state (settings window open, results, modals), for text
+  contrast below 3:1 and for light boxes left in dark mode.
+- [ ] B-scan-2 Layout under the tool bar: sticky sidebar and status strip,
+  validation panel, sticky table headers, modals/overlays, print.
+- [ ] B-scan-3 Every Email export from inside /app/ (.ps1, .eml, .xlsx, copy
+  to clipboard) against the same steps on /daily-email/.
+- [ ] B-scan-4 Navigation: back/forward, unknown hash, deep links, reload,
+  keyboard focus order, window title.
+- [ ] B-scan-5 WhatsApp section workflows inside /app/ (Engineer Selection,
+  Rules, Configuration import/export, copy and print).
+- [ ] B-scan-6 Survey inside /app/ (XLSX upload, Clear all data, worker).
+- [ ] B-scan-7 Dev experience: `npm run dev` serves the email and survey
+  pages for /app/.
+- [ ] B-scan-8 Edge cases: narrow and very wide windows, storage blocked,
+  frame load failure.
+
+Findings: (none yet)
 
 ## Codex bug-check brief
 
