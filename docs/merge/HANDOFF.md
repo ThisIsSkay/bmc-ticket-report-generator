@@ -15,7 +15,11 @@ survey preview into one app, in phases 0–6 (see PLAN.md). Phase 0 records the
 
 - Only the baton holder pushes. Fetch and check the baton line before pushing;
   set the next holder in your last commit.
-- Push only to `integration/unified-app`. Never push to `main` or
+- **Owner standing instruction (2026-11-27): push fixes live.** Commit on
+  `integration/unified-app`; once the full gate passes (all suites,
+  `golden:check`, `build:gh-pages`, `stage:pages`, the `verify:*` browser
+  checks), fast-forward `main` to it so the live site updates, and confirm
+  the Pages deploy succeeded. Never push to
   `feature/daily-pivot-email-report`. No PRs opened, merged or closed.
 - Never rewrite history: no force-push, rebase, or amend of pushed commits.
 - Phase 0 changes only `docs/merge/**` and `scripts/golden/**`.
@@ -186,8 +190,8 @@ or counts go into this repository. Fixtures are fictional.
 
 Owner decisions (2026-11-26):
 - An explicitly **empty contract selection blocks every export**.
-- Fixes stay on `integration/unified-app`. **Do not push to `main`** until
-  the owner approves.
+- Fixes stayed on `integration/unified-app` until the owner approved
+  (published 2026-11-27; since then the standing instruction above applies).
 
 Checklist (continue from the first unticked item):
 - [x] RD-01 (High) Customer-scope safeguard for every export path, daily
