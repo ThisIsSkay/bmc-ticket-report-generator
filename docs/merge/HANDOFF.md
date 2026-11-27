@@ -377,6 +377,27 @@ Full gate passed on the published commit. Still for the owner: open an .eml
 and run a .ps1 from the live site with test addresses (logo, BCC, nothing
 sent), and the real-data browser checks listed under RD-01 to RD-04.
 
+## Outstanding/monthly ticket order (owner, 2026-11-27)
+
+Owner: list outstanding tickets newest first, with an option to group them by
+assigned group (e.g. EUC, Network), each group newest first.
+- `buildPendingView` takes `order` ('newest' default, 'oldest') and `groupBy`;
+  same-day tickets follow the Ticket ID in the same direction; no submit date
+  goes last. Grouped emails get a heading row per group (`groupRuns`,
+  `groupHeading`, `ticketTable(..., groupStarts)`); plain text gets a heading
+  line. Dashboard, email, text and Excel share the order. Settings
+  `pendingOrder` / `pendingGroupBy` are remembered; controls sit under
+  "Email summaries only".
+- Tests: `test/pending-order.test.mjs` (7); `report.test.mjs` outstanding test
+  now expects newest first and checks oldest on request;
+  `npm run verify:pending-order` (18 browser checks, standalone and /app/).
+- Golden (intentional, owner-requested): outstanding/monthly outputs reorder
+  (`email/core/*/{pending,monthly}-*`, workbooks, `matrix.json`; three new
+  scenarios order-oldest, grouped-newest, grouped-oldest); storage golden gains
+  the two default settings. Proof: with the old order (grouped, oldest first)
+  and headings off, all 114 email golden files matched byte for byte. Daily
+  outputs unchanged.
+
 ## Claude bug check of /app/ (started 2026-11-26)
 
 The owner asked Claude to bug-check and fix until its usage runs out. If this

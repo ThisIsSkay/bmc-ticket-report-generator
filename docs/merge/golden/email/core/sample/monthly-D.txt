@@ -41,11 +41,11 @@ TOTAL: 5
 
 Outstanding tickets (5)
 Ticket ID | Type | Summary | Assigned group | Status / Priority | Submitted
-1. INC000000004 | Incident | Conference room display flickering | NCC_EUC | Work in Progress · Priority: Medium | 2026-11-10
-2. SRV000000002 | Service Request | Request to set up account for new starter | NCC_EUC | Pending · Priority: Low | 2026-11-10
-3. INC000000007 | Incident | Unable to connect to VPN | NCC_NETWORK | Assigned · Priority: High | 2026-11-10
-4. FSC000000006 | Forward Schedule | Scheduled firmware update | NCC_SYSTEM | Pending · Priority: Low | 2026-11-07
-5. SRV000000009 | Service Request | Pending mailbox migration | NCC_SYSTEM | Waiting User Reply · Priority: Low | 2026-11-08
+1. SRV000000002 | Service Request | Request to set up account for new starter | NCC_EUC | Pending · Priority: Low | 2026-11-10
+2. INC000000007 | Incident | Unable to connect to VPN | NCC_NETWORK | Assigned · Priority: High | 2026-11-10
+3. INC000000004 | Incident | Conference room display flickering | NCC_EUC | Work in Progress · Priority: Medium | 2026-11-10
+4. SRV000000009 | Service Request | Pending mailbox migration | NCC_SYSTEM | Waiting User Reply · Priority: Low | 2026-11-08
+5. FSC000000006 | Forward Schedule | Scheduled firmware update | NCC_SYSTEM | Pending · Priority: Low | 2026-11-07
 
 Best regards,
 Alex Example

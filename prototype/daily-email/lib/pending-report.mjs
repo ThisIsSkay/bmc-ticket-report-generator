@@ -16,15 +16,19 @@ function countBy(tickets,key){
  * null groups means all; [] deliberately means none. Filtering is AFTER dedupe.
  * Scope is shared by the dashboard, HTML, plain text and every export.
  */
-export function buildPendingView(report,{groups=null,contractFilter='All',excludeEvents=true,types=null,statuses=null,asAt=''}={}){
+/** order: 'newest' (default) or 'oldest' submitted first; groupBy: list each assigned group together.
+ * Same-day tickets follow the Ticket ID in the same direction; tickets without a submit date go last. */
+export function buildPendingView(report,{groups=null,contractFilter='All',excludeEvents=true,types=null,statuses=null,asAt='',order='newest',groupBy=false}={}){
  const selected=groups===null?null:[...new Set(groups)].sort(compare);
  const scoped=report.pending.filter(ticket=>selected===null||selected.includes(ticket.group))
 ;
  const typed=scoped.filter(t=>types===null||types.includes(t.kind));
+ const sortOrder=order==='oldest'?'oldest':'newest',direction=sortOrder==='oldest'?1:-1,grouped=groupBy===true;
+ const byDate=(a,b)=>(!a.created!==!b.created?(a.created?-1:1):direction*(compare(a.created,b.created)||compare(a.id,b.id)))||a.rowIndex-b.rowIndex;
  const tickets=typed.filter(t=>statuses===null||statuses.includes(t.status))
-  .slice().sort((a,b)=>compare(a.group,b.group)||compare(a.created||'9999',b.created||'9999')||compare(a.id,b.id)||a.rowIndex-b.rowIndex);
+  .slice().sort((a,b)=>(grouped?compare(a.group,b.group):0)||byDate(a,b));
  const incidents=tickets.filter(ticket=>ticket.kind==='Incident').length;
- return {tickets,groups:selected,contractFilter,excludeEvents,types,statuses,asAt,excludedType:scoped.length-typed.length,excludedStatus:typed.length-tickets.length,byAge:asAt?AGE_BANDS.map(name=>({name,count:tickets.filter(t=>ticketAge(t.created,asAt).band===name).length})):[],groupType:matrix(tickets,'group','kind'),typePriority:matrix(tickets,'kind','priority'),
+ return {tickets,order:sortOrder,groupBy:grouped,groups:selected,contractFilter,excludeEvents,types,statuses,asAt,excludedType:scoped.length-typed.length,excludedStatus:typed.length-tickets.length,byAge:asAt?AGE_BANDS.map(name=>({name,count:tickets.filter(t=>ticketAge(t.created,asAt).band===name).length})):[],groupType:matrix(tickets,'group','kind'),typePriority:matrix(tickets,'kind','priority'),
   total:tickets.length,incidents,other:tickets.length-incidents,
   byGroup:countBy(tickets,'group'),byStatus:countBy(tickets,'status')};
 }
@@ -37,6 +41,14 @@ export function futureDatedWarning(view){
  const count=futureDatedCount(view);if(!count)return '';
  return `Warning: ${count} of ${view.total} outstanding ticket${view.total===1?'':'s'} ${count===1?'was':'were'} submitted after ${view.asAt} (shown as Future-dated). These figures show current status in the uploaded export, not the backlog as at ${view.asAt}. To report that date, use an export taken on it.`;
 }
+
+/** Runs of consecutive tickets in the same assigned group: [{group,start,count}]. */
+export function groupRuns(tickets){
+ const runs=[];
+ tickets.forEach((ticket,index)=>{const last=runs.at(-1);if(last&&last.group===ticket.group)last.count++;else runs.push({group:ticket.group,start:index,count:1});});
+ return runs;
+}
+export const groupHeading=run=>`${label(run.group)} · ${run.count} ticket${run.count===1?'':'s'}`;
 
 export function pendingCaption(view){
  const groups=view.groups===null?'All assigned groups':view.groups.length?view.groups.join(', '):'None selected';

@@ -167,7 +167,7 @@ function fillPendingGroups(){$('allPendingTypes').checked=true;$('allPendingStat
 function selectedPendingGroups(){return $('allPendingGroups').checked?null:[...$('pendingGroups').querySelectorAll('input:checked')].map(input=>input.value);}
 function syncReportControls(){scopeStatus();
  $('reportContent').value=state.settings.reportContent;$('asAt').parentElement.firstChild.textContent=isMonthly()?'Reporting / export date':'Age reference date (calendar days since submission)';
- $('showEngineer').checked=state.settings.showEngineer;$('summaryOnly').checked=state.settings.summaryOnly===true;
+ $('showEngineer').checked=state.settings.showEngineer;$('summaryOnly').checked=state.settings.summaryOnly===true;$('pendingOrder').value=state.settings.pendingOrder==='oldest'?'oldest':'newest';$('pendingGroupBy').checked=state.settings.pendingGroupBy===true;
  for(const id of ['dailyDateControl','dailyGroupControl','latestBtn'])$(id).hidden=isPending();
  $('pendingOptions').hidden=!isPending();$('downloadWorkbook').hidden=!isPending();$('exportScope').hidden=!isPending();
  $('dailySummary').hidden=isPending();$('pendingSummary').hidden=!isPending();
@@ -193,7 +193,7 @@ function refreshReport(){syncReportControls();scopeStatus();if(!state.tickets.le
  if(state.dataErrors.length){$('result').hidden=true;updateReportWarnings($('fileWarning'),state.dataWarnings);return;}
  const contractError=contractScopeError();text('contractWarning',contractError);$('contractWarning').hidden=!contractError;
  const options=filters();state.date=options.reportDate;state.report=generateContractReport(state.tickets,isPending()?{...options,groupFilter:'All'}:options,state.contracts);const r=state.report;
- state.pendingView=isPending()?buildPendingView(r,{...options,groups:selectedPendingGroups(),types:typeSelection(),statuses:statusSelection(),asAt:$('asAt').value}):null;
+ state.pendingView=isPending()?buildPendingView(r,{...options,groups:selectedPendingGroups(),types:typeSelection(),statuses:statusSelection(),asAt:$('asAt').value,order:state.settings.pendingOrder,groupBy:state.settings.pendingGroupBy===true}):null;
  if(isPending()){const scoped=buildPendingView(r,{...options,groups:selectedPendingGroups()});const notices=[];for(const [key,selected] of [['kind',typeSelection()],['status',statusSelection()]])if(selected!==null){const counts=new Map();for(const ticket of scoped.tickets)if(!selected.includes(ticket[key]))counts.set(ticket[key],(counts.get(ticket[key])||0)+1);for(const [value,count] of counts)notices.push(`${value||'(blank)'} (${count})`);}text('newScopeValues',notices.length?'Values outside your selected setup: '+notices.join(', '):'');state.pendingView.monthly=isMonthly();updatePendingDashboard();}
  const unknown=isPending()?r.unknownStatuses.map(row=>({...row,count:state.pendingView.tickets.filter(ticket=>(ticket.status.trim()||'(blank)').toLowerCase()===row.status.toLowerCase()).length})).filter(row=>row.count):r.unknownStatuses;
  updateReportWarnings($('fileWarning'),state.dataWarnings,unknown);
@@ -259,6 +259,8 @@ function init(){
  $('saveReportSetup').addEventListener('click',()=>{const candidate={...state.settings,reportSetup:readScope()};if(commitSettings(candidate)){state.activeSetup=readScope();text('setupStatus','Setup saved');}});
  $('resetSetup').addEventListener('click',()=>{delete state.settings.reportSetup;delete state.activeSetup;state.scopeError='';storeSettings();fillPendingGroups();state.contracts=null;fillContracts();refreshReport()});
  $('summaryOnly').addEventListener('change',()=>{state.settings.summaryOnly=$('summaryOnly').checked;storeSettings();refreshReport()});
+ $('pendingOrder').addEventListener('change',()=>{state.settings.pendingOrder=$('pendingOrder').value;storeSettings();refreshReport()});
+ $('pendingGroupBy').addEventListener('change',()=>{state.settings.pendingGroupBy=$('pendingGroupBy').checked;storeSettings();refreshReport()});
  $('weeklySetup').addEventListener('click',()=>{state.settings.summaryOnly=true;$('allPendingTypes').checked=false;$('allPendingStatuses').checked=false;for(const [id,values] of [['pendingTypes',['Incident','Service Request']],['pendingStatuses',['Assigned','Pending']]]){for(const value of values)if(![...$(id).options].some(o=>o.value===value))$(id).add(new Option(value,value));for(const o of $(id).options)o.selected=values.includes(o.value);}captureActiveSetup();refreshReport();if(!$('asAt').value)toast('Choose an age reference date before exporting the weekly report.');});
  $('downloadWorkbook').addEventListener('click',()=>{try{if(!confirmScope())return;fileDownload(workbookBytes(),exportBase()+'.xlsx','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');}catch(e){toast(e.message)}});
  $('headerLogo').addEventListener('change',async event=>{const input=event.target,file=input.files[0];if(!file)return;input.disabled=true;$('clearHeaderLogo').disabled=true;$('importSettings').disabled=true;updateLogoPanel('Processing image…');try{const logo=await readHeaderLogo(file);if(commitSettings({...state.settings,headerLogo:logo,headerLogoName:file.name})){updateLogoPanel('Logo saved. It appears at the top of every report email.');refreshReport();}}catch(e){updateLogoPanel(e.message,true);}finally{input.value='';input.disabled=false;$('clearHeaderLogo').disabled=false;$('importSettings').disabled=false;}});

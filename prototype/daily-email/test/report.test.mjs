@@ -730,7 +730,8 @@ const outstandingReport=generateReport(outstandingSource,outstandingOptions);
 
 test('OUTSTANDING: group selection follows dedupe; contract/EVT/terminal rules are reused',()=>{
  const v=buildPendingView(outstandingReport,{...outstandingOptions,groups:['NCC_Application']});
- assert.deepEqual(v.tickets.map(t=>t.id),['SRV-APP','INC-APP']);
+ assert.deepEqual(v.tickets.map(t=>t.id),['INC-APP','SRV-APP'],'newest submitted first by default (owner, 2026-11-27)');
+ assert.deepEqual(buildPendingView(outstandingReport,{...outstandingOptions,groups:['NCC_Application'],order:'oldest'}).tickets.map(t=>t.id),['SRV-APP','INC-APP'],'oldest first on request');
  assert.equal(v.total,2);assert.equal(v.incidents,1);assert.equal(v.other,1);
  assert.deepEqual(v.byStatus,[{name:'Assigned',count:1},{name:'On Hold',count:1}]);
  assert.equal(v.byGroup.reduce((n,r)=>n+r.count,0),v.total);

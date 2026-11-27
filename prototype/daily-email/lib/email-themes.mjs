@@ -9,7 +9,7 @@ import {validHeaderLogo} from './header-logo.mjs';
  * text-bearing p/h1/h2/td/th, 1px solid borders, bgcolor + background-color.
  */
 import {signatureEmailHtml,plainToSignatureHtml,signatureImageSize} from './signature-html.mjs';
-import {pendingCaption,pendingDisclaimer,pendingColumns,pendingTicketValues,futureDatedWarning,PENDING_INTRO} from './pending-report.mjs';
+import {pendingCaption,pendingDisclaimer,pendingColumns,pendingTicketValues,futureDatedWarning,groupRuns,groupHeading,PENDING_INTRO} from './pending-report.mjs';
 
 const F='font-family:Arial,Helvetica,sans-serif;';
 const DOCTYPE='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">';
@@ -190,10 +190,11 @@ function summaryTable(t,rows,label){
  return dataTable(t,head,body);
 }
 const TICKET_HEADS=['Ticket ID','Type','Summary','Assignee','Assigned group','Current status'],TICKET_WIDTHS=[132,108,198,96,116,86];
-function ticketTable(t,tickets,heads=TICKET_HEADS,widths=TICKET_WIDTHS,empty='No tickets were created on this date.',lineBreaks=false){
+/** groupStarts: optional Map(row index -> heading); a full-width heading row goes before that row. */
+function ticketTable(t,tickets,heads=TICKET_HEADS,widths=TICKET_WIDTHS,empty='No tickets were created on this date.',lineBreaks=false,groupStarts=null){
  const cols=heads.length;
  const head=heads.map((name,c)=>cell('th',{align:'left',width:widths[c],bg:t.head.bg,border:t.head.border,pad:padFor(t.head.tixPad,c,cols),text:t.head.tix,textAlign:'left'},esc(name))).join('');
- const body=tickets.map((values,i)=>`<tr>${values.map((value,c)=>cell('td',{valign:'top',bg:i%2?t.row.stripe:'',border:t.row.border(i,false),pad:padFor(t.row.tixPad,c,cols),text:t.row.tix,wrap:true},(lineBreaks?String(value).split('\n').map(line=>cellText(line,widths[c],padFor(t.row.tixPad,c,cols),t.row.tix)).join('<br />'):cellText(value,widths[c],padFor(t.row.tixPad,c,cols),t.row.tix)))).join('')}</tr>`);
+ const body=tickets.map((values,i)=>(groupStarts?.has(i)?`<tr>${cell('td',{colspan:cols,valign:'top',bg:t.total.bg,border:t.total.border,pad:padFor(t.row.tixPad,0,cols,true),text:t.total.text},esc(groupStarts.get(i)))}</tr>`:'')+`<tr>${values.map((value,c)=>cell('td',{valign:'top',bg:i%2?t.row.stripe:'',border:t.row.border(i,false),pad:padFor(t.row.tixPad,c,cols),text:t.row.tix,wrap:true},(lineBreaks?String(value).split('\n').map(line=>cellText(line,widths[c],padFor(t.row.tixPad,c,cols),t.row.tix)).join('<br />'):cellText(value,widths[c],padFor(t.row.tixPad,c,cols),t.row.tix)))).join('')}</tr>`);
  // Empty state: one full-width row styled as a normal data row.
  if(!tickets.length)body.push(`<tr>${cell('td',{colspan:cols,valign:'top',border:t.row.border(0,false),pad:padFor(t.row.tixPad,0,cols,true),text:t.row.tix},empty)}</tr>`);
  return dataTable(t,head,body);
@@ -322,7 +323,7 @@ export function renderPendingEmail(view,settings={},variant='A'){
   section(t,'Outstanding by status'),pendingSummaryTable(t,view.byStatus,'Status'),
   ...[ ['Assigned group by ticket type',view.groupType],['Ticket type by priority',view.typePriority] ].filter(([,m])=>m).flatMap(([label,m])=>[section(t,label),ticketTable(t,[...m.rows.map(r=>[r.name,...r.counts,r.counts.reduce((a,b)=>a+b,0)]),['TOTAL',...m.columns.map((_,i)=>m.rows.reduce((n,r)=>n+r.counts[i],0)),view.total]],[label,...m.columns,'Total'],[...Array(m.columns.length+1).fill(Math.floor(736/(m.columns.length+2))),736-Math.floor(736/(m.columns.length+2))*(m.columns.length+1)])]),
   ...(view.asAt?[section(t,'Age since submitted (days), as at '+esc(view.asAt)),pendingSummaryTable(t,view.byAge,'Age band')]:[]),
-  ...(settings.summaryOnly===true?[]:[section(t,`Outstanding tickets (${view.total})`),ticketTable(t,view.tickets.map(ticket=>pendingTicketValues(ticket,settings.showEngineer===true)),columns.map(c=>c.label),columns.map(c=>c.width),'There are no outstanding tickets for this selection.',true)]),
+  ...(settings.summaryOnly===true?[]:[section(t,`Outstanding tickets (${view.total})`),ticketTable(t,view.tickets.map(ticket=>pendingTicketValues(ticket,settings.showEngineer===true)),columns.map(c=>c.label),columns.map(c=>c.width),'There are no outstanding tickets for this selection.',true,view.groupBy?new Map(groupRuns(view.tickets).map(run=>[run.start,groupHeading(run)])):null)]),
   signatureRow(t,d),disclaimerRow(t,esc(pendingDisclaimer(view))),v==='C'?bar(4):'',
  ].join('');
  return `${DOCTYPE}<html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>${title}</title></head><body style="margin:0;padding:0;background-color:#FFFFFF;"><table role="presentation" width="800" cellpadding="0" cellspacing="0" border="0" style="width:800px;background-color:#FFFFFF;border-collapse:collapse;"><tbody>${body}</tbody></table></body></html>`;
@@ -331,7 +332,7 @@ export function renderPendingEmail(view,settings={},variant='A'){
 export function renderPendingPlainText(view,settings={}){
  settings={...settings,pendingIntro:String(settings.pendingIntro||PENDING_INTRO).replaceAll('{date}',view.asAt||'current snapshot')};
  const summary=(title,rows)=>[title,...rows.map(row=>`- ${row.name}: ${row.count}`),`TOTAL: ${view.total}`];
- const columns=pendingColumns(settings.showEngineer===true);
+ const columns=pendingColumns(settings.showEngineer===true),starts=view.groupBy?new Map(groupRuns(view.tickets).map(run=>[run.start,run])):null;
  return [String(settings.greeting||'').trim()||'Hi Team,',settings.pendingIntro||PENDING_INTRO,'',
   view.monthly?'BMC Monthly Pending Tickets':'BMC Outstanding Tickets',view.asAt?'Age since submitted (days), as at '+view.asAt:'Current snapshot',pendingCaption(view),'',
  ...(futureDatedWarning(view)?[futureDatedWarning(view),'']:[]),
@@ -340,7 +341,7 @@ export function renderPendingPlainText(view,settings={}){
   `Outstanding: ${view.total}`,`Incidents: ${view.incidents}`,`Service requests & other: ${view.other}`,'',
   ...summary('Outstanding by assigned group',view.byGroup),'',...summary('Outstanding by status',view.byStatus),'',
   ...(settings.summaryOnly===true?['Full ticket details are in the Excel workbook.']:[`Outstanding tickets (${view.total})`,columns.map(c=>c.label).join(' | '),
-  ...(view.total?view.tickets.map((ticket,i)=>`${i+1}. ${pendingTicketValues(ticket,settings.showEngineer===true).map(value=>value.replace(/\r?\n/g,' · ')).join(' | ')}`):['There are no outstanding tickets for this selection.'])]),'',
+  ...(view.total?view.tickets.flatMap((ticket,i)=>{const run=starts?.get(i);return [...(run?[(i?'\n':'')+groupHeading(run)]:[]),`${i+1}. ${pendingTicketValues(ticket,settings.showEngineer===true).map(value=>value.replace(/\r?\n/g,' · ')).join(' | ')}`];}):['There are no outstanding tickets for this selection.'])]),'',
   ...plainSignature(settings,normalizeSender(settings.emailSender)),'',pendingDisclaimer(view),
  ].join('\n');
 }

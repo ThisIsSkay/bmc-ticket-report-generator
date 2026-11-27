@@ -10,7 +10,7 @@ Choose **Monthly pending tickets** under Report content, upload that day's raw
 export and confirm **Reporting / export date**. This includes older outstanding
 tickets, subject to your selected scope; it does not filter to tickets created
 that month. Monthly subject and introduction are separate fields in Email settings.
-Use **All ticket types** / **All outstanding statuses** to include new values on later uploads. Selecting a list narrows scope; excluded values are shown with counts. Use **Save report setup** to persist scope. The monthly reporting date is preserved across uploads and is separate from the weekly age reference date. Manual scope edits remain active across
+The outstanding/monthly ticket list is **newest submitted first** by default (same day: higher Ticket ID first; no submit date last). **Ticket list order** switches to oldest first, and **Group tickets by assigned group** lists each group together (A to Z) with a heading row such as "NCC_EUC · 12 tickets" in the email and plain text. The dashboard, email, plain text and Excel all use the same order; totals and summaries do not change. Both choices are remembered. Use **All ticket types** / **All outstanding statuses** to include new values on later uploads. Selecting a list narrows scope; excluded values are shown with counts. Use **Save report setup** to persist scope. The monthly reporting date is preserved across uploads and is separate from the weekly age reference date. Manual scope edits remain active across
 uploads. The header logo panel supports square PNGs as well as wide logos and is
 visible at the top of every report (daily, outstanding, monthly) in every theme: in theme C's logo slot, otherwise in a row above the greeting.
 

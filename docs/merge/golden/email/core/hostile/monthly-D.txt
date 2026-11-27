@@ -46,14 +46,14 @@ TOTAL: 8
 
 Outstanding tickets (8)
 Ticket ID | Type | Summary | Assigned group | Status / Priority | Submitted
-1. INC100000012 | Incident | Group name with <b>markup</b> & ampersand | EXAMPLE <GROUP> & CO | Pending · Priority: Critical | 2026-11-10
-2. SRV100000009 | Service Request | Old pending request | EXAMPLE_EUC | Waiting User Reply · Priority: Medium | 2026-08-01
+1. INC100000010 | Incident | Future-dated submission | EXAMPLE_EUC | Assigned · Priority: High | 2026-11-12
+2. INC100000012 | Incident | Group name with <b>markup</b> & ampersand | EXAMPLE <GROUP> & CO | Pending · Priority: Critical | 2026-11-10
 3. INC100000001 | Incident | <script>alert(1)</script> & "quoted" 'single' | EXAMPLE_EUC | Assigned · Priority: High | 2026-11-10
-4. INC100000010 | Incident | Future-dated submission | EXAMPLE_EUC | Assigned · Priority: High | 2026-11-12
-5. INC100000011 | Incident | — | EXAMPLE_EUC | Mystery Status | —
+4. INC100000005 | Incident | Reopened ticket (latest row) | EXAMPLE_SYSTEM | Pending · Priority: Medium | 2026-11-01
+5. INC100000006 | Incident | Duplicate row B (latest) | Unassigned | Work in Progress | 2026-10-02
 6. FSC100000008 | Forward Schedule | Forward schedule maintenance | EXAMPLE_SYSTEM | Pending · Priority: Low | 2026-09-15
-7. INC100000005 | Incident | Reopened ticket (latest row) | EXAMPLE_SYSTEM | Pending · Priority: Medium | 2026-11-01
-8. INC100000006 | Incident | Duplicate row B (latest) | Unassigned | Work in Progress | 2026-10-02
+7. SRV100000009 | Service Request | Old pending request | EXAMPLE_EUC | Waiting User Reply · Priority: Medium | 2026-08-01
+8. INC100000011 | Incident | — | EXAMPLE_EUC | Mystery Status | —
 
 Best regards,
 Alex Example

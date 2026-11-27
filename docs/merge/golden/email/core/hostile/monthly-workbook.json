@@ -293,45 +293,6 @@
         "Age band"
       ],
       [
-        "INC100000012",
-        "Incident",
-        "Group name with <b>markup</b> & ampersand",
-        "EXAMPLE <GROUP> & CO",
-        "Pending",
-        "Critical",
-        {
-          "date": "2026-11-10T00:00:00.000Z"
-        },
-        0,
-        "0–7"
-      ],
-      [
-        "SRV100000009",
-        "Service Request",
-        "Old pending request",
-        "EXAMPLE_EUC",
-        "Waiting User Reply",
-        "Medium",
-        {
-          "date": "2026-08-01T00:00:00.000Z"
-        },
-        101,
-        "Over 60"
-      ],
-      [
-        "INC100000001",
-        "Incident",
-        "<script>alert(1)</script> & \"quoted\" 'single'",
-        "EXAMPLE_EUC",
-        "Assigned",
-        "High",
-        {
-          "date": "2026-11-10T00:00:00.000Z"
-        },
-        0,
-        "0–7"
-      ],
-      [
         "INC100000010",
         "Incident",
         "Future-dated submission",
@@ -345,28 +306,30 @@
         "Future-dated"
       ],
       [
-        "INC100000011",
+        "INC100000012",
         "Incident",
-        "—",
-        "EXAMPLE_EUC",
-        "Mystery Status",
-        "—",
-        "",
-        null,
-        "Age unknown"
+        "Group name with <b>markup</b> & ampersand",
+        "EXAMPLE <GROUP> & CO",
+        "Pending",
+        "Critical",
+        {
+          "date": "2026-11-10T00:00:00.000Z"
+        },
+        0,
+        "0–7"
       ],
       [
-        "FSC100000008",
-        "Forward Schedule",
-        "Forward schedule maintenance",
-        "EXAMPLE_SYSTEM",
-        "Pending",
-        "Low",
+        "INC100000001",
+        "Incident",
+        "<script>alert(1)</script> & \"quoted\" 'single'",
+        "EXAMPLE_EUC",
+        "Assigned",
+        "High",
         {
-          "date": "2026-09-15T00:00:00.000Z"
+          "date": "2026-11-10T00:00:00.000Z"
         },
-        56,
-        "31–60"
+        0,
+        "0–7"
       ],
       [
         "INC100000005",
@@ -393,6 +356,43 @@
         },
         39,
         "31–60"
+      ],
+      [
+        "FSC100000008",
+        "Forward Schedule",
+        "Forward schedule maintenance",
+        "EXAMPLE_SYSTEM",
+        "Pending",
+        "Low",
+        {
+          "date": "2026-09-15T00:00:00.000Z"
+        },
+        56,
+        "31–60"
+      ],
+      [
+        "SRV100000009",
+        "Service Request",
+        "Old pending request",
+        "EXAMPLE_EUC",
+        "Waiting User Reply",
+        "Medium",
+        {
+          "date": "2026-08-01T00:00:00.000Z"
+        },
+        101,
+        "Over 60"
+      ],
+      [
+        "INC100000011",
+        "Incident",
+        "—",
+        "EXAMPLE_EUC",
+        "Mystery Status",
+        "—",
+        "",
+        null,
+        "Age unknown"
       ]
     ]
   },
@@ -592,39 +592,6 @@
         "Age band"
       ],
       [
-        "INC100000012",
-        "Incident",
-        "Group name with <b>markup</b> & ampersand",
-        "EXAMPLE <GROUP> & CO",
-        "Pending",
-        "Critical",
-        "2026-11-10T00:00:00.000Z",
-        0,
-        "0–7"
-      ],
-      [
-        "SRV100000009",
-        "Service Request",
-        "Old pending request",
-        "EXAMPLE_EUC",
-        "Waiting User Reply",
-        "Medium",
-        "2026-08-01T00:00:00.000Z",
-        101,
-        "Over 60"
-      ],
-      [
-        "INC100000001",
-        "Incident",
-        "<script>alert(1)</script> & \"quoted\" 'single'",
-        "EXAMPLE_EUC",
-        "Assigned",
-        "High",
-        "2026-11-10T00:00:00.000Z",
-        0,
-        "0–7"
-      ],
-      [
         "INC100000010",
         "Incident",
         "Future-dated submission",
@@ -636,26 +603,26 @@
         "Future-dated"
       ],
       [
-        "INC100000011",
+        "INC100000012",
         "Incident",
-        "—",
-        "EXAMPLE_EUC",
-        "Mystery Status",
-        "—",
-        "",
-        null,
-        "Age unknown"
+        "Group name with <b>markup</b> & ampersand",
+        "EXAMPLE <GROUP> & CO",
+        "Pending",
+        "Critical",
+        "2026-11-10T00:00:00.000Z",
+        0,
+        "0–7"
       ],
       [
-        "FSC100000008",
-        "Forward Schedule",
-        "Forward schedule maintenance",
-        "EXAMPLE_SYSTEM",
-        "Pending",
-        "Low",
-        "2026-09-15T00:00:00.000Z",
-        56,
-        "31–60"
+        "INC100000001",
+        "Incident",
+        "<script>alert(1)</script> & \"quoted\" 'single'",
+        "EXAMPLE_EUC",
+        "Assigned",
+        "High",
+        "2026-11-10T00:00:00.000Z",
+        0,
+        "0–7"
       ],
       [
         "INC100000005",
@@ -678,6 +645,39 @@
         "2026-10-02T00:00:00.000Z",
         39,
         "31–60"
+      ],
+      [
+        "FSC100000008",
+        "Forward Schedule",
+        "Forward schedule maintenance",
+        "EXAMPLE_SYSTEM",
+        "Pending",
+        "Low",
+        "2026-09-15T00:00:00.000Z",
+        56,
+        "31–60"
+      ],
+      [
+        "SRV100000009",
+        "Service Request",
+        "Old pending request",
+        "EXAMPLE_EUC",
+        "Waiting User Reply",
+        "Medium",
+        "2026-08-01T00:00:00.000Z",
+        101,
+        "Over 60"
+      ],
+      [
+        "INC100000011",
+        "Incident",
+        "—",
+        "EXAMPLE_EUC",
+        "Mystery Status",
+        "—",
+        "",
+        null,
+        "Age unknown"
       ]
     ]
   },
@@ -853,18 +853,18 @@
       "G3": "d",
       "G4": "d",
       "G5": "d",
-      "G6": "s",
+      "G6": "d",
       "G7": "d",
       "G8": "d",
-      "G9": "d",
+      "G9": "s",
       "H1": "s",
       "H2": "n",
       "H3": "n",
       "H4": "n",
       "H5": "n",
+      "H6": "n",
       "H7": "n",
       "H8": "n",
-      "H9": "n",
       "I1": "s",
       "I2": "s",
       "I3": "s",

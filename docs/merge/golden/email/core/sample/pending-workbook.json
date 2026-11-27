@@ -223,19 +223,6 @@
         "Age band"
       ],
       [
-        "INC000000004",
-        "Incident",
-        "Conference room display flickering",
-        "NCC_EUC",
-        "Work in Progress",
-        "Medium",
-        {
-          "date": "2026-11-10T00:00:00.000Z"
-        },
-        0,
-        "0–7"
-      ],
-      [
         "SRV000000002",
         "Service Request",
         "Request to set up account for new starter",
@@ -262,16 +249,16 @@
         "0–7"
       ],
       [
-        "FSC000000006",
-        "Forward Schedule",
-        "Scheduled firmware update",
-        "NCC_SYSTEM",
-        "Pending",
-        "Low",
+        "INC000000004",
+        "Incident",
+        "Conference room display flickering",
+        "NCC_EUC",
+        "Work in Progress",
+        "Medium",
         {
-          "date": "2026-11-07T00:00:00.000Z"
+          "date": "2026-11-10T00:00:00.000Z"
         },
-        3,
+        0,
         "0–7"
       ],
       [
@@ -285,6 +272,19 @@
           "date": "2026-11-08T00:00:00.000Z"
         },
         2,
+        "0–7"
+      ],
+      [
+        "FSC000000006",
+        "Forward Schedule",
+        "Scheduled firmware update",
+        "NCC_SYSTEM",
+        "Pending",
+        "Low",
+        {
+          "date": "2026-11-07T00:00:00.000Z"
+        },
+        3,
         "0–7"
       ]
     ]
@@ -464,17 +464,6 @@
         "Age band"
       ],
       [
-        "INC000000004",
-        "Incident",
-        "Conference room display flickering",
-        "NCC_EUC",
-        "Work in Progress",
-        "Medium",
-        "2026-11-10T00:00:00.000Z",
-        0,
-        "0–7"
-      ],
-      [
         "SRV000000002",
         "Service Request",
         "Request to set up account for new starter",
@@ -497,14 +486,14 @@
         "0–7"
       ],
       [
-        "FSC000000006",
-        "Forward Schedule",
-        "Scheduled firmware update",
-        "NCC_SYSTEM",
-        "Pending",
-        "Low",
-        "2026-11-07T00:00:00.000Z",
-        3,
+        "INC000000004",
+        "Incident",
+        "Conference room display flickering",
+        "NCC_EUC",
+        "Work in Progress",
+        "Medium",
+        "2026-11-10T00:00:00.000Z",
+        0,
         "0–7"
       ],
       [
@@ -516,6 +505,17 @@
         "Low",
         "2026-11-08T00:00:00.000Z",
         2,
+        "0–7"
+      ],
+      [
+        "FSC000000006",
+        "Forward Schedule",
+        "Scheduled firmware update",
+        "NCC_SYSTEM",
+        "Pending",
+        "Low",
+        "2026-11-07T00:00:00.000Z",
+        3,
         "0–7"
       ]
     ]

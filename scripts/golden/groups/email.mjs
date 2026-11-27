@@ -95,7 +95,7 @@ export async function generate({ emailRoot }) {
     const settings = { ...settingsBase, ...extra, reportContent: mode };
     const options = { reportDate: '2026-11-10', groupFilter, contractFilter: contractLabel(contracts), excludeEvents };
     const report = generateContractReport(fixtures[fixture], pending ? { ...options, groupFilter: 'All' } : options, contracts);
-    const view = pending ? buildPendingView(report, { ...options, groups, types, statuses, asAt }) : null;
+    const view = pending ? buildPendingView(report, { ...options, groups, types, statuses, asAt, order: settings.pendingOrder, groupBy: settings.pendingGroupBy === true }) : null;
     if (view) view.monthly = monthly;
     const emailSettings = {
       ...settings,
@@ -187,6 +187,9 @@ export async function generate({ emailRoot }) {
       'events-included': { excludeEvents: false },
       'show-engineer': { settings: { showEngineer: true } },
       'summary-only': { settings: { summaryOnly: true } },
+      'order-oldest': { settings: { pendingOrder: 'oldest' } },
+      'grouped-newest': { settings: { pendingGroupBy: true } },
+      'grouped-oldest': { settings: { pendingOrder: 'oldest', pendingGroupBy: true } },
       'types-statuses': { types: ['Incident', 'Service Request'], statuses: ['Assigned', 'Pending'] },
       'no-age-reference': { asAt: '' },
       'intro-no-period': { settings: { intro: 'Daily update', greeting: '' } },

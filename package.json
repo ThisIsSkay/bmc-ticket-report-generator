@@ -18,7 +18,8 @@
     "verify:unified": "node scripts/verify-unified.mjs",
     "verify:export-scope": "node scripts/verify-export-scope.mjs",
     "verify:xlsx-dimension": "node scripts/verify-xlsx-dimension.mjs",
-    "verify:future-dated": "node scripts/verify-future-dated.mjs"
+    "verify:future-dated": "node scripts/verify-future-dated.mjs",
+    "verify:pending-order": "node scripts/verify-pending-order.mjs"
   },
   "dependencies": {
     "html-to-image": "1.11.13",
