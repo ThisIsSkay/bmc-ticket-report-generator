@@ -1,4 +1,4 @@
-BATON: Owner — RD-01 to RD-04 and the survey Resolved-day/BCC-draft change are on integration/unified-app; review before anything goes to main — 2026-11-26
+BATON: Owner — integration/unified-app published to main on 2026-11-27 (owner approved: RD-01 to RD-03, survey Resolved-day/groups/BCC draft, header logo fixes); owner to check the live site
 
 # Unified app merge — handoff
 
@@ -362,6 +362,16 @@ placeholder and themes A, B, D had no logo at all.
   row (or the placeholder replaced by the image) and nothing else;
   `no-header-logo`, plain text, legacy and outstanding/monthly theme C are
   byte-identical.
+
+## Published to main (2026-11-27)
+
+Owner approved publishing everything on `integration/unified-app` to `main`
+(fast-forward, no history rewrite): RD-01 export scope check, RD-02
+future-dated warning, RD-03 XLSX regression tests, the Customer Survey
+Resolved-day scope / group ticks / BCC draft, and the header logo fixes.
+Full gate passed on the published commit. Still for the owner: open an .eml
+and run a .ps1 from the live site with test addresses (logo, BCC, nothing
+sent), and the real-data browser checks listed under RD-01 to RD-04.
 
 ## Claude bug check of /app/ (started 2026-11-26)
 
