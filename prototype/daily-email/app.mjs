@@ -160,6 +160,7 @@ const isPending=()=>['pending','monthly'].includes(state.settings.reportContent)
 const isMonthly=()=>state.settings.reportContent==='monthly';
 function fillPendingGroups(){$('allPendingTypes').checked=true;$('allPendingStatuses').checked=true;
  for(const [id,key] of [['pendingTypes','kind'],['pendingStatuses','status']])$(id).innerHTML=[...new Set([...generateReport(state.tickets,{...filters(),groupFilter:'All',contractFilter:'All',excludeEvents:false}).pending.map(ticket=>ticket[key]),...(state.activeSetup?.[key==='kind'?'types':'statuses']||state.settings.reportSetup?.[key==='kind'?'types':'statuses']||[])])].map(value=>`<option selected value="${h(value)}">${h(value||'(blank)')}</option>`).join('');
+ for(const id of ['pendingTypes','pendingStatuses'])$(id).size=Math.min(6,Math.max(3,$(id).options.length));
  const groups=availableFilterValues(state.tickets,'group');
  $('allPendingGroups').checked=true;
  $('pendingGroups').innerHTML=groups.map(group=>`<label><input type="checkbox" value="${h(group)}" checked disabled> ${h(group)}</label>`).join('');
@@ -311,3 +312,6 @@ function init(){
  if(!localStorage.getItem(CONFIG_KEY))setTimeout(showModal,250);
 }
 init();
+// The contracts list behaves like a dropdown: it opens over the page and closes on an outside click or Escape.
+document.addEventListener('click',event=>{const menu=$('contractFilter');if(menu.open&&!menu.contains(event.target))menu.open=false;});
+document.addEventListener('keydown',event=>{const menu=$('contractFilter');if(event.key==='Escape'&&menu.open){menu.open=false;$('contractSelection').focus();}});

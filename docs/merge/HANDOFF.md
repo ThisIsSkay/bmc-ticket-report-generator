@@ -398,6 +398,22 @@ assigned group (e.g. EUC, Network), each group newest first.
   and headings off, all 114 email golden files matched byte for byte. Daily
   outputs unchanged.
 
+## Email Reports: tidier Report options panel (owner, 2026-11-27)
+
+Owner: the "02 / Report options" panel looked messy with everything open.
+- Contracts is now a real dropdown: same label and control style as the
+  other fields, opens over the page (no row stretching), closes on an outside
+  click or Escape.
+- One label style; checkboxes sit on the same line as their text (the global
+  `label input` rule no longer stretches checkboxes).
+- Outstanding/monthly: action buttons in one bar with the status beside them;
+  date, ticket types and raw statuses in one aligned row (lists sized to
+  their options); assigned groups; then an "Email layout" box with list
+  order, grouping, summaries only and engineer names.
+- All element IDs and control types unchanged; outputs unchanged (all
+  goldens pass); every browser script passes, light and dark, standalone,
+  in /app/ and at phone width.
+
 ## Claude bug check of /app/ (started 2026-11-26)
 
 The owner asked Claude to bug-check and fix until its usage runs out. If this

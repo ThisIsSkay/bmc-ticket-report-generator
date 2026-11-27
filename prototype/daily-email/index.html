@@ -16,22 +16,30 @@
         <label>Report content<select id="reportContent"><option value="daily">Daily activity</option><option value="monthly">Monthly pending tickets</option><option value="pending">Outstanding tickets</option></select></label>
         <label id="dailyDateControl">Report date<input type="date" id="dateInput"></label>
         <label id="dailyGroupControl">Assigned group<select id="groupFilter" disabled><option value="All">All groups</option></select></label>
-        <div class="contract-control"><span id="contractLabel">Contracts (select one or more)</span><details id="contractFilter"><summary id="contractSelection" aria-labelledby="contractLabel contractSelection">All contracts</summary><div class="contract-menu"><label><input id="allContracts" type="checkbox" checked> All contracts (including new contracts)</label><div id="contractChoices"></div></div></details></div>
+        <div class="contract-control"><span id="contractLabel" class="field-label">Contracts</span><details id="contractFilter" class="dropdown"><summary id="contractSelection" aria-labelledby="contractLabel contractSelection">All contracts</summary><div class="contract-menu"><label><input id="allContracts" type="checkbox" checked> All contracts (including new contracts)</label><div id="contractChoices"></div></div></details></div>
         <label>Ticket scope<select id="eventFilter"><option value="exclude">Exclude EVT monitoring</option><option value="include">Include EVT monitoring</option></select></label>
       </div>
       <p id="contractWarning" class="notice" role="status" hidden></p>
       <div id="pendingOptions" hidden>
-        <button id="weeklySetup" class="btn" type="button">Use weekly ageing setup</button><button id="saveReportSetup" class="btn" type="button">Save report setup</button><span id="setupStatus" role="status"></span><p id="newScopeValues" role="status" class="help"></p><button id="resetSetup" class="btn" type="button">Clear saved scope</button>
-        <div class="grid-two"><label>Age reference date (calendar days since submission)<input id="asAt" type="date"></label><label>Ticket types (select multiple)<input id="allPendingTypes" type="checkbox" checked> All ticket types <select id="pendingTypes" multiple></select></label><label>Raw statuses (select multiple)<input id="allPendingStatuses" type="checkbox" checked> All outstanding statuses <select id="pendingStatuses" multiple></select></label></div>
-        <p class="help">Weekly setup selects Incident + Service Request and Assigned + Pending. Clear all selections for an empty report. The reference date does not reconstruct historical status.</p>
+        <div class="setup-bar"><div class="btn-group"><button id="weeklySetup" class="btn" type="button">Use weekly ageing setup</button><button id="saveReportSetup" class="btn" type="button">Save report setup</button><button id="resetSetup" class="btn" type="button">Clear saved scope</button></div><span id="setupStatus" class="setup-status" role="status"></span></div>
+        <p id="newScopeValues" role="status" class="help"></p>
+        <div class="option-grid">
+          <label class="date-field">Age reference date (calendar days since submission)<input id="asAt" type="date"></label>
+          <div class="field"><span class="field-label" id="pendingTypesLabel">Ticket types</span><label class="check"><input id="allPendingTypes" type="checkbox" checked> All ticket types</label><select id="pendingTypes" multiple aria-labelledby="pendingTypesLabel"></select></div>
+          <div class="field"><span class="field-label" id="pendingStatusesLabel">Raw statuses</span><label class="check"><input id="allPendingStatuses" type="checkbox" checked> All outstanding statuses</label><select id="pendingStatuses" multiple aria-labelledby="pendingStatusesLabel"></select></div>
+        </div>
+        <p class="help">Ctrl+click (Cmd+click on Mac) picks several types or statuses. Weekly setup selects Incident + Service Request and Assigned + Pending. Clear all selections for an empty report. The reference date does not reconstruct historical status.</p>
         <fieldset class="pending-groups"><legend>Assigned groups / teams</legend>
           <label><input type="checkbox" id="allPendingGroups" checked> All assigned groups</label>
           <div id="pendingGroups"></div>
         </fieldset>
         <p class="help">Select one or more groups from your export, including NCC Application when present. Group names are matched exactly; Application membership is not inferred.</p>
-        <label class="pending-check"><input type="checkbox" id="summaryOnly"> Email summaries only (full details in Excel)</label>
-        <div class="order-row"><label class="order-select">Ticket list order<select id="pendingOrder"><option value="newest">Newest submitted first</option><option value="oldest">Oldest submitted first</option></select></label><label class="pending-check"><input type="checkbox" id="pendingGroupBy"> Group tickets by assigned group</label></div>
-        <label class="pending-check"><input type="checkbox" id="showEngineer"> Include engineer names in the customer report</label>
+        <fieldset class="email-layout"><legend>Email layout</legend>
+          <div class="layout-grid">
+            <label class="order-select">Ticket list order<select id="pendingOrder"><option value="newest">Newest submitted first</option><option value="oldest">Oldest submitted first</option></select></label>
+            <div class="checks-col"><label class="check"><input type="checkbox" id="pendingGroupBy"> Group tickets by assigned group</label><label class="check"><input type="checkbox" id="summaryOnly"> Email summaries only (full details in Excel)</label><label class="check"><input type="checkbox" id="showEngineer"> Include engineer names in the customer report</label></div>
+          </div>
+        </fieldset>
         <p class="help">Outstanding means every ticket except Closed, Resolved, Cancelled or Canceled. Figures reflect the uploaded export's current snapshot, not a historical backlog for the daily report date.</p>
         <div id="customerScopeNote" class="notice" role="status"></div>
       </div>

@@ -81,7 +81,14 @@ html.bmc-embedded-email .signature-tools { background: var(--app-surface-muted);
 html.bmc-embedded-email .signature-editor { background: #ffffff; color: #111827; border-color: var(--app-control-border); }
 html.bmc-embedded-email .pending-groups, html.bmc-embedded-email #headerLogoPanel { border-color: var(--app-line); background: var(--app-surface-muted); }
 html.bmc-embedded-email .contract-control { color: var(--app-ink); }
-html.bmc-embedded-email #contractFilter { background: var(--app-control-bg); border-color: var(--app-control-border); }
+html.bmc-embedded-email .field-label { color: var(--app-secondary-text); }
+html.bmc-embedded-email .check, html.bmc-embedded-email .contract-menu label { color: var(--app-ink); }
+html.bmc-embedded-email .dropdown > summary { background: var(--app-control-bg); border-color: var(--app-control-border); color: var(--app-ink); border-radius: var(--radius-control); }
+html.bmc-embedded-email .dropdown[open] > summary { border-color: var(--accent-400); box-shadow: 0 0 0 1px var(--accent-400); }
+html.bmc-embedded-email .contract-menu { background: var(--app-surface); border-color: var(--app-line); box-shadow: var(--elev-lg); }
+html.bmc-embedded-email .option-grid select[multiple] { background: var(--app-control-bg); border-color: var(--app-control-border); color: var(--app-ink); border-radius: var(--radius-control); }
+html.bmc-embedded-email .email-layout { border-color: var(--app-line); background: var(--app-surface-muted); }
+html.bmc-embedded-email .setup-status { color: var(--app-ink-soft); }
 html.bmc-embedded-email .contract-menu { border-top-color: var(--app-control-border); }
 html.bmc-embedded-email #headerLogoWarning { color: var(--warn-ink); }
 /* Multi-select lists (ticket types, statuses): theme the selected rows instead of the browser's grey. */
