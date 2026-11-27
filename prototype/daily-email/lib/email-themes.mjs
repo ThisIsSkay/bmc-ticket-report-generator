@@ -221,6 +221,16 @@ const KPIS={
 const bar=height=>`<tr><td height="${height}" bgcolor="#2E3D4F" style="height:${height}px;background-color:#2E3D4F;font-size:1px;line-height:${height}px;mso-line-height-rule:exactly;">&nbsp;</td></tr>`;
 // Variant C only: accent bar plus the logo placeholder cell and report date, as in the reference.
 const topBar=(date,title='Daily Ticket Report',dateLabel='Report date: ')=>`${bar(6)}<tr><td style="padding:14px 32px;border-bottom:1px solid #D5DADF;"><table role="presentation" width="736" cellpadding="0" cellspacing="0" border="0" style="width:736px;border-collapse:collapse;"><tbody><tr><td width="120" height="36" align="center" valign="middle" bgcolor="#F6F7F9" style="width:120px;height:36px;background-color:#F6F7F9;border:1px solid #B9C1CA;${F}font-size:11px;line-height:14px;font-weight:bold;letter-spacing:1px;color:#59636E;text-align:center;">LOGO</td><td align="right" valign="middle" style="padding:0 0 0 16px;${F}text-align:right;"><p style="margin:0;${F}font-size:11px;line-height:14px;font-weight:bold;letter-spacing:0.6px;text-transform:uppercase;color:#2E3D4F;">${title}</p><p style="margin:2px 0 0 0;${F}font-size:12px;line-height:16px;color:#59636E;">${dateLabel}${date}</p></td></tr></tbody></table></td></tr>`;
+/** Saved header logo as an <img>, scaled into 120 × 40; '' when none or invalid. */
+function logoImg(settings={}){
+ if(!validHeaderLogo(settings.headerLogo))return '';
+ const size=signatureImageSize(settings.headerLogo),scale=Math.min(120/size.width,40/size.height);
+ const width=Math.max(1,Math.round(size.width*scale)),height=Math.max(1,Math.round(size.height*scale));
+ return `<img src="${settings.headerLogo}" width="${width}" height="${height}" alt="Report logo" style="width:${width}px;height:${height}px;" />`;
+}
+/** Theme C has a logo slot in its top bar; the other themes get a logo row above the greeting. */
+const placeLogo=(html,settings)=>{const img=logoImg(settings);return img?html.replace('>LOGO</td>','>'+img+'</td>'):html;};
+const logoRow=settings=>{const img=logoImg(settings);return img?`<tr><td style="padding:24px 32px 0 32px;${F}">${img.replace('style="','style="display:block;border:0;')}</td></tr>`:'';};
 
 /** Selected signature profile (sanitized rich HTML, logo included) or the structured sender block. Blank sender lines are omitted. */
 function signatureRow(t,data){
@@ -237,7 +247,7 @@ const disclaimerRow=(t,html)=>{const d=t.disclaimer;return `<tr><td style="paddi
 export function renderThemedEmail(report,settings={},filters={},variant='A'){
  const v=normalizeVariant(variant),t=THEMES[v],d=dataFor(report,settings,filters),date=esc(d.reportDate),title=`BMC Daily Ticket Report — ${date}`;
  const body=[
-  v==='C'?topBar(date):'',
+  v==='C'?placeLogo(topBar(date),settings):logoRow(settings),
   `<tr><td style="${t.greeting.td}"><p style="margin:0 0 ${t.greeting.gap} 0;${F}${t.greeting.p}">${multiline(d.greeting)}</p><p style="margin:0;${F}${t.greeting.p}">${multiline(d.introLine)}</p></td></tr>`,
   HEADERS[v](title,softBreak(esc(d.caption),640,13)),
   KPIS[v](d.kpis),
@@ -298,11 +308,9 @@ export function renderPendingEmail(view,settings={},variant='A'){
  const v=normalizeVariant(variant),t=THEMES[v],title=(view.monthly?'BMC Monthly Pending Tickets':'BMC Outstanding Tickets')+(view.asAt?' — age as at '+view.asAt:'');
  settings={...settings,pendingIntro:String(settings.pendingIntro||PENDING_INTRO).replaceAll('{date}',view.asAt||'current snapshot')};
  const columns=pendingColumns(settings.showEngineer===true);
- const logoSize=signatureImageSize(settings.headerLogo),logoScale=logoSize?Math.min(120/logoSize.width,40/logoSize.height):1;
- const logoWidth=logoSize?Math.max(1,Math.round(logoSize.width*logoScale)):120,logoHeight=logoSize?Math.max(1,Math.round(logoSize.height*logoScale)):40;
  const d={sender:normalizeSender(settings.emailSender),signatureHtml:selectedSignatureHtml(settings)};
  const body=[
-  v==='C'?topBar(view.asAt?'Age reference: '+esc(view.asAt):'Current outstanding tickets',view.monthly?'Monthly Pending Tickets':'Outstanding Tickets','').replace('>LOGO</td>',validHeaderLogo(settings.headerLogo)?`><img src="${settings.headerLogo}" width="${logoWidth}" height="${logoHeight}" alt="Report logo" style="width:${logoWidth}px;height:${logoHeight}px;" /></td>`:'>LOGO</td>'):'',
+  v==='C'?placeLogo(topBar(view.asAt?'Age reference: '+esc(view.asAt):'Current outstanding tickets',view.monthly?'Monthly Pending Tickets':'Outstanding Tickets',''),settings):logoRow(settings),
   `<tr><td style="${t.greeting.td}"><p style="margin:0 0 ${t.greeting.gap} 0;${F}${t.greeting.p}">${multiline(String(settings.greeting||'').trim()||'Hi Team,')}</p><p style="margin:0;${F}${t.greeting.p}">${String(settings.pendingIntro||PENDING_INTRO).split(/\r?\n/).map(line=>softBreak(esc(line),640,14)).join('<br />')}</p></td></tr>`,
   HEADERS[v](title,softBreak(esc(pendingCaption(view)),640,13)),
   ...(futureDatedWarning(view)?[warningRow(softBreak(esc(futureDatedWarning(view)),708,13))]:[]),

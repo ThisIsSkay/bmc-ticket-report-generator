@@ -12,7 +12,7 @@ tickets, subject to your selected scope; it does not filter to tickets created
 that month. Monthly subject and introduction are separate fields in Email settings.
 Use **All ticket types** / **All outstanding statuses** to include new values on later uploads. Selecting a list narrows scope; excluded values are shown with counts. Use **Save report setup** to persist scope. The monthly reporting date is preserved across uploads and is separate from the weekly age reference date. Manual scope edits remain active across
 uploads. The header logo panel supports square PNGs as well as wide logos and is
-visible in monthly/outstanding theme C. Daily header branding is unchanged.
+visible at the top of every report (daily, outstanding, monthly) in every theme: in theme C's logo slot, otherwise in a row above the greeting.
 
 ## Current functions
 - Import a BMC `.xlsx`/`.csv` export with automatic worksheet and column identification.
@@ -67,7 +67,7 @@ when creating the unsent draft. For EML or clipboard, download Excel and attach
 it manually. A reference date is required for workbook and pending Outlook-helper
 exports. Workbooks over 5 MB require a narrower scope.
 
-Use Email settings to upload a PNG/JPEG header logo for outstanding theme C.
+Use Email settings to upload a PNG/JPEG header logo; it appears at the top of every report in every theme.
 The saved thumbnail and status remain visible after the filename clears. Files
 must be at most 8 MiB and are resized to fit 360×120; a roughly 3:1 image works
 best in the 120×40 header slot. Failed saves retain your previous logo.

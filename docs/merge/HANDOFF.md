@@ -339,6 +339,26 @@ data). Details: `prototype/customer-survey/HANDOFF.md` and `README.md`.
   on the web and run the .ps1 in Classic Outlook with two test addresses;
   confirm both land in BCC, To is empty (or your own line), and nothing sends.
 
+## Email header logo in every report and theme (owner, 2026-11-27)
+
+Owner report: a saved header logo did not appear in the email. Cause: it was
+only used in outstanding/monthly theme C; daily theme C showed a grey "LOGO"
+placeholder and themes A, B, D had no logo at all.
+- Fix (`lib/email-themes.mjs`, `logoImg`/`placeLogo`/`logoRow`): theme C puts
+  the logo in its top-bar slot for all three reports; A, B, D get an
+  Outlook-safe logo row above the greeting. Same 120 × 40 scaling as before.
+  The .eml and Classic Outlook .ps1 already embed it as an inline image.
+  Label and status text in Email settings updated; README updated.
+- Unchanged: no logo saved (theme C still shows its placeholder box), plain
+  text, the legacy layout, outstanding/monthly theme C.
+- Tests: `test/header-logo-everywhere.test.mjs` (4).
+- Golden (intentional, owner-requested): `email/core/*/daily-{A,B,C,D}` and
+  `{pending,monthly}-{A,B,D}` .html/.eml/.ps1, and `email/matrix.json` for
+  scenarios with a logo. Each changed .html is the old file plus the logo
+  row (or the placeholder replaced by the image) and nothing else;
+  `no-header-logo`, plain text, legacy and outstanding/monthly theme C are
+  byte-identical.
+
 ## Claude bug check of /app/ (started 2026-11-26)
 
 The owner asked Claude to bug-check and fix until its usage runs out. If this
