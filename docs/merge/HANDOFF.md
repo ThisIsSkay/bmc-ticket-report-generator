@@ -351,6 +351,10 @@ placeholder and themes A, B, D had no logo at all.
   Label and status text in Email settings updated; README updated.
 - Unchanged: no logo saved (theme C still shows its placeholder box), plain
   text, the legacy layout, outstanding/monthly theme C.
+- Follow-up (owner: grey border around a small logo): with a logo saved,
+  theme C's slot loses the placeholder fill, border and fixed 36px height;
+  the logo sits left-aligned on white. No-logo output keeps the placeholder.
+  Golden: only theme C outputs with a logo, only that cell.
 - Tests: `test/header-logo-everywhere.test.mjs` (4).
 - Golden (intentional, owner-requested): `email/core/*/daily-{A,B,C,D}` and
   `{pending,monthly}-{A,B,D}` .html/.eml/.ps1, and `email/matrix.json` for

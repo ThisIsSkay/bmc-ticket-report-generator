@@ -220,7 +220,9 @@ const KPIS={
 };
 const bar=height=>`<tr><td height="${height}" bgcolor="#2E3D4F" style="height:${height}px;background-color:#2E3D4F;font-size:1px;line-height:${height}px;mso-line-height-rule:exactly;">&nbsp;</td></tr>`;
 // Variant C only: accent bar plus the logo placeholder cell and report date, as in the reference.
-const topBar=(date,title='Daily Ticket Report',dateLabel='Report date: ')=>`${bar(6)}<tr><td style="padding:14px 32px;border-bottom:1px solid #D5DADF;"><table role="presentation" width="736" cellpadding="0" cellspacing="0" border="0" style="width:736px;border-collapse:collapse;"><tbody><tr><td width="120" height="36" align="center" valign="middle" bgcolor="#F6F7F9" style="width:120px;height:36px;background-color:#F6F7F9;border:1px solid #B9C1CA;${F}font-size:11px;line-height:14px;font-weight:bold;letter-spacing:1px;color:#59636E;text-align:center;">LOGO</td><td align="right" valign="middle" style="padding:0 0 0 16px;${F}text-align:right;"><p style="margin:0;${F}font-size:11px;line-height:14px;font-weight:bold;letter-spacing:0.6px;text-transform:uppercase;color:#2E3D4F;">${title}</p><p style="margin:2px 0 0 0;${F}font-size:12px;line-height:16px;color:#59636E;">${dateLabel}${date}</p></td></tr></tbody></table></td></tr>`;
+// Theme C's grey "LOGO" box, shown only when no header logo is saved.
+const LOGO_PLACEHOLDER=`<td width="120" height="36" align="center" valign="middle" bgcolor="#F6F7F9" style="width:120px;height:36px;background-color:#F6F7F9;border:1px solid #B9C1CA;${F}font-size:11px;line-height:14px;font-weight:bold;letter-spacing:1px;color:#59636E;text-align:center;">LOGO</td>`;
+const topBar=(date,title='Daily Ticket Report',dateLabel='Report date: ')=>`${bar(6)}<tr><td style="padding:14px 32px;border-bottom:1px solid #D5DADF;"><table role="presentation" width="736" cellpadding="0" cellspacing="0" border="0" style="width:736px;border-collapse:collapse;"><tbody><tr>${LOGO_PLACEHOLDER}<td align="right" valign="middle" style="padding:0 0 0 16px;${F}text-align:right;"><p style="margin:0;${F}font-size:11px;line-height:14px;font-weight:bold;letter-spacing:0.6px;text-transform:uppercase;color:#2E3D4F;">${title}</p><p style="margin:2px 0 0 0;${F}font-size:12px;line-height:16px;color:#59636E;">${dateLabel}${date}</p></td></tr></tbody></table></td></tr>`;
 /** Saved header logo as an <img>, scaled into 120 × 40; '' when none or invalid. */
 function logoImg(settings={}){
  if(!validHeaderLogo(settings.headerLogo))return '';
@@ -229,7 +231,8 @@ function logoImg(settings={}){
  return `<img src="${settings.headerLogo}" width="${width}" height="${height}" alt="Report logo" style="width:${width}px;height:${height}px;" />`;
 }
 /** Theme C has a logo slot in its top bar; the other themes get a logo row above the greeting. */
-const placeLogo=(html,settings)=>{const img=logoImg(settings);return img?html.replace('>LOGO</td>','>'+img+'</td>'):html;};
+// With a logo the box styling goes: the logo sits on white with no grey fill or border, whatever its size.
+const placeLogo=(html,settings)=>{const img=logoImg(settings);return img?html.replace(LOGO_PLACEHOLDER,`<td width="120" align="left" valign="middle" style="width:120px;${F}text-align:left;">${img.replace('style="','style="display:block;border:0;')}</td>`):html;};
 const logoRow=settings=>{const img=logoImg(settings);return img?`<tr><td style="padding:24px 32px 0 32px;${F}">${img.replace('style="','style="display:block;border:0;')}</td></tr>`:'';};
 
 /** Selected signature profile (sanitized rich HTML, logo included) or the structured sender block. Blank sender lines are omitted. */

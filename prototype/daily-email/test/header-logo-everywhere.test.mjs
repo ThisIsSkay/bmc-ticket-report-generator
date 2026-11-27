@@ -38,7 +38,10 @@ test('the logo is in every report and every theme, scaled into 120 × 40', () =>
 test('the logo sits at the top: theme C in its slot, other themes above the greeting', () => {
   for (const [name, html] of outputs({headerLogo: LOGO, greeting: 'Hi Team,'})) {
     assert.ok(html.indexOf('alt="Report logo"') < html.indexOf('Hi Team,'), name);
-    if (name.endsWith('C')) assert.match(html, /<td width="120" height="36"[^>]*><img src="data:image\/png/, name);
+    if (name.endsWith('C')) {
+      assert.match(html, /<td width="120" align="left" valign="middle" style="width:120px;font-family:Arial,Helvetica,sans-serif;text-align:left;"><img src="data:image\/png[^"]*" width="120" height="40" alt="Report logo" style="display:block;border:0;width:120px;height:40px;" \/><\/td>/, name);
+      assert.doesNotMatch(html, /<td[^>]*(bgcolor|border)[^>]*><img[^>]*alt="Report logo"/, name + ': no grey box or border around the logo');
+    }
     else assert.match(html, /<tr><td style="padding:24px 32px 0 32px;font-family:Arial,Helvetica,sans-serif;"><img src="data:image\/png[^"]*" width="120" height="40" alt="Report logo" style="display:block;border:0;width:120px;height:40px;" \/><\/td><\/tr>/, name);
   }
 });
